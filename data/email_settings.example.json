@@ -1,0 +1,12 @@
+{
+  "smtp_server": "mail.smtp2go.com",
+  "smtp_port": 2525,
+  "smtp_user": "your_username",
+  "smtp_password": "",
+  "sender_name": "John Roberts | 407 Flips",
+  "sender_email": "john@407flips.com",
+  "reply_to": "john@407flips.com",
+  "company_name": "407 Flips",
+  "company_phone": "(407) 815-5043",
+  "business_address": "Orlando, FL (Central Florida)"
+}

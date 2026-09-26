@@ -1,0 +1,30 @@
+# Python Bytecode & Cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.pytest_cache/
+.pytest_cache/
+
+# Virtual Environments
+venv/
+.venv/
+env/
+ENV/
+
+# Private Credentials & Live Settings (DO NOT COMMIT)
+data/email_settings.json
+data/pandadoc_settings.json
+data/saved_contacts.json
+data/outreach_history.json
+*.env
+*.env.local
+
+# Large County Parcel Databases & Matching Caches
+# (Large binary datasets should be stored locally or via object storage)
+*.parquet
+*.csv.gz
+
+# Logs & OS artifacts
+*.log
+.DS_Store
+Thumbs.db

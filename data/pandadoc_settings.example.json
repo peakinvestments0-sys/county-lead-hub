@@ -1,0 +1,11 @@
+{
+  "mode": "sandbox",
+  "sandbox_key": "",
+  "production_key": "",
+  "buyer_name": "Peak Investments LLC",
+  "buyer_signer_name": "Johnathan Roberts",
+  "sender_email": "john@407flips.com",
+  "default_title_company": "TBD",
+  "default_inspection_days": 14,
+  "default_deposit": 100
+}

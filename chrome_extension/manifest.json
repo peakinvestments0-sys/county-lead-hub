@@ -1,0 +1,33 @@
+{
+  "manifest_version": 3,
+  "name": "Florida Lead Hub Helper",
+  "version": "1.0.0",
+  "description": "1-Click Free Skip Trace contact push from TruePeopleSearch directly into Florida Lead Hub",
+  "permissions": [
+    "storage",
+    "activeTab"
+  ],
+  "host_permissions": [
+    "*://*.truepeoplesearch.com/*",
+    "http://localhost:8505/*",
+    "http://127.0.0.1:8505/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Florida Lead Hub Helper"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.truepeoplesearch.com/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "css": [
+        "styles.css"
+      ],
+      "run_at": "document_idle"
+    }
+  ]
+}

@@ -1,0 +1,1748 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Florida Lead Hub — Public Records. Real Opportunities.</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Caveat:wght@600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+    
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: #060a13;
+      color: #e2e8f0;
+      overflow-x: hidden;
+    }
+    .mono {
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .script-font {
+      font-family: 'Caveat', cursive;
+    }
+    .glass-surface {
+      background: linear-gradient(180deg, rgba(16, 25, 43, 0.85) 0%, rgba(9, 15, 28, 0.9) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+    }
+    .hero-banner {
+      background: linear-gradient(90deg, #091122 0%, rgba(9, 17, 34, 0.85) 45%, rgba(9, 17, 34, 0.25) 100%), 
+                  url('/static/images/hero_banner_florida.jpg') center/cover no-repeat;
+    }
+    .county-card-hover {
+      transition: all 0.22s ease-in-out;
+    }
+    .county-card-hover:hover {
+      border-color: #2563eb;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px -6px rgba(37, 99, 235, 0.25);
+    }
+    .active-county-ring {
+      border-color: #3b82f6 !important;
+      box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5), 0 10px 25px -5px rgba(59, 130, 246, 0.3) !important;
+    }
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #060a13;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1e293b;
+      border-radius: 9999px;
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-[#060a13] text-slate-100 flex">
+
+  <!-- Left Sidebar -->
+  <aside class="w-64 bg-[#0a0f1d] border-r border-slate-800/80 flex flex-col justify-between p-5 min-h-screen shrink-0 hidden lg:flex">
+    <div class="space-y-7">
+      <!-- Brand Logo -->
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center text-white shadow-lg shadow-blue-600/30">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+          </svg>
+        </div>
+        <div>
+          <div class="font-extrabold text-base tracking-tight text-white leading-tight">FLORIDA<br><span class="text-blue-400">LEAD HUB</span></div>
+          <div class="text-[9px] uppercase tracking-widest text-slate-400 font-semibold">Public Records. Real Opportunities.</div>
+        </div>
+      </div>
+
+      <!-- Navigation -->
+      <nav class="space-y-1.5">
+        <a href="javascript:switchPipelineView('all')" id="sidebarLinkDashboard" class="flex items-center gap-3.5 px-4 py-2.5 rounded-xl bg-blue-600 text-white font-semibold text-sm shadow-md shadow-blue-600/25">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+          Dashboard / Lead Hub
+        </a>
+        <a href="javascript:switchPipelineView('saved')" id="sidebarLinkSaved" class="flex items-center gap-3.5 px-4 py-2.5 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800/60 font-medium text-sm transition">
+          <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/></svg>
+          <span>Saved Lists / My Leads</span>
+          <span id="sidebarSavedCount" class="ml-auto px-1.5 py-0.5 rounded-full text-[10px] font-bold bg-amber-500/20 text-amber-300">3</span>
+        </a>
+        <a href="javascript:switchPipelineView('history')" id="sidebarLinkHistory" class="flex items-center gap-3.5 px-4 py-2.5 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800/60 font-medium text-sm transition">
+          <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <span>Outreach History &amp; Logs</span>
+          <span id="sidebarHistoryCount" class="ml-auto px-1.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/20 text-emerald-300">0</span>
+        </a>
+        <a href="javascript:triggerExport()" class="flex items-center gap-3.5 px-4 py-2.5 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800/60 font-medium text-sm transition">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+          Export History / Downloads
+        </a>
+        <a href="#liveTableContainer" class="flex items-center gap-3.5 px-4 py-2.5 rounded-xl text-amber-300/80 hover:text-amber-200 hover:bg-amber-500/10 font-semibold text-sm transition">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+          Free Skip Trace / Phone
+        </a>
+        <a href="#availableCounties" class="flex items-center gap-3.5 px-4 py-2.5 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800/60 font-medium text-sm transition">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/></svg>
+          Coverage Map
+        </a>
+      </nav>
+
+      <div class="pt-4 border-t border-slate-800/80 space-y-1">
+        <a href="javascript:alert('Account & Subscription settings will be available in the subscriber release. Currently running in Local Admin mode.')" class="flex items-center gap-3.5 px-4 py-2 rounded-xl text-slate-400 hover:text-white text-xs font-medium transition">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+          Account & Billing
+        </a>
+        <button type="button" onclick="openSmsSettingsModal()" class="w-full flex items-center gap-3.5 px-4 py-2 rounded-xl text-emerald-400 hover:text-emerald-300 hover:bg-emerald-500/10 text-xs font-semibold transition cursor-pointer text-left bg-transparent border-0">
+          <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+          <span>📱 SMS Gateway Setup</span>
+        </button>
+        <button type="button" onclick="openEmailSettingsModal()" class="w-full flex items-center gap-3.5 px-4 py-2 rounded-xl text-cyan-400 hover:text-cyan-300 hover:bg-cyan-500/10 text-xs font-semibold transition cursor-pointer text-left bg-transparent border-0">
+          <svg class="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          <span>✉️ Email Gateway (SMTP2GO)</span>
+        </button>
+        <button type="button" onclick="openTemplatesModal()" class="w-full flex items-center gap-3.5 px-4 py-2 rounded-xl text-amber-400 hover:text-amber-300 hover:bg-amber-500/10 text-xs font-semibold transition cursor-pointer text-left bg-transparent border-0">
+          <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+          <span>📋 Outreach Templates</span>
+        </button>
+        <button type="button" onclick="openPandadocSettingsModal()" class="w-full flex items-center gap-3.5 px-4 py-2 rounded-xl text-purple-400 hover:text-purple-300 hover:bg-purple-500/10 text-xs font-semibold transition cursor-pointer text-left bg-transparent border-0">
+          <svg class="w-4 h-4 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/></svg>
+          <span>🖋️ PandaDoc E-Sign Setup</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Florida silhouette graphic -->
+    <div class="pt-6 border-t border-slate-800/80 flex items-center gap-3 opacity-75">
+      <svg class="w-8 h-10 text-slate-500 fill-current" viewBox="0 0 100 120">
+        <path d="M10 20 Q 30 15, 60 20 Q 80 25, 85 45 Q 75 70, 70 85 Q 65 105, 55 115 Q 50 115, 52 100 Q 55 70, 40 50 Q 20 40, 10 20 Z" />
+      </svg>
+      <div>
+        <div class="text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-tight">FLORIDA<br>INVESTORS<br><span class="text-blue-400">BUILD HERE</span></div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Canvas -->
+  <main class="flex-1 min-w-0 p-6 lg:p-8 space-y-6 overflow-y-auto">
+    
+    <!-- Top Header -->
+    <header class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div>
+        <h1 class="text-xl lg:text-2xl font-extrabold text-white tracking-tight">Find Distressed Property Leads Across Florida</h1>
+        <p class="text-xs text-slate-400 mt-1 flex items-center gap-2">
+          <span>Lis Pendens</span> &bull; <span>Code Violations</span> &bull; <span>Tax Liens</span> &bull; <span class="text-slate-500">And More</span>
+        </p>
+      </div>
+
+      <div class="flex items-center space-x-3">
+        <!-- Global Search -->
+        <div class="relative w-56 hidden sm:block">
+          <svg class="w-4 h-4 text-slate-400 absolute left-3.5 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          <input type="text" id="countySearchInput" placeholder="Search counties..." class="w-full bg-[#0d1424] border border-slate-700/80 rounded-xl pl-10 pr-4 py-2 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-blue-500">
+        </div>
+
+        <!-- State Selector Pill (Dynamic & clean) -->
+        <div class="relative" id="stateSelectorWrapper">
+          <div class="flex items-center gap-2 bg-[#0d1424] border border-slate-700/80 rounded-xl px-3 py-1.5 cursor-pointer hover:border-blue-500 transition">
+            <span id="activeStateIcon" class="text-sm">🌴</span>
+            <select id="stateSelect" onchange="handleStateChange(this.value)" class="bg-transparent text-xs font-bold text-white focus:outline-none cursor-pointer appearance-none pr-4">
+              <option value="FL" selected>Florida (FL)</option>
+            </select>
+            <svg class="w-3.5 h-3.5 text-slate-400 absolute right-2.5 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </div>
+        </div>
+
+        <!-- User Profile Pill -->
+        <div class="flex items-center gap-2.5 bg-[#0d1424] border border-slate-700/80 rounded-xl px-3 py-1.5">
+          <div class="w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center text-xs font-bold text-slate-200">
+            JR
+          </div>
+          <div class="text-left text-xs leading-tight">
+            <div class="font-bold text-white">John Roberts</div>
+            <div class="text-[10px] text-blue-400 font-semibold">Pro Plan</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Top Metrics Row (4 Cards) -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" id="statsRow">
+      <!-- Total Records -->
+      <div class="glass-surface rounded-2xl p-4 flex items-center space-x-4 border border-slate-800">
+        <div class="w-12 h-12 rounded-xl bg-blue-950/60 border border-blue-800/40 flex items-center justify-center text-blue-400 shrink-0">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+        </div>
+        <div>
+          <div class="text-2xl font-black text-white" id="statTotalRecords">287,431</div>
+          <div class="text-xs font-semibold text-slate-300">Total Records</div>
+          <div class="text-[11px] text-slate-500">Across All Counties</div>
+        </div>
+      </div>
+
+      <!-- Unique Properties -->
+      <div class="glass-surface rounded-2xl p-4 flex items-center space-x-4 border border-slate-800">
+        <div class="w-12 h-12 rounded-xl bg-emerald-950/60 border border-emerald-800/40 flex items-center justify-center text-emerald-400 shrink-0">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+        </div>
+        <div>
+          <div class="text-2xl font-black text-white" id="statUniqueProps">67,152</div>
+          <div class="text-xs font-semibold text-slate-300">Unique Properties</div>
+          <div class="text-[11px] text-slate-500">Last 30 Days</div>
+        </div>
+      </div>
+
+      <!-- Counties Available -->
+      <div class="glass-surface rounded-2xl p-4 flex items-center space-x-4 border border-slate-800">
+        <div class="w-12 h-12 rounded-xl bg-teal-950/60 border border-teal-800/40 flex items-center justify-center text-teal-400 shrink-0">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+        </div>
+        <div>
+          <div class="text-2xl font-black text-white" id="statCounties">12</div>
+          <div class="text-xs font-semibold text-slate-300">Counties Available</div>
+          <div class="text-[11px] text-slate-500">More Coming Soon</div>
+        </div>
+      </div>
+
+      <!-- Updated Daily -->
+      <div class="glass-surface rounded-2xl p-4 flex items-center space-x-4 border border-slate-800">
+        <div class="w-12 h-12 rounded-xl bg-cyan-950/60 border border-cyan-800/40 flex items-center justify-center text-cyan-400 shrink-0">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+        </div>
+        <div>
+          <div class="text-2xl font-black text-white" id="statFreshness">Updated Daily</div>
+          <div class="text-xs font-semibold text-slate-300">Fresh Data</div>
+          <div class="text-[11px] text-slate-500">Direct from County Sources</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hero Filter Card ("GET STARTED - Find Property Leads") -->
+    <div id="heroFinder" class="rounded-2xl border border-slate-800 overflow-hidden relative hero-banner p-7">
+      <div class="max-w-2xl relative z-10">
+        <span class="text-[11px] font-extrabold uppercase tracking-widest text-blue-400">GET STARTED</span>
+        <h2 class="text-3xl font-extrabold text-white mt-1">Find Property Leads</h2>
+        <p class="text-sm text-slate-300 mt-2 leading-relaxed">
+          Select a county and lead type to get started. Our system matches public records with parcel data and cleans the results for easy export.
+        </p>
+      </div>
+
+      <!-- Florida script graphic overlay -->
+      <div class="absolute right-8 top-6 hidden md:block text-right">
+        <div class="text-4xl text-amber-200 script-font tracking-wide">Florida</div>
+        <div class="text-[10px] font-bold uppercase tracking-widest text-slate-300">Opportunity Lives Here</div>
+      </div>
+
+      <!-- Filter Controls Bar -->
+      <form id="leadFinderForm" onsubmit="handleFindProperties(event)" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 mt-7 relative z-10">
+        <!-- County -->
+        <div>
+          <label class="block text-[11px] font-semibold text-slate-300 mb-1.5">County</label>
+          <div class="relative">
+            <select id="heroCountySelect" class="w-full bg-[#0b1220]/95 border border-slate-700 rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-blue-500 appearance-none cursor-pointer">
+              <!-- Populated dynamically via JS -->
+            </select>
+            <svg class="w-4 h-4 text-slate-400 absolute right-3 top-3 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </div>
+        </div>
+
+        <!-- Lead Source -->
+        <div>
+          <label class="block text-[11px] font-semibold text-slate-300 mb-1.5">Lead Source</label>
+          <div class="relative">
+            <select id="heroLeadSource" class="w-full bg-[#0b1220]/95 border border-slate-700 rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-blue-500 appearance-none cursor-pointer">
+              <option value="lis_pendens" selected>Lis Pendens (Foreclosures)</option>
+              <option value="lp_trust">🏛️ LP + Trust / Probate</option>
+              <option value="stacked">🔥 Double Distress (LP + Probate)</option>
+              <option value="probate">⚖️ Probate Court Filings</option>
+              <option value="code_violations">Code Violations</option>
+              <option value="tax_liens">Tax Liens</option>
+            </select>
+            <svg class="w-4 h-4 text-slate-400 absolute right-3 top-3 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </div>
+        </div>
+
+        <!-- Date Range -->
+        <div>
+          <label class="block text-[11px] font-semibold text-slate-300 mb-1.5">Date Range</label>
+          <div class="relative">
+            <select class="w-full bg-[#0b1220]/95 border border-slate-700 rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-blue-500 appearance-none cursor-pointer">
+              <option selected>Last 30 days</option>
+              <option>Last 60 days</option>
+              <option>Last 90 days</option>
+              <option>Year to Date</option>
+            </select>
+            <svg class="w-4 h-4 text-slate-400 absolute right-3 top-3 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </div>
+        </div>
+
+        <!-- Property Type -->
+        <div>
+          <label class="block text-[11px] font-semibold text-slate-300 mb-1.5">Property Type</label>
+          <div class="relative">
+            <select class="w-full bg-[#0b1220]/95 border border-slate-700 rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-blue-500 appearance-none cursor-pointer">
+              <option selected>All property types</option>
+              <option>Single Family</option>
+              <option>Multi-Family / Duplex</option>
+              <option>Condo / Townhouse</option>
+              <option>Vacant Land</option>
+            </select>
+            <svg class="w-4 h-4 text-slate-400 absolute right-3 top-3 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="flex items-end">
+          <button type="submit" id="btnFindProps" class="w-full bg-blue-600 hover:bg-blue-500 text-white font-bold py-2.5 px-4 rounded-xl text-xs flex items-center justify-center gap-2 shadow-lg shadow-blue-600/30 transition">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            FIND PROPERTIES &gt;
+          </button>
+        </div>
+      </form>
+
+      <!-- County Sources Quick Access Bar -->
+      <div class="flex flex-wrap items-center justify-between gap-3 mt-4 pt-3.5 border-t border-slate-800/80 relative z-10 text-xs">
+        <div class="flex items-center gap-2.5 flex-wrap">
+          <span class="text-slate-400 font-semibold text-[11px] uppercase tracking-wider">County Source:</span>
+          <span class="text-white font-extrabold" id="heroSelectedCountyLabel">Pinellas County</span>
+          <span class="text-slate-600">&bull;</span>
+          <a id="heroMasterParcelLink" href="https://www.pcpao.gov/tools-data/data-downloads/raw-database-files" target="_blank" class="px-2.5 py-1 rounded-lg bg-emerald-500/15 hover:bg-emerald-600 text-emerald-300 hover:text-white border border-emerald-500/30 text-[11px] font-bold inline-flex items-center gap-1.5 transition" title="Go to official County Property Appraiser raw parcel database download">
+            📦 Master Parcel File ↗
+          </a>
+        </div>
+        <button type="button" onclick="openPortalLinksModal()" class="px-3 py-1 rounded-lg bg-slate-800/90 hover:bg-slate-700 text-slate-200 hover:text-white border border-slate-700 text-[11px] font-semibold inline-flex items-center gap-1.5 transition cursor-pointer shadow-sm">
+          ⚙️ Edit / Add County Links &rarr;
+        </button>
+      </div>
+    </div>
+
+    <!-- Available Counties Section -->
+    <div id="availableCounties" class="space-y-4">
+      <div class="flex items-center justify-between">
+        <div>
+          <h3 class="text-base font-bold text-white flex items-center gap-2">
+            <svg class="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg>
+            Available Counties
+          </h3>
+          <p class="text-xs text-slate-400">Click a county to view available data and start pulling leads.</p>
+        </div>
+
+        <div class="flex items-center space-x-1 bg-[#0d1424] border border-slate-800 rounded-xl p-1 text-xs">
+          <button class="px-3 py-1 rounded-lg bg-blue-600 text-white font-semibold flex items-center gap-1.5 shadow-sm">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/></svg>
+            Grid View
+          </button>
+          <button class="px-3 py-1 rounded-lg text-slate-400 hover:text-white flex items-center gap-1.5 transition">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+            List View
+          </button>
+        </div>
+      </div>
+
+      <!-- County Cards Grid (Populated dynamically via JS) -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3.5" id="countyGrid">
+        <!-- Rendered by app.js -->
+      </div>
+    </div>
+
+    <!-- Live Records & Matcher Section (Displays real Pinellas records immediately on load) -->
+    <div id="liveRecordsSection" class="glass-surface rounded-2xl p-6 border border-slate-800 space-y-4">
+      
+      <!-- Primary Pipeline View Switcher (All County Leads vs Saved Lists / My Leads vs Outreach History) -->
+      <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800 pb-3.5">
+        <div class="flex items-center gap-2 flex-wrap">
+          <button type="button" id="pipelineTabAll" onclick="switchPipelineView('all')" class="px-4 py-2 rounded-xl text-xs font-bold transition flex items-center gap-2 bg-blue-600 text-white shadow-md shadow-blue-600/30 cursor-pointer">
+            <span>🌴</span> <span>All County Leads</span> <span id="pipelineCountAll" class="px-1.5 py-0.2 rounded-full text-[10px] bg-blue-400/20 text-blue-200">1,230</span>
+          </button>
+          <button type="button" id="pipelineTabSaved" onclick="switchPipelineView('saved')" class="px-4 py-2 rounded-xl text-xs font-bold transition flex items-center gap-2 bg-slate-800 text-slate-300 hover:text-white border border-slate-700 cursor-pointer">
+            <span>⭐</span> <span>Saved Lists / My Leads</span> <span id="pipelineCountSaved" class="px-1.5 py-0.2 rounded-full text-[10px] bg-amber-400/20 text-amber-300">3</span>
+          </button>
+          <button type="button" id="pipelineTabHistory" onclick="switchPipelineView('history')" class="px-4 py-2 rounded-xl text-xs font-bold transition flex items-center gap-2 bg-slate-800 text-slate-300 hover:text-white border border-slate-700 cursor-pointer">
+            <span>📜</span> <span>Outreach Contact History</span> <span id="pipelineCountHistory" class="px-1.5 py-0.2 rounded-full text-[10px] bg-emerald-400/20 text-emerald-300">0</span>
+          </button>
+        </div>
+        <div class="text-[11px] text-slate-400 font-medium" id="pipelineViewDescription">
+          Showing all raw distressed public filings for Pinellas County
+        </div>
+      </div>
+
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-800 pb-4">
+        <div>
+          <div class="flex items-center gap-2.5">
+            <h3 class="text-lg font-extrabold text-white" id="liveCountyTitle">Pinellas County Live Distressed Leads</h3>
+            <span id="liveStatusBadge" class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 flex items-center gap-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> 3,205 Verified Properties
+            </span>
+          </div>
+          <p class="text-xs text-slate-400 mt-1" id="liveCountySub">Cross-referenced against 437,559 official county master parcels with clean owner names and absentee indicators.</p>
+        </div>
+
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5" id="liveTableSearchExportBar">
+          <!-- Relocated Quick Filter Search Input -->
+          <div class="relative w-full sm:w-72">
+            <svg class="w-4 h-4 text-slate-400 absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            <input type="text" id="liveSearchInput" onkeyup="searchLiveTable()" placeholder="Quick search address, owner, PIN..." class="w-full bg-slate-900 border border-slate-700/80 rounded-xl pl-9 pr-3 py-1.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-blue-500">
+          </div>
+          <button onclick="triggerExport()" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold text-xs flex items-center justify-center gap-2 shadow-lg shadow-emerald-600/30 transition cursor-pointer whitespace-nowrap">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+            Export for Skip-Tracing (.CSV)
+          </button>
+        </div>
+      </div>
+
+      <!-- Quick Category Distress Filter Tabs (Full width, completely unblocked) -->
+      <div class="w-full" id="liveFilterPillsContainer">
+        <div class="flex items-center gap-2 overflow-x-auto w-full pb-1" id="liveFilterPills">
+          <button onclick="filterLiveRecords('all')" id="btnTabAll" class="px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-blue-600 text-white shadow-sm cursor-pointer whitespace-nowrap">All Records (<span id="liveCountAll">0</span>)</button>
+          <button onclick="filterLiveRecords('stacked')" id="btnTabStacked" class="px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-slate-800 text-amber-300 hover:text-white border border-amber-500/40 transition cursor-pointer whitespace-nowrap">🔥 Double Distress (<span id="liveCountStacked">0</span>)</button>
+          <button onclick="filterLiveRecords('lis_pendens')" id="btnTabLp" class="px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-slate-800 text-slate-300 hover:text-white transition cursor-pointer whitespace-nowrap">📄 Lis Pendens (<span id="liveCountLp">0</span>)</button>
+          <button onclick="filterLiveRecords('lp_trust')" id="btnTabLpTrust" class="px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-slate-800 text-purple-300 hover:text-white transition cursor-pointer whitespace-nowrap">🏛️ LP + Trust/Probate (<span id="liveCountLpTrust">0</span>)</button>
+          <button onclick="filterLiveRecords('probate')" id="btnTabProbate" class="px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-slate-800 text-indigo-300 hover:text-white transition cursor-pointer whitespace-nowrap">⚖️ Probate Court (<span id="liveCountProbate">0</span>)</button>
+          <button onclick="filterLiveRecords('code')" id="btnTabCode" class="px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-slate-800 text-slate-300 hover:text-white transition cursor-pointer whitespace-nowrap">🚨 Code Violations (<span id="liveCountCode">0</span>)</button>
+          <button onclick="filterLiveRecords('absentee')" id="btnTabAbsentee" class="px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-slate-800 text-slate-300 hover:text-white transition cursor-pointer whitespace-nowrap">✈️ Absentee Out-of-State (<span id="liveCountAbsentee">0</span>)</button>
+          <button onclick="filterLiveRecords('tax_liens')" id="btnTabTax" class="px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-slate-800 text-rose-300 hover:text-white transition cursor-pointer whitespace-nowrap">💰 Tax Liens (<span id="liveCountTax">0</span>)</button>
+        </div>
+      </div>
+
+      <!-- Live Records Table Container -->
+      <div class="overflow-x-auto rounded-xl border border-slate-800 max-h-[500px]" id="liveTableContainer">
+        <table class="w-full text-left text-xs text-slate-300" id="liveTable">
+          <thead class="bg-[#0b1220] text-slate-400 text-[10px] font-bold uppercase tracking-wider sticky top-0 border-b border-slate-800 z-10">
+            <tr>
+              <th class="px-4 py-3">Lead Type / Match</th>
+              <th class="px-4 py-3">Property Location (Situs)</th>
+              <th class="px-4 py-3">Clean Owner Name</th>
+              <th class="px-4 py-3">Entity Type</th>
+              <th class="px-4 py-3">Absentee Status</th>
+              <th class="px-4 py-3">Living / Built</th>
+              <th class="px-4 py-3 text-right">Market Value</th>
+              <th class="px-4 py-3 text-center whitespace-nowrap min-w-[270px]">Actions & Skip Trace</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-800/60 font-medium" id="liveTableBody">
+            <!-- Populated immediately on page load via JS -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Outreach Contact History Table (Shows exact messages and delivery records) -->
+      <div id="liveHistoryContainer" class="hidden overflow-x-auto rounded-xl border border-slate-800 max-h-[500px]">
+        <div class="p-3.5 bg-[#090f1d] border-b border-slate-800 flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="text-xs font-bold text-white">Outreach Activity Log</span>
+            <span class="text-[11px] text-slate-400">Complete record of every text message dispatched via your Android phone and email sent via SMTP2GO</span>
+          </div>
+          <button type="button" onclick="handleClearOutreachHistory()" class="px-2.5 py-1 rounded-lg text-[11px] font-semibold text-rose-400 hover:text-rose-300 hover:bg-rose-500/10 border border-rose-500/20 transition cursor-pointer">
+            🗑️ Clear History
+          </button>
+        </div>
+        <table class="w-full text-left text-xs text-slate-300" id="liveHistoryTable">
+          <thead class="bg-[#0b1220] text-slate-400 text-[10px] font-bold uppercase tracking-wider sticky top-0 border-b border-slate-800 z-10">
+            <tr>
+              <th class="px-4 py-3">Date / Time</th>
+              <th class="px-4 py-3">Channel</th>
+              <th class="px-4 py-3">Homeowner</th>
+              <th class="px-4 py-3">Property Location</th>
+              <th class="px-4 py-3">Recipient Info</th>
+              <th class="px-4 py-3">Message / Script Sent</th>
+              <th class="px-4 py-3 text-center">Status</th>
+              <th class="px-4 py-3 text-center">Follow-up</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-800/60 font-medium" id="liveHistoryTableBody">
+            <!-- Populated via JS -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- County Setup Notice (Visible when clicking unconfigured counties) -->
+      <div id="setupNoticeBox" class="hidden p-5 rounded-xl bg-blue-950/40 border border-blue-800/50 space-y-3">
+        <div class="flex items-center gap-2.5 text-amber-300 font-bold text-sm">
+          <span>⚠️</span> <span id="setupCountyName">Orange County</span> Setup Required
+        </div>
+        <p class="text-xs text-slate-300 leading-relaxed">
+          The application is fully configured for this county, but its master parcel database has not been downloaded yet. 
+          To unlock instant matching for this county:
+        </p>
+        <div class="flex flex-wrap items-center gap-3 pt-1">
+          <a id="setupDownloadBtn" href="#" target="_blank" class="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs flex items-center gap-2 transition">
+            📦 Download Free Official Parcel DB
+          </a>
+          <button type="button" onclick="openImportModal('all')" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-xs flex items-center gap-2 transition cursor-pointer border border-slate-700">
+            📁 + Upload Lead CSV
+          </button>
+          <span class="text-xs text-slate-400">Save parcel file into: <code class="mono text-cyan-300 bg-slate-900 px-2 py-1 rounded" id="setupTargetDir">data/Orange/</code></span>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Lead Sources & Portals Section Header -->
+    <div class="flex flex-wrap items-center justify-between gap-3 pt-3 mb-1">
+      <div>
+        <h3 class="text-sm font-extrabold uppercase tracking-wider text-white flex items-center gap-2">
+          <span>📑</span> Lead Sources & Official County Portals
+        </h3>
+        <p class="text-[11px] text-slate-400 mt-0.5">Click "Official Portal ↗" to go right to the county website to pull new lists, then hit "+ Update CSV".</p>
+      </div>
+      <button type="button" onclick="openPortalLinksModal()" class="px-3.5 py-1.5 rounded-xl bg-slate-800/90 hover:bg-slate-700 text-slate-200 hover:text-white border border-slate-700 text-xs font-semibold inline-flex items-center gap-1.5 transition cursor-pointer shadow-sm">
+        ⚙️ Edit / Add Portal Links
+      </button>
+    </div>
+
+    <!-- Lead Source Category Cards (4 Cards) -->
+    <div id="leadCategories" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-1">
+      <!-- Lis Pendens -->
+      <div onclick="quickFilterLeadType('lis_pendens')" class="glass-surface rounded-2xl p-5 border border-slate-800 hover:border-blue-700/60 transition cursor-pointer group flex flex-col justify-between">
+        <div>
+          <div class="flex items-center space-x-3.5 mb-2">
+            <div class="w-10 h-10 rounded-xl bg-blue-950/60 border border-blue-800/40 flex items-center justify-center text-blue-400 group-hover:scale-105 transition">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            </div>
+            <div>
+              <div class="font-bold text-white text-sm">Lis Pendens</div>
+              <div class="text-[10px] text-blue-400 font-semibold">Pre-Foreclosures</div>
+            </div>
+          </div>
+          <p class="text-xs text-slate-400 mt-2">Active lawsuits, pre-foreclosures and lender legal filings.</p>
+        </div>
+        <div class="mt-4 pt-3 border-t border-slate-800/80 space-y-2">
+          <div class="flex items-center justify-between gap-1.5">
+            <button type="button" onclick="event.stopPropagation(); quickFilterLeadType('lis_pendens')" class="inline-flex items-center gap-1 text-[11px] font-bold text-blue-400 hover:text-blue-300 transition cursor-pointer">
+              VIEW DETAILS &rarr;
+            </button>
+            <a id="cardLinkLp" href="https://officialrecords.mypinellasclerk.gov/search/SearchTypeDocType" target="_blank" onclick="event.stopPropagation()" class="px-2 py-1 rounded-lg bg-slate-800/90 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 text-[10px] font-semibold inline-flex items-center gap-1 transition" title="Go directly to Official County Clerk Portal">
+              🌐 Official Portal ↗
+            </a>
+          </div>
+          <button type="button" onclick="event.stopPropagation(); openImportModal('lis_pendens')" class="w-full py-1.5 rounded-lg bg-blue-600/20 hover:bg-blue-600 text-blue-300 hover:text-white border border-blue-500/30 text-[10px] font-bold inline-flex items-center justify-center gap-1.5 transition cursor-pointer" title="Import new Lis Pendens CSV">
+            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
+            + Update CSV
+          </button>
+        </div>
+      </div>
+
+      <!-- Code Violations -->
+      <div onclick="quickFilterLeadType('code_violations')" class="glass-surface rounded-2xl p-5 border border-slate-800 hover:border-amber-700/60 transition cursor-pointer group flex flex-col justify-between">
+        <div>
+          <div class="flex items-center space-x-3.5 mb-2">
+            <div class="w-10 h-10 rounded-xl bg-amber-950/60 border border-amber-800/40 flex items-center justify-center text-amber-400 group-hover:scale-105 transition">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+            </div>
+            <div>
+              <div class="font-bold text-white text-sm">Code Violations</div>
+              <div class="text-[10px] text-amber-400 font-semibold">Municipal Citations</div>
+            </div>
+          </div>
+          <p class="text-xs text-slate-400 mt-2">Properties with open municipal enforcement, safety & zoning cases.</p>
+        </div>
+        <div class="mt-4 pt-3 border-t border-slate-800/80 space-y-2">
+          <div class="flex items-center justify-between gap-1.5">
+            <button type="button" onclick="event.stopPropagation(); quickFilterLeadType('code_violations')" class="inline-flex items-center gap-1 text-[11px] font-bold text-amber-400 hover:text-amber-300 transition cursor-pointer">
+              VIEW DETAILS &rarr;
+            </button>
+            <a id="cardLinkCode" href="https://aca-prod.accela.com/PINELLAS/Cap/CapHome.aspx?module=Enforcement&TabName=Home" target="_blank" onclick="event.stopPropagation()" class="px-2 py-1 rounded-lg bg-slate-800/90 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 text-[10px] font-semibold inline-flex items-center gap-1 transition" title="Go directly to County Code Enforcement Portal">
+              🌐 Official Portal ↗
+            </a>
+          </div>
+          <button type="button" onclick="event.stopPropagation(); openImportModal('code_violations')" class="w-full py-1.5 rounded-lg bg-amber-600/20 hover:bg-amber-600 text-amber-300 hover:text-white border border-amber-500/30 text-[10px] font-bold inline-flex items-center justify-center gap-1.5 transition cursor-pointer" title="Import new Code Violations CSV">
+            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
+            + Update CSV
+          </button>
+        </div>
+      </div>
+
+      <!-- Tax Liens (Delinquent Taxes & Certificates) -->
+      <div onclick="quickFilterLeadType('tax_liens')" class="glass-surface rounded-2xl p-5 border border-slate-800 hover:border-rose-700/60 transition cursor-pointer group flex flex-col justify-between">
+        <div>
+          <div class="flex items-center space-x-3.5 mb-2">
+            <div class="w-10 h-10 rounded-xl bg-rose-950/60 border border-rose-800/40 flex items-center justify-center text-rose-400 group-hover:scale-105 transition">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            </div>
+            <div>
+              <div class="font-bold text-white text-sm">Tax Liens</div>
+              <div class="text-[10px] text-rose-400 font-semibold">Delinquent Taxes</div>
+            </div>
+          </div>
+          <p class="text-xs text-slate-400 mt-2">Delinquent county taxes, tax auction certificates, and municipal liens.</p>
+        </div>
+        <div class="mt-4 pt-3 border-t border-slate-800/80 space-y-2">
+          <div class="flex items-center justify-between gap-1.5">
+            <button type="button" onclick="event.stopPropagation(); quickFilterLeadType('tax_liens')" class="inline-flex items-center gap-1 text-[11px] font-bold text-rose-400 hover:text-rose-300 transition cursor-pointer">
+              VIEW DETAILS &rarr;
+            </button>
+            <a id="cardLinkTax" href="https://pinellas.county-taxes.com/public" target="_blank" onclick="event.stopPropagation()" class="px-2 py-1 rounded-lg bg-slate-800/90 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 text-[10px] font-semibold inline-flex items-center gap-1 transition" title="Go directly to County Tax Collector Portal">
+              🌐 Official Portal ↗
+            </a>
+          </div>
+          <button type="button" onclick="event.stopPropagation(); openImportModal('tax_liens')" class="w-full py-1.5 rounded-lg bg-rose-600/20 hover:bg-rose-600 text-rose-300 hover:text-white border border-rose-500/30 text-[10px] font-bold inline-flex items-center justify-center gap-1.5 transition cursor-pointer" title="Import Tax Liens CSV">
+            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
+            + Update CSV
+          </button>
+        </div>
+      </div>
+
+      <!-- Probate & Inherited Estates -->
+      <div onclick="quickFilterLeadType('probate')" class="glass-surface rounded-2xl p-5 border border-slate-800 hover:border-purple-700/60 transition cursor-pointer group flex flex-col justify-between">
+        <div>
+          <div class="flex items-center space-x-3.5 mb-2">
+            <div class="w-10 h-10 rounded-xl bg-purple-950/60 border border-purple-800/40 flex items-center justify-center text-purple-400 group-hover:scale-105 transition">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z"/></svg>
+            </div>
+            <div>
+              <div class="font-bold text-white text-sm">Probate & Trusts</div>
+              <div class="text-[10px] text-purple-400 font-semibold">Court Filings & Trusts</div>
+            </div>
+          </div>
+          <p class="text-xs text-slate-400 mt-2">Inherited properties, deceased estates, wills, and court probate dockets.</p>
+        </div>
+        <div class="mt-4 pt-3 border-t border-slate-800/80 space-y-2">
+          <div class="flex items-center justify-between gap-1.5">
+            <button type="button" onclick="event.stopPropagation(); quickFilterLeadType('probate')" class="inline-flex items-center gap-1 text-[11px] font-bold text-purple-400 hover:text-purple-300 transition cursor-pointer">
+              VIEW DETAILS &rarr;
+            </button>
+            <a id="cardLinkProbate" href="https://officialrecords.mypinellasclerk.gov/search/SearchTypeDocType" target="_blank" onclick="event.stopPropagation()" class="px-2 py-1 rounded-lg bg-slate-800/90 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 text-[10px] font-semibold inline-flex items-center gap-1 transition" title="Go directly to County Probate Court Portal">
+              🌐 Official Portal ↗
+            </a>
+          </div>
+          <button type="button" onclick="event.stopPropagation(); openImportModal('probate')" class="w-full py-1.5 rounded-lg bg-purple-600/20 hover:bg-purple-600 text-purple-300 hover:text-white border border-purple-500/30 text-[10px] font-bold inline-flex items-center justify-center gap-1.5 transition cursor-pointer" title="Import new Probate Court CSV">
+            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
+            + Update CSV
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Matched Leads Results Modal / Drawer -->
+  <div id="resultsModal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
+    <div class="glass-surface rounded-2xl max-w-6xl w-full max-h-[92vh] border border-slate-700 flex flex-col overflow-hidden shadow-2xl">
+      <!-- Modal Header -->
+      <div class="px-6 py-4 border-b border-slate-800 flex justify-between items-center bg-[#0a101d]">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-blue-600/20 border border-blue-500/40 text-blue-400 flex items-center justify-center font-bold">
+            FL
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <h3 class="font-extrabold text-base text-white" id="modalCountyTitle">Pinellas County Leads</h3>
+              <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">Cross-Referenced</span>
+            </div>
+            <p class="text-xs text-slate-400" id="modalSubTitle">Matched against 437,559 master parcels</p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <button onclick="triggerExport()" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold text-xs flex items-center gap-2 shadow-lg shadow-emerald-600/30 transition">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+            Export for Skip-Tracing
+          </button>
+          <button onclick="closeResultsModal()" class="text-slate-400 hover:text-white p-2 rounded-xl hover:bg-slate-800 transition">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Live KPI Badges -->
+      <div id="leadsKpiContainer" class="px-6 py-3.5 bg-slate-900/60 border-b border-slate-800 grid grid-cols-2 md:grid-cols-5 gap-3 text-center shrink-0">
+        <div>
+          <div class="text-[10px] text-slate-400 uppercase font-semibold" id="kpiLabelTotal">Total Leads</div>
+          <div class="text-lg font-extrabold text-white" id="kpiTotalLeads">-</div>
+        </div>
+        <div>
+          <div class="text-[10px] text-slate-400 uppercase font-semibold" id="kpiLabelMatched">Matched Parcels</div>
+          <div class="text-lg font-extrabold text-emerald-400" id="kpiMatchedCount">-</div>
+        </div>
+        <div>
+          <div class="text-[10px] text-slate-400 uppercase font-semibold" id="kpiLabelRate">Match Rate</div>
+          <div class="text-lg font-extrabold text-blue-400" id="kpiMatchRate">-</div>
+        </div>
+        <div>
+          <div class="text-[10px] text-slate-400 uppercase font-semibold" id="kpiLabelAbsentee">Absentee Out-of-State</div>
+          <div class="text-lg font-extrabold text-purple-300" id="kpiAbsenteeCount">-</div>
+        </div>
+        <div>
+          <div class="text-[10px] text-slate-400 uppercase font-semibold" id="kpiLabelAvg">Avg Market Value</div>
+          <div class="text-lg font-extrabold text-amber-300" id="kpiAvgValue">-</div>
+        </div>
+      </div>
+
+      <!-- Filter Controls & Search -->
+      <div id="leadsFilterContainer" class="p-4 bg-[#080d1a] border-b border-slate-800 flex flex-col md:flex-row items-center justify-between gap-3 shrink-0">
+        <div class="flex items-center gap-2 overflow-x-auto w-full md:w-auto" id="modalFilterPills">
+          <button onclick="filterResults('all')" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-blue-600 text-white">All (<span id="countAll">0</span>)</button>
+          <button onclick="filterResults('absentee')" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:text-white">✈️ Absentee Out-of-State (<span id="countAbsentee">0</span>)</button>
+          <button onclick="filterResults('llc')" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:text-white">🏢 Corporate LLC (<span id="countLlc">0</span>)</button>
+          <button onclick="filterResults('trust')" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-slate-300 hover:text-white">🏛️ Probate / Trusts (<span id="countTrust">0</span>)</button>
+        </div>
+
+        <div class="relative w-full md:w-72">
+          <svg class="w-4 h-4 text-slate-400 absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+          <input type="text" id="modalSearch" onkeyup="searchModalTable()" placeholder="Filter address, owner name, PIN..." class="w-full bg-slate-900 border border-slate-700 rounded-xl pl-9 pr-3 py-1.5 text-xs text-white focus:outline-none focus:border-blue-500">
+        </div>
+      </div>
+
+      <!-- Results Table -->
+      <div class="flex-1 overflow-y-auto" id="leadsTableContainer">
+        <table class="w-full text-left text-xs text-slate-300" id="modalTable">
+          <thead class="bg-[#0b1220] text-slate-400 text-[10px] font-bold uppercase tracking-wider sticky top-0 border-b border-slate-800">
+            <tr>
+              <th class="px-4 py-3">Status</th>
+              <th class="px-4 py-3">Property Location (Situs)</th>
+              <th class="px-4 py-3">Clean Owner Name</th>
+              <th class="px-4 py-3">Entity Type</th>
+              <th class="px-4 py-3">Absentee Status</th>
+              <th class="px-4 py-3">Year / Sqft</th>
+              <th class="px-4 py-3 text-right">Assessed Value</th>
+              <th class="px-4 py-3 text-center">Actions &amp; Skip Trace</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-800/60 font-medium" id="modalTableBody">
+            <!-- Populated via JS -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Outreach Contact History Table (Dedicated View) -->
+      <div id="outreachHistoryContainer" class="hidden flex-1 overflow-y-auto">
+        <div class="p-3.5 bg-[#080d1a] border-b border-slate-800 flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="text-xs font-bold text-white">Dispatched Outreach Log</span>
+            <span class="text-[11px] text-slate-400">All SMS messages sent from your cellular phone &amp; emails sent via SMTP2GO</span>
+          </div>
+          <button type="button" onclick="handleClearOutreachHistory()" class="px-2.5 py-1 rounded-lg text-[11px] font-semibold text-rose-400 hover:text-rose-300 hover:bg-rose-500/10 border border-rose-500/20 transition cursor-pointer">
+            🗑️ Clear History
+          </button>
+        </div>
+        <table class="w-full text-left text-xs text-slate-300" id="historyTable">
+          <thead class="bg-[#0b1220] text-slate-400 text-[10px] font-bold uppercase tracking-wider sticky top-0 border-b border-slate-800">
+            <tr>
+              <th class="px-4 py-3">Date / Time</th>
+              <th class="px-4 py-3">Channel</th>
+              <th class="px-4 py-3">Homeowner</th>
+              <th class="px-4 py-3">Property Location</th>
+              <th class="px-4 py-3">Recipient</th>
+              <th class="px-4 py-3">Message / Subject Sent</th>
+              <th class="px-4 py-3 text-center">Status</th>
+              <th class="px-4 py-3 text-center">Follow-up</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-800/60 font-medium" id="historyTableBody">
+            <!-- Populated via JS -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Import Lead File CSV Modal -->
+  <div id="importModal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
+    <div class="glass-surface rounded-2xl max-w-lg w-full border border-slate-700 flex flex-col overflow-hidden shadow-2xl">
+      <div class="px-6 py-4 border-b border-slate-800 flex justify-between items-center bg-[#0a101d]">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-xl bg-blue-600/20 border border-blue-500/40 text-blue-400 flex items-center justify-center font-bold">
+            📁
+          </div>
+          <div>
+            <h3 class="font-extrabold text-sm text-white" id="importModalTitle">Import Lead File (.CSV / .XLSX)</h3>
+            <p class="text-[11px] text-slate-400" id="importModalSubtitle">Cross-reference leads with master parcel database</p>
+          </div>
+        </div>
+        <button onclick="closeImportModal()" class="text-slate-400 hover:text-white p-1.5 rounded-lg hover:bg-slate-800 transition">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <form id="importForm" onsubmit="handleImportSubmit(event)" class="p-6 space-y-4">
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1.5">Target County</label>
+          <input type="text" id="importCountyInput" readonly class="w-full bg-[#0b1220] border border-slate-700 rounded-xl px-3 py-2 text-xs text-slate-300 focus:outline-none cursor-not-allowed font-semibold">
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1.5">Lead Type</label>
+          <select id="importLeadTypeSelect" class="w-full bg-[#0b1220] border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-blue-500 cursor-pointer">
+            <option value="tax_liens">Tax Liens & Delinquencies</option>
+            <option value="lis_pendens">Lis Pendens (Pre-Foreclosure)</option>
+            <option value="code_violations">Code Violations</option>
+            <option value="probate">Probate / Inherited Estates</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1.5">Select File (.csv or .xlsx)</label>
+          <div class="border-2 border-dashed border-slate-700 hover:border-blue-500/70 rounded-xl p-6 text-center cursor-pointer transition bg-slate-900/40 relative">
+            <input type="file" id="importFileInput" accept=".csv,.xlsx,.xls,.txt" required class="absolute inset-0 opacity-0 cursor-pointer w-full h-full" onchange="handleFileSelected(this)">
+            <svg class="w-8 h-8 text-slate-500 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/></svg>
+            <div class="text-xs font-bold text-white" id="importFileLabel">Click or drag & drop CSV file here</div>
+            <div class="text-[10px] text-slate-400 mt-1">Accepts county clerk exports, tax sale lists, or parcel spreadsheets</div>
+          </div>
+        </div>
+
+        <div class="rounded-xl bg-blue-950/30 border border-blue-800/40 p-3 text-[11px] text-slate-300 space-y-1">
+          <div>💡 <span class="font-semibold text-blue-300">Auto-Matching:</span> Normalizes owner names, cleans defendant strings, matches PINs/situs, and tags absentee owners.</div>
+          <div class="text-emerald-300 font-medium">🔄 <span class="font-semibold text-emerald-400">Non-Destructive Update:</span> New CSV records are merged and updated. Existing leads from other distress feeds are never deleted.</div>
+        </div>
+
+        <div class="flex items-center justify-end gap-3 pt-2">
+          <button type="button" onclick="closeImportModal()" class="px-4 py-2 rounded-xl text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300 transition cursor-pointer">
+            Cancel
+          </button>
+          <button type="submit" id="btnSubmitImport" class="px-5 py-2 rounded-xl text-xs font-bold bg-blue-600 hover:bg-blue-500 text-white shadow-lg shadow-blue-600/30 transition flex items-center gap-2 cursor-pointer">
+            🚀 Run Match Engine
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- County Sources & Portal Links Modal -->
+  <div id="portalLinksModal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
+    <div class="glass-surface rounded-2xl max-w-2xl w-full border border-slate-700 flex flex-col overflow-hidden shadow-2xl">
+      <div class="px-6 py-4 border-b border-slate-800 flex justify-between items-center bg-[#0a101d]">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-lg bg-blue-600/20 text-blue-400 flex items-center justify-center font-bold">
+            🌐
+          </div>
+          <div>
+            <h3 class="font-bold text-sm text-white">County Sources & Official Portal Links</h3>
+            <p class="text-[11px] text-slate-400">Add, edit, or visit official county websites to pull new raw lists</p>
+          </div>
+        </div>
+        <button onclick="closePortalLinksModal()" class="text-slate-400 hover:text-white p-1.5 rounded-lg hover:bg-slate-800 transition">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <!-- Modal Navigation Tabs -->
+      <div class="flex items-center gap-2 px-6 pt-2 border-b border-slate-800 bg-[#080d19]">
+        <button type="button" id="tabBtnPortalUrls" onclick="switchPortalModalTab('urls')" class="px-4 py-2 border-b-2 border-blue-500 text-blue-400 font-bold text-xs cursor-pointer transition">
+          ⚙️ County Portal URLs
+        </button>
+        <button type="button" id="tabBtnCustomCards" onclick="switchPortalModalTab('cards')" class="px-4 py-2 border-b-2 border-transparent text-slate-400 hover:text-slate-200 font-bold text-xs cursor-pointer transition flex items-center gap-1.5">
+          <span>➕ Custom Distress Cards (Divorce, Judgments, etc.)</span>
+          <span id="customCardCountBadge" class="px-1.5 py-0.5 rounded-full text-[9px] bg-purple-500/20 text-purple-300 font-extrabold hidden">0</span>
+        </button>
+      </div>
+
+      <!-- Tab 1: Official Portal URLs Form -->
+      <div id="panelPortalUrls" class="block">
+        <form id="portalLinksForm" onsubmit="handlePortalLinksSubmit(event)" class="p-6 space-y-4 max-h-[75vh] overflow-y-auto">
+          <!-- County Picker -->
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1.5">Select County to Configure</label>
+            <select id="portalCountySelect" onchange="loadCountyPortalInputs(this.value)" class="w-full bg-[#0b1220] border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-blue-500 cursor-pointer">
+              <!-- Populated dynamically via JS -->
+            </select>
+          </div>
+
+          <!-- 1. Master Parcel File Download URL -->
+          <div class="space-y-1">
+            <div class="flex items-center justify-between">
+              <label class="text-[11px] font-bold text-emerald-400 flex items-center gap-1.5">
+                📦 Master Parcel Database Download URL (Property Appraiser)
+              </label>
+              <a id="btnTestMaster" href="#" target="_blank" class="text-[10px] font-bold text-blue-400 hover:text-blue-300 transition">Visit Portal ↗</a>
+            </div>
+            <input type="url" id="inputPortalMaster" placeholder="https://..." class="w-full bg-[#0b1220] border border-slate-700 rounded-xl px-3 py-2 text-xs text-slate-200 focus:outline-none focus:border-blue-500 font-mono text-[11px]">
+          </div>
+
+          <!-- 2. Lis Pendens Official Portal URL -->
+          <div class="space-y-1">
+            <div class="flex items-center justify-between">
+              <label class="text-[11px] font-bold text-blue-400 flex items-center gap-1.5">
+                📄 Lis Pendens Official Records Portal (County Clerk)
+              </label>
+              <a id="btnTestLp" href="#" target="_blank" class="text-[10px] font-bold text-blue-400 hover:text-blue-300 transition">Visit Portal ↗</a>
+            </div>
+            <input type="url" id="inputPortalLp" placeholder="https://..." class="w-full bg-[#0b1220] border border-slate-700 rounded-xl px-3 py-2 text-xs text-slate-200 focus:outline-none focus:border-blue-500 font-mono text-[11px]">
+          </div>
+
+          <!-- 3. Code Violations Enforcement Portal URL -->
+          <div class="space-y-1">
+            <div class="flex items-center justify-between">
+              <label class="text-[11px] font-bold text-amber-400 flex items-center gap-1.5">
+                🚨 Code Enforcement Portal (County / City Accela)
+              </label>
+              <a id="btnTestCode" href="#" target="_blank" class="text-[10px] font-bold text-blue-400 hover:text-blue-300 transition">Visit Portal ↗</a>
+            </div>
+            <input type="url" id="inputPortalCode" placeholder="https://..." class="w-full bg-[#0b1220] border border-slate-700 rounded-xl px-3 py-2 text-xs text-slate-200 focus:outline-none focus:border-blue-500 font-mono text-[11px]">
+          </div>
+
+          <!-- 4. Tax Liens / Delinquencies Portal URL -->
+          <div class="space-y-1">
+            <div class="flex items-center justify-between">
+              <label class="text-[11px] font-bold text-rose-400 flex items-center gap-1.5">
+                💰 Tax Liens / Delinquent Taxes Portal (Tax Collector)
+              </label>
+              <a id="btnTestTax" href="#" target="_blank" class="text-[10px] font-bold text-blue-400 hover:text-blue-300 transition">Visit Portal ↗</a>
+            </div>
+            <input type="url" id="inputPortalTax" placeholder="https://..." class="w-full bg-[#0b1220] border border-slate-700 rounded-xl px-3 py-2 text-xs text-slate-200 focus:outline-none focus:border-blue-500 font-mono text-[11px]">
+          </div>
+
+          <!-- 5. Probate Court Filings Portal URL -->
+          <div class="space-y-1">
+            <div class="flex items-center justify-between">
+              <label class="text-[11px] font-bold text-purple-400 flex items-center gap-1.5">
+                ⚖️ Probate Court Records Portal (Clerk of Court)
+              </label>
+              <a id="btnTestProbate" href="#" target="_blank" class="text-[10px] font-bold text-blue-400 hover:text-blue-300 transition">Visit Portal ↗</a>
+            </div>
+            <input type="url" id="inputPortalProbate" placeholder="https://..." class="w-full bg-[#0b1220] border border-slate-700 rounded-xl px-3 py-2 text-xs text-slate-200 focus:outline-none focus:border-blue-500 font-mono text-[11px]">
+          </div>
+
+          <div class="rounded-xl bg-slate-900 border border-slate-800 p-3 text-[11px] text-slate-400 flex items-center gap-2">
+            <span>💡</span>
+            <span>Click <b>Visit Portal ↗</b> to jump directly to the site, download fresh records, and then hit <b>+ Update CSV</b> on the card to cross-reference with zero data loss.</span>
+          </div>
+
+          <div id="portalSaveAlert" class="hidden rounded-xl bg-emerald-950/40 border border-emerald-500/40 p-2.5 text-xs text-emerald-300 font-semibold text-center">
+            ✓ Links successfully saved and applied!
+          </div>
+
+          <div class="flex items-center justify-end gap-3 pt-2">
+            <button type="button" onclick="closePortalLinksModal()" class="px-4 py-2 rounded-xl text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300 transition cursor-pointer">
+              Close
+            </button>
+            <button type="submit" id="btnSavePortalLinks" class="px-5 py-2 rounded-xl text-xs font-bold bg-blue-600 hover:bg-blue-500 text-white shadow-lg shadow-blue-600/30 transition flex items-center gap-2 cursor-pointer">
+              💾 Save Portal Links
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Tab 2: Custom Distress Cards Panel -->
+      <div id="panelCustomCards" class="p-6 space-y-5 max-h-[75vh] overflow-y-auto hidden">
+        <!-- Active Custom Cards List -->
+        <div>
+          <div class="flex items-center justify-between mb-2">
+            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400">Your Custom Dashboard Cards</h4>
+            <span class="text-[11px] text-slate-500">Appear automatically on dashboard</span>
+          </div>
+          <div id="customCardsList" class="space-y-2">
+            <!-- Dynamically populated via JS -->
+          </div>
+        </div>
+
+        <!-- Add Custom Card Form -->
+        <form id="customCardForm" onsubmit="handleCreateCustomCategory(event)" class="rounded-xl bg-slate-900/90 border border-slate-800 p-4 space-y-3.5">
+          <div class="flex items-center gap-2 text-white font-bold text-xs pb-2 border-b border-slate-800">
+            <span>➕</span> <span>Create New Distress Category Card</span>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div class="sm:col-span-2">
+              <label class="block text-[11px] font-semibold text-slate-300 mb-1">Card Title / Category Name *</label>
+              <input type="text" id="newCatName" required placeholder="e.g. Divorce Filings, Judgments & Liens, Evictions" class="w-full bg-[#0b1220] border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-blue-500">
+            </div>
+            <div>
+              <label class="block text-[11px] font-semibold text-slate-300 mb-1">Badge / Subtitle *</label>
+              <input type="text" id="newCatBadge" required placeholder="e.g. Family Court, Civil Award" class="w-full bg-[#0b1220] border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-blue-500">
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-4 gap-3">
+            <div>
+              <label class="block text-[11px] font-semibold text-slate-300 mb-1">Icon</label>
+              <select id="newCatIcon" class="w-full bg-[#0b1220] border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-blue-500 cursor-pointer">
+                <option value="💔">💔 Broken Heart / Divorce</option>
+                <option value="⚖️">⚖️ Scales / Judgments</option>
+                <option value="🚪">🚪 Door / Evictions</option>
+                <option value="📜">📜 Scroll / Court Filings</option>
+                <option value="🔨">🔨 Gavel / Auction</option>
+                <option value="🏚️">🏚️ Distressed Property</option>
+                <option value="💸">💸 Money / Bankruptcy</option>
+                <option value="⚠️">⚠️ Warning / Municipal Lien</option>
+              </select>
+            </div>
+            <div class="sm:col-span-3">
+              <label class="block text-[11px] font-semibold text-slate-300 mb-1">Short Description</label>
+              <input type="text" id="newCatDesc" placeholder="e.g. Motivated sellers with dissolution of marriage or civil court filings." class="w-full bg-[#0b1220] border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-blue-500">
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-[11px] font-semibold text-slate-300 mb-1">Official County Search Portal URL</label>
+            <input type="url" id="newCatUrl" placeholder="https://officialrecords.mypinellasclerk.gov/..." class="w-full bg-[#0b1220] border border-slate-700 rounded-xl px-3 py-2 text-xs text-slate-200 focus:outline-none focus:border-blue-500 font-mono text-[11px]">
+          </div>
+
+          <div id="customCatAlert" class="hidden rounded-xl bg-emerald-950/40 border border-emerald-500/40 p-2.5 text-xs text-emerald-300 font-semibold text-center">
+            ✓ New card created and added to your dashboard!
+          </div>
+
+          <div class="flex items-center justify-between pt-1">
+            <span class="text-[11px] text-slate-400">Card will have direct <b>Official Portal ↗</b> and <b>+ Update CSV</b> buttons.</span>
+            <button type="submit" id="btnSubmitCustomCard" class="px-4 py-2 rounded-xl text-xs font-bold bg-purple-600 hover:bg-purple-500 text-white shadow-lg shadow-purple-600/30 transition cursor-pointer flex items-center gap-1.5">
+              <span>➕</span> Add Card to Dashboard
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- SMS Outreach Modal (Send via Android SMS Gateway) -->
+  <div id="smsModal" onclick="if(event.target === this) closeSmsModal()" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
+    <div class="glass-surface rounded-2xl max-w-lg w-full border border-slate-700 flex flex-col overflow-hidden shadow-2xl">
+      <!-- Modal Header -->
+      <div class="px-6 py-4 border-b border-slate-800 flex justify-between items-center bg-[#0a101d]">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-xl bg-emerald-600/20 border border-emerald-500/40 text-emerald-400 flex items-center justify-center text-lg">
+            💬
+          </div>
+          <div>
+            <h3 class="font-extrabold text-sm text-white flex items-center gap-2">
+              Send SMS Offer <span class="px-2 py-0.5 rounded text-[10px] bg-emerald-500/20 text-emerald-300 font-bold border border-emerald-500/30">Free via Android SMS Gateway</span>
+            </h3>
+            <p class="text-[11px] text-slate-400">Sends directly from your cellular phone line</p>
+          </div>
+        </div>
+        <button onclick="closeSmsModal()" class="text-slate-400 hover:text-white p-1.5 rounded-lg hover:bg-slate-800 transition">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <form id="smsForm" onsubmit="handleSendSms(event)" class="p-6 space-y-4">
+        <!-- Hidden Tracking Fields -->
+        <input type="hidden" id="smsParcelId">
+        <input type="hidden" id="smsCounty">
+        <input type="hidden" id="smsOwnerName">
+        <input type="hidden" id="smsPropertyAddress">
+
+        <!-- Recipient Card -->
+        <div class="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800 flex items-center justify-between">
+          <div>
+            <div class="text-[10px] text-slate-500 font-bold uppercase tracking-wider">RECIPIENT (HOMEOWNER)</div>
+            <div class="text-xs font-bold text-white mt-0.5" id="smsOwnerDisplay">John Doe</div>
+            <div class="text-[11px] text-slate-400" id="smsAddressDisplay">123 Main St, St. Petersburg, FL</div>
+          </div>
+          <div class="text-right">
+            <label class="block text-[10px] text-slate-500 font-bold uppercase tracking-wider">CELL PHONE</label>
+            <input type="tel" id="smsPhoneInput" required placeholder="(727) 555-1234" class="bg-[#0b1220] border border-slate-700 rounded-lg px-2.5 py-1 text-xs font-mono font-bold text-emerald-300 focus:outline-none focus:border-emerald-500 text-right w-36">
+          </div>
+        </div>
+
+        <!-- Template Selector -->
+        <div>
+          <div class="flex items-center justify-between mb-1.5">
+            <label class="text-xs font-semibold text-slate-300">Wholesale Offer Template</label>
+            <div class="flex items-center gap-3">
+              <button type="button" onclick="openTemplatesModal('sms')" class="text-[11px] text-amber-400 hover:text-amber-300 underline cursor-pointer">📋 Edit Templates</button>
+              <button type="button" onclick="openSmsSettingsModal()" class="text-[11px] text-blue-400 hover:text-blue-300 underline cursor-pointer">⚙️ Configure Gateway</button>
+            </div>
+          </div>
+          <select id="smsTemplateSelect" onchange="applySmsTemplate(this.value)" class="w-full bg-[#0b1220] border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-emerald-500 cursor-pointer">
+            <option value="cash_offer">💰 Quick All-Cash As-Is Offer</option>
+            <option value="pre_foreclosure">🏛️ Pre-Foreclosure / Lis Pendens Assistance</option>
+            <option value="probate_estate">📜 Probate / Inherited Property Inquiry</option>
+            <option value="code_violation">⚠️ Code Violation / As-Is Sale</option>
+            <option value="casual_followup">👋 Casual Friendly Inquiry</option>
+          </select>
+        </div>
+
+        <!-- Message Body -->
+        <div>
+          <div class="flex items-center justify-between mb-1.5">
+            <label class="text-xs font-semibold text-slate-300">Message Content</label>
+            <span class="text-[10px] text-slate-400 font-mono" id="smsCharCount">0 characters</span>
+          </div>
+          <textarea id="smsMessageText" rows="4" required oninput="updateSmsCharCount()" class="w-full bg-[#0b1220] border border-slate-700 rounded-xl p-3 text-xs text-white focus:outline-none focus:border-emerald-500 leading-relaxed font-sans"></textarea>
+        </div>
+
+        <!-- Status Message Banner -->
+        <div id="smsStatusBanner" class="hidden p-3 rounded-xl text-xs font-semibold"></div>
+
+        <!-- Footer Actions -->
+        <div class="flex items-center justify-between pt-2 border-t border-slate-800">
+          <button type="button" onclick="closeSmsModal()" class="px-4 py-2 rounded-xl text-xs font-semibold text-slate-400 hover:text-white hover:bg-slate-800 transition cursor-pointer">
+            Cancel
+          </button>
+          <button type="submit" id="btnSendSmsSubmit" class="px-5 py-2.5 rounded-xl text-xs font-bold bg-emerald-600 hover:bg-emerald-500 text-white shadow-lg shadow-emerald-600/30 transition flex items-center gap-2 cursor-pointer">
+            <span>🚀</span> <span>Send SMS via Phone</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- SMS Gateway Settings Modal -->
+  <div id="smsSettingsModal" onclick="if(event.target === this) closeSmsSettingsModal()" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
+    <div class="glass-surface rounded-2xl max-w-lg w-full border border-slate-700 flex flex-col overflow-hidden shadow-2xl">
+      <!-- Modal Header -->
+      <div class="px-6 py-4 border-b border-slate-800 flex justify-between items-center bg-[#0a101d]">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-xl bg-blue-600/20 border border-blue-500/40 text-blue-400 flex items-center justify-center text-lg">
+            ⚙️
+          </div>
+          <div>
+            <h3 class="font-extrabold text-sm text-white">Android SMS Gateway Configuration</h3>
+            <p class="text-[11px] text-slate-400">github.com/capcom6/android-sms-gateway</p>
+          </div>
+        </div>
+        <button onclick="closeSmsSettingsModal()" class="text-slate-400 hover:text-white p-1.5 rounded-lg hover:bg-slate-800 transition">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <form id="smsSettingsForm" onsubmit="handleSaveSmsSettings(event)" class="p-6 space-y-4">
+        <!-- Mode Toggle -->
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1.5">Connection Mode</label>
+          <div class="grid grid-cols-2 gap-2">
+            <label class="flex items-center gap-2.5 p-3 rounded-xl bg-slate-900 border border-slate-700 cursor-pointer hover:border-blue-500">
+              <input type="radio" name="smsMode" value="local" checked onchange="toggleSmsModeUI('local')">
+              <div>
+                <div class="text-xs font-bold text-white">📶 Local Wi-Fi</div>
+                <div class="text-[10px] text-slate-400">Direct phone IP on your network</div>
+              </div>
+            </label>
+            <label class="flex items-center gap-2.5 p-3 rounded-xl bg-slate-900 border border-slate-700 cursor-pointer hover:border-blue-500">
+              <input type="radio" name="smsMode" value="cloud" onchange="toggleSmsModeUI('cloud')">
+              <div>
+                <div class="text-xs font-bold text-white">☁️ Cloud Server</div>
+                <div class="text-[10px] text-slate-400">api.sms-gate.app</div>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Local Base URL -->
+        <div id="localUrlGroup">
+          <label class="block text-xs font-semibold text-slate-300 mb-1">Phone Local Server URL (IP & Port)</label>
+          <input type="text" id="smsBaseUrl" placeholder="http://192.168.1.100:8080" class="w-full bg-[#0b1220] border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-blue-500 font-mono">
+          <span class="text-[10px] text-slate-400">Shown directly on your phone in the SMS Gateway app screen.</span>
+        </div>
+
+        <!-- Authentication -->
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1">Username (Login)</label>
+            <input type="text" id="smsUsername" placeholder="admin" class="w-full bg-[#0b1220] border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-blue-500 font-mono">
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1">Password</label>
+            <input type="password" id="smsPassword" placeholder="••••••••" class="w-full bg-[#0b1220] border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-blue-500 font-mono">
+          </div>
+        </div>
+
+        <!-- SIM Card Number -->
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">SIM Card Slot</label>
+          <select id="smsSimNumber" class="w-full bg-[#0b1220] border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-blue-500">
+            <option value="1">SIM 1 (Primary Cellular Line)</option>
+            <option value="2">SIM 2 (Secondary Cellular Line)</option>
+          </select>
+        </div>
+
+        <!-- Default Wholesale Offer Template -->
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">Default Cash Offer Template</label>
+          <textarea id="smsDefaultTemplate" rows="3" class="w-full bg-[#0b1220] border border-slate-700 rounded-xl p-2.5 text-xs text-white focus:outline-none focus:border-blue-500 font-sans"></textarea>
+          <span class="text-[10px] text-slate-400">Variables: <code class="mono text-cyan-300">{FirstName}</code>, <code class="mono text-cyan-300">{LastName}</code>, <code class="mono text-cyan-300">{Address}</code>, <code class="mono text-cyan-300">{City}</code></span>
+        </div>
+
+        <div id="smsSettingsAlert" class="hidden rounded-xl p-2.5 text-xs font-semibold text-center"></div>
+
+        <div class="flex items-center justify-between pt-2 border-t border-slate-800">
+          <button type="button" onclick="testSmsGatewayConnection()" id="btnTestSmsConn" class="px-3.5 py-2 rounded-xl text-xs font-bold bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition flex items-center gap-1.5 cursor-pointer">
+            <span>🧪</span> <span>Test Connection</span>
+          </button>
+          <button type="submit" id="btnSaveSmsSettings" class="px-5 py-2 rounded-xl text-xs font-bold bg-blue-600 hover:bg-blue-500 text-white shadow-lg shadow-blue-600/30 transition flex items-center gap-1.5 cursor-pointer">
+            <span>💾</span> <span>Save Settings</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Email Outreach Modal (Send via SMTP2GO) -->
+  <div id="emailModal" onclick="if(event.target === this) closeEmailModal()" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
+    <div class="glass-surface rounded-2xl max-w-2xl w-full border border-slate-700 flex flex-col overflow-hidden shadow-2xl max-h-[90vh]">
+      <!-- Modal Header -->
+      <div class="px-6 py-4 border-b border-slate-800 flex justify-between items-center bg-[#0a101d] shrink-0">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-xl bg-cyan-600/20 border border-cyan-500/40 text-cyan-400 flex items-center justify-center text-lg">
+            ✉️
+          </div>
+          <div>
+            <h3 class="font-extrabold text-sm text-white flex items-center gap-2">
+              Send Email Offer <span class="px-2 py-0.5 rounded text-[10px] bg-cyan-500/20 text-cyan-300 font-bold border border-cyan-500/30">Free via SMTP2GO</span>
+            </h3>
+            <p class="text-[11px] text-slate-400">Sends from <span class="text-cyan-300 font-mono">john@407flips.com</span> &bull; Replies forward to your Gmail</p>
+          </div>
+        </div>
+        <button onclick="closeEmailModal()" class="text-slate-400 hover:text-white p-1.5 rounded-lg hover:bg-slate-800 transition">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <form id="emailForm" onsubmit="handleSendEmail(event)" class="p-6 space-y-4 overflow-y-auto flex-1">
+        <!-- Hidden Tracking Fields -->
+        <input type="hidden" id="emailParcelId">
+        <input type="hidden" id="emailCounty">
+        <input type="hidden" id="emailOwnerName">
+        <input type="hidden" id="emailPropertyAddress">
+
+        <!-- Recipient Card -->
+        <div class="p-3.5 rounded-xl bg-slate-900/80 border border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div>
+            <div class="text-[10px] text-slate-500 font-bold uppercase tracking-wider">RECIPIENT (HOMEOWNER)</div>
+            <div class="text-xs font-bold text-white mt-0.5" id="emailOwnerDisplay">John Doe</div>
+            <div class="text-[11px] text-slate-400" id="emailAddressDisplay">123 Main St, St. Petersburg, FL</div>
+          </div>
+          <div>
+            <label class="block text-[10px] text-slate-500 font-bold uppercase tracking-wider mb-1">EMAIL ADDRESS</label>
+            <input type="email" id="emailRecipientInput" required placeholder="owner@gmail.com" class="bg-[#0b1220] border border-slate-700 rounded-lg px-2.5 py-1.5 text-xs font-mono font-bold text-cyan-300 focus:outline-none focus:border-cyan-500 w-full sm:w-60">
+          </div>
+        </div>
+
+        <!-- Template Selector -->
+        <div>
+          <div class="flex items-center justify-between mb-1.5">
+            <label class="text-xs font-semibold text-slate-300">407 Flips Offer Template</label>
+            <div class="flex items-center gap-3">
+              <button type="button" onclick="openTemplatesModal('email')" class="text-[11px] text-amber-400 hover:text-amber-300 underline cursor-pointer">📋 Edit Templates</button>
+              <button type="button" onclick="openEmailSettingsModal()" class="text-[11px] text-cyan-400 hover:text-cyan-300 underline cursor-pointer">⚙️ Configure Gateway</button>
+            </div>
+          </div>
+          <select id="emailTemplateSelect" onchange="applyEmailTemplate(this.value)" class="w-full bg-[#0b1220] border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-cyan-500 cursor-pointer">
+            <option value="lis_pendens">🏛️ Pre-Foreclosure / Lis Pendens (Stop Auction & Protect Equity)</option>
+            <option value="probate">📜 Probate / Inherited Property (Leave Furniture, No Cleanout)</option>
+            <option value="code_violation">⚠️ Code Violations / Heavy Repairs (Taking Over Liens As-Is)</option>
+            <option value="quick_cash">💰 Quick As-Is Cash Offer (Close in 7–14 Days)</option>
+          </select>
+        </div>
+
+        <!-- Subject Line -->
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">Subject Line</label>
+          <input type="text" id="emailSubjectInput" required class="w-full bg-[#0b1220] border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-cyan-500 font-medium">
+        </div>
+
+        <!-- Message Body / Plain Text Fallback & Preview -->
+        <div>
+          <div class="flex items-center justify-between mb-1.5">
+            <label class="text-xs font-semibold text-slate-300">Offer Message Content</label>
+            <span class="text-[10px] text-slate-400">Sent as responsive HTML + Plain-text fallback</span>
+          </div>
+          <textarea id="emailMessageText" rows="6" required class="w-full bg-[#0b1220] border border-slate-700 rounded-xl p-3 text-xs text-white focus:outline-none focus:border-cyan-500 leading-relaxed font-sans"></textarea>
+        </div>
+
+        <!-- HTML Preview Accordion/Container -->
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">Live HTML Email Preview (What homeowner sees)</label>
+          <div id="emailHtmlPreview" class="w-full bg-white text-slate-900 rounded-xl p-4 text-xs max-h-48 overflow-y-auto border border-slate-700 shadow-inner">
+            <!-- Rendered dynamically -->
+          </div>
+        </div>
+
+        <!-- Status Message Banner -->
+        <div id="emailStatusBanner" class="hidden p-3 rounded-xl text-xs font-semibold"></div>
+
+        <!-- Footer Actions -->
+        <div class="flex items-center justify-between pt-2 border-t border-slate-800">
+          <button type="button" onclick="closeEmailModal()" class="px-4 py-2 rounded-xl text-xs font-semibold text-slate-400 hover:text-white hover:bg-slate-800 transition cursor-pointer">
+            Cancel
+          </button>
+          <button type="submit" id="btnSendEmailSubmit" class="px-5 py-2.5 rounded-xl text-xs font-bold bg-cyan-600 hover:bg-cyan-500 text-white shadow-lg shadow-cyan-600/30 transition flex items-center gap-2 cursor-pointer">
+            <span>🚀</span> <span>Send Email Offer via SMTP2GO</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Email Gateway (SMTP2GO) Settings Modal -->
+  <div id="emailSettingsModal" onclick="if(event.target === this) closeEmailSettingsModal()" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
+    <div class="glass-surface rounded-2xl max-w-lg w-full border border-slate-700 flex flex-col overflow-hidden shadow-2xl">
+      <!-- Modal Header -->
+      <div class="px-6 py-4 border-b border-slate-800 flex justify-between items-center bg-[#0a101d]">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-xl bg-cyan-600/20 border border-cyan-500/40 text-cyan-400 flex items-center justify-center text-lg">
+            ✉️
+          </div>
+          <div>
+            <h3 class="font-extrabold text-sm text-white">SMTP2GO Email Gateway</h3>
+            <p class="text-[11px] text-slate-400">mail.smtp2go.com &bull; Port 2525 &bull; 100% Free</p>
+          </div>
+        </div>
+        <button onclick="closeEmailSettingsModal()" class="text-slate-400 hover:text-white p-1.5 rounded-lg hover:bg-slate-800 transition">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <form id="emailSettingsForm" onsubmit="handleSaveEmailSettings(event)" class="p-6 space-y-4">
+        <!-- SMTP Server & Port -->
+        <div class="grid grid-cols-3 gap-3">
+          <div class="col-span-2">
+            <label class="block text-xs font-semibold text-slate-300 mb-1">SMTP Server</label>
+            <input type="text" id="emailSmtpServer" value="mail.smtp2go.com" class="w-full bg-[#0b1220] border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-cyan-500 font-mono">
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1">Port (TLS)</label>
+            <input type="number" id="emailSmtpPort" value="2525" class="w-full bg-[#0b1220] border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-cyan-500 font-mono font-bold text-cyan-300">
+          </div>
+        </div>
+
+        <!-- Auth Credentials -->
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1">SMTP Username</label>
+            <input type="text" id="emailSmtpUser" value="407flips.com" placeholder="407flips.com" class="w-full bg-[#0b1220] border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-cyan-500 font-mono">
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1">SMTP Password</label>
+            <input type="password" id="emailSmtpPassword" placeholder="••••••••" class="w-full bg-[#0b1220] border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-cyan-500 font-mono">
+          </div>
+        </div>
+
+        <!-- From Identity & Reply-To -->
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1">Sender Name</label>
+            <input type="text" id="emailSenderName" value="John Roberts | 407 Flips" class="w-full bg-[#0b1220] border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-cyan-500">
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1">Sender Email</label>
+            <input type="email" id="emailSenderEmail" value="john@407flips.com" class="w-full bg-[#0b1220] border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-cyan-500 font-mono">
+          </div>
+        </div>
+
+        <!-- Reply-to & Phone -->
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1">Reply-To Address</label>
+            <input type="email" id="emailReplyTo" value="john@407flips.com" class="w-full bg-[#0b1220] border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-cyan-500 font-mono">
+            <span class="text-[10px] text-slate-400">Replies land in your 407 Flips Gmail folder.</span>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1">Company Phone</label>
+            <input type="text" id="emailCompanyPhone" value="(407) 555-FLIP" class="w-full bg-[#0b1220] border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-cyan-500">
+          </div>
+        </div>
+
+        <div id="emailSettingsAlert" class="hidden rounded-xl p-2.5 text-xs font-semibold text-center"></div>
+
+        <div class="flex items-center justify-between pt-2 border-t border-slate-800">
+          <button type="button" onclick="testEmailGatewayConnection()" id="btnTestEmailConn" class="px-3.5 py-2 rounded-xl text-xs font-bold bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition flex items-center gap-1.5 cursor-pointer">
+            <span>🧪</span> <span>Test Connection</span>
+          </button>
+          <button type="submit" id="btnSaveEmailSettings" class="px-5 py-2 rounded-xl text-xs font-bold bg-cyan-600 hover:bg-cyan-500 text-white shadow-lg shadow-cyan-600/30 transition flex items-center gap-1.5 cursor-pointer">
+            <span>💾</span> <span>Save Settings</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Outreach Template Manager Modal -->
+  <div id="templatesModal" onclick="if(event.target === this) closeTemplatesModal()" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
+    <div class="glass-surface rounded-2xl max-w-5xl w-full border border-slate-700 flex flex-col overflow-hidden shadow-2xl max-h-[92vh]">
+      <!-- Header -->
+      <div class="px-6 py-4 border-b border-slate-800 flex justify-between items-center bg-[#0a101d] shrink-0">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-amber-500/20 border border-amber-500/40 text-amber-400 flex items-center justify-center text-xl">
+            📋
+          </div>
+          <div>
+            <h3 class="font-extrabold text-base text-white flex items-center gap-2">
+              Outreach Script &amp; Template Manager
+              <span class="px-2 py-0.5 rounded text-[10px] bg-amber-500/20 text-amber-300 font-bold border border-amber-500/30">Customizable</span>
+            </h3>
+            <p class="text-xs text-slate-400">Manage, edit, and create your personalized SMS &amp; Email scripts with dynamic merge tags</p>
+          </div>
+        </div>
+        <button onclick="closeTemplatesModal()" class="text-slate-400 hover:text-white p-1.5 rounded-lg hover:bg-slate-800 transition">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <!-- Channel Tabs & Subheader Bar -->
+      <div class="px-6 py-2.5 bg-[#0b1220] border-b border-slate-800 flex flex-wrap items-center justify-between gap-3 shrink-0">
+        <div class="flex items-center gap-2">
+          <button type="button" id="tabTemplatesSms" onclick="switchTemplatesChannel('sms')" class="px-4 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-2 bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 shadow-sm cursor-pointer">
+            <span>💬</span> <span>SMS Templates</span> <span id="countTemplatesSms" class="px-1.5 py-0.2 rounded-full text-[10px] bg-emerald-400/20 text-emerald-300">5</span>
+          </button>
+          <button type="button" id="tabTemplatesEmail" onclick="switchTemplatesChannel('email')" class="px-4 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-2 bg-slate-800 text-slate-400 hover:text-white border border-slate-700 cursor-pointer">
+            <span>✉️</span> <span>Email Templates</span> <span id="countTemplatesEmail" class="px-1.5 py-0.2 rounded-full text-[10px] bg-slate-700 text-slate-300">4</span>
+          </button>
+        </div>
+        <div class="flex items-center gap-2">
+          <button type="button" onclick="createNewTemplatePrompt()" class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-blue-600 hover:bg-blue-500 text-white shadow transition flex items-center gap-1.5 cursor-pointer">
+            <span>➕</span> <span>New Template</span>
+          </button>
+          <button type="button" onclick="handleResetTemplatesToDefaults()" class="px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition flex items-center gap-1.5 cursor-pointer" title="Restore factory default templates">
+            <span>↺</span> <span>Reset Defaults</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Main Body: Two Columns (Left: Template List, Right: Editor + Preview) -->
+      <div class="flex-1 min-h-0 flex flex-col md:flex-row overflow-hidden bg-[#070b14]">
+        
+        <!-- Left Column: Template List Sidebar -->
+        <div class="w-full md:w-72 lg:w-80 border-r border-slate-800 flex flex-col shrink-0 bg-[#090f1d]">
+          <div class="p-3 border-b border-slate-800">
+            <input type="text" id="tplSearchInput" oninput="filterTemplateList(this.value)" placeholder="Search templates..." class="w-full bg-[#0d1527] border border-slate-700/80 rounded-xl px-3 py-1.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-500">
+          </div>
+          <div id="templateItemsList" class="flex-1 overflow-y-auto p-2.5 space-y-2">
+            <!-- Dynamic Template Cards Injected Here -->
+          </div>
+        </div>
+
+        <!-- Right Column: Editor & Live Preview -->
+        <div class="flex-1 flex flex-col overflow-y-auto p-6 space-y-5 bg-[#0a101d]">
+          <form id="templateEditForm" onsubmit="handleSaveCurrentTemplate(event)" class="space-y-4">
+            <input type="hidden" id="tplId">
+
+            <!-- Title & Category Row -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <div class="sm:col-span-2">
+                <label class="block text-xs font-semibold text-slate-300 mb-1">Template Display Name</label>
+                <input type="text" id="tplName" required class="w-full bg-[#0d1424] border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500 font-semibold">
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-slate-300 mb-1">Category / Tag</label>
+                <select id="tplCategory" class="w-full bg-[#0d1424] border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500 cursor-pointer">
+                  <option value="cash_offer">💰 Cash Offer</option>
+                  <option value="lis_pendens">🏛️ Pre-Foreclosure</option>
+                  <option value="probate">📜 Probate / Estate</option>
+                  <option value="code_violations">⚠️ Code Violations</option>
+                  <option value="followup">👋 Follow-up</option>
+                  <option value="custom">✨ Custom</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Subject Line (Email Only) -->
+            <div id="tplSubjectGroup" class="hidden">
+              <label class="block text-xs font-semibold text-slate-300 mb-1">Email Subject Line</label>
+              <input type="text" id="tplSubject" class="w-full bg-[#0d1424] border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500">
+            </div>
+
+            <!-- Dynamic Merge Tag Pills Bar -->
+            <div>
+              <div class="flex items-center justify-between mb-1.5">
+                <label class="text-xs font-semibold text-slate-300">Message Content &amp; Merge Tags</label>
+                <span class="text-[11px] text-slate-400">Click a tag below to insert at cursor:</span>
+              </div>
+              <div class="flex flex-wrap gap-1.5 p-2 rounded-xl bg-slate-900/90 border border-slate-800">
+                <button type="button" onclick="insertTagIntoTemplate('{FirstName}')" class="px-2 py-0.5 rounded-lg bg-blue-500/10 text-blue-300 border border-blue-500/30 text-[11px] font-mono hover:bg-blue-500/25 transition cursor-pointer">{FirstName}</button>
+                <button type="button" onclick="insertTagIntoTemplate('{LastName}')" class="px-2 py-0.5 rounded-lg bg-blue-500/10 text-blue-300 border border-blue-500/30 text-[11px] font-mono hover:bg-blue-500/25 transition cursor-pointer">{LastName}</button>
+                <button type="button" onclick="insertTagIntoTemplate('{Address}')" class="px-2 py-0.5 rounded-lg bg-emerald-500/10 text-emerald-300 border border-emerald-500/30 text-[11px] font-mono hover:bg-emerald-500/25 transition cursor-pointer">{Address}</button>
+                <button type="button" onclick="insertTagIntoTemplate('{City}')" class="px-2 py-0.5 rounded-lg bg-emerald-500/10 text-emerald-300 border border-emerald-500/30 text-[11px] font-mono hover:bg-emerald-500/25 transition cursor-pointer">{City}</button>
+                <button type="button" onclick="insertTagIntoTemplate('{State}')" class="px-2 py-0.5 rounded-lg bg-cyan-500/10 text-cyan-300 border border-cyan-500/30 text-[11px] font-mono hover:bg-cyan-500/25 transition cursor-pointer">{State}</button>
+                <button type="button" onclick="insertTagIntoTemplate('{County}')" class="px-2 py-0.5 rounded-lg bg-cyan-500/10 text-cyan-300 border border-cyan-500/30 text-[11px] font-mono hover:bg-cyan-500/25 transition cursor-pointer">{County}</button>
+                <button type="button" onclick="insertTagIntoTemplate('{Phone}')" class="px-2 py-0.5 rounded-lg bg-purple-500/10 text-purple-300 border border-purple-500/30 text-[11px] font-mono hover:bg-purple-500/25 transition cursor-pointer">{Phone}</button>
+              </div>
+            </div>
+
+            <!-- Body Textarea -->
+            <div>
+              <div class="flex items-center justify-between mb-1">
+                <span class="text-[11px] text-slate-400">Script Body</span>
+                <span id="tplCharCount" class="text-[11px] text-slate-400 font-mono">0 chars</span>
+              </div>
+              <textarea id="tplBody" rows="7" required oninput="handleTemplateBodyChange()" class="w-full bg-[#0d1424] border border-slate-700 rounded-xl p-3 text-xs text-white focus:outline-none focus:border-amber-500 leading-relaxed font-sans"></textarea>
+            </div>
+
+            <!-- Live Preview Card -->
+            <div>
+              <div class="flex items-center justify-between mb-1.5">
+                <label class="text-xs font-semibold text-slate-300 flex items-center gap-2">
+                  <span>📱 Live Recipient Preview</span>
+                  <span class="text-[10px] text-slate-500">(Sample: Joseph Ibrahim &bull; 10440 66th Ave, Seminole, FL)</span>
+                </label>
+              </div>
+              <div id="tplLivePreviewContainer" class="p-3.5 rounded-xl border border-slate-800 bg-[#070b14] overflow-hidden">
+                <!-- Preview injected dynamically -->
+              </div>
+            </div>
+
+            <!-- Notification banner -->
+            <div id="tplStatusBanner" class="hidden p-3 rounded-xl text-xs font-semibold text-center"></div>
+
+            <!-- Action buttons -->
+            <div class="flex items-center justify-between pt-3 border-t border-slate-800">
+              <button type="button" id="btnDeleteTpl" onclick="handleDeleteCurrentTemplate()" class="px-3.5 py-2 rounded-xl text-xs font-semibold text-rose-400 hover:text-rose-300 hover:bg-rose-500/10 border border-rose-500/20 transition flex items-center gap-1.5 cursor-pointer">
+                <span>🗑️</span> <span>Delete Template</span>
+              </button>
+              <div class="flex items-center gap-2">
+                <button type="button" onclick="closeTemplatesModal()" class="px-4 py-2 rounded-xl text-xs font-semibold text-slate-400 hover:text-white hover:bg-slate-800 transition cursor-pointer">
+                  Cancel
+                </button>
+                <button type="submit" id="btnSaveTpl" class="px-5 py-2 rounded-xl text-xs font-bold bg-amber-500 hover:bg-amber-400 text-slate-950 shadow-lg shadow-amber-500/20 transition flex items-center gap-1.5 cursor-pointer">
+                  <span>💾</span> <span>Save Template</span>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ----------------------------------------------------------- -->
+  <!-- Wholesale Contract 1 & PandaDoc E-Sign Modal -->
+  <!-- ----------------------------------------------------------- -->
+  <div id="contractModal" class="fixed inset-0 bg-slate-950/85 backdrop-blur-md z-50 flex items-center justify-center p-3 sm:p-5 hidden">
+    <div class="glass-card border border-purple-500/40 rounded-2xl w-full max-w-6xl max-h-[94vh] flex flex-col shadow-2xl shadow-purple-950/50 overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+      
+      <!-- Modal Header -->
+      <div class="p-4 sm:p-5 border-b border-slate-800 flex items-center justify-between bg-slate-900/90 shrink-0">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-purple-600/20 border border-purple-500/40 flex items-center justify-center text-purple-400">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <h3 class="text-base font-bold text-white">Purchase and Sale Agreement (Contract 1)</h3>
+              <span id="contractModeBadge" class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40 cursor-pointer" onclick="togglePandadocMode()" title="Click to toggle between Sandbox and Production mode">
+                🧪 Sandbox Mode (Free Testing)
+              </span>
+            </div>
+            <p class="text-xs text-slate-400 mt-0.5">Pre-filling for <b>Peak Investments LLC</b> &bull; Certified PandaDoc E-Sign &amp; 1-Page PDF</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <button type="button" onclick="openPandadocSettingsModal()" class="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-purple-300 text-xs font-semibold border border-purple-500/30 transition flex items-center gap-1.5 cursor-pointer">
+            <span>⚙️</span> <span>API Keys</span>
+          </button>
+          <button type="button" onclick="closeContractModal()" class="text-slate-400 hover:text-white p-2 rounded-xl hover:bg-slate-800 transition cursor-pointer">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Modal Body (Split Columns) -->
+      <div class="flex-1 overflow-y-auto p-4 sm:p-6 grid grid-cols-1 lg:grid-cols-12 gap-6 bg-[#070b14]">
+        
+        <!-- Left Column: Deal Inputs (5 Columns) -->
+        <div class="lg:col-span-5 space-y-4">
+          <div class="p-3.5 rounded-xl bg-purple-950/20 border border-purple-800/40 space-y-2">
+            <div class="flex items-center justify-between text-xs">
+              <span class="text-slate-400 font-medium">Target Property</span>
+              <span class="mono text-cyan-300 font-bold" id="contractDisplayPin">PIN: -</span>
+            </div>
+            <div class="text-sm font-bold text-white truncate" id="contractDisplayAddress">-</div>
+            <div class="text-xs text-slate-400" id="contractDisplayCity">Pinellas County, FL</div>
+          </div>
+
+          <form id="contractDealForm" onsubmit="event.preventDefault();" class="space-y-3.5">
+            <!-- Hidden Fields -->
+            <input type="hidden" id="contractParcelId">
+            <input type="hidden" id="contractCounty" value="Pinellas">
+            <input type="hidden" id="contractPropertyStreet">
+            <input type="hidden" id="contractPropertyCity">
+            <input type="hidden" id="contractPropertyState" value="FL">
+            <input type="hidden" id="contractPropertyZip">
+
+            <!-- Seller Name -->
+            <div>
+              <label class="block text-xs font-semibold text-slate-300 mb-1">Seller Legal Name(s)</label>
+              <input type="text" id="contractSellerName" oninput="updateContractPreview()" required class="w-full bg-[#0d1424] border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-purple-500 font-medium">
+            </div>
+
+            <!-- Buyer Legal Entity & Authorized Signer Grid -->
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <label class="block text-xs font-semibold text-slate-300 mb-1">Buyer Legal Entity</label>
+                <input type="text" id="contractBuyerName" value="Peak Investments LLC" oninput="updateContractPreview()" required class="w-full bg-[#0d1424] border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-purple-500 font-medium">
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-slate-300 mb-1">Authorized Signer</label>
+                <input type="text" id="contractBuyerSignerName" value="Johnathan Roberts" oninput="updateContractPreview()" required class="w-full bg-[#0d1424] border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-purple-500 font-medium">
+              </div>
+            </div>
+
+            <!-- Price and Deposit Grid -->
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <label class="block text-xs font-semibold text-emerald-400 mb-1">Purchase Price ($)</label>
+                <input type="number" id="contractPurchasePrice" step="500" min="1000" placeholder="120000" oninput="calculateContractFinancials()" required class="w-full bg-[#0d1424] border border-emerald-500/50 rounded-xl px-3 py-2 text-xs text-white font-bold focus:outline-none focus:border-emerald-400">
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-slate-300 mb-1">Earnest Deposit ($)</label>
+                <input type="number" id="contractDeposit" value="100" step="50" min="10" oninput="calculateContractFinancials()" required class="w-full bg-[#0d1424] border border-slate-700 rounded-xl px-3 py-2 text-xs text-white font-medium focus:outline-none focus:border-purple-500">
+              </div>
+            </div>
+
+            <!-- Balance Due at Closing (Computed) -->
+            <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-between text-xs">
+              <span class="text-slate-400 font-medium">Cash Due at Closing:</span>
+              <span class="mono font-bold text-white text-sm" id="contractDisplayCashDue">$0.00</span>
+            </div>
+
+            <!-- Closing Date & Inspection Grid -->
+            <div class="grid grid-cols-2 gap-3">
+              <div>
+                <label class="block text-xs font-semibold text-slate-300 mb-1 flex items-center justify-between">
+                  <span>Closing Date</span>
+                  <span class="text-[10px] text-purple-400 font-normal">30-day auto roll</span>
+                </label>
+                <input type="text" id="contractClosingDate" oninput="updateContractPreview()" required class="w-full bg-[#0d1424] border border-slate-700 rounded-xl px-3 py-2 text-xs text-white font-medium focus:outline-none focus:border-purple-500">
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-slate-300 mb-1">Inspection Period</label>
+                <div class="flex items-center gap-1.5">
+                  <input type="number" id="contractInspectionDays" value="14" min="1" max="90" oninput="updateContractPreview()" required class="w-full bg-[#0d1424] border border-slate-700 rounded-xl px-3 py-2 text-xs text-white font-medium focus:outline-none focus:border-purple-500">
+                  <span class="text-xs text-slate-400 whitespace-nowrap">Days</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Title Company -->
+            <div>
+              <label class="block text-xs font-semibold text-slate-300 mb-1">Closing Location / Title Company</label>
+              <input type="text" id="contractTitleCompany" value="TBD" placeholder="TBD or Closed Title" oninput="updateContractPreview()" class="w-full bg-[#0d1424] border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-purple-500">
+            </div>
+
+            <!-- Recipient Email for E-Sign -->
+            <div>
+              <label class="block text-xs font-semibold text-cyan-300 mb-1">Seller Email Address (For PandaDoc E-Sign)</label>
+              <input type="email" id="contractRecipientEmail" placeholder="seller@gmail.com" required class="w-full bg-[#0d1424] border border-cyan-500/50 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-cyan-400">
+            </div>
+
+            <!-- Additional Terms & Conditions -->
+            <div>
+              <label class="block text-xs font-semibold text-slate-300 mb-1">Additional Terms &amp; Conditions (Clause 10)</label>
+              <textarea id="contractAdditionalTerms" rows="2" oninput="updateContractPreview()" class="w-full bg-[#0d1424] border border-slate-700 rounded-xl p-2.5 text-xs text-white focus:outline-none focus:border-purple-500 leading-relaxed font-sans">Property sold in strictly "AS-IS" condition with zero seller repairs. Buyer to pay standard buyer and seller closing costs; Seller responsible for mortgage payoffs, municipal liens, and prorated taxes through date of closing.</textarea>
+            </div>
+          </form>
+        </div>
+
+        <!-- Right Column: Live Contract 1 Document Preview (7 Columns) -->
+        <div class="lg:col-span-7 flex flex-col">
+          <div class="flex items-center justify-between pb-2">
+            <span class="text-xs font-bold text-slate-300 flex items-center gap-1.5">
+              <span>📄</span> <span>Live Contract 1 Document Preview</span>
+            </span>
+            <span class="text-[11px] text-slate-500">Exact 1-Page Layout &bull; 10 Numbered Wholesale Clauses</span>
+          </div>
+          
+          <div class="flex-1 bg-white text-slate-900 rounded-xl shadow-2xl p-6 sm:p-7 overflow-y-auto max-h-[600px] border border-slate-300 font-sans text-[11px] leading-relaxed select-text" id="contractPaperPreview">
+            <!-- Dynamically populated by updateContractPreview() -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="p-4 sm:p-5 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-3 bg-slate-900/90 shrink-0">
+        <div id="contractStatusBanner" class="hidden px-3.5 py-1.5 rounded-xl text-xs font-semibold w-full sm:w-auto text-center"></div>
+        <div class="flex items-center gap-2.5 w-full sm:w-auto justify-end ml-auto">
+          <button type="button" onclick="closeContractModal()" class="px-4 py-2 rounded-xl text-xs font-semibold text-slate-400 hover:text-white hover:bg-slate-800 transition cursor-pointer">
+            Close
+          </button>
+          <button type="button" onclick="downloadContractPdf()" id="btnDownloadPdf" class="px-4 py-2 rounded-xl text-xs font-bold bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 transition flex items-center gap-1.5 cursor-pointer shadow-sm">
+            <span>📥</span> <span>Download Printable PDF</span>
+          </button>
+          <button type="button" onclick="sendContractViaPandaDoc()" id="btnSendPandaDoc" class="px-5 py-2 rounded-xl text-xs font-bold bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white shadow-lg shadow-purple-600/30 transition flex items-center gap-2 cursor-pointer">
+            <span>🖋️</span> <span>Send for E-Sign (PandaDoc)</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ----------------------------------------------------------- -->
+  <!-- PandaDoc E-Sign Settings Modal -->
+  <!-- ----------------------------------------------------------- -->
+  <div id="pandadocSettingsModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div class="glass-card border border-purple-500/40 rounded-2xl w-full max-w-lg p-6 space-y-5 shadow-2xl shadow-purple-950/40 animate-in fade-in zoom-in-95 duration-200">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-purple-600/20 border border-purple-500/40 flex items-center justify-center text-purple-400">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/></svg>
+          </div>
+          <div>
+            <h3 class="text-base font-bold text-white">PandaDoc E-Sign Settings</h3>
+            <p class="text-xs text-slate-400">Configure Sandbox &amp; Production API Keys</p>
+          </div>
+        </div>
+        <button type="button" onclick="closePandadocSettingsModal()" class="text-slate-400 hover:text-white p-2 rounded-xl hover:bg-slate-800 transition cursor-pointer">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <form id="pandadocSettingsForm" onsubmit="handleSavePandadocSettings(event)" class="space-y-4">
+        <!-- Active Mode Radio -->
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-2">Active Operating Mode</label>
+          <div class="grid grid-cols-2 gap-3">
+            <label class="flex items-center gap-2.5 p-3 rounded-xl bg-slate-900 border border-slate-700 cursor-pointer hover:border-purple-500 transition">
+              <input type="radio" name="pdMode" value="sandbox" id="pdModeSandbox" class="accent-purple-500">
+              <div>
+                <div class="text-xs font-bold text-amber-300">🧪 Sandbox Mode</div>
+                <div class="text-[10px] text-slate-400">Unlimited free testing</div>
+              </div>
+            </label>
+            <label class="flex items-center gap-2.5 p-3 rounded-xl bg-slate-900 border border-slate-700 cursor-pointer hover:border-purple-500 transition">
+              <input type="radio" name="pdMode" value="production" id="pdModeProduction" class="accent-purple-500">
+              <div>
+                <div class="text-xs font-bold text-emerald-300">🚀 Production Mode</div>
+                <div class="text-[10px] text-slate-400">Live binding contracts</div>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Sandbox Key -->
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">Sandbox API Key (Testing)</label>
+          <input type="password" id="pdSandboxKey" class="w-full bg-[#0d1424] border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-purple-500 font-mono">
+        </div>
+
+        <!-- Production Key -->
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1">Production API Key (Live Deals)</label>
+          <input type="password" id="pdProductionKey" class="w-full bg-[#0d1424] border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-purple-500 font-mono">
+        </div>
+
+        <!-- Buyer Legal Entity & Authorized Signer Default Grid -->
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1">Default Buyer Legal Entity</label>
+            <input type="text" id="pdBuyerName" value="Peak Investments LLC" class="w-full bg-[#0d1424] border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-purple-500">
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1">Authorized Signer Name</label>
+            <input type="text" id="pdBuyerSignerName" value="Johnathan Roberts" class="w-full bg-[#0d1424] border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-purple-500">
+          </div>
+        </div>
+
+        <div id="pdSettingsStatusBanner" class="hidden p-3 rounded-xl text-xs font-semibold text-center"></div>
+
+        <div class="flex items-center justify-between pt-2">
+          <button type="button" onclick="testPandadocConnection()" id="btnTestPandadoc" class="px-3.5 py-2 rounded-xl text-xs font-semibold text-purple-400 hover:text-purple-300 hover:bg-purple-500/10 border border-purple-500/30 transition flex items-center gap-1.5 cursor-pointer">
+            <span>⚡</span> <span>Test API Connection</span>
+          </button>
+          <div class="flex items-center gap-2">
+            <button type="button" onclick="closePandadocSettingsModal()" class="px-4 py-2 rounded-xl text-xs font-semibold text-slate-400 hover:text-white transition cursor-pointer">
+              Cancel
+            </button>
+            <button type="submit" id="btnSavePandadoc" class="px-5 py-2 rounded-xl text-xs font-bold bg-purple-600 hover:bg-purple-500 text-white shadow-lg shadow-purple-600/30 transition flex items-center gap-1.5 cursor-pointer">
+              <span>💾</span> <span>Save Settings</span>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="/static/app.js?v=7"></script>
+</body>
+</html>
