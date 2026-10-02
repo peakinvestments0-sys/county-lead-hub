@@ -1,0 +1,1260 @@
+[
+  {
+    "county": "Alachua",
+    "sources": [
+      {
+        "url": "https://isol.alachuaclerk.org/RealEstate/SearchEntry.aspx",
+        "notes": "Direct official-records search. Select LIS PENDENS as the document type.",
+        "access": "SEARCH_PORTAL"
+      },
+      {
+        "url": "https://alachuacounty.us/Depts/CodeAdmin/pages/complaints.aspx",
+        "notes": "Search county code enforcement records. Municipal jurisdiction may differ.",
+        "access": "SEARCH_PORTAL"
+      },
+      {
+        "url": "https://www.alachuaclerk.org/court_records/index.cfm?r=179&section=login",
+        "notes": "Requires CAPTCHA. Search court cases and select the CP probate case type.",
+        "access": "SEARCH_PORTAL"
+      },
+      {
+        "notes": "Search individual real-property records by owner, address, or parcel.",
+        "url": "https://qpublic.schneidercorp.com/Application.aspx?AppID=1081&LayerID=26490&PageTypeID=2&PageID=10768",
+        "evidence": "https://www.acpafl.org/"
+      },
+      {
+        "notes": "Countywide CAMA data ZIP linked by the Property Appraiser.",
+        "url": "https://s3.amazonaws.com/acpa.cama/ACPA_CAMAData.zip",
+        "access": "DIRECT_DOWNLOAD",
+        "format": "ZIP",
+        "evidence": "https://www.acpafl.org/"
+      },
+      {
+        "notes": "Tax Collector report selector; choose real estate. Available report formats and parameters are selected on the portal.",
+        "url": "https://alachua.county-taxes.com/tcb/app/public/main/reports",
+        "access": "DOWNLOAD_PAGE"
+      }
+    ]
+  },
+  {
+    "county": "Brevard",
+    "sources": [
+      {
+        "url": "https://vaclmweb1.brevardclerk.us/AcclaimWeb/",
+        "notes": "Requires I Accept. Search recorded documents for lis pendens. Use the document-type filter where available.",
+        "access": "SEARCH_PORTAL"
+      },
+      {
+        "url": "https://www.brevardfl.gov/PlanningAndDevelopment/ContractorAndCodeEnforcement/CodeEnforcementCaseSearch",
+        "notes": "Search county code enforcement records. Municipal jurisdiction may differ.",
+        "access": "SEARCH_PORTAL"
+      },
+      {
+        "url": "https://www.brevardclerk.us/case-search",
+        "notes": "Search court cases and select probate. Some documents may require registration or a records request.",
+        "access": "SEARCH_PORTAL"
+      },
+      {
+        "url": "https://www.bcpao.us/PropertySearch/",
+        "notes": "Search individual real-property records by owner, address, or parcel.",
+        "access": "SEARCH_PORTAL"
+      },
+      {
+        "notes": "WebData.zip is identified by BCPAO as countywide property data.",
+        "url": "https://www.bcpao.us/Docs/PublicDownload/PropData/WebData.zip",
+        "evidence": "https://www.bcpao.us/PublicData.aspx?t=1.1",
+        "access": "DIRECT_DOWNLOAD",
+        "format": "ZIP / database"
+      },
+      {
+        "url": "https://www.brevardtaxcollector.com/public-records-requests/",
+        "notes": "Request the existing bulk property-tax roll. A public bulk download was not confirmed.",
+        "access": "RECORDS_REQUEST"
+      }
+    ]
+  },
+  {
+    "county": "Broward",
+    "sources": [
+      {
+        "notes": "Requires I Accept. Official recorded-document search. Search lis pendens here; Broward recording is administered separately from the court clerk.",
+        "url": "https://officialrecords.broward.org/AcclaimWeb/search/Disclaimer?st=%2FAcclaimWeb%2Fsearch%2FSearchTypeName",
+        "agency": "Broward County Records, Taxes and Treasury"
+      },
+      {
+        "url": "https://dpepp.broward.org/BCS/Default.aspx?PossePresentation=SearchForEnforcement",
+        "notes": "Search county code enforcement records. Municipal jurisdiction may differ.",
+        "access": "SEARCH_PORTAL"
+      },
+      {
+        "url": "https://www.browardclerk.org/Web2",
+        "notes": "Search court cases and select probate. Some documents may require registration or a records request.",
+        "access": "SEARCH_PORTAL"
+      },
+      {
+        "url": "https://web.bcpa.net/bcpaclient/home2.aspx#Record-Search",
+        "notes": "Search individual real-property records by owner, address, or parcel.",
+        "access": "SEARCH_PORTAL"
+      },
+      {
+        "notes": "Use the Property Appraiser Data Request section to request the countywide parcel/CAMA file. Direct public bulk download not confirmed.",
+        "url": "https://web.bcpa.net/bcpaclient/home2.aspx#Data-Request",
+        "access": "RECORDS_REQUEST"
+      },
+      {
+        "notes": "Tax Collector records-request page also links real-estate reports. Request an existing countywide tax roll if those reports do not meet your needs.",
+        "url": "https://browardtax.org/public-records/",
+        "email": "inquiries@browardtax.org",
+        "access": "RECORDS_REQUEST"
+      }
+    ]
+  },
+  {
+    "county": "Charlotte",
+    "sources": [
+      {
+        "url": "https://recording.charlotteclerk.com/Search/",
+        "notes": "Search recorded documents for lis pendens. Use the document-type filter where available.",
+        "access": "SEARCH_PORTAL"
+      },
+      {
+        "url": "https://aca-prod.accela.com/BOCC/Cap/CapHome.aspx?TabName=Home&module=CodeEnforcement",
+        "notes": "Search county code enforcement records. Municipal jurisdiction may differ.",
+        "access": "SEARCH_PORTAL"
+      },
+      {
+        "notes": "Search court cases and select probate. Some documents may require registration or a records request.",
+        "url": "https://courts.charlotteclerk.com/Benchmark/Home.aspx/Search",
+        "evidence": "https://www.charlotteclerk.com/courts/probate"
+      },
+      {
+        "url": "https://www.ccappraiser.com/RPSearchEnter.asp?",
+        "notes": "Search individual real-property records by owner, address, or parcel.",
+        "access": "SEARCH_PORTAL"
+      },
+      {
+        "notes": "Countywide real-property ASCII file; the agency describes it as updated nightly.",
+        "url": "https://www.ccappraiser.com/downloads/charlotte.zip",
+        "access": "DIRECT_DOWNLOAD",
+        "format": "ZIP / delimited ASCII",
+        "evidence": "https://www.ccappraiser.com/Downloads.aspx"
+      },
+      {
+        "notes": "Forms and Files page provides current real-estate tax-roll download instructions. Choose the roll and an export format.",
+        "url": "https://taxcollector.charlottecountyfl.gov/files",
+        "access": "DOWNLOAD_PAGE"
+      }
+    ]
+  },
+  {
+    "county": "Citrus",
+    "sources": [
+      {
+        "url": "https://search.citrusclerk.org/LandmarkWeb",
+        "notes": "Requires Accept. Search recorded documents for lis pendens. Use the document-type filter where available.",
+        "access": "SEARCH_PORTAL"
+      },
+      {
+        "notes": "Official records-routing page identifies Orange Data for open Code Compliance violations. Follow that county-authorized request route.",
+        "url": "https://www.citrusclerk.org/publicrecords",
+        "access": "RECORDS_REQUEST"
+      },
+      {
+        "notes": "Search court cases and select probate. Some documents may require registration or a records request.",
+        "url": "https://scorss.citrusclerk.org/",
+        "evidence": "https://www.citrusclerk.org/QuickLinks.aspx"
+      },
+      {
+        "notes": "Search individual real-property records by owner, address, or parcel.",
+        "url": "http://www.citruspa.org/_web/search/commonsearch.aspx?mode=realprop",
+        "evidence": "https://www.citruspa.org/_dnn/Downloads"
+      },
+      {
+        "notes": "Parcel Data Downloads (vendor dump) includes current and certified tax-roll folders with data-layout instructions.",
+        "url": "https://www.citruspa.org/_dnn/Downloads",
+        "access": "DOWNLOAD_PAGE"
+      },
+      {
+        "url": "https://www.citrustc.us/public-records-requests/",
+        "notes": "Request the existing bulk property-tax roll. A public bulk download was not confirmed.",
+        "access": "RECORDS_REQUEST"
+      }
+    ]
+  },
+  {
+    "county": "Bay",
+    "sources": [
+      {
+        "url": "https://records2.baycoclerk.com/Recording/Home/Index",
+        "notes": "Requires Accept. Official Clerk recorded-document search; select Lis Pendens as the document type.",
+        "access": "SEARCH_PORTAL"
+      },
+      {
+        "url": "https://portal.baycountyfl.gov/CodeEnforcement/Locator?category=CE",
+        "notes": "Requires CAPTCHA. Official county Code Enforcement case search.",
+        "access": "SEARCH_PORTAL",
+        "email": "codeenforcement@baycountyfl.gov"
+      },
+      {
+        "url": "https://www.baycoclerk.com/public-records/search-court-cases-court-docket/",
+        "notes": "Official Clerk court-case search page; use the probate case type.",
+        "access": "SEARCH_PORTAL"
+      },
+      {
+        "url": "https://baypa.net/property-search/",
+        "notes": "Official Property Appraiser entry point for owner, address, and parcel searches.",
+        "access": "SEARCH_PORTAL"
+      },
+      {
+        "url": "https://floridarevenue.com/property/Pages/DataPortal_RequestAssessmentRollGISData.aspx",
+        "notes": "Florida DOR publishes Bay County current NAL real-property assessment-roll files with layouts.",
+        "access": "DOWNLOAD_PAGE",
+        "format": "ZIP / CSV",
+        "agency": "Bay County Property Appraiser / Florida Department of Revenue"
+      },
+      {
+        "url": "https://baycountyfltax.gov/help/public-records-request/",
+        "notes": "Official Tax Collector records-request route for an existing bulk property-tax roll.",
+        "access": "RECORDS_REQUEST"
+      }
+    ]
+  },
+  {
+    "county": "Clay",
+    "sources": [
+      {
+        "url": "https://landmark.clayclerk.com/landmarkweb",
+        "notes": "Official Clerk recorded-document search; select Lis Pendens as the document type."
+      },
+      {
+        "url": "https://www.claycountygov.com/government/public-records-search",
+        "notes": "Official county records search includes code-enforcement case searches.",
+        "access": "SEARCH_PORTAL"
+      },
+      {
+        "url": "https://inquiry.clayclerk.com/Home.aspx/Search",
+        "notes": "Official Clerk court-case search; select the probate division."
+      },
+      {
+        "url": "https://www.ccpao.com/property-search/",
+        "notes": "Official Property Appraiser property-search entry point."
+      },
+      {
+        "url": "https://www.ccpao.com/parcel-information/",
+        "notes": "Official Property Appraiser parcel-information page provides active assessment-roll data and layouts.",
+        "access": "DOWNLOAD_PAGE",
+        "format": "CSV / text"
+      },
+      {
+        "url": "https://clay.county-taxes.com/public/reports",
+        "notes": "Official Tax Collector reports page for real-estate tax data exports.",
+        "access": "DOWNLOAD_PAGE"
+      }
+    ]
+  },
+  {
+    "county": "Collier",
+    "sources": [
+      {
+        "url": "https://app.collierclerk.com/CORPublicAccess/Search/Document",
+        "notes": "Direct official-records document search; select LP (Lis Pendens)."
+      },
+      {
+        "url": "https://cvportal.collier.gov/cityviewweb/CodeEnforcement/Locator?category=CE",
+        "notes": "Requires CAPTCHA. Official county Code Enforcement status and fee search.",
+        "access": "SEARCH_PORTAL"
+      },
+      {
+        "url": "https://www.collierclerk.com/court-divisions/online-case-search/",
+        "notes": "Official Clerk online case-search entry point for probate cases."
+      },
+      {
+        "url": "https://www.collierappraiser.com/",
+        "notes": "Official Property Appraiser search by owner, address, or parcel."
+      },
+      {
+        "url": "https://floridarevenue.com/property/Pages/DataPortal_RequestAssessmentRollGISData.aspx",
+        "notes": "Florida DOR publishes Collier County current NAL real-property assessment-roll files with layouts.",
+        "access": "DOWNLOAD_PAGE",
+        "format": "ZIP / CSV",
+        "agency": "Collier County Property Appraiser / Florida Department of Revenue"
+      },
+      {
+        "url": "https://colliertaxcollector.com/public-records-request/",
+        "notes": "Official Tax Collector request page for an existing bulk tax-account file.",
+        "access": "RECORDS_REQUEST"
+      }
+    ]
+  },
+  {
+    "county": "Duval",
+    "sources": [
+      {
+        "url": "https://core.duvalclerk.com/",
+        "notes": "Official Clerk CORE search covers recorded lis pendens and court records."
+      },
+      {
+        "url": "https://www.jacksonville.gov/departments/neighborhoods/municipal-code-compliance",
+        "notes": "Official consolidated city/county Municipal Code Compliance page and records route.",
+        "access": "RECORDS_REQUEST"
+      },
+      {
+        "url": "https://core.duvalclerk.com/",
+        "notes": "Official Clerk CORE case search; select probate."
+      },
+      {
+        "url": "https://paopropertysearch.coj.net/Basic/Search.aspx",
+        "notes": "Official Duval Property Appraiser real-property search."
+      },
+      {
+        "url": "https://www.jacksonville.gov/departments/property-appraiser/data-offerings",
+        "notes": "Official Property Appraiser data-offerings page publishes current certified roll files.",
+        "access": "DOWNLOAD_PAGE",
+        "format": "ZIP / text"
+      },
+      {
+        "url": "https://taxcollector.jacksonville.gov/taxes/data-requests",
+        "notes": "Official Tax Collector data-request page provides the full tax-roll request route.",
+        "access": "RECORDS_REQUEST"
+      }
+    ]
+  },
+  {
+    "county": "Escambia",
+    "sources": [
+      {
+        "url": "https://dory.escambiaclerk.com/LandmarkWeb",
+        "notes": "Official Clerk recorded-document search; select Lis Pendens."
+      },
+      {
+        "url": "https://myescambia.com/our-services/natural-resources-management/code-enforcement",
+        "notes": "Official county Code Enforcement page links the case-search system.",
+        "access": "SEARCH_PORTAL"
+      },
+      {
+        "url": "https://public.escambiaclerk.com/xml/xml_web_1a.asp",
+        "notes": "Official Clerk public court-record search; select probate."
+      },
+      {
+        "url": "https://www.escpa.org/CAMA/Search.aspx",
+        "notes": "Official Property Appraiser CAMA search."
+      },
+      {
+        "url": "https://floridarevenue.com/property/Pages/DataPortal_RequestAssessmentRollGISData.aspx",
+        "notes": "Florida DOR publishes Escambia County current NAL real-property assessment-roll files with layouts.",
+        "access": "DOWNLOAD_PAGE",
+        "format": "ZIP / CSV",
+        "agency": "Escambia County Property Appraiser / Florida Department of Revenue"
+      },
+      {
+        "url": "https://escambia.county-taxes.com/tcb/app/public/main/reports",
+        "notes": "Official Tax Collector report selector for real-estate tax files.",
+        "access": "DOWNLOAD_PAGE"
+      }
+    ]
+  },
+  {
+    "county": "Flagler",
+    "sources": [
+      {
+        "url": "https://records.flaglerclerk.gov/",
+        "notes": "Requires Accept. Official Clerk Official Records search; select Lis Pendens."
+      },
+      {
+        "url": "https://www.flaglercounty.gov/County-Services/Public-Records-Request",
+        "notes": "Official county records-request portal for unincorporated code-enforcement cases.",
+        "access": "RECORDS_REQUEST"
+      },
+      {
+        "url": "https://flaglerclerk.gov/courts/probate-questions/",
+        "notes": "Official Clerk probate page explains how to request probate records; no public online probate document search is offered.",
+        "access": "RECORDS_REQUEST"
+      },
+      {
+        "url": "https://qpublic.schneidercorp.com/Application.aspx?AppID=598&LayerID=9801&PageTypeID=2&PageID=4481",
+        "notes": "Property search linked by the official Flagler Property Appraiser.",
+        "evidence": "https://flaglerpa.com/"
+      },
+      {
+        "url": "https://flaglerpa.com/gis/",
+        "notes": "Official Property Appraiser GIS page publishes the parcel/CAMA data download.",
+        "access": "DOWNLOAD_PAGE",
+        "format": "ZIP"
+      },
+      {
+        "url": "https://www.flaglertax.gov/prr/",
+        "notes": "Official Tax Collector public-record request for an existing bulk tax roll.",
+        "access": "RECORDS_REQUEST"
+      }
+    ]
+  },
+  {
+    "county": "Hernando",
+    "sources": [
+      {
+        "url": "https://or.hernandoclerk.com/LandmarkWeb/home/index",
+        "notes": "Requires Accept. Official Clerk recorded-document search; select Lis Pendens."
+      },
+      {
+        "url": "https://www.hernandocounty.us/public-safety/code-compliance/",
+        "notes": "Official Code Compliance page provides lien and violation search instructions.",
+        "access": "SEARCH_PORTAL"
+      },
+      {
+        "url": "https://www.civitekflorida.com/ocrs/county/27/",
+        "notes": "Court-record search authorized by the Hernando Clerk; select probate.",
+        "evidence": "https://hernandoclerk.com/about-us/public-records-requests-for-f-s-119-07/"
+      },
+      {
+        "url": "https://propsearch.hernandopa-fl.us/",
+        "notes": "Property-search portal linked by the official Hernando Property Appraiser.",
+        "evidence": "https://hernandocountypa-florida.us/"
+      },
+      {
+        "url": "https://floridarevenue.com/property/Pages/DataPortal_RequestAssessmentRollGISData.aspx",
+        "notes": "Florida DOR publishes Hernando County current NAL real-property assessment-roll files with layouts.",
+        "access": "DOWNLOAD_PAGE",
+        "format": "ZIP / CSV",
+        "agency": "Hernando County Property Appraiser / Florida Department of Revenue"
+      },
+      {
+        "url": "https://www.hernandotax.us/",
+        "notes": "Official Tax Collector contact point for requesting an existing bulk property-tax file; no public bulk download was confirmed.",
+        "access": "RECORDS_REQUEST"
+      }
+    ]
+  },
+  {
+    "county": "Highlands",
+    "sources": [
+      {
+        "url": "https://acclaim.highlandsclerkfl.gov/AcclaimWeb/Search/SearchTypeName",
+        "notes": "Direct official-records name search with document-type filtering."
+      },
+      {
+        "url": "https://www.highlandsfl.gov/departments/development_services/code_enforcement/index.php",
+        "notes": "Official Code Enforcement page provides the records contact.",
+        "access": "EMAIL_REQUEST",
+        "email": "codeenforcement@highlandsfl.gov"
+      },
+      {
+        "url": "https://www.civitekflorida.com/ocrs/county/28/",
+        "notes": "Highlands Clerk court-record search; select Probate/Guardianship.",
+        "evidence": "https://www.highlandsclerkfl.gov/"
+      },
+      {
+        "url": "https://www.hcpao.org/Search",
+        "notes": "Official Property Appraiser real-property search."
+      },
+      {
+        "url": "https://floridarevenue.com/property/Pages/DataPortal_RequestAssessmentRollGISData.aspx",
+        "notes": "Florida DOR publishes Highlands County current NAL real-property assessment-roll files with layouts.",
+        "access": "DOWNLOAD_PAGE",
+        "format": "ZIP / CSV",
+        "agency": "Highlands County Property Appraiser / Florida Department of Revenue"
+      },
+      {
+        "url": "https://www.hctaxcollector.com/property-tax-reports/",
+        "notes": "Official Tax Collector page publishes annual tax rolls and delinquent-tax reports.",
+        "access": "DOWNLOAD_PAGE"
+      }
+    ]
+  },
+  {
+    "county": "Hillsborough",
+    "sources": [
+      {
+        "url": "https://hover.hillsclerk.com/",
+        "notes": "Official Clerk HOVER search includes recorded lis pendens."
+      },
+      {
+        "url": "https://hcfl.gov/businesses/development-services-records/code-compliance-records-searches",
+        "notes": "Official county code-compliance records-search page.",
+        "access": "SEARCH_PORTAL"
+      },
+      {
+        "url": "https://hover.hillsclerk.com/",
+        "notes": "Official Clerk HOVER court search; select probate."
+      },
+      {
+        "url": "https://gis.hcpafl.org/propertysearch/",
+        "notes": "Official Property Appraiser property search."
+      },
+      {
+        "url": "https://downloads.hcpafl.org/",
+        "notes": "Official Property Appraiser download site publishes countywide parcel files.",
+        "access": "DOWNLOAD_PAGE",
+        "format": "ZIP / CSV"
+      },
+      {
+        "url": "https://www.hillstaxfl.gov/records-search/",
+        "notes": "Official Tax Collector records-search and public-record access page; request a bulk file if the search export is insufficient.",
+        "access": "RECORDS_REQUEST"
+      }
+    ]
+  },
+  {
+    "county": "Indian River",
+    "sources": [
+      {
+        "url": "https://ori.indian-river.org/",
+        "notes": "Requires Accept. Official Clerk Landmark recorded-document search; select Lis Pendens."
+      },
+      {
+        "url": "https://www.indianriver.gov/services/planning_development_services/code_enforcement/index.php",
+        "notes": "Official county Code Enforcement page links the authorized violation/lien inquiry route.",
+        "access": "SEARCH_PORTAL"
+      },
+      {
+        "url": "https://indianriverclerk.com/court-records/online-case-view/",
+        "notes": "Official Clerk Online Case View; select probate."
+      },
+      {
+        "url": "https://www.ircpa.org/",
+        "notes": "Official Property Appraiser real-property search."
+      },
+      {
+        "url": "https://ircpa.org/site-links/downloads/",
+        "notes": "Official Property Appraiser downloads page publishes the county CAMA data package.",
+        "access": "DOWNLOAD_PAGE",
+        "format": "ZIP"
+      },
+      {
+        "url": "https://services.irctax.com/hc/en-us/articles/42276552582931-Tax-Reports",
+        "notes": "Official Tax Collector Tax Reports page provides current tax-report downloads.",
+        "access": "DOWNLOAD_PAGE"
+      }
+    ]
+  },
+  {
+    "county": "Lake",
+    "sources": [
+      {
+        "url": "https://officialrecords.lakecountyclerk.org/",
+        "notes": "Official Clerk recorded-document search; select Lis Pendens."
+      },
+      {
+        "url": "https://c.lakecountyfl.gov/offices/code_enforcement/cases.aspx",
+        "notes": "Official county Code Enforcement case search."
+      },
+      {
+        "url": "https://www.lakecountyclerkfl.gov/records/",
+        "notes": "Official Clerk records page links the court search used for probate cases."
+      },
+      {
+        "url": "https://lakecopropappr.com/property-search.aspx",
+        "notes": "Official Property Appraiser property search."
+      },
+      {
+        "url": "https://c.lakecountyfl.gov/ftp/PA_office/data/",
+        "notes": "Official county-hosted Property Appraiser data directory for parcel and tax-roll files.",
+        "access": "DOWNLOAD_PAGE",
+        "format": "ZIP / text"
+      },
+      {
+        "url": "https://laketax.justfoia.com/publicportal/home/newrequest",
+        "notes": "Official Tax Collector public-record request form for an existing bulk tax-property file.",
+        "access": "RECORDS_REQUEST"
+      }
+    ]
+  },
+  {
+    "county": "Lee",
+    "sources": [
+      {
+        "url": "https://or.leeclerk.org/LandMarkWeb/",
+        "notes": "Official Clerk recorded-document search; select Lis Pendens."
+      },
+      {
+        "url": "https://aca-prod.accela.com/leeco/default.aspx",
+        "notes": "Accela case search linked by official Lee County Code Enforcement.",
+        "evidence": "https://www.leegov.com/dcd/CodeEnf"
+      },
+      {
+        "url": "https://www.leeclerk.org/departments/courts/court-case-records",
+        "notes": "Official Clerk court-case records page; select probate."
+      },
+      {
+        "url": "https://leepa.org/Search/PropertySearch.aspx",
+        "notes": "Official Property Appraiser data search."
+      },
+      {
+        "url": "https://www.leepa.org/systems/DataSales.aspx",
+        "notes": "Official Property Appraiser Data Services page supplies countywide parcel/CAMA extracts; charges may apply.",
+        "access": "RECORDS_REQUEST"
+      },
+      {
+        "url": "https://leetc.com/contact-us/",
+        "notes": "Official Tax Collector contact route for requesting an existing bulk property-tax file; no public bulk download was confirmed.",
+        "access": "RECORDS_REQUEST"
+      }
+    ]
+  },
+  {
+    "county": "Leon",
+    "sources": [
+      {
+        "url": "https://cvweb.leonclerk.com/public/clerk_services/official_records/index.asp",
+        "notes": "Direct official-records search for recorded lis pendens."
+      },
+      {
+        "url": "https://aca-prod.accela.com/LEONCO/Cap/CapHome.aspx?module=CodeCompliance",
+        "notes": "Code Compliance search linked by official Leon County.",
+        "evidence": "https://cms.leoncountyfl.gov/Government/Departments/Development-Support-Environmental-Management/Code-Compliance-Services"
+      },
+      {
+        "url": "https://leonclerk.com/helpful-resources/records/court-records/",
+        "notes": "Official Clerk court-records page provides the probate search route."
+      },
+      {
+        "url": "https://www.leonpa.gov/Search-Results",
+        "notes": "Official Property Appraiser property-search page."
+      },
+      {
+        "url": "https://www.leonpa.gov/Downloads",
+        "notes": "Official Property Appraiser data-download page publishes parcel and assessment-roll exports.",
+        "access": "DOWNLOAD_PAGE",
+        "format": "CSV / ZIP"
+      },
+      {
+        "url": "https://www.leontaxcollector.net/Services/Property-Taxes/Download-Files",
+        "notes": "Official Tax Collector page publishes property-tax download files.",
+        "access": "DOWNLOAD_PAGE"
+      }
+    ]
+  },
+  {
+    "county": "Manatee",
+    "sources": [
+      {
+        "url": "https://records.manateeclerk.com/OfficialRecords/Search",
+        "notes": "Official Clerk Official Records search; select Lis Pendens."
+      },
+      {
+        "url": "https://www.mymanatee.org/services-and-amenities/service-listing/service-details/search-accela-code-enforcement-records",
+        "notes": "Official county page opens the Accela code-enforcement record search."
+      },
+      {
+        "url": "https://records.manateeclerk.com/CourtRecords/Search",
+        "notes": "Official Clerk Court Records search; select probate."
+      },
+      {
+        "url": "https://www.manateepao.gov/",
+        "notes": "Official Property Appraiser site provides the parcel search."
+      },
+      {
+        "url": "https://www.manateepao.gov/tax-roll-data/",
+        "notes": "Official Property Appraiser tax-roll data page publishes countywide CAMA extracts.",
+        "access": "DOWNLOAD_PAGE",
+        "format": "ZIP / CSV"
+      },
+      {
+        "url": "https://www.taxcollector.com/chapter-119.cfm",
+        "notes": "Official Tax Collector Chapter 119 request route for an existing bulk property-tax file.",
+        "access": "RECORDS_REQUEST"
+      }
+    ]
+  },
+  {
+    "county": "Marion",
+    "sources": [
+      {
+        "url": "https://nvweb.marioncountyclerk.org/BrowserView/",
+        "notes": "Official Clerk records search includes recorded lis pendens."
+      },
+      {
+        "url": "https://www.marionfl.org/agencies-departments/departments-facilities-offices/growth-services/code-enforcement/code-online-payment",
+        "notes": "Official county Code Enforcement online portal provides case lookup."
+      },
+      {
+        "url": "https://www.marioncountyclerk.org/search-records/",
+        "notes": "Official Clerk search page links court records for probate cases."
+      },
+      {
+        "url": "https://www.pa.marion.fl.us/SearchAgree.aspx",
+        "notes": "Official Property Appraiser record search."
+      },
+      {
+        "url": "https://floridarevenue.com/property/Pages/DataPortal_RequestAssessmentRollGISData.aspx",
+        "notes": "Florida DOR publishes Marion County current NAL real-property assessment-roll files with layouts.",
+        "access": "DOWNLOAD_PAGE",
+        "format": "ZIP / CSV",
+        "agency": "Marion County Property Appraiser / Florida Department of Revenue"
+      },
+      {
+        "url": "https://www.mariontax.com/online-forms",
+        "notes": "Official Tax Collector online forms/contact route for an existing bulk property-tax file; no public bulk roll was confirmed.",
+        "access": "RECORDS_REQUEST"
+      }
+    ]
+  },
+  {
+    "county": "Martin",
+    "sources": [
+      {
+        "url": "https://or.martinclerk.com/landmarkweb/",
+        "notes": "Requires Accept. Official Clerk recorded-document search; select Lis Pendens."
+      },
+      {
+        "url": "https://www.martin.fl.us/PRR",
+        "notes": "Official county public-record request route for code-enforcement case records.",
+        "access": "RECORDS_REQUEST"
+      },
+      {
+        "url": "https://www.martinclerk.com/335/Records-Search",
+        "notes": "Official Clerk records page links the probate court-case search."
+      },
+      {
+        "url": "https://www.pamartinfl.gov/app/search/real-property",
+        "notes": "Official Property Appraiser real-property search."
+      },
+      {
+        "url": "https://www.pamartinfl.gov/tools-resources/data-downloads",
+        "notes": "Official Property Appraiser data-download page publishes the current real-property master file.",
+        "access": "DOWNLOAD_PAGE",
+        "format": "ZIP / CSV"
+      },
+      {
+        "url": "https://martintaxcollector.com/contact-us/",
+        "notes": "Official Tax Collector contact route for requesting an existing bulk tax-account file.",
+        "access": "RECORDS_REQUEST"
+      }
+    ]
+  },
+  {
+    "county": "Miami-Dade",
+    "sources": [
+      {
+        "url": "https://onlineservices.miamidadeclerk.gov/officialrecords",
+        "notes": "Official Clerk recorded-document search; select Lis Pendens."
+      },
+      {
+        "url": "https://www.miamidade.gov/Apps/RER/RegulationSupportWebViewer",
+        "notes": "Official county regulation and code-compliance case viewer."
+      },
+      {
+        "url": "https://www2.miamidadeclerk.gov/QOS/",
+        "notes": "Official Clerk court case search; select probate."
+      },
+      {
+        "url": "https://www.miamidade.gov/propertysearch/",
+        "notes": "Official Property Appraiser property search."
+      },
+      {
+        "url": "https://bbs.miamidadepa.gov/",
+        "notes": "Official Property Appraiser bulk-data service for assessment and parcel files.",
+        "access": "DOWNLOAD_PAGE",
+        "format": "ZIP / text"
+      },
+      {
+        "url": "https://www.miamidade.gov/global/publicrecords/search.page",
+        "notes": "Official county public-record request service; direct the request to the Tax Collector for the existing bulk property-tax roll.",
+        "access": "RECORDS_REQUEST",
+        "email": "financerecords@miamidade.gov"
+      }
+    ]
+  },
+  {
+    "county": "Nassau",
+    "sources": [
+      {
+        "url": "https://files.nassauclerk.com/default.cfm?site=OR",
+        "notes": "Official Clerk document search for recorded lis pendens.",
+        "evidence": "https://www.nassauclerk.com/191/Records-Search"
+      },
+      {
+        "url": "https://www.nassaucountyfl.com/79/Code-Enforcement",
+        "notes": "Official Code Enforcement page provides case contacts and the public-record route.",
+        "access": "RECORDS_REQUEST"
+      },
+      {
+        "url": "https://www.civitekflorida.com/ocrs/county/45/",
+        "notes": "Court-record search linked by the official Nassau Clerk; select probate.",
+        "evidence": "https://www.nassauclerk.com/191/Records-Search"
+      },
+      {
+        "url": "https://search.ncpafl.com/",
+        "notes": "Direct official Property Appraiser search by owner, address, or parcel."
+      },
+      {
+        "url": "https://floridarevenue.com/property/Pages/DataPortal_RequestAssessmentRollGISData.aspx",
+        "notes": "Florida DOR publishes Nassau County current NAL real-property assessment-roll files with layouts.",
+        "access": "DOWNLOAD_PAGE",
+        "format": "ZIP / CSV",
+        "agency": "Nassau County Property Appraiser / Florida Department of Revenue"
+      },
+      {
+        "url": "https://www.nassautaxes.com/Content/PublicRecordsRequest",
+        "notes": "Official Tax Collector public-records request for an existing bulk property-tax file.",
+        "access": "RECORDS_REQUEST"
+      }
+    ]
+  },
+  {
+    "county": "Okaloosa",
+    "sources": [
+      {
+        "url": "https://okaloosacountyfl-web.tylerhost.net/web/",
+        "notes": "Requires I Accept. Official Clerk recorded-document search; select Lis Pendens."
+      },
+      {
+        "url": "https://myokaloosa.gov/gm/code-enforcement/complaints",
+        "notes": "Official county page for filing and checking current Code Enforcement complaints.",
+        "access": "RECORDS_REQUEST"
+      },
+      {
+        "url": "https://clerkapps.okaloosaclerk.com/ClerkQuest/",
+        "notes": "Official Clerk court-record search; select probate."
+      },
+      {
+        "url": "https://qpublic.schneidercorp.com/Application.aspx?AppID=1107&LayerID=26550&PageTypeID=2&PageID=10781",
+        "notes": "Property search linked by the official Okaloosa Property Appraiser.",
+        "evidence": "https://www.okaloosapa.com/"
+      },
+      {
+        "url": "https://myokaloosa.gov/index.php/gis_data",
+        "notes": "Official county data-download page publishes Property Appraiser real-estate and parcel files.",
+        "access": "DOWNLOAD_PAGE",
+        "format": "ZIP / CSV"
+      },
+      {
+        "url": "https://okaloosatax.com/public-records/",
+        "notes": "Official Tax Collector public-record route for an existing bulk property-tax file.",
+        "access": "RECORDS_REQUEST"
+      }
+    ]
+  },
+  {
+    "county": "Orange",
+    "sources": [
+      {
+        "url": "https://officialrecords.occompt.com/recorder/web/",
+        "notes": "Requires I Accept. Official Comptroller recorded-document search; select Lis Pendens."
+      },
+      {
+        "url": "https://www.ocfl.net/NeighborsHousing/CodeCompliance.aspx",
+        "notes": "Official county Code Compliance page provides case, complaint, and records routes for unincorporated Orange County.",
+        "access": "RECORDS_REQUEST",
+        "email": "CodeEnforcementDivision@ocfl.net"
+      },
+      {
+        "url": "https://myeclerk.myorangeclerk.com/cases/search",
+        "notes": "Official Clerk court-record search; select probate."
+      },
+      {
+        "url": "https://www.ocpafl.org/",
+        "notes": "Official Property Appraiser entry point for parcel search."
+      },
+      {
+        "url": "https://floridarevenue.com/property/Pages/DataPortal_RequestAssessmentRollGISData.aspx",
+        "notes": "Florida DOR publishes Orange County current NAL real-property assessment-roll files with layouts.",
+        "access": "DOWNLOAD_PAGE",
+        "format": "ZIP / CSV",
+        "agency": "Orange County Property Appraiser / Florida Department of Revenue"
+      },
+      {
+        "url": "https://www.octaxcol.com/taxes/about-property-tax/tax-roll-download/",
+        "notes": "Official Tax Collector bulk tax-roll download page.",
+        "access": "DOWNLOAD_PAGE"
+      }
+    ]
+  },
+  {
+    "county": "Osceola",
+    "sources": [
+      {
+        "url": "https://officialrecords.osceolaclerk.org/browserview/",
+        "notes": "Direct official-records search; select Lis Pendens as the document type."
+      },
+      {
+        "url": "https://www.osceola.org/Services/Code-Enforcement/Submit-a-Research-Request",
+        "notes": "Official county request form for code-enforcement case research.",
+        "access": "RECORDS_REQUEST"
+      },
+      {
+        "url": "https://osceolaclerk.com/request-a-public-record/",
+        "notes": "Official Clerk record-request route for probate files; online public document availability is restricted.",
+        "access": "RECORDS_REQUEST"
+      },
+      {
+        "url": "https://search.property-appraiser.org/",
+        "notes": "Official Osceola Property Appraiser property search."
+      },
+      {
+        "url": "https://www.property-appraiser.org/data/",
+        "notes": "Official Property Appraiser data page publishes current assessment-roll downloads.",
+        "access": "DOWNLOAD_PAGE",
+        "format": "ZIP / CSV"
+      },
+      {
+        "url": "https://osceolataxcollector.org/contact-us/",
+        "notes": "Official Tax Collector contact route for an existing bulk property-tax file; no public bulk roll was confirmed.",
+        "access": "RECORDS_REQUEST"
+      }
+    ]
+  },
+  {
+    "county": "Palm Beach",
+    "sources": [
+      {
+        "url": "https://erec.mypalmbeachclerk.com/",
+        "notes": "Requires Accept. Official Clerk recorded-document search; select Lis Pendens."
+      },
+      {
+        "url": "https://discover.pbcgov.org/pzb/administration/pages/lien-permit-searches.aspx",
+        "notes": "Official county page for code-compliance open-violation searches.",
+        "access": "RECORDS_REQUEST"
+      },
+      {
+        "url": "https://appsgp.mypalmbeachclerk.com/eCaseView/",
+        "notes": "Official Clerk eCaseView search includes probate cases."
+      },
+      {
+        "url": "https://pbcpao.gov/",
+        "notes": "Official Property Appraiser PAPA parcel search."
+      },
+      {
+        "url": "https://pbcpao.gov/departments/public_services.htm",
+        "notes": "Official Property Appraiser Data Requests page provides full tax-roll and parcel extracts.",
+        "access": "DOWNLOAD_PAGE",
+        "format": "CSV / ZIP"
+      },
+      {
+        "url": "https://www.pbctax.gov/resources/public-record-request/",
+        "notes": "Official Tax Collector public-record request for bulk property-tax data.",
+        "access": "RECORDS_REQUEST"
+      }
+    ]
+  },
+  {
+    "county": "Pasco",
+    "sources": [
+      {
+        "url": "https://app.pascoclerk.com/appdot-public-online-services-forms-or-search.asp",
+        "notes": "Direct official-records search with a Lis Pendens document-type filter."
+      },
+      {
+        "url": "https://aca-prod.accela.com/PASCO/Default.aspx",
+        "notes": "Pasco County Access portal provides public enforcement and code-compliance record searches.",
+        "access": "SEARCH_PORTAL"
+      },
+      {
+        "url": "https://pascoclerk.com/172/Search-Court-Records",
+        "notes": "Official Clerk court-record search; select probate."
+      },
+      {
+        "url": "https://search.pascopa.com/",
+        "notes": "Official Property Appraiser record search."
+      },
+      {
+        "url": "https://downloads.pascopa.com/",
+        "notes": "Official Property Appraiser download site publishes parcel summary and real-estate data.",
+        "access": "DOWNLOAD_PAGE",
+        "format": "ZIP / CSV"
+      },
+      {
+        "url": "https://www-pasco.county-taxes.com/tcb/app/public/main/reports",
+        "notes": "Official Tax Collector real-estate report download portal.",
+        "access": "DOWNLOAD_PAGE"
+      }
+    ]
+  },
+  {
+    "county": "Pinellas",
+    "sources": [
+      {
+        "url": "https://officialrecords.mypinellasclerk.gov/",
+        "notes": "Official Clerk recorded-document search; select Lis Pendens."
+      },
+      {
+        "url": "https://aca-prod.accela.com/PINELLAS/Cap/CapHome.aspx?TabName=Home&module=Enforcement",
+        "notes": "Code Enforcement case search linked by official Pinellas County.",
+        "evidence": "https://pinellas.gov/pinellas-county-access-portal/"
+      },
+      {
+        "url": "https://courtrecords.mypinellasclerk.gov/",
+        "notes": "Official Clerk court-record search; select probate."
+      },
+      {
+        "url": "https://www.pcpao.gov/quick-search",
+        "notes": "Official Property Appraiser quick search."
+      },
+      {
+        "url": "https://www.pcpao.gov/tools-data/data-downloads/raw-database-files",
+        "notes": "Official Property Appraiser raw database files page publishes current countywide parcel data.",
+        "access": "DOWNLOAD_PAGE",
+        "format": "ZIP / text"
+      },
+      {
+        "url": "https://pinellastaxcollector.gov/other-services/public-records-request/",
+        "notes": "Official Tax Collector request page for an existing bulk property-tax file.",
+        "access": "RECORDS_REQUEST"
+      }
+    ]
+  },
+  {
+    "county": "Polk",
+    "sources": [
+      {
+        "url": "https://apps.polkcountyclerk.net/browserviewor/",
+        "notes": "Direct official-records search; select Lis Pendens as the document type."
+      },
+      {
+        "url": "https://aca-prod.accela.com/POLKCO/Default.aspx",
+        "notes": "Accela enforcement search linked by official Polk County."
+      },
+      {
+        "url": "https://www.polkclerkfl.gov/297/Court-Records",
+        "notes": "Official Clerk court-record search; select probate."
+      },
+      {
+        "url": "https://www.polkflpa.gov/CamaSearch.aspx",
+        "notes": "Direct official Property Appraiser search by owner, address, or parcel."
+      },
+      {
+        "url": "https://floridarevenue.com/property/Pages/DataPortal_RequestAssessmentRollGISData.aspx",
+        "notes": "Florida DOR publishes Polk County current NAL real-property assessment-roll files with layouts.",
+        "access": "DOWNLOAD_PAGE",
+        "format": "ZIP / CSV",
+        "agency": "Polk County Property Appraiser / Florida Department of Revenue"
+      },
+      {
+        "url": "https://www.polktaxes.com/file-download-requests/",
+        "notes": "Official Tax Collector file-download request page for property-tax data.",
+        "access": "RECORDS_REQUEST"
+      }
+    ]
+  },
+  {
+    "county": "St. Johns",
+    "sources": [
+      {
+        "url": "https://apps.stjohnsclerk.com/Landmark",
+        "notes": "Requires Accept. Official Clerk recorded-document search; select Lis Pendens."
+      },
+      {
+        "url": "https://webapp.sjcfl.us/prideweb/CodeEnfStatusRequest.aspx",
+        "notes": "Official county code-enforcement status request; the stated search fee may apply.",
+        "access": "RECORDS_REQUEST"
+      },
+      {
+        "url": "https://stjohnsclerk.com/online-research/",
+        "notes": "Official Clerk online-research page links the court search for probate cases."
+      },
+      {
+        "url": "https://www.sjcpa.gov/search-property-records/",
+        "notes": "Official Property Appraiser record search."
+      },
+      {
+        "url": "https://www.sjcpa.gov/forms/",
+        "notes": "Official Property Appraiser Data & Forms page publishes available assessment-roll files and current availability notices.",
+        "access": "DOWNLOAD_PAGE",
+        "format": "ZIP / text"
+      },
+      {
+        "url": "https://sjctax.us/download-data-files/",
+        "notes": "Official Tax Collector data-download page.",
+        "access": "DOWNLOAD_PAGE"
+      }
+    ]
+  },
+  {
+    "county": "St. Lucie",
+    "sources": [
+      {
+        "url": "https://acclaimweb.stlucieclerk.gov/AcclaimWeb/Search/SearchTypeName",
+        "notes": "Direct official-records name search with document-type filtering."
+      },
+      {
+        "url": "https://www.stlucieco.gov/departments-and-services/planning-and-development-services/code-compliance/lien-search-and-payoff-request",
+        "notes": "Official county code-compliance lien and case research route.",
+        "access": "RECORDS_REQUEST"
+      },
+      {
+        "url": "https://courtcasesearch.stlucieclerk.gov/",
+        "notes": "Official Clerk court-case search; select probate."
+      },
+      {
+        "url": "https://apps.paslc.gov/search-real-estate",
+        "notes": "Official Property Appraiser real-estate search."
+      },
+      {
+        "url": "https://www.paslc.gov/231/Data-Requests",
+        "notes": "Official Property Appraiser data-request page provides the current county CAMA summary download.",
+        "access": "DOWNLOAD_PAGE",
+        "format": "ZIP / CSV"
+      },
+      {
+        "url": "https://stlucie.county-taxes.com/tcb/app/public/reports/real_estate",
+        "notes": "Official Tax Collector real-estate report download portal.",
+        "access": "DOWNLOAD_PAGE"
+      }
+    ]
+  },
+  {
+    "county": "Santa Rosa",
+    "sources": [
+      {
+        "url": "https://acclaim.srccol.com/AcclaimWeb/",
+        "notes": "Requires I Accept. Official Clerk recorded-document search; select Lis Pendens."
+      },
+      {
+        "url": "https://www.santarosa.fl.gov/153/Code-Enforcement",
+        "notes": "Official county Code Enforcement page links the case-search portal.",
+        "access": "SEARCH_PORTAL"
+      },
+      {
+        "url": "https://santarosaclerk.com/courts/search-public-records/",
+        "notes": "Official Clerk records page links the court search for probate cases."
+      },
+      {
+        "url": "https://www.srcpa.org/search",
+        "notes": "Official Property Appraiser property search."
+      },
+      {
+        "url": "https://floridarevenue.com/property/Pages/DataPortal_RequestAssessmentRollGISData.aspx",
+        "notes": "Florida DOR publishes Santa Rosa County current NAL real-property assessment-roll files with layouts.",
+        "access": "DOWNLOAD_PAGE",
+        "format": "ZIP / CSV",
+        "agency": "Santa Rosa County Property Appraiser / Florida Department of Revenue"
+      },
+      {
+        "url": "https://srctc.com/real-estate/online-report-downloads/",
+        "notes": "Official Tax Collector online real-estate report downloads.",
+        "access": "DOWNLOAD_PAGE"
+      }
+    ]
+  },
+  {
+    "county": "Sarasota",
+    "sources": [
+      {
+        "url": "https://secure.sarasotaclerk.com/OfficialRecords.aspx/SearchEntry.aspx",
+        "notes": "Official Clerk recorded-document search; select Lis Pendens."
+      },
+      {
+        "url": "https://www.scgov.net/government/planning-and-development-services/online-permitting",
+        "notes": "Official county online-permitting portal provides code-enforcement record search."
+      },
+      {
+        "url": "https://www.sarasotaclerk.com/Records/Public-Access",
+        "notes": "Official Clerk Public Access page links the probate court-record search."
+      },
+      {
+        "url": "https://www.sarasotapropertyappraiser.gov/propertysearch",
+        "notes": "Official Property Appraiser property search."
+      },
+      {
+        "url": "https://www.sarasotapropertyappraiser.gov/downloads/download-data",
+        "notes": "Official Property Appraiser page publishes countywide parcel and sales data.",
+        "access": "DOWNLOAD_PAGE",
+        "format": "ZIP / CSV"
+      },
+      {
+        "url": "https://www.sarasotataxcollector.gov/downloads",
+        "notes": "Official Tax Collector forms and reports download page.",
+        "access": "DOWNLOAD_PAGE"
+      }
+    ]
+  },
+  {
+    "county": "Seminole",
+    "sources": [
+      {
+        "url": "https://recording.seminoleclerk.org/DuProcessWebInquiry/index.html",
+        "notes": "Direct official-records search; select Lis Pendens as the document type."
+      },
+      {
+        "url": "https://www.seminolecountyfl.gov/departments-services/development-services/code-enforcement",
+        "notes": "Official county page publishes open and adjudicated code-enforcement case lists.",
+        "access": "DOWNLOAD_PAGE"
+      },
+      {
+        "url": "https://www.seminoleclerk.org/search-for-a-court-case/",
+        "notes": "Official Clerk court-case search; select probate."
+      },
+      {
+        "url": "https://www.scpafl.org/search/parcels",
+        "notes": "Direct official real-property search by owner, address, or parcel."
+      },
+      {
+        "url": "https://www.scpafl.org/downloads",
+        "notes": "Official Property Appraiser data-download page publishes the county CAMA package.",
+        "access": "DOWNLOAD_PAGE",
+        "format": "ZIP"
+      },
+      {
+        "url": "https://seminolecounty.tax/public-records-requests/",
+        "notes": "Official Tax Collector public-record request for an existing bulk property-tax file.",
+        "access": "RECORDS_REQUEST"
+      }
+    ]
+  },
+  {
+    "county": "Sumter",
+    "sources": [
+      {
+        "url": "https://www.myfloridacounty.com/orisearch/60",
+        "notes": "Direct official-records search for Sumter County lis pendens."
+      },
+      {
+        "url": "https://www.sumtercountyfl.gov/1409/Code-Enforcement-Violations-or-Liens",
+        "notes": "Official county code-enforcement violation and lien research page.",
+        "access": "RECORDS_REQUEST"
+      },
+      {
+        "url": "https://www.sumterclerk.com/online-services/records-search/",
+        "notes": "Official Clerk records page links the probate court search."
+      },
+      {
+        "url": "https://app.sumterpa.com/gis/GISbuffer.html",
+        "notes": "Official Property Appraiser parcel search."
+      },
+      {
+        "url": "https://floridarevenue.com/property/Pages/DataPortal_RequestAssessmentRollGISData.aspx",
+        "notes": "Florida DOR publishes Sumter County current NAL real-property assessment-roll files with layouts.",
+        "access": "DOWNLOAD_PAGE",
+        "format": "ZIP / CSV",
+        "agency": "Sumter County Property Appraiser / Florida Department of Revenue"
+      },
+      {
+        "url": "https://sumtertaxcollector.com/locat.html",
+        "notes": "Official Tax Collector contact route for an existing bulk property-tax file; no public bulk roll was confirmed.",
+        "access": "RECORDS_REQUEST"
+      }
+    ]
+  },
+  {
+    "county": "Volusia",
+    "sources": [
+      {
+        "url": "https://app02.clerk.org/or_m/inquiry.aspx",
+        "notes": "Direct official-records search; the deeper search page works in a fresh session."
+      },
+      {
+        "url": "https://connectlivepermits.org/citizenportal/app/",
+        "notes": "Official county Citizen Portal for Code Compliance complaints and case status.",
+        "access": "SEARCH_PORTAL"
+      },
+      {
+        "url": "https://app02.clerk.org/cm_evt/inquiry.aspx",
+        "notes": "Official Clerk court-case inquiry; select probate."
+      },
+      {
+        "url": "https://vcpa.vcgov.org/search/real-property",
+        "notes": "Requires Agree. Official Property Appraiser real-property search."
+      },
+      {
+        "url": "https://vcpa.vcgov.org/download/database",
+        "notes": "Official Property Appraiser database page publishes the county CAMA export.",
+        "access": "DOWNLOAD_PAGE",
+        "format": "ZIP"
+      },
+      {
+        "url": "https://www.vctaxcollector.org/PRR/",
+        "notes": "Official Tax Collector public-record request for bulk property-tax data.",
+        "access": "RECORDS_REQUEST"
+      }
+    ]
+  }
+]

@@ -1,0 +1,480 @@
+[
+  {
+    "county": "Greenville",
+    "city": "Greenville",
+    "source": {
+      "url": "https://www.greenvillesc.gov/freedom-of-information-foia",
+      "evidence": "https://www.greenvillesc.gov/freedom-of-information-foia",
+      "agency": "Greenville City FOIA / Code Compliance",
+      "access": "RECORDS_REQUEST",
+      "notes": "Existing retained municipal property-maintenance, nuisance, unsafe-structure and zoning/code case records — request/contact fallback. Route to City FOIA / Code Compliance. This is not a confirmed public case export, a permit search, a complaint or an inspection request. Municipal jurisdiction serves the whole incorporated city; county scopes reuse the same real custodian. Ask for maintained electronic case records and applicable dates/fees. "
+    }
+  },
+  {
+    "county": "Spartanburg",
+    "city": "Spartanburg",
+    "source": {
+      "url": "https://www.cityofspartanburg.org/320/FOIA-Information",
+      "evidence": "https://www.cityofspartanburg.org/320/FOIA-Information",
+      "agency": "Spartanburg City FOIA / Property Maintenance and Housing Inspections",
+      "access": "RECORDS_REQUEST",
+      "notes": "Existing retained municipal property-maintenance, nuisance, unsafe-structure and zoning/code case records — request/contact fallback. Route to City FOIA / Property Maintenance and Housing Inspections. This is not a confirmed public case export, a permit search, a complaint or an inspection request. Municipal jurisdiction serves the whole incorporated city; county scopes reuse the same real custodian. Ask for maintained electronic case records and applicable dates/fees. "
+    }
+  },
+  {
+    "county": "Greenville",
+    "city": "Greer",
+    "source": {
+      "url": "https://cityofgreer.nextrequest.com/",
+      "evidence": "https://www.cityofgreersc.gov/page/foia-request",
+      "agency": "Greer City FOIA / Code Enforcement",
+      "access": "RECORDS_REQUEST",
+      "notes": "Existing retained municipal property-maintenance, nuisance, unsafe-structure and zoning/code case records — request/contact fallback. Route to City FOIA / Code Enforcement. This is not a confirmed public case export, a permit search, a complaint or an inspection request. Municipal jurisdiction serves the whole incorporated city across Greenville / Spartanburg counties; county scopes reuse the same real custodian. Ask for maintained electronic case records and applicable dates/fees. "
+    }
+  },
+  {
+    "county": "Spartanburg",
+    "city": "Greer",
+    "source": {
+      "url": "https://cityofgreer.nextrequest.com/",
+      "evidence": "https://www.cityofgreersc.gov/page/foia-request",
+      "agency": "Greer City FOIA / Code Enforcement",
+      "access": "RECORDS_REQUEST",
+      "notes": "Existing retained municipal property-maintenance, nuisance, unsafe-structure and zoning/code case records — request/contact fallback. Route to City FOIA / Code Enforcement. This is not a confirmed public case export, a permit search, a complaint or an inspection request. Municipal jurisdiction serves the whole incorporated city across Greenville / Spartanburg counties; county scopes reuse the same real custodian. Ask for maintained electronic case records and applicable dates/fees. "
+    }
+  },
+  {
+    "county": "Greenville",
+    "city": "Simpsonville",
+    "source": {
+      "url": "https://cityofsimpsonvillesc.nextrequest.com/",
+      "evidence": "https://www.simpsonville.com/administration-dep/public-record-requests/",
+      "agency": "Simpsonville City Administration / Code Enforcement",
+      "access": "RECORDS_REQUEST",
+      "notes": "Existing retained municipal property-maintenance, nuisance, unsafe-structure and zoning/code case records — request/contact fallback. Route to City Administration / Code Enforcement. This is not a confirmed public case export, a permit search, a complaint or an inspection request. Municipal jurisdiction serves the whole incorporated city; county scopes reuse the same real custodian. Ask for maintained electronic case records and applicable dates/fees. "
+    }
+  },
+  {
+    "county": "Greenville",
+    "city": "Mauldin",
+    "source": {
+      "url": "https://cityofmauldin.org/your-government/media-requests/",
+      "evidence": "https://cityofmauldin.org/your-government/media-requests/",
+      "agency": "Mauldin City Clerk / Code Enforcement",
+      "access": "RECORDS_REQUEST",
+      "notes": "Existing retained municipal property-maintenance, nuisance, unsafe-structure and zoning/code case records — request/contact fallback. Route to City Clerk / Code Enforcement. This is not a confirmed public case export, a permit search, a complaint or an inspection request. Municipal jurisdiction serves the whole incorporated city; county scopes reuse the same real custodian. Ask for maintained electronic case records and applicable dates/fees. "
+    }
+  },
+  {
+    "county": "Anderson",
+    "city": "Anderson",
+    "source": {
+      "url": "https://www.cityofandersonsc.com/foia/",
+      "evidence": "https://www.cityofandersonsc.com/foia/",
+      "agency": "Anderson City FOIA / Building and Codes",
+      "access": "RECORDS_REQUEST",
+      "notes": "Existing retained municipal property-maintenance, nuisance, unsafe-structure and zoning/code case records — request/contact fallback. Route to City FOIA / Building and Codes. This is not a confirmed public case export, a permit search, a complaint or an inspection request. Municipal jurisdiction serves the whole incorporated city; county scopes reuse the same real custodian. Ask for maintained electronic case records and applicable dates/fees. "
+    }
+  },
+  {
+    "county": "Anderson",
+    "city": "Easley",
+    "source": {
+      "url": "https://www.cityofeasley.com/entities/foia",
+      "evidence": "https://www.cityofeasley.com/entities/foia",
+      "email": "foia@cityofeasley.com",
+      "agency": "Easley City FOIA / Code Enforcement",
+      "access": "RECORDS_REQUEST",
+      "notes": "Existing retained municipal property-maintenance, nuisance, unsafe-structure and zoning/code case records — request/contact fallback. Route to City FOIA / Code Enforcement. This is not a confirmed public case export, a permit search, a complaint or an inspection request. Municipal jurisdiction serves the whole incorporated city across Anderson / Pickens counties; county scopes reuse the same real custodian. Ask for maintained electronic case records and applicable dates/fees. "
+    }
+  },
+  {
+    "county": "Pickens",
+    "city": "Easley",
+    "source": {
+      "url": "https://www.cityofeasley.com/entities/foia",
+      "evidence": "https://www.cityofeasley.com/entities/foia",
+      "email": "foia@cityofeasley.com",
+      "agency": "Easley City FOIA / Code Enforcement",
+      "access": "RECORDS_REQUEST",
+      "notes": "Existing retained municipal property-maintenance, nuisance, unsafe-structure and zoning/code case records — request/contact fallback. Route to City FOIA / Code Enforcement. This is not a confirmed public case export, a permit search, a complaint or an inspection request. Municipal jurisdiction serves the whole incorporated city across Anderson / Pickens counties; county scopes reuse the same real custodian. Ask for maintained electronic case records and applicable dates/fees. "
+    }
+  },
+  {
+    "county": "Richland",
+    "city": "Columbia",
+    "source": {
+      "url": "https://columbiasc.gov/foia/",
+      "evidence": "https://columbiasc.gov/foia/",
+      "agency": "Columbia City FOIA / Police Code Enforcement",
+      "access": "RECORDS_REQUEST",
+      "notes": "Existing retained municipal property-maintenance, nuisance, unsafe-structure and zoning/code case records — request/contact fallback. Route to City FOIA / Police Code Enforcement. This is not a confirmed public case export, a permit search, a complaint or an inspection request. Municipal jurisdiction serves the whole incorporated city across Richland / Lexington counties; county scopes reuse the same real custodian. Ask for maintained electronic case records and applicable dates/fees. "
+    }
+  },
+  {
+    "county": "Lexington",
+    "city": "Columbia",
+    "source": {
+      "url": "https://columbiasc.gov/foia/",
+      "evidence": "https://columbiasc.gov/foia/",
+      "agency": "Columbia City FOIA / Police Code Enforcement",
+      "access": "RECORDS_REQUEST",
+      "notes": "Existing retained municipal property-maintenance, nuisance, unsafe-structure and zoning/code case records — request/contact fallback. Route to City FOIA / Police Code Enforcement. This is not a confirmed public case export, a permit search, a complaint or an inspection request. Municipal jurisdiction serves the whole incorporated city across Richland / Lexington counties; county scopes reuse the same real custodian. Ask for maintained electronic case records and applicable dates/fees. "
+    }
+  },
+  {
+    "county": "Lexington",
+    "city": "Lexington",
+    "source": {
+      "url": "https://lexsc.nextrequest.com/",
+      "evidence": "https://www.lexsc.gov/918/Freedom-of-Information-Act-FOIA-Request",
+      "email": "foia@lexsc.gov",
+      "agency": "Lexington Town FOIA / Code Enforcement",
+      "access": "RECORDS_REQUEST",
+      "notes": "Existing retained municipal property-maintenance, nuisance, unsafe-structure and zoning/code case records — request/contact fallback. Route to Town FOIA / Code Enforcement. This is not a confirmed public case export, a permit search, a complaint or an inspection request. Municipal jurisdiction serves the whole incorporated city; county scopes reuse the same real custodian. Ask for maintained electronic case records and applicable dates/fees. "
+    }
+  },
+  {
+    "county": "Richland",
+    "city": "West Columbia",
+    "source": {
+      "url": "https://westcolumbiasc.gov/code-compliance/",
+      "evidence": "https://westcolumbiasc.gov/code-compliance/",
+      "agency": "West Columbia City Code Compliance",
+      "access": "RECORDS_REQUEST",
+      "notes": "Existing retained municipal property-maintenance, nuisance, unsafe-structure and zoning/code case records — request/contact fallback. Route to City Code Compliance. This is not a confirmed public case export, a permit search, a complaint or an inspection request. Municipal jurisdiction serves the whole incorporated city across Richland / Lexington counties; county scopes reuse the same real custodian. Ask for maintained electronic case records and applicable dates/fees. "
+    }
+  },
+  {
+    "county": "Lexington",
+    "city": "West Columbia",
+    "source": {
+      "url": "https://westcolumbiasc.gov/code-compliance/",
+      "evidence": "https://westcolumbiasc.gov/code-compliance/",
+      "agency": "West Columbia City Code Compliance",
+      "access": "RECORDS_REQUEST",
+      "notes": "Existing retained municipal property-maintenance, nuisance, unsafe-structure and zoning/code case records — request/contact fallback. Route to City Code Compliance. This is not a confirmed public case export, a permit search, a complaint or an inspection request. Municipal jurisdiction serves the whole incorporated city across Richland / Lexington counties; county scopes reuse the same real custodian. Ask for maintained electronic case records and applicable dates/fees. "
+    }
+  },
+  {
+    "county": "Richland",
+    "city": "Cayce",
+    "source": {
+      "url": "https://caycesc.gov/foia.php",
+      "evidence": "https://caycesc.gov/foia.php",
+      "agency": "Cayce City Municipal Clerk / Code Enforcement",
+      "access": "RECORDS_REQUEST",
+      "notes": "Existing retained municipal property-maintenance, nuisance, unsafe-structure and zoning/code case records — request/contact fallback. Route to City Municipal Clerk / Code Enforcement. This is not a confirmed public case export, a permit search, a complaint or an inspection request. Municipal jurisdiction serves the whole incorporated city across Richland / Lexington counties; county scopes reuse the same real custodian. Ask for maintained electronic case records and applicable dates/fees. "
+    }
+  },
+  {
+    "county": "Lexington",
+    "city": "Cayce",
+    "source": {
+      "url": "https://caycesc.gov/foia.php",
+      "evidence": "https://caycesc.gov/foia.php",
+      "agency": "Cayce City Municipal Clerk / Code Enforcement",
+      "access": "RECORDS_REQUEST",
+      "notes": "Existing retained municipal property-maintenance, nuisance, unsafe-structure and zoning/code case records — request/contact fallback. Route to City Municipal Clerk / Code Enforcement. This is not a confirmed public case export, a permit search, a complaint or an inspection request. Municipal jurisdiction serves the whole incorporated city across Richland / Lexington counties; county scopes reuse the same real custodian. Ask for maintained electronic case records and applicable dates/fees. "
+    }
+  },
+  {
+    "county": "Richland",
+    "city": "Irmo",
+    "source": {
+      "url": "https://irmo.rja.revize.com/forms/4082",
+      "evidence": "https://www.townofirmosc.com/",
+      "agency": "Irmo Town FOIA / Code Enforcement",
+      "access": "RECORDS_REQUEST",
+      "notes": "Existing retained municipal property-maintenance, nuisance, unsafe-structure and zoning/code case records — request/contact fallback. Route to Town FOIA / Code Enforcement. This is not a confirmed public case export, a permit search, a complaint or an inspection request. Municipal jurisdiction serves the whole incorporated city across Richland / Lexington counties; county scopes reuse the same real custodian. Ask for maintained electronic case records and applicable dates/fees. "
+    }
+  },
+  {
+    "county": "Lexington",
+    "city": "Irmo",
+    "source": {
+      "url": "https://irmo.rja.revize.com/forms/4082",
+      "evidence": "https://www.townofirmosc.com/",
+      "agency": "Irmo Town FOIA / Code Enforcement",
+      "access": "RECORDS_REQUEST",
+      "notes": "Existing retained municipal property-maintenance, nuisance, unsafe-structure and zoning/code case records — request/contact fallback. Route to Town FOIA / Code Enforcement. This is not a confirmed public case export, a permit search, a complaint or an inspection request. Municipal jurisdiction serves the whole incorporated city across Richland / Lexington counties; county scopes reuse the same real custodian. Ask for maintained electronic case records and applicable dates/fees. "
+    }
+  },
+  {
+    "county": "Charleston",
+    "city": "Charleston",
+    "source": {
+      "url": "https://pr-charlestonsc.govqa.us/WEBAPP/_rs/supporthome.aspx?lp=3",
+      "evidence": "https://www.charleston-sc.gov/801/Freedom-of-Information-Act-Request-FOIA",
+      "agency": "Charleston City FOIA / Code Enforcement",
+      "access": "RECORDS_REQUEST",
+      "notes": "Existing retained municipal property-maintenance, nuisance, unsafe-structure and zoning/code case records — request/contact fallback. Route to City FOIA / Code Enforcement. This is not a confirmed public case export, a permit search, a complaint or an inspection request. Municipal jurisdiction serves the whole incorporated city across Charleston / Berkeley counties; county scopes reuse the same real custodian. Ask for maintained electronic case records and applicable dates/fees. "
+    }
+  },
+  {
+    "county": "Berkeley",
+    "city": "Charleston",
+    "source": {
+      "url": "https://pr-charlestonsc.govqa.us/WEBAPP/_rs/supporthome.aspx?lp=3",
+      "evidence": "https://www.charleston-sc.gov/801/Freedom-of-Information-Act-Request-FOIA",
+      "agency": "Charleston City FOIA / Code Enforcement",
+      "access": "RECORDS_REQUEST",
+      "notes": "Existing retained municipal property-maintenance, nuisance, unsafe-structure and zoning/code case records — request/contact fallback. Route to City FOIA / Code Enforcement. This is not a confirmed public case export, a permit search, a complaint or an inspection request. Municipal jurisdiction serves the whole incorporated city across Charleston / Berkeley counties; county scopes reuse the same real custodian. Ask for maintained electronic case records and applicable dates/fees. "
+    }
+  },
+  {
+    "county": "Charleston",
+    "city": "North Charleston",
+    "source": {
+      "url": "https://northcharleston.justfoia.com/publicportal/home/track",
+      "evidence": "https://www.northcharleston.org/government/city_council/foia_freedom_of_information_act.php",
+      "agency": "North Charleston City FOIA / Code Enforcement",
+      "access": "RECORDS_REQUEST",
+      "notes": "Existing retained municipal property-maintenance, nuisance, unsafe-structure and zoning/code case records — request/contact fallback. Route to City FOIA / Code Enforcement. This is not a confirmed public case export, a permit search, a complaint or an inspection request. Municipal jurisdiction serves the whole incorporated city across Charleston / Berkeley / Dorchester counties; county scopes reuse the same real custodian. Ask for maintained electronic case records and applicable dates/fees. "
+    }
+  },
+  {
+    "county": "Berkeley",
+    "city": "North Charleston",
+    "source": {
+      "url": "https://northcharleston.justfoia.com/publicportal/home/track",
+      "evidence": "https://www.northcharleston.org/government/city_council/foia_freedom_of_information_act.php",
+      "agency": "North Charleston City FOIA / Code Enforcement",
+      "access": "RECORDS_REQUEST",
+      "notes": "Existing retained municipal property-maintenance, nuisance, unsafe-structure and zoning/code case records — request/contact fallback. Route to City FOIA / Code Enforcement. This is not a confirmed public case export, a permit search, a complaint or an inspection request. Municipal jurisdiction serves the whole incorporated city across Charleston / Berkeley / Dorchester counties; county scopes reuse the same real custodian. Ask for maintained electronic case records and applicable dates/fees. "
+    }
+  },
+  {
+    "county": "Dorchester",
+    "city": "North Charleston",
+    "source": {
+      "url": "https://northcharleston.justfoia.com/publicportal/home/track",
+      "evidence": "https://www.northcharleston.org/government/city_council/foia_freedom_of_information_act.php",
+      "agency": "North Charleston City FOIA / Code Enforcement",
+      "access": "RECORDS_REQUEST",
+      "notes": "Existing retained municipal property-maintenance, nuisance, unsafe-structure and zoning/code case records — request/contact fallback. Route to City FOIA / Code Enforcement. This is not a confirmed public case export, a permit search, a complaint or an inspection request. Municipal jurisdiction serves the whole incorporated city across Charleston / Berkeley / Dorchester counties; county scopes reuse the same real custodian. Ask for maintained electronic case records and applicable dates/fees. "
+    }
+  },
+  {
+    "county": "Charleston",
+    "city": "Summerville",
+    "source": {
+      "url": "https://townofsummervillesc.nextrequest.com/",
+      "evidence": "https://www.summervillesc.gov/156/Freedom-of-Information-Request-Form",
+      "agency": "Summerville Town FOIA / Police Code Enforcement",
+      "access": "RECORDS_REQUEST",
+      "notes": "Existing retained municipal property-maintenance, nuisance, unsafe-structure and zoning/code case records — request/contact fallback. Route to Town FOIA / Police Code Enforcement. This is not a confirmed public case export, a permit search, a complaint or an inspection request. Municipal jurisdiction serves the whole incorporated city across Charleston / Berkeley / Dorchester counties; county scopes reuse the same real custodian. Ask for maintained electronic case records and applicable dates/fees. "
+    }
+  },
+  {
+    "county": "Berkeley",
+    "city": "Summerville",
+    "source": {
+      "url": "https://townofsummervillesc.nextrequest.com/",
+      "evidence": "https://www.summervillesc.gov/156/Freedom-of-Information-Request-Form",
+      "agency": "Summerville Town FOIA / Police Code Enforcement",
+      "access": "RECORDS_REQUEST",
+      "notes": "Existing retained municipal property-maintenance, nuisance, unsafe-structure and zoning/code case records — request/contact fallback. Route to Town FOIA / Police Code Enforcement. This is not a confirmed public case export, a permit search, a complaint or an inspection request. Municipal jurisdiction serves the whole incorporated city across Charleston / Berkeley / Dorchester counties; county scopes reuse the same real custodian. Ask for maintained electronic case records and applicable dates/fees. "
+    }
+  },
+  {
+    "county": "Dorchester",
+    "city": "Summerville",
+    "source": {
+      "url": "https://townofsummervillesc.nextrequest.com/",
+      "evidence": "https://www.summervillesc.gov/156/Freedom-of-Information-Request-Form",
+      "agency": "Summerville Town FOIA / Police Code Enforcement",
+      "access": "RECORDS_REQUEST",
+      "notes": "Existing retained municipal property-maintenance, nuisance, unsafe-structure and zoning/code case records — request/contact fallback. Route to Town FOIA / Police Code Enforcement. This is not a confirmed public case export, a permit search, a complaint or an inspection request. Municipal jurisdiction serves the whole incorporated city across Charleston / Berkeley / Dorchester counties; county scopes reuse the same real custodian. Ask for maintained electronic case records and applicable dates/fees. "
+    }
+  },
+  {
+    "county": "Berkeley",
+    "city": "Goose Creek",
+    "source": {
+      "url": "https://cityofgoosecreek.govqa.us/WEBAPP/_rs/",
+      "evidence": "https://www.goosecreeksc.gov/government/departments/administration/foia-request",
+      "agency": "Goose Creek City Clerk / Code Enforcement",
+      "access": "RECORDS_REQUEST",
+      "notes": "Existing retained municipal property-maintenance, nuisance, unsafe-structure and zoning/code case records — request/contact fallback. Route to City Clerk / Code Enforcement. This is not a confirmed public case export, a permit search, a complaint or an inspection request. Municipal jurisdiction serves the whole incorporated city; county scopes reuse the same real custodian. Ask for maintained electronic case records and applicable dates/fees. "
+    }
+  },
+  {
+    "county": "Charleston",
+    "city": "Mount Pleasant",
+    "source": {
+      "url": "https://www.tompsc.com/874/Documents-Information-Request",
+      "evidence": "https://www.tompsc.com/874/Documents-Information-Request",
+      "agency": "Mount Pleasant Town Records / Code Enforcement",
+      "access": "RECORDS_REQUEST",
+      "notes": "Existing retained municipal property-maintenance, nuisance, unsafe-structure and zoning/code case records — request/contact fallback. Route to Town Records / Code Enforcement. This is not a confirmed public case export, a permit search, a complaint or an inspection request. Municipal jurisdiction serves the whole incorporated city; county scopes reuse the same real custodian. Ask for maintained electronic case records and applicable dates/fees. "
+    }
+  },
+  {
+    "county": "York",
+    "city": "Rock Hill",
+    "source": {
+      "url": "https://www.cityofrockhill.com/foia",
+      "evidence": "https://www.cityofrockhill.com/foia",
+      "email": "foia@cityofrockhill.com",
+      "agency": "Rock Hill City FOIA / Neighborhood Services Code Enforcement",
+      "access": "RECORDS_REQUEST",
+      "notes": "Existing retained municipal property-maintenance, nuisance, unsafe-structure and zoning/code case records — request/contact fallback. Route to City FOIA / Neighborhood Services Code Enforcement. This is not a confirmed public case export, a permit search, a complaint or an inspection request. Municipal jurisdiction serves the whole incorporated city; county scopes reuse the same real custodian. Ask for maintained electronic case records and applicable dates/fees. "
+    }
+  },
+  {
+    "county": "York",
+    "city": "Fort Mill",
+    "source": {
+      "url": "https://www.fortmillsc.gov/382/Freedom-of-Information-Act-FOIA",
+      "evidence": "https://www.fortmillsc.gov/382/Freedom-of-Information-Act-FOIA",
+      "agency": "Fort Mill Town FOIA / Code Enforcement",
+      "access": "RECORDS_REQUEST",
+      "notes": "Existing retained municipal property-maintenance, nuisance, unsafe-structure and zoning/code case records — request/contact fallback. Route to Town FOIA / Code Enforcement. This is not a confirmed public case export, a permit search, a complaint or an inspection request. Municipal jurisdiction serves the whole incorporated city; county scopes reuse the same real custodian. Ask for maintained electronic case records and applicable dates/fees. "
+    }
+  },
+  {
+    "county": "Lancaster",
+    "city": "Lancaster",
+    "source": {
+      "url": "https://www.lancastercitysc.com/FormCenter/General-Forms-4/FOIA-Request-Form-72",
+      "evidence": "https://www.lancastercitysc.com/FormCenter/General-Forms-4/FOIA-Request-Form-72",
+      "agency": "Lancaster City FOIA / Code Enforcement",
+      "access": "RECORDS_REQUEST",
+      "notes": "Existing retained municipal property-maintenance, nuisance, unsafe-structure and zoning/code case records — request/contact fallback. Route to City FOIA / Code Enforcement. This is not a confirmed public case export, a permit search, a complaint or an inspection request. Municipal jurisdiction serves the whole incorporated city; county scopes reuse the same real custodian. Ask for maintained electronic case records and applicable dates/fees. "
+    }
+  },
+  {
+    "county": "Horry",
+    "city": "Myrtle Beach",
+    "source": {
+      "url": "https://myrtlebeachsc.justfoia.com/publicportal/home/newrequest",
+      "evidence": "https://www.cityofmyrtlebeach.com/government/foia.php",
+      "email": "FOIA@cityofmyrtlebeach.com",
+      "agency": "Myrtle Beach City FOIA / Code Enforcement",
+      "access": "RECORDS_REQUEST",
+      "notes": "Existing retained municipal property-maintenance, nuisance, unsafe-structure and zoning/code case records — request/contact fallback. Route to City FOIA / Code Enforcement. This is not a confirmed public case export, a permit search, a complaint or an inspection request. Municipal jurisdiction serves the whole incorporated city; county scopes reuse the same real custodian. Ask for maintained electronic case records and applicable dates/fees. "
+    }
+  },
+  {
+    "county": "Horry",
+    "city": "North Myrtle Beach",
+    "source": {
+      "url": "https://nmbsc.justfoia.com/publicportal/home/newrequest",
+      "evidence": "https://www.nmb.us/794/City-Communications",
+      "agency": "North Myrtle Beach City Communications / Planning Code Enforcement",
+      "access": "RECORDS_REQUEST",
+      "notes": "Existing retained municipal property-maintenance, nuisance, unsafe-structure and zoning/code case records — request/contact fallback. Route to City Communications / Planning Code Enforcement. This is not a confirmed public case export, a permit search, a complaint or an inspection request. Municipal jurisdiction serves the whole incorporated city; county scopes reuse the same real custodian. Ask for maintained electronic case records and applicable dates/fees. "
+    }
+  },
+  {
+    "county": "Horry",
+    "city": "Conway",
+    "source": {
+      "url": "https://www.conwaysc.gov/departments/building/index.php",
+      "evidence": "https://www.conwaysc.gov/departments/planning___development/index.php",
+      "agency": "Conway City Construction Services / Code Enforcement",
+      "access": "RECORDS_REQUEST",
+      "notes": "Existing retained municipal property-maintenance, nuisance, unsafe-structure and zoning/code case records — request/contact fallback. Route to City Construction Services / Code Enforcement. This is not a confirmed public case export, a permit search, a complaint or an inspection request. Municipal jurisdiction serves the whole incorporated city; county scopes reuse the same real custodian. Ask for maintained electronic case records and applicable dates/fees.  Construction Services enforces State/local building codes; ask the municipal custodian to route retained nuisance/zoning cases to Planning or the responsible office if held separately. Official 2024 planning materials document retained ordinance enforcement cases; this contact route is not an inspection or permit application."
+    }
+  },
+  {
+    "county": "Aiken",
+    "city": "Aiken",
+    "source": {
+      "url": "https://www.cityofaikensc.gov/permitting-codes/homeowners-frequently-asked-questions/",
+      "evidence": "https://www.cityofaikensc.gov/permitting-codes/homeowners-frequently-asked-questions/",
+      "agency": "Aiken City Building Inspections / Property Code Inspector",
+      "access": "RECORDS_REQUEST",
+      "notes": "Existing retained municipal property-maintenance, nuisance, unsafe-structure and zoning/code case records — request/contact fallback. Route to City Building Inspections / Property Code Inspector. This is not a confirmed public case export, a permit search, a complaint or an inspection request. Municipal jurisdiction serves the whole incorporated city; county scopes reuse the same real custodian. Ask for maintained electronic case records and applicable dates/fees. Official Property Code Inspector contact: 803-642-7675; ask for existing case records through municipal records procedures."
+    }
+  },
+  {
+    "county": "Aiken",
+    "city": "North Augusta",
+    "source": {
+      "url": "https://www.northaugustasc.gov/government/freedom-of-information-act/foia-request-form",
+      "evidence": "https://www.northaugustasc.gov/government/freedom-of-information-act/foia-request-form",
+      "agency": "North Augusta City FOIA / Planning Code Compliance",
+      "access": "RECORDS_REQUEST",
+      "notes": "Existing retained municipal property-maintenance, nuisance, unsafe-structure and zoning/code case records — request/contact fallback. Route to City FOIA / Planning Code Compliance. This is not a confirmed public case export, a permit search, a complaint or an inspection request. Municipal jurisdiction serves the whole incorporated city; county scopes reuse the same real custodian. Ask for maintained electronic case records and applicable dates/fees. "
+    }
+  },
+  {
+    "county": "Florence",
+    "city": "Florence",
+    "source": {
+      "url": "https://www.cityofflorencesc.gov/apply-start/freedom-information-act-request",
+      "evidence": "https://www.cityofflorencesc.gov/apply-start/freedom-information-act-request",
+      "agency": "Florence City Manager FOIA / Police Codes Enforcement",
+      "access": "RECORDS_REQUEST",
+      "notes": "Existing retained municipal property-maintenance, nuisance, unsafe-structure and zoning/code case records — request/contact fallback. Route to City Manager FOIA / Police Codes Enforcement. This is not a confirmed public case export, a permit search, a complaint or an inspection request. Municipal jurisdiction serves the whole incorporated city; county scopes reuse the same real custodian. Ask for maintained electronic case records and applicable dates/fees. "
+    }
+  },
+  {
+    "county": "Sumter",
+    "city": "Sumter",
+    "source": {
+      "url": "https://www.sumtersc.gov/news-updates/freedom-information-act",
+      "evidence": "https://www.sumtersc.gov/news-updates/freedom-information-act",
+      "agency": "Sumter City FOIA / Codes Enforcement",
+      "access": "RECORDS_REQUEST",
+      "notes": "Existing retained municipal property-maintenance, nuisance, unsafe-structure and zoning/code case records — request/contact fallback. Route to City FOIA / Codes Enforcement. This is not a confirmed public case export, a permit search, a complaint or an inspection request. Municipal jurisdiction serves the whole incorporated city; county scopes reuse the same real custodian. Ask for maintained electronic case records and applicable dates/fees. "
+    }
+  },
+  {
+    "county": "Beaufort",
+    "city": "Beaufort",
+    "source": {
+      "url": "https://cityofbeaufortsc.nextrequest.com/",
+      "evidence": "https://www.cityofbeaufort.org/552/Freedom-of-Information-Request",
+      "agency": "Beaufort City Clerk / Code Compliance",
+      "access": "RECORDS_REQUEST",
+      "notes": "Existing retained municipal property-maintenance, nuisance, unsafe-structure and zoning/code case records — request/contact fallback. Route to City Clerk / Code Compliance. This is not a confirmed public case export, a permit search, a complaint or an inspection request. Municipal jurisdiction serves the whole incorporated city; county scopes reuse the same real custodian. Ask for maintained electronic case records and applicable dates/fees. "
+    }
+  },
+  {
+    "county": "Beaufort",
+    "city": "Bluffton",
+    "source": {
+      "url": "https://www.townofbluffton.sc.gov/FormCenter/Town-15/Freedom-of-Information-Act-FOIA-Request-77",
+      "evidence": "https://www.townofbluffton.sc.gov/FormCenter/Town-15/Freedom-of-Information-Act-FOIA-Request-77",
+      "agency": "Bluffton Town FOIA / Police Code Enforcement",
+      "access": "RECORDS_REQUEST",
+      "notes": "Existing retained municipal property-maintenance, nuisance, unsafe-structure and zoning/code case records — request/contact fallback. Route to Town FOIA / Police Code Enforcement. This is not a confirmed public case export, a permit search, a complaint or an inspection request. Municipal jurisdiction serves the whole incorporated city; county scopes reuse the same real custodian. Ask for maintained electronic case records and applicable dates/fees.  Municipal code-enforcement unit operates from the Police substation: https://www.townofbluffton.sc.gov/460/Code-Enforcement"
+    }
+  },
+  {
+    "county": "Beaufort",
+    "city": "Hilton Head Island",
+    "source": {
+      "url": "https://hiltonheadislandsc.justfoia.com/publicportal/home/newrequest",
+      "evidence": "https://www.hiltonheadislandsc.gov/services/foia.cfm",
+      "agency": "Hilton Head Island Town FOIA / Code Enforcement",
+      "access": "RECORDS_REQUEST",
+      "notes": "Existing retained municipal property-maintenance, nuisance, unsafe-structure and zoning/code case records — request/contact fallback. Route to Town FOIA / Code Enforcement. This is not a confirmed public case export, a permit search, a complaint or an inspection request. Municipal jurisdiction serves the whole incorporated city; county scopes reuse the same real custodian. Ask for maintained electronic case records and applicable dates/fees. "
+    }
+  },
+  {
+    "county": "Berkeley",
+    "city": "Hanahan",
+    "source": {
+      "url": "https://cityofhanahansc.nextrequest.com/",
+      "evidence": "https://www.cityofhanahan.com/administration/page/submit-foia-request",
+      "agency": "Hanahan City Administration / Building and Codes",
+      "access": "RECORDS_REQUEST",
+      "notes": "Existing retained municipal property-maintenance, nuisance, unsafe-structure and zoning/code case records — request/contact fallback. Route to City Administration / Building and Codes. This is not a confirmed public case export, a permit search, a complaint or an inspection request. Municipal jurisdiction serves the whole incorporated city; county scopes reuse the same real custodian. Ask for maintained electronic case records and applicable dates/fees. "
+    }
+  },
+  {
+    "county": "Berkeley",
+    "city": "Moncks Corner",
+    "source": {
+      "url": "https://monckscornersc.gov/foia",
+      "evidence": "https://monckscornersc.gov/foia",
+      "agency": "Moncks Corner Town FOIA / Community Development Code Enforcement",
+      "access": "RECORDS_REQUEST",
+      "notes": "Existing retained municipal property-maintenance, nuisance, unsafe-structure and zoning/code case records — request/contact fallback. Route to Town FOIA / Community Development Code Enforcement. This is not a confirmed public case export, a permit search, a complaint or an inspection request. Municipal jurisdiction serves the whole incorporated city; county scopes reuse the same real custodian. Ask for maintained electronic case records and applicable dates/fees.  Official code-jurisdiction documentation: https://monckscornersc.gov/government/community-development/code-enforcement"
+    }
+  }
+]

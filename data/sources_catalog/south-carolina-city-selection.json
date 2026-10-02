@@ -1,0 +1,537 @@
+[
+  {
+    "city": "Greenville",
+    "population2025": 75310,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_45.csv",
+    "counties": [
+      "Greenville"
+    ],
+    "countyParts": [
+      {
+        "county": "Greenville",
+        "population2025": 75310
+      }
+    ],
+    "rationale": "Metro / established housing center: Requested focus municipality within the selected metro/county corridor; established residential neighborhoods and useful municipal retained-code records. Population and connectivity support selection; no transaction-volume, ARV or spread ranking is asserted."
+  },
+  {
+    "city": "Spartanburg",
+    "population2025": 39978,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_45.csv",
+    "counties": [
+      "Spartanburg"
+    ],
+    "countyParts": [
+      {
+        "county": "Spartanburg",
+        "population2025": 39978
+      }
+    ],
+    "rationale": "Metro / established housing center: Requested focus municipality within the selected metro/county corridor; established residential neighborhoods and useful municipal retained-code records. Population and connectivity support selection; no transaction-volume, ARV or spread ranking is asserted."
+  },
+  {
+    "city": "Greer",
+    "population2025": 50007,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_45.csv",
+    "counties": [
+      "Greenville",
+      "Spartanburg"
+    ],
+    "countyParts": [
+      {
+        "county": "Greenville",
+        "population2025": 35669
+      },
+      {
+        "county": "Spartanburg",
+        "population2025": 14338
+      }
+    ],
+    "rationale": "Metro / established housing center: Requested focus municipality within the selected metro/county corridor; established residential neighborhoods and useful municipal retained-code records. Population and connectivity support selection; no transaction-volume, ARV or spread ranking is asserted."
+  },
+  {
+    "city": "Simpsonville",
+    "population2025": 28459,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_45.csv",
+    "counties": [
+      "Greenville"
+    ],
+    "countyParts": [
+      {
+        "county": "Greenville",
+        "population2025": 28459
+      }
+    ],
+    "rationale": "Metro / established housing center: Requested focus municipality within the selected metro/county corridor; established residential neighborhoods and useful municipal retained-code records. Population and connectivity support selection; no transaction-volume, ARV or spread ranking is asserted."
+  },
+  {
+    "city": "Mauldin",
+    "population2025": 31465,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_45.csv",
+    "counties": [
+      "Greenville"
+    ],
+    "countyParts": [
+      {
+        "county": "Greenville",
+        "population2025": 31465
+      }
+    ],
+    "rationale": "Metro / established housing center: Requested focus municipality within the selected metro/county corridor; established residential neighborhoods and useful municipal retained-code records. Population and connectivity support selection; no transaction-volume, ARV or spread ranking is asserted."
+  },
+  {
+    "city": "Anderson",
+    "population2025": 31323,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_45.csv",
+    "counties": [
+      "Anderson"
+    ],
+    "countyParts": [
+      {
+        "county": "Anderson",
+        "population2025": 31323
+      }
+    ],
+    "rationale": "Metro / established housing center: Requested focus municipality within the selected metro/county corridor; established residential neighborhoods and useful municipal retained-code records. Population and connectivity support selection; no transaction-volume, ARV or spread ranking is asserted."
+  },
+  {
+    "city": "Easley",
+    "population2025": 27319,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_45.csv",
+    "counties": [
+      "Anderson",
+      "Pickens"
+    ],
+    "countyParts": [
+      {
+        "county": "Anderson",
+        "population2025": 44
+      },
+      {
+        "county": "Pickens",
+        "population2025": 27275
+      }
+    ],
+    "rationale": "Metro / established housing center: Requested focus municipality within the selected metro/county corridor; established residential neighborhoods and useful municipal retained-code records. Population and connectivity support selection; no transaction-volume, ARV or spread ranking is asserted."
+  },
+  {
+    "city": "Columbia",
+    "population2025": 147035,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_45.csv",
+    "counties": [
+      "Richland",
+      "Lexington"
+    ],
+    "countyParts": [
+      {
+        "county": "Richland",
+        "population2025": 146401
+      },
+      {
+        "county": "Lexington",
+        "population2025": 634
+      }
+    ],
+    "rationale": "Metro / established housing center: Requested focus municipality within the selected metro/county corridor; established residential neighborhoods and useful municipal retained-code records. Population and connectivity support selection; no transaction-volume, ARV or spread ranking is asserted."
+  },
+  {
+    "city": "Lexington",
+    "population2025": 25729,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_45.csv",
+    "counties": [
+      "Lexington"
+    ],
+    "countyParts": [
+      {
+        "county": "Lexington",
+        "population2025": 25729
+      }
+    ],
+    "rationale": "Metro / established housing center: Requested focus municipality within the selected metro/county corridor; established residential neighborhoods and useful municipal retained-code records. Population and connectivity support selection; no transaction-volume, ARV or spread ranking is asserted."
+  },
+  {
+    "city": "West Columbia",
+    "population2025": 18489,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_45.csv",
+    "counties": [
+      "Richland",
+      "Lexington"
+    ],
+    "countyParts": [
+      {
+        "county": "Richland",
+        "population2025": 0
+      },
+      {
+        "county": "Lexington",
+        "population2025": 18489
+      }
+    ],
+    "rationale": "Strategic smaller-city exception: Requested focus municipality within the selected metro/county corridor; established residential neighborhoods and useful municipal retained-code records. Population and connectivity support selection; no transaction-volume, ARV or spread ranking is asserted."
+  },
+  {
+    "city": "Cayce",
+    "population2025": 13680,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_45.csv",
+    "counties": [
+      "Richland",
+      "Lexington"
+    ],
+    "countyParts": [
+      {
+        "county": "Richland",
+        "population2025": 504
+      },
+      {
+        "county": "Lexington",
+        "population2025": 13176
+      }
+    ],
+    "rationale": "Strategic smaller-city exception: Requested focus municipality within the selected metro/county corridor; established residential neighborhoods and useful municipal retained-code records. Population and connectivity support selection; no transaction-volume, ARV or spread ranking is asserted."
+  },
+  {
+    "city": "Irmo",
+    "population2025": 12204,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_45.csv",
+    "counties": [
+      "Richland",
+      "Lexington"
+    ],
+    "countyParts": [
+      {
+        "county": "Richland",
+        "population2025": 7961
+      },
+      {
+        "county": "Lexington",
+        "population2025": 4243
+      }
+    ],
+    "rationale": "Strategic smaller-city exception: Requested focus municipality within the selected metro/county corridor; established residential neighborhoods and useful municipal retained-code records. Population and connectivity support selection; no transaction-volume, ARV or spread ranking is asserted."
+  },
+  {
+    "city": "Charleston",
+    "population2025": 159423,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_45.csv",
+    "counties": [
+      "Charleston",
+      "Berkeley"
+    ],
+    "countyParts": [
+      {
+        "county": "Charleston",
+        "population2025": 142732
+      },
+      {
+        "county": "Berkeley",
+        "population2025": 16691
+      }
+    ],
+    "rationale": "Metro / established housing center: Requested focus municipality within the selected metro/county corridor; established residential neighborhoods and useful municipal retained-code records. Population and connectivity support selection; no transaction-volume, ARV or spread ranking is asserted."
+  },
+  {
+    "city": "North Charleston",
+    "population2025": 129245,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_45.csv",
+    "counties": [
+      "Charleston",
+      "Berkeley",
+      "Dorchester"
+    ],
+    "countyParts": [
+      {
+        "county": "Charleston",
+        "population2025": 97111
+      },
+      {
+        "county": "Berkeley",
+        "population2025": 0
+      },
+      {
+        "county": "Dorchester",
+        "population2025": 32134
+      }
+    ],
+    "rationale": "Metro / established housing center: Requested focus municipality within the selected metro/county corridor; established residential neighborhoods and useful municipal retained-code records. Population and connectivity support selection; no transaction-volume, ARV or spread ranking is asserted."
+  },
+  {
+    "city": "Summerville",
+    "population2025": 53177,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_45.csv",
+    "counties": [
+      "Charleston",
+      "Berkeley",
+      "Dorchester"
+    ],
+    "countyParts": [
+      {
+        "county": "Charleston",
+        "population2025": 2655
+      },
+      {
+        "county": "Berkeley",
+        "population2025": 5798
+      },
+      {
+        "county": "Dorchester",
+        "population2025": 44724
+      }
+    ],
+    "rationale": "Metro / established housing center: Requested focus municipality within the selected metro/county corridor; established residential neighborhoods and useful municipal retained-code records. Population and connectivity support selection; no transaction-volume, ARV or spread ranking is asserted."
+  },
+  {
+    "city": "Goose Creek",
+    "population2025": 52010,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_45.csv",
+    "counties": [
+      "Berkeley"
+    ],
+    "countyParts": [
+      {
+        "county": "Berkeley",
+        "population2025": 52010
+      }
+    ],
+    "rationale": "Metro / established housing center: Requested focus municipality within the selected metro/county corridor; established residential neighborhoods and useful municipal retained-code records. Population and connectivity support selection; no transaction-volume, ARV or spread ranking is asserted."
+  },
+  {
+    "city": "Mount Pleasant",
+    "population2025": 95469,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_45.csv",
+    "counties": [
+      "Charleston"
+    ],
+    "countyParts": [
+      {
+        "county": "Charleston",
+        "population2025": 95469
+      }
+    ],
+    "rationale": "Metro / established housing center: Requested focus municipality within the selected metro/county corridor; established residential neighborhoods and useful municipal retained-code records. Population and connectivity support selection; no transaction-volume, ARV or spread ranking is asserted."
+  },
+  {
+    "city": "Rock Hill",
+    "population2025": 75911,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_45.csv",
+    "counties": [
+      "York"
+    ],
+    "countyParts": [
+      {
+        "county": "York",
+        "population2025": 75911
+      }
+    ],
+    "rationale": "Metro / established housing center: Requested focus municipality within the selected metro/county corridor; established residential neighborhoods and useful municipal retained-code records. Population and connectivity support selection; no transaction-volume, ARV or spread ranking is asserted."
+  },
+  {
+    "city": "Fort Mill",
+    "population2025": 38673,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_45.csv",
+    "counties": [
+      "York"
+    ],
+    "countyParts": [
+      {
+        "county": "York",
+        "population2025": 38673
+      }
+    ],
+    "rationale": "Metro / established housing center: Requested focus municipality within the selected metro/county corridor; established residential neighborhoods and useful municipal retained-code records. Population and connectivity support selection; no transaction-volume, ARV or spread ranking is asserted."
+  },
+  {
+    "city": "Lancaster",
+    "population2025": 9623,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_45.csv",
+    "counties": [
+      "Lancaster"
+    ],
+    "countyParts": [
+      {
+        "county": "Lancaster",
+        "population2025": 9623
+      }
+    ],
+    "rationale": "Strategic smaller-city exception: Requested focus municipality within the selected metro/county corridor; established residential neighborhoods and useful municipal retained-code records. Population and connectivity support selection; no transaction-volume, ARV or spread ranking is asserted."
+  },
+  {
+    "city": "Myrtle Beach",
+    "population2025": 40937,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_45.csv",
+    "counties": [
+      "Horry"
+    ],
+    "countyParts": [
+      {
+        "county": "Horry",
+        "population2025": 40937
+      }
+    ],
+    "rationale": "Metro / established housing center: Requested focus municipality within the selected metro/county corridor; established residential neighborhoods and useful municipal retained-code records. Population and connectivity support selection; no transaction-volume, ARV or spread ranking is asserted."
+  },
+  {
+    "city": "North Myrtle Beach",
+    "population2025": 21346,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_45.csv",
+    "counties": [
+      "Horry"
+    ],
+    "countyParts": [
+      {
+        "county": "Horry",
+        "population2025": 21346
+      }
+    ],
+    "rationale": "Strategic smaller-city exception: Requested focus municipality within the selected metro/county corridor; established residential neighborhoods and useful municipal retained-code records. Population and connectivity support selection; no transaction-volume, ARV or spread ranking is asserted."
+  },
+  {
+    "city": "Conway",
+    "population2025": 30627,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_45.csv",
+    "counties": [
+      "Horry"
+    ],
+    "countyParts": [
+      {
+        "county": "Horry",
+        "population2025": 30627
+      }
+    ],
+    "rationale": "Metro / established housing center: Requested focus municipality within the selected metro/county corridor; established residential neighborhoods and useful municipal retained-code records. Population and connectivity support selection; no transaction-volume, ARV or spread ranking is asserted."
+  },
+  {
+    "city": "Aiken",
+    "population2025": 33808,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_45.csv",
+    "counties": [
+      "Aiken"
+    ],
+    "countyParts": [
+      {
+        "county": "Aiken",
+        "population2025": 33808
+      }
+    ],
+    "rationale": "Metro / established housing center: Requested focus municipality within the selected metro/county corridor; established residential neighborhoods and useful municipal retained-code records. Population and connectivity support selection; no transaction-volume, ARV or spread ranking is asserted."
+  },
+  {
+    "city": "North Augusta",
+    "population2025": 26982,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_45.csv",
+    "counties": [
+      "Aiken"
+    ],
+    "countyParts": [
+      {
+        "county": "Aiken",
+        "population2025": 26677
+      }
+    ],
+    "rationale": "Metro / established housing center: Requested focus municipality within the selected metro/county corridor; established residential neighborhoods and useful municipal retained-code records. Population and connectivity support selection; no transaction-volume, ARV or spread ranking is asserted."
+  },
+  {
+    "city": "Florence",
+    "population2025": 41231,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_45.csv",
+    "counties": [
+      "Florence"
+    ],
+    "countyParts": [
+      {
+        "county": "Florence",
+        "population2025": 41231
+      }
+    ],
+    "rationale": "Metro / established housing center: Requested focus municipality within the selected metro/county corridor; established residential neighborhoods and useful municipal retained-code records. Population and connectivity support selection; no transaction-volume, ARV or spread ranking is asserted."
+  },
+  {
+    "city": "Sumter",
+    "population2025": 43094,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_45.csv",
+    "counties": [
+      "Sumter"
+    ],
+    "countyParts": [
+      {
+        "county": "Sumter",
+        "population2025": 43094
+      }
+    ],
+    "rationale": "Metro / established housing center: Requested focus municipality within the selected metro/county corridor; established residential neighborhoods and useful municipal retained-code records. Population and connectivity support selection; no transaction-volume, ARV or spread ranking is asserted."
+  },
+  {
+    "city": "Beaufort",
+    "population2025": 15775,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_45.csv",
+    "counties": [
+      "Beaufort"
+    ],
+    "countyParts": [
+      {
+        "county": "Beaufort",
+        "population2025": 15775
+      }
+    ],
+    "rationale": "Strategic smaller-city exception: Requested focus municipality within the selected metro/county corridor; established residential neighborhoods and useful municipal retained-code records. Population and connectivity support selection; no transaction-volume, ARV or spread ranking is asserted."
+  },
+  {
+    "city": "Bluffton",
+    "population2025": 36807,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_45.csv",
+    "counties": [
+      "Beaufort"
+    ],
+    "countyParts": [
+      {
+        "county": "Beaufort",
+        "population2025": 36807
+      }
+    ],
+    "rationale": "Metro / established housing center: Requested focus municipality within the selected metro/county corridor; established residential neighborhoods and useful municipal retained-code records. Population and connectivity support selection; no transaction-volume, ARV or spread ranking is asserted."
+  },
+  {
+    "city": "Hilton Head Island",
+    "population2025": 38196,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_45.csv",
+    "counties": [
+      "Beaufort"
+    ],
+    "countyParts": [
+      {
+        "county": "Beaufort",
+        "population2025": 38196
+      }
+    ],
+    "rationale": "Metro / established housing center: Requested focus municipality within the selected metro/county corridor; established residential neighborhoods and useful municipal retained-code records. Population and connectivity support selection; no transaction-volume, ARV or spread ranking is asserted."
+  },
+  {
+    "city": "Hanahan",
+    "population2025": 22415,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_45.csv",
+    "counties": [
+      "Berkeley"
+    ],
+    "countyParts": [
+      {
+        "county": "Berkeley",
+        "population2025": 22415
+      }
+    ],
+    "rationale": "Strategic smaller-city exception: Charleston metro residential municipality with established neighborhoods and a separate municipal records custodian; 22,415 residents is below the usual 25,000 secondary-city threshold."
+  },
+  {
+    "city": "Moncks Corner",
+    "population2025": 20612,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_45.csv",
+    "counties": [
+      "Berkeley"
+    ],
+    "countyParts": [
+      {
+        "county": "Berkeley",
+        "population2025": 20612
+      }
+    ],
+    "rationale": "Strategic smaller-city exception: Berkeley county seat and Charleston metro growth corridor; useful municipal records."
+  }
+]

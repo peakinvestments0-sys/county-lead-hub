@@ -1,0 +1,765 @@
+[
+  {
+    "city": "Dallas",
+    "population2025": 1329491,
+    "censusPlace": "19000",
+    "counties": [
+      "Collin",
+      "Dallas",
+      "Denton",
+      "Kaufman"
+    ],
+    "otherCounties": [
+      "Rockwall"
+    ],
+    "rationale": "User-emphasized metro or secondary-market center; include established neighborhoods alongside newer growth.",
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv",
+    "jurisdictionSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv"
+  },
+  {
+    "city": "Fort Worth",
+    "population2025": 1028117,
+    "censusPlace": "27000",
+    "counties": [
+      "Denton",
+      "Johnson",
+      "Tarrant"
+    ],
+    "otherCounties": [
+      "Parker",
+      "Wise"
+    ],
+    "rationale": "User-emphasized metro or secondary-market center; include established neighborhoods alongside newer growth.",
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv",
+    "jurisdictionSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv"
+  },
+  {
+    "city": "Arlington",
+    "population2025": 402134,
+    "censusPlace": "04000",
+    "counties": [
+      "Tarrant"
+    ],
+    "otherCounties": [],
+    "rationale": "User-emphasized metro or secondary-market center; include established neighborhoods alongside newer growth.",
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv",
+    "jurisdictionSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv"
+  },
+  {
+    "city": "Garland",
+    "population2025": 249625,
+    "censusPlace": "29000",
+    "counties": [
+      "Collin",
+      "Dallas"
+    ],
+    "otherCounties": [],
+    "rationale": "User-emphasized metro or secondary-market center; include established neighborhoods alongside newer growth.",
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv",
+    "jurisdictionSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv"
+  },
+  {
+    "city": "Mesquite",
+    "population2025": 150693,
+    "censusPlace": "47892",
+    "counties": [
+      "Dallas",
+      "Kaufman"
+    ],
+    "otherCounties": [],
+    "rationale": "User-emphasized metro or secondary-market center; include established neighborhoods alongside newer growth.",
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv",
+    "jurisdictionSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv"
+  },
+  {
+    "city": "Irving",
+    "population2025": 257076,
+    "censusPlace": "37000",
+    "counties": [
+      "Dallas"
+    ],
+    "otherCounties": [],
+    "rationale": "User-emphasized metro or secondary-market center; include established neighborhoods alongside newer growth.",
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv",
+    "jurisdictionSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv"
+  },
+  {
+    "city": "Grand Prairie",
+    "population2025": 209434,
+    "censusPlace": "30464",
+    "counties": [
+      "Dallas",
+      "Ellis",
+      "Johnson",
+      "Tarrant"
+    ],
+    "otherCounties": [],
+    "rationale": "User-emphasized metro or secondary-market center; include established neighborhoods alongside newer growth.",
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv",
+    "jurisdictionSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv"
+  },
+  {
+    "city": "Carrollton",
+    "population2025": 134562,
+    "censusPlace": "13024",
+    "counties": [
+      "Collin",
+      "Dallas",
+      "Denton"
+    ],
+    "otherCounties": [],
+    "rationale": "User-emphasized metro or secondary-market center; include established neighborhoods alongside newer growth.",
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv",
+    "jurisdictionSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv"
+  },
+  {
+    "city": "Denton",
+    "population2025": 169431,
+    "censusPlace": "19972",
+    "counties": [
+      "Denton"
+    ],
+    "otherCounties": [],
+    "rationale": "User-emphasized metro or secondary-market center; include established neighborhoods alongside newer growth.",
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv",
+    "jurisdictionSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv"
+  },
+  {
+    "city": "McKinney",
+    "population2025": 236001,
+    "censusPlace": "45744",
+    "counties": [
+      "Collin"
+    ],
+    "otherCounties": [],
+    "rationale": "User-emphasized metro or secondary-market center; include established neighborhoods alongside newer growth.",
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv",
+    "jurisdictionSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv"
+  },
+  {
+    "city": "Waxahachie",
+    "population2025": 50090,
+    "censusPlace": "76816",
+    "counties": [
+      "Ellis"
+    ],
+    "otherCounties": [],
+    "rationale": "User-emphasized metro or secondary-market center; include established neighborhoods alongside newer growth.",
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv",
+    "jurisdictionSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv"
+  },
+  {
+    "city": "Cleburne",
+    "population2025": 39942,
+    "censusPlace": "15364",
+    "counties": [
+      "Johnson"
+    ],
+    "otherCounties": [],
+    "rationale": "User-emphasized metro or secondary-market center; include established neighborhoods alongside newer growth.",
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv",
+    "jurisdictionSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv"
+  },
+  {
+    "city": "Plano",
+    "population2025": 293028,
+    "censusPlace": "58016",
+    "counties": [
+      "Collin",
+      "Denton"
+    ],
+    "otherCounties": [],
+    "rationale": "Established inner-suburban/metro employment or historic local center; balances the city list beyond new-construction exurbs.",
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv",
+    "jurisdictionSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv"
+  },
+  {
+    "city": "Richardson",
+    "population2025": 118542,
+    "censusPlace": "61796",
+    "counties": [
+      "Collin",
+      "Dallas"
+    ],
+    "otherCounties": [],
+    "rationale": "Established inner-suburban/metro employment or historic local center; balances the city list beyond new-construction exurbs.",
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv",
+    "jurisdictionSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv"
+  },
+  {
+    "city": "Lewisville",
+    "population2025": 139006,
+    "censusPlace": "42508",
+    "counties": [
+      "Dallas",
+      "Denton"
+    ],
+    "otherCounties": [],
+    "rationale": "Established inner-suburban/metro employment or historic local center; balances the city list beyond new-construction exurbs.",
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv",
+    "jurisdictionSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv"
+  },
+  {
+    "city": "Euless",
+    "population2025": 60008,
+    "censusPlace": "24768",
+    "counties": [
+      "Tarrant"
+    ],
+    "otherCounties": [],
+    "rationale": "Established inner-suburban/metro employment or historic local center; balances the city list beyond new-construction exurbs.",
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv",
+    "jurisdictionSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv"
+  },
+  {
+    "city": "Bedford",
+    "population2025": 47958,
+    "censusPlace": "07132",
+    "counties": [
+      "Tarrant"
+    ],
+    "otherCounties": [],
+    "rationale": "Established inner-suburban/metro employment or historic local center; balances the city list beyond new-construction exurbs.",
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv",
+    "jurisdictionSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv"
+  },
+  {
+    "city": "Hurst",
+    "population2025": 38974,
+    "censusPlace": "35576",
+    "counties": [
+      "Tarrant"
+    ],
+    "otherCounties": [],
+    "rationale": "Established inner-suburban/metro employment or historic local center; balances the city list beyond new-construction exurbs.",
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv",
+    "jurisdictionSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv"
+  },
+  {
+    "city": "DeSoto",
+    "population2025": 56681,
+    "censusPlace": "20092",
+    "counties": [
+      "Dallas"
+    ],
+    "otherCounties": [],
+    "rationale": "Established inner-suburban/metro employment or historic local center; balances the city list beyond new-construction exurbs.",
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv",
+    "jurisdictionSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv"
+  },
+  {
+    "city": "Burleson",
+    "population2025": 56907,
+    "censusPlace": "11428",
+    "counties": [
+      "Johnson",
+      "Tarrant"
+    ],
+    "otherCounties": [],
+    "rationale": "Established inner-suburban/metro employment or historic local center; balances the city list beyond new-construction exurbs.",
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv",
+    "jurisdictionSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv"
+  },
+  {
+    "city": "Ennis",
+    "population2025": 25694,
+    "censusPlace": "24348",
+    "counties": [
+      "Ellis"
+    ],
+    "otherCounties": [],
+    "rationale": "Established inner-suburban/metro employment or historic local center; balances the city list beyond new-construction exurbs.",
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv",
+    "jurisdictionSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv"
+  },
+  {
+    "city": "Terrell",
+    "population2025": 23921,
+    "censusPlace": "72284",
+    "counties": [
+      "Kaufman"
+    ],
+    "otherCounties": [],
+    "rationale": "Strategic smaller-city exception: established local center in the selected metro fringe; municipal jurisdiction rather than the surrounding postal market.",
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv",
+    "jurisdictionSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv"
+  },
+  {
+    "city": "Houston",
+    "population2025": 2397315,
+    "censusPlace": "35000",
+    "counties": [
+      "Fort Bend",
+      "Harris",
+      "Montgomery"
+    ],
+    "otherCounties": [
+      "Waller"
+    ],
+    "rationale": "User-emphasized metro or secondary-market center; include established neighborhoods alongside newer growth.",
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv",
+    "jurisdictionSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv"
+  },
+  {
+    "city": "Pasadena",
+    "population2025": 148539,
+    "censusPlace": "56000",
+    "counties": [
+      "Harris"
+    ],
+    "otherCounties": [],
+    "rationale": "User-emphasized metro or secondary-market center; include established neighborhoods alongside newer growth.",
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv",
+    "jurisdictionSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv"
+  },
+  {
+    "city": "Baytown",
+    "population2025": 86561,
+    "censusPlace": "06128",
+    "counties": [
+      "Harris"
+    ],
+    "otherCounties": [
+      "Chambers"
+    ],
+    "rationale": "User-emphasized metro or secondary-market center; include established neighborhoods alongside newer growth.",
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv",
+    "jurisdictionSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv"
+  },
+  {
+    "city": "Humble",
+    "population2025": 16484,
+    "censusPlace": "35348",
+    "counties": [
+      "Harris"
+    ],
+    "otherCounties": [],
+    "rationale": "Strategic smaller-city exception: explicitly emphasized; municipal jurisdiction rather than the surrounding postal market.",
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv",
+    "jurisdictionSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv"
+  },
+  {
+    "city": "Conroe",
+    "population2025": 119564,
+    "censusPlace": "16432",
+    "counties": [
+      "Montgomery"
+    ],
+    "otherCounties": [],
+    "rationale": "User-emphasized metro or secondary-market center; include established neighborhoods alongside newer growth.",
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv",
+    "jurisdictionSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv"
+  },
+  {
+    "city": "Richmond",
+    "population2025": 13389,
+    "censusPlace": "61892",
+    "counties": [
+      "Fort Bend"
+    ],
+    "otherCounties": [],
+    "rationale": "Strategic smaller-city exception: explicitly emphasized; municipal jurisdiction rather than the surrounding postal market.",
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv",
+    "jurisdictionSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv"
+  },
+  {
+    "city": "Rosenberg",
+    "population2025": 42701,
+    "censusPlace": "63284",
+    "counties": [
+      "Fort Bend"
+    ],
+    "otherCounties": [],
+    "rationale": "User-emphasized metro or secondary-market center; include established neighborhoods alongside newer growth.",
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv",
+    "jurisdictionSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv"
+  },
+  {
+    "city": "Pearland",
+    "population2025": 129930,
+    "censusPlace": "56348",
+    "counties": [
+      "Brazoria",
+      "Fort Bend",
+      "Harris"
+    ],
+    "otherCounties": [],
+    "rationale": "User-emphasized metro or secondary-market center; include established neighborhoods alongside newer growth.",
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv",
+    "jurisdictionSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv"
+  },
+  {
+    "city": "Texas City",
+    "population2025": 59733,
+    "censusPlace": "72392",
+    "counties": [
+      "Galveston"
+    ],
+    "otherCounties": [
+      "Chambers"
+    ],
+    "rationale": "User-emphasized metro or secondary-market center; include established neighborhoods alongside newer growth.",
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv",
+    "jurisdictionSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv"
+  },
+  {
+    "city": "Galveston",
+    "population2025": 53636,
+    "censusPlace": "28068",
+    "counties": [
+      "Galveston"
+    ],
+    "otherCounties": [],
+    "rationale": "User-emphasized metro or secondary-market center; include established neighborhoods alongside newer growth.",
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv",
+    "jurisdictionSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv"
+  },
+  {
+    "city": "Sugar Land",
+    "population2025": 107726,
+    "censusPlace": "70808",
+    "counties": [
+      "Fort Bend"
+    ],
+    "otherCounties": [],
+    "rationale": "Established inner-suburban/metro employment or historic local center; balances the city list beyond new-construction exurbs.",
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv",
+    "jurisdictionSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv"
+  },
+  {
+    "city": "Missouri City",
+    "population2025": 77327,
+    "censusPlace": "48804",
+    "counties": [
+      "Fort Bend",
+      "Harris"
+    ],
+    "otherCounties": [],
+    "rationale": "Established inner-suburban/metro employment or historic local center; balances the city list beyond new-construction exurbs.",
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv",
+    "jurisdictionSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv"
+  },
+  {
+    "city": "Lake Jackson",
+    "population2025": 27803,
+    "censusPlace": "40588",
+    "counties": [
+      "Brazoria"
+    ],
+    "otherCounties": [],
+    "rationale": "Established inner-suburban/metro employment or historic local center; balances the city list beyond new-construction exurbs.",
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv",
+    "jurisdictionSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv"
+  },
+  {
+    "city": "League City",
+    "population2025": 119905,
+    "censusPlace": "41980",
+    "counties": [
+      "Galveston",
+      "Harris"
+    ],
+    "otherCounties": [],
+    "rationale": "Established inner-suburban/metro employment or historic local center; balances the city list beyond new-construction exurbs.",
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv",
+    "jurisdictionSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv"
+  },
+  {
+    "city": "Friendswood",
+    "population2025": 41319,
+    "censusPlace": "27648",
+    "counties": [
+      "Galveston",
+      "Harris"
+    ],
+    "otherCounties": [],
+    "rationale": "Established inner-suburban/metro employment or historic local center; balances the city list beyond new-construction exurbs.",
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv",
+    "jurisdictionSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv"
+  },
+  {
+    "city": "Dayton",
+    "population2025": 10226,
+    "censusPlace": "19432",
+    "counties": [
+      "Liberty"
+    ],
+    "otherCounties": [],
+    "rationale": "Strategic smaller-city exception: established local center in the selected metro fringe; municipal jurisdiction rather than the surrounding postal market.",
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv",
+    "jurisdictionSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv"
+  },
+  {
+    "city": "Cleveland",
+    "population2025": 9936,
+    "censusPlace": "15436",
+    "counties": [
+      "Liberty",
+      "Montgomery"
+    ],
+    "otherCounties": [
+      "San Jacinto"
+    ],
+    "rationale": "Strategic smaller-city exception: established local center in the selected metro fringe; municipal jurisdiction rather than the surrounding postal market.",
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv",
+    "jurisdictionSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv"
+  },
+  {
+    "city": "San Antonio",
+    "population2025": 1548422,
+    "censusPlace": "65000",
+    "counties": [
+      "Bexar",
+      "Comal"
+    ],
+    "otherCounties": [
+      "Medina"
+    ],
+    "rationale": "User-emphasized metro or secondary-market center; include established neighborhoods alongside newer growth.",
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv",
+    "jurisdictionSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv"
+  },
+  {
+    "city": "Converse",
+    "population2025": 32481,
+    "censusPlace": "16468",
+    "counties": [
+      "Bexar"
+    ],
+    "otherCounties": [],
+    "rationale": "User-emphasized metro or secondary-market center; include established neighborhoods alongside newer growth.",
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv",
+    "jurisdictionSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv"
+  },
+  {
+    "city": "Live Oak",
+    "population2025": 16426,
+    "censusPlace": "43096",
+    "counties": [
+      "Bexar"
+    ],
+    "otherCounties": [],
+    "rationale": "Strategic smaller-city exception: explicitly emphasized; municipal jurisdiction rather than the surrounding postal market.",
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv",
+    "jurisdictionSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv"
+  },
+  {
+    "city": "Schertz",
+    "population2025": 45978,
+    "censusPlace": "66128",
+    "counties": [
+      "Bexar",
+      "Comal",
+      "Guadalupe"
+    ],
+    "otherCounties": [],
+    "rationale": "User-emphasized metro or secondary-market center; include established neighborhoods alongside newer growth.",
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv",
+    "jurisdictionSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv"
+  },
+  {
+    "city": "Seguin",
+    "population2025": 41048,
+    "censusPlace": "66644",
+    "counties": [
+      "Guadalupe"
+    ],
+    "otherCounties": [],
+    "rationale": "User-emphasized metro or secondary-market center; include established neighborhoods alongside newer growth.",
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv",
+    "jurisdictionSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv"
+  },
+  {
+    "city": "New Braunfels",
+    "population2025": 122492,
+    "censusPlace": "50820",
+    "counties": [
+      "Comal",
+      "Guadalupe"
+    ],
+    "otherCounties": [],
+    "rationale": "User-emphasized metro or secondary-market center; include established neighborhoods alongside newer growth.",
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv",
+    "jurisdictionSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv"
+  },
+  {
+    "city": "Austin",
+    "population2025": 1002632,
+    "censusPlace": "05000",
+    "counties": [
+      "Bastrop",
+      "Hays",
+      "Travis",
+      "Williamson"
+    ],
+    "otherCounties": [],
+    "rationale": "User-emphasized metro or secondary-market center; include established neighborhoods alongside newer growth.",
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv",
+    "jurisdictionSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv"
+  },
+  {
+    "city": "Pflugerville",
+    "population2025": 68316,
+    "censusPlace": "57176",
+    "counties": [
+      "Travis",
+      "Williamson"
+    ],
+    "otherCounties": [],
+    "rationale": "User-emphasized metro or secondary-market center; include established neighborhoods alongside newer growth.",
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv",
+    "jurisdictionSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv"
+  },
+  {
+    "city": "Round Rock",
+    "population2025": 141282,
+    "censusPlace": "63500",
+    "counties": [
+      "Travis",
+      "Williamson"
+    ],
+    "otherCounties": [],
+    "rationale": "User-emphasized metro or secondary-market center; include established neighborhoods alongside newer growth.",
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv",
+    "jurisdictionSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv"
+  },
+  {
+    "city": "Georgetown",
+    "population2025": 106907,
+    "censusPlace": "29336",
+    "counties": [
+      "Williamson"
+    ],
+    "otherCounties": [],
+    "rationale": "User-emphasized metro or secondary-market center; include established neighborhoods alongside newer growth.",
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv",
+    "jurisdictionSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv"
+  },
+  {
+    "city": "Taylor",
+    "population2025": 18402,
+    "censusPlace": "71948",
+    "counties": [
+      "Williamson"
+    ],
+    "otherCounties": [],
+    "rationale": "Strategic smaller-city exception: explicitly emphasized; municipal jurisdiction rather than the surrounding postal market.",
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv",
+    "jurisdictionSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv"
+  },
+  {
+    "city": "San Marcos",
+    "population2025": 77830,
+    "censusPlace": "65600",
+    "counties": [
+      "Guadalupe",
+      "Hays"
+    ],
+    "otherCounties": [
+      "Caldwell"
+    ],
+    "rationale": "User-emphasized metro or secondary-market center; include established neighborhoods alongside newer growth.",
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv",
+    "jurisdictionSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv"
+  },
+  {
+    "city": "Kyle",
+    "population2025": 69917,
+    "censusPlace": "39952",
+    "counties": [
+      "Hays"
+    ],
+    "otherCounties": [],
+    "rationale": "User-emphasized metro or secondary-market center; include established neighborhoods alongside newer growth.",
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv",
+    "jurisdictionSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv"
+  },
+  {
+    "city": "Bastrop",
+    "population2025": 13383,
+    "censusPlace": "05864",
+    "counties": [
+      "Bastrop"
+    ],
+    "otherCounties": [],
+    "rationale": "Strategic smaller-city exception: explicitly emphasized; municipal jurisdiction rather than the surrounding postal market.",
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv",
+    "jurisdictionSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv"
+  },
+  {
+    "city": "Waco",
+    "population2025": 147788,
+    "censusPlace": "76000",
+    "counties": [
+      "McLennan"
+    ],
+    "otherCounties": [],
+    "rationale": "User-emphasized metro or secondary-market center; include established neighborhoods alongside newer growth.",
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv",
+    "jurisdictionSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv"
+  },
+  {
+    "city": "Killeen",
+    "population2025": 161883,
+    "censusPlace": "39148",
+    "counties": [
+      "Bell"
+    ],
+    "otherCounties": [],
+    "rationale": "User-emphasized metro or secondary-market center; include established neighborhoods alongside newer growth.",
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv",
+    "jurisdictionSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv"
+  },
+  {
+    "city": "Temple",
+    "population2025": 98412,
+    "censusPlace": "72176",
+    "counties": [
+      "Bell"
+    ],
+    "otherCounties": [],
+    "rationale": "User-emphasized metro or secondary-market center; include established neighborhoods alongside newer growth.",
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv",
+    "jurisdictionSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv"
+  },
+  {
+    "city": "El Paso",
+    "population2025": 683012,
+    "censusPlace": "24000",
+    "counties": [
+      "El Paso"
+    ],
+    "otherCounties": [],
+    "rationale": "User-emphasized metro or secondary-market center; include established neighborhoods alongside newer growth.",
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv",
+    "jurisdictionSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv"
+  },
+  {
+    "city": "Lubbock",
+    "population2025": 273071,
+    "censusPlace": "45000",
+    "counties": [
+      "Lubbock"
+    ],
+    "otherCounties": [],
+    "rationale": "User-emphasized metro or secondary-market center; include established neighborhoods alongside newer growth.",
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv",
+    "jurisdictionSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv"
+  },
+  {
+    "city": "Corpus Christi",
+    "population2025": 317247,
+    "censusPlace": "17000",
+    "counties": [
+      "Nueces"
+    ],
+    "otherCounties": [
+      "Aransas",
+      "Kleberg",
+      "San Patricio"
+    ],
+    "rationale": "User-emphasized metro or secondary-market center; include established neighborhoods alongside newer growth.",
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv",
+    "jurisdictionSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_48.csv"
+  }
+]

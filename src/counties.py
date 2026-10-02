@@ -2,6 +2,14 @@ import os
 import json
 from typing import Dict, Any
 
+try:
+    from src.link_zone_service import link_zone_service
+except ImportError:
+    try:
+        from link_zone_service import link_zone_service
+    except ImportError:
+        link_zone_service = None
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA_DIR = os.path.join(BASE_DIR, "data")
 CONFIG_FILE = os.path.join(BASE_DIR, "src", "county_portals.json")
@@ -150,10 +158,21 @@ def load_available_states() -> list:
     return states
 
 def load_county_portals(state: str = "FL") -> Dict[str, Any]:
-    """Load county registry from JSON file and auto-discover folders in data/<state>/."""
+    """Load county registry via Live Link Zone service, falling back to CONFIG_FILE."""
     state = (state or "FL").upper()
     registry = {}
-    if os.path.exists(CONFIG_FILE):
+
+    # 1. Try Live Link Zone Service first (direct read from C:\Projects\Apps\link-zone\data)
+    if link_zone_service:
+        try:
+            live = link_zone_service.get_state_portals(state=state)
+            if live and isinstance(live, dict) and len(live) > 0:
+                registry = {k: dict(v) for k, v in live.items()}
+        except Exception:
+            registry = {}
+
+    # 2. Fallback to local CONFIG_FILE if live link returns nothing
+    if not registry and os.path.exists(CONFIG_FILE):
         try:
             with open(CONFIG_FILE, 'r', encoding='utf-8') as f:
                 raw = json.load(f)
@@ -163,11 +182,16 @@ def load_county_portals(state: str = "FL") -> Dict[str, Any]:
                     registry = {k: v for k, v in raw.items() if v.get("state", "FL") == state}
         except Exception:
             registry = {k: dict(v) for k, v in DEFAULT_COUNTIES.items()}
-    else:
-        registry = {k: dict(v) for k, v in DEFAULT_COUNTIES.items()}
 
     if not registry:
         registry = {k: dict(v) for k, v in DEFAULT_COUNTIES.items()}
+
+    # Ensure Pinellas has local file paths preserved when state is FL
+    if state == "FL" and "Pinellas" in registry:
+        registry["Pinellas"]["sample_lp"] = "pinellas_lis_pendens_20260920.csv"
+        registry["Pinellas"]["sample_code"] = "pinellas_code_violations_20260920.csv"
+        registry["Pinellas"]["sample_probate"] = "pinellas_probate_20260920.csv"
+        registry["Pinellas"]["folder_name"] = "pinellas"
 
     for k in registry:
         registry[k]["state"] = state

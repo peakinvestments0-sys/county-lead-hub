@@ -1,0 +1,9 @@
+{
+  "mode": "cloud",
+  "base_url": "https://api.sms-gate.app/3rdparty/v1",
+  "username": "YOUR_SMS_GATEWAY_USERNAME",
+  "password": "YOUR_SMS_GATEWAY_PASSWORD",
+  "device_id": "",
+  "sim_number": 1,
+  "default_template": "Hey {FirstName}, quick question, are you still the owner over at {Address}?"
+}

@@ -1,0 +1,134 @@
+[
+  {
+    "url": "https://cityofgreer.nextrequest.com/",
+    "classification": "reachable",
+    "reviewedAt": "2026-09-30",
+    "finding": "Normal in-app browser rendered the named government public-records portal with Make Request control. HTTP fetch may return 204; the JavaScript gateway was independently confirmed. No request submitted."
+  },
+  {
+    "url": "https://cityofbeaufortsc.nextrequest.com/",
+    "classification": "reachable",
+    "reviewedAt": "2026-09-30",
+    "finding": "Normal in-app browser rendered the named government public-records portal with Make Request control. HTTP fetch may return 204; the JavaScript gateway was independently confirmed. No request submitted."
+  },
+  {
+    "url": "https://cityofhanahansc.nextrequest.com/",
+    "classification": "reachable",
+    "reviewedAt": "2026-09-30",
+    "finding": "Normal in-app browser rendered the named government public-records portal with Make Request control. HTTP fetch may return 204; the JavaScript gateway was independently confirmed. No request submitted."
+  },
+  {
+    "url": "https://cityofsimpsonvillesc.nextrequest.com/",
+    "classification": "reachable",
+    "reviewedAt": "2026-09-30",
+    "finding": "Normal in-app browser rendered the named government public-records portal with Make Request control. HTTP fetch may return 204; the JavaScript gateway was independently confirmed. No request submitted."
+  },
+  {
+    "url": "https://dorchestercountysc.nextrequest.com/",
+    "classification": "reachable",
+    "reviewedAt": "2026-09-30",
+    "finding": "Normal in-app browser rendered the named government public-records portal with Make Request control. HTTP fetch may return 204; the JavaScript gateway was independently confirmed. No request submitted."
+  },
+  {
+    "url": "https://lexsc.nextrequest.com/",
+    "classification": "reachable",
+    "reviewedAt": "2026-09-30",
+    "finding": "Normal in-app browser rendered the named government public-records portal with Make Request control; functional JavaScript gateway independently confirmed. No request submitted."
+  },
+  {
+    "url": "https://townofsummervillesc.nextrequest.com/",
+    "classification": "reachable",
+    "reviewedAt": "2026-09-30",
+    "finding": "Normal in-app browser rendered the named government public-records portal with Make Request control; functional JavaScript gateway independently confirmed. No request submitted."
+  },
+  {
+    "url": "https://lancastercountysc.nextrequest.com/",
+    "classification": "reachable",
+    "reviewedAt": "2026-09-30",
+    "finding": "Normal in-app browser rendered the named government public-records portal with Make Request control; functional JavaScript gateway independently confirmed. No request submitted."
+  },
+  {
+    "url": "https://www.pickensassessor.org/",
+    "classification": "reachable",
+    "reviewedAt": "2026-09-30",
+    "finding": "Normal browser rendered Pickens County Assessor official page and its Real Property Search link."
+  },
+  {
+    "url": "https://qpublic.schneidercorp.com/Application.aspx?AppID=927&LayerID=18058&PageTypeID=2&PageID=8075",
+    "classification": "protected",
+    "reviewedAt": "2026-09-30",
+    "finding": "Normal browser rendered Pickens County SC property-search controls, upload date and blocking Terms and Conditions / Agree dialog. No terms acceptance or search submitted."
+  },
+  {
+    "url": "https://publicindex.sccourts.org/anderson/publicindex/",
+    "classification": "protected",
+    "reviewedAt": "2026-09-30",
+    "finding": "Normal browser rendered named county Public Index with Accept/Decline disclaimer gateway, prohibition on automated repetitive record scraping and January 1, 2026 home-address suppression notice. No acceptance or case query submitted."
+  },
+  {
+    "url": "https://publicindex.sccourts.org/Richland/PublicIndex/disclaimer.aspx",
+    "classification": "protected",
+    "reviewedAt": "2026-09-30",
+    "finding": "Normal browser rendered named county Public Index with Accept/Decline disclaimer gateway, prohibition on automated repetitive record scraping and January 1, 2026 home-address suppression notice. No acceptance or case query submitted."
+  },
+  {
+    "url": "https://jcmsweb.charlestoncounty.gov/PublicIndex/",
+    "classification": "protected",
+    "reviewedAt": "2026-09-30",
+    "finding": "Normal browser rendered named county Public Index with Accept/Decline disclaimer gateway, prohibition on automated repetitive record scraping and January 1, 2026 home-address suppression notice. No acceptance or case query submitted."
+  },
+  {
+    "url": "https://publicindex.sccourts.org/berkeley/publicindex/",
+    "classification": "protected",
+    "reviewedAt": "2026-09-30",
+    "finding": "Normal browser rendered named county Public Index with Accept/Decline disclaimer gateway, prohibition on automated repetitive record scraping and January 1, 2026 home-address suppression notice. No acceptance or case query submitted."
+  },
+  {
+    "url": "https://publicindex.sccourts.org/aiken/publicindex/",
+    "classification": "protected",
+    "reviewedAt": "2026-09-30",
+    "finding": "Normal browser rendered named county Public Index with Accept/Decline disclaimer gateway, prohibition on automated repetitive record scraping and January 1, 2026 home-address suppression notice. No acceptance or case query submitted."
+  },
+  {
+    "url": "https://publicindex.sccourts.org/beaufort/publicindex/",
+    "classification": "protected",
+    "reviewedAt": "2026-09-30",
+    "finding": "Normal browser rendered named county Public Index with Accept/Decline disclaimer gateway, prohibition on automated repetitive record scraping and January 1, 2026 home-address suppression notice. No acceptance or case query submitted."
+  },
+  {
+    "url": "https://pr-charlestonsc.govqa.us/WEBAPP/_rs/supporthome.aspx?lp=3",
+    "classification": "reachable",
+    "reviewedAt": "2026-09-30",
+    "finding": "Normal browser rendered City of Charleston FOIA Records Center with Submit FOIA Request and public archive controls; session gateway functional, no request submitted."
+  },
+  {
+    "url": "https://qpublic.schneidercorp.com/Application.aspx?App=LancasterCountySC&Layer=Parcels&PageType=Search",
+    "classification": "protected",
+    "reviewedAt": "2026-09-30",
+    "finding": "Normal browser followed official Lancaster property-search gateway to named Lancaster SC qPublic search with Terms/Agree dialog and upload date. No acceptance or query submitted."
+  },
+  {
+    "url": "https://www.lancastercountysc.gov/399/Assessor-Parcel-Map-Search",
+    "classification": "protected",
+    "reviewedAt": "2026-09-30",
+    "finding": "Normal browser followed official Lancaster property-search gateway to named Lancaster SC qPublic search with Terms/Agree dialog and upload date. No acceptance or query submitted."
+  },
+  {
+    "url": "https://publicindex.sccourts.org/Richland/CourtRosters/disclaimer.aspx",
+    "classification": "protected",
+    "reviewedAt": "2026-09-30",
+    "finding": "Normal browser rendered named county Court Rosters with Accept disclaimer gateway. HTTP 406 automated access is not a broken link; no acceptance or roster query submitted."
+  },
+  {
+    "url": "https://publicindex.sccourts.org/aiken/courtrosters/",
+    "classification": "protected",
+    "reviewedAt": "2026-09-30",
+    "finding": "Normal browser rendered named county Court Rosters with Accept disclaimer gateway. HTTP 406 automated access is not a broken link; no acceptance or roster query submitted."
+  },
+  {
+    "url": "https://publicindex.sccourts.org/anderson/courtrosters/",
+    "classification": "protected",
+    "reviewedAt": "2026-09-30",
+    "finding": "Normal browser rendered named county Court Rosters with Accept disclaimer gateway. HTTP 406 automated access is not a broken link; no acceptance or roster query submitted."
+  }
+]

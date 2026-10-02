@@ -1,0 +1,450 @@
+[
+  {
+    "city": "Charlotte",
+    "counties": [
+      "Mecklenburg"
+    ],
+    "population2025": 964784,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_37.csv",
+    "jurisdictionSource": "https://www.osbm.nc.gov/facts-figures/population-demographics/state-demographer/municipal-population-estimates/population-distribution-municipalities-more-one-county",
+    "rationale": "Selected metro housing market with established single-family neighborhoods and municipal property/code records; population supports the decision but is not a measured wholesale spread or transaction-volume score."
+  },
+  {
+    "city": "Gastonia",
+    "counties": [
+      "Gaston"
+    ],
+    "population2025": 87067,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_37.csv",
+    "jurisdictionSource": "https://www.osbm.nc.gov/facts-figures/population-demographics/state-demographer/municipal-population-estimates/population-distribution-municipalities-more-one-county",
+    "rationale": "Selected metro housing market with established single-family neighborhoods and municipal property/code records; population supports the decision but is not a measured wholesale spread or transaction-volume score."
+  },
+  {
+    "city": "Concord",
+    "counties": [
+      "Cabarrus"
+    ],
+    "population2025": 114598,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_37.csv",
+    "jurisdictionSource": "https://www.osbm.nc.gov/facts-figures/population-demographics/state-demographer/municipal-population-estimates/population-distribution-municipalities-more-one-county",
+    "rationale": "Selected metro housing market with established single-family neighborhoods and municipal property/code records; population supports the decision but is not a measured wholesale spread or transaction-volume score."
+  },
+  {
+    "city": "Kannapolis",
+    "counties": [
+      "Cabarrus",
+      "Rowan"
+    ],
+    "population2025": 61708,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_37.csv",
+    "jurisdictionSource": "https://www.osbm.nc.gov/facts-figures/population-demographics/state-demographer/municipal-population-estimates/population-distribution-municipalities-more-one-county",
+    "rationale": "Selected metro housing market with established single-family neighborhoods and municipal property/code records; population supports the decision but is not a measured wholesale spread or transaction-volume score."
+  },
+  {
+    "city": "Monroe",
+    "counties": [
+      "Union"
+    ],
+    "population2025": 42644,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_37.csv",
+    "jurisdictionSource": "https://www.osbm.nc.gov/facts-figures/population-demographics/state-demographer/municipal-population-estimates/population-distribution-municipalities-more-one-county",
+    "rationale": "Selected metro housing market with established single-family neighborhoods and municipal property/code records; population supports the decision but is not a measured wholesale spread or transaction-volume score."
+  },
+  {
+    "city": "Indian Trail",
+    "counties": [
+      "Union"
+    ],
+    "population2025": 44303,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_37.csv",
+    "jurisdictionSource": "https://www.osbm.nc.gov/facts-figures/population-demographics/state-demographer/municipal-population-estimates/population-distribution-municipalities-more-one-county",
+    "rationale": "Selected metro housing market with established single-family neighborhoods and municipal property/code records; population supports the decision but is not a measured wholesale spread or transaction-volume score."
+  },
+  {
+    "city": "Statesville",
+    "counties": [
+      "Iredell"
+    ],
+    "population2025": 32181,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_37.csv",
+    "jurisdictionSource": "https://www.osbm.nc.gov/facts-figures/population-demographics/state-demographer/municipal-population-estimates/population-distribution-municipalities-more-one-county",
+    "rationale": "Selected metro housing market with established single-family neighborhoods and municipal property/code records; population supports the decision but is not a measured wholesale spread or transaction-volume score."
+  },
+  {
+    "city": "Mooresville",
+    "counties": [
+      "Iredell"
+    ],
+    "population2025": 55842,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_37.csv",
+    "jurisdictionSource": "https://www.osbm.nc.gov/facts-figures/population-demographics/state-demographer/municipal-population-estimates/population-distribution-municipalities-more-one-county",
+    "rationale": "Selected metro housing market with established single-family neighborhoods and municipal property/code records; population supports the decision but is not a measured wholesale spread or transaction-volume score."
+  },
+  {
+    "city": "Salisbury",
+    "counties": [
+      "Rowan"
+    ],
+    "population2025": 36879,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_37.csv",
+    "jurisdictionSource": "https://www.osbm.nc.gov/facts-figures/population-demographics/state-demographer/municipal-population-estimates/population-distribution-municipalities-more-one-county",
+    "rationale": "Selected metro housing market with established single-family neighborhoods and municipal property/code records; population supports the decision but is not a measured wholesale spread or transaction-volume score."
+  },
+  {
+    "city": "Raleigh",
+    "counties": [
+      "Wake",
+      "Durham"
+    ],
+    "population2025": 506306,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_37.csv",
+    "jurisdictionSource": "https://www.osbm.nc.gov/facts-figures/population-demographics/state-demographer/municipal-population-estimates/population-distribution-municipalities-more-one-county",
+    "rationale": "Selected metro housing market with established single-family neighborhoods and municipal property/code records; population supports the decision but is not a measured wholesale spread or transaction-volume score."
+  },
+  {
+    "city": "Durham",
+    "counties": [
+      "Durham",
+      "Wake",
+      "Orange"
+    ],
+    "population2025": 305561,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_37.csv",
+    "jurisdictionSource": "https://www.osbm.nc.gov/facts-figures/population-demographics/state-demographer/municipal-population-estimates/population-distribution-municipalities-more-one-county",
+    "rationale": "Selected metro housing market with established single-family neighborhoods and municipal property/code records; population supports the decision but is not a measured wholesale spread or transaction-volume score."
+  },
+  {
+    "city": "Cary",
+    "counties": [
+      "Wake",
+      "Chatham"
+    ],
+    "population2025": 183582,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_37.csv",
+    "jurisdictionSource": "https://www.osbm.nc.gov/facts-figures/population-demographics/state-demographer/municipal-population-estimates/population-distribution-municipalities-more-one-county",
+    "rationale": "Selected metro housing market with established single-family neighborhoods and municipal property/code records; population supports the decision but is not a measured wholesale spread or transaction-volume score."
+  },
+  {
+    "city": "Garner",
+    "counties": [
+      "Wake"
+    ],
+    "population2025": 41562,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_37.csv",
+    "jurisdictionSource": "https://www.osbm.nc.gov/facts-figures/population-demographics/state-demographer/municipal-population-estimates/population-distribution-municipalities-more-one-county",
+    "rationale": "Selected metro housing market with established single-family neighborhoods and municipal property/code records; population supports the decision but is not a measured wholesale spread or transaction-volume score."
+  },
+  {
+    "city": "Wake Forest",
+    "counties": [
+      "Wake"
+    ],
+    "population2025": 58147,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_37.csv",
+    "jurisdictionSource": "https://www.osbm.nc.gov/facts-figures/population-demographics/state-demographer/municipal-population-estimates/population-distribution-municipalities-more-one-county",
+    "rationale": "Selected metro housing market with established single-family neighborhoods and municipal property/code records; population supports the decision but is not a measured wholesale spread or transaction-volume score."
+  },
+  {
+    "city": "Clayton",
+    "counties": [
+      "Johnston",
+      "Wake"
+    ],
+    "population2025": 32633,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_37.csv",
+    "jurisdictionSource": "https://www.osbm.nc.gov/facts-figures/population-demographics/state-demographer/municipal-population-estimates/population-distribution-municipalities-more-one-county",
+    "rationale": "Selected metro housing market with established single-family neighborhoods and municipal property/code records; population supports the decision but is not a measured wholesale spread or transaction-volume score."
+  },
+  {
+    "city": "Smithfield",
+    "counties": [
+      "Johnston"
+    ],
+    "population2025": 13114,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_37.csv",
+    "jurisdictionSource": "https://www.osbm.nc.gov/facts-figures/population-demographics/state-demographer/municipal-population-estimates/population-distribution-municipalities-more-one-county",
+    "rationale": "Strategic smaller-city exception: Johnston County seat on the I-95 / Triangle corridor, with established detached housing and county transaction/record services."
+  },
+  {
+    "city": "Chapel Hill",
+    "counties": [
+      "Orange",
+      "Durham"
+    ],
+    "population2025": 63565,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_37.csv",
+    "jurisdictionSource": "https://www.osbm.nc.gov/facts-figures/population-demographics/state-demographer/municipal-population-estimates/population-distribution-municipalities-more-one-county",
+    "rationale": "Selected metro housing market with established single-family neighborhoods and municipal property/code records; population supports the decision but is not a measured wholesale spread or transaction-volume score."
+  },
+  {
+    "city": "Greensboro",
+    "counties": [
+      "Guilford"
+    ],
+    "population2025": 308667,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_37.csv",
+    "jurisdictionSource": "https://www.osbm.nc.gov/facts-figures/population-demographics/state-demographer/municipal-population-estimates/population-distribution-municipalities-more-one-county",
+    "rationale": "Selected metro housing market with established single-family neighborhoods and municipal property/code records; population supports the decision but is not a measured wholesale spread or transaction-volume score."
+  },
+  {
+    "city": "High Point",
+    "counties": [
+      "Guilford",
+      "Davidson",
+      "Forsyth",
+      "Randolph"
+    ],
+    "population2025": 120571,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_37.csv",
+    "jurisdictionSource": "https://www.osbm.nc.gov/facts-figures/population-demographics/state-demographer/municipal-population-estimates/population-distribution-municipalities-more-one-county",
+    "rationale": "Selected metro housing market with established single-family neighborhoods and municipal property/code records; population supports the decision but is not a measured wholesale spread or transaction-volume score."
+  },
+  {
+    "city": "Winston-Salem",
+    "counties": [
+      "Forsyth"
+    ],
+    "population2025": 257271,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_37.csv",
+    "jurisdictionSource": "https://www.osbm.nc.gov/facts-figures/population-demographics/state-demographer/municipal-population-estimates/population-distribution-municipalities-more-one-county",
+    "rationale": "Selected metro housing market with established single-family neighborhoods and municipal property/code records; population supports the decision but is not a measured wholesale spread or transaction-volume score."
+  },
+  {
+    "city": "Burlington",
+    "counties": [
+      "Alamance",
+      "Guilford"
+    ],
+    "population2025": 61496,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_37.csv",
+    "jurisdictionSource": "https://www.osbm.nc.gov/facts-figures/population-demographics/state-demographer/municipal-population-estimates/population-distribution-municipalities-more-one-county",
+    "rationale": "Selected metro housing market with established single-family neighborhoods and municipal property/code records; population supports the decision but is not a measured wholesale spread or transaction-volume score."
+  },
+  {
+    "city": "Kernersville",
+    "counties": [
+      "Forsyth",
+      "Guilford"
+    ],
+    "population2025": 29128,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_37.csv",
+    "jurisdictionSource": "https://www.osbm.nc.gov/facts-figures/population-demographics/state-demographer/municipal-population-estimates/population-distribution-municipalities-more-one-county",
+    "rationale": "Selected metro housing market with established single-family neighborhoods and municipal property/code records; population supports the decision but is not a measured wholesale spread or transaction-volume score."
+  },
+  {
+    "city": "Lexington",
+    "counties": [
+      "Davidson"
+    ],
+    "population2025": 20238,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_37.csv",
+    "jurisdictionSource": "https://www.osbm.nc.gov/facts-figures/population-demographics/state-demographer/municipal-population-estimates/population-distribution-municipalities-more-one-county",
+    "rationale": "Strategic smaller-city exception: Davidson County seat in the Triad with established detached neighborhoods and local resale/code-case activity."
+  },
+  {
+    "city": "Thomasville",
+    "counties": [
+      "Davidson",
+      "Randolph"
+    ],
+    "population2025": 27733,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_37.csv",
+    "jurisdictionSource": "https://www.osbm.nc.gov/facts-figures/population-demographics/state-demographer/municipal-population-estimates/population-distribution-municipalities-more-one-county",
+    "rationale": "Selected metro housing market with established single-family neighborhoods and municipal property/code records; population supports the decision but is not a measured wholesale spread or transaction-volume score."
+  },
+  {
+    "city": "Asheboro",
+    "counties": [
+      "Randolph"
+    ],
+    "population2025": 27990,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_37.csv",
+    "jurisdictionSource": "https://www.osbm.nc.gov/facts-figures/population-demographics/state-demographer/municipal-population-estimates/population-distribution-municipalities-more-one-county",
+    "rationale": "Selected metro housing market with established single-family neighborhoods and municipal property/code records; population supports the decision but is not a measured wholesale spread or transaction-volume score."
+  },
+  {
+    "city": "Fayetteville",
+    "counties": [
+      "Cumberland"
+    ],
+    "population2025": 209120,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_37.csv",
+    "jurisdictionSource": "https://www.osbm.nc.gov/facts-figures/population-demographics/state-demographer/municipal-population-estimates/population-distribution-municipalities-more-one-county",
+    "rationale": "Selected metro housing market with established single-family neighborhoods and municipal property/code records; population supports the decision but is not a measured wholesale spread or transaction-volume score."
+  },
+  {
+    "city": "Hope Mills",
+    "counties": [
+      "Cumberland"
+    ],
+    "population2025": 18324,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_37.csv",
+    "jurisdictionSource": "https://www.osbm.nc.gov/facts-figures/population-demographics/state-demographer/municipal-population-estimates/population-distribution-municipalities-more-one-county",
+    "rationale": "Strategic smaller-city exception: Contiguous Fayetteville-area housing market; ordinary detached stock and military/employment connections."
+  },
+  {
+    "city": "Spring Lake",
+    "counties": [
+      "Cumberland"
+    ],
+    "population2025": 11252,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_37.csv",
+    "jurisdictionSource": "https://www.osbm.nc.gov/facts-figures/population-demographics/state-demographer/municipal-population-estimates/population-distribution-municipalities-more-one-county",
+    "rationale": "Strategic smaller-city exception: Fayetteville/Fort Bragg employment and housing corridor; established resale neighborhoods."
+  },
+  {
+    "city": "Wilmington",
+    "counties": [
+      "New Hanover"
+    ],
+    "population2025": 126809,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_37.csv",
+    "jurisdictionSource": "https://www.osbm.nc.gov/facts-figures/population-demographics/state-demographer/municipal-population-estimates/population-distribution-municipalities-more-one-county",
+    "rationale": "Selected metro housing market with established single-family neighborhoods and municipal property/code records; population supports the decision but is not a measured wholesale spread or transaction-volume score."
+  },
+  {
+    "city": "Leland",
+    "counties": [
+      "Brunswick"
+    ],
+    "population2025": 35731,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_37.csv",
+    "jurisdictionSource": "https://www.osbm.nc.gov/facts-figures/population-demographics/state-demographer/municipal-population-estimates/population-distribution-municipalities-more-one-county",
+    "rationale": "Selected metro housing market with established single-family neighborhoods and municipal property/code records; population supports the decision but is not a measured wholesale spread or transaction-volume score."
+  },
+  {
+    "city": "Greenville",
+    "counties": [
+      "Pitt"
+    ],
+    "population2025": 96443,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_37.csv",
+    "jurisdictionSource": "https://www.osbm.nc.gov/facts-figures/population-demographics/state-demographer/municipal-population-estimates/population-distribution-municipalities-more-one-county",
+    "rationale": "Selected metro housing market with established single-family neighborhoods and municipal property/code records; population supports the decision but is not a measured wholesale spread or transaction-volume score."
+  },
+  {
+    "city": "Jacksonville",
+    "counties": [
+      "Onslow"
+    ],
+    "population2025": 72732,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_37.csv",
+    "jurisdictionSource": "https://www.osbm.nc.gov/facts-figures/population-demographics/state-demographer/municipal-population-estimates/population-distribution-municipalities-more-one-county",
+    "rationale": "Selected metro housing market with established single-family neighborhoods and municipal property/code records; population supports the decision but is not a measured wholesale spread or transaction-volume score."
+  },
+  {
+    "city": "Apex",
+    "counties": [
+      "Wake",
+      "Chatham"
+    ],
+    "population2025": 80419,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_37.csv",
+    "jurisdictionSource": "https://www.osbm.nc.gov/facts-figures/population-demographics/state-demographer/municipal-population-estimates/population-distribution-municipalities-more-one-county",
+    "rationale": "Selected metro housing market with established single-family neighborhoods and municipal property/code records; population supports the decision but is not a measured wholesale spread or transaction-volume score."
+  },
+  {
+    "city": "Holly Springs",
+    "counties": [
+      "Wake"
+    ],
+    "population2025": 50288,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_37.csv",
+    "jurisdictionSource": "https://www.osbm.nc.gov/facts-figures/population-demographics/state-demographer/municipal-population-estimates/population-distribution-municipalities-more-one-county",
+    "rationale": "Selected metro housing market with established single-family neighborhoods and municipal property/code records; population supports the decision but is not a measured wholesale spread or transaction-volume score."
+  },
+  {
+    "city": "Fuquay-Varina",
+    "counties": [
+      "Wake",
+      "Harnett"
+    ],
+    "population2025": 48536,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_37.csv",
+    "jurisdictionSource": "https://www.osbm.nc.gov/facts-figures/population-demographics/state-demographer/municipal-population-estimates/population-distribution-municipalities-more-one-county",
+    "rationale": "Selected metro housing market with established single-family neighborhoods and municipal property/code records; population supports the decision but is not a measured wholesale spread or transaction-volume score."
+  },
+  {
+    "city": "Morrisville",
+    "counties": [
+      "Wake",
+      "Durham"
+    ],
+    "population2025": 32466,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_37.csv",
+    "jurisdictionSource": "https://www.osbm.nc.gov/facts-figures/population-demographics/state-demographer/municipal-population-estimates/population-distribution-municipalities-more-one-county",
+    "rationale": "Selected metro housing market with established single-family neighborhoods and municipal property/code records; population supports the decision but is not a measured wholesale spread or transaction-volume score."
+  },
+  {
+    "city": "Huntersville",
+    "counties": [
+      "Mecklenburg"
+    ],
+    "population2025": 68535,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_37.csv",
+    "jurisdictionSource": "https://www.osbm.nc.gov/facts-figures/population-demographics/state-demographer/municipal-population-estimates/population-distribution-municipalities-more-one-county",
+    "rationale": "Selected metro housing market with established single-family neighborhoods and municipal property/code records; population supports the decision but is not a measured wholesale spread or transaction-volume score."
+  },
+  {
+    "city": "Cornelius",
+    "counties": [
+      "Mecklenburg"
+    ],
+    "population2025": 35094,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_37.csv",
+    "jurisdictionSource": "https://www.osbm.nc.gov/facts-figures/population-demographics/state-demographer/municipal-population-estimates/population-distribution-municipalities-more-one-county",
+    "rationale": "Selected metro housing market with established single-family neighborhoods and municipal property/code records; population supports the decision but is not a measured wholesale spread or transaction-volume score."
+  },
+  {
+    "city": "Matthews",
+    "counties": [
+      "Mecklenburg"
+    ],
+    "population2025": 32769,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_37.csv",
+    "jurisdictionSource": "https://www.osbm.nc.gov/facts-figures/population-demographics/state-demographer/municipal-population-estimates/population-distribution-municipalities-more-one-county",
+    "rationale": "Selected metro housing market with established single-family neighborhoods and municipal property/code records; population supports the decision but is not a measured wholesale spread or transaction-volume score."
+  },
+  {
+    "city": "Mint Hill",
+    "counties": [
+      "Mecklenburg",
+      "Union"
+    ],
+    "population2025": 29476,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_37.csv",
+    "jurisdictionSource": "https://www.osbm.nc.gov/facts-figures/population-demographics/state-demographer/municipal-population-estimates/population-distribution-municipalities-more-one-county",
+    "rationale": "Selected metro housing market with established single-family neighborhoods and municipal property/code records; population supports the decision but is not a measured wholesale spread or transaction-volume score."
+  },
+  {
+    "city": "Dunn",
+    "counties": [
+      "Harnett"
+    ],
+    "population2025": 8814,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_37.csv",
+    "jurisdictionSource": "https://www.osbm.nc.gov/facts-figures/population-demographics/state-demographer/municipal-population-estimates/population-distribution-municipalities-more-one-county",
+    "rationale": "Strategic smaller-city exception: Harnett service center at I-95/I-40 with established detached neighborhoods; targeted county coverage."
+  },
+  {
+    "city": "Angier",
+    "counties": [
+      "Harnett",
+      "Wake"
+    ],
+    "population2025": 9410,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_37.csv",
+    "jurisdictionSource": "https://www.osbm.nc.gov/facts-figures/population-demographics/state-demographer/municipal-population-estimates/population-distribution-municipalities-more-one-county",
+    "rationale": "Strategic smaller-city exception: Growing Harnett/Wake edge of the Triangle with detached housing and commuting links."
+  },
+  {
+    "city": "Pittsboro",
+    "counties": [
+      "Chatham"
+    ],
+    "population2025": 5054,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_37.csv",
+    "jurisdictionSource": "https://www.osbm.nc.gov/facts-figures/population-demographics/state-demographer/municipal-population-estimates/population-distribution-municipalities-more-one-county",
+    "rationale": "Strategic smaller-city exception: Chatham County seat and Triangle growth corridor; targeted established neighborhoods alongside new development."
+  }
+]

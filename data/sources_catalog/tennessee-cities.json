@@ -1,0 +1,409 @@
+[
+  {
+    "county": "Shelby",
+    "city": "Memphis",
+    "source": {
+      "url": "https://memphistn.gov/code-enforcement/",
+      "agency": "Memphis Code Enforcement",
+      "access": "MANUAL_NAVIGATION",
+      "evidence": "https://memphistn.gov/code-enforcement/",
+      "notes": "Official Memphis property-maintenance/code-enforcement office and complaint instructions. Contact this office for existing violation case records; this is not a confirmed public case-search portal. "
+    }
+  },
+  {
+    "county": "Shelby",
+    "city": "Bartlett",
+    "source": {
+      "url": "https://www.cityofbartlett.org/24/Code-Enforcement",
+      "agency": "Bartlett Code Enforcement",
+      "access": "MANUAL_NAVIGATION",
+      "evidence": "https://www.cityofbartlett.org/24/Code-Enforcement",
+      "notes": "Official Bartlett property-maintenance/code-enforcement office and complaint instructions. Contact this office for existing violation case records; this is not a confirmed public case-search portal. "
+    }
+  },
+  {
+    "county": "Shelby",
+    "city": "Collierville",
+    "source": {
+      "url": "https://www.colliervilletn.gov/government/town-departments/development/codes/code-compliance",
+      "agency": "Collierville Code Compliance",
+      "access": "MANUAL_NAVIGATION",
+      "evidence": "https://www.colliervilletn.gov/government/town-departments/development/codes/code-compliance",
+      "notes": "Official Collierville property-maintenance/code-enforcement office and complaint instructions. Contact this office for existing violation case records; this is not a confirmed public case-search portal. "
+    }
+  },
+  {
+    "county": "Shelby",
+    "city": "Germantown",
+    "source": {
+      "url": "https://www.germantown-tn.gov/live/neighborhoods-code-compliance",
+      "agency": "Germantown Neighborhood Services and Code Compliance",
+      "access": "MANUAL_NAVIGATION",
+      "evidence": "https://www.germantown-tn.gov/live/neighborhoods-code-compliance",
+      "notes": "Official Germantown property-maintenance/code-enforcement office and complaint instructions. Contact this office for existing violation case records; this is not a confirmed public case-search portal. "
+    }
+  },
+  {
+    "county": "Davidson",
+    "city": "Nashville",
+    "source": {
+      "url": "https://epermits.nashville.gov/",
+      "agency": "Metropolitan Nashville & Davidson County Codes — Property Standards",
+      "access": "SEARCH_PORTAL",
+      "evidence": "https://www.nashville.gov/departments/codes/property-standards/code-enforcement/codes-violation-history-search",
+      "notes": "Metropolitan property-maintenance enforcement. Use RFS/Complaint search for violation history by address, parcel/APN, or case. Official instructions describe the last two years of violations. This single Metro Codes source serves Nashville’s city workflow and Browse Sources; no duplicate Davidson County Codes record is created. Independently incorporated municipalities may administer their own codes."
+    }
+  },
+  {
+    "county": "Knox",
+    "city": "Knoxville",
+    "source": {
+      "url": "https://www.knoxvilletn.gov/927/Neighborhood-Codes-Enforcement",
+      "agency": "Knoxville Neighborhood Codes Enforcement",
+      "access": "MANUAL_NAVIGATION",
+      "evidence": "https://www.knoxvilletn.gov/927/Neighborhood-Codes-Enforcement",
+      "notes": "Official Knoxville property-maintenance/code-enforcement office and complaint instructions. Contact this office for existing violation case records; this is not a confirmed public case-search portal. "
+    }
+  },
+  {
+    "county": "Knox",
+    "city": "Farragut",
+    "source": {
+      "url": "https://www.townoffarragut.org/727/Property-Maintenance",
+      "agency": "Farragut Property Maintenance",
+      "access": "MANUAL_NAVIGATION",
+      "evidence": "https://www.townoffarragut.org/727/Property-Maintenance",
+      "notes": "Official Farragut property-maintenance/code-enforcement office and complaint instructions. Contact this office for existing violation case records; this is not a confirmed public case-search portal. "
+    }
+  },
+  {
+    "county": "Hamilton",
+    "city": "Chattanooga",
+    "source": {
+      "url": "https://chattanooga.gov/government/public-works/code-enforcement",
+      "agency": "Chattanooga Public Works — Code Enforcement",
+      "access": "MANUAL_NAVIGATION",
+      "evidence": "https://chattanooga.gov/government/public-works/code-enforcement",
+      "notes": "Official Chattanooga property-maintenance/code-enforcement office and complaint instructions. Contact this office for existing violation case records; this is not a confirmed public case-search portal. "
+    }
+  },
+  {
+    "county": "Rutherford",
+    "city": "Murfreesboro",
+    "source": {
+      "url": "https://www.murfreesborotn.gov/2010/Property-Maintenance",
+      "agency": "Murfreesboro Property Maintenance",
+      "access": "MANUAL_NAVIGATION",
+      "evidence": "https://www.murfreesborotn.gov/2010/Property-Maintenance",
+      "notes": "Official Murfreesboro property-maintenance/code-enforcement office and complaint instructions. Contact this office for existing violation case records; this is not a confirmed public case-search portal. "
+    }
+  },
+  {
+    "county": "Rutherford",
+    "city": "Smyrna",
+    "source": {
+      "url": "https://www.townofsmyrna.org/departments/building_safety/property_maintenance.php",
+      "agency": "Smyrna Building Safety — Property Maintenance",
+      "access": "MANUAL_NAVIGATION",
+      "evidence": "https://www.townofsmyrna.org/departments/building_safety/property_maintenance.php",
+      "notes": "Official Smyrna property-maintenance/code-enforcement office and complaint instructions. Contact this office for existing violation case records; this is not a confirmed public case-search portal. "
+    }
+  },
+  {
+    "county": "Rutherford",
+    "city": "La Vergne",
+    "source": {
+      "url": "https://www.lavergnetn.gov/179/Codes",
+      "agency": "La Vergne Codes Department",
+      "access": "MANUAL_NAVIGATION",
+      "evidence": "https://www.lavergnetn.gov/179/Codes",
+      "notes": "Official La Vergne property-maintenance/code-enforcement office and complaint instructions. Contact this office for existing violation case records; this is not a confirmed public case-search portal. "
+    }
+  },
+  {
+    "county": "Williamson",
+    "city": "Franklin",
+    "source": {
+      "url": "https://www.franklintn.gov/government/departments-a-j/building-and-neighborhood-services/zoning-administration-and-inquiries/property-maintenance-codes",
+      "agency": "Franklin Building and Neighborhood Services — Property Maintenance",
+      "access": "MANUAL_NAVIGATION",
+      "evidence": "https://www.franklintn.gov/government/departments-a-j/building-and-neighborhood-services/zoning-administration-and-inquiries/property-maintenance-codes",
+      "notes": "Official Franklin property-maintenance/code-enforcement office and complaint instructions. Contact this office for existing violation case records; this is not a confirmed public case-search portal. "
+    }
+  },
+  {
+    "county": "Williamson",
+    "city": "Brentwood",
+    "source": {
+      "url": "https://www.brentwoodtn.gov/Departments/Planning-and-Codes/Codes-Section",
+      "agency": "Brentwood Planning and Codes",
+      "access": "MANUAL_NAVIGATION",
+      "evidence": "https://www.brentwoodtn.gov/Departments/Planning-and-Codes/Codes-Section",
+      "notes": "Official Brentwood property-maintenance/code-enforcement office and complaint instructions. Contact this office for existing violation case records; this is not a confirmed public case-search portal. "
+    }
+  },
+  {
+    "county": "Williamson",
+    "city": "Spring Hill",
+    "source": {
+      "url": "https://www.springhilltn.org/145/Building-Codes",
+      "agency": "Spring Hill Building Codes",
+      "access": "MANUAL_NAVIGATION",
+      "evidence": "https://www.springhilltn.org/145/Building-Codes",
+      "notes": "Official Spring Hill property-maintenance/code-enforcement office and complaint instructions. Contact this office for existing violation case records; this is not a confirmed public case-search portal. One municipal agency serves the city across county lines; shown in each supported county for discovery, not separate county agencies. "
+    }
+  },
+  {
+    "county": "Maury",
+    "city": "Spring Hill",
+    "source": {
+      "url": "https://www.springhilltn.org/145/Building-Codes",
+      "agency": "Spring Hill Building Codes",
+      "access": "MANUAL_NAVIGATION",
+      "evidence": "https://www.springhilltn.org/145/Building-Codes",
+      "notes": "Official Spring Hill property-maintenance/code-enforcement office and complaint instructions. Contact this office for existing violation case records; this is not a confirmed public case-search portal. One municipal agency serves the city across county lines; shown in each supported county for discovery, not separate county agencies. "
+    }
+  },
+  {
+    "county": "Montgomery",
+    "city": "Clarksville",
+    "source": {
+      "url": "https://www.clarksvilletn.gov/312/Codes-Enforcement-Division",
+      "agency": "Clarksville Building and Codes — Codes Enforcement Division",
+      "access": "MANUAL_NAVIGATION",
+      "evidence": "https://www.clarksvilletn.gov/312/Codes-Enforcement-Division",
+      "notes": "Official Clarksville property-maintenance/code-enforcement office and complaint instructions. Contact this office for existing violation case records; this is not a confirmed public case-search portal. "
+    }
+  },
+  {
+    "county": "Sumner",
+    "city": "Hendersonville",
+    "source": {
+      "url": "https://www.hvilletn.org/168/Property-Maintenance-Information",
+      "agency": "Hendersonville Property Maintenance",
+      "access": "MANUAL_NAVIGATION",
+      "evidence": "https://www.hvilletn.org/168/Property-Maintenance-Information",
+      "notes": "Official Hendersonville property-maintenance/code-enforcement office and complaint instructions. Contact this office for existing violation case records; this is not a confirmed public case-search portal. "
+    }
+  },
+  {
+    "county": "Sumner",
+    "city": "Gallatin",
+    "source": {
+      "url": "https://www.gallatintn.gov/192/Code-Enforcement",
+      "agency": "Gallatin Police Department — Code Enforcement",
+      "access": "MANUAL_NAVIGATION",
+      "evidence": "https://www.gallatintn.gov/192/Code-Enforcement",
+      "notes": "Official Gallatin property-maintenance/code-enforcement office and complaint instructions. Contact this office for existing violation case records; this is not a confirmed public case-search portal. "
+    }
+  },
+  {
+    "county": "Wilson",
+    "city": "Mount Juliet",
+    "source": {
+      "url": "https://www.mtjuliet-tn.gov/152/Code-Enforcement-Division",
+      "agency": "Mount Juliet Code Enforcement Division",
+      "access": "MANUAL_NAVIGATION",
+      "evidence": "https://www.mtjuliet-tn.gov/152/Code-Enforcement-Division",
+      "notes": "Official Mount Juliet property-maintenance/code-enforcement office and complaint instructions. Contact this office for existing violation case records; this is not a confirmed public case-search portal. "
+    }
+  },
+  {
+    "county": "Wilson",
+    "city": "Lebanon",
+    "source": {
+      "url": "https://www.lebanontn.org/230/Codes",
+      "agency": "Lebanon Codes Administration",
+      "access": "MANUAL_NAVIGATION",
+      "evidence": "https://www.lebanontn.org/230/Codes",
+      "notes": "Official Lebanon property-maintenance/code-enforcement office and complaint instructions. Contact this office for existing violation case records; this is not a confirmed public case-search portal. "
+    }
+  },
+  {
+    "county": "Sullivan",
+    "city": "Kingsport",
+    "source": {
+      "url": "https://www.kingsporttn.gov/city-services/code-enforcement/",
+      "agency": "Kingsport Code Enforcement",
+      "access": "MANUAL_NAVIGATION",
+      "evidence": "https://www.kingsporttn.gov/city-services/code-enforcement/",
+      "notes": "Official Kingsport property-maintenance/code-enforcement office and complaint instructions. Contact this office for existing violation case records; this is not a confirmed public case-search portal. One municipal agency serves the city across county lines; shown in each supported county for discovery, not separate county agencies. "
+    }
+  },
+  {
+    "county": "Washington",
+    "city": "Kingsport",
+    "source": {
+      "url": "https://www.kingsporttn.gov/city-services/code-enforcement/",
+      "agency": "Kingsport Code Enforcement",
+      "access": "MANUAL_NAVIGATION",
+      "evidence": "https://www.kingsporttn.gov/city-services/code-enforcement/",
+      "notes": "Official Kingsport property-maintenance/code-enforcement office and complaint instructions. Contact this office for existing violation case records; this is not a confirmed public case-search portal. One municipal agency serves the city across county lines; shown in each supported county for discovery, not separate county agencies. "
+    }
+  },
+  {
+    "county": "Sullivan",
+    "city": "Bristol",
+    "source": {
+      "url": "https://www.bristoltn.gov/1023/Report-Code-Violations",
+      "agency": "Bristol Tennessee Code Enforcement",
+      "access": "MANUAL_NAVIGATION",
+      "evidence": "https://www.bristoltn.gov/sitemap",
+      "notes": "Official city Report Code Violations workflow, linked by the city’s sitemap separately from construction permits. Requires a CivicPlus sign-in to submit a complaint; it is not a public violation-case search. Contact Community Development for existing property-maintenance case records."
+    }
+  },
+  {
+    "county": "Blount",
+    "city": "Maryville",
+    "source": {
+      "url": "https://www.maryvillegov.com/codes.html",
+      "agency": "Maryville Development Services — Codes",
+      "access": "MANUAL_NAVIGATION",
+      "evidence": "https://www.maryvillegov.com/codes.html",
+      "notes": "Official Maryville property-maintenance/code-enforcement office and complaint instructions. Contact this office for existing violation case records; this is not a confirmed public case-search portal. "
+    }
+  },
+  {
+    "county": "Washington",
+    "city": "Johnson City",
+    "source": {
+      "url": "https://www.johnsoncitytn.org/departments/building_services/building_division/code_enforcement/index.php",
+      "agency": "Johnson City Code Enforcement",
+      "access": "MANUAL_NAVIGATION",
+      "evidence": "https://www.johnsoncitytn.org/departments/building_services/building_division/code_enforcement/index.php",
+      "notes": "Official Johnson City property-maintenance/code-enforcement office and complaint instructions. Contact this office for existing violation case records; this is not a confirmed public case-search portal. One municipal agency serves the city across county lines; shown in each supported county for discovery, not separate county agencies. "
+    }
+  },
+  {
+    "county": "Sullivan",
+    "city": "Johnson City",
+    "source": {
+      "url": "https://www.johnsoncitytn.org/departments/building_services/building_division/code_enforcement/index.php",
+      "agency": "Johnson City Code Enforcement",
+      "access": "MANUAL_NAVIGATION",
+      "evidence": "https://www.johnsoncitytn.org/departments/building_services/building_division/code_enforcement/index.php",
+      "notes": "Official Johnson City property-maintenance/code-enforcement office and complaint instructions. Contact this office for existing violation case records; this is not a confirmed public case-search portal. One municipal agency serves the city across county lines; shown in each supported county for discovery, not separate county agencies. "
+    }
+  },
+  {
+    "county": "Maury",
+    "city": "Columbia",
+    "source": {
+      "url": "https://www.columbiatn.gov/217/Codes-Enforcement",
+      "agency": "Columbia Codes Enforcement",
+      "access": "MANUAL_NAVIGATION",
+      "evidence": "https://www.columbiatn.gov/217/Codes-Enforcement",
+      "notes": "Official Columbia property-maintenance/code-enforcement office and complaint instructions. Contact this office for existing violation case records; this is not a confirmed public case-search portal. "
+    }
+  },
+  {
+    "county": "Bradley",
+    "city": "Cleveland",
+    "source": {
+      "url": "https://www.clevelandtn.gov/272/Code-Enforcement",
+      "agency": "Cleveland Code Enforcement",
+      "access": "MANUAL_NAVIGATION",
+      "evidence": "https://www.clevelandtn.gov/272/Code-Enforcement",
+      "notes": "Official Cleveland property-maintenance/code-enforcement office and complaint instructions. Contact this office for existing violation case records; this is not a confirmed public case-search portal. "
+    }
+  },
+  {
+    "county": "Sevier",
+    "city": "Sevierville",
+    "source": {
+      "url": "https://www.seviervilletn.org/228/Code-Enforcement",
+      "agency": "Sevierville Code Enforcement",
+      "access": "MANUAL_NAVIGATION",
+      "evidence": "https://www.seviervilletn.org/228/Code-Enforcement",
+      "notes": "Official Sevierville property-maintenance/code-enforcement office and complaint instructions. Contact this office for existing violation case records; this is not a confirmed public case-search portal. Included below 25,000 population as an established regional housing center, county seat, or connected metropolitan housing market."
+    }
+  },
+  {
+    "county": "Madison",
+    "city": "Jackson",
+    "source": {
+      "url": "https://www.jacksontn.gov/government/planninggrowthanddevelopment/buildingandcodes",
+      "agency": "Jackson Building and Codes",
+      "access": "MANUAL_NAVIGATION",
+      "evidence": "https://www.jacksontn.gov/government/planninggrowthanddevelopment/buildingandcodes",
+      "notes": "Official Jackson property-maintenance/code-enforcement office and complaint instructions. Contact this office for existing violation case records; this is not a confirmed public case-search portal. "
+    }
+  },
+  {
+    "county": "Putnam",
+    "city": "Cookeville",
+    "source": {
+      "url": "https://www.cookeville-tn.gov/162/Codes-Division",
+      "agency": "Cookeville Community Development — Codes Division",
+      "access": "MANUAL_NAVIGATION",
+      "evidence": "https://www.cookeville-tn.gov/162/Codes-Division",
+      "notes": "Official Cookeville property-maintenance/code-enforcement office and complaint instructions. Contact this office for existing violation case records; this is not a confirmed public case-search portal. "
+    }
+  },
+  {
+    "county": "Anderson",
+    "city": "Oak Ridge",
+    "source": {
+      "url": "https://portal.oakridgetn.gov/portal",
+      "agency": "Oak Ridge Community Development — Code Enforcement",
+      "access": "SEARCH_PORTAL",
+      "evidence": "https://www.oakridgetn.gov/187/CityView-Portal-Demonstrations-FAQs",
+      "notes": "CityView portal includes Code Enforcement. Use its code-enforcement records workflow; public permit searches alone are not violation data."
+    }
+  },
+  {
+    "county": "Robertson",
+    "city": "Springfield",
+    "source": {
+      "url": "https://www.springfieldtn.gov/734/Submit-a-Complaint",
+      "agency": "Springfield Community Development — Property Maintenance",
+      "access": "MANUAL_NAVIGATION",
+      "evidence": "https://www.springfieldtn.gov/734/Submit-a-Complaint",
+      "notes": "Official Springfield property-maintenance/code-enforcement office and complaint instructions. Contact this office for existing violation case records; this is not a confirmed public case-search portal. Included below 25,000 population as an established regional housing center, county seat, or connected metropolitan housing market."
+    }
+  },
+  {
+    "county": "Hamblen",
+    "city": "Morristown",
+    "source": {
+      "url": "https://www.mymorristown.com/departments/codes_enforcement/index.php",
+      "agency": "Morristown Codes Enforcement",
+      "access": "MANUAL_NAVIGATION",
+      "evidence": "https://www.mymorristown.com/departments/codes_enforcement/index.php",
+      "notes": "Official Morristown property-maintenance/code-enforcement office and complaint instructions. Contact this office for existing violation case records; this is not a confirmed public case-search portal. "
+    }
+  },
+  {
+    "county": "Cumberland",
+    "city": "Crossville",
+    "source": {
+      "url": "https://crossvilletn.gov/department/codes-enforcement/",
+      "agency": "Crossville Codes Enforcement",
+      "access": "MANUAL_NAVIGATION",
+      "evidence": "https://crossvilletn.gov/department/codes-enforcement/",
+      "notes": "Official Crossville property-maintenance/code-enforcement office and complaint instructions. Contact this office for existing violation case records; this is not a confirmed public case-search portal. Included below 25,000 population as an established regional housing center, county seat, or connected metropolitan housing market."
+    }
+  },
+  {
+    "county": "Loudon",
+    "city": "Lenoir City",
+    "source": {
+      "url": "https://www.lenoircitytn.gov/codes-enforcement-property-maintenance/",
+      "agency": "Lenoir City Codes Enforcement — Property Maintenance",
+      "access": "MANUAL_NAVIGATION",
+      "evidence": "https://www.lenoircitytn.gov/codes-enforcement-property-maintenance/",
+      "notes": "Official Lenoir City property-maintenance/code-enforcement office and complaint instructions. Contact this office for existing violation case records; this is not a confirmed public case-search portal. Included below 25,000 population as an established regional housing center, county seat, or connected metropolitan housing market."
+    }
+  },
+  {
+    "county": "Coffee",
+    "city": "Tullahoma",
+    "source": {
+      "url": "https://www.tullahomatn.gov/departments/safety___codes_compliance/code_enforcement.php",
+      "agency": "Tullahoma Planning, Codes and Life Safety — Code Enforcement",
+      "access": "MANUAL_NAVIGATION",
+      "evidence": "https://www.tullahomatn.gov/departments/safety___codes_compliance/code_enforcement.php",
+      "notes": "Official Tullahoma property-maintenance/code-enforcement office and complaint instructions. Contact this office for existing violation case records; this is not a confirmed public case-search portal. Included below 25,000 population as an established regional housing center, county seat, or connected metropolitan housing market."
+    }
+  }
+]

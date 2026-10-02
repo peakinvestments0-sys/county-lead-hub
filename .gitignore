@@ -14,8 +14,15 @@ ENV/
 # Private Credentials & Live Settings (DO NOT COMMIT)
 data/email_settings.json
 data/pandadoc_settings.json
+data/sms_settings.json
+data/seller_bot_settings.json
 data/saved_contacts.json
 data/outreach_history.json
+data/lucas_memory.json
+data/lucas_timers.json
+data/link_zone_history.json
+data/scheduled_callbacks.json
+data/property_valuations.json
 *.env
 *.env.local
 

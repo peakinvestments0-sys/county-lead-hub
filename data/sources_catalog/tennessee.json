@@ -1,0 +1,1203 @@
+[
+  {
+    "county": "Shelby",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://www.assessor.shelbycountytn.gov/PropertySearch",
+        "evidence": "https://www.shelbycountytn.gov/1525/Search-Property-Appraisal-Records",
+        "agency": "Shelby County Assessor of Property",
+        "notes": "Requires I Accept at the Assessor disclaimer before searching real property by owner, address, or parcel.",
+        "access": "SEARCH_PORTAL"
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://www.shelbycountytn.gov/3410/Public-Records",
+        "evidence": "https://shelbycountytn.gov/DocumentCenter/View/31650",
+        "agency": "Shelby County Assessor of Property",
+        "access": "RECORDS_REQUEST",
+        "format": "Existing electronic CAMA export",
+        "email": "publicrecords@shelbycountytn.gov",
+        "notes": "No Public Download — Request Data. Full countywide owner/mailing/assessment export was not confirmed as a public download. Records request fallback. Route to the Assessor of Property through the public-records coordinator, publicrecords@shelbycountytn.gov. Published county policy requires proof of Tennessee citizenship using a valid Tennessee driver license or other government-issued ID. Nonresident access is not promised."
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://payments.shelbycountytrustee.com/",
+        "evidence": "https://www.shelbycountytrustee.com/103/Tax-Look-Up",
+        "agency": "Shelby County Trustee",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual Tax Status only. Check one property/account and tax year for outstanding balance and delinquency; this is not a full countywide delinquent list, tax-sale list, or bulk file. Older delinquencies transferred to court may require a separate Clerk and Master check. "
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://www.tnpublicnotice.com/search.aspx",
+        "evidence": "https://wapp.capitol.tn.gov/apps/BillInfo/Default?BillNumber=SB0461&ga=108",
+        "agency": "Public Notice Tennessee — Tennessee newspapers",
+        "access": "SEARCH_PORTAL",
+        "notes": "Newspaper legal-notice repository. In Advanced Search choose County: Shelby, then Popular Searches: Foreclosures or search trustee’s sale / foreclosure; set publication dates. SB0461/Public Chapter 124 (2013) establishes the statewide newspaper repository; Tennessee Press Association identifies this service. Covers published newspaper notices, not every default, all foreclosure filings, or the separate internet posting providers under the 2025 foreclosure law. One statewide portal supports county filters; county selection here does not automatically prefilter the external site. No session-specific URL is stored."
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://probatedata.shelbycountytn.gov/ProbateCourt/",
+        "evidence": "https://www.shelbycountytn.gov/3666/How-to-Search-for-Documents",
+        "agency": "Shelby County Probate Court Clerk",
+        "access": "SEARCH_PORTAL",
+        "notes": "Official Probate Court case/document search. Search party or case number; image availability and any copy charges are governed by the Clerk."
+      }
+    ]
+  },
+  {
+    "county": "Davidson",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://portal.padctn.org/",
+        "evidence": "https://www.padctn.org/",
+        "agency": "Metropolitan Nashville & Davidson County Assessor of Property",
+        "notes": "Countywide metropolitan Assessor of Property search for Nashville and Davidson County. One shared assessment system; Nashville does not have a separate city assessment source.",
+        "access": "SEARCH_PORTAL"
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://www.nashville.gov/departments/metro-clerk/public-records-request",
+        "evidence": "https://www.nashville.gov/departments/metro-clerk/public-records-request/public-records-request-policy",
+        "agency": "Metropolitan Nashville & Davidson County Assessor of Property",
+        "access": "RECORDS_REQUEST",
+        "format": "Existing electronic CAMA export",
+        "notes": "No Public Download — Request Data. Full countywide owner/mailing/assessment export was not confirmed as a public download. Records request fallback. Metro Clerk public-records workflow lists the Assessor of Property. Request existing countywide appraisal/CAMA data from the metropolitan Assessor, not a separate Nashville city file. Policy requires Tennessee citizenship and a Tennessee driver license or acceptable alternative ID; voluntary nonresident access is unconfirmed."
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://metronashville.taxandrevenue.opengov.com/",
+        "evidence": "https://www.nashville.gov/departments/trustee",
+        "agency": "Office of the Metropolitan Trustee — Nashville & Davidson County",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual Tax Status only. Check one property/account and tax year for outstanding balance and delinquency; this is not a full countywide delinquent list, tax-sale list, or bulk file. Older delinquencies transferred to court may require a separate Clerk and Master check. The metropolitan Trustee serves Nashville and Davidson County; one shared source."
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://www.tnpublicnotice.com/search.aspx",
+        "evidence": "https://wapp.capitol.tn.gov/apps/BillInfo/Default?BillNumber=SB0461&ga=108",
+        "agency": "Public Notice Tennessee — Tennessee newspapers",
+        "access": "SEARCH_PORTAL",
+        "notes": "Newspaper legal-notice repository. In Advanced Search choose County: Davidson, then Popular Searches: Foreclosures or search trustee’s sale / foreclosure; set publication dates. SB0461/Public Chapter 124 (2013) establishes the statewide newspaper repository; Tennessee Press Association identifies this service. Covers published newspaper notices, not every default, all foreclosure filings, or the separate internet posting providers under the 2025 foreclosure law. One statewide portal supports county filters; county selection here does not automatically prefilter the external site. No session-specific URL is stored."
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://caselink.nashville.gov/public",
+        "evidence": "https://circuitclerk.nashville.gov/probate/",
+        "agency": "Davidson County Circuit Court Clerk — Seventh Circuit Probate",
+        "access": "SEARCH_PORTAL",
+        "notes": "Countywide Nashville-Davidson probate jurisdiction. Free CaseSearch provides party and basic case information: select Probate. Document images use the separate subscription CaseLink service. No separate Nashville city Probate record."
+      }
+    ]
+  },
+  {
+    "county": "Knox",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://propertyinfo.knoxcountytn.gov/search/commonsearch.aspx?mode=realprop",
+        "evidence": "https://property.knoxcounty.org/resources/helpful-links/",
+        "agency": "Knox County Assessor of Property",
+        "notes": "Requires I Accept at the disclaimer. Countywide Assessor real-property lookup by owner, address, or parcel; Knoxville is not a separate assessment jurisdiction.",
+        "access": "SEARCH_PORTAL"
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://www.knoxcounty.org/recordsmgmt/aboutpublicrecords.php",
+        "evidence": "https://www.knoxcounty.org/recordsmgmt/pdfs/Public_Records_Policy.pdf",
+        "agency": "Knox County Assessor of Property",
+        "access": "RECORDS_REQUEST",
+        "format": "Existing electronic CAMA export",
+        "notes": "No Public Download — Request Data. The published Knox County policy names the Property Assessor public-records coordinator, county.assessor@knoxcounty.org, 400 Main St., Suite 204. Copies require a written request on Form A. Policy requires proof of Tennessee citizenship using a valid Tennessee driver license or acceptable alternative ID. Nonresident access is not promised. The linked Records Management page supplies the policy and request form; request the existing full countywide owner/mailing/assessment CAMA export from the Assessor.",
+        "email": "county.assessor@knoxcounty.org"
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://propertytax.knoxcountytn.gov/lookup/property-tax",
+        "evidence": "https://trustee.knoxcounty.org/",
+        "agency": "Knox County Trustee",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual Tax Status only. Check one property/account and tax year for outstanding balance and delinquency; this is not a full countywide delinquent list, tax-sale list, or bulk file. Older delinquencies transferred to court may require a separate Clerk and Master check. "
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://www.tnpublicnotice.com/search.aspx",
+        "evidence": "https://wapp.capitol.tn.gov/apps/BillInfo/Default?BillNumber=SB0461&ga=108",
+        "agency": "Public Notice Tennessee — Tennessee newspapers",
+        "access": "SEARCH_PORTAL",
+        "notes": "Newspaper legal-notice repository. In Advanced Search choose County: Knox, then Popular Searches: Foreclosures or search trustee’s sale / foreclosure; set publication dates. SB0461/Public Chapter 124 (2013) establishes the statewide newspaper repository; Tennessee Press Association identifies this service. Covers published newspaper notices, not every default, all foreclosure filings, or the separate internet posting providers under the 2025 foreclosure law. One statewide portal supports county filters; county selection here does not automatically prefilter the external site. No session-specific URL is stored."
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://www.knoxcounty.org/chancery/records_gen_info.php",
+        "evidence": "https://www.knoxcounty.org/chancery/records_gen_info.php",
+        "agency": "Knox County Clerk and Master — Probate Division",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "The Clerk states that records are not currently online. Use the actual probate records office instructions, including probate.records@knoxcounty.org; copies/inspection are subject to its citizenship/ID policy. This is an office workflow, not a searchable probate portal."
+      }
+    ]
+  },
+  {
+    "county": "Hamilton",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://assessor.hamiltontn.gov/search",
+        "evidence": "https://hamiltontn.gov/AssessorOfProperty.aspx",
+        "agency": "Hamilton County Assessor of Property",
+        "notes": "Countywide Assessor of Property search; individual parcels, not the countywide data export.",
+        "access": "SEARCH_PORTAL"
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://www.hamiltontn.gov/_downloadsAssessor/AssessorExportCSV.zip",
+        "evidence": "https://www.hamiltontn.gov/DownloadRecords.aspx",
+        "agency": "Hamilton County Assessor of Property",
+        "access": "DIRECT_DOWNLOAD",
+        "format": "ZIP / CSV",
+        "notes": "Official countywide Assessor CSV ZIP with owner, mailing/situs, valuation, class, acres, and district fields. Field layout is published on Download Records. Use the latest extract date shown there."
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://www.hamiltontn.gov/_downloadsTrusteeDelinquent/CTRUDELQCSV.zip",
+        "evidence": "https://www.hamiltontn.gov/DownloadRecords.aspx",
+        "agency": "Hamilton County Trustee",
+        "access": "DIRECT_DOWNLOAD",
+        "format": "ZIP / CSV",
+        "notes": "Official county Trustee delinquent-account CSV ZIP, refreshed on the Download Records page. The published layout describes all records considered delinquent in the Trustee’s office and includes bill year, Property Type, Back Tax Indicator, owner/mailing/situs and current amounts owed. Includes real and personal property: retain real-property types for a real-estate list and check the extract date. Independently held court-transferred balances may require a Clerk and Master check. This is a delinquent-account export, not a tax-sale auction list."
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://www.tnpublicnotice.com/search.aspx",
+        "evidence": "https://wapp.capitol.tn.gov/apps/BillInfo/Default?BillNumber=SB0461&ga=108",
+        "agency": "Public Notice Tennessee — Tennessee newspapers",
+        "access": "SEARCH_PORTAL",
+        "notes": "Newspaper legal-notice repository. In Advanced Search choose County: Hamilton, then Popular Searches: Foreclosures or search trustee’s sale / foreclosure; set publication dates. SB0461/Public Chapter 124 (2013) establishes the statewide newspaper repository; Tennessee Press Association identifies this service. Covers published newspaper notices, not every default, all foreclosure filings, or the separate internet posting providers under the 2025 foreclosure law. One statewide portal supports county filters; county selection here does not automatically prefilter the external site. No session-specific URL is stored."
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://hamiltontn.gov/Chancery_RulesFees.aspx",
+        "evidence": "https://hamiltontn.gov/Chancery_RulesFees.aspx",
+        "agency": "Hamilton County Chancery Court Clerk and Master",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "Official Chancery page identifies probate jurisdiction and probate procedures. Contact the Clerk and Master for estate files; no unverified generic court portal is presented as an estate search."
+      }
+    ]
+  },
+  {
+    "county": "Rutherford",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://secured.rutherfordcountytn.gov/OFS/WP/Home",
+        "evidence": "https://rcpatn.com/",
+        "agency": "Rutherford County Assessor of Property",
+        "notes": "Assessor-linked WebPro real-property search by parcel, owner, or address. Individual search results are not a full CAMA export.",
+        "access": "SEARCH_PORTAL"
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://rcpatn.com/vertical/sites/%7B3B0D34A7-A0D6-4129-9E48-8D39D4EA39B9%7D/uploads/Open-Record-Request.pdf",
+        "evidence": "https://rcpatn.com/",
+        "agency": "Rutherford County Assessor of Property",
+        "access": "RECORDS_REQUEST",
+        "format": "Existing electronic CAMA export",
+        "email": "assessor@rutherfordcountytn.gov",
+        "notes": "No Public Download — Request Data. Full countywide owner/mailing/assessment export was not confirmed as a public download. Records request fallback. Assessor’s own request form identifies assessor@rutherfordcountytn.gov and asks whether the requester is a Tennessee citizen. It does not specify an ID requirement or guarantee nonresident access; confirm those details with the Assessor before submitting. The public GIS hub was not verified as a complete owner/mailing/assessment export."
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://rctrustee.com/",
+        "evidence": "https://www.townofsmyrna.org/",
+        "agency": "Rutherford County Trustee",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual Tax Status only. Check one property/account and tax year for outstanding balance and delinquency; this is not a full countywide delinquent list, tax-sale list, or bulk file. Older delinquencies transferred to court may require a separate Clerk and Master check. "
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://www.tnpublicnotice.com/search.aspx",
+        "evidence": "https://wapp.capitol.tn.gov/apps/BillInfo/Default?BillNumber=SB0461&ga=108",
+        "agency": "Public Notice Tennessee — Tennessee newspapers",
+        "access": "SEARCH_PORTAL",
+        "notes": "Newspaper legal-notice repository. In Advanced Search choose County: Rutherford, then Popular Searches: Foreclosures or search trustee’s sale / foreclosure; set publication dates. SB0461/Public Chapter 124 (2013) establishes the statewide newspaper repository; Tennessee Press Association identifies this service. Covers published newspaper notices, not every default, all foreclosure filings, or the separate internet posting providers under the 2025 foreclosure law. One statewide portal supports county filters; county selection here does not automatically prefilter the external site. No session-specific URL is stored."
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://rcchancery.com/probate",
+        "evidence": "https://rcchancery.com/probate",
+        "agency": "Rutherford County Chancery Court Clerk and Master",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "Official Chancery probate instructions and office workflow. The County Clerk also has concurrent probate functions; this source identifies the Chancery custodian rather than claiming every estate is online."
+      },
+      {
+        "type": "COUNTY_CODE_ENFORCEMENT",
+        "url": "https://rutherfordcountytn.gov/property-maintenance",
+        "evidence": "https://rutherfordcountytn.gov/property-maintenance",
+        "agency": "Rutherford County Property Maintenance",
+        "notes": "Official county Property Maintenance department investigates open storage, vehicles, weeds, unsafe structures and substandard housing. The page supplies a violation complaint form and phone 615-907-3559. Contact the department for county-jurisdiction case records; no public case-search portal was confirmed. Murfreesboro, Smyrna and La Vergne remain separate municipal agencies.",
+        "access": "MANUAL_NAVIGATION"
+      }
+    ]
+  },
+  {
+    "county": "Williamson",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://inigo.williamson-tn.org/property_search/",
+        "evidence": "https://www.williamsoncounty-tn.gov/64/Property-Assessor",
+        "agency": "Williamson County Assessor of Property",
+        "notes": "Assessor-linked countywide property search. Individual parcel results are not a countywide assessment dataset.",
+        "access": "SEARCH_PORTAL"
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://williamsoncountytn.justfoia.com/publicportal/home/newrequest",
+        "evidence": "https://www.williamsoncounty-tn.gov/DocumentCenter/View/25876/Public-Records-Policy-WCG",
+        "agency": "Williamson County Assessor of Property",
+        "access": "RECORDS_REQUEST",
+        "format": "Existing electronic CAMA export",
+        "notes": "No Public Download — Request Data. Full countywide owner/mailing/assessment export was not confirmed as a public download. Records request fallback. County public-records workflow; select Property Assessor, the custodian of appraisal/CAMA records. County policy limits access to Tennessee citizens and the request form asks for government photo ID with address or other identification. Do not assume nonresidents qualify. Request the existing electronic export and fee estimate."
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://www.williamsonpropertytax.com/",
+        "evidence": "https://www.williamsoncounty-tn.gov/64/Property-Assessor",
+        "agency": "Williamson County Trustee",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual Tax Status only. Check one property/account and tax year for outstanding balance and delinquency; this is not a full countywide delinquent list, tax-sale list, or bulk file. Older delinquencies transferred to court may require a separate Clerk and Master check. "
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://www.tnpublicnotice.com/search.aspx",
+        "evidence": "https://wapp.capitol.tn.gov/apps/BillInfo/Default?BillNumber=SB0461&ga=108",
+        "agency": "Public Notice Tennessee — Tennessee newspapers",
+        "access": "SEARCH_PORTAL",
+        "notes": "Newspaper legal-notice repository. In Advanced Search choose County: Williamson, then Popular Searches: Foreclosures or search trustee’s sale / foreclosure; set publication dates. SB0461/Public Chapter 124 (2013) establishes the statewide newspaper repository; Tennessee Press Association identifies this service. Covers published newspaper notices, not every default, all foreclosure filings, or the separate internet posting providers under the 2025 foreclosure law. One statewide portal supports county filters; county selection here does not automatically prefilter the external site. No session-specific URL is stored."
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://www.williamsoncounty-tn.gov/245/Clerk-Master",
+        "evidence": "https://www.williamsoncounty-tn.gov/221/Court-System",
+        "agency": "Williamson County Chancery Court Clerk and Master",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "Official county Clerk and Master link opens the Chancery Court office site. The county Court System page expressly places probate in Chancery. Contact 615-790-5428 for current estate files; no live public estate-case search was confirmed. For archived probate records, the separate official index https://archives.williamsoncounty-tn.gov/indexes/dataset/probates covers 1801–2025; it is not a complete current pending-estate docket."
+      }
+    ]
+  },
+  {
+    "county": "Montgomery",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://property.spatialest.com/tn/montgomery#/",
+        "evidence": "https://montgomerytn.gov/assessor",
+        "agency": "Montgomery County Assessor of Property",
+        "notes": "Assessor-linked Spatialest individual-property lookup; Montgomery County jurisdiction, including Clarksville.",
+        "access": "SEARCH_PORTAL"
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://montgomerytn.gov/comm/public-records",
+        "evidence": "https://montgomerytn.gov/storage/departments/comm/17-6-13_Establishing_Open_Records_Policy_ADA_04_26_2026.pdf",
+        "agency": "Montgomery County Assessor of Property",
+        "access": "RECORDS_REQUEST",
+        "format": "Existing electronic CAMA export",
+        "notes": "No Public Download — Request Data. County Communications supplies the public-records policy, form, and online request link. The policy identifies the Public Information Officer as PRRC unless an office has a separate policy; ask that coordinator to route to the Assessor custodian. Its published policy includes unresolved bracketed choices concerning Tennessee driver license/alternative ID, so confirm the current ID requirement and nonresident acceptance before submitting. The official PublicParcels GIS service has parcel/value/building fields but no owner or mailing fields; it is not a complete Master Parcel source."
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://montgomery-tn.mygovonline.com/mod.php?mod=propertytax&mode=public_lookup",
+        "evidence": "https://montgomerytn.gov/trustee",
+        "agency": "Montgomery County Trustee",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual Tax Status only. Check one property/account and tax year for outstanding balance and delinquency; this is not a full countywide delinquent list, tax-sale list, or bulk file. Older delinquencies transferred to court may require a separate Clerk and Master check. "
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://www.tnpublicnotice.com/search.aspx",
+        "evidence": "https://wapp.capitol.tn.gov/apps/BillInfo/Default?BillNumber=SB0461&ga=108",
+        "agency": "Public Notice Tennessee — Tennessee newspapers",
+        "access": "SEARCH_PORTAL",
+        "notes": "Newspaper legal-notice repository. In Advanced Search choose County: Montgomery, then Popular Searches: Foreclosures or search trustee’s sale / foreclosure; set publication dates. SB0461/Public Chapter 124 (2013) establishes the statewide newspaper repository; Tennessee Press Association identifies this service. Covers published newspaper notices, not every default, all foreclosure filings, or the separate internet posting providers under the 2025 foreclosure law. One statewide portal supports county filters; county selection here does not automatically prefilter the external site. No session-specific URL is stored."
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://montgomerytn.gov/chancery",
+        "evidence": "https://montgomerytn.gov/chancery",
+        "agency": "Montgomery County Chancery Court Clerk and Master",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "Official Chancery office identifies its probate responsibilities and forms. Contact the Clerk and Master for estate records; this is an office workflow."
+      },
+      {
+        "type": "COUNTY_CODE_ENFORCEMENT",
+        "url": "https://montgomerytn.gov/building-codes",
+        "evidence": "https://montgomerytn.gov/building-codes",
+        "agency": "Montgomery County Building and Codes — Codes Enforcement Division",
+        "notes": "Official county page identifies a distinct Codes Enforcement Division responsible for minimum housing standards and safe/sanitary residential occupancy, in addition to zoning. Contact the division for county-jurisdiction violation records. Clarksville has a separate city Codes Enforcement Division; this source is not its construction-permit portal.",
+        "access": "MANUAL_NAVIGATION"
+      }
+    ]
+  },
+  {
+    "county": "Sumner",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://assessment.cot.tn.gov/TPAD/",
+        "evidence": "https://comptroller.tn.gov/office-functions/pa/gisredistricting/redistricting-and-land-use-maps/parcel-data.html",
+        "agency": "Sumner County Assessor of Property",
+        "notes": "TPAD IMPACT individual-property search. Select Sumner County and search by owner, address, or parcel. Search-result exports are filtered subsets, not the full countywide Master Parcel dataset.",
+        "access": "SEARCH_PORTAL"
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://comptroller.tn.gov/office-functions/pa/gisredistricting/redistricting-and-land-use-maps/parcel-data.html",
+        "evidence": "https://comptroller.tn.gov/office-functions/pa/gisredistricting/redistricting-and-land-use-maps/parcel-data.html",
+        "agency": "Sumner County Assessor of Property",
+        "access": "DOWNLOAD_PAGE",
+        "format": "ZIP / Shapefile / DBF",
+        "notes": "Comptroller weekly full Sumner County parcel ZIP download. Select the county on this page; Assessment_Data_##.dbf contains tabular owner, address, land/building/total and assessed values, acres and class fields, joined to parcel geometry by GISLINK. Field definitions are included. No account or Tennessee-citizenship proof is stated for published downloads. This is countywide data, not a filtered TPAD search export."
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://sumner-tn.mygovonline.com/mod.php?mod=propertytax&mode=public_lookup",
+        "evidence": "https://sumnercountytn.gov/",
+        "agency": "Sumner County Trustee",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual Tax Status only. Check one property/account and tax year for outstanding balance and delinquency; this is not a full countywide delinquent list, tax-sale list, or bulk file. Older delinquencies transferred to court may require a separate Clerk and Master check. "
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://www.tnpublicnotice.com/search.aspx",
+        "evidence": "https://wapp.capitol.tn.gov/apps/BillInfo/Default?BillNumber=SB0461&ga=108",
+        "agency": "Public Notice Tennessee — Tennessee newspapers",
+        "access": "SEARCH_PORTAL",
+        "notes": "Newspaper legal-notice repository. In Advanced Search choose County: Sumner, then Popular Searches: Foreclosures or search trustee’s sale / foreclosure; set publication dates. SB0461/Public Chapter 124 (2013) establishes the statewide newspaper repository; Tennessee Press Association identifies this service. Covers published newspaper notices, not every default, all foreclosure filings, or the separate internet posting providers under the 2025 foreclosure law. One statewide portal supports county filters; county selection here does not automatically prefilter the external site. No session-specific URL is stored."
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://sumnerchancerycourt.com/probate/",
+        "evidence": "https://sumnercountytn.gov/departments/courts/",
+        "agency": "Sumner County Chancery Court Clerk and Master",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "County-linked Chancery probate instructions and estate forms; office workflow, not a verified searchable estate database."
+      }
+    ]
+  },
+  {
+    "county": "Wilson",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://assessment.cot.tn.gov/TPAD/",
+        "evidence": "https://comptroller.tn.gov/office-functions/pa/gisredistricting/redistricting-and-land-use-maps/parcel-data.html",
+        "agency": "Wilson County Assessor of Property",
+        "notes": "TPAD IMPACT individual-property search. Select Wilson County and search by owner, address, or parcel. Search-result exports are filtered subsets, not the full countywide Master Parcel dataset.",
+        "access": "SEARCH_PORTAL"
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://comptroller.tn.gov/office-functions/pa/gisredistricting/redistricting-and-land-use-maps/parcel-data.html",
+        "evidence": "https://comptroller.tn.gov/office-functions/pa/gisredistricting/redistricting-and-land-use-maps/parcel-data.html",
+        "agency": "Wilson County Assessor of Property",
+        "access": "DOWNLOAD_PAGE",
+        "format": "ZIP / Shapefile / DBF",
+        "notes": "Comptroller weekly full Wilson County parcel ZIP download. Select the county on this page; Assessment_Data_##.dbf contains tabular owner, address, land/building/total and assessed values, acres and class fields, joined to parcel geometry by GISLINK. Field definitions are included. No account or Tennessee-citizenship proof is stated for published downloads. This is countywide data, not a filtered TPAD search export."
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://citisenportal.com/Search/WilsonCountyTrustee",
+        "evidence": "https://www.wilsoncountytn.gov/201/Trustee",
+        "agency": "Wilson County Trustee",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual Tax Status only. Check one property/account and tax year for outstanding balance and delinquency; this is not a full countywide delinquent list, tax-sale list, or bulk file. Older delinquencies transferred to court may require a separate Clerk and Master check. "
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://www.tnpublicnotice.com/search.aspx",
+        "evidence": "https://wapp.capitol.tn.gov/apps/BillInfo/Default?BillNumber=SB0461&ga=108",
+        "agency": "Public Notice Tennessee — Tennessee newspapers",
+        "access": "SEARCH_PORTAL",
+        "notes": "Newspaper legal-notice repository. In Advanced Search choose County: Wilson, then Popular Searches: Foreclosures or search trustee’s sale / foreclosure; set publication dates. SB0461/Public Chapter 124 (2013) establishes the statewide newspaper repository; Tennessee Press Association identifies this service. Covers published newspaper notices, not every default, all foreclosure filings, or the separate internet posting providers under the 2025 foreclosure law. One statewide portal supports county filters; county selection here does not automatically prefilter the external site. No session-specific URL is stored."
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://www.wilsoncountytn.gov/173/Clerk-Master",
+        "evidence": "https://www.wilsoncountytn.gov/173/Clerk-Master",
+        "agency": "Wilson County Chancery Court Clerk and Master",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "Official Clerk and Master page identifies probate jurisdiction and records office. Contact that office for estate case files."
+      }
+    ]
+  },
+  {
+    "county": "Sullivan",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://assessment.cot.tn.gov/TPAD/",
+        "evidence": "https://comptroller.tn.gov/office-functions/pa/gisredistricting/redistricting-and-land-use-maps/parcel-data.html",
+        "agency": "Sullivan County Assessor of Property",
+        "notes": "TPAD IMPACT individual-property search. Select Sullivan County and search by owner, address, or parcel. Search-result exports are filtered subsets, not the full countywide Master Parcel dataset.",
+        "access": "SEARCH_PORTAL"
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://comptroller.tn.gov/office-functions/pa/gisredistricting/redistricting-and-land-use-maps/parcel-data.html",
+        "evidence": "https://comptroller.tn.gov/office-functions/pa/gisredistricting/redistricting-and-land-use-maps/parcel-data.html",
+        "agency": "Sullivan County Assessor of Property",
+        "access": "DOWNLOAD_PAGE",
+        "format": "ZIP / Shapefile / DBF",
+        "notes": "Comptroller weekly full Sullivan County parcel ZIP download. Select the county on this page; Assessment_Data_##.dbf contains tabular owner, address, land/building/total and assessed values, acres and class fields, joined to parcel geometry by GISLINK. Field definitions are included. No account or Tennessee-citizenship proof is stated for published downloads. This is countywide data, not a filtered TPAD search export."
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://sullivantntrustee.gov/property-tax/",
+        "evidence": "https://sullivancountytn.gov/",
+        "agency": "Sullivan County Trustee",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "Individual Tax Status only. Check one property/account and tax year for outstanding balance and delinquency; this is not a full countywide delinquent list, tax-sale list, or bulk file. Older delinquencies transferred to court may require a separate Clerk and Master check. Use the Trustee’s linked payment/search system from this property-tax page."
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://www.tnpublicnotice.com/search.aspx",
+        "evidence": "https://wapp.capitol.tn.gov/apps/BillInfo/Default?BillNumber=SB0461&ga=108",
+        "agency": "Public Notice Tennessee — Tennessee newspapers",
+        "access": "SEARCH_PORTAL",
+        "notes": "Newspaper legal-notice repository. In Advanced Search choose County: Sullivan, then Popular Searches: Foreclosures or search trustee’s sale / foreclosure; set publication dates. SB0461/Public Chapter 124 (2013) establishes the statewide newspaper repository; Tennessee Press Association identifies this service. Covers published newspaper notices, not every default, all foreclosure filings, or the separate internet posting providers under the 2025 foreclosure law. One statewide portal supports county filters; county selection here does not automatically prefilter the external site. No session-specific URL is stored."
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://sullivancountytn.gov/chancery-court/",
+        "evidence": "https://sullivancountytn.gov/chancery-court/",
+        "agency": "Sullivan County Chancery Court Clerk and Master",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "Official county Chancery office with probate responsibilities and division contacts. Ask the appropriate division for estate records."
+      },
+      {
+        "type": "COUNTY_CODE_ENFORCEMENT",
+        "url": "https://sullivancountytn.gov/planning-and-codes/",
+        "evidence": "https://sullivancountytn.gov/planning-and-codes/",
+        "agency": "Sullivan County Planning and Codes — Property Maintenance",
+        "notes": "County department publishes its Property Maintenance Board schedule; the county’s adopted maintenance code covers unincorporated areas and the December 2025 commission record applies it to county-owned properties. Contact Planning and Codes for existing county property-maintenance case/board records. Kingsport, Bristol and Johnson City enforcement remain municipal. No public case-search portal was confirmed.",
+        "access": "MANUAL_NAVIGATION"
+      }
+    ]
+  },
+  {
+    "county": "Blount",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://assessment.cot.tn.gov/TPAD/",
+        "evidence": "https://comptroller.tn.gov/office-functions/pa/gisredistricting/redistricting-and-land-use-maps/parcel-data.html",
+        "agency": "Blount County Assessor of Property",
+        "notes": "TPAD IMPACT individual-property search. Select Blount County and search by owner, address, or parcel. Search-result exports are filtered subsets, not the full countywide Master Parcel dataset.",
+        "access": "SEARCH_PORTAL"
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://comptroller.tn.gov/office-functions/pa/gisredistricting/redistricting-and-land-use-maps/parcel-data.html",
+        "evidence": "https://comptroller.tn.gov/office-functions/pa/gisredistricting/redistricting-and-land-use-maps/parcel-data.html",
+        "agency": "Blount County Assessor of Property",
+        "access": "DOWNLOAD_PAGE",
+        "format": "ZIP / Shapefile / DBF",
+        "notes": "Comptroller weekly full Blount County parcel ZIP download. Select the county on this page; Assessment_Data_##.dbf contains tabular owner, address, land/building/total and assessed values, acres and class fields, joined to parcel geometry by GISLINK. Field definitions are included. No account or Tennessee-citizenship proof is stated for published downloads. This is countywide data, not a filtered TPAD search export."
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://blount-tn.mygovonline.com/mod.php?mod=propertytax&mode=public_lookup",
+        "evidence": "https://blounttn.gov/322/Trustee",
+        "agency": "Blount County Trustee",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual Tax Status only. Check one property/account and tax year for outstanding balance and delinquency; this is not a full countywide delinquent list, tax-sale list, or bulk file. Older delinquencies transferred to court may require a separate Clerk and Master check. "
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://www.tnpublicnotice.com/search.aspx",
+        "evidence": "https://wapp.capitol.tn.gov/apps/BillInfo/Default?BillNumber=SB0461&ga=108",
+        "agency": "Public Notice Tennessee — Tennessee newspapers",
+        "access": "SEARCH_PORTAL",
+        "notes": "Newspaper legal-notice repository. In Advanced Search choose County: Blount, then Popular Searches: Foreclosures or search trustee’s sale / foreclosure; set publication dates. SB0461/Public Chapter 124 (2013) establishes the statewide newspaper repository; Tennessee Press Association identifies this service. Covers published newspaper notices, not every default, all foreclosure filings, or the separate internet posting providers under the 2025 foreclosure law. One statewide portal supports county filters; county selection here does not automatically prefilter the external site. No session-specific URL is stored."
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://blounttn.gov/2190/Probate",
+        "evidence": "https://blounttn.gov/2190/Probate",
+        "agency": "Blount County Chancery Court Clerk and Master",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "Dedicated official Probate page with estate procedures and responsible records office; not an individual case-search portal."
+      }
+    ]
+  },
+  {
+    "county": "Washington",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://assessment.cot.tn.gov/TPAD/",
+        "evidence": "https://comptroller.tn.gov/office-functions/pa/gisredistricting/redistricting-and-land-use-maps/parcel-data.html",
+        "agency": "Washington County Assessor of Property",
+        "notes": "TPAD IMPACT individual-property search. Select Washington County and search by owner, address, or parcel. Search-result exports are filtered subsets, not the full countywide Master Parcel dataset.",
+        "access": "SEARCH_PORTAL"
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://comptroller.tn.gov/office-functions/pa/gisredistricting/redistricting-and-land-use-maps/parcel-data.html",
+        "evidence": "https://comptroller.tn.gov/office-functions/pa/gisredistricting/redistricting-and-land-use-maps/parcel-data.html",
+        "agency": "Washington County Assessor of Property",
+        "access": "DOWNLOAD_PAGE",
+        "format": "ZIP / Shapefile / DBF",
+        "notes": "Comptroller weekly full Washington County parcel ZIP download. Select the county on this page; Assessment_Data_##.dbf contains tabular owner, address, land/building/total and assessed values, acres and class fields, joined to parcel geometry by GISLINK. Field definitions are included. No account or Tennessee-citizenship proof is stated for published downloads. This is countywide data, not a filtered TPAD search export."
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://washington-tn.mygovonline.com/mod.php?mod=propertytax&mode=public_lookup",
+        "evidence": "https://www.washingtoncountytn.org/",
+        "agency": "Washington County Trustee",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual Tax Status only. Check one property/account and tax year for outstanding balance and delinquency; this is not a full countywide delinquent list, tax-sale list, or bulk file. Older delinquencies transferred to court may require a separate Clerk and Master check. "
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://www.tnpublicnotice.com/search.aspx",
+        "evidence": "https://wapp.capitol.tn.gov/apps/BillInfo/Default?BillNumber=SB0461&ga=108",
+        "agency": "Public Notice Tennessee — Tennessee newspapers",
+        "access": "SEARCH_PORTAL",
+        "notes": "Newspaper legal-notice repository. In Advanced Search choose County: Washington, then Popular Searches: Foreclosures or search trustee’s sale / foreclosure; set publication dates. SB0461/Public Chapter 124 (2013) establishes the statewide newspaper repository; Tennessee Press Association identifies this service. Covers published newspaper notices, not every default, all foreclosure filings, or the separate internet posting providers under the 2025 foreclosure law. One statewide portal supports county filters; county selection here does not automatically prefilter the external site. No session-specific URL is stored."
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://www.washingtoncountytn.org/266/Probate-Court",
+        "evidence": "https://www.washingtoncountytn.org/266/Probate-Court",
+        "agency": "Washington County Chancery Court Clerk and Master — Probate Court",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "Dedicated official Probate Court office and estate information. Contact the Clerk and Master for current probate records."
+      }
+    ]
+  },
+  {
+    "county": "Maury",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://assessment.cot.tn.gov/TPAD/",
+        "evidence": "https://comptroller.tn.gov/office-functions/pa/gisredistricting/redistricting-and-land-use-maps/parcel-data.html",
+        "agency": "Maury County Assessor of Property",
+        "notes": "TPAD IMPACT individual-property search. Select Maury County and search by owner, address, or parcel. Search-result exports are filtered subsets, not the full countywide Master Parcel dataset.",
+        "access": "SEARCH_PORTAL"
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://comptroller.tn.gov/office-functions/pa/gisredistricting/redistricting-and-land-use-maps/parcel-data.html",
+        "evidence": "https://comptroller.tn.gov/office-functions/pa/gisredistricting/redistricting-and-land-use-maps/parcel-data.html",
+        "agency": "Maury County Assessor of Property",
+        "access": "DOWNLOAD_PAGE",
+        "format": "ZIP / Shapefile / DBF",
+        "notes": "Comptroller weekly full Maury County parcel ZIP download. Select the county on this page; Assessment_Data_##.dbf contains tabular owner, address, land/building/total and assessed values, acres and class fields, joined to parcel geometry by GISLINK. Field definitions are included. No account or Tennessee-citizenship proof is stated for published downloads. This is countywide data, not a filtered TPAD search export."
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://citisenportal.com/Search/Maury%20County%20Trustee",
+        "evidence": "https://maurycounty-tn.gov/557/Options-of-How-to-Pay-Property-Taxes",
+        "agency": "Maury County Trustee",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual Tax Status only. Check one property/account and tax year for outstanding balance and delinquency; this is not a full countywide delinquent list, tax-sale list, or bulk file. Older delinquencies transferred to court may require a separate Clerk and Master check. "
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://www.tnpublicnotice.com/search.aspx",
+        "evidence": "https://wapp.capitol.tn.gov/apps/BillInfo/Default?BillNumber=SB0461&ga=108",
+        "agency": "Public Notice Tennessee — Tennessee newspapers",
+        "access": "SEARCH_PORTAL",
+        "notes": "Newspaper legal-notice repository. In Advanced Search choose County: Maury, then Popular Searches: Foreclosures or search trustee’s sale / foreclosure; set publication dates. SB0461/Public Chapter 124 (2013) establishes the statewide newspaper repository; Tennessee Press Association identifies this service. Covers published newspaper notices, not every default, all foreclosure filings, or the separate internet posting providers under the 2025 foreclosure law. One statewide portal supports county filters; county selection here does not automatically prefilter the external site. No session-specific URL is stored."
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://maurycounty-tn.gov/210/Clerk-Master",
+        "evidence": "https://maurycounty-tn.gov/210/Clerk-Master",
+        "agency": "Maury County Chancery Court Clerk and Master",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "Official Clerk and Master page provides probate procedures and records contacts. No complete free estate search was confirmed."
+      }
+    ]
+  },
+  {
+    "county": "Bradley",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://assessment.cot.tn.gov/TPAD/",
+        "evidence": "https://comptroller.tn.gov/office-functions/pa/gisredistricting/redistricting-and-land-use-maps/parcel-data.html",
+        "agency": "Bradley County Assessor of Property",
+        "notes": "TPAD IMPACT individual-property search. Select Bradley County and search by owner, address, or parcel. Search-result exports are filtered subsets, not the full countywide Master Parcel dataset.",
+        "access": "SEARCH_PORTAL"
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://comptroller.tn.gov/office-functions/pa/gisredistricting/redistricting-and-land-use-maps/parcel-data.html",
+        "evidence": "https://comptroller.tn.gov/office-functions/pa/gisredistricting/redistricting-and-land-use-maps/parcel-data.html",
+        "agency": "Bradley County Assessor of Property",
+        "access": "DOWNLOAD_PAGE",
+        "format": "ZIP / Shapefile / DBF",
+        "notes": "Comptroller weekly full Bradley County parcel ZIP download. Select the county on this page; Assessment_Data_##.dbf contains tabular owner, address, land/building/total and assessed values, acres and class fields, joined to parcel geometry by GISLINK. Field definitions are included. No account or Tennessee-citizenship proof is stated for published downloads. This is countywide data, not a filtered TPAD search export."
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://citisenportal.com/Search/Bradley%20County%20Trustee",
+        "evidence": "https://bradleycountytn.gov/county-government/trustee/",
+        "agency": "Bradley County Trustee",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual Tax Status only. Check one property/account and tax year for outstanding balance and delinquency; this is not a full countywide delinquent list, tax-sale list, or bulk file. Older delinquencies transferred to court may require a separate Clerk and Master check. "
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://www.tnpublicnotice.com/search.aspx",
+        "evidence": "https://wapp.capitol.tn.gov/apps/BillInfo/Default?BillNumber=SB0461&ga=108",
+        "agency": "Public Notice Tennessee — Tennessee newspapers",
+        "access": "SEARCH_PORTAL",
+        "notes": "Newspaper legal-notice repository. In Advanced Search choose County: Bradley, then Popular Searches: Foreclosures or search trustee’s sale / foreclosure; set publication dates. SB0461/Public Chapter 124 (2013) establishes the statewide newspaper repository; Tennessee Press Association identifies this service. Covers published newspaper notices, not every default, all foreclosure filings, or the separate internet posting providers under the 2025 foreclosure law. One statewide portal supports county filters; county selection here does not automatically prefilter the external site. No session-specific URL is stored."
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://bradleychancery.org/#/",
+        "evidence": "https://bradleycountytn.gov/county-government/",
+        "agency": "Bradley County Chancery and Probate Court Clerk and Master",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "County-linked Chancery and Probate office workflow. The state AOC court-system inventory identifies Bradley Chancery/Probate; the destination may require JavaScript."
+      }
+    ]
+  },
+  {
+    "county": "Sevier",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://assessment.cot.tn.gov/TPAD/",
+        "evidence": "https://comptroller.tn.gov/office-functions/pa/gisredistricting/redistricting-and-land-use-maps/parcel-data.html",
+        "agency": "Sevier County Assessor of Property",
+        "notes": "TPAD IMPACT individual-property search. Select Sevier County and search by owner, address, or parcel. Search-result exports are filtered subsets, not the full countywide Master Parcel dataset.",
+        "access": "SEARCH_PORTAL"
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://comptroller.tn.gov/office-functions/pa/gisredistricting/redistricting-and-land-use-maps/parcel-data.html",
+        "evidence": "https://comptroller.tn.gov/office-functions/pa/gisredistricting/redistricting-and-land-use-maps/parcel-data.html",
+        "agency": "Sevier County Assessor of Property",
+        "access": "DOWNLOAD_PAGE",
+        "format": "ZIP / Shapefile / DBF",
+        "notes": "Comptroller weekly full Sevier County parcel ZIP download. Select the county on this page; Assessment_Data_##.dbf contains tabular owner, address, land/building/total and assessed values, acres and class fields, joined to parcel geometry by GISLINK. Field definitions are included. No account or Tennessee-citizenship proof is stated for published downloads. This is countywide data, not a filtered TPAD search export."
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://citisenportal.com/Search/Sevier%20County%20Trustee",
+        "evidence": "https://www.seviercountytn.gov/",
+        "agency": "Sevier County Trustee",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual Tax Status only. Check one property/account and tax year for outstanding balance and delinquency; this is not a full countywide delinquent list, tax-sale list, or bulk file. Older delinquencies transferred to court may require a separate Clerk and Master check. "
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://www.tnpublicnotice.com/search.aspx",
+        "evidence": "https://wapp.capitol.tn.gov/apps/BillInfo/Default?BillNumber=SB0461&ga=108",
+        "agency": "Public Notice Tennessee — Tennessee newspapers",
+        "access": "SEARCH_PORTAL",
+        "notes": "Newspaper legal-notice repository. In Advanced Search choose County: Sevier, then Popular Searches: Foreclosures or search trustee’s sale / foreclosure; set publication dates. SB0461/Public Chapter 124 (2013) establishes the statewide newspaper repository; Tennessee Press Association identifies this service. Covers published newspaper notices, not every default, all foreclosure filings, or the separate internet posting providers under the 2025 foreclosure law. One statewide portal supports county filters; county selection here does not automatically prefilter the external site. No session-specific URL is stored."
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://www.seviercountytn.gov/government/county_officials/sevier_county_clerk/index.php",
+        "evidence": "https://www.seviercountytn.gov/government/county_officials/sevier_county_clerk/index.php",
+        "agency": "Sevier County County Clerk — Probate",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "Official County Clerk expressly manages probating estates, guardianships, and conservatorships. Use the Sevierville courthouse office for probate records; vehicle/marriage satellite services are not probate offices."
+      }
+    ]
+  },
+  {
+    "county": "Madison",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://assessment.cot.tn.gov/TPAD/",
+        "evidence": "https://comptroller.tn.gov/office-functions/pa/gisredistricting/redistricting-and-land-use-maps/parcel-data.html",
+        "agency": "Madison County Assessor of Property",
+        "notes": "TPAD IMPACT individual-property search. Select Madison County and search by owner, address, or parcel. Search-result exports are filtered subsets, not the full countywide Master Parcel dataset.",
+        "access": "SEARCH_PORTAL"
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://comptroller.tn.gov/office-functions/pa/gisredistricting/redistricting-and-land-use-maps/parcel-data.html",
+        "evidence": "https://comptroller.tn.gov/office-functions/pa/gisredistricting/redistricting-and-land-use-maps/parcel-data.html",
+        "agency": "Madison County Assessor of Property",
+        "access": "DOWNLOAD_PAGE",
+        "format": "ZIP / Shapefile / DBF",
+        "notes": "Comptroller weekly full Madison County parcel ZIP download. Select the county on this page; Assessment_Data_##.dbf contains tabular owner, address, land/building/total and assessed values, acres and class fields, joined to parcel geometry by GISLINK. Field definitions are included. No account or Tennessee-citizenship proof is stated for published downloads. This is countywide data, not a filtered TPAD search export."
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://paymadisontaxes.com/lookup/property-tax",
+        "evidence": "https://www.madisoncountytn.gov/496/Payment-Options",
+        "agency": "Madison County Trustee",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual Tax Status only. Check one property/account and tax year for outstanding balance and delinquency; this is not a full countywide delinquent list, tax-sale list, or bulk file. Older delinquencies transferred to court may require a separate Clerk and Master check. "
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://www.tnpublicnotice.com/search.aspx",
+        "evidence": "https://wapp.capitol.tn.gov/apps/BillInfo/Default?BillNumber=SB0461&ga=108",
+        "agency": "Public Notice Tennessee — Tennessee newspapers",
+        "access": "SEARCH_PORTAL",
+        "notes": "Newspaper legal-notice repository. In Advanced Search choose County: Madison, then Popular Searches: Foreclosures or search trustee’s sale / foreclosure; set publication dates. SB0461/Public Chapter 124 (2013) establishes the statewide newspaper repository; Tennessee Press Association identifies this service. Covers published newspaper notices, not every default, all foreclosure filings, or the separate internet posting providers under the 2025 foreclosure law. One statewide portal supports county filters; county selection here does not automatically prefilter the external site. No session-specific URL is stored."
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://www.madisoncountytn.gov/152/Juvenile-Court",
+        "evidence": "https://www.madisoncountytn.gov/152/Juvenile-Court",
+        "agency": "Madison County General Sessions Court Division II — Probate",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "Official court page identifies Division II probate jurisdiction alongside juvenile matters. Use its court/clerical contacts to obtain estate case records; do not treat juvenile records as public probate data."
+      },
+      {
+        "type": "COUNTY_CODE_ENFORCEMENT",
+        "url": "https://www.madisoncountytn.gov/123/Property-Code-Enforcement",
+        "evidence": "https://www.madisoncountytn.gov/123/Property-Code-Enforcement",
+        "agency": "Madison County Property Code Enforcement",
+        "notes": "Dedicated official department handles property-maintenance complaints, inspections and code compliance and supplies an Online Complaint Initiation Form. Contact it for county-jurisdiction case records. Jackson’s municipal department remains separate; this is not a complete public violation-case search.",
+        "access": "MANUAL_NAVIGATION"
+      }
+    ]
+  },
+  {
+    "county": "Putnam",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://assessment.cot.tn.gov/TPAD/",
+        "evidence": "https://comptroller.tn.gov/office-functions/pa/gisredistricting/redistricting-and-land-use-maps/parcel-data.html",
+        "agency": "Putnam County Assessor of Property",
+        "notes": "TPAD IMPACT individual-property search. Select Putnam County and search by owner, address, or parcel. Search-result exports are filtered subsets, not the full countywide Master Parcel dataset.",
+        "access": "SEARCH_PORTAL"
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://comptroller.tn.gov/office-functions/pa/gisredistricting/redistricting-and-land-use-maps/parcel-data.html",
+        "evidence": "https://comptroller.tn.gov/office-functions/pa/gisredistricting/redistricting-and-land-use-maps/parcel-data.html",
+        "agency": "Putnam County Assessor of Property",
+        "access": "DOWNLOAD_PAGE",
+        "format": "ZIP / Shapefile / DBF",
+        "notes": "Comptroller weekly full Putnam County parcel ZIP download. Select the county on this page; Assessment_Data_##.dbf contains tabular owner, address, land/building/total and assessed values, acres and class fields, joined to parcel geometry by GISLINK. Field definitions are included. No account or Tennessee-citizenship proof is stated for published downloads. This is countywide data, not a filtered TPAD search export."
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://citisenportal.com/Search/Putnam%20County%20Trustee",
+        "evidence": "https://putnamcountytn.gov/trustee",
+        "agency": "Putnam County Trustee",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual Tax Status only. Check one property/account and tax year for outstanding balance and delinquency; this is not a full countywide delinquent list, tax-sale list, or bulk file. Older delinquencies transferred to court may require a separate Clerk and Master check. "
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://www.tnpublicnotice.com/search.aspx",
+        "evidence": "https://wapp.capitol.tn.gov/apps/BillInfo/Default?BillNumber=SB0461&ga=108",
+        "agency": "Public Notice Tennessee — Tennessee newspapers",
+        "access": "SEARCH_PORTAL",
+        "notes": "Newspaper legal-notice repository. In Advanced Search choose County: Putnam, then Popular Searches: Foreclosures or search trustee’s sale / foreclosure; set publication dates. SB0461/Public Chapter 124 (2013) establishes the statewide newspaper repository; Tennessee Press Association identifies this service. Covers published newspaper notices, not every default, all foreclosure filings, or the separate internet posting providers under the 2025 foreclosure law. One statewide portal supports county filters; county selection here does not automatically prefilter the external site. No session-specific URL is stored."
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://putnamtncourtclerk.gov/",
+        "evidence": "https://www.ctas.tennessee.edu/2008-index-acts",
+        "agency": "Putnam County Circuit Court Clerk — Probate",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "General Sessions exercises probate jurisdiction; Private Chapter 110 (2008) makes the Circuit Court Clerk the Probate Court clerk. The county links this current clerk website. Contact the clerk for estate files; its General Sessions/Circuit docket feature is not represented as a complete probate case search."
+      }
+    ]
+  },
+  {
+    "county": "Anderson",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://assessment.cot.tn.gov/TPAD/",
+        "evidence": "https://comptroller.tn.gov/office-functions/pa/gisredistricting/redistricting-and-land-use-maps/parcel-data.html",
+        "agency": "Anderson County Assessor of Property",
+        "notes": "TPAD IMPACT individual-property search. Select Anderson County and search by owner, address, or parcel. Search-result exports are filtered subsets, not the full countywide Master Parcel dataset.",
+        "access": "SEARCH_PORTAL"
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://comptroller.tn.gov/office-functions/pa/gisredistricting/redistricting-and-land-use-maps/parcel-data.html",
+        "evidence": "https://comptroller.tn.gov/office-functions/pa/gisredistricting/redistricting-and-land-use-maps/parcel-data.html",
+        "agency": "Anderson County Assessor of Property",
+        "access": "DOWNLOAD_PAGE",
+        "format": "ZIP / Shapefile / DBF",
+        "notes": "Comptroller weekly full Anderson County parcel ZIP download. Select the county on this page; Assessment_Data_##.dbf contains tabular owner, address, land/building/total and assessed values, acres and class fields, joined to parcel geometry by GISLINK. Field definitions are included. No account or Tennessee-citizenship proof is stated for published downloads. This is countywide data, not a filtered TPAD search export."
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://anderson-tn.mygovonline.com/mod.php?mod=propertytax&mode=public_lookup",
+        "evidence": "https://andersoncountytn.gov/",
+        "agency": "Anderson County Trustee",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual Tax Status only. Check one property/account and tax year for outstanding balance and delinquency; this is not a full countywide delinquent list, tax-sale list, or bulk file. Older delinquencies transferred to court may require a separate Clerk and Master check. "
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://www.tnpublicnotice.com/search.aspx",
+        "evidence": "https://wapp.capitol.tn.gov/apps/BillInfo/Default?BillNumber=SB0461&ga=108",
+        "agency": "Public Notice Tennessee — Tennessee newspapers",
+        "access": "SEARCH_PORTAL",
+        "notes": "Newspaper legal-notice repository. In Advanced Search choose County: Anderson, then Popular Searches: Foreclosures or search trustee’s sale / foreclosure; set publication dates. SB0461/Public Chapter 124 (2013) establishes the statewide newspaper repository; Tennessee Press Association identifies this service. Covers published newspaper notices, not every default, all foreclosure filings, or the separate internet posting providers under the 2025 foreclosure law. One statewide portal supports county filters; county selection here does not automatically prefilter the external site. No session-specific URL is stored."
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://andersoncountyclerkandmaster.com/",
+        "evidence": "https://andersoncountytn.gov/clerk-and-master/",
+        "agency": "Anderson County Chancery Court Clerk and Master",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "County-linked Clerk and Master estate/probate office, with forms and docket navigation. Not represented as a complete searchable estate index."
+      }
+    ]
+  },
+  {
+    "county": "Robertson",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://assessment.cot.tn.gov/TPAD/",
+        "evidence": "https://comptroller.tn.gov/office-functions/pa/gisredistricting/redistricting-and-land-use-maps/parcel-data.html",
+        "agency": "Robertson County Assessor of Property",
+        "notes": "TPAD IMPACT individual-property search. Select Robertson County and search by owner, address, or parcel. Search-result exports are filtered subsets, not the full countywide Master Parcel dataset.",
+        "access": "SEARCH_PORTAL"
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://comptroller.tn.gov/office-functions/pa/gisredistricting/redistricting-and-land-use-maps/parcel-data.html",
+        "evidence": "https://comptroller.tn.gov/office-functions/pa/gisredistricting/redistricting-and-land-use-maps/parcel-data.html",
+        "agency": "Robertson County Assessor of Property",
+        "access": "DOWNLOAD_PAGE",
+        "format": "ZIP / Shapefile / DBF",
+        "notes": "Comptroller weekly full Robertson County parcel ZIP download. Select the county on this page; Assessment_Data_##.dbf contains tabular owner, address, land/building/total and assessed values, acres and class fields, joined to parcel geometry by GISLINK. Field definitions are included. No account or Tennessee-citizenship proof is stated for published downloads. This is countywide data, not a filtered TPAD search export."
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://citisenportal.com/Search/Robertson%20County%20Trustee",
+        "evidence": "https://www.robertsoncountytn.gov/",
+        "agency": "Robertson County Trustee",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual Tax Status only. Check one property/account and tax year for outstanding balance and delinquency; this is not a full countywide delinquent list, tax-sale list, or bulk file. Older delinquencies transferred to court may require a separate Clerk and Master check. "
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://www.tnpublicnotice.com/search.aspx",
+        "evidence": "https://wapp.capitol.tn.gov/apps/BillInfo/Default?BillNumber=SB0461&ga=108",
+        "agency": "Public Notice Tennessee — Tennessee newspapers",
+        "access": "SEARCH_PORTAL",
+        "notes": "Newspaper legal-notice repository. In Advanced Search choose County: Robertson, then Popular Searches: Foreclosures or search trustee’s sale / foreclosure; set publication dates. SB0461/Public Chapter 124 (2013) establishes the statewide newspaper repository; Tennessee Press Association identifies this service. Covers published newspaper notices, not every default, all foreclosure filings, or the separate internet posting providers under the 2025 foreclosure law. One statewide portal supports county filters; county selection here does not automatically prefilter the external site. No session-specific URL is stored."
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://www.robertsoncountytn.gov/departments/clerk_and_master/index.php",
+        "evidence": "https://www.robertsoncountytn.gov/departments/clerk_and_master/index.php",
+        "agency": "Robertson County Chancery Court Clerk and Master",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "Official Clerk and Master page expressly includes probate cases and recordkeeping. Use the estate records office rather than a general county homepage."
+      }
+    ]
+  },
+  {
+    "county": "Greene",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://assessment.cot.tn.gov/TPAD/",
+        "evidence": "https://comptroller.tn.gov/office-functions/pa/gisredistricting/redistricting-and-land-use-maps/parcel-data.html",
+        "agency": "Greene County Assessor of Property",
+        "notes": "TPAD IMPACT individual-property search. Select Greene County and search by owner, address, or parcel. Search-result exports are filtered subsets, not the full countywide Master Parcel dataset.",
+        "access": "SEARCH_PORTAL"
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://comptroller.tn.gov/office-functions/pa/gisredistricting/redistricting-and-land-use-maps/parcel-data.html",
+        "evidence": "https://comptroller.tn.gov/office-functions/pa/gisredistricting/redistricting-and-land-use-maps/parcel-data.html",
+        "agency": "Greene County Assessor of Property",
+        "access": "DOWNLOAD_PAGE",
+        "format": "ZIP / Shapefile / DBF",
+        "notes": "Comptroller weekly full Greene County parcel ZIP download. Select the county on this page; Assessment_Data_##.dbf contains tabular owner, address, land/building/total and assessed values, acres and class fields, joined to parcel geometry by GISLINK. Field definitions are included. No account or Tennessee-citizenship proof is stated for published downloads. This is countywide data, not a filtered TPAD search export."
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://citisenportal.com/Search/Greene%20County%20Trustee",
+        "evidence": "https://www.greenecountytngov.com/",
+        "agency": "Greene County Trustee",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual Tax Status only. Check one property/account and tax year for outstanding balance and delinquency; this is not a full countywide delinquent list, tax-sale list, or bulk file. Older delinquencies transferred to court may require a separate Clerk and Master check. "
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://www.tnpublicnotice.com/search.aspx",
+        "evidence": "https://wapp.capitol.tn.gov/apps/BillInfo/Default?BillNumber=SB0461&ga=108",
+        "agency": "Public Notice Tennessee — Tennessee newspapers",
+        "access": "SEARCH_PORTAL",
+        "notes": "Newspaper legal-notice repository. In Advanced Search choose County: Greene, then Popular Searches: Foreclosures or search trustee’s sale / foreclosure; set publication dates. SB0461/Public Chapter 124 (2013) establishes the statewide newspaper repository; Tennessee Press Association identifies this service. Covers published newspaper notices, not every default, all foreclosure filings, or the separate internet posting providers under the 2025 foreclosure law. One statewide portal supports county filters; county selection here does not automatically prefilter the external site. No session-specific URL is stored."
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://www.greenecountytngov.com/probate-clerk/",
+        "evidence": "https://www.greenecountytngov.com/probate-clerk/",
+        "agency": "Greene County Chancery Court Probate Clerk",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "Dedicated county Probate Clerk office/contact page. The page is under construction and supplies staff contact rather than a case portal."
+      }
+    ]
+  },
+  {
+    "county": "Hamblen",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://assessment.cot.tn.gov/TPAD/",
+        "evidence": "https://comptroller.tn.gov/office-functions/pa/gisredistricting/redistricting-and-land-use-maps/parcel-data.html",
+        "agency": "Hamblen County Assessor of Property",
+        "notes": "TPAD IMPACT individual-property search. Select Hamblen County and search by owner, address, or parcel. Search-result exports are filtered subsets, not the full countywide Master Parcel dataset.",
+        "access": "SEARCH_PORTAL"
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://comptroller.tn.gov/office-functions/pa/gisredistricting/redistricting-and-land-use-maps/parcel-data.html",
+        "evidence": "https://comptroller.tn.gov/office-functions/pa/gisredistricting/redistricting-and-land-use-maps/parcel-data.html",
+        "agency": "Hamblen County Assessor of Property",
+        "access": "DOWNLOAD_PAGE",
+        "format": "ZIP / Shapefile / DBF",
+        "notes": "Comptroller weekly full Hamblen County parcel ZIP download. Select the county on this page; Assessment_Data_##.dbf contains tabular owner, address, land/building/total and assessed values, acres and class fields, joined to parcel geometry by GISLINK. Field definitions are included. No account or Tennessee-citizenship proof is stated for published downloads. This is countywide data, not a filtered TPAD search export."
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://hamblen-tn.mygovonline.com/mod.php?mod=propertytax&mode=public_lookup",
+        "evidence": "https://hamblencountytn.gov/",
+        "agency": "Hamblen County Trustee",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual Tax Status only. Check one property/account and tax year for outstanding balance and delinquency; this is not a full countywide delinquent list, tax-sale list, or bulk file. Older delinquencies transferred to court may require a separate Clerk and Master check. "
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://www.tnpublicnotice.com/search.aspx",
+        "evidence": "https://wapp.capitol.tn.gov/apps/BillInfo/Default?BillNumber=SB0461&ga=108",
+        "agency": "Public Notice Tennessee — Tennessee newspapers",
+        "access": "SEARCH_PORTAL",
+        "notes": "Newspaper legal-notice repository. In Advanced Search choose County: Hamblen, then Popular Searches: Foreclosures or search trustee’s sale / foreclosure; set publication dates. SB0461/Public Chapter 124 (2013) establishes the statewide newspaper repository; Tennessee Press Association identifies this service. Covers published newspaper notices, not every default, all foreclosure filings, or the separate internet posting providers under the 2025 foreclosure law. One statewide portal supports county filters; county selection here does not automatically prefilter the external site. No session-specific URL is stored."
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://www.hamblencountychancery.org/#/",
+        "evidence": "https://www.hamblencountychancery.org/content/files/Probate%20Court%20Costs%20updated.pdf",
+        "agency": "Hamblen County Chancery and Probate Court Clerk and Master",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "Official court probate fee schedule confirms jurisdiction. Court office workflow may require JavaScript; no free complete estate-search database was confirmed."
+      },
+      {
+        "type": "COUNTY_CODE_ENFORCEMENT",
+        "url": "https://hamblencountytn.gov/codes-and-regulations/",
+        "evidence": "https://hamblencountytn.gov/codes-and-regulations/",
+        "agency": "Hamblen County Planning Department — Property Maintenance",
+        "notes": "Official county regulations page expressly identifies enforcement of Property Maintenance and Bulk Waste Regulations, alongside other planning responsibilities. Contact the county department for existing county-jurisdiction maintenance violation records. Morristown has separate city Codes Enforcement; no public county case-search system was confirmed.",
+        "access": "MANUAL_NAVIGATION"
+      }
+    ]
+  },
+  {
+    "county": "Cumberland",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://assessment.cot.tn.gov/TPAD/",
+        "evidence": "https://comptroller.tn.gov/office-functions/pa/gisredistricting/redistricting-and-land-use-maps/parcel-data.html",
+        "agency": "Cumberland County Assessor of Property",
+        "notes": "TPAD IMPACT individual-property search. Select Cumberland County and search by owner, address, or parcel. Search-result exports are filtered subsets, not the full countywide Master Parcel dataset.",
+        "access": "SEARCH_PORTAL"
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://comptroller.tn.gov/office-functions/pa/gisredistricting/redistricting-and-land-use-maps/parcel-data.html",
+        "evidence": "https://comptroller.tn.gov/office-functions/pa/gisredistricting/redistricting-and-land-use-maps/parcel-data.html",
+        "agency": "Cumberland County Assessor of Property",
+        "access": "DOWNLOAD_PAGE",
+        "format": "ZIP / Shapefile / DBF",
+        "notes": "Comptroller weekly full Cumberland County parcel ZIP download. Select the county on this page; Assessment_Data_##.dbf contains tabular owner, address, land/building/total and assessed values, acres and class fields, joined to parcel geometry by GISLINK. Field definitions are included. No account or Tennessee-citizenship proof is stated for published downloads. This is countywide data, not a filtered TPAD search export."
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://www.tnproptax.com/index.html",
+        "evidence": "https://cumberlandcountytn.gov/directory/trustee/",
+        "agency": "Cumberland County Trustee",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "Individual Tax Status only. Check one property/account and tax year for outstanding balance and delinquency; this is not a full countywide delinquent list, tax-sale list, or bulk file. Older delinquencies transferred to court may require a separate Clerk and Master check. Choose Cumberland County in the Trustee-linked property-tax portal."
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://www.tnpublicnotice.com/search.aspx",
+        "evidence": "https://wapp.capitol.tn.gov/apps/BillInfo/Default?BillNumber=SB0461&ga=108",
+        "agency": "Public Notice Tennessee — Tennessee newspapers",
+        "access": "SEARCH_PORTAL",
+        "notes": "Newspaper legal-notice repository. In Advanced Search choose County: Cumberland, then Popular Searches: Foreclosures or search trustee’s sale / foreclosure; set publication dates. SB0461/Public Chapter 124 (2013) establishes the statewide newspaper repository; Tennessee Press Association identifies this service. Covers published newspaper notices, not every default, all foreclosure filings, or the separate internet posting providers under the 2025 foreclosure law. One statewide portal supports county filters; county selection here does not automatically prefilter the external site. No session-specific URL is stored."
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://cumberlandcountytn.gov/directory/clerk-master/",
+        "evidence": "https://www.ctas.tennessee.edu/private-acts/private-acts-1982-chapter-223",
+        "agency": "Cumberland County Clerk and Master — Probate and Family Court",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "Private Act 1982 Chapter 223 names the Clerk and Master as clerk of Probate and Family Court, whose judge is also the General Sessions judge. Use the official Clerk and Master office for probate files."
+      }
+    ]
+  },
+  {
+    "county": "Loudon",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://assessment.cot.tn.gov/TPAD/",
+        "evidence": "https://comptroller.tn.gov/office-functions/pa/gisredistricting/redistricting-and-land-use-maps/parcel-data.html",
+        "agency": "Loudon County Assessor of Property",
+        "notes": "TPAD IMPACT individual-property search. Select Loudon County and search by owner, address, or parcel. Search-result exports are filtered subsets, not the full countywide Master Parcel dataset.",
+        "access": "SEARCH_PORTAL"
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://comptroller.tn.gov/office-functions/pa/gisredistricting/redistricting-and-land-use-maps/parcel-data.html",
+        "evidence": "https://comptroller.tn.gov/office-functions/pa/gisredistricting/redistricting-and-land-use-maps/parcel-data.html",
+        "agency": "Loudon County Assessor of Property",
+        "access": "DOWNLOAD_PAGE",
+        "format": "ZIP / Shapefile / DBF",
+        "notes": "Comptroller weekly full Loudon County parcel ZIP download. Select the county on this page; Assessment_Data_##.dbf contains tabular owner, address, land/building/total and assessed values, acres and class fields, joined to parcel geometry by GISLINK. Field definitions are included. No account or Tennessee-citizenship proof is stated for published downloads. This is countywide data, not a filtered TPAD search export."
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://loudon-tn.mygovonline.com/mod.php?mod=propertytax&mode=public_lookup",
+        "evidence": "https://loudoncounty-tn.gov/trustee/",
+        "agency": "Loudon County Trustee",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual Tax Status only. Check one property/account and tax year for outstanding balance and delinquency; this is not a full countywide delinquent list, tax-sale list, or bulk file. Older delinquencies transferred to court may require a separate Clerk and Master check. "
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://www.tnpublicnotice.com/search.aspx",
+        "evidence": "https://wapp.capitol.tn.gov/apps/BillInfo/Default?BillNumber=SB0461&ga=108",
+        "agency": "Public Notice Tennessee — Tennessee newspapers",
+        "access": "SEARCH_PORTAL",
+        "notes": "Newspaper legal-notice repository. In Advanced Search choose County: Loudon, then Popular Searches: Foreclosures or search trustee’s sale / foreclosure; set publication dates. SB0461/Public Chapter 124 (2013) establishes the statewide newspaper repository; Tennessee Press Association identifies this service. Covers published newspaper notices, not every default, all foreclosure filings, or the separate internet posting providers under the 2025 foreclosure law. One statewide portal supports county filters; county selection here does not automatically prefilter the external site. No session-specific URL is stored."
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://www.loudoncountycircuitcourt.com/",
+        "evidence": "https://loudoncounty-tn.gov/elected-officials/",
+        "agency": "Loudon County Circuit, General Sessions and Probate Court Clerk",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "County’s elected-official directory identifies this probate clerk; General Sessions exercises probate jurisdiction. The clerk site offers estate instructions and contact information, not a confirmed free case-search portal."
+      }
+    ]
+  },
+  {
+    "county": "Coffee",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://assessment.cot.tn.gov/TPAD/",
+        "evidence": "https://comptroller.tn.gov/office-functions/pa/gisredistricting/redistricting-and-land-use-maps/parcel-data.html",
+        "agency": "Coffee County Assessor of Property",
+        "notes": "TPAD IMPACT individual-property search. Select Coffee County and search by owner, address, or parcel. Search-result exports are filtered subsets, not the full countywide Master Parcel dataset.",
+        "access": "SEARCH_PORTAL"
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://comptroller.tn.gov/office-functions/pa/gisredistricting/redistricting-and-land-use-maps/parcel-data.html",
+        "evidence": "https://comptroller.tn.gov/office-functions/pa/gisredistricting/redistricting-and-land-use-maps/parcel-data.html",
+        "agency": "Coffee County Assessor of Property",
+        "access": "DOWNLOAD_PAGE",
+        "format": "ZIP / Shapefile / DBF",
+        "notes": "Comptroller weekly full Coffee County parcel ZIP download. Select the county on this page; Assessment_Data_##.dbf contains tabular owner, address, land/building/total and assessed values, acres and class fields, joined to parcel geometry by GISLINK. Field definitions are included. No account or Tennessee-citizenship proof is stated for published downloads. This is countywide data, not a filtered TPAD search export."
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://citisenportal.com/Search/Coffee%20County%20Trustee",
+        "evidence": "https://coffeecountytn.gov/211/Trustee",
+        "agency": "Coffee County Trustee",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual Tax Status only. Check one property/account and tax year for outstanding balance and delinquency; this is not a full countywide delinquent list, tax-sale list, or bulk file. Older delinquencies transferred to court may require a separate Clerk and Master check. "
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://www.tnpublicnotice.com/search.aspx",
+        "evidence": "https://wapp.capitol.tn.gov/apps/BillInfo/Default?BillNumber=SB0461&ga=108",
+        "agency": "Public Notice Tennessee — Tennessee newspapers",
+        "access": "SEARCH_PORTAL",
+        "notes": "Newspaper legal-notice repository. In Advanced Search choose County: Coffee, then Popular Searches: Foreclosures or search trustee’s sale / foreclosure; set publication dates. SB0461/Public Chapter 124 (2013) establishes the statewide newspaper repository; Tennessee Press Association identifies this service. Covers published newspaper notices, not every default, all foreclosure filings, or the separate internet posting providers under the 2025 foreclosure law. One statewide portal supports county filters; county selection here does not automatically prefilter the external site. No session-specific URL is stored."
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://coffeecountytn.gov/162/Probate",
+        "evidence": "https://coffeecountytn.gov/162/Probate",
+        "agency": "Coffee County Chancery Court Clerk and Master",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "Dedicated official Probate page identifies Chancery’s estate jurisdiction and office procedures."
+      },
+      {
+        "type": "COUNTY_CODE_ENFORCEMENT",
+        "url": "https://coffeecountytn.gov/157/Codes-Compliance",
+        "access": "MANUAL_NAVIGATION",
+        "agency": "Coffee County Codes Compliance",
+        "notes": "Official county department expressly includes maintenance of buildings and publishes a Property Complaint Form. Contact Codes Compliance for county-jurisdiction complaint/case records; this is an office workflow, not a public case search. Municipal departments remain separate."
+      }
+    ]
+  },
+  {
+    "county": "Tipton",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://assessment.cot.tn.gov/TPAD/",
+        "evidence": "https://comptroller.tn.gov/office-functions/pa/gisredistricting/redistricting-and-land-use-maps/parcel-data.html",
+        "agency": "Tipton County Assessor of Property",
+        "notes": "TPAD IMPACT individual-property search. Select Tipton County and search by owner, address, or parcel. Search-result exports are filtered subsets, not the full countywide Master Parcel dataset.",
+        "access": "SEARCH_PORTAL"
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://comptroller.tn.gov/office-functions/pa/gisredistricting/redistricting-and-land-use-maps/parcel-data.html",
+        "evidence": "https://comptroller.tn.gov/office-functions/pa/gisredistricting/redistricting-and-land-use-maps/parcel-data.html",
+        "agency": "Tipton County Assessor of Property",
+        "access": "DOWNLOAD_PAGE",
+        "format": "ZIP / Shapefile / DBF",
+        "notes": "Comptroller weekly full Tipton County parcel ZIP download. Select the county on this page; Assessment_Data_##.dbf contains tabular owner, address, land/building/total and assessed values, acres and class fields, joined to parcel geometry by GISLINK. Field definitions are included. No account or Tennessee-citizenship proof is stated for published downloads. This is countywide data, not a filtered TPAD search export."
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://citisenportal.com/Search/Tipton%20County%20Trustee",
+        "evidence": "https://www.tiptonco.com/",
+        "agency": "Tipton County Trustee",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual Tax Status only. Check one property/account and tax year for outstanding balance and delinquency; this is not a full countywide delinquent list, tax-sale list, or bulk file. Older delinquencies transferred to court may require a separate Clerk and Master check. "
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://www.tnpublicnotice.com/search.aspx",
+        "evidence": "https://wapp.capitol.tn.gov/apps/BillInfo/Default?BillNumber=SB0461&ga=108",
+        "agency": "Public Notice Tennessee — Tennessee newspapers",
+        "access": "SEARCH_PORTAL",
+        "notes": "Newspaper legal-notice repository. In Advanced Search choose County: Tipton, then Popular Searches: Foreclosures or search trustee’s sale / foreclosure; set publication dates. SB0461/Public Chapter 124 (2013) establishes the statewide newspaper repository; Tennessee Press Association identifies this service. Covers published newspaper notices, not every default, all foreclosure filings, or the separate internet posting providers under the 2025 foreclosure law. One statewide portal supports county filters; county selection here does not automatically prefilter the external site. No session-specific URL is stored."
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://www.tiptonco.com/government/courts/chancery/index.php",
+        "evidence": "https://www.tncourts.gov/sites/default/files/rules25chancery.pdf",
+        "agency": "Tipton County Chancery Court Clerk and Master",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "Chancery Court estate-file office. The Tennessee Courts-published 25th Judicial District rules expressly include Tipton and Rule 23, Probate and Estates. Contact the county Clerk and Master at 901-476-0209 for estate-file access; no equivalent public probate search was confirmed. This office workflow is not a live online estate index. The unadopted 1982 private act is not used as evidence of jurisdiction."
+      }
+    ]
+  }
+]

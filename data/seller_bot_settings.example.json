@@ -1,0 +1,15 @@
+{
+  "enabled": true,
+  "mode": "copilot",
+  "bot_name": "Emma",
+  "partner_name": "John",
+  "office_phone": "(407) 815-5043",
+  "gateway_phone": "(407) 793-7029",
+  "gold_deal_threshold": 0.7,
+  "spread_deal_threshold": 0.85,
+  "auto_send_delay_seconds": 35,
+  "gemini_api_key": "YOUR_GEMINI_API_KEY",
+  "gemini_model": "gemini-3.8-flash",
+  "use_gemini_enhancer": true,
+  "personality_prompt": "Friendly, warm, casual Florida local. Short 1 to 2 sentence texts. Disarming, understanding. Drive toward a quick 5 minute call with John."
+}

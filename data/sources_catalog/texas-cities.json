@@ -1,0 +1,1042 @@
+[
+  {
+    "county": "Collin",
+    "city": "Dallas",
+    "source": {
+      "url": "https://dallastx.govqa.us/WEBAPP/_rs/SupportHome.aspx",
+      "access": "RECORDS_REQUEST",
+      "notes": "Texas Public Information Act request route for existing Dallas municipal code-enforcement, nuisance, unsafe-structure and code-lien case records, through the city records coordinator. Use general City records (or the named code department), not a police-only records form. No public complete code-case export confirmed in this audit; request an existing electronic case export if maintained, not a new inspection or analysis. Shared municipal jurisdiction also extends into Dallas, Denton, Kaufman, Rockwall County/Counties. This row covers the Collin County city portion; the same municipal source is intentionally associated with every selected county portion. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "Dallas Code Enforcement — City Records Coordinator",
+      "evidence": "https://dallascityhall.com/government/citysecretary/Pages/OpenRecords.aspx"
+    }
+  },
+  {
+    "county": "Dallas",
+    "city": "Dallas",
+    "source": {
+      "url": "https://dallastx.govqa.us/WEBAPP/_rs/SupportHome.aspx",
+      "access": "RECORDS_REQUEST",
+      "notes": "Texas Public Information Act request route for existing Dallas municipal code-enforcement, nuisance, unsafe-structure and code-lien case records, through the city records coordinator. Use general City records (or the named code department), not a police-only records form. No public complete code-case export confirmed in this audit; request an existing electronic case export if maintained, not a new inspection or analysis. Shared municipal jurisdiction also extends into Collin, Denton, Kaufman, Rockwall County/Counties. This row covers the Dallas County city portion; the same municipal source is intentionally associated with every selected county portion. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "Dallas Code Enforcement — City Records Coordinator",
+      "evidence": "https://dallascityhall.com/government/citysecretary/Pages/OpenRecords.aspx"
+    }
+  },
+  {
+    "county": "Denton",
+    "city": "Dallas",
+    "source": {
+      "url": "https://dallastx.govqa.us/WEBAPP/_rs/SupportHome.aspx",
+      "access": "RECORDS_REQUEST",
+      "notes": "Texas Public Information Act request route for existing Dallas municipal code-enforcement, nuisance, unsafe-structure and code-lien case records, through the city records coordinator. Use general City records (or the named code department), not a police-only records form. No public complete code-case export confirmed in this audit; request an existing electronic case export if maintained, not a new inspection or analysis. Shared municipal jurisdiction also extends into Collin, Dallas, Kaufman, Rockwall County/Counties. This row covers the Denton County city portion; the same municipal source is intentionally associated with every selected county portion. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "Dallas Code Enforcement — City Records Coordinator",
+      "evidence": "https://dallascityhall.com/government/citysecretary/Pages/OpenRecords.aspx"
+    }
+  },
+  {
+    "county": "Kaufman",
+    "city": "Dallas",
+    "source": {
+      "url": "https://dallastx.govqa.us/WEBAPP/_rs/SupportHome.aspx",
+      "access": "RECORDS_REQUEST",
+      "notes": "Texas Public Information Act request route for existing Dallas municipal code-enforcement, nuisance, unsafe-structure and code-lien case records, through the city records coordinator. Use general City records (or the named code department), not a police-only records form. No public complete code-case export confirmed in this audit; request an existing electronic case export if maintained, not a new inspection or analysis. Shared municipal jurisdiction also extends into Collin, Dallas, Denton, Rockwall County/Counties. This row covers the Kaufman County city portion; the same municipal source is intentionally associated with every selected county portion. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "Dallas Code Enforcement — City Records Coordinator",
+      "evidence": "https://dallascityhall.com/government/citysecretary/Pages/OpenRecords.aspx"
+    }
+  },
+  {
+    "county": "Denton",
+    "city": "Fort Worth",
+    "source": {
+      "url": "https://www.fortworthtexas.gov/residents/my-data/code-violations",
+      "access": "SEARCH_PORTAL",
+      "notes": "Official municipal code-compliance case/violation lookup. City Code Violation Map; select a property/case for details. Results are case/status records, not a complete lien or property-condition conclusion. Shared municipal jurisdiction also extends into Johnson, Parker, Tarrant, Wise County/Counties. This row covers the Denton County city portion; the same municipal source is intentionally associated with every selected county portion. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "Fort Worth Code Enforcement — City Records Coordinator",
+      "evidence": "https://www.fortworthtexas.gov/residents/my-data/code-violations"
+    }
+  },
+  {
+    "county": "Johnson",
+    "city": "Fort Worth",
+    "source": {
+      "url": "https://www.fortworthtexas.gov/residents/my-data/code-violations",
+      "access": "SEARCH_PORTAL",
+      "notes": "Official municipal code-compliance case/violation lookup. City Code Violation Map; select a property/case for details. Results are case/status records, not a complete lien or property-condition conclusion. Shared municipal jurisdiction also extends into Denton, Parker, Tarrant, Wise County/Counties. This row covers the Johnson County city portion; the same municipal source is intentionally associated with every selected county portion. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "Fort Worth Code Enforcement — City Records Coordinator",
+      "evidence": "https://www.fortworthtexas.gov/residents/my-data/code-violations"
+    }
+  },
+  {
+    "county": "Tarrant",
+    "city": "Fort Worth",
+    "source": {
+      "url": "https://www.fortworthtexas.gov/residents/my-data/code-violations",
+      "access": "SEARCH_PORTAL",
+      "notes": "Official municipal code-compliance case/violation lookup. City Code Violation Map; select a property/case for details. Results are case/status records, not a complete lien or property-condition conclusion. Shared municipal jurisdiction also extends into Denton, Johnson, Parker, Wise County/Counties. This row covers the Tarrant County city portion; the same municipal source is intentionally associated with every selected county portion. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "Fort Worth Code Enforcement — City Records Coordinator",
+      "evidence": "https://www.fortworthtexas.gov/residents/my-data/code-violations"
+    }
+  },
+  {
+    "county": "Tarrant",
+    "city": "Arlington",
+    "source": {
+      "url": "https://arlingtontx.govqa.us/WEBAPP/_rs/SupportHome.aspx",
+      "access": "RECORDS_REQUEST",
+      "notes": "Texas Public Information Act request route for existing Arlington municipal code-enforcement, nuisance, unsafe-structure and code-lien case records, through the city records coordinator. Use general City records (or the named code department), not a police-only records form. No public complete code-case export confirmed in this audit; request an existing electronic case export if maintained, not a new inspection or analysis. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "Arlington Code Enforcement — City Records Coordinator",
+      "evidence": "https://www.arlingtontx.gov/Government/Records/Open-Records-Request"
+    }
+  },
+  {
+    "county": "Collin",
+    "city": "Garland",
+    "source": {
+      "url": "https://www.garlandtx.gov/4560/Public-Information-Request",
+      "access": "RECORDS_REQUEST",
+      "notes": "Texas Public Information Act request route for existing Garland municipal code-enforcement, nuisance, unsafe-structure and code-lien case records, through the city records coordinator. Use general City records (or the named code department), not a police-only records form. No public complete code-case export confirmed in this audit; request an existing electronic case export if maintained, not a new inspection or analysis. Shared municipal jurisdiction also extends into Dallas County/Counties. This row covers the Collin County city portion; the same municipal source is intentionally associated with every selected county portion. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "Garland Code Enforcement — City Records Coordinator",
+      "evidence": "https://www.garlandtx.gov/4560/Public-Information-Request"
+    }
+  },
+  {
+    "county": "Dallas",
+    "city": "Garland",
+    "source": {
+      "url": "https://www.garlandtx.gov/4560/Public-Information-Request",
+      "access": "RECORDS_REQUEST",
+      "notes": "Texas Public Information Act request route for existing Garland municipal code-enforcement, nuisance, unsafe-structure and code-lien case records, through the city records coordinator. Use general City records (or the named code department), not a police-only records form. No public complete code-case export confirmed in this audit; request an existing electronic case export if maintained, not a new inspection or analysis. Shared municipal jurisdiction also extends into Collin County/Counties. This row covers the Dallas County city portion; the same municipal source is intentionally associated with every selected county portion. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "Garland Code Enforcement — City Records Coordinator",
+      "evidence": "https://www.garlandtx.gov/4560/Public-Information-Request"
+    }
+  },
+  {
+    "county": "Dallas",
+    "city": "Mesquite",
+    "source": {
+      "url": "https://www.cityofmesquite.com/3763/Records-Request-Center",
+      "access": "RECORDS_REQUEST",
+      "notes": "Texas Public Information Act request route for existing Mesquite municipal code-enforcement, nuisance, unsafe-structure and code-lien case records, through the city records coordinator. Use general City records (or the named code department), not a police-only records form. No public complete code-case export confirmed in this audit; request an existing electronic case export if maintained, not a new inspection or analysis. Shared municipal jurisdiction also extends into Kaufman County/Counties. This row covers the Dallas County city portion; the same municipal source is intentionally associated with every selected county portion. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "Mesquite Code Enforcement — City Records Coordinator",
+      "evidence": "https://www.cityofmesquite.com/3763/Records-Request-Center"
+    }
+  },
+  {
+    "county": "Kaufman",
+    "city": "Mesquite",
+    "source": {
+      "url": "https://www.cityofmesquite.com/3763/Records-Request-Center",
+      "access": "RECORDS_REQUEST",
+      "notes": "Texas Public Information Act request route for existing Mesquite municipal code-enforcement, nuisance, unsafe-structure and code-lien case records, through the city records coordinator. Use general City records (or the named code department), not a police-only records form. No public complete code-case export confirmed in this audit; request an existing electronic case export if maintained, not a new inspection or analysis. Shared municipal jurisdiction also extends into Dallas County/Counties. This row covers the Kaufman County city portion; the same municipal source is intentionally associated with every selected county portion. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "Mesquite Code Enforcement — City Records Coordinator",
+      "evidence": "https://www.cityofmesquite.com/3763/Records-Request-Center"
+    }
+  },
+  {
+    "county": "Dallas",
+    "city": "Irving",
+    "source": {
+      "url": "https://irvingtx.gov/secretary_open-records",
+      "access": "RECORDS_REQUEST",
+      "notes": "Texas Public Information Act request route for existing Irving municipal code-enforcement, nuisance, unsafe-structure and code-lien case records, through the city records coordinator. Use general City records (or the named code department), not a police-only records form. No public complete code-case export confirmed in this audit; request an existing electronic case export if maintained, not a new inspection or analysis. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "Irving Code Enforcement — City Records Coordinator",
+      "evidence": "https://irvingtx.gov/property-standards"
+    }
+  },
+  {
+    "county": "Dallas",
+    "city": "Grand Prairie",
+    "source": {
+      "url": "https://egov.gptx.org/EnerGov_Prod/SelfService#/search",
+      "access": "SEARCH_PORTAL",
+      "notes": "Official municipal code-compliance case/violation lookup. Official Public Information Search: select Code Case; recent service requests are a separate system. Results are case/status records, not a complete lien or property-condition conclusion. Shared municipal jurisdiction also extends into Ellis, Johnson, Tarrant County/Counties. This row covers the Dallas County city portion; the same municipal source is intentionally associated with every selected county portion. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "Grand Prairie Code Enforcement — City Records Coordinator",
+      "evidence": "https://www.gptx.org/Departments/Code-Compliance/Check-Status-of-Code-Case"
+    }
+  },
+  {
+    "county": "Ellis",
+    "city": "Grand Prairie",
+    "source": {
+      "url": "https://egov.gptx.org/EnerGov_Prod/SelfService#/search",
+      "access": "SEARCH_PORTAL",
+      "notes": "Official municipal code-compliance case/violation lookup. Official Public Information Search: select Code Case; recent service requests are a separate system. Results are case/status records, not a complete lien or property-condition conclusion. Shared municipal jurisdiction also extends into Dallas, Johnson, Tarrant County/Counties. This row covers the Ellis County city portion; the same municipal source is intentionally associated with every selected county portion. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "Grand Prairie Code Enforcement — City Records Coordinator",
+      "evidence": "https://www.gptx.org/Departments/Code-Compliance/Check-Status-of-Code-Case"
+    }
+  },
+  {
+    "county": "Johnson",
+    "city": "Grand Prairie",
+    "source": {
+      "url": "https://egov.gptx.org/EnerGov_Prod/SelfService#/search",
+      "access": "SEARCH_PORTAL",
+      "notes": "Official municipal code-compliance case/violation lookup. Official Public Information Search: select Code Case; recent service requests are a separate system. Results are case/status records, not a complete lien or property-condition conclusion. Shared municipal jurisdiction also extends into Dallas, Ellis, Tarrant County/Counties. This row covers the Johnson County city portion; the same municipal source is intentionally associated with every selected county portion. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "Grand Prairie Code Enforcement — City Records Coordinator",
+      "evidence": "https://www.gptx.org/Departments/Code-Compliance/Check-Status-of-Code-Case"
+    }
+  },
+  {
+    "county": "Tarrant",
+    "city": "Grand Prairie",
+    "source": {
+      "url": "https://egov.gptx.org/EnerGov_Prod/SelfService#/search",
+      "access": "SEARCH_PORTAL",
+      "notes": "Official municipal code-compliance case/violation lookup. Official Public Information Search: select Code Case; recent service requests are a separate system. Results are case/status records, not a complete lien or property-condition conclusion. Shared municipal jurisdiction also extends into Dallas, Ellis, Johnson County/Counties. This row covers the Tarrant County city portion; the same municipal source is intentionally associated with every selected county portion. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "Grand Prairie Code Enforcement — City Records Coordinator",
+      "evidence": "https://www.gptx.org/Departments/Code-Compliance/Check-Status-of-Code-Case"
+    }
+  },
+  {
+    "county": "Collin",
+    "city": "Carrollton",
+    "source": {
+      "url": "https://www.cityofcarrollton.com/government/city-manager-s-office/city-secretary/make-an-open-records-request",
+      "access": "RECORDS_REQUEST",
+      "notes": "Texas Public Information Act request route for existing Carrollton municipal code-enforcement, nuisance, unsafe-structure and code-lien case records, through the city records coordinator. Use general City records (or the named code department), not a police-only records form. No public complete code-case export confirmed in this audit; request an existing electronic case export if maintained, not a new inspection or analysis. Shared municipal jurisdiction also extends into Dallas, Denton County/Counties. This row covers the Collin County city portion; the same municipal source is intentionally associated with every selected county portion. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "Carrollton Code Enforcement — City Records Coordinator",
+      "evidence": "https://www.cityofcarrollton.com/government/city-manager-s-office/city-secretary/make-an-open-records-request"
+    }
+  },
+  {
+    "county": "Dallas",
+    "city": "Carrollton",
+    "source": {
+      "url": "https://www.cityofcarrollton.com/government/city-manager-s-office/city-secretary/make-an-open-records-request",
+      "access": "RECORDS_REQUEST",
+      "notes": "Texas Public Information Act request route for existing Carrollton municipal code-enforcement, nuisance, unsafe-structure and code-lien case records, through the city records coordinator. Use general City records (or the named code department), not a police-only records form. No public complete code-case export confirmed in this audit; request an existing electronic case export if maintained, not a new inspection or analysis. Shared municipal jurisdiction also extends into Collin, Denton County/Counties. This row covers the Dallas County city portion; the same municipal source is intentionally associated with every selected county portion. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "Carrollton Code Enforcement — City Records Coordinator",
+      "evidence": "https://www.cityofcarrollton.com/government/city-manager-s-office/city-secretary/make-an-open-records-request"
+    }
+  },
+  {
+    "county": "Denton",
+    "city": "Carrollton",
+    "source": {
+      "url": "https://www.cityofcarrollton.com/government/city-manager-s-office/city-secretary/make-an-open-records-request",
+      "access": "RECORDS_REQUEST",
+      "notes": "Texas Public Information Act request route for existing Carrollton municipal code-enforcement, nuisance, unsafe-structure and code-lien case records, through the city records coordinator. Use general City records (or the named code department), not a police-only records form. No public complete code-case export confirmed in this audit; request an existing electronic case export if maintained, not a new inspection or analysis. Shared municipal jurisdiction also extends into Collin, Dallas County/Counties. This row covers the Denton County city portion; the same municipal source is intentionally associated with every selected county portion. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "Carrollton Code Enforcement — City Records Coordinator",
+      "evidence": "https://www.cityofcarrollton.com/government/city-manager-s-office/city-secretary/make-an-open-records-request"
+    }
+  },
+  {
+    "county": "Denton",
+    "city": "Denton",
+    "source": {
+      "url": "https://dentontx.mycusthelp.com/WEBAPP/_rs/SupportHome.aspx",
+      "access": "RECORDS_REQUEST",
+      "notes": "Texas Public Information Act request route for existing Denton municipal code-enforcement, nuisance, unsafe-structure and code-lien case records, through the city records coordinator. Use general City records (or the named code department), not a police-only records form. No public complete code-case export confirmed in this audit; request an existing electronic case export if maintained, not a new inspection or analysis. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "Denton Code Enforcement — City Records Coordinator",
+      "evidence": "https://www.cityofdenton.com/440/Transparency"
+    }
+  },
+  {
+    "county": "Collin",
+    "city": "McKinney",
+    "source": {
+      "url": "https://mckinneytx.mycusthelp.com/WEBAPP/_rs",
+      "access": "RECORDS_REQUEST",
+      "notes": "Texas Public Information Act request route for existing McKinney municipal code-enforcement, nuisance, unsafe-structure and code-lien case records, through the city records coordinator. Use general City records (or the named code department), not a police-only records form. No public complete code-case export confirmed in this audit; request an existing electronic case export if maintained, not a new inspection or analysis. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "McKinney Code Enforcement — City Records Coordinator",
+      "evidence": "https://www.mckinneytexas.org/140/City-Secretary"
+    }
+  },
+  {
+    "county": "Ellis",
+    "city": "Waxahachie",
+    "source": {
+      "url": "https://waxahachietx.justfoia.com/publicportal/home/newrequest",
+      "access": "RECORDS_REQUEST",
+      "notes": "Texas Public Information Act request route for existing Waxahachie municipal code-enforcement, nuisance, unsafe-structure and code-lien case records, through the city records coordinator. Use general City records (or the named code department), not a police-only records form. No public complete code-case export confirmed in this audit; request an existing electronic case export if maintained, not a new inspection or analysis. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "Waxahachie Code Enforcement — City Records Coordinator",
+      "evidence": "https://www.waxahachietx.gov/270/City-Secretary"
+    }
+  },
+  {
+    "county": "Johnson",
+    "city": "Cleburne",
+    "source": {
+      "url": "https://www.cleburne.net/472/Request-Public-Information",
+      "access": "RECORDS_REQUEST",
+      "notes": "Texas Public Information Act request route for existing Cleburne municipal code-enforcement, nuisance, unsafe-structure and code-lien case records, through the city records coordinator. Use general City records (or the named code department), not a police-only records form. No public complete code-case export confirmed in this audit; request an existing electronic case export if maintained, not a new inspection or analysis. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "Cleburne Code Enforcement — City Records Coordinator",
+      "evidence": "https://www.cleburne.net/472/Request-Public-Information"
+    }
+  },
+  {
+    "county": "Collin",
+    "city": "Plano",
+    "source": {
+      "url": "https://planotx.govqa.us/WEBAPP/_rs/SupportHome.aspx",
+      "access": "RECORDS_REQUEST",
+      "notes": "Texas Public Information Act request route for existing Plano municipal code-enforcement, nuisance, unsafe-structure and code-lien case records, through the city records coordinator. Use general City records (or the named code department), not a police-only records form. No public complete code-case export confirmed in this audit; request an existing electronic case export if maintained, not a new inspection or analysis. Shared municipal jurisdiction also extends into Denton County/Counties. This row covers the Collin County city portion; the same municipal source is intentionally associated with every selected county portion. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "Plano Code Enforcement — City Records Coordinator",
+      "evidence": "https://www.plano.gov/government"
+    }
+  },
+  {
+    "county": "Denton",
+    "city": "Plano",
+    "source": {
+      "url": "https://planotx.govqa.us/WEBAPP/_rs/SupportHome.aspx",
+      "access": "RECORDS_REQUEST",
+      "notes": "Texas Public Information Act request route for existing Plano municipal code-enforcement, nuisance, unsafe-structure and code-lien case records, through the city records coordinator. Use general City records (or the named code department), not a police-only records form. No public complete code-case export confirmed in this audit; request an existing electronic case export if maintained, not a new inspection or analysis. Shared municipal jurisdiction also extends into Collin County/Counties. This row covers the Denton County city portion; the same municipal source is intentionally associated with every selected county portion. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "Plano Code Enforcement — City Records Coordinator",
+      "evidence": "https://www.plano.gov/government"
+    }
+  },
+  {
+    "county": "Collin",
+    "city": "Richardson",
+    "source": {
+      "url": "https://www.cor.net/government/city-secretary/public-information-open-records",
+      "access": "RECORDS_REQUEST",
+      "notes": "Texas Public Information Act request route for existing Richardson municipal code-enforcement, nuisance, unsafe-structure and code-lien case records, through the city records coordinator. Use general City records (or the named code department), not a police-only records form. No public complete code-case export confirmed in this audit; request an existing electronic case export if maintained, not a new inspection or analysis. Shared municipal jurisdiction also extends into Dallas County/Counties. This row covers the Collin County city portion; the same municipal source is intentionally associated with every selected county portion. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "Richardson Code Enforcement — City Records Coordinator",
+      "evidence": "https://www.cor.net/government/city-secretary/public-information-open-records"
+    }
+  },
+  {
+    "county": "Dallas",
+    "city": "Richardson",
+    "source": {
+      "url": "https://www.cor.net/government/city-secretary/public-information-open-records",
+      "access": "RECORDS_REQUEST",
+      "notes": "Texas Public Information Act request route for existing Richardson municipal code-enforcement, nuisance, unsafe-structure and code-lien case records, through the city records coordinator. Use general City records (or the named code department), not a police-only records form. No public complete code-case export confirmed in this audit; request an existing electronic case export if maintained, not a new inspection or analysis. Shared municipal jurisdiction also extends into Collin County/Counties. This row covers the Dallas County city portion; the same municipal source is intentionally associated with every selected county portion. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "Richardson Code Enforcement — City Records Coordinator",
+      "evidence": "https://www.cor.net/government/city-secretary/public-information-open-records"
+    }
+  },
+  {
+    "county": "Dallas",
+    "city": "Lewisville",
+    "source": {
+      "url": "https://www.cityoflewisville.com/city-hall/city-departments/city-secretary/open-government",
+      "access": "RECORDS_REQUEST",
+      "notes": "Texas Public Information Act request route for existing Lewisville municipal code-enforcement, nuisance, unsafe-structure and code-lien case records, through the city records coordinator. Use general City records (or the named code department), not a police-only records form. No public complete code-case export confirmed in this audit; request an existing electronic case export if maintained, not a new inspection or analysis. Shared municipal jurisdiction also extends into Denton County/Counties. This row covers the Dallas County city portion; the same municipal source is intentionally associated with every selected county portion. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "Lewisville Code Enforcement — City Records Coordinator",
+      "evidence": "https://www.cityoflewisville.com/city-hall/city-departments/city-secretary/open-government"
+    }
+  },
+  {
+    "county": "Denton",
+    "city": "Lewisville",
+    "source": {
+      "url": "https://www.cityoflewisville.com/city-hall/city-departments/city-secretary/open-government",
+      "access": "RECORDS_REQUEST",
+      "notes": "Texas Public Information Act request route for existing Lewisville municipal code-enforcement, nuisance, unsafe-structure and code-lien case records, through the city records coordinator. Use general City records (or the named code department), not a police-only records form. No public complete code-case export confirmed in this audit; request an existing electronic case export if maintained, not a new inspection or analysis. Shared municipal jurisdiction also extends into Dallas County/Counties. This row covers the Denton County city portion; the same municipal source is intentionally associated with every selected county portion. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "Lewisville Code Enforcement — City Records Coordinator",
+      "evidence": "https://www.cityoflewisville.com/city-hall/city-departments/city-secretary/open-government"
+    }
+  },
+  {
+    "county": "Tarrant",
+    "city": "Euless",
+    "source": {
+      "url": "https://www.eulesstx.gov/city-hall/city-secretary-s-office/open-records-request",
+      "access": "RECORDS_REQUEST",
+      "notes": "Texas Public Information Act request route for existing Euless municipal code-enforcement, nuisance, unsafe-structure and code-lien case records, through the city records coordinator. Use general City records (or the named code department), not a police-only records form. No public complete code-case export confirmed in this audit; request an existing electronic case export if maintained, not a new inspection or analysis. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "Euless Code Enforcement — City Records Coordinator",
+      "evidence": "https://www.eulesstx.gov/city-hall/city-secretary-s-office/open-records-request"
+    }
+  },
+  {
+    "county": "Tarrant",
+    "city": "Bedford",
+    "source": {
+      "url": "https://bedfordtx.gov/244/Public-Information-Requests",
+      "access": "RECORDS_REQUEST",
+      "notes": "Texas Public Information Act request route for existing Bedford municipal code-enforcement, nuisance, unsafe-structure and code-lien case records, through the city records coordinator. Use general City records (or the named code department), not a police-only records form. No public complete code-case export confirmed in this audit; request an existing electronic case export if maintained, not a new inspection or analysis. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "Bedford Code Enforcement — City Records Coordinator",
+      "evidence": "https://bedfordtx.gov/244/Public-Information-Requests"
+    }
+  },
+  {
+    "county": "Tarrant",
+    "city": "Hurst",
+    "source": {
+      "url": "https://www.hursttx.gov/about-us/departments/city-secretary/public-information-request-online-form",
+      "access": "RECORDS_REQUEST",
+      "notes": "Texas Public Information Act request route for existing Hurst municipal code-enforcement, nuisance, unsafe-structure and code-lien case records, through the city records coordinator. Use general City records (or the named code department), not a police-only records form. No public complete code-case export confirmed in this audit; request an existing electronic case export if maintained, not a new inspection or analysis. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "Hurst Code Enforcement — City Records Coordinator",
+      "evidence": "https://www.hursttx.gov/about-us/departments/city-secretary/public-information-request-online-form"
+    }
+  },
+  {
+    "county": "Dallas",
+    "city": "DeSoto",
+    "source": {
+      "url": "https://www.desototexas.gov/251/Open-Records-Request",
+      "access": "RECORDS_REQUEST",
+      "notes": "Texas Public Information Act request route for existing DeSoto municipal code-enforcement, nuisance, unsafe-structure and code-lien case records, through the city records coordinator. Use general City records (or the named code department), not a police-only records form. No public complete code-case export confirmed in this audit; request an existing electronic case export if maintained, not a new inspection or analysis. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "DeSoto Code Enforcement — City Records Coordinator",
+      "evidence": "https://www.desototexas.gov/251/Open-Records-Request"
+    }
+  },
+  {
+    "county": "Johnson",
+    "city": "Burleson",
+    "source": {
+      "url": "https://www.burlesontx.com/1469/Public-InformationOpen-Records-Request",
+      "access": "RECORDS_REQUEST",
+      "notes": "Texas Public Information Act request route for existing Burleson municipal code-enforcement, nuisance, unsafe-structure and code-lien case records, through the city records coordinator. Use general City records (or the named code department), not a police-only records form. No public complete code-case export confirmed in this audit; request an existing electronic case export if maintained, not a new inspection or analysis. Shared municipal jurisdiction also extends into Tarrant County/Counties. This row covers the Johnson County city portion; the same municipal source is intentionally associated with every selected county portion. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "Burleson Code Enforcement — City Records Coordinator",
+      "evidence": "https://www.burlesontx.com/1469/Public-InformationOpen-Records-Request"
+    }
+  },
+  {
+    "county": "Tarrant",
+    "city": "Burleson",
+    "source": {
+      "url": "https://www.burlesontx.com/1469/Public-InformationOpen-Records-Request",
+      "access": "RECORDS_REQUEST",
+      "notes": "Texas Public Information Act request route for existing Burleson municipal code-enforcement, nuisance, unsafe-structure and code-lien case records, through the city records coordinator. Use general City records (or the named code department), not a police-only records form. No public complete code-case export confirmed in this audit; request an existing electronic case export if maintained, not a new inspection or analysis. Shared municipal jurisdiction also extends into Johnson County/Counties. This row covers the Tarrant County city portion; the same municipal source is intentionally associated with every selected county portion. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "Burleson Code Enforcement — City Records Coordinator",
+      "evidence": "https://www.burlesontx.com/1469/Public-InformationOpen-Records-Request"
+    }
+  },
+  {
+    "county": "Ellis",
+    "city": "Ennis",
+    "source": {
+      "url": "https://www.ennistx.gov/PublicInformation",
+      "access": "RECORDS_REQUEST",
+      "notes": "Texas Public Information Act request route for existing Ennis municipal code-enforcement, nuisance, unsafe-structure and code-lien case records, through the city records coordinator. Use general City records (or the named code department), not a police-only records form. No public complete code-case export confirmed in this audit; request an existing electronic case export if maintained, not a new inspection or analysis. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "Ennis Code Enforcement — City Records Coordinator",
+      "evidence": "https://www.ennistx.gov/PublicInformation"
+    }
+  },
+  {
+    "county": "Kaufman",
+    "city": "Terrell",
+    "source": {
+      "url": "https://www.cityofterrell.org/201/Information-Services",
+      "access": "RECORDS_REQUEST",
+      "notes": "Texas Public Information Act request route for existing Terrell municipal code-enforcement, nuisance, unsafe-structure and code-lien case records, through the city records coordinator. Use general City records (or the named code department), not a police-only records form. No public complete code-case export confirmed in this audit; request an existing electronic case export if maintained, not a new inspection or analysis. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "Terrell Code Enforcement — City Records Coordinator",
+      "evidence": "https://www.cityofterrell.org/201/Information-Services"
+    }
+  },
+  {
+    "county": "Fort Bend",
+    "city": "Houston",
+    "source": {
+      "url": "https://www.houstontx.gov/publicinformation/index.html",
+      "access": "RECORDS_REQUEST",
+      "notes": "Texas Public Information Act request route for existing Houston municipal code-enforcement, nuisance, unsafe-structure and code-lien case records, through the city records coordinator. Use general City records (or the named code department), not a police-only records form. No public complete code-case export confirmed in this audit; request an existing electronic case export if maintained, not a new inspection or analysis. Shared municipal jurisdiction also extends into Harris, Montgomery, Waller County/Counties. This row covers the Fort Bend County city portion; the same municipal source is intentionally associated with every selected county portion. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "Houston Public Works — Community Code Enforcement / Public Information Officer",
+      "evidence": "https://www.houstontx.gov/pia.html",
+      "email": "PublicWorksRecords@houstontx.gov"
+    }
+  },
+  {
+    "county": "Harris",
+    "city": "Houston",
+    "source": {
+      "url": "https://www.houstontx.gov/publicinformation/index.html",
+      "access": "RECORDS_REQUEST",
+      "notes": "Texas Public Information Act request route for existing Houston municipal code-enforcement, nuisance, unsafe-structure and code-lien case records, through the city records coordinator. Use general City records (or the named code department), not a police-only records form. No public complete code-case export confirmed in this audit; request an existing electronic case export if maintained, not a new inspection or analysis. Shared municipal jurisdiction also extends into Fort Bend, Montgomery, Waller County/Counties. This row covers the Harris County city portion; the same municipal source is intentionally associated with every selected county portion. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "Houston Public Works — Community Code Enforcement / Public Information Officer",
+      "evidence": "https://www.houstontx.gov/pia.html",
+      "email": "PublicWorksRecords@houstontx.gov"
+    }
+  },
+  {
+    "county": "Montgomery",
+    "city": "Houston",
+    "source": {
+      "url": "https://www.houstontx.gov/publicinformation/index.html",
+      "access": "RECORDS_REQUEST",
+      "notes": "Texas Public Information Act request route for existing Houston municipal code-enforcement, nuisance, unsafe-structure and code-lien case records, through the city records coordinator. Use general City records (or the named code department), not a police-only records form. No public complete code-case export confirmed in this audit; request an existing electronic case export if maintained, not a new inspection or analysis. Shared municipal jurisdiction also extends into Fort Bend, Harris, Waller County/Counties. This row covers the Montgomery County city portion; the same municipal source is intentionally associated with every selected county portion. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "Houston Public Works — Community Code Enforcement / Public Information Officer",
+      "evidence": "https://www.houstontx.gov/pia.html",
+      "email": "PublicWorksRecords@houstontx.gov"
+    }
+  },
+  {
+    "county": "Harris",
+    "city": "Pasadena",
+    "source": {
+      "url": "https://www.pasadenatx.gov/DocumentCenter/View/10528/PUBLIC-INFORMATION-REQUEST---FORM-PDF",
+      "access": "RECORDS_REQUEST",
+      "notes": "Texas Public Information Act request route for existing Pasadena municipal code-enforcement, nuisance, unsafe-structure and code-lien case records, through the city records coordinator. Use general City records (or the named code department), not a police-only records form. No public complete code-case export confirmed in this audit; request an existing electronic case export if maintained, not a new inspection or analysis. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "Pasadena Code Enforcement — City Records Coordinator",
+      "evidence": "https://www.pasadenatx.gov/DocumentCenter/View/10528/PUBLIC-INFORMATION-REQUEST---FORM-PDF"
+    }
+  },
+  {
+    "county": "Harris",
+    "city": "Baytown",
+    "source": {
+      "url": "https://baytown.org/186/Open-Records-Request",
+      "access": "RECORDS_REQUEST",
+      "notes": "Texas Public Information Act request route for existing Baytown municipal code-enforcement, nuisance, unsafe-structure and code-lien case records, through the city records coordinator. Use general City records (or the named code department), not a police-only records form. No public complete code-case export confirmed in this audit; request an existing electronic case export if maintained, not a new inspection or analysis. Shared municipal jurisdiction also extends into Chambers County/Counties. This row covers the Harris County city portion; the same municipal source is intentionally associated with every selected county portion. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "Baytown Code Enforcement — City Records Coordinator",
+      "evidence": "https://baytown.org/186/Open-Records-Request"
+    }
+  },
+  {
+    "county": "Harris",
+    "city": "Humble",
+    "source": {
+      "url": "https://www.cityofhumbletx.gov/public-information-request/",
+      "access": "RECORDS_REQUEST",
+      "notes": "Texas Public Information Act request route for existing Humble municipal code-enforcement, nuisance, unsafe-structure and code-lien case records, through the city records coordinator. Use general City records (or the named code department), not a police-only records form. No public complete code-case export confirmed in this audit; request an existing electronic case export if maintained, not a new inspection or analysis. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "Humble Code Enforcement — City Records Coordinator",
+      "evidence": "https://www.cityofhumbletx.gov/public-information-request/",
+      "email": "CitySecretary@humbletx.gov"
+    }
+  },
+  {
+    "county": "Montgomery",
+    "city": "Conroe",
+    "source": {
+      "url": "https://www.cityofconroe.org/services/administration/public_records_request.php",
+      "access": "RECORDS_REQUEST",
+      "notes": "Texas Public Information Act request route for existing Conroe municipal code-enforcement, nuisance, unsafe-structure and code-lien case records, through the city records coordinator. Use general City records (or the named code department), not a police-only records form. No public complete code-case export confirmed in this audit; request an existing electronic case export if maintained, not a new inspection or analysis. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "Conroe Code Enforcement — City Records Coordinator",
+      "evidence": "https://www.cityofconroe.org/services/administration/public_records_request.php"
+    }
+  },
+  {
+    "county": "Fort Bend",
+    "city": "Richmond",
+    "source": {
+      "url": "https://www.richmondtx.gov/departments/city-secretary",
+      "access": "RECORDS_REQUEST",
+      "notes": "Texas Public Information Act request route for existing Richmond municipal code-enforcement, nuisance, unsafe-structure and code-lien case records, through the city records coordinator. Use general City records (or the named code department), not a police-only records form. No public complete code-case export confirmed in this audit; request an existing electronic case export if maintained, not a new inspection or analysis. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "Richmond Code Enforcement — City Records Coordinator",
+      "evidence": "https://www.richmondtx.gov/departments/city-secretary",
+      "email": "citysecretary@richmondtx.gov"
+    }
+  },
+  {
+    "county": "Fort Bend",
+    "city": "Rosenberg",
+    "source": {
+      "url": "https://www.rosenbergtx.gov/395/Public-Information-Request",
+      "access": "RECORDS_REQUEST",
+      "notes": "Texas Public Information Act request route for existing Rosenberg municipal code-enforcement, nuisance, unsafe-structure and code-lien case records, through the city records coordinator. Use general City records (or the named code department), not a police-only records form. No public complete code-case export confirmed in this audit; request an existing electronic case export if maintained, not a new inspection or analysis. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "Rosenberg Code Enforcement — City Records Coordinator",
+      "evidence": "https://www.rosenbergtx.gov/395/Public-Information-Request"
+    }
+  },
+  {
+    "county": "Brazoria",
+    "city": "Pearland",
+    "source": {
+      "url": "https://www.pearlandtx.gov/departments/city-secretary/public-records",
+      "access": "RECORDS_REQUEST",
+      "notes": "Texas Public Information Act request route for existing Pearland municipal code-enforcement, nuisance, unsafe-structure and code-lien case records, through the city records coordinator. Use general City records (or the named code department), not a police-only records form. No public complete code-case export confirmed in this audit; request an existing electronic case export if maintained, not a new inspection or analysis. Shared municipal jurisdiction also extends into Fort Bend, Harris County/Counties. This row covers the Brazoria County city portion; the same municipal source is intentionally associated with every selected county portion. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "Pearland Code Enforcement — City Records Coordinator",
+      "evidence": "https://www.pearlandtx.gov/departments/city-secretary/public-records",
+      "email": "PublicInfoRequest@pearlandtx.gov"
+    }
+  },
+  {
+    "county": "Fort Bend",
+    "city": "Pearland",
+    "source": {
+      "url": "https://www.pearlandtx.gov/departments/city-secretary/public-records",
+      "access": "RECORDS_REQUEST",
+      "notes": "Texas Public Information Act request route for existing Pearland municipal code-enforcement, nuisance, unsafe-structure and code-lien case records, through the city records coordinator. Use general City records (or the named code department), not a police-only records form. No public complete code-case export confirmed in this audit; request an existing electronic case export if maintained, not a new inspection or analysis. Shared municipal jurisdiction also extends into Brazoria, Harris County/Counties. This row covers the Fort Bend County city portion; the same municipal source is intentionally associated with every selected county portion. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "Pearland Code Enforcement — City Records Coordinator",
+      "evidence": "https://www.pearlandtx.gov/departments/city-secretary/public-records",
+      "email": "PublicInfoRequest@pearlandtx.gov"
+    }
+  },
+  {
+    "county": "Harris",
+    "city": "Pearland",
+    "source": {
+      "url": "https://www.pearlandtx.gov/departments/city-secretary/public-records",
+      "access": "RECORDS_REQUEST",
+      "notes": "Texas Public Information Act request route for existing Pearland municipal code-enforcement, nuisance, unsafe-structure and code-lien case records, through the city records coordinator. Use general City records (or the named code department), not a police-only records form. No public complete code-case export confirmed in this audit; request an existing electronic case export if maintained, not a new inspection or analysis. Shared municipal jurisdiction also extends into Brazoria, Fort Bend County/Counties. This row covers the Harris County city portion; the same municipal source is intentionally associated with every selected county portion. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "Pearland Code Enforcement — City Records Coordinator",
+      "evidence": "https://www.pearlandtx.gov/departments/city-secretary/public-records",
+      "email": "PublicInfoRequest@pearlandtx.gov"
+    }
+  },
+  {
+    "county": "Galveston",
+    "city": "Texas City",
+    "source": {
+      "url": "https://www.texascitytx.gov/175/City-Secretary",
+      "access": "RECORDS_REQUEST",
+      "notes": "Texas Public Information Act request route for existing Texas City municipal code-enforcement, nuisance, unsafe-structure and code-lien case records, through the city records coordinator. Use general City records (or the named code department), not a police-only records form. No public complete code-case export confirmed in this audit; request an existing electronic case export if maintained, not a new inspection or analysis. Shared municipal jurisdiction also extends into Chambers County/Counties. This row covers the Galveston County city portion; the same municipal source is intentionally associated with every selected county portion. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "Texas City Code Enforcement — City Records Coordinator",
+      "evidence": "https://www.texascitytx.gov/175/City-Secretary",
+      "email": "rleigh@texascitytx.gov"
+    }
+  },
+  {
+    "county": "Galveston",
+    "city": "Galveston",
+    "source": {
+      "url": "https://www.galvestontx.gov/789/Enforcement-Case-Search",
+      "access": "SEARCH_PORTAL",
+      "notes": "Official municipal code-compliance case/violation lookup. Accela gateway: Enforcement then Search Cases; initiate the normal session. Results are case/status records, not a complete lien or property-condition conclusion. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "Galveston Code Enforcement — City Records Coordinator",
+      "evidence": "https://www.galvestontx.gov/789/Enforcement-Case-Search"
+    }
+  },
+  {
+    "county": "Fort Bend",
+    "city": "Sugar Land",
+    "source": {
+      "url": "https://www.sugarlandtx.gov/101/City-Clerk",
+      "access": "RECORDS_REQUEST",
+      "notes": "Texas Public Information Act request route for existing Sugar Land municipal code-enforcement, nuisance, unsafe-structure and code-lien case records, through the city records coordinator. Use general City records (or the named code department), not a police-only records form. No public complete code-case export confirmed in this audit; request an existing electronic case export if maintained, not a new inspection or analysis. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "Sugar Land Code Enforcement — City Records Coordinator",
+      "evidence": "https://www.sugarlandtx.gov/101/City-Clerk"
+    }
+  },
+  {
+    "county": "Fort Bend",
+    "city": "Missouri City",
+    "source": {
+      "url": "https://www.missouricitytx.gov/101/Requesting-Records-Information",
+      "access": "RECORDS_REQUEST",
+      "notes": "Texas Public Information Act request route for existing Missouri City municipal code-enforcement, nuisance, unsafe-structure and code-lien case records, through the city records coordinator. Use general City records (or the named code department), not a police-only records form. No public complete code-case export confirmed in this audit; request an existing electronic case export if maintained, not a new inspection or analysis. Shared municipal jurisdiction also extends into Harris County/Counties. This row covers the Fort Bend County city portion; the same municipal source is intentionally associated with every selected county portion. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "Missouri City Code Enforcement — City Records Coordinator",
+      "evidence": "https://www.missouricitytx.gov/101/Requesting-Records-Information"
+    }
+  },
+  {
+    "county": "Harris",
+    "city": "Missouri City",
+    "source": {
+      "url": "https://www.missouricitytx.gov/101/Requesting-Records-Information",
+      "access": "RECORDS_REQUEST",
+      "notes": "Texas Public Information Act request route for existing Missouri City municipal code-enforcement, nuisance, unsafe-structure and code-lien case records, through the city records coordinator. Use general City records (or the named code department), not a police-only records form. No public complete code-case export confirmed in this audit; request an existing electronic case export if maintained, not a new inspection or analysis. Shared municipal jurisdiction also extends into Fort Bend County/Counties. This row covers the Harris County city portion; the same municipal source is intentionally associated with every selected county portion. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "Missouri City Code Enforcement — City Records Coordinator",
+      "evidence": "https://www.missouricitytx.gov/101/Requesting-Records-Information"
+    }
+  },
+  {
+    "county": "Brazoria",
+    "city": "Lake Jackson",
+    "source": {
+      "url": "https://lakejackson-tx.gov/204/Request-Public-Information",
+      "access": "RECORDS_REQUEST",
+      "notes": "Texas Public Information Act request route for existing Lake Jackson municipal code-enforcement, nuisance, unsafe-structure and code-lien case records, through the city records coordinator. Use general City records (or the named code department), not a police-only records form. No public complete code-case export confirmed in this audit; request an existing electronic case export if maintained, not a new inspection or analysis. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "Lake Jackson Code Enforcement — City Records Coordinator",
+      "evidence": "https://lakejackson-tx.gov/204/Request-Public-Information"
+    }
+  },
+  {
+    "county": "Galveston",
+    "city": "League City",
+    "source": {
+      "url": "https://www.leaguecitytx.gov/58/Public-Information-Request",
+      "access": "RECORDS_REQUEST",
+      "notes": "Texas Public Information Act request route for existing League City municipal code-enforcement, nuisance, unsafe-structure and code-lien case records, through the city records coordinator. Use general City records (or the named code department), not a police-only records form. No public complete code-case export confirmed in this audit; request an existing electronic case export if maintained, not a new inspection or analysis. Shared municipal jurisdiction also extends into Harris County/Counties. This row covers the Galveston County city portion; the same municipal source is intentionally associated with every selected county portion. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "League City Code Enforcement — City Records Coordinator",
+      "evidence": "https://www.leaguecitytx.gov/58/Public-Information-Request",
+      "email": "PIR@leaguecitytx.gov"
+    }
+  },
+  {
+    "county": "Harris",
+    "city": "League City",
+    "source": {
+      "url": "https://www.leaguecitytx.gov/58/Public-Information-Request",
+      "access": "RECORDS_REQUEST",
+      "notes": "Texas Public Information Act request route for existing League City municipal code-enforcement, nuisance, unsafe-structure and code-lien case records, through the city records coordinator. Use general City records (or the named code department), not a police-only records form. No public complete code-case export confirmed in this audit; request an existing electronic case export if maintained, not a new inspection or analysis. Shared municipal jurisdiction also extends into Galveston County/Counties. This row covers the Harris County city portion; the same municipal source is intentionally associated with every selected county portion. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "League City Code Enforcement — City Records Coordinator",
+      "evidence": "https://www.leaguecitytx.gov/58/Public-Information-Request",
+      "email": "PIR@leaguecitytx.gov"
+    }
+  },
+  {
+    "county": "Galveston",
+    "city": "Friendswood",
+    "source": {
+      "url": "https://www.ci.friendswood.tx.us/250/Communications-Division",
+      "access": "RECORDS_REQUEST",
+      "notes": "Texas Public Information Act request route for existing Friendswood municipal code-enforcement, nuisance, unsafe-structure and code-lien case records, through the city records coordinator. Use general City records (or the named code department), not a police-only records form. No public complete code-case export confirmed in this audit; request an existing electronic case export if maintained, not a new inspection or analysis. Shared municipal jurisdiction also extends into Harris County/Counties. This row covers the Galveston County city portion; the same municipal source is intentionally associated with every selected county portion. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "Friendswood Code Enforcement — City Records Coordinator",
+      "evidence": "https://www.ci.friendswood.tx.us/250/Communications-Division",
+      "email": "records@friendswood.com"
+    }
+  },
+  {
+    "county": "Harris",
+    "city": "Friendswood",
+    "source": {
+      "url": "https://www.ci.friendswood.tx.us/250/Communications-Division",
+      "access": "RECORDS_REQUEST",
+      "notes": "Texas Public Information Act request route for existing Friendswood municipal code-enforcement, nuisance, unsafe-structure and code-lien case records, through the city records coordinator. Use general City records (or the named code department), not a police-only records form. No public complete code-case export confirmed in this audit; request an existing electronic case export if maintained, not a new inspection or analysis. Shared municipal jurisdiction also extends into Galveston County/Counties. This row covers the Harris County city portion; the same municipal source is intentionally associated with every selected county portion. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "Friendswood Code Enforcement — City Records Coordinator",
+      "evidence": "https://www.ci.friendswood.tx.us/250/Communications-Division",
+      "email": "records@friendswood.com"
+    }
+  },
+  {
+    "county": "Liberty",
+    "city": "Dayton",
+    "source": {
+      "url": "https://www.cityofdaytontx.com/our-city/public-information-request",
+      "access": "RECORDS_REQUEST",
+      "notes": "Texas Public Information Act request route for existing Dayton municipal code-enforcement, nuisance, unsafe-structure and code-lien case records, through the city records coordinator. Use general City records (or the named code department), not a police-only records form. No public complete code-case export confirmed in this audit; request an existing electronic case export if maintained, not a new inspection or analysis. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "Dayton Code Enforcement — City Records Coordinator",
+      "evidence": "https://www.cityofdaytontx.com/our-city/public-information-request"
+    }
+  },
+  {
+    "county": "Liberty",
+    "city": "Cleveland",
+    "source": {
+      "url": "https://www.clevelandtexas.com/316/Open-Records-Request-PDF",
+      "access": "RECORDS_REQUEST",
+      "notes": "Texas Public Information Act request route for existing Cleveland municipal code-enforcement, nuisance, unsafe-structure and code-lien case records, through the city records coordinator. Use general City records (or the named code department), not a police-only records form. No public complete code-case export confirmed in this audit; request an existing electronic case export if maintained, not a new inspection or analysis. Shared municipal jurisdiction also extends into Montgomery, San Jacinto County/Counties. This row covers the Liberty County city portion; the same municipal source is intentionally associated with every selected county portion. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "Cleveland Code Enforcement — City Records Coordinator",
+      "evidence": "https://www.clevelandtexas.com/316/Open-Records-Request-PDF"
+    }
+  },
+  {
+    "county": "Montgomery",
+    "city": "Cleveland",
+    "source": {
+      "url": "https://www.clevelandtexas.com/316/Open-Records-Request-PDF",
+      "access": "RECORDS_REQUEST",
+      "notes": "Texas Public Information Act request route for existing Cleveland municipal code-enforcement, nuisance, unsafe-structure and code-lien case records, through the city records coordinator. Use general City records (or the named code department), not a police-only records form. No public complete code-case export confirmed in this audit; request an existing electronic case export if maintained, not a new inspection or analysis. Shared municipal jurisdiction also extends into Liberty, San Jacinto County/Counties. This row covers the Montgomery County city portion; the same municipal source is intentionally associated with every selected county portion. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "Cleveland Code Enforcement — City Records Coordinator",
+      "evidence": "https://www.clevelandtexas.com/316/Open-Records-Request-PDF"
+    }
+  },
+  {
+    "county": "Bexar",
+    "city": "San Antonio",
+    "source": {
+      "url": "https://aca-prod.accela.com/COSA/default.aspx",
+      "access": "SEARCH_PORTAL",
+      "notes": "Official municipal code-compliance case/violation lookup. BuildSA Accela gateway: select Code Enforcement then Search Investigations; search existing code cases by address or record number. Normal session initiation required; legacy ComplaintStatus portal retired from this catalog. Results are case/status records, not a complete lien or property-condition conclusion. Shared municipal jurisdiction also extends into Comal, Medina County/Counties. This row covers the Bexar County city portion; the same municipal source is intentionally associated with every selected county portion. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "San Antonio Development Services — Code Enforcement Services",
+      "evidence": "https://www.sa.gov/Directory/Departments/DSD/BuildSA"
+    }
+  },
+  {
+    "county": "Comal",
+    "city": "San Antonio",
+    "source": {
+      "url": "https://aca-prod.accela.com/COSA/default.aspx",
+      "access": "SEARCH_PORTAL",
+      "notes": "Official municipal code-compliance case/violation lookup. BuildSA Accela gateway: select Code Enforcement then Search Investigations; search existing code cases by address or record number. Normal session initiation required; legacy ComplaintStatus portal retired from this catalog. Results are case/status records, not a complete lien or property-condition conclusion. Shared municipal jurisdiction also extends into Bexar, Medina County/Counties. This row covers the Comal County city portion; the same municipal source is intentionally associated with every selected county portion. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "San Antonio Development Services — Code Enforcement Services",
+      "evidence": "https://www.sa.gov/Directory/Departments/DSD/BuildSA"
+    }
+  },
+  {
+    "county": "Bexar",
+    "city": "Converse",
+    "source": {
+      "url": "https://www.conversetx.gov/city_services/public_information_act_requests.php",
+      "access": "RECORDS_REQUEST",
+      "notes": "Texas Public Information Act request route for existing Converse municipal code-enforcement, nuisance, unsafe-structure and code-lien case records, through the city records coordinator. Use general City records (or the named code department), not a police-only records form. No public complete code-case export confirmed in this audit; request an existing electronic case export if maintained, not a new inspection or analysis. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "Converse Code Enforcement — City Records Coordinator",
+      "evidence": "https://www.conversetx.gov/city_services/public_information_act_requests.php"
+    }
+  },
+  {
+    "county": "Bexar",
+    "city": "Live Oak",
+    "source": {
+      "url": "https://liveoaktx.justfoia.com/publicportal/home/newrequest",
+      "access": "RECORDS_REQUEST",
+      "notes": "Texas Public Information Act request route for existing Live Oak municipal code-enforcement, nuisance, unsafe-structure and code-lien case records, through the city records coordinator. Use general City records (or the named code department), not a police-only records form. No public complete code-case export confirmed in this audit; request an existing electronic case export if maintained, not a new inspection or analysis. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "Live Oak Code Enforcement — City Records Coordinator",
+      "evidence": "https://www.liveoaktx.net/departments/city-secretary"
+    }
+  },
+  {
+    "county": "Bexar",
+    "city": "Schertz",
+    "source": {
+      "url": "https://www.schertz.com/151/Open-Records-Request",
+      "access": "RECORDS_REQUEST",
+      "notes": "Texas Public Information Act request route for existing Schertz municipal code-enforcement, nuisance, unsafe-structure and code-lien case records, through the city records coordinator. Use general City records (or the named code department), not a police-only records form. No public complete code-case export confirmed in this audit; request an existing electronic case export if maintained, not a new inspection or analysis. Shared municipal jurisdiction also extends into Comal, Guadalupe County/Counties. This row covers the Bexar County city portion; the same municipal source is intentionally associated with every selected county portion. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "Schertz Code Enforcement — City Records Coordinator",
+      "evidence": "https://www.schertz.com/151/Open-Records-Request"
+    }
+  },
+  {
+    "county": "Comal",
+    "city": "Schertz",
+    "source": {
+      "url": "https://www.schertz.com/151/Open-Records-Request",
+      "access": "RECORDS_REQUEST",
+      "notes": "Texas Public Information Act request route for existing Schertz municipal code-enforcement, nuisance, unsafe-structure and code-lien case records, through the city records coordinator. Use general City records (or the named code department), not a police-only records form. No public complete code-case export confirmed in this audit; request an existing electronic case export if maintained, not a new inspection or analysis. Shared municipal jurisdiction also extends into Bexar, Guadalupe County/Counties. This row covers the Comal County city portion; the same municipal source is intentionally associated with every selected county portion. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "Schertz Code Enforcement — City Records Coordinator",
+      "evidence": "https://www.schertz.com/151/Open-Records-Request"
+    }
+  },
+  {
+    "county": "Guadalupe",
+    "city": "Schertz",
+    "source": {
+      "url": "https://www.schertz.com/151/Open-Records-Request",
+      "access": "RECORDS_REQUEST",
+      "notes": "Texas Public Information Act request route for existing Schertz municipal code-enforcement, nuisance, unsafe-structure and code-lien case records, through the city records coordinator. Use general City records (or the named code department), not a police-only records form. No public complete code-case export confirmed in this audit; request an existing electronic case export if maintained, not a new inspection or analysis. Shared municipal jurisdiction also extends into Bexar, Comal County/Counties. This row covers the Guadalupe County city portion; the same municipal source is intentionally associated with every selected county portion. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "Schertz Code Enforcement — City Records Coordinator",
+      "evidence": "https://www.schertz.com/151/Open-Records-Request"
+    }
+  },
+  {
+    "county": "Guadalupe",
+    "city": "Seguin",
+    "source": {
+      "url": "https://seguintexas.gov/489/Open-Records-Requests",
+      "access": "RECORDS_REQUEST",
+      "notes": "Texas Public Information Act request route for existing Seguin municipal code-enforcement, nuisance, unsafe-structure and code-lien case records, through the city records coordinator. Use general City records (or the named code department), not a police-only records form. No public complete code-case export confirmed in this audit; request an existing electronic case export if maintained, not a new inspection or analysis. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "Seguin Code Enforcement — City Records Coordinator",
+      "evidence": "https://seguintexas.gov/489/Open-Records-Requests"
+    }
+  },
+  {
+    "county": "Comal",
+    "city": "New Braunfels",
+    "source": {
+      "url": "https://newbraunfelstx.govqa.us/WEBAPP/_rs/SupportHome.aspx",
+      "access": "RECORDS_REQUEST",
+      "notes": "Texas Public Information Act request route for existing New Braunfels municipal code-enforcement, nuisance, unsafe-structure and code-lien case records, through the city records coordinator. Use general City records (or the named code department), not a police-only records form. No public complete code-case export confirmed in this audit; request an existing electronic case export if maintained, not a new inspection or analysis. Shared municipal jurisdiction also extends into Guadalupe County/Counties. This row covers the Comal County city portion; the same municipal source is intentionally associated with every selected county portion. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "New Braunfels Code Enforcement — City Records Coordinator",
+      "evidence": "https://newbraunfels.gov/4188/Local-Government"
+    }
+  },
+  {
+    "county": "Guadalupe",
+    "city": "New Braunfels",
+    "source": {
+      "url": "https://newbraunfelstx.govqa.us/WEBAPP/_rs/SupportHome.aspx",
+      "access": "RECORDS_REQUEST",
+      "notes": "Texas Public Information Act request route for existing New Braunfels municipal code-enforcement, nuisance, unsafe-structure and code-lien case records, through the city records coordinator. Use general City records (or the named code department), not a police-only records form. No public complete code-case export confirmed in this audit; request an existing electronic case export if maintained, not a new inspection or analysis. Shared municipal jurisdiction also extends into Comal County/Counties. This row covers the Guadalupe County city portion; the same municipal source is intentionally associated with every selected county portion. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "New Braunfels Code Enforcement — City Records Coordinator",
+      "evidence": "https://newbraunfels.gov/4188/Local-Government"
+    }
+  },
+  {
+    "county": "Bastrop",
+    "city": "Austin",
+    "source": {
+      "url": "https://www.austintexas.gov/services/search-code-complaints",
+      "access": "SEARCH_PORTAL",
+      "notes": "Official municipal code-compliance case/violation lookup. Official Citizen Connect code-complaint search, linked from Development Services. Results are case/status records, not a complete lien or property-condition conclusion. Shared municipal jurisdiction also extends into Hays, Travis, Williamson County/Counties. This row covers the Bastrop County city portion; the same municipal source is intentionally associated with every selected county portion. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "Austin Development Services — Code Compliance",
+      "evidence": "https://www.austintexas.gov/development-services/code-compliance"
+    }
+  },
+  {
+    "county": "Hays",
+    "city": "Austin",
+    "source": {
+      "url": "https://www.austintexas.gov/services/search-code-complaints",
+      "access": "SEARCH_PORTAL",
+      "notes": "Official municipal code-compliance case/violation lookup. Official Citizen Connect code-complaint search, linked from Development Services. Results are case/status records, not a complete lien or property-condition conclusion. Shared municipal jurisdiction also extends into Bastrop, Travis, Williamson County/Counties. This row covers the Hays County city portion; the same municipal source is intentionally associated with every selected county portion. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "Austin Development Services — Code Compliance",
+      "evidence": "https://www.austintexas.gov/development-services/code-compliance"
+    }
+  },
+  {
+    "county": "Travis",
+    "city": "Austin",
+    "source": {
+      "url": "https://www.austintexas.gov/services/search-code-complaints",
+      "access": "SEARCH_PORTAL",
+      "notes": "Official municipal code-compliance case/violation lookup. Official Citizen Connect code-complaint search, linked from Development Services. Results are case/status records, not a complete lien or property-condition conclusion. Shared municipal jurisdiction also extends into Bastrop, Hays, Williamson County/Counties. This row covers the Travis County city portion; the same municipal source is intentionally associated with every selected county portion. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "Austin Development Services — Code Compliance",
+      "evidence": "https://www.austintexas.gov/development-services/code-compliance"
+    }
+  },
+  {
+    "county": "Williamson",
+    "city": "Austin",
+    "source": {
+      "url": "https://www.austintexas.gov/services/search-code-complaints",
+      "access": "SEARCH_PORTAL",
+      "notes": "Official municipal code-compliance case/violation lookup. Official Citizen Connect code-complaint search, linked from Development Services. Results are case/status records, not a complete lien or property-condition conclusion. Shared municipal jurisdiction also extends into Bastrop, Hays, Travis County/Counties. This row covers the Williamson County city portion; the same municipal source is intentionally associated with every selected county portion. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "Austin Development Services — Code Compliance",
+      "evidence": "https://www.austintexas.gov/development-services/code-compliance"
+    }
+  },
+  {
+    "county": "Travis",
+    "city": "Pflugerville",
+    "source": {
+      "url": "https://www.pflugervilletx.gov/open-records-request",
+      "access": "RECORDS_REQUEST",
+      "notes": "Texas Public Information Act request route for existing Pflugerville municipal code-enforcement, nuisance, unsafe-structure and code-lien case records, through the city records coordinator. Use general City records (or the named code department), not a police-only records form. No public complete code-case export confirmed in this audit; request an existing electronic case export if maintained, not a new inspection or analysis. Shared municipal jurisdiction also extends into Williamson County/Counties. This row covers the Travis County city portion; the same municipal source is intentionally associated with every selected county portion. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "Pflugerville Code Enforcement — City Records Coordinator",
+      "evidence": "https://www.pflugervilletx.gov/open-records-request"
+    }
+  },
+  {
+    "county": "Williamson",
+    "city": "Pflugerville",
+    "source": {
+      "url": "https://www.pflugervilletx.gov/open-records-request",
+      "access": "RECORDS_REQUEST",
+      "notes": "Texas Public Information Act request route for existing Pflugerville municipal code-enforcement, nuisance, unsafe-structure and code-lien case records, through the city records coordinator. Use general City records (or the named code department), not a police-only records form. No public complete code-case export confirmed in this audit; request an existing electronic case export if maintained, not a new inspection or analysis. Shared municipal jurisdiction also extends into Travis County/Counties. This row covers the Williamson County city portion; the same municipal source is intentionally associated with every selected county portion. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "Pflugerville Code Enforcement — City Records Coordinator",
+      "evidence": "https://www.pflugervilletx.gov/open-records-request"
+    }
+  },
+  {
+    "county": "Travis",
+    "city": "Round Rock",
+    "source": {
+      "url": "https://www.roundrocktexas.gov/city-departments/administration/city-clerk/public-information-request/",
+      "access": "RECORDS_REQUEST",
+      "notes": "Texas Public Information Act request route for existing Round Rock municipal code-enforcement, nuisance, unsafe-structure and code-lien case records, through the city records coordinator. Use general City records (or the named code department), not a police-only records form. No public complete code-case export confirmed in this audit; request an existing electronic case export if maintained, not a new inspection or analysis. Shared municipal jurisdiction also extends into Williamson County/Counties. This row covers the Travis County city portion; the same municipal source is intentionally associated with every selected county portion. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "Round Rock Code Enforcement — City Records Coordinator",
+      "evidence": "https://www.roundrocktexas.gov/city-departments/administration/city-clerk/public-information-request/",
+      "email": "openrecords@roundrocktexas.gov"
+    }
+  },
+  {
+    "county": "Williamson",
+    "city": "Round Rock",
+    "source": {
+      "url": "https://www.roundrocktexas.gov/city-departments/administration/city-clerk/public-information-request/",
+      "access": "RECORDS_REQUEST",
+      "notes": "Texas Public Information Act request route for existing Round Rock municipal code-enforcement, nuisance, unsafe-structure and code-lien case records, through the city records coordinator. Use general City records (or the named code department), not a police-only records form. No public complete code-case export confirmed in this audit; request an existing electronic case export if maintained, not a new inspection or analysis. Shared municipal jurisdiction also extends into Travis County/Counties. This row covers the Williamson County city portion; the same municipal source is intentionally associated with every selected county portion. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "Round Rock Code Enforcement — City Records Coordinator",
+      "evidence": "https://www.roundrocktexas.gov/city-departments/administration/city-clerk/public-information-request/",
+      "email": "openrecords@roundrocktexas.gov"
+    }
+  },
+  {
+    "county": "Williamson",
+    "city": "Georgetown",
+    "source": {
+      "url": "https://www.georgetowntexas.gov/government/secretarys_office/locate_city_records.php",
+      "access": "RECORDS_REQUEST",
+      "notes": "Texas Public Information Act request route for existing Georgetown municipal code-enforcement, nuisance, unsafe-structure and code-lien case records, through the city records coordinator. Use general City records (or the named code department), not a police-only records form. No public complete code-case export confirmed in this audit; request an existing electronic case export if maintained, not a new inspection or analysis. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "Georgetown Code Enforcement — City Records Coordinator",
+      "evidence": "https://www.georgetowntexas.gov/government/secretarys_office/locate_city_records.php",
+      "email": "records@georgetowntexas.gov"
+    }
+  },
+  {
+    "county": "Williamson",
+    "city": "Taylor",
+    "source": {
+      "url": "https://www.taylortx.gov/FormCenter/Open-Records-Requests-9",
+      "access": "RECORDS_REQUEST",
+      "notes": "Texas Public Information Act request route for existing Taylor municipal code-enforcement, nuisance, unsafe-structure and code-lien case records, through the city records coordinator. Use general City records (or the named code department), not a police-only records form. No public complete code-case export confirmed in this audit; request an existing electronic case export if maintained, not a new inspection or analysis. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "Taylor Code Enforcement — City Records Coordinator",
+      "evidence": "https://www.taylortx.gov/FormCenter/Open-Records-Requests-9"
+    }
+  },
+  {
+    "county": "Guadalupe",
+    "city": "San Marcos",
+    "source": {
+      "url": "https://www.sanmarcostx.gov/287/Public-Information-Requests",
+      "access": "RECORDS_REQUEST",
+      "notes": "Texas Public Information Act request route for existing San Marcos municipal code-enforcement, nuisance, unsafe-structure and code-lien case records, through the city records coordinator. Use general City records (or the named code department), not a police-only records form. No public complete code-case export confirmed in this audit; request an existing electronic case export if maintained, not a new inspection or analysis. Shared municipal jurisdiction also extends into Caldwell, Hays County/Counties. This row covers the Guadalupe County city portion; the same municipal source is intentionally associated with every selected county portion. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "San Marcos Code Enforcement — City Records Coordinator",
+      "evidence": "https://www.sanmarcostx.gov/287/Public-Information-Requests"
+    }
+  },
+  {
+    "county": "Hays",
+    "city": "San Marcos",
+    "source": {
+      "url": "https://www.sanmarcostx.gov/287/Public-Information-Requests",
+      "access": "RECORDS_REQUEST",
+      "notes": "Texas Public Information Act request route for existing San Marcos municipal code-enforcement, nuisance, unsafe-structure and code-lien case records, through the city records coordinator. Use general City records (or the named code department), not a police-only records form. No public complete code-case export confirmed in this audit; request an existing electronic case export if maintained, not a new inspection or analysis. Shared municipal jurisdiction also extends into Caldwell, Guadalupe County/Counties. This row covers the Hays County city portion; the same municipal source is intentionally associated with every selected county portion. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "San Marcos Code Enforcement — City Records Coordinator",
+      "evidence": "https://www.sanmarcostx.gov/287/Public-Information-Requests"
+    }
+  },
+  {
+    "county": "Hays",
+    "city": "Kyle",
+    "source": {
+      "url": "https://www.cityofkyle.gov/city-hall/city-secretarys-office/open-records-requests/",
+      "access": "RECORDS_REQUEST",
+      "notes": "Texas Public Information Act request route for existing Kyle municipal code-enforcement, nuisance, unsafe-structure and code-lien case records, through the city records coordinator. Use general City records (or the named code department), not a police-only records form. No public complete code-case export confirmed in this audit; request an existing electronic case export if maintained, not a new inspection or analysis. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "Kyle Code Enforcement — City Records Coordinator",
+      "evidence": "https://www.cityofkyle.gov/city-hall/city-secretarys-office/open-records-requests/"
+    }
+  },
+  {
+    "county": "Bastrop",
+    "city": "Bastrop",
+    "source": {
+      "url": "https://www.cityofbastrop.org/page/cs.open_records_instructions",
+      "access": "RECORDS_REQUEST",
+      "notes": "Texas Public Information Act request route for existing Bastrop municipal code-enforcement, nuisance, unsafe-structure and code-lien case records, through the city records coordinator. Use general City records (or the named code department), not a police-only records form. No public complete code-case export confirmed in this audit; request an existing electronic case export if maintained, not a new inspection or analysis. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "Bastrop Code Enforcement — City Records Coordinator",
+      "evidence": "https://www.cityofbastrop.org/page/cs.open_records_instructions",
+      "email": "citysec@cityofbastrop.org"
+    }
+  },
+  {
+    "county": "McLennan",
+    "city": "Waco",
+    "source": {
+      "url": "https://wacotx.mycusthelp.com/WEBAPP/_rs/supporthome.aspx",
+      "access": "RECORDS_REQUEST",
+      "notes": "Texas Public Information Act request route for existing Waco municipal code-enforcement, nuisance, unsafe-structure and code-lien case records, through the city records coordinator. Use general City records (or the named code department), not a police-only records form. No public complete code-case export confirmed in this audit; request an existing electronic case export if maintained, not a new inspection or analysis. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "Waco Code Enforcement — City Records Coordinator",
+      "evidence": "https://www.waco-texas.com/Departments/City-Secretarys-Office/City-Secretary"
+    }
+  },
+  {
+    "county": "Bell",
+    "city": "Killeen",
+    "source": {
+      "url": "https://www.killeentexas.gov/389/Information-Requests",
+      "access": "RECORDS_REQUEST",
+      "notes": "Texas Public Information Act request route for existing Killeen municipal code-enforcement, nuisance, unsafe-structure and code-lien case records, through the city records coordinator. Use general City records (or the named code department), not a police-only records form. No public complete code-case export confirmed in this audit; request an existing electronic case export if maintained, not a new inspection or analysis. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "Killeen Code Enforcement — City Records Coordinator",
+      "evidence": "https://www.killeentexas.gov/389/Information-Requests"
+    }
+  },
+  {
+    "county": "Bell",
+    "city": "Temple",
+    "source": {
+      "url": "https://records.templetx.gov/",
+      "access": "RECORDS_REQUEST",
+      "notes": "Texas Public Information Act request route for existing Temple municipal code-enforcement, nuisance, unsafe-structure and code-lien case records, through the city records coordinator. Use general City records (or the named code department), not a police-only records form. No public complete code-case export confirmed in this audit; request an existing electronic case export if maintained, not a new inspection or analysis. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "Temple Code Enforcement — City Records Coordinator",
+      "evidence": "https://records.templetx.gov/faqs"
+    }
+  },
+  {
+    "county": "El Paso",
+    "city": "El Paso",
+    "source": {
+      "url": "https://elpaso.govqa.us/webapp/_rs/supporthome.aspx",
+      "access": "RECORDS_REQUEST",
+      "notes": "Texas Public Information Act request route for existing El Paso municipal code-enforcement, nuisance, unsafe-structure and code-lien case records, through the city records coordinator. Use general City records (or the named code department), not a police-only records form. No public complete code-case export confirmed in this audit; request an existing electronic case export if maintained, not a new inspection or analysis. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "El Paso Code Enforcement — City Records Coordinator",
+      "evidence": "https://www.elpasotexas.gov/city-clerk"
+    }
+  },
+  {
+    "county": "Lubbock",
+    "city": "Lubbock",
+    "source": {
+      "url": "https://www.mylubbock.us/593/Request-an-Open-Record",
+      "access": "RECORDS_REQUEST",
+      "notes": "Texas Public Information Act request route for existing Lubbock municipal code-enforcement, nuisance, unsafe-structure and code-lien case records, through the city records coordinator. Use general City records (or the named code department), not a police-only records form. No public complete code-case export confirmed in this audit; request an existing electronic case export if maintained, not a new inspection or analysis. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "Lubbock Code Enforcement — City Records Coordinator",
+      "evidence": "https://www.mylubbock.us/593/Request-an-Open-Record"
+    }
+  },
+  {
+    "county": "Nueces",
+    "city": "Corpus Christi",
+    "source": {
+      "url": "https://www.corpuschristitx.gov/department-directory/city-secretary/public-records/",
+      "access": "RECORDS_REQUEST",
+      "notes": "Texas Public Information Act request route for existing Corpus Christi municipal code-enforcement, nuisance, unsafe-structure and code-lien case records, through the city records coordinator. Use general City records (or the named code department), not a police-only records form. No public complete code-case export confirmed in this audit; request an existing electronic case export if maintained, not a new inspection or analysis. Shared municipal jurisdiction also extends into Aransas, Kleberg, San Patricio County/Counties. This row covers the Nueces County city portion; the same municipal source is intentionally associated with every selected county portion. City limits, not postal addresses or ETJ, determine municipal code jurisdiction.",
+      "agency": "Corpus Christi Code Enforcement — City Records Coordinator",
+      "evidence": "https://www.corpuschristitx.gov/department-directory/city-secretary/public-records/"
+    }
+  }
+]

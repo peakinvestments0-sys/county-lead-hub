@@ -10,8 +10,10 @@ from requests.auth import HTTPBasicAuth
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-from typing import Optional
+from typing import Optional, Dict, Any, List, Tuple
 import re
+import threading
+import random
 from pydantic import BaseModel
 
 # Reconfigure stdout/stderr to utf-8 on Windows to prevent charmap encoding errors
@@ -22,7 +24,7 @@ if sys.platform == "win32":
     except Exception:
         pass
 
-from fastapi import FastAPI, UploadFile, File, Form, HTTPException, Response
+from fastapi import FastAPI, UploadFile, File, Form, HTTPException, Response, Request
 from fastapi.responses import HTMLResponse, FileResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
@@ -43,6 +45,20 @@ from src.matcher import CrossReferenceEngine
 from src.normalizer import parse_owner_name, extract_human_defendants
 from pydantic import BaseModel
 
+from src.link_zone_service import link_zone_service
+from src.lucas_operator import lucas_operator
+from src.seller_bot_engine import (
+    SellerBotEngine, load_seller_bot_settings, save_seller_bot_settings,
+    load_seller_golden_replies, save_seller_golden_reply, delete_seller_golden_reply,
+    evaluate_deal_spread, test_seller_gemini_connection
+)
+from src.valuation_service import get_property_market_valuation
+from src.calendar_service import (
+    load_scheduled_callbacks, save_scheduled_callbacks,
+    send_calendar_invite_email, build_google_calendar_url
+)
+seller_bot = SellerBotEngine()
+
 app = FastAPI(title="Florida Lead Hub API", version="1.0.0")
 
 app.add_middleware(
@@ -56,10 +72,75 @@ app.add_middleware(
 # Global in-memory cache for county ParcelDatabases
 DB_CACHE = {}
 
+class LucasTimerScheduleRequest(BaseModel):
+    lead_id: str
+    lead_name: str
+    phone: str
+    address: str
+    action_type: str = "SMS_NUDGE"
+    delay_hours: float = 24.0
+    custom_message: Optional[str] = None
+
+class LucasTimerCancelRequest(BaseModel):
+    timer_id: str
+
+class LucasCommandRequest(BaseModel):
+    prompt: str
+    phone: Optional[str] = None
+
 @app.get("/api/states")
 def get_states():
     """Return all active states (discovers active states dynamically)."""
     return load_available_states()
+
+@app.get("/api/link-zone/health")
+def get_link_zone_health():
+    """Get live connection health, status, state statistics, and audit history for Link Zone."""
+    return link_zone_service.get_health_report()
+
+@app.post("/api/link-zone/resync")
+def trigger_link_zone_resync():
+    """Manually force re-scan of C:\\Projects\\Apps\\link-zone\\data and refresh portals."""
+    return link_zone_service.force_resync()
+
+@app.get("/api/operator/triage")
+def get_operator_triage():
+    """Retrieve full pipeline triage, urgency scoring, stats, and daily executive briefing."""
+    return lucas_operator.get_pipeline_triage()
+
+@app.get("/api/operator/timers")
+def get_operator_timers():
+    """Get all scheduled, pending, and completed delayed timers."""
+    return {"timers": lucas_operator.get_timers()}
+
+@app.post("/api/operator/timers/schedule")
+def schedule_operator_timer(req: LucasTimerScheduleRequest):
+    """Schedule a new delayed follow-up or nudge timer."""
+    return lucas_operator.schedule_timer(
+        lead_id=req.lead_id,
+        lead_name=req.lead_name,
+        phone=req.phone,
+        address=req.address,
+        action_type=req.action_type,
+        delay_hours=req.delay_hours,
+        custom_message=req.custom_message
+    )
+
+@app.post("/api/operator/timers/cancel")
+def cancel_operator_timer(req: LucasTimerCancelRequest):
+    """Cancel a pending delayed timer."""
+    success = lucas_operator.cancel_timer(req.timer_id)
+    return {"status": "success" if success else "not_found", "timer_id": req.timer_id}
+
+@app.post("/api/operator/command")
+def execute_operator_command(req: LucasCommandRequest):
+    """Process natural language executive instructions from John."""
+    return lucas_operator.execute_command(req.prompt, req.phone)
+
+@app.get("/api/operator/memory")
+def get_operator_memory():
+    """Get Lucas's operational audit history and memory log."""
+    return {"memory": lucas_operator.memory}
 
 def get_database(county_key: str, state: str = "FL") -> ParcelDatabase:
     """Retrieve or load cached ParcelDatabase for given county and state."""
@@ -99,6 +180,9 @@ def get_global_stats(state: str = "FL"):
     """Return top summary KPI statistics for dashboard banner with live counts."""
     state = (state or "FL").upper()
     state_info = DEFAULT_STATES.get(state, DEFAULT_STATES["FL"])
+    registry = load_county_portals(state=state)
+    live_count = sum(1 for k in registry if k == "Pinellas" and state == "FL")
+    ready_count = max(0, len(registry) - live_count)
     return {
         "state": state,
         "state_name": state_info["name"],
@@ -106,7 +190,7 @@ def get_global_stats(state: str = "FL"):
         "total_records_sub": f"Master Parcels Indexed ({state})",
         "unique_properties": "3,205" if state == "FL" else "0",
         "unique_properties_sub": "Verified Distressed Leads",
-        "counties_available": "1 Live / 7 Ready" if state == "FL" else "0 Live",
+        "counties_available": f"{live_count} Live / {ready_count} Ready",
         "counties_available_sub": "Drop Data to Activate",
         "updated_status": "Updated Daily",
         "updated_status_sub": f"Direct from {state_info['name']} Sources"
@@ -838,6 +922,77 @@ def send_sms_via_gateway(req: SendSmsRequest):
     else:
         phone_e164 = digits
 
+    # Safe Sandbox Test Lead Handling (Non-live carrier simulation for dummy 555 numbers)
+    # Exclude user's real Google Voice test line (407-504-2503) so live carrier SMS actually dispatches!
+    is_live_google_voice = ("4075042503" in digits or "5042503" in digits)
+    is_sandbox = not is_live_google_voice and (
+        (req.parcel_id and str(req.parcel_id) == "TEST-PINELLAS-001") or
+        "5550199" in digits or "555" in digits
+    )
+
+    if is_sandbox:
+        resp_data = {"id": f"sandbox_sms_{int(time.time())}", "state": "Delivered (Sandbox Simulated)"}
+        log_entry = {
+            "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
+            "channel": "SMS",
+            "direction": "OUTBOUND",
+            "parcel_id": req.parcel_id or "TEST-PINELLAS-001",
+            "county": req.county or "Pinellas",
+            "owner": req.owner_name or "Robert Vance (Test Lead)",
+            "address": req.property_address or "742 Evergreen Terr, St. Petersburg, FL",
+            "phone": phone_e164,
+            "recipient": phone_e164,
+            "subject": "SMS Text Message (Sandbox)",
+            "message": req.message,
+            "status": "SENT",
+            "status_code": 200,
+            "response": resp_data,
+            "sandbox": True
+        }
+        logs = []
+        if os.path.exists(OUTREACH_LOG_FILE):
+            try:
+                with open(OUTREACH_LOG_FILE, "r", encoding="utf-8") as f:
+                    logs = json.load(f)
+            except Exception:
+                logs = []
+        logs.insert(0, log_entry)
+        with open(OUTREACH_LOG_FILE, "w", encoding="utf-8") as f:
+            json.dump(logs[:500], f, indent=2)
+
+        if req.parcel_id:
+            save_contact(req.parcel_id, {
+                "last_sms_sent": time.strftime("%Y-%m-%d %H:%M:%S"),
+                "last_sms_status": "SENT (Sandbox)",
+                "last_sms_message": req.message
+            })
+
+        # Auto-trigger an interactive 2-way reply from Robert Vance 3 seconds later
+        def simulate_homeowner_reply():
+            time.sleep(3)
+            sample_inbounds = [
+                "Hey Emma, thanks for reaching out. What would you offer cash for the place as-is?",
+                "We got cited for the garage and roof by county code enforcement. Can you close fast with cash?",
+                "I might sell if the price makes sense. I'll let it go for 130k if you can close this month.",
+                "How does your as-is purchase work? Do we have to clear out the old furniture?"
+            ]
+            sim_text = random.choice(sample_inbounds)
+            sim_req = InboundSmsWebhookRequest(
+                phone=req.phone or "(727) 555-0199",
+                message=sim_text,
+                parcel_id=req.parcel_id or "TEST-PINELLAS-001"
+            )
+            simulate_seller_inbound(sim_req)
+
+        threading.Thread(target=simulate_homeowner_reply, daemon=True).start()
+
+        return {
+            "status": "success",
+            "message": "✓ Sandbox SMS dispatched! (Simulated 2-way reply arriving in 3s)",
+            "log": log_entry,
+            "sandbox": True
+        }
+
     target_url = "https://api.sms-gate.app/3rdparty/v1/messages" if mode == "cloud" else f"{base_url}/3rdparty/v1/messages"
 
     payload = {
@@ -934,6 +1089,593 @@ def test_sms_gateway():
         return {"status": "error", "message": f"Connection failed: {str(e)}"}
 
 # -------------------------------------------------------------
+# Direct-to-Seller Autonomous Bot & Golden Training Suite API
+# -------------------------------------------------------------
+
+def find_lead_by_phone(phone_str: str) -> Dict[str, Any]:
+    """Finds matching parcel lead in saved contacts or defaults to generic Florida lead."""
+    digits = "".join(filter(str.isdigit, str(phone_str)))
+    if len(digits) > 10 and digits.startswith("1"):
+        digits = digits[1:]
+
+    # Dedicated Sandbox Test Lead match
+    if digits in ["7275550199", "4075550199", "5550199"]:
+        return {
+            "parcel_id": "TEST-PINELLAS-001",
+            "owner_name": "Robert Vance (Test Lead)",
+            "property_address": "742 Evergreen Terr, St. Petersburg, FL 33701",
+            "phone": "(727) 555-0199",
+            "distress_category": "Code Violation",
+            "just_value": 240000.0,
+            "market_value": 312000.0
+        }
+
+    # Dedicated Live Google Voice Test Lead #2 match
+    if digits in ["4075042503", "14075042503"] or "5042503" in digits:
+        return {
+            "parcel_id": "TEST-PINELLAS-002",
+            "owner_name": "Marcus Sterling (Test Lead #2)",
+            "property_address": "1204 Gulf Way, St. Pete Beach, FL 33706",
+            "phone": "(407) 504-2503",
+            "distress_category": "Lis Pendens",
+            "just_value": 310000.0,
+            "market_value": 485000.0
+        }
+
+    contacts = load_saved_contacts()
+    for pid, c in contacts.items():
+        c_clean = c.get("clean_phone") or "".join(filter(str.isdigit, str(c.get("phone", ""))))
+        if c_clean and (digits in c_clean or c_clean in digits):
+            jval = float(c.get("just_value") or 250000.0)
+            val = get_property_market_valuation(c.get("address", ""), jval)
+            return {
+                "parcel_id": pid,
+                "owner_name": c.get("owner") or "Property Owner",
+                "property_address": c.get("address") or "Florida Property",
+                "phone": c.get("phone") or phone_str,
+                "distress_category": c.get("distress_category") or "General Distress",
+                "just_value": jval,
+                "market_value": float(val.get("market_value") or (jval * 1.30))
+            }
+
+    return {
+        "parcel_id": "",
+        "owner_name": "Florida Homeowner",
+        "property_address": "Florida Property",
+        "phone": phone_str,
+        "distress_category": "General Distress",
+        "just_value": 250000.0
+    }
+
+def get_lead_sms_thread(phone_str: str, parcel_id: str = "") -> List[Dict[str, Any]]:
+    """Retrieves 2-way conversation history for a given phone or parcel."""
+    digits = "".join(filter(str.isdigit, str(phone_str)))
+    if len(digits) > 10 and digits.startswith("1"):
+        digits = digits[1:]
+
+    history = []
+    if os.path.exists(OUTREACH_LOG_FILE):
+        try:
+            with open(OUTREACH_LOG_FILE, "r", encoding="utf-8") as f:
+                logs = json.load(f)
+                for entry in logs:
+                    e_phone = "".join(filter(str.isdigit, str(entry.get("phone") or entry.get("recipient") or entry.get("sender_phone") or "")))
+                    e_pid = str(entry.get("parcel_id") or "")
+                    if (digits and (digits in e_phone or e_phone in digits)) or (parcel_id and parcel_id == e_pid):
+                        history.append(entry)
+        except Exception:
+            pass
+    return sorted(history, key=lambda x: x.get("timestamp", ""))
+
+class InboundSmsWebhookRequest(BaseModel):
+    phone: Optional[str] = None
+    sender: Optional[str] = None
+    from_number: Optional[str] = None
+    message: Optional[str] = None
+    text: Optional[str] = None
+    body: Optional[str] = None
+    parcel_id: Optional[str] = None
+
+@app.post("/api/sms/inbound")
+@app.post("/api/webhooks/android-sms-gateway")
+async def receive_inbound_sms(request: Request):
+    """
+    Inbound SMS Webhook from Android SMS Gateway.
+    Supports official Cloud & Local Android SMS Gateway event format and flat JSON.
+    1. Captures text from seller
+    2. Matches parcel lead record
+    3. Runs through SellerBotEngine (Code, Lis Pendens, Probate)
+    4. Evaluates deal spread
+    5. Logs into outreach_history.json
+    6. If in Autopilot mode and allowed, dispatches AI reply via gateway
+    """
+    try:
+        body = await request.json()
+    except Exception:
+        body = {}
+
+    payload = body.get("payload") if isinstance(body.get("payload"), dict) else {}
+
+    # Extract phone number
+    sender_phone = (
+        body.get("phoneNumber") or body.get("phone") or body.get("sender") or body.get("from_number") or
+        payload.get("phoneNumber") or payload.get("phone") or payload.get("sender") or ""
+    )
+    if not sender_phone and isinstance(payload.get("phoneNumbers"), list) and len(payload["phoneNumbers"]) > 0:
+        sender_phone = payload["phoneNumbers"][0]
+
+    # Extract message text
+    msg_text = (
+        body.get("message") or body.get("text") or body.get("body") or
+        payload.get("message") or payload.get("text") or payload.get("body") or ""
+    )
+
+    event_type = body.get("event", "")
+    if event_type and event_type not in ("sms:received", "mms:downloaded", ""):
+        return {"status": "ignored", "reason": f"Event {event_type} ignored"}
+
+    if not sender_phone or not msg_text:
+        return {"status": "ignored", "reason": "No sender phone or message text detected"}
+
+    lead = find_lead_by_phone(sender_phone)
+    parcel_override = body.get("parcel_id") or payload.get("parcel_id")
+    if parcel_override:
+        lead["parcel_id"] = parcel_override
+
+    history = get_lead_sms_thread(sender_phone, lead.get("parcel_id", ""))
+    bot_res = seller_bot.process_inbound_sms(lead, msg_text, history)
+
+    # Log incoming message to outreach history
+    log_entry = {
+        "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
+        "channel": "SMS",
+        "direction": "INBOUND",
+        "sender_phone": sender_phone,
+        "phone": sender_phone,
+        "recipient": "Emma (Gateway)",
+        "parcel_id": lead.get("parcel_id"),
+        "owner": lead.get("owner_name"),
+        "address": lead.get("property_address"),
+        "message": msg_text,
+        "status": "RECEIVED",
+        "bot_action": bot_res.get("action"),
+        "bot_node": bot_res.get("node"),
+        "suggested_reply": bot_res.get("suggested_reply"),
+        "bot_response": bot_res.get("suggested_reply"),
+        "deal_evaluation": bot_res.get("deal_evaluation"),
+        "spread_eval": bot_res.get("deal_evaluation")
+    }
+
+    logs = []
+    if os.path.exists(OUTREACH_LOG_FILE):
+        try:
+            with open(OUTREACH_LOG_FILE, "r", encoding="utf-8") as f:
+                logs = json.load(f)
+        except Exception:
+            logs = []
+    logs.insert(0, log_entry)
+    with open(OUTREACH_LOG_FILE, "w", encoding="utf-8") as f:
+        json.dump(logs[:500], f, indent=2)
+
+    # If appointment was confirmed, automatically dispatch calendar invite (.ics) to John's Gmail
+    if bot_res.get("action") == "APPOINTMENT_CONFIRMED":
+        try:
+            appt_time_str = bot_res.get("appointment_time") or "Soon"
+            send_calendar_invite_email(lead, appt_time_str)
+        except Exception as e:
+            print(f"[CalendarSync] Error sending calendar invite: {e}")
+
+    # Check for Autopilot automated dispatch (with 30-45 second human delay)
+    settings = load_seller_bot_settings()
+    auto_dispatched = False
+    if settings.get("enabled") and settings.get("mode") == "autopilot" and bot_res.get("auto_send_allowed"):
+        reply_text = bot_res.get("suggested_reply")
+        if reply_text:
+            delay_sec = int(settings.get("auto_send_delay_seconds") or random.randint(30, 45))
+            def delayed_dispatch():
+                time.sleep(delay_sec)
+                send_sms_via_gateway(SendSmsRequest(
+                    phone=sender_phone,
+                    message=reply_text,
+                    parcel_id=lead.get("parcel_id"),
+                    owner_name=lead.get("owner_name"),
+                    property_address=lead.get("property_address")
+                ))
+            threading.Thread(target=delayed_dispatch, daemon=True).start()
+            auto_dispatched = True
+
+    return {
+        "status": "success",
+        "ok": True,
+        "lead": lead,
+        "bot_response": bot_res.get("suggested_reply"),
+        "suggested_reply": bot_res.get("suggested_reply"),
+        "action": bot_res.get("action"),
+        "deal_evaluation": bot_res.get("deal_evaluation"),
+        "spread_eval": bot_res.get("deal_evaluation"),
+        "auto_dispatched": auto_dispatched
+    }
+
+@app.post("/api/sms/simulate-inbound")
+def simulate_seller_inbound(req: InboundSmsWebhookRequest):
+    """Simulates an inbound seller text for testing copilot and training flows."""
+    sender_phone = req.phone or req.sender or req.from_number or "(727) 555-0199"
+    msg_text = req.message or req.text or req.body or "How much can you offer cash?"
+    lead = find_lead_by_phone(sender_phone)
+    if req.parcel_id:
+        lead["parcel_id"] = req.parcel_id
+
+    history = get_lead_sms_thread(sender_phone, lead.get("parcel_id", ""))
+    bot_res = seller_bot.process_inbound_sms(lead, msg_text, history)
+
+    log_entry = {
+        "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
+        "channel": "SMS",
+        "direction": "INBOUND",
+        "sender_phone": sender_phone,
+        "phone": sender_phone,
+        "recipient": "Emma (Gateway)",
+        "parcel_id": lead.get("parcel_id"),
+        "owner": lead.get("owner_name"),
+        "address": lead.get("property_address"),
+        "message": msg_text,
+        "status": "RECEIVED",
+        "bot_action": bot_res.get("action"),
+        "bot_node": bot_res.get("node"),
+        "suggested_reply": bot_res.get("suggested_reply"),
+        "bot_response": bot_res.get("suggested_reply"),
+        "deal_evaluation": bot_res.get("deal_evaluation"),
+        "spread_eval": bot_res.get("deal_evaluation")
+    }
+
+    logs = []
+    if os.path.exists(OUTREACH_LOG_FILE):
+        try:
+            with open(OUTREACH_LOG_FILE, "r", encoding="utf-8") as f:
+                logs = json.load(f)
+        except Exception:
+            logs = []
+    logs.insert(0, log_entry)
+    with open(OUTREACH_LOG_FILE, "w", encoding="utf-8") as f:
+        json.dump(logs[:500], f, indent=2)
+
+    return {
+        "status": "success",
+        "ok": True,
+        "lead": lead,
+        "bot_response": bot_res,
+        "log": log_entry
+    }
+
+@app.post("/api/leads/sandbox-test-lead")
+def ensure_sandbox_test_lead():
+    """Seeds or resets the dedicated Sandbox Test Lead (Robert Vance) and Google Voice Test Lead (Marcus Sterling)."""
+    test_lead_1 = {
+        "owner": "Robert Vance (Test Lead)",
+        "county": "Pinellas",
+        "source": "Sandbox Demo Lead",
+        "phone": "(727) 555-0199",
+        "clean_phone": "7275550199",
+        "email": "robert.vance.test@gmail.com",
+        "address": "742 Evergreen Terr",
+        "city": "St. Petersburg",
+        "zip": "33701",
+        "just_value": 240000,
+        "market_value": 310000,
+        "distress_category": "Code Violation",
+        "notes": "Dedicated Sandbox test lead for verifying inbound webhooks, deal scoring, audio chime, and PandaDoc contracts.",
+        "updated_at": time.strftime("%Y-%m-%d %H:%M:%S")
+    }
+    save_contact("TEST-PINELLAS-001", test_lead_1)
+
+    test_lead_2 = {
+        "owner": "Marcus Sterling (Test Lead #2)",
+        "county": "Pinellas",
+        "source": "Google Voice Live Test Line",
+        "phone": "(407) 504-2503",
+        "clean_phone": "4075042503",
+        "email": "marcus.sterling.test@gmail.com",
+        "address": "1204 Gulf Way",
+        "city": "St. Pete Beach",
+        "zip": "33706",
+        "just_value": 310000,
+        "market_value": 395000,
+        "distress_category": "Lis Pendens",
+        "notes": "Dedicated Google Voice live test lead (407-504-2503) for real 2-way cellular SMS testing back and forth.",
+        "updated_at": time.strftime("%Y-%m-%d %H:%M:%S")
+    }
+    save_contact("TEST-PINELLAS-002", test_lead_2)
+
+    return {"status": "success", "leads": [test_lead_1, test_lead_2]}
+
+@app.get("/api/bot/settings")
+def get_bot_settings():
+    s = load_seller_bot_settings()
+    return {"status": "ok", "settings": s, **s}
+
+@app.post("/api/bot/settings")
+def update_bot_settings(settings: Dict[str, Any]):
+    save_seller_bot_settings(settings)
+    s = load_seller_bot_settings()
+    return {"status": "ok", "settings": s, **s}
+
+@app.get("/api/bot/training")
+def get_bot_training():
+    replies = load_seller_golden_replies()
+    return {
+        "status": "ok",
+        "count": len(replies),
+        "scenarios": replies,
+        "golden_replies": replies
+    }
+
+@app.post("/api/bot/training/save")
+def save_bot_training_item(entry: Dict[str, Any]):
+    saved = save_seller_golden_reply(entry)
+    replies = load_seller_golden_replies()
+    return {
+        "status": "ok",
+        "scenario": saved or entry,
+        "scenarios": replies,
+        "golden_replies": replies
+    }
+
+@app.delete("/api/bot/training/{entry_id}")
+def delete_bot_training_item(entry_id: str):
+    success = delete_seller_golden_reply(entry_id)
+    return {"status": "ok" if success else "error"}
+
+@app.post("/api/bot/suggest")
+def generate_bot_suggestion(payload: Dict[str, Any]):
+    """Generates an instant Copilot reply suggestion for any lead and text."""
+    parcel_id = payload.get("parcel_id", "")
+    phone = payload.get("phone", "")
+    inbound_text = payload.get("inbound_text") or payload.get("seller_message", "")
+    lead = find_lead_by_phone(phone)
+    if parcel_id:
+        lead["parcel_id"] = parcel_id
+    if payload.get("property_address") or payload.get("address"):
+        lead["property_address"] = payload.get("property_address") or payload.get("address")
+    if payload.get("owner_name"):
+        lead["owner_name"] = payload["owner_name"]
+    if payload.get("distress_category") or payload.get("distress_type"):
+        lead["distress_category"] = payload.get("distress_category") or payload.get("distress_type")
+    if payload.get("assessed_value"):
+        lead["assessed_value"] = payload["assessed_value"]
+
+    history = get_lead_sms_thread(phone, parcel_id)
+    if inbound_text == "INITIAL_HOOK" or (not history and (not inbound_text or "outreach inquiry" in inbound_text.lower() or "noticed your property" in inbound_text.lower())):
+        bot_res = seller_bot.generate_initial_outreach(lead)
+    else:
+        bot_res = seller_bot.process_inbound_sms(lead, inbound_text, history)
+    reply_text = bot_res.get("suggested_reply", "")
+    deal_eval = bot_res.get("deal_evaluation", {})
+
+    return {
+        "status": "ok",
+        "suggestion": reply_text,
+        "spread_eval": deal_eval,
+        "deal_evaluation": deal_eval,
+        "bot_details": bot_res
+    }
+
+@app.post("/api/bot/test-gemini")
+def test_gemini_endpoint(payload: Optional[Dict[str, Any]] = None):
+    settings = load_seller_bot_settings()
+    key = (payload.get("key") if payload else None) or settings.get("gemini_api_key", "")
+    model = (payload.get("model") if payload else None) or settings.get("gemini_model", "gemini-3.8-flash")
+    res = test_seller_gemini_connection(key, model)
+    if res.get("status") in ["success", "ok"]:
+        return {"status": "ok", "message": res.get("message", "Connected"), "model": model, "reply": "GEMINI_OK"}
+    return {"status": "error", "message": res.get("message", "Failed to connect")}
+
+@app.get("/api/inbox")
+def get_inbox_messages():
+    """Returns all inbound seller SMS messages, grouped conversation threads, and counts."""
+    logs = []
+    if os.path.exists(OUTREACH_LOG_FILE):
+        try:
+            with open(OUTREACH_LOG_FILE, "r", encoding="utf-8") as f:
+                logs = json.load(f)
+        except Exception:
+            logs = []
+    inbound = [m for m in logs if m.get("direction") == "INBOUND"]
+    threads = get_grouped_sms_threads()
+    return {
+        "status": "success",
+        "messages": inbound,
+        "threads": threads,
+        "count": len(inbound),
+        "thread_count": len(threads)
+    }
+
+def get_grouped_sms_threads() -> List[Dict[str, Any]]:
+    """Groups all outreach logs into unified 2-way seller conversation threads."""
+    logs = []
+    if os.path.exists(OUTREACH_LOG_FILE):
+        try:
+            with open(OUTREACH_LOG_FILE, "r", encoding="utf-8") as f:
+                logs = json.load(f)
+        except Exception:
+            logs = []
+
+    threads_map: Dict[str, Dict[str, Any]] = {}
+    # Iterate oldest to newest so messages array is in chronological order
+    for entry in reversed(logs):
+        phone_raw = entry.get("sender_phone") or entry.get("phone") or entry.get("recipient") or ""
+        digits = "".join(filter(str.isdigit, str(phone_raw)))
+        if len(digits) > 10 and digits.startswith("1"):
+            digits = digits[1:]
+
+        pid = str(entry.get("parcel_id") or "").strip()
+        key = digits or pid
+        if not key:
+            continue
+
+        if key not in threads_map:
+            lead_info = find_lead_by_phone(digits or phone_raw)
+            addr = entry.get("address") or (lead_info.get("property_address") if lead_info else "Florida Property")
+            jval = float(lead_info.get("just_value", 250000.0) if lead_info else 250000.0)
+            val = get_property_market_valuation(addr, jval)
+            threads_map[key] = {
+                "key": key,
+                "phone": entry.get("phone") or entry.get("sender_phone") or (lead_info.get("phone") if lead_info else phone_raw),
+                "clean_phone": digits,
+                "parcel_id": pid or (lead_info.get("parcel_id") if lead_info else ""),
+                "owner": entry.get("owner") or (lead_info.get("owner_name") if lead_info else "Homeowner"),
+                "address": addr,
+                "just_value": jval,
+                "market_value": float(lead_info.get("market_value") or val.get("market_value") or (jval * 1.30)),
+                "valuation_source": val.get("source", "Florida Retail Model (+30%)"),
+                "distress_category": lead_info.get("distress_category", "Distressed Lead") if lead_info else "Distressed Lead",
+                "deal_evaluation": {},
+                "latest_bot_response": "",
+                "last_message": "",
+                "last_timestamp": "",
+                "last_direction": "",
+                "inbound_count": 0,
+                "messages": []
+            }
+
+        t = threads_map[key]
+        t["messages"].append(entry)
+        t["last_message"] = entry.get("message", "")
+        t["last_timestamp"] = entry.get("timestamp", "")
+        t["last_direction"] = entry.get("direction", "OUTBOUND")
+
+        # Capture latest deal evaluation if available
+        d_eval = entry.get("deal_evaluation") or entry.get("spread_eval") or {}
+        if d_eval and d_eval.get("deal_rating") and d_eval.get("deal_rating") != "UNKNOWN":
+            t["deal_evaluation"] = d_eval
+
+        # Capture latest bot suggested reply
+        b_reply = entry.get("bot_response") or entry.get("suggested_reply")
+        if b_reply:
+            t["latest_bot_response"] = b_reply
+
+        if entry.get("direction") == "INBOUND":
+            t["inbound_count"] += 1
+
+    # Sort threads by last_timestamp descending (newest activity first)
+    result = list(threads_map.values())
+    result.sort(key=lambda x: x.get("last_timestamp", ""), reverse=True)
+    return result
+
+@app.get("/api/sms/threads")
+def get_sms_threads_endpoint():
+    """API endpoint to get all grouped conversation threads."""
+    threads = get_grouped_sms_threads()
+    return {"status": "success", "threads": threads, "count": len(threads)}
+
+@app.get("/api/sms/thread")
+def get_single_thread_endpoint(phone: str = "", parcel_id: str = ""):
+    """Returns chronological message thread for a specific phone or parcel."""
+    thread = get_lead_sms_thread(phone, parcel_id)
+    lead_info = find_lead_by_phone(phone)
+    return {
+        "status": "success",
+        "phone": phone,
+        "parcel_id": parcel_id,
+        "lead": lead_info,
+        "messages": thread,
+        "count": len(thread)
+    }
+
+class ThreadDeleteRequest(BaseModel):
+    key: str
+    phone: Optional[str] = None
+    parcel_id: Optional[str] = None
+
+@app.post("/api/inbox/thread/delete")
+def delete_inbox_thread_endpoint(payload: ThreadDeleteRequest):
+    """Delete a specific conversation thread and remove all its messages from outreach history."""
+    target_key = (payload.key or "").strip()
+    target_phone = (payload.phone or "").strip()
+    target_pid = (payload.parcel_id or "").strip()
+
+    clean_digits = "".join(filter(str.isdigit, str(target_phone or target_key)))
+    if len(clean_digits) > 10 and clean_digits.startswith("1"):
+        clean_digits = clean_digits[1:]
+
+    deleted_count = 0
+    if os.path.exists(OUTREACH_LOG_FILE):
+        try:
+            with open(OUTREACH_LOG_FILE, "r", encoding="utf-8") as f:
+                logs = json.load(f)
+            
+            kept_logs = []
+            for entry in logs:
+                phone_raw = entry.get("sender_phone") or entry.get("phone") or entry.get("recipient") or ""
+                digits = "".join(filter(str.isdigit, str(phone_raw)))
+                if len(digits) > 10 and digits.startswith("1"):
+                    digits = digits[1:]
+                
+                pid = str(entry.get("parcel_id") or "").strip()
+                
+                is_match = False
+                if clean_digits and digits == clean_digits:
+                    is_match = True
+                elif target_key and (target_key == digits or target_key == pid or target_key in str(phone_raw)):
+                    is_match = True
+                elif target_pid and pid == target_pid:
+                    is_match = True
+
+                if is_match:
+                    deleted_count += 1
+                else:
+                    kept_logs.append(entry)
+
+            with open(OUTREACH_LOG_FILE, "w", encoding="utf-8") as f:
+                json.dump(kept_logs, f, indent=2)
+
+        except Exception as e:
+            raise HTTPException(status_code=500, detail=str(e))
+
+    return {
+        "status": "success",
+        "message": f"Deleted thread and purged {deleted_count} messages.",
+        "deleted_count": deleted_count,
+        "key": target_key
+    }
+
+# -------------------------------------------------------------
+# Scheduled Callbacks with John & Google Calendar Sync
+# -------------------------------------------------------------
+@app.get("/api/callbacks")
+def get_scheduled_callbacks_endpoint():
+    """Returns all scheduled phone callbacks for John."""
+    callbacks = load_scheduled_callbacks()
+    pending = [c for c in callbacks if c.get("status") == "PENDING"]
+    return {
+        "status": "success",
+        "callbacks": callbacks,
+        "pending_count": len(pending),
+        "total_count": len(callbacks)
+    }
+
+@app.post("/api/callbacks/complete")
+def complete_callback_endpoint(payload: Dict[str, Any]):
+    """Marks a callback as completed or dismissed."""
+    callback_id = payload.get("id")
+    clean_phone = payload.get("clean_phone")
+    callbacks = load_scheduled_callbacks()
+    for c in callbacks:
+        if (callback_id and c.get("id") == callback_id) or (clean_phone and c.get("clean_phone") == clean_phone):
+            c["status"] = "COMPLETED"
+            c["completed_at"] = time.strftime("%Y-%m-%d %H:%M:%S")
+    save_scheduled_callbacks(callbacks)
+    return {"status": "success", "callbacks": callbacks}
+
+@app.post("/api/callbacks/send-invite")
+def manual_send_calendar_invite_endpoint(payload: Dict[str, Any]):
+    """Manually triggers or re-sends a calendar invite for a callback."""
+    phone = payload.get("phone", "")
+    lead = find_lead_by_phone(phone)
+    time_str = payload.get("time") or payload.get("scheduled_time_raw") or "Soon"
+    res = send_calendar_invite_email(lead, time_str)
+    return res
+
+# -------------------------------------------------------------
 # Email Outreach via SMTP2GO (mail.smtp2go.com)
 # -------------------------------------------------------------
 class EmailSettingsModel(BaseModel):
@@ -1008,6 +1750,54 @@ def send_email_via_smtp(req: SendEmailRequest):
     sender_name = settings.get("sender_name", "John Roberts | 407 Flips")
     sender_email = settings.get("sender_email", "john@407flips.com")
     reply_to = settings.get("reply_to", "john@407flips.com")
+
+    # Safe Sandbox Test Lead Handling (Non-live carrier simulation)
+    is_sandbox = (
+        (req.parcel_id and str(req.parcel_id).startswith("TEST-")) or
+        (req.recipient_email and any(t in req.recipient_email.lower() for t in ["@test.", ".test@", "test@gmail.com", "example.com", "555"])) or
+        "test" in (req.recipient_name or "").lower()
+    )
+
+    if is_sandbox:
+        log_entry = {
+            "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
+            "channel": "EMAIL",
+            "direction": "OUTBOUND",
+            "parcel_id": req.parcel_id or "TEST-PINELLAS-001",
+            "county": req.county or "Pinellas",
+            "owner": req.recipient_name or "Robert Vance (Test Lead)",
+            "address": req.property_address or "742 Evergreen Terr, St. Petersburg, FL",
+            "recipient": req.recipient_email or "robert.vance.test@gmail.com",
+            "subject": req.subject or "Cash Offer for 742 Evergreen Terr",
+            "message": req.subject or "Cash Offer Email (Sandbox)",
+            "status": "SENT",
+            "status_code": 200,
+            "sandbox": True
+        }
+        logs = []
+        if os.path.exists(OUTREACH_LOG_FILE):
+            try:
+                with open(OUTREACH_LOG_FILE, "r", encoding="utf-8") as f:
+                    logs = json.load(f)
+            except Exception:
+                logs = []
+        logs.insert(0, log_entry)
+        with open(OUTREACH_LOG_FILE, "w", encoding="utf-8") as f:
+            json.dump(logs[:500], f, indent=2)
+
+        if req.parcel_id:
+            save_contact(req.parcel_id, {
+                "last_email_sent": time.strftime("%Y-%m-%d %H:%M:%S"),
+                "last_email_status": "SENT (Sandbox)",
+                "email": req.recipient_email
+            })
+
+        return {
+            "status": "success",
+            "message": f"✓ [Sandbox Test Agent] Offer email dispatched safely to {req.recipient_email} (Simulated - no SMTP bounce)!",
+            "recipient": req.recipient_email,
+            "sandbox": True
+        }
 
     if not pwd:
         return {"status": "error", "message": "SMTP password not configured. Open Email Setup and enter your SMTP2GO password."}
@@ -1105,34 +1895,58 @@ OUTREACH_TEMPLATES_FILE = os.path.join(DATA_DIR, "outreach_templates.json")
 DEFAULT_OUTREACH_TEMPLATES = {
     "sms": [
         {
-            "id": "cash_offer",
-            "name": "💰 Quick All-Cash As-Is Offer",
-            "category": "cash_offer",
-            "body": "Hi {FirstName}, I noticed your property at {Address}. I'm an active local investor and wanted to see if you would consider a quick all-cash offer as-is? Let me know!"
+            "id": "casual_local",
+            "name": "🏡 Casual Local Inquiry (High Response / Zero Spam)",
+            "category": "casual_inquiry",
+            "body": "Hey {FirstName}, quick question, are you still the owner over at {Address}?"
         },
         {
-            "id": "pre_foreclosure",
-            "name": "🏛️ Pre-Foreclosure / Lis Pendens Assistance",
-            "category": "lis_pendens",
-            "body": "Hi {FirstName}, I saw the recent county court filing regarding {Address}. If you need a fast, private resolution before the auction date, we can purchase cash as-is and cover closing costs. Would you be open to a quick call?"
+            "id": "drive_by",
+            "name": "🚗 Neighborly Direct Buyer Hook",
+            "category": "direct_buyer",
+            "body": "Hi {FirstName}, my partner John and I were looking at houses near {Address}. Wondering if you would ever consider an offer or if you are holding onto it?"
         },
         {
-            "id": "probate_estate",
-            "name": "📜 Probate / Inherited Property Inquiry",
-            "category": "probate",
-            "body": "Hi {FirstName}, my condolences on the family estate regarding {Address}. If you or the heirs are planning to sell the property without repairs or realtor fees, I would love to make a fair as-is cash offer. Let me know if you'd like to discuss."
+            "id": "as_is_no_fees",
+            "name": "🛠️ Direct As-Is / No Realtor Fees",
+            "category": "as_is",
+            "body": "Hey {FirstName}, reaching out about {Address}. We are looking to purchase a place in the area as is with no realtor fees or repair work. Would you consider selling?"
+        },
+        {
+            "id": "curious_walkaway",
+            "name": "❓ Simple & Direct Inquiry",
+            "category": "direct_inquiry",
+            "body": "Hi {FirstName}, I know this is out of the blue, but would you consider parting with {Address} for the right price, or definitely not selling right now?"
         },
         {
             "id": "code_violation",
-            "name": "⚠️ Code Violation / As-Is Sale",
+            "name": "⚠️ Code Violation / City Citation Takeover",
             "category": "code_violations",
-            "body": "Hi {FirstName}, I was looking at properties in {City} and saw {Address}. If the county code requirements or repairs are becoming a headache, we buy houses in any condition with zero cleanout needed. Would you consider an offer?"
+            "body": "Hi {FirstName}, noticed the city had some open notices on {Address}. We work with owners in {City} to resolve municipal citations directly and buy as is. Open to chatting about options?"
+        },
+        {
+            "id": "pre_foreclosure",
+            "name": "🏛️ Pre-Foreclosure / Stop Auction Date",
+            "category": "lis_pendens",
+            "body": "Hi {FirstName}, reaching out regarding {Address}. We help homeowners in {County} resolve pending bank deadlines before auction dates. Would you be open to a quick call to review your options?"
+        },
+        {
+            "id": "probate_estate",
+            "name": "📜 Probate / Inherited Property (Leave Contents)",
+            "category": "probate",
+            "body": "Hi {FirstName}, my condolences regarding the family estate on {Address}. If the family is ever looking to sell without doing cleanouts, repairs, or realtor fees, we would love to help."
         },
         {
             "id": "casual_followup",
-            "name": "👋 Casual Friendly Inquiry",
+            "name": "👋 Friendly Follow-Up",
             "category": "followup",
-            "body": "Hi {FirstName}, just following up regarding {Address} in {City}. Are you still open to selling if the price and terms make sense? Thanks!"
+            "body": "Hi {FirstName}, just checking back in regarding {Address}. Would you still be open to an offer if the terms make sense? Thanks!"
+        },
+        {
+            "id": "cash_offer",
+            "name": "💰 Direct Private Purchase (Alternative)",
+            "category": "cash_offer",
+            "body": "Hi {FirstName}, are you open to a direct private purchase on {Address}? We handle standard closing costs and buy 100% as is."
         }
     ],
     "email": [
@@ -1729,8 +2543,79 @@ def serve_index():
             return f.read()
     return "<h1>Florida Lead Hub</h1><p>Frontend is loading...</p>"
 
+_proxy_started = False
+
+def start_cloudflare_tunnel_proxy():
+    """
+    Runs a lightweight HTTP forwarder on port 8767 to receive traffic from Cloudflared
+    (which routes homeowner.407rescreen.com -> 127.0.0.1:8767) and proxy it to port 8505.
+    """
+    global _proxy_started
+    if _proxy_started:
+        return
+    _proxy_started = True
+
+    import http.server
+    import urllib.request
+    import threading
+
+    class TunnelProxyHandler(http.server.BaseHTTPRequestHandler):
+        def forward(self, method):
+            try:
+                length = int(self.headers.get('Content-Length', 0))
+                data = self.rfile.read(length) if length > 0 else None
+                headers = {k: v for k, v in self.headers.items() if k.lower() not in ('host', 'content-length')}
+                headers['Host'] = '127.0.0.1:8505'
+                try:
+                    req = urllib.request.Request('http://127.0.0.1:8505' + self.path, data=data, headers=headers, method=method)
+                    with urllib.request.urlopen(req, timeout=25) as resp:
+                        self.send_response(resp.status)
+                        for k, v in resp.headers.items():
+                            if k.lower() not in ('transfer-encoding', 'content-length'):
+                                self.send_header(k, v)
+                        content = resp.read()
+                        self.send_header('Content-Length', str(len(content)))
+                        self.end_headers()
+                        self.wfile.write(content)
+                except urllib.error.HTTPError as e:
+                    self.send_response(e.code)
+                    self.end_headers()
+                    self.wfile.write(e.read())
+                except (ConnectionResetError, ConnectionAbortedError, BrokenPipeError, OSError):
+                    pass
+                except Exception as e:
+                    try:
+                        self.send_response(500)
+                        self.end_headers()
+                        self.wfile.write(str(e).encode())
+                    except Exception:
+                        pass
+            except (ConnectionResetError, ConnectionAbortedError, BrokenPipeError, OSError):
+                pass
+            except Exception:
+                pass
+
+        def do_POST(self): self.forward("POST")
+        def do_GET(self): self.forward("GET")
+        def do_DELETE(self): self.forward("DELETE")
+        def log_message(self, format, *args): pass
+
+    try:
+        proxy_server = http.server.ThreadingHTTPServer(('127.0.0.1', 8767), TunnelProxyHandler)
+        t = threading.Thread(target=proxy_server.serve_forever, daemon=True)
+        t.start()
+        print("[*] Cloudflare Tunnel forwarder active on http://127.0.0.1:8767 (homeowner.407rescreen.com -> :8505)")
+    except Exception as e:
+        print(f"[!] Could not bind tunnel proxy on 8767: {e}")
+
+@app.on_event("startup")
+def startup_event():
+    start_cloudflare_tunnel_proxy()
+
 if __name__ == "__main__":
     import uvicorn
+    import traceback
+    start_cloudflare_tunnel_proxy()
     port = 8505
     print("============================================================")
     print(f"[*] Florida Lead Hub running at http://localhost:{port}")
@@ -1740,4 +2625,13 @@ if __name__ == "__main__":
             webbrowser.open(f"http://localhost:{port}")
         except Exception:
             pass
-    uvicorn.run(app, host="127.0.0.1", port=port)
+    while True:
+        try:
+            uvicorn.run(app, host="127.0.0.1", port=port, log_level="info")
+        except KeyboardInterrupt:
+            print("[*] Server stopped by user.")
+            break
+        except Exception as e:
+            print(f"[!] Server error: {e}")
+            traceback.print_exc()
+            time.sleep(2)

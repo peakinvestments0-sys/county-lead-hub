@@ -1,0 +1,1284 @@
+[
+  {
+    "county": "Dallas",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://www.dallascad.org/SearchAddr.aspx",
+        "access": "SEARCH_PORTAL",
+        "notes": "Official appraisal-district individual property search by owner, address or account ID. Select the desired appraisal year; assessed values are not proof of unpaid taxes. Use the normal gateway and any required session/disclaimer.",
+        "agency": "Dallas Central Appraisal District",
+        "evidence": "https://www.dallascad.org/dataproducts.aspx"
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://www.dallascad.org/dataproducts.aspx",
+        "access": "DOWNLOAD_PAGE",
+        "notes": "Full certified real-property roll, ownership and appraisal data with field layouts. Select the 2026 certified real-property files; current 2027 ownership and later supplements are separately labeled. ZIP/TXT/database products cover all accounts, not a filtered property-search export.",
+        "agency": "Dallas Central Appraisal District",
+        "format": "ZIP / TXT / CSV / database"
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://www.dallascounty.org/departments/tax/tax-roll.php",
+        "access": "DOWNLOAD_PAGE",
+        "notes": "Bulk tax-roll workaround: the complete TRW receivable file contains paid and unpaid accounts for jurisdictions collected by Dallas County, with tax year, due-date and balance fields. Identify delinquent REAL-property accounts using its layout; this is not a prefiltered delinquent-only list and not all independent county collectors. The small sample ZIP is not the full roll.",
+        "agency": "Dallas County Tax Assessor-Collector",
+        "evidence": "https://www.dallascounty.org/departments/tax/tax-roll.php",
+        "format": "CSV / XLSX / ZIP / TXT"
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://dallas.tx.publicsearch.us/",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "County Clerk moved foreclosure notices to this official search in February 2026. Select Foreclosure in the document-group filter, then date/name/address as offered; retain the gateway. Filed notice of substitute trustee sale is a notice, not an executed sale.",
+        "agency": "Dallas County Clerk",
+        "evidence": "https://www.dallascounty.org/government/county-clerk/recording/foreclosures.php"
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://courtsportal.dallascounty.org/DALLASPROD",
+        "access": "SEARCH_PORTAL",
+        "notes": "Statutory Probate Courts; County Clerk Probate Division. Official Probate Case Search links this gateway. Select probate/civil case search; no criminal-only saved dashboard link.",
+        "agency": "Dallas County Clerk — Probate Records",
+        "evidence": "https://www.dallascounty.org/government/county-clerk/probate-courts/"
+      },
+      {
+        "type": "COUNTY_CODE_ENFORCEMENT",
+        "agency": "Dallas County Department of Unincorporated Area Services — Nuisance Abatement",
+        "url": "https://www.dallascounty.org/departments/duas/",
+        "evidence": "https://www.dallascounty.org/departments/plandev/zoning.php",
+        "notes": "Unincorporated-neighborhood refuse, weeds and unsafe-structure nuisance abatement. Official department contact fallback: address written existing case-record requests to DUAS, Records Building, 500 Elm Street, Suite 6100, Dallas TX 75202; call 214-653-6565 for current records routing. No dedicated online case/request gateway confirmed. Municipal Dallas code cases are separate. No public complete case export confirmed; request existing electronic records if maintained, not a new inspection or analysis.",
+        "access": "RECORDS_REQUEST"
+      }
+    ]
+  },
+  {
+    "county": "Tarrant",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://tarrant.prodigycad.com/property-search",
+        "access": "SEARCH_PORTAL",
+        "notes": "Official appraisal-district individual property search by owner, address or account ID. Select the desired appraisal year; assessed values are not proof of unpaid taxes. Use the normal gateway and any required session/disclaimer.",
+        "agency": "Tarrant Appraisal District",
+        "evidence": "https://www.tad.org/resources/data-downloads"
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://www.tad.org/resources/data-downloads",
+        "access": "DOWNLOAD_PAGE",
+        "notes": "Full 2026 True Prodigy appraisal export (000_Tarrant_All_Taxing_Units.zip), plus export layout and older certified delimited files. Use the all-taxing-units export; residential/commercial subsets are separately offered. New search system replaces the legacy interface.",
+        "agency": "Tarrant Appraisal District",
+        "format": "ZIP / TXT / CSV / database"
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://www.tax.tarrantcountytx.gov/search",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual Tax Status. Search official tax accounts and balances; unpaid/paid and real-property filters are not a complete countywide delinquent file. Published annual changeover outage September 25, 2026 3 PM through October 1, 2026 8 AM: portal functionality needs recheck after reopening.",
+        "agency": "Tarrant County Tax Assessor-Collector",
+        "evidence": "https://www.tax.tarrantcountytx.gov/search",
+        "reviewed": false
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://tarrant.tx.publicsearch.us/",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "County Clerk foreclosure notices searchable through the official public-search gateway; select Foreclosure and sale/filing period. Nonjudicial trustee-sale notices, not Florida Lis Pendens.",
+        "agency": "Tarrant County Clerk",
+        "evidence": "https://www.tarrantcountytx.gov/en/county-clerk/real-estate-records/foreclosures.html"
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://portal-txtarrant.tylertech.cloud/PublicAccess/default.aspx",
+        "access": "SEARCH_PORTAL",
+        "notes": "Statutory Probate Courts Nos. 1 and 2; County Clerk probate case index. Normal Tyler session initiation; use probate cases.",
+        "agency": "Tarrant County Clerk — Probate Records",
+        "evidence": "https://www.tarrantcountytx.gov/en/county-clerk/civil-courts/probate-courts/online-searches.html"
+      },
+      {
+        "type": "COUNTY_CODE_ENFORCEMENT",
+        "agency": "Tarrant County Sheriff — Environmental Enforcement Division",
+        "url": "https://www.tarrantcountytx.gov/en/county/website-use/public-information-act.html",
+        "evidence": "https://www.tarrantcountytx.gov/en/sheriff/operations-bureau/patrol-division/sheriff-s-environmental-enforcement-division.html",
+        "notes": "Sheriff environmental enforcement handles unincorporated-area illegal dumping, junk vehicles and nuisance/unclean premises. Request existing SEED cases through County open records; identify the Sheriff as record holder. No complete public case export confirmed; Texas Public Information Act request for existing electronic records, not a new inspection or analysis.",
+        "access": "RECORDS_REQUEST",
+        "email": "openrecords@tarrantcountytx.gov"
+      }
+    ]
+  },
+  {
+    "county": "Denton",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://www.dentoncad.com/property-search",
+        "access": "SEARCH_PORTAL",
+        "notes": "Official appraisal-district individual property search by owner, address or account ID. Select the desired appraisal year; assessed values are not proof of unpaid taxes. Use the normal gateway and any required session/disclaimer.",
+        "agency": "Denton Central Appraisal District",
+        "evidence": "https://www.dentoncad.com/data-downloads"
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://www.dentoncad.com/data-downloads",
+        "access": "DOWNLOAD_PAGE",
+        "notes": "Countywide appraisal table CSV (nightly_appraisals.zip) and weekly file geodatabase joined to parcel geometry; district schema lists ownership, value, year-built and situs fields. Current True Prodigy website needs JavaScript; an empty HTTP shell is not a missing dataset.",
+        "agency": "Denton Central Appraisal District",
+        "format": "ZIP / TXT / CSV / database"
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://www.dentoncounty.gov/890/Tax-Roll-Data-Current-Delinquent",
+        "access": "DOWNLOAD_PAGE",
+        "notes": "Full official Delinquent Tax Roll download, updated weekly, distinct from the Current Tax Roll. Master and receivable files identify unpaid accounts and prior outstanding years; use the documented real-property account/type fields. Covers entities collected by this tax office, not independent collectors.",
+        "agency": "Denton County Tax Assessor-Collector",
+        "evidence": "https://www.dentoncounty.gov/890/Tax-Roll-Data-Current-Delinquent",
+        "format": "CSV / XLSX / ZIP / TXT"
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://www.dentoncounty.gov/293/Foreclosure-Information",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "County Clerk foreclosure-information gateway directs users to filed foreclosure/trustee-sale notices and posting procedures. Clerk records/posts notices but does not conduct or certify the sale.",
+        "agency": "Denton County Clerk",
+        "evidence": "https://www.dentoncounty.gov/293/Foreclosure-Information"
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://justice1.dentoncounty.gov/PublicAccess/default.aspx",
+        "access": "SEARCH_PORTAL",
+        "notes": "Statutory Probate Courts Nos. 1 and 2; County Clerk court records. Choose Civil/Family/Probate case records and probate case type.",
+        "agency": "Denton County Clerk — Probate Records",
+        "evidence": "https://www.dentoncounty.gov/1439/Court-Records-Search"
+      }
+    ]
+  },
+  {
+    "county": "Collin",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://esearch.collincad.org/",
+        "access": "SEARCH_PORTAL",
+        "notes": "Official appraisal-district individual property search by owner, address or account ID. Select the desired appraisal year; assessed values are not proof of unpaid taxes. Use the normal gateway and any required session/disclaimer.",
+        "agency": "Collin Central Appraisal District",
+        "evidence": "https://collincad.org/open-data-portal/"
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://collincad.org/open-data-portal/",
+        "access": "DOWNLOAD_PAGE",
+        "notes": "Official open-data portal publishes full 2026 certified appraisal table (5tkr-3759), 502,479 rows at review, and current owner-property table (ahis-pci3), 508,163 rows, with schema. All rows queried without address filters; accounts include non-real-property types and undivided ownership interests. Filter real-property types and join property IDs; owner-table and roll dates differ. Complete district parcel layer is also available. Not an individual search export.",
+        "agency": "Collin Central Appraisal District",
+        "format": "ZIP / TXT / CSV / database"
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://taxpublic.collincountytx.gov/",
+        "access": "CAPTCHA_PORTAL",
+        "notes": "Individual Tax Status. Official Tax Assessor-Collector account lookup shows taxes owed and outstanding years; complete countywide delinquent download not confirmed. Security check/CAPTCHA and session initiation may be required; use the gateway.",
+        "agency": "Collin County Tax Assessor-Collector",
+        "evidence": "https://taxpublic.collincountytx.gov/",
+        "captcha": true
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://apps2.collincountytx.gov/ForeclosureNotices",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "Dedicated official county foreclosure-notice search and notice images. Date/month filters select trustee-sale postings; these notices do not establish completed sales.",
+        "agency": "Collin County Clerk",
+        "evidence": "https://apps2.collincountytx.gov/ForeclosureNotices"
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://apps2.collincountytx.gov/JudicialOnlineSearch2/case",
+        "access": "SEARCH_PORTAL",
+        "notes": "Statutory Probate Court No. 1; County Clerk probate records. Current Judicial Online Search includes probate and historical County Court at Law cases. Select probate cases; case index availability does not establish free document-image access. Older JudicialRecords URL is retired.",
+        "agency": "Collin County Clerk — Probate Records",
+        "evidence": "https://www.collincountytx.gov/Services/case-information"
+      },
+      {
+        "type": "COUNTY_CODE_ENFORCEMENT",
+        "agency": "Collin County Fire Marshal — Nuisance Abatement",
+        "url": "https://www.collincountytx.gov/Public-Information/open-records-requests",
+        "evidence": "https://www.collincountytx.gov/Services/Engineering/Fire-Marshal/nuisance-abatement",
+        "notes": "Fire Marshal enforces neighborhood nuisance regulations for refuse, unsanitary property and other listed nuisance conditions. Choose Fire Marshal/Engineering as records custodian in the official county request form, not County Clerk court records or municipal code. No public complete case export confirmed; request existing electronic records if maintained, not a new inspection or analysis.",
+        "access": "RECORDS_REQUEST"
+      }
+    ]
+  },
+  {
+    "county": "Ellis",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://elliscad.com/property-search",
+        "access": "SEARCH_PORTAL",
+        "notes": "Official appraisal-district individual property search by owner, address or account ID. Select the desired appraisal year; assessed values are not proof of unpaid taxes. Use the normal gateway and any required session/disclaimer.",
+        "agency": "Ellis Appraisal District",
+        "evidence": "https://elliscad.com/appraisal-data-export"
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://elliscad.com/appraisal-data-export",
+        "access": "DOWNLOAD_PAGE",
+        "notes": "Official 2026 Public Appraisal Export Certified Appraisal Roll ZIP contains countywide property and ownership information with values at certification, with the Appraisal Export Layout. JavaScript download controls; older years separately listed.",
+        "agency": "Ellis Appraisal District",
+        "format": "ZIP / TXT / CSV / database"
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://ellistaxoffice.com/wp-content/uploads/2023/06/TAX-DATA-REQUESTS.pdf",
+        "access": "RECORDS_REQUEST",
+        "notes": "Official paid delinquent-tax-roll request: electronic DTR file listed at $40. Ask for current real-property delinquent accounts and existing layout; confirm current fee and collection coverage before ordering. This is a request product, not a public download or auction subset.",
+        "agency": "Ellis County Tax Assessor-Collector",
+        "evidence": "https://ellistaxoffice.com/wp-content/uploads/2023/06/TAX-DATA-REQUESTS.pdf"
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://www.elliscountytx.gov/Archive.aspx?AMID=60",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "Official County Clerk foreclosure-notice archive with monthly trustee-sale PDFs. Choose current sale month; archived notices may describe canceled or completed postings.",
+        "agency": "Ellis County Clerk",
+        "evidence": "https://www.elliscountytx.gov/Archive.aspx?AMID=60"
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://public.lgsonlinesolutions.com/ors.html",
+        "access": "SEARCH_PORTAL",
+        "notes": "County Court at Law No. 1 probate jurisdiction; County Clerk Probate Division. Official County Court Record Search uses LGS; select Ellis County and probate/county-court records. Recorder land records are a separate system. Copies/research follow court-record rules and published fees.",
+        "agency": "Ellis County Clerk — Probate Records",
+        "evidence": "https://www.elliscountytx.gov/1397/Online-Record-Search"
+      },
+      {
+        "type": "COUNTY_CODE_ENFORCEMENT",
+        "agency": "Ellis County Department of Development — Public Nuisance",
+        "url": "https://www.ellispermits.com/openrecords",
+        "evidence": "https://www.elliscountytx.gov/DocumentCenter/View/20658/Public-Nuisance-ORD-20162-Chapter-343",
+        "notes": "Official county order assigns nuisance abatement to Department of Development, including unincorporated-neighborhood rubbish, weeds and unsafe structures. County-authorized ellispermits.com replaces the old 746 records page; use its department-specific Open Records Form. No public complete case export confirmed; request existing electronic records if maintained, not a new inspection or analysis.",
+        "access": "RECORDS_REQUEST"
+      }
+    ]
+  },
+  {
+    "county": "Kaufman",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://esearch.kaufman-cad.org/",
+        "access": "SEARCH_PORTAL",
+        "notes": "Official appraisal-district individual property search by owner, address or account ID. Select the desired appraisal year; assessed values are not proof of unpaid taxes. Use the normal gateway and any required session/disclaimer.",
+        "agency": "Kaufman Central Appraisal District",
+        "evidence": "https://kaufman-cad.org/public-info/"
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://kaufman-cad.org/public-info/",
+        "access": "DOWNLOAD_PAGE",
+        "notes": "Full certified and preliminary appraisal-roll exports, text ZIP plus layout. Choose the full current-year roll rather than an individual search export, mineral-only file, or taxing-unit total.",
+        "agency": "Kaufman Central Appraisal District",
+        "format": "ZIP / TXT / CSV / database"
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://actweb.acttax.com/kaufman",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual Tax Status. Official county tax account search for current and outstanding property taxes. No full public delinquent export confirmed. The tax-office gateway is retained for its account-search service, not labeled bulk.",
+        "agency": "Kaufman County Tax Assessor-Collector",
+        "evidence": "https://www.kaufmancounty.net/521/Online-Payments"
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://app.govably.com/notices/?client=kaufman-county",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "County-authorized digital notice board, linked by the Clerk Foreclosures page. Select foreclosure notices and desired posting period; older monthly foreclosure archives are separately linked.",
+        "agency": "Kaufman County Clerk",
+        "evidence": "https://www.kaufmancounty.net/383/Foreclosures"
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://portal-txkaufman.tylertech.cloud/Portal",
+        "access": "SEARCH_PORTAL",
+        "notes": "County Courts at Law; County Clerk Probate and Guardianship division. Current court-search gateway linked by the clerk. Select probate/county-court case records.",
+        "agency": "Kaufman County Clerk — Probate Records",
+        "evidence": "https://www.kaufmancounty.net/618/Probate-and-Guardianship"
+      },
+      {
+        "type": "COUNTY_CODE_ENFORCEMENT",
+        "agency": "Kaufman County Development Services — Environmental Enforcement",
+        "url": "https://www.kaufmancounty.net/365/Environmental-Enforcement",
+        "evidence": "https://www.kaufmancounty.net/365/Environmental-Enforcement",
+        "notes": "Development Services investigates environmental crimes and public-nuisance properties, with an official violation form. Official department contact fallback for existing environmental/nuisance case records: written request to Development Services, 101 N Houston Street, Kaufman TX 75142. Confirm current electronic records intake with the department. The Criminal District Attorney request address is for that office’s own records and is not presented as the Development Services intake. No public complete case export confirmed; request existing records, not a new inspection or analysis.",
+        "access": "RECORDS_REQUEST"
+      }
+    ]
+  },
+  {
+    "county": "Johnson",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://johnsoncad.com/property-search/",
+        "access": "SEARCH_PORTAL",
+        "notes": "Official appraisal-district individual property search by owner, address or account ID. Select the desired appraisal year; assessed values are not proof of unpaid taxes. Use the normal gateway and any required session/disclaimer.",
+        "agency": "Johnson County Central Appraisal District",
+        "evidence": "https://johnsoncad.com/downloads/"
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://johnsoncad.com/downloads/",
+        "access": "DOWNLOAD_PAGE",
+        "notes": "Current official district downloads include full 2026 certified account/appraisal data and layout, with dated updates. Use the complete export, not aggregate certified totals. Older mirrored website is not the catalog destination.",
+        "agency": "Johnson County Central Appraisal District",
+        "format": "ZIP / TXT / CSV / database"
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://www.johnsoncountytaxoffice.org/",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual Tax Status. Official tax-office account lookup for unpaid balances and prior tax years. No full public delinquent download confirmed; tax-sale inventories are separate subsets.",
+        "agency": "Johnson County Tax Assessor-Collector",
+        "evidence": "https://www.johnsoncountytaxoffice.org/"
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://johnson.tx.publicsearch.us/",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "County Clerk directs foreclosure-notice research to official public search. Select foreclosure/trustee-sale notices; generic deeds/liens are not a separate category.",
+        "agency": "Johnson County Clerk",
+        "evidence": "https://www.johnsoncountytx.org/government/county-clerk/land-records-vitals/foreclosure-sales"
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://portal-txjohnson.tylertech.cloud/PublicAccess/",
+        "access": "SEARCH_PORTAL",
+        "notes": "County Courts at Law Nos. 1 and 2; County Clerk Probate/Guardianship section. Choose Civil and Probate case records after normal gateway session initiation. Copy/research requests go to ccresearch@johnsoncountytx.org. Current clerk-linked Tyler cloud gateway replaces pa.johnsoncountytx.org.",
+        "agency": "Johnson County Clerk — Probate Records",
+        "evidence": "https://www.johnsoncountytx.org/government/county-clerk/online-records"
+      }
+    ]
+  },
+  {
+    "county": "Harris",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://search.hcad.org/",
+        "access": "SEARCH_PORTAL",
+        "notes": "Official appraisal-district individual property search by owner, address or account ID. Select the desired appraisal year; assessed values are not proof of unpaid taxes. Use the normal gateway and any required session/disclaimer.",
+        "agency": "Harris Central Appraisal District",
+        "evidence": "https://hcad.org/hcad-online-services/pdata/"
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://hcad.org/hcad-online-services/pdata/",
+        "access": "DOWNLOAD_PAGE",
+        "notes": "Full county real-property database in tab-delimited TXT/ZIP, including account, owner, building and valuation tables. Certified and preliminary releases are distinguished. Join by account ID; personal-property tables are separately offered.",
+        "agency": "Harris Central Appraisal District",
+        "format": "ZIP / TXT / CSV / database"
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://www.hctax.net/Property/ViewStatementReceipts",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual Tax Status. Official Tax Assessor-Collector property account statements/receipts show outstanding balances. No full public delinquent file confirmed; sheriff auctions and struck-off inventories are not the delinquent pool. Independent collection jurisdictions may require separate checks.",
+        "agency": "Harris County Tax Assessor-Collector",
+        "evidence": "https://www.hctax.net/Property/ViewStatementReceipts"
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://www.cclerk.hctx.net/Applications/WebSearch/FRCL_R.aspx",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "Dedicated County Clerk Real Property Foreclosures search for filed trustee-sale notices. Nonjudicial mortgage notices are distinct from tax-sale delinquency subsets.",
+        "agency": "Harris County Clerk",
+        "evidence": "https://www.cclerk.hctx.net/Applications/WebSearch/FRCL_R.aspx"
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://www.cclerk.hctx.net/Applications/WebSearch/CourtSearch.aspx?CaseType=Probate",
+        "access": "SEARCH_PORTAL",
+        "notes": "Statutory Probate Courts Nos. 1–4; County Clerk court-record search filtered to Probate. Public index; image/copy access can require account/payment.",
+        "agency": "Harris County Clerk — Probate Records",
+        "evidence": "https://www.cclerk.hctx.net/Applications/WebSearch/CourtSearch.aspx?CaseType=Probate"
+      },
+      {
+        "type": "COUNTY_CODE_ENFORCEMENT",
+        "agency": "Harris County Public Health — Neighborhood Nuisance and Abatement",
+        "url": "https://harriscountytxhealth.govqa.us/WEBAPP/_rs/supporthome.aspx",
+        "evidence": "https://publichealth.harriscountytx.gov/About/Divisions/Environmental-Public-Health/Neighborhood-Nuisance",
+        "notes": "Unincorporated-area unsafe structures, weeds, trash, abandoned pools and sanitary nuisances. Includes the unincorporated Spring market; Spring is a Census-designated place, not a city/code department. Request existing nuisance/abatement cases through Public Health TPIA. No complete public case export confirmed; Texas Public Information Act request for existing electronic records, not a new inspection or analysis.",
+        "access": "RECORDS_REQUEST"
+      }
+    ]
+  },
+  {
+    "county": "Fort Bend",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://esearch.fbcad.org/",
+        "access": "SEARCH_PORTAL",
+        "notes": "Official appraisal-district individual property search by owner, address or account ID. Select the desired appraisal year; assessed values are not proof of unpaid taxes. Use the normal gateway and any required session/disclaimer.",
+        "agency": "Fort Bend Central Appraisal District",
+        "evidence": "https://www.fbcad.org/gis-data/"
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://www.fbcad.org/gis-data/",
+        "access": "DOWNLOAD_PAGE",
+        "notes": "Complete district 2026 certified GIS/CAMA package (434 MB): ZIP central directory confirmed CamaSummary.gdb, CamaSummary.shp and companion boundary/layout files. Use the Parcels and Shapefiles package, not Shapefiles Only. Countywide parcel/CAMA publication rather than an address-filtered export; assess available attributes against the layout. Older years separately listed.",
+        "agency": "Fort Bend Central Appraisal District",
+        "format": "ZIP / file geodatabase / shapefile"
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://actweb.acttax.com/act_webdev/fbc/index.jsp",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual Tax Status. Official Fort Bend tax-office account lookup for unpaid balances and tax years; no full public delinquent file confirmed. Covers jurisdictions collected by this office; independent collectors can be separate.",
+        "agency": "Fort Bend County Tax Assessor-Collector",
+        "evidence": "https://actweb.acttax.com/act_webdev/fbc/index.jsp"
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://www.fortbendcountytx.gov/i-want-to/foreclosures",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "Official county foreclosure gateway links monthly County Clerk notices in the FBCTX Documents repository (including 2026). Use current mortgage/trustee-sale postings, not separate sheriff tax resale lists.",
+        "agency": "Fort Bend County Clerk",
+        "evidence": "https://www.fortbendcountytx.gov/i-want-to/foreclosures"
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://tylerpaw.fortbendcountytx.gov/PublicAccess/default.aspx",
+        "access": "SEARCH_PORTAL",
+        "notes": "County Courts at Law Nos. 3 and 5 handle probate; County Clerk maintains records. Use civil/probate search; online date coverage and historical records differ.",
+        "agency": "Fort Bend County Clerk — Probate Records",
+        "evidence": "https://www.fortbendcountytx.gov/government/departments/county-clerk/online-record-search"
+      },
+      {
+        "type": "COUNTY_CODE_ENFORCEMENT",
+        "agency": "Fort Bend County Environmental Health — Public Nuisance",
+        "url": "https://www.fortbendcountytx.gov/government/departments/county-attorney/public-information",
+        "evidence": "https://www.fortbendcountytx.gov/government/departments/health-and-human-services/environmental-health",
+        "notes": "County Environmental Health public-nuisance service covers applicable unincorporated properties (unsafe/dilapidated structures, rubbish and sanitary nuisances). Request its existing case records through County Attorney public information; municipal code jurisdictions remain separate. No complete public case export confirmed; Texas Public Information Act request for existing electronic records, not a new inspection or analysis.",
+        "access": "RECORDS_REQUEST",
+        "email": "PublicInformation@fortbendcountytx.gov"
+      }
+    ]
+  },
+  {
+    "county": "Montgomery",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://www.mcad-tx.org/property-search",
+        "access": "SEARCH_PORTAL",
+        "notes": "Official appraisal-district individual property search by owner, address or account ID. Select the desired appraisal year; assessed values are not proof of unpaid taxes. Use the normal gateway and any required session/disclaimer.",
+        "agency": "Montgomery Central Appraisal District",
+        "evidence": "https://www.mcad-tx.org/appraisal-data-exports"
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://www.mcad-tx.org/appraisal-data-exports",
+        "access": "DOWNLOAD_PAGE",
+        "notes": "Full Public Appraisal Export Certified Appraisal Roll 2026 in ZIP and JSON, containing county property/ownership information and certification values, with legacy and JSON layouts. Preliminary and older-year rolls are separately labeled; JavaScript controls initiate downloads.",
+        "agency": "Montgomery Central Appraisal District",
+        "format": "ZIP / TXT / CSV / database"
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://actweb.acttax.com/act_webdev/montgomery/index.jsp",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual Tax Status. County-linked ACT tax account search shows balance and tax-year status; no full public delinquent file confirmed. Tax auctions/resales are separate subsets.",
+        "agency": "Montgomery County Tax Assessor-Collector",
+        "evidence": "https://actweb.acttax.com/act_webdev/montgomery/index.jsp"
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://montgomery.tx.publicsearch.us/",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "County Clerk digital foreclosure notices available under Foreclosures in this current official records search. Notices are removed after their sale date under the Clerk policy; not permanent historic records. Replaces retired county-clerk foreclosure pages.",
+        "agency": "Montgomery County Clerk",
+        "evidence": "https://www.mctx.org/index_clerk/public_records/foreclosures/index.php"
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://odyssey.mctx.org/County/default.aspx",
+        "access": "SEARCH_PORTAL",
+        "notes": "Current Probate Court No. 1 is a dedicated statutory probate court; County Clerk is case-record custodian. Legacy probate cases may reflect prior County Courts at Law assignments. Use Civil/Probate in the official clerk court-search gateway.",
+        "agency": "Montgomery County Clerk — Probate Records",
+        "evidence": "https://www.mctx.org/departments/departments_l_-_p/probate_court_no._1/index.php"
+      },
+      {
+        "type": "COUNTY_CODE_ENFORCEMENT",
+        "agency": "Montgomery County Environmental Health Services — Nuisance Enforcement",
+        "url": "https://www.mctx.org/A%20Environmental%20PIA%20Request%20Form%20(3).pdf",
+        "evidence": "https://www.mctx.org/departments/departments_d_-_f/environmental_health/index.php",
+        "notes": "Environmental Health Services handles applicable sanitary/public-nuisance complaints including abandoned/dilapidated structures and accumulated refuse. Its current official department page links this Public Information Request form. Request existing nuisance cases from Environmental Health, not the appraisal district or municipal Conroe code office. No public complete case export confirmed; request existing electronic records if maintained, not a new inspection or analysis.",
+        "access": "RECORDS_REQUEST"
+      }
+    ]
+  },
+  {
+    "county": "Brazoria",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://esearch.brazoriacad.org/",
+        "access": "SEARCH_PORTAL",
+        "notes": "Official appraisal-district individual property search by owner, address or account ID. Select the desired appraisal year; assessed values are not proof of unpaid taxes. Use the normal gateway and any required session/disclaimer.",
+        "agency": "Brazoria County Appraisal District",
+        "evidence": "https://brazoriacad.org/public-gis-and-property-data-downloads/"
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://brazoriacad.org/public-gis-and-property-data-downloads/",
+        "access": "DOWNLOAD_PAGE",
+        "notes": "Complete monthly 2026 certified and preliminary appraisal-roll data for real property, manufactured homes and minerals; ProTax improvement and property-use exports are separate companion tables. Choose full real-property files and published layout, not taxing-unit totals.",
+        "agency": "Brazoria County Appraisal District",
+        "format": "ZIP / TXT / CSV / database"
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://www.brazoriacountytx.gov/departments/tax-office/property-taxes",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "Individual Tax Status. Follow the official Tax Office property-tax account inquiry/payment link to see balances and prior unpaid years. This gateway is not a full delinquent dataset. Sheriff-sale and tax-resale lists are excluded from the delinquent source.",
+        "agency": "Brazoria County Tax Assessor-Collector",
+        "evidence": "https://www.brazoriacountytx.gov/departments/tax-office/property-taxes"
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://www.brazoriacountyclerktx.gov/search-records",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "Official Clerk explicitly provides Public Records and Foreclosures through Login or Register. Use foreclosure notice search after normal gateway/session initiation. Property notices are separate from Civil/Probate case search and sheriff tax auctions.",
+        "agency": "Brazoria County Clerk",
+        "evidence": "https://www.brazoriacountyclerktx.gov/search-records"
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://portal-txbrazoria.tylertech.cloud/PublicAccess",
+        "access": "SEARCH_PORTAL",
+        "notes": "County Courts at Law; County Clerk Civil/Probate/Guardianship section. Current Tyler gateway replaces old pubweb PublicAccess link. Select civil/probate case records; copies/search requests have published fees.",
+        "agency": "Brazoria County Clerk — Probate Records",
+        "evidence": "https://www.brazoriacountyclerktx.gov/departments/civil-probate/search-and-request-court-cases"
+      },
+      {
+        "type": "COUNTY_CODE_ENFORCEMENT",
+        "agency": "Brazoria County Environmental Health — Public Nuisance Enforcement",
+        "url": "https://www.brazoriacountytx.gov/how-do-i/obtain/public-information-request",
+        "evidence": "https://www.brazoriacountytx.gov/departments/environmental-health",
+        "notes": "Environmental Health runs the Public Nuisance Enforcement Program; code/nuisance property records are distinct from food/septic permit data. General county PIA route is administered by Criminal District Attorney Civil Division; specify Environmental Health. No public complete case export confirmed; request existing electronic records if maintained, not a new inspection or analysis.",
+        "access": "RECORDS_REQUEST",
+        "email": "piarequest@brazoriacountytx.gov"
+      }
+    ]
+  },
+  {
+    "county": "Galveston",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://esearch.galvestoncad.org/",
+        "access": "SEARCH_PORTAL",
+        "notes": "Official appraisal-district individual property search by owner, address or account ID. Select the desired appraisal year; assessed values are not proof of unpaid taxes. Use the normal gateway and any required session/disclaimer.",
+        "agency": "Galveston Central Appraisal District",
+        "evidence": "https://galvestoncad.org/preliminary-and-certified-roll-export-data/"
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://galvestoncad.org/preliminary-and-certified-roll-export-data/",
+        "access": "DOWNLOAD_PAGE",
+        "notes": "District full preliminary/certified appraisal-roll exports with layouts. Complete county accounts rather than current-search results. Supplement-roll exports are separate and must not be mistaken for the complete base roll.",
+        "agency": "Galveston Central Appraisal District",
+        "format": "ZIP / TXT / CSV / database"
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://www.galvestoncountytx.gov/our-county/tax-assessor-collector/property-tax",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "Individual Tax Status. Official property-tax page links its account search/balance system. Coverage is for entities collected by this office; some MUDs and other collectors are independent. No full public delinquent file confirmed; sheriff-sale inventory is not the pool.",
+        "agency": "Galveston County Tax Assessor-Collector",
+        "evidence": "https://www.galvestoncountytx.gov/our-county/tax-assessor-collector/property-tax"
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://www.galvestoncountytx.gov/our-county/county-clerk/foreclosure-information",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "Official Clerk separates Property Foreclosures from Timeshare and Tax Foreclosures. Follow Property Foreclosures for current mortgage/trustee-sale notices; choose sale month.",
+        "agency": "Galveston County Clerk",
+        "evidence": "https://www.galvestoncountytx.gov/our-county/county-clerk/foreclosure-information"
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://portalnav19.galvestoncountytx.gov/portal",
+        "access": "SEARCH_PORTAL",
+        "notes": "Statutory Probate Court; County Clerk probate case records. Current portal replaces the retired publicaccess.galvestoncountytx.gov system (retired December 31, 2025). Use probate/civil case search.",
+        "agency": "Galveston County Clerk — Probate Records",
+        "evidence": "https://www.galvestoncountytx.gov/our-county/county-clerk/records-search"
+      },
+      {
+        "type": "COUNTY_CODE_ENFORCEMENT",
+        "agency": "Galveston County Sheriff — Nuisance Abatement Division",
+        "url": "https://sheriff.galvestoncountytx.gov/ID.html#Records",
+        "evidence": "https://sheriff.galvestoncountytx.gov/Abatement.html",
+        "notes": "Sheriff assumed administration of county Nuisance Abatement in January 2025. Unincorporated-property rubbish, weeds, unsafe structures and other listed nuisance conditions; municipal Galveston cases are separate. Use Sheriff Records Division written request route for existing nuisance/abatement cases and maintained cost/lien records. No public complete case export confirmed; request existing electronic records if maintained, not a new inspection or analysis.",
+        "access": "RECORDS_REQUEST",
+        "email": "GCSOrecords@co.galveston.tx.us"
+      }
+    ]
+  },
+  {
+    "county": "Liberty",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://esearch.libertycad.com/",
+        "access": "SEARCH_PORTAL",
+        "notes": "Official appraisal-district individual property search by owner, address or account ID. Select the desired appraisal year; assessed values are not proof of unpaid taxes. Use the normal gateway and any required session/disclaimer.",
+        "agency": "Liberty County Central Appraisal District",
+        "evidence": "https://libertycad.com/"
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://libertycad.com/",
+        "access": "DOWNLOAD_PAGE",
+        "notes": "District posts the 2026 CERTIFIED APPRAISAL ROLL ALL ENTITIES ZIP on its current landing page. Complete all-entities appraisal roll; select the account-level roll rather than certified totals. The homepage is retained because it is the actual published file gateway. ZIP central directory independently confirmed APPRAISAL_INFO, HEADER, IMPROVEMENT_INFO, LAND_DETAIL and UDI account-level TXT tables plus Appraisal Export Layout 8.0.34; totals are separate companion tables.",
+        "agency": "Liberty County Central Appraisal District",
+        "format": "ZIP / TXT / CSV / database"
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://liberty.propertytaxpayments.net/landing-page-en-us",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual Tax Status. County-linked Texas property-tax account gateway shows balances. No full public delinquent list confirmed. This is Liberty County Texas, not the similarly named Florida tax collector.",
+        "agency": "Liberty County Tax Assessor-Collector",
+        "evidence": "https://www.co.liberty.tx.us/page/liberty.County.Assessor.Collector"
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://www.notices.libertycountytx.com/",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "County Clerk official electronic notice board replaces indoor paper postings. Select Trustee Sales to reach the county-authorized current notice folder; probate and other property postings are separate categories. Notices do not establish completed sales.",
+        "agency": "Liberty County Clerk",
+        "evidence": "https://www.co.liberty.tx.us/page/liberty.County.Clerk.office.publicNotices"
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://www.co.liberty.tx.us/page/liberty.Guardianships",
+        "access": "RECORDS_REQUEST",
+        "notes": "County Courts at Law handle probate/guardianship; County Clerk Probate section is custodian. Official posted probate applications are not a complete online case index. Request existing case/index records and copies through the clerk; court-record procedures and fees apply, rather than a generic Public Information Act claim.",
+        "agency": "Liberty County Clerk — Probate Records",
+        "evidence": "https://www.co.liberty.tx.us/page/liberty.Guardianships"
+      }
+    ]
+  },
+  {
+    "county": "Bexar",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://hgo.harrisgovern.com/bexar/property/search",
+        "access": "SEARCH_PORTAL",
+        "notes": "Official appraisal-district individual property search by owner, address or account ID. Select the desired appraisal year; assessed values are not proof of unpaid taxes. Use the normal gateway and any required session/disclaimer.",
+        "agency": "Bexar Appraisal District",
+        "evidence": "https://bcad.org/wp-content/uploads/2026/04/BCAD-Public-Information-Act-Request.pdf"
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://bcad.org/wp-content/uploads/2026/04/BCAD-Public-Information-Act-Request.pdf",
+        "access": "RECORDS_REQUEST",
+        "notes": "No confirmed current public bulk download in this audit — Request Data. BCAD Public Information Act request form is the fallback for an existing countywide real-property appraisal/CAMA export and layout. Older county GIS valuation snapshots and district certified totals do not establish a current complete roll.",
+        "agency": "Bexar Appraisal District"
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://www.bexar.org/1529/Property-Tax",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "Individual Tax Status. Tax Assessor-Collector property-tax gateway links account search for unpaid balances. Foreclosure maps/tax-sale CSVs are subsets and are not represented as a countywide delinquent file.",
+        "agency": "Bexar County Tax Assessor-Collector",
+        "evidence": "https://www.bexar.org/1529/Property-Tax"
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://maps.bexar.org/foreclosures/",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "County official foreclosure-posting map/notices includes mortgage and tax foreclosure postings. Requires normal disclaimer/session initiation; choose mortgage/trustee notices. This monthly sale-notice subset is not a full delinquent-tax pool.",
+        "agency": "Bexar County Clerk",
+        "evidence": "https://maps.bexar.org/foreclosures/"
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://www.bexar.org/justiceinfoportal",
+        "access": "SEARCH_PORTAL",
+        "notes": "Statutory Probate Courts Nos. 1, 2 and 3; County Clerk Probate Division. Official Justice Information Portal is the case-search gateway. Select probate/estate case type; public views/copies have access restrictions.",
+        "agency": "Bexar County Clerk — Probate Records",
+        "evidence": "https://www.bexar.org/3396/Probate-Division"
+      },
+      {
+        "type": "COUNTY_CODE_ENFORCEMENT",
+        "agency": "Bexar County Environmental Services — Code Compliance",
+        "url": "https://www.bexar.org/openrecords",
+        "evidence": "https://www.bexar.org/3216/Code-Compliance",
+        "notes": "County Environmental Services code compliance investigates unincorporated-area public-health nuisances, junk vehicles and dumping. Use General County records request and name Environmental Services/Public Works as custodian; San Antonio municipal cases are separate. No complete public case export confirmed; Texas Public Information Act request for existing electronic records, not a new inspection or analysis.",
+        "access": "RECORDS_REQUEST"
+      }
+    ]
+  },
+  {
+    "county": "Guadalupe",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://esearch.guadalupead.org/",
+        "access": "SEARCH_PORTAL",
+        "notes": "Official appraisal-district individual property search by owner, address or account ID. Select the desired appraisal year; assessed values are not proof of unpaid taxes. Use the normal gateway and any required session/disclaimer.",
+        "agency": "Guadalupe Appraisal District",
+        "evidence": "https://guadalupead.org/certified-appraisal-roll/"
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://guadalupead.org/certified-appraisal-roll/",
+        "access": "DOWNLOAD_PAGE",
+        "notes": "Full 2026 certified appraisal roll (supplement 0) and later supplements/older years are offered. Use the complete certified base export; a supplement alone is not the countywide universe.",
+        "agency": "Guadalupe Appraisal District",
+        "format": "ZIP / TXT / CSV / database"
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://property.guadalupetx.gov/",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual Tax Status. Official Tax Assessor-Collector property search gateway for balances and prior outstanding years. No full public delinquent file confirmed; website may require security verification.",
+        "agency": "Guadalupe County Tax Assessor-Collector",
+        "evidence": "https://www.guadalupetx.gov/page/tax.Assessor.home"
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://www.guadalupetx.gov/page/coclerk.foreclosure2026",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "Official 2026 County Clerk trustee/foreclosure-notice postings by sale month. This annual archive URL will need rollover review in 2027; individual notices may be canceled.",
+        "agency": "Guadalupe County Clerk",
+        "evidence": "https://www.guadalupetx.gov/page/coclerk.foreclosure2026"
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://portal-txguadalupe.tylertech.cloud/PublicAccess/default.aspx",
+        "access": "SEARCH_PORTAL",
+        "notes": "Constitutional County Court (County Judge) hears uncontested probate; contested matters or cases requiring administration are transferred to the County Court at Law. County Clerk maintains probate case records. Official Civil/Probate gateway is separate from the real-property recorder.",
+        "agency": "Guadalupe County Clerk — Probate Records",
+        "evidence": "https://www.guadalupetx.gov/page/probate.home"
+      },
+      {
+        "type": "COUNTY_CODE_ENFORCEMENT",
+        "agency": "Guadalupe County Environmental Health — Code Enforcement",
+        "url": "https://www.guadalupetx.gov/upload/page/0250/open%20records%20request%20form%203-06-2025.pdf",
+        "evidence": "https://www.guadalupetx.gov/page/eh.code_enforcement",
+        "notes": "Environmental Health code enforcement investigates nuisance violations, unsafe/unsecure buildings and fire/health/safety conditions. Use the department Open Records Request Form linked on the official Code Enforcement page; municipality and county-area jurisdiction must be checked for the property. No public complete case export confirmed; request existing electronic records if maintained, not a new inspection or analysis.",
+        "access": "RECORDS_REQUEST"
+      }
+    ]
+  },
+  {
+    "county": "Comal",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://esearch.comalad.org/",
+        "access": "SEARCH_PORTAL",
+        "notes": "Official appraisal-district individual property search by owner, address or account ID. Select the desired appraisal year; assessed values are not proof of unpaid taxes. Use the normal gateway and any required session/disclaimer.",
+        "agency": "Comal Appraisal District",
+        "evidence": "https://comalad.org/open-records-request/"
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://comalad.org/open-records-request/",
+        "access": "RECORDS_REQUEST",
+        "notes": "No confirmed public bulk download in this audit — Request Data. Request the existing countywide real-property appraisal/CAMA dataset from Comal Appraisal District. Published certified totals are aggregate figures, not a parcel universe. Written requests accepted through the official route; available fees/formats depend on existing records.",
+        "agency": "Comal Appraisal District",
+        "email": "comalad@co.comal.tx.us"
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://www.comalcounty.gov/373/Delinquent-Tax-Roll",
+        "access": "RECORDS_REQUEST",
+        "notes": "Official paid electronic Delinquent Tax Roll request, listed at $40, delivered by email after payment. Request current real-property accounts and confirm current charges/coverage. This is not a public download or a foreclosure-sale subset.",
+        "agency": "Comal County Tax Assessor-Collector",
+        "evidence": "https://www.comalcounty.gov/373/Delinquent-Tax-Roll"
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://www.comalcounty.gov/213/Foreclosure-Sales",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "Current County Clerk foreclosure-sales notice gateway on comalcounty.gov, replacing older co.comal.tx.us pages. Follow trustee-sale posting files for the applicable month.",
+        "agency": "Comal County Clerk",
+        "evidence": "https://www.comalcounty.gov/213/Foreclosure-Sales"
+      },
+      {
+        "type": "PROBATE",
+        "url": "http://public.co.comal.tx.us/default.aspx",
+        "access": "SEARCH_PORTAL",
+        "notes": "County Courts at Law; County Clerk probate case records. Official Public Access gateway provides Probate Case Records; select that category, with normal disclaimer/session requirements. County currently links an HTTP-only court gateway; HTTPS times out. Normal browser confirmed Probate Case Records on the linked HTTP page.",
+        "agency": "Comal County Clerk — Probate Records",
+        "evidence": "https://www.comalcounty.gov/339/Online-Services"
+      },
+      {
+        "type": "COUNTY_CODE_ENFORCEMENT",
+        "agency": "Comal County Engineer — Environmental Enforcement",
+        "url": "https://www.comalcounty.gov/324/Public-Information-Request",
+        "evidence": "https://www.comalcounty.gov/812/Environmental-Enforcement",
+        "notes": "County Environmental Enforcement handles sanitation/public nuisances and litter, beyond its separate septic-permit function. Official records-routing instructions explicitly direct Environmental Health records to County Engineer Office. Use that custodian for existing nuisance cases; the general Public Information Office can clarify routing, and the permit-search database is not a code-case index. No public complete case export confirmed; request existing electronic records if maintained, not a new inspection or analysis.",
+        "access": "RECORDS_REQUEST"
+      }
+    ]
+  },
+  {
+    "county": "Travis",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://traviscad.org/propertysearch",
+        "access": "SEARCH_PORTAL",
+        "notes": "Official appraisal-district individual property search by owner, address or account ID. Select the desired appraisal year; assessed values are not proof of unpaid taxes. Use the normal gateway and any required session/disclaimer.",
+        "agency": "Travis Central Appraisal District",
+        "evidence": "https://traviscad.org/publicinformation"
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://traviscad.org/publicinformation",
+        "access": "DOWNLOAD_PAGE",
+        "notes": "Complete 2026 certified appraisal export and layouts, with supplemental/preliminary exports separately identified. Countywide CAMA/property/owner tables (ZIP/TXT/JSON), not a selected-query download. Choose a full base roll before applying supplements.",
+        "agency": "Travis Central Appraisal District",
+        "format": "ZIP / TXT / CSV / database"
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://tax-office.traviscountytx.gov/about-us/reports-data/property-taxes",
+        "access": "DOWNLOAD_PAGE",
+        "notes": "Official Tax Delinquent CSV and Excel downloads, updated daily, alongside separate complete tax-roll files. Use Tax Delinquent, not a tax-sale or foreclosed-property inventory; identify real-property accounts through maintained type fields and covered collecting jurisdictions.",
+        "agency": "Travis County Tax Assessor-Collector",
+        "evidence": "https://tax-office.traviscountytx.gov/about-us/reports-data/property-taxes",
+        "format": "CSV / XLSX / ZIP / TXT"
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://countyclerk.traviscountytx.gov/departments/recording/meetings/",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "County Clerk specifically lists NON-TAX foreclosure notices here; tax-related notices are handled separately by the Tax Office. Follow the foreclosure-notice link, not the public-meeting notices.",
+        "agency": "Travis County Clerk",
+        "evidence": "https://countyclerk.traviscountytx.gov/departments/recording/meetings/"
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://countyclerk.traviscountytx.gov/departments/probate/probate-search-records/",
+        "access": "SEARCH_PORTAL",
+        "notes": "Statutory Probate Courts Nos. 1 and 2; County Clerk Probate Division. Dedicated probate records search/copy page; indexed fields and electronic images have date/access limitations.",
+        "agency": "Travis County Clerk — Probate Records",
+        "evidence": "https://countyclerk.traviscountytx.gov/departments/probate/probate-search-records/"
+      },
+      {
+        "type": "COUNTY_CODE_ENFORCEMENT",
+        "agency": "Austin/Travis County Environmental Health — Neighborhood Nuisance",
+        "url": "https://www.austintexas.gov/services/submit-public-information-request",
+        "evidence": "https://www.traviscountytx.gov/tnr/environmental-quality/stormwater/residents/investigations",
+        "notes": "Travis County TNR directs private-property trash/debris, junk vehicles and pest-related health nuisances to the joint Austin/Travis County Environmental Health Unit (Austin Public Health). Request existing county-area environmental nuisance cases through Austin Public Health records routing. This county source is distinct from Austin Development Services municipal code complaints. No complete public case export confirmed; Texas Public Information Act request for existing electronic records, not a new inspection or analysis.",
+        "access": "RECORDS_REQUEST"
+      }
+    ]
+  },
+  {
+    "county": "Williamson",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://search.wcad.org/",
+        "access": "SEARCH_PORTAL",
+        "notes": "Official appraisal-district individual property search by owner, address or account ID. Select the desired appraisal year; assessed values are not proof of unpaid taxes. Use the normal gateway and any required session/disclaimer.",
+        "agency": "Williamson Central Appraisal District",
+        "evidence": "https://www.wcad.org/data-downloads/"
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://www.wcad.org/data-downloads/",
+        "access": "DOWNLOAD_PAGE",
+        "notes": "Official district open-data catalogs publish the complete Property Data Export and Property Owner tables, certified products, and file layout. The browse query locates datasets; export all rows of the complete published table, not a user-filtered property-search result. Verified full Property - PropertyDataExport table (ij43-xknu): 319,477 rows at review, with property ID, legal description, appraisal values and square-footage schema. Related owner and improvement tables require appropriate joins; no user address filter was applied.",
+        "agency": "Williamson Central Appraisal District",
+        "format": "ZIP / TXT / CSV / database"
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://tax.wilcotx.gov/",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual Tax Status. County tax-office account search for balance and unpaid tax years; no complete public delinquent export confirmed. A selected web-search export does not establish the delinquent parcel universe.",
+        "agency": "Williamson County Tax Assessor-Collector",
+        "evidence": "https://www.wilcotx.gov/734/Property-Tax"
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://www.wilcotx.gov/308/Foreclosure-Trustee-Sales",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "County Clerk dedicated foreclosure/trustee-sale gateway links trustee notices and sale locations. Mortgage trustee postings are distinct from county tax auctions.",
+        "agency": "Williamson County Clerk",
+        "evidence": "https://www.wilcotx.gov/308/Foreclosure-Trustee-Sales"
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://www.wilcotx.gov/300/Judicial-Cases-Search",
+        "access": "SEARCH_PORTAL",
+        "notes": "County Court at Law probate jurisdiction; County Clerk Probate/Civil Division. Official judicial-case gateway links civil/probate records. Select probate case type; copies through clerk if unavailable online.",
+        "agency": "Williamson County Clerk — Probate Records",
+        "evidence": "https://www.wilcotx.gov/1624/Probate-Civil-Division"
+      }
+    ]
+  },
+  {
+    "county": "Hays",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://esearch.hayscad.com/",
+        "access": "SEARCH_PORTAL",
+        "notes": "Official appraisal-district individual property search by owner, address or account ID. Select the desired appraisal year; assessed values are not proof of unpaid taxes. Use the normal gateway and any required session/disclaimer.",
+        "agency": "Hays Central Appraisal District",
+        "evidence": "https://hayscad.com/data-downloads/"
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://hayscad.com/data-downloads/",
+        "access": "DOWNLOAD_PAGE",
+        "notes": "Official full preliminary/certified roll downloads and layout, with dated updates and separate countywide parcels. Check the newest year/date on the gateway; do not use entity totals or a supplement as the complete base roll. Automated HTTP access can be protected.",
+        "agency": "Hays Central Appraisal District",
+        "format": "ZIP / TXT / CSV / database"
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://tax.co.hays.tx.us/",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual Tax Status. Official tax-office property account lookup for balances/prior tax years, not a complete delinquent pool. Tax-sale lists are separate subsets.",
+        "agency": "Hays County Tax Assessor-Collector",
+        "evidence": "https://hayscad.com/"
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://www.hayscountytx.gov/200/Foreclosures",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "County Clerk current official foreclosure-notice page on hayscountytx.gov. Use current posting/month files; notices indicate scheduled trustee sales, not final outcomes.",
+        "agency": "Hays County Clerk",
+        "evidence": "https://www.hayscountytx.gov/200/Foreclosures"
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://portal-txhays.tylertech.cloud/PublicAccess/default.aspx",
+        "access": "SEARCH_PORTAL",
+        "notes": "County Court at Law probate jurisdiction; County Clerk court-records division. Current Tyler Court Case Search is linked from the clerk, replacing older public.hayscountytx.gov links. Select civil/family/probate cases.",
+        "agency": "Hays County Clerk — Probate Records",
+        "evidence": "https://www.hayscountytx.gov/166/County-Clerk"
+      },
+      {
+        "type": "COUNTY_CODE_ENFORCEMENT",
+        "agency": "Hays County Environmental Enforcement — Criminal District Attorney",
+        "url": "https://hayscountytx.govqa.us/WEBAPP/_rs/SupportHome.aspx",
+        "evidence": "https://www.hayscountytx.gov/455/Environmental-Enforcement-Program",
+        "notes": "County program investigates illegal dumping, abandoned properties and improper waste storage; Criminal District Attorney prosecutes violations. Use county Open Records gateway and identify Environmental Enforcement/Criminal District Attorney as holder. Scope is existing environmental cases, not a claim of countywide municipal zoning authority. No public complete case export confirmed; request existing electronic records if maintained, not a new inspection or analysis.",
+        "access": "RECORDS_REQUEST"
+      }
+    ]
+  },
+  {
+    "county": "Bastrop",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://esearch.bastropcad.org/",
+        "access": "SEARCH_PORTAL",
+        "notes": "Official appraisal-district individual property search by owner, address or account ID. Select the desired appraisal year; assessed values are not proof of unpaid taxes. Use the normal gateway and any required session/disclaimer.",
+        "agency": "Bastrop Central Appraisal District",
+        "evidence": "https://bastropcad.org/data-downloads/"
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://bastropcad.org/data-downloads/",
+        "access": "DOWNLOAD_PAGE",
+        "notes": "Complete county real-property appraisal extracts, including the 2026 certified real-property ZIP and later real-property extracts, tab-delimited with layout. Requires I Accept disclaimer acceptance on the download gateway; retain the gateway rather than bypassing it.",
+        "agency": "Bastrop Central Appraisal District",
+        "format": "ZIP / TXT / CSV / database"
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://www.bastroptac.com/",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual Tax Status. Official tax-office property account search for outstanding balances; no full public delinquent download confirmed. The tax-office gateway is retained for its account search.",
+        "agency": "Bastrop County Tax Assessor-Collector",
+        "evidence": "https://www.bastropcounty.gov/page/co.tax_assessor",
+        "captcha": true
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://www.bastropcounty.gov/page/co.county_clerk_foreclosure",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "Official County Clerk foreclosure-notice postings with dated monthly PDFs; use current month. New bastropcounty.gov gateway replaces older co.bastrop.tx.us pages.",
+        "agency": "Bastrop County Clerk",
+        "evidence": "https://www.bastropcounty.gov/page/co.county_clerk_foreclosure"
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://records.co.bastrop.tx.us/PublicAccess/",
+        "access": "SEARCH_PORTAL",
+        "notes": "Constitutional County Court exercises probate jurisdiction; County Clerk is Clerk of the Probate Court. Official Civil/Probate case gateway; county court-at-law misdemeanor records are separate.",
+        "agency": "Bastrop County Clerk — Probate Records",
+        "evidence": "https://www.bastropcounty.gov/page/co.county_clerk"
+      }
+    ]
+  },
+  {
+    "county": "McLennan",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://mclennancad.org/property-search",
+        "access": "SEARCH_PORTAL",
+        "notes": "Official appraisal-district individual property search by owner, address or account ID. Select the desired appraisal year; assessed values are not proof of unpaid taxes. Use the normal gateway and any required session/disclaimer.",
+        "agency": "McLennan Central Appraisal District",
+        "evidence": "https://mclennancad.org/data-downloads"
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://mclennancad.org/data-downloads",
+        "access": "DOWNLOAD_PAGE",
+        "notes": "Official weekly countywide parcel shapefile export joined to appraisal data, with district data schema. Published complete parcel layer (separate subdivision data also present), hosted in the district-linked download folder; not a filtered search result. Native JavaScript page reviewed in browser.",
+        "agency": "McLennan Central Appraisal District",
+        "format": "ZIP / TXT / CSV / database"
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://actweb.acttax.com/act_webdev/mclennan/index.jsp",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual Tax Status. County-linked tax account inquiry shows outstanding balances and prior years. No full public delinquent dataset confirmed; tax-sale/resale lists are excluded.",
+        "agency": "McLennan County Tax Assessor-Collector",
+        "evidence": "https://www.mclennan.gov/506/Taxes"
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://www.mclennan.gov/Archive.aspx?AMID=41",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "Dedicated official Notice of Trustee’s Sale archive with current monthly PDFs (October, November and December 2026). Notices identify intended sale dates; trustee conducts the sale, not County Clerk. Not a delinquent-tax pool.",
+        "agency": "McLennan County Clerk",
+        "evidence": "https://www.mclennan.gov/173/Foreclosure-Sale-Site"
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://research.txcourts.gov/CourtRecordsSearch/ui/county/McLennanCC",
+        "access": "SEARCH_PORTAL",
+        "notes": "Constitutional County Court probate jurisdiction; County Clerk Probate Court Cases uses the official re:SearchTX judiciary service. Judicial account is required; copies may carry charges.",
+        "agency": "McLennan County Clerk — Probate Records",
+        "evidence": "https://www.mclennan.gov/181/Probate-Court-Cases"
+      }
+    ]
+  },
+  {
+    "county": "Bell",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://esearchgsa.bellcad.org/",
+        "access": "SEARCH_PORTAL",
+        "notes": "Official appraisal-district individual property search by owner, address or account ID. Select the desired appraisal year; assessed values are not proof of unpaid taxes. Use the normal gateway and any required session/disclaimer.",
+        "agency": "Tax Appraisal District of Bell County",
+        "evidence": "https://bellcad.org/data-portal/"
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://bellcad.org/data-portal/",
+        "access": "DOWNLOAD_PAGE",
+        "notes": "Full 2026 certified roll export and condensed Excel, updated September 22, 2026, plus layouts. Current 2027 preliminary exports are separate. Use full county certified data rather than taxing-unit totals or account lookup.",
+        "agency": "Tax Appraisal District of Bell County",
+        "format": "ZIP / TXT / CSV / database"
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://esearch.bellcad.org/",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual Tax Status. Bell CAD Tax Collections prior-years-and-taxes search shows account balances; the separate esearchgsa site is for 2026 APPRAISAL values. Bell CAD is the property-tax collection authority for its contracted jurisdictions, not the county vehicle-registration office. No full public delinquent export confirmed.",
+        "agency": "Tax Appraisal District of Bell County — Tax Collections",
+        "evidence": "https://bellcad.org/"
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://www.bellcountytx.com/county_government/county_clerk/foreclosures.php",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "County Clerk dedicated monthly foreclosure/trustee-sale notice PDFs, with 2026 October/November/December postings already published. Choose intended sale month; not a full delinquent-tax file.",
+        "agency": "Bell County Clerk",
+        "evidence": "https://www.bellcountytx.com/county_government/county_clerk/foreclosures.php"
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://justice.bellcounty.texas.gov/PublicPortal/",
+        "access": "SEARCH_PORTAL",
+        "notes": "County Court at Law No. 1 Probate and Guardianship; County Clerk probate records. Official Probate Online Case Search directs here. Select probate case type after session initiation.",
+        "agency": "Bell County Clerk — Probate Records",
+        "evidence": "https://www.bellcountytx.com/county_government/county_clerk/probate_fees.php"
+      }
+    ]
+  },
+  {
+    "county": "El Paso",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://epcad.org/Search",
+        "access": "SEARCH_PORTAL",
+        "notes": "Official appraisal-district individual property search by owner, address or account ID. Select the desired appraisal year; assessed values are not proof of unpaid taxes. Use the normal gateway and any required session/disclaimer.",
+        "agency": "El Paso Central Appraisal District",
+        "evidence": "https://epcad.org/OpenGovernment"
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://epcad.org/OpenGovernment",
+        "access": "DOWNLOAD_PAGE",
+        "notes": "Open Government publishes complete 2026 certified Real Estate/Appraisal Roll flat-file exports, updated September 15, 2026, with Property Search schema. Current 2027 snapshots and appraisal-notice PDFs are separate. Cloudflare security verification prevented an end-to-end download check; official indexed publication reviewed.",
+        "agency": "El Paso Central Appraisal District",
+        "format": "ZIP / TXT / CSV / database"
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://www.elpasotexas.gov/tax-office/forms-and-faqs",
+        "access": "RECORDS_REQUEST",
+        "notes": "Consolidated City of El Paso Tax Office serves county property-tax collection. Official electronic Delinquent Tax Roll request form and information sheet list $73.20 for Excel or zipped text data, current/prior outstanding levies (late fees excluded). Request REAL property without a minimum-levy filter; confirm current fee and collection coverage. Not a free public file.",
+        "agency": "City of El Paso Consolidated Tax Office",
+        "evidence": "https://www.elpasotexas.gov/assets/Documents/CoEP/Tax-Office/DTR-Info.pdf"
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://apps.epcountytx.gov/publicrecords/Foreclosures",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "Dedicated County Clerk foreclosure-notice search. CAPTCHA/security gateway may be required; County Clerk records notices but does not conduct the trustee sale.",
+        "agency": "El Paso County Clerk",
+        "evidence": "https://www.epcounty.com/576/Records-Search",
+        "captcha": true
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://apps.epcountytx.gov/odysseyCrsPublic/CivilFamilyProbateCase",
+        "access": "SEARCH_PORTAL",
+        "notes": "Statutory Probate Courts Nos. 1 and 2; County Clerk maintains probate/guardianship records. Current Civil Cases link explicitly includes Probate/Guardianship. CAPTCHA/security gateway may be required.",
+        "agency": "El Paso County Clerk — Probate Records",
+        "evidence": "https://www.epcounty.com/576/Records-Search",
+        "captcha": true
+      },
+      {
+        "type": "COUNTY_CODE_ENFORCEMENT",
+        "agency": "El Paso County Attorney — Environmental Crimes Unit",
+        "url": "https://www.epcounty.com/290/Open-Records-From-the-El-Paso-County-Att",
+        "evidence": "https://www.epcounty.com/287/County-Attorney-Departments",
+        "notes": "County Attorney Environmental Crimes Unit enforces environmental/property-nuisance laws with health inspectors and law enforcement. This request route is specifically for existing County Attorney-held environmental nuisance enforcement records. Planning and Development inspection/abatement files are separate custodians; this source does not promise a complete combined inspection/prosecution database. Criminal/active-case records may be restricted. No public complete case export confirmed; request existing electronic records if maintained, not a new inspection or analysis.",
+        "access": "RECORDS_REQUEST",
+        "email": "CAOpenRecords@epcountytx.gov"
+      }
+    ]
+  },
+  {
+    "county": "Lubbock",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://lubbockcad.org/Advanced-Search",
+        "access": "SEARCH_PORTAL",
+        "notes": "Official appraisal-district individual property search by owner, address or account ID. Select the desired appraisal year; assessed values are not proof of unpaid taxes. Use the normal gateway and any required session/disclaimer.",
+        "agency": "Lubbock Central Appraisal District",
+        "evidence": "https://lubbockcad.org/Portals/0/PublicInfHand.pdf"
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://lubbockcad.org/Portals/0/PublicInfHand.pdf",
+        "access": "EMAIL_REQUEST",
+        "notes": "No confirmed countywide public bulk download in this audit — Request Data. LCAD designated Public Information Act address piarequest@lubbockcad.org is the fallback for the existing current real-property appraisal/CAMA dataset. Individual searches, tax-rate worksheets and taxing-unit totals are not bulk parcel data.",
+        "agency": "Lubbock Central Appraisal District",
+        "email": "piarequest@lubbockcad.org"
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://lubbockcad.org/Advanced-Search",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual Tax Status. Lubbock Central Appraisal District handles property-tax collections for contracted jurisdictions; its account detail provides tax bills/balances. County Tax Assessor-Collector primarily handles vehicle registration. No full public delinquent file confirmed.",
+        "agency": "Lubbock Central Appraisal District — Tax Collections",
+        "evidence": "https://lubbockcad.org/"
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://www.lubbockcounty.gov/egov/apps/document/center.egov?eGov_searchDepartment=270",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "Official document center filtered to County Clerk Notice of Trustee Sales department. Current filed substitute-trustee/foreclosure notice PDFs; select current intended sale period, not generic documents or auction inventory.",
+        "agency": "Lubbock County Clerk",
+        "evidence": "https://www.lubbockcounty.gov/egov/apps/document/center.egov"
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://publicrecords.lubbockcounty.gov/Portal",
+        "access": "SEARCH_PORTAL",
+        "notes": "County Court at Law probate jurisdiction; County Clerk case records. Official portal requires free registered access and email validation (allow up to three days). Public users can search the case index but not view document images; courthouse public terminals/copy requests provide records. Elevated attorney access is separate.",
+        "agency": "Lubbock County Clerk — Probate Records",
+        "evidence": "https://www.lubbockcounty.gov/egov/apps/services/index.egov?view=item&id=72"
+      },
+      {
+        "type": "COUNTY_CODE_ENFORCEMENT",
+        "agency": "Lubbock County Sheriff — Environmental Division",
+        "url": "https://lubbocksheriff.com/contact",
+        "evidence": "https://www.lubbockcounty.gov/egov/documents/1631905840_98129.pdf",
+        "notes": "County-published sanitation plan identifies Sheriff Environmental Division as investigator of illegal dumping, with Sanitation coordination. Limited environmental/dumping case scope; not a general county zoning or unsafe-structure database. Current Sheriff contact page provides its written open-records route, including mail, email and in-person submission. No public complete case export confirmed; request existing electronic records if maintained, not a new inspection or analysis.",
+        "access": "RECORDS_REQUEST",
+        "email": "LCDCRecords@LubbockCounty.gov"
+      }
+    ]
+  },
+  {
+    "county": "Nueces",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://esearch.nuecescad.net/",
+        "access": "SEARCH_PORTAL",
+        "notes": "Official appraisal-district individual property search by owner, address or account ID. Select the desired appraisal year; assessed values are not proof of unpaid taxes. Use the normal gateway and any required session/disclaimer.",
+        "agency": "Nueces County Appraisal District",
+        "evidence": "https://nuecescad.net/downloads-reports/"
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://nuecescad.net/downloads-reports/",
+        "access": "DOWNLOAD_PAGE",
+        "notes": "Complete 2026 certified roll ZIP (165 MB, August 6, 2026) with current file layout; full county account-level export. Parcel shapefiles are separately offered. Choose full certified data rather than entity totals or a query export.",
+        "agency": "Nueces County Appraisal District",
+        "format": "ZIP / TXT / CSV / database"
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://www.nuecesco.com/county-services/payments/pay-property-tax",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "Individual Tax Status. Official county property-tax gateway links the account balance/search system; no full public countywide delinquent download confirmed. Tax-sale/struck-off lists are not substituted.",
+        "agency": "Nueces County Tax Assessor-Collector",
+        "evidence": "https://www.nuecesco.com/county-services/payments/pay-property-tax"
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://nueces.tx.publicsearch.us/search/advanced",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "Official County Clerk advanced records search genuinely includes Foreclosures group and FORECLOSURE NOTICE (FCN) document type, confirmed in the gateway metadata. Select that group/type and posting period; unrestricted deeds/liens are not distress sources. Notices are not completed sales.",
+        "agency": "Nueces County Clerk",
+        "evidence": "https://www.nuecesco.com/county-services/county-clerk/filing-department/public-records-search"
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://www.nuecesco.com/county-services/county-clerk",
+        "access": "RECORDS_REQUEST",
+        "notes": "County Clerk is custodian of county-level Civil/Probate Court records (Constitutional County Court and County Courts at Law as assigned). A complete public County Clerk probate-case search was not confirmed. Request existing probate case/index records and copies from the clerk. The District Clerk re:SearchTX link and district portal outage advisory do not establish County Clerk probate access.",
+        "agency": "Nueces County Clerk — Probate Records",
+        "evidence": "https://www.nuecesco.com/county-services/information-technology/records-services"
+      },
+      {
+        "type": "COUNTY_CODE_ENFORCEMENT",
+        "agency": "Nueces County Public Works — Environmental Enforcement",
+        "url": "https://www.nuecesco.com/courts/county-attorney/public-information-request",
+        "evidence": "https://www.nuecesco.com/county-services/public-works/environmental-enforcement",
+        "notes": "Public Works environmental investigators enforce unincorporated public/private-property nuisance, junk-vehicle and dumping laws. County PIA instructions require requests directly to the custodian: Public Works Department Head, Nueces County Courthouse, 901 Leopard Street, Floor 1 Room 103, Corpus Christi TX 78401. County Attorney-only submission is not the Public Works intake; use the published routing instructions and confirm current electronic submission contact. No public complete case export confirmed; request existing electronic records if maintained, not a new inspection or analysis.",
+        "access": "RECORDS_REQUEST"
+      }
+    ]
+  }
+]

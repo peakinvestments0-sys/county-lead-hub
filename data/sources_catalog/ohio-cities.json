@@ -1,0 +1,510 @@
+[
+  {
+    "county": "Franklin",
+    "city": "Columbus",
+    "source": {
+      "url": "https://portal.columbus.gov/permits/Cap/CapHome.aspx?module=Enforcement",
+      "access": "SEARCH_PORTAL",
+      "agency": "Columbus Building and Zoning Services \u2014 Code Enforcement",
+      "notes": "Public Accela Enforcement record search by address/parcel/case. JavaScript/session gateway; not permit lookup or complaint submission. BZS Records Research (bzsrecords@columbus.gov) handles retained copies. Shared municipality: Franklin, Delaware, Fairfield counties; one municipal agency/source reused. Census county parts establish legal coverage; zero-population portions do not create agencies.",
+      "evidence": "https://portal.columbus.gov/permits/Cap/CapHome.aspx?module=Enforcement"
+    }
+  },
+  {
+    "county": "Delaware",
+    "city": "Columbus",
+    "source": {
+      "url": "https://portal.columbus.gov/permits/Cap/CapHome.aspx?module=Enforcement",
+      "access": "SEARCH_PORTAL",
+      "agency": "Columbus Building and Zoning Services \u2014 Code Enforcement",
+      "notes": "Public Accela Enforcement record search by address/parcel/case. JavaScript/session gateway; not permit lookup or complaint submission. BZS Records Research (bzsrecords@columbus.gov) handles retained copies. Shared municipality: Franklin, Delaware, Fairfield counties; one municipal agency/source reused. Census county parts establish legal coverage; zero-population portions do not create agencies.",
+      "evidence": "https://portal.columbus.gov/permits/Cap/CapHome.aspx?module=Enforcement"
+    }
+  },
+  {
+    "county": "Fairfield",
+    "city": "Columbus",
+    "source": {
+      "url": "https://portal.columbus.gov/permits/Cap/CapHome.aspx?module=Enforcement",
+      "access": "SEARCH_PORTAL",
+      "agency": "Columbus Building and Zoning Services \u2014 Code Enforcement",
+      "notes": "Public Accela Enforcement record search by address/parcel/case. JavaScript/session gateway; not permit lookup or complaint submission. BZS Records Research (bzsrecords@columbus.gov) handles retained copies. Shared municipality: Franklin, Delaware, Fairfield counties; one municipal agency/source reused. Census county parts establish legal coverage; zero-population portions do not create agencies.",
+      "evidence": "https://portal.columbus.gov/permits/Cap/CapHome.aspx?module=Enforcement"
+    }
+  },
+  {
+    "county": "Franklin",
+    "city": "Grove City",
+    "source": {
+      "url": "https://www.grovecityohio.gov/FormCenter/Building-Zoning-Division-5/Building-Zoning-Division-46",
+      "access": "RECORDS_REQUEST",
+      "agency": "Grove City Building and Zoning Division",
+      "notes": "Department contact form (614-277-3075), not existing-case database. Ask for retained property-maintenance/zoning enforcement records; public case search not confirmed. Obtain existing retained records in maintained format under Ohio R.C. 149.43; not a new custom report or inspection.",
+      "evidence": "https://www.grovecityohio.gov/FormCenter/Building-Zoning-Division-5/Building-Zoning-Division-46"
+    }
+  },
+  {
+    "county": "Franklin",
+    "city": "Westerville",
+    "source": {
+      "url": "https://www.westerville.org/services/planning-development/code-enforcement",
+      "access": "EMAIL_REQUEST",
+      "agency": "Westerville Planning and Development \u2014 Code Enforcement",
+      "notes": "Department contact for retained property-maintenance/zoning cases. Clerk of Council also routes public records via published city request form. Public existing-case search not confirmed. Obtain existing retained records in maintained format under Ohio R.C. 149.43; not a new custom report or inspection. Shared municipality: Franklin, Delaware counties; one municipal agency/source reused. Census county parts establish legal coverage; zero-population portions do not create agencies.",
+      "evidence": "https://www.westerville.org/services/planning-development/code-enforcement",
+      "email": "codeenforcement@westerville.org"
+    }
+  },
+  {
+    "county": "Delaware",
+    "city": "Westerville",
+    "source": {
+      "url": "https://www.westerville.org/services/planning-development/code-enforcement",
+      "access": "EMAIL_REQUEST",
+      "agency": "Westerville Planning and Development \u2014 Code Enforcement",
+      "notes": "Department contact for retained property-maintenance/zoning cases. Clerk of Council also routes public records via published city request form. Public existing-case search not confirmed. Obtain existing retained records in maintained format under Ohio R.C. 149.43; not a new custom report or inspection. Shared municipality: Franklin, Delaware counties; one municipal agency/source reused. Census county parts establish legal coverage; zero-population portions do not create agencies.",
+      "evidence": "https://www.westerville.org/services/planning-development/code-enforcement",
+      "email": "codeenforcement@westerville.org"
+    }
+  },
+  {
+    "county": "Franklin",
+    "city": "Reynoldsburg",
+    "source": {
+      "url": "https://www.reynoldsburg.gov/159/Code-Compliance",
+      "access": "EMAIL_REQUEST",
+      "agency": "Reynoldsburg Code Compliance",
+      "notes": "Department retained-record contact; official public request form DocumentCenter/View/197. Complaint reporting separate; public existing-case search not confirmed. Obtain existing retained records in maintained format under Ohio R.C. 149.43; not a new custom report or inspection. Shared municipality: Franklin, Licking, Fairfield counties; one municipal agency/source reused. Census county parts establish legal coverage; zero-population portions do not create agencies.",
+      "evidence": "https://www.reynoldsburg.gov/159/Code-Compliance",
+      "email": "code@reynoldsburg.gov"
+    }
+  },
+  {
+    "county": "Licking",
+    "city": "Reynoldsburg",
+    "source": {
+      "url": "https://www.reynoldsburg.gov/159/Code-Compliance",
+      "access": "EMAIL_REQUEST",
+      "agency": "Reynoldsburg Code Compliance",
+      "notes": "Department retained-record contact; official public request form DocumentCenter/View/197. Complaint reporting separate; public existing-case search not confirmed. Obtain existing retained records in maintained format under Ohio R.C. 149.43; not a new custom report or inspection. Shared municipality: Franklin, Licking, Fairfield counties; one municipal agency/source reused. Census county parts establish legal coverage; zero-population portions do not create agencies.",
+      "evidence": "https://www.reynoldsburg.gov/159/Code-Compliance",
+      "email": "code@reynoldsburg.gov"
+    }
+  },
+  {
+    "county": "Fairfield",
+    "city": "Reynoldsburg",
+    "source": {
+      "url": "https://www.reynoldsburg.gov/159/Code-Compliance",
+      "access": "EMAIL_REQUEST",
+      "agency": "Reynoldsburg Code Compliance",
+      "notes": "Department retained-record contact; official public request form DocumentCenter/View/197. Complaint reporting separate; public existing-case search not confirmed. Obtain existing retained records in maintained format under Ohio R.C. 149.43; not a new custom report or inspection. Shared municipality: Franklin, Licking, Fairfield counties; one municipal agency/source reused. Census county parts establish legal coverage; zero-population portions do not create agencies.",
+      "evidence": "https://www.reynoldsburg.gov/159/Code-Compliance",
+      "email": "code@reynoldsburg.gov"
+    }
+  },
+  {
+    "county": "Franklin",
+    "city": "Hilliard",
+    "source": {
+      "url": "https://hilliardohio.gov/wp-content/uploads/2021/12/Public-Records-Request-Form.pdf",
+      "access": "RECORDS_REQUEST",
+      "agency": "Hilliard City public records custodian / Building Standards",
+      "notes": "City records request form under R.C. 149.43. Specify retained property-maintenance/unsafe-structure/zoning cases; city routes to custodian. Public existing-case search not confirmed. Obtain existing retained records in maintained format under Ohio R.C. 149.43; not a new custom report or inspection.",
+      "evidence": "https://hilliardohio.gov/wp-content/uploads/2021/12/Public-Records-Request-Form.pdf"
+    }
+  },
+  {
+    "county": "Licking",
+    "city": "Newark",
+    "source": {
+      "url": "https://www.newarkohio.gov/property-maintenance/",
+      "access": "EMAIL_REQUEST",
+      "agency": "Newark Public Safety \u2014 Property Maintenance",
+      "notes": "Correct retained-record department contact. Complaint/inspection service on page is not a public existing-case database. Obtain existing retained records in maintained format under Ohio R.C. 149.43; not a new custom report or inspection.",
+      "evidence": "https://www.newarkohio.gov/property-maintenance/",
+      "email": "propertymaintenance@newarkohio.net"
+    }
+  },
+  {
+    "county": "Fairfield",
+    "city": "Lancaster",
+    "source": {
+      "url": "https://www.lancasterohio.gov/160/Code-Enforcement",
+      "access": "EMAIL_REQUEST",
+      "agency": "Lancaster Code Enforcement",
+      "notes": "Department contact for retained code cases and maintained electronic export if available; public case search not confirmed. Obtain existing retained records in maintained format under Ohio R.C. 149.43; not a new custom report or inspection.",
+      "evidence": "https://www.lancasterohio.gov/160/Code-Enforcement",
+      "email": "codeenforcement@lancasterohio.gov"
+    }
+  },
+  {
+    "county": "Hamilton",
+    "city": "Cincinnati",
+    "source": {
+      "url": "https://cagis.hamilton-co.org/opal/ezTrakSearch.aspx?entcode=cinc",
+      "access": "SEARCH_PORTAL",
+      "agency": "Cincinnati Buildings and Inspections",
+      "notes": "CAGIS ezTrak Cincinnati property activity/complaint status and existing enforcement records, endorsed by Buildings and 311 status guidance. Select Cincinnati; shared infrastructure does not mean countywide city jurisdiction. City Law handles retained copies.",
+      "evidence": "https://cagis.hamilton-co.org/opal/ezTrakSearch.aspx?entcode=cinc"
+    }
+  },
+  {
+    "county": "Butler",
+    "city": "Hamilton",
+    "source": {
+      "url": "https://www.hamilton-oh.gov/directory",
+      "access": "EMAIL_REQUEST",
+      "agency": "Hamilton City public records custodian / Code Compliance",
+      "notes": "Directory publishes general city records and Code Compliance contacts (513-785-7222). Request retained cases, not Police records/new complaints. Obtain existing retained records in maintained format under Ohio R.C. 149.43; not a new custom report or inspection.",
+      "evidence": "https://www.hamilton-oh.gov/directory",
+      "email": "publicrecords@hamilton-oh.gov"
+    }
+  },
+  {
+    "county": "Butler",
+    "city": "Middletown",
+    "source": {
+      "url": "https://cityofmiddletown.org/627/Public-Records",
+      "access": "RECORDS_REQUEST",
+      "agency": "Middletown Public records custodian / Code Enforcement",
+      "notes": "General city records route for retained Code Enforcement cases (513-425-7938). CitizenServe permits/complaint tools alone do not establish public existing-case access. Obtain existing retained records in maintained format under Ohio R.C. 149.43; not a new custom report or inspection. Shared municipality: Butler, Warren counties; one municipal agency/source reused. Census county parts establish legal coverage; zero-population portions do not create agencies.",
+      "evidence": "https://cityofmiddletown.org/627/Public-Records"
+    }
+  },
+  {
+    "county": "Warren",
+    "city": "Middletown",
+    "source": {
+      "url": "https://cityofmiddletown.org/627/Public-Records",
+      "access": "RECORDS_REQUEST",
+      "agency": "Middletown Public records custodian / Code Enforcement",
+      "notes": "General city records route for retained Code Enforcement cases (513-425-7938). CitizenServe permits/complaint tools alone do not establish public existing-case access. Obtain existing retained records in maintained format under Ohio R.C. 149.43; not a new custom report or inspection. Shared municipality: Butler, Warren counties; one municipal agency/source reused. Census county parts establish legal coverage; zero-population portions do not create agencies.",
+      "evidence": "https://cityofmiddletown.org/627/Public-Records"
+    }
+  },
+  {
+    "county": "Hamilton",
+    "city": "Fairfield",
+    "source": {
+      "url": "https://www.fairfield-city.org/DocumentCenter/View/34/Public-Records-Policy-PDF",
+      "access": "RECORDS_REQUEST",
+      "agency": "Fairfield City public records custodian / Building and Zoning",
+      "notes": "Official city records policy/contact fallback. Specify retained housing/property-maintenance/zoning cases; no public existing-case search confirmed. City of Fairfield, distinct from Fairfield County. Obtain existing retained records in maintained format under Ohio R.C. 149.43; not a new custom report or inspection. Shared municipality: Hamilton, Butler counties; one municipal agency/source reused. Census county parts establish legal coverage; zero-population portions do not create agencies.",
+      "evidence": "https://www.fairfield-city.org/DocumentCenter/View/34/Public-Records-Policy-PDF"
+    }
+  },
+  {
+    "county": "Butler",
+    "city": "Fairfield",
+    "source": {
+      "url": "https://www.fairfield-city.org/DocumentCenter/View/34/Public-Records-Policy-PDF",
+      "access": "RECORDS_REQUEST",
+      "agency": "Fairfield City public records custodian / Building and Zoning",
+      "notes": "Official city records policy/contact fallback. Specify retained housing/property-maintenance/zoning cases; no public existing-case search confirmed. City of Fairfield, distinct from Fairfield County. Obtain existing retained records in maintained format under Ohio R.C. 149.43; not a new custom report or inspection. Shared municipality: Hamilton, Butler counties; one municipal agency/source reused. Census county parts establish legal coverage; zero-population portions do not create agencies.",
+      "evidence": "https://www.fairfield-city.org/DocumentCenter/View/34/Public-Records-Policy-PDF"
+    }
+  },
+  {
+    "county": "Cuyahoga",
+    "city": "Cleveland",
+    "source": {
+      "url": "https://www.clevelandohio.gov/city-hall/departments/building-housing/divisions/records-administration",
+      "access": "RECORDS_REQUEST",
+      "agency": "Cleveland Building and Housing \u2014 Records Administration",
+      "notes": "Records Administration handles retained Building/Housing public information/violation notices. Accela building/permit search not confirmed as full existing-code-case access. Retention/restrictions affect availability. Obtain existing retained records in maintained format under Ohio R.C. 149.43; not a new custom report or inspection.",
+      "evidence": "https://www.clevelandohio.gov/city-hall/departments/building-housing/divisions/records-administration"
+    }
+  },
+  {
+    "county": "Cuyahoga",
+    "city": "Parma",
+    "source": {
+      "url": "https://www.cityofparma-oh.gov/186/Communications",
+      "access": "RECORDS_REQUEST",
+      "agency": "Parma City Hall records custodian / Building Department",
+      "notes": "City Hall public-records custodian (440-885-8181), routing retained property-maintenance/building-code cases; not police-only records or inspection request. Obtain existing retained records in maintained format under Ohio R.C. 149.43; not a new custom report or inspection.",
+      "evidence": "https://www.cityofparma-oh.gov/186/Communications"
+    }
+  },
+  {
+    "county": "Cuyahoga",
+    "city": "Lakewood",
+    "source": {
+      "url": "https://lakewoodoh.gov/housing-and-building/",
+      "access": "EMAIL_REQUEST",
+      "agency": "Lakewood Housing and Building",
+      "notes": "Housing/building contact (216-529-6270) for retained existing violations. Public existing-case search not confirmed. Obtain existing retained records in maintained format under Ohio R.C. 149.43; not a new custom report or inspection.",
+      "evidence": "https://lakewoodoh.gov/housing-and-building/",
+      "email": "housing.building@lakewoodoh.gov"
+    }
+  },
+  {
+    "county": "Cuyahoga",
+    "city": "Cleveland Heights",
+    "source": {
+      "url": "https://clevelandheights.gov/202/Complaint-Inspections",
+      "access": "EMAIL_REQUEST",
+      "agency": "Cleveland Heights Housing Inspections",
+      "notes": "Correct Housing Inspections contact for retained cases. Page describes new complaint inspections; catalog uses its department contact only, not complaint submission as records access. Obtain existing retained records in maintained format under Ohio R.C. 149.43; not a new custom report or inspection.",
+      "evidence": "https://clevelandheights.gov/202/Complaint-Inspections",
+      "email": "houseinspection@clevelandheights.gov"
+    }
+  },
+  {
+    "county": "Cuyahoga",
+    "city": "Euclid",
+    "source": {
+      "url": "https://www.cityofeuclid.gov/public-records-requests",
+      "access": "RECORDS_REQUEST",
+      "agency": "Euclid City public records custodian / Building and Housing",
+      "notes": "General city request route for existing Building/Housing code cases. Police requests separate; no public existing-case search confirmed. Obtain existing retained records in maintained format under Ohio R.C. 149.43; not a new custom report or inspection.",
+      "evidence": "https://www.cityofeuclid.gov/public-records-requests"
+    }
+  },
+  {
+    "county": "Lorain",
+    "city": "Lorain",
+    "source": {
+      "url": "https://cityoflorain.org/423/Building-Housing-and-Planning",
+      "access": "RECORDS_REQUEST",
+      "agency": "Lorain Building, Housing and Planning",
+      "notes": "Correct housing/property-maintenance/zoning department contact, with city records policy. Request retained cases; no public existing-case search confirmed. Obtain existing retained records in maintained format under Ohio R.C. 149.43; not a new custom report or inspection.",
+      "evidence": "https://cityoflorain.org/423/Building-Housing-and-Planning"
+    }
+  },
+  {
+    "county": "Lorain",
+    "city": "Elyria",
+    "source": {
+      "url": "https://www.cityofelyria.org/department/building-and-land/contacts/",
+      "access": "RECORDS_REQUEST",
+      "agency": "Elyria Building and Land",
+      "notes": "Building counter staff handle related record requests (440-326-1491). Request retained enforcement cases/existing electronic records; not police records/new inspection. Obtain existing retained records in maintained format under Ohio R.C. 149.43; not a new custom report or inspection.",
+      "evidence": "https://www.cityofelyria.org/department/building-and-land/contacts/"
+    }
+  },
+  {
+    "county": "Summit",
+    "city": "Akron",
+    "source": {
+      "url": "https://ari.akronohio.gov/",
+      "access": "SEARCH_PORTAL",
+      "agency": "Akron Housing Compliance",
+      "notes": "Akron Rental Information provides public property complaint/history search including housing-code/environmental complaints. Complaints are broader than adjudicated violations; review case status/details. Existing records, not complaint filing.",
+      "evidence": "https://ari.akronohio.gov/"
+    }
+  },
+  {
+    "county": "Summit",
+    "city": "Cuyahoga Falls",
+    "source": {
+      "url": "https://www.cityofcf.com/departments/community-development/code-enforcement",
+      "access": "RECORDS_REQUEST",
+      "agency": "Cuyahoga Falls Community Development \u2014 Code Enforcement",
+      "notes": "Correct property-maintenance/code department contact for retained cases; complaint intake is separate and no public existing-case search confirmed. Obtain existing retained records in maintained format under Ohio R.C. 149.43; not a new custom report or inspection.",
+      "evidence": "https://www.cityofcf.com/departments/community-development/code-enforcement"
+    }
+  },
+  {
+    "county": "Portage",
+    "city": "Kent",
+    "source": {
+      "url": "https://www.kentohio.gov/our-government/records/public-records-requests/",
+      "access": "EMAIL_REQUEST",
+      "agency": "Kent Law Department records custodian / Community Development",
+      "notes": "General records process through Law routes retained housing/property-maintenance/zoning cases to Community Development. No public existing-case search confirmed. Obtain existing retained records in maintained format under Ohio R.C. 149.43; not a new custom report or inspection.",
+      "evidence": "https://www.kentohio.gov/our-government/records/public-records-requests/",
+      "email": "sandy.lance@kentohio.gov"
+    }
+  },
+  {
+    "county": "Stark",
+    "city": "Canton",
+    "source": {
+      "url": "https://www.cantonohio.gov/163/Code-Enforcement",
+      "access": "EMAIL_REQUEST",
+      "agency": "Canton Code Enforcement",
+      "notes": "Correct housing/property-maintenance/unsafe-structure department. October 2025 permit software not confirmed as existing-case search; request retained records under city policy. Obtain existing retained records in maintained format under Ohio R.C. 149.43; not a new custom report or inspection.",
+      "evidence": "https://www.cantonohio.gov/163/Code-Enforcement",
+      "email": "BuildingCode@cantonohio.gov"
+    }
+  },
+  {
+    "county": "Stark",
+    "city": "Massillon",
+    "source": {
+      "url": "https://massillonohio.gov/departments/code-enforcement/",
+      "access": "RECORDS_REQUEST",
+      "agency": "Massillon Code Enforcement",
+      "notes": "Department (330-809-0235) retains housing, unsafe-building, nuisance and zoning cases; request existing records, not new complaints. Public case search not confirmed. Obtain existing retained records in maintained format under Ohio R.C. 149.43; not a new custom report or inspection.",
+      "evidence": "https://massillonohio.gov/departments/code-enforcement/"
+    }
+  },
+  {
+    "county": "Montgomery",
+    "city": "Dayton",
+    "source": {
+      "url": "https://aca-prod.accela.com/DAYTON/Cap/CapHome.aspx?TabName=Home&module=Enforcement",
+      "access": "SEARCH_PORTAL",
+      "agency": "Dayton Housing and Inspections",
+      "notes": "Accela Enforcement existing open cases/public structural nuisance records, endorsed by Housing and Inspections. JavaScript/session gateway; closed-case/history coverage may be limited. City NextRequest handles retained copies. Shared municipality: Montgomery, Greene counties; one municipal agency/source reused. Census county parts establish legal coverage; zero-population portions do not create agencies.",
+      "evidence": "https://aca-prod.accela.com/DAYTON/Cap/CapHome.aspx?TabName=Home&module=Enforcement"
+    }
+  },
+  {
+    "county": "Greene",
+    "city": "Dayton",
+    "source": {
+      "url": "https://aca-prod.accela.com/DAYTON/Cap/CapHome.aspx?TabName=Home&module=Enforcement",
+      "access": "SEARCH_PORTAL",
+      "agency": "Dayton Housing and Inspections",
+      "notes": "Accela Enforcement existing open cases/public structural nuisance records, endorsed by Housing and Inspections. JavaScript/session gateway; closed-case/history coverage may be limited. City NextRequest handles retained copies. Shared municipality: Montgomery, Greene counties; one municipal agency/source reused. Census county parts establish legal coverage; zero-population portions do not create agencies.",
+      "evidence": "https://aca-prod.accela.com/DAYTON/Cap/CapHome.aspx?TabName=Home&module=Enforcement"
+    }
+  },
+  {
+    "county": "Montgomery",
+    "city": "Kettering",
+    "source": {
+      "url": "https://www.ketteringoh.org/online-public-records-request-form/",
+      "access": "RECORDS_REQUEST",
+      "agency": "Kettering City records custodian / Planning and Development",
+      "notes": "General retained-record request form. Accela permit/complaint tools do not prove existing-case public access. Automated 403; use normal browser. Obtain existing retained records in maintained format under Ohio R.C. 149.43; not a new custom report or inspection. Shared municipality: Montgomery, Greene counties; one municipal agency/source reused. Census county parts establish legal coverage; zero-population portions do not create agencies.",
+      "evidence": "https://www.ketteringoh.org/online-public-records-request-form/"
+    }
+  },
+  {
+    "county": "Greene",
+    "city": "Kettering",
+    "source": {
+      "url": "https://www.ketteringoh.org/online-public-records-request-form/",
+      "access": "RECORDS_REQUEST",
+      "agency": "Kettering City records custodian / Planning and Development",
+      "notes": "General retained-record request form. Accela permit/complaint tools do not prove existing-case public access. Automated 403; use normal browser. Obtain existing retained records in maintained format under Ohio R.C. 149.43; not a new custom report or inspection. Shared municipality: Montgomery, Greene counties; one municipal agency/source reused. Census county parts establish legal coverage; zero-population portions do not create agencies.",
+      "evidence": "https://www.ketteringoh.org/online-public-records-request-form/"
+    }
+  },
+  {
+    "county": "Montgomery",
+    "city": "Huber Heights",
+    "source": {
+      "url": "https://www.hhoh.org/380/Public-Records",
+      "access": "RECORDS_REQUEST",
+      "agency": "Huber Heights Public Records Administrator / Planning and Zoning",
+      "notes": "Official records route/retention schedules. Request retained property-maintenance/code cases from Planning and Zoning, not new complaint/inspection. Obtain existing retained records in maintained format under Ohio R.C. 149.43; not a new custom report or inspection. Shared municipality: Montgomery, Miami counties; one municipal agency/source reused. Census county parts establish legal coverage; zero-population portions do not create agencies.",
+      "evidence": "https://www.hhoh.org/380/Public-Records"
+    }
+  },
+  {
+    "county": "Miami",
+    "city": "Huber Heights",
+    "source": {
+      "url": "https://www.hhoh.org/380/Public-Records",
+      "access": "RECORDS_REQUEST",
+      "agency": "Huber Heights Public Records Administrator / Planning and Zoning",
+      "notes": "Official records route/retention schedules. Request retained property-maintenance/code cases from Planning and Zoning, not new complaint/inspection. Obtain existing retained records in maintained format under Ohio R.C. 149.43; not a new custom report or inspection. Shared municipality: Montgomery, Miami counties; one municipal agency/source reused. Census county parts establish legal coverage; zero-population portions do not create agencies.",
+      "evidence": "https://www.hhoh.org/380/Public-Records"
+    }
+  },
+  {
+    "county": "Clark",
+    "city": "Springfield",
+    "source": {
+      "url": "https://springfieldohio.gov/request-for-public-record/",
+      "access": "RECORDS_REQUEST",
+      "agency": "Springfield City records custodian / Community Development \u2014 Code Enforcement",
+      "notes": "General request form for retained housing/property-maintenance/code cases routed to Community Development; no public case search confirmed. Obtain existing retained records in maintained format under Ohio R.C. 149.43; not a new custom report or inspection.",
+      "evidence": "https://springfieldohio.gov/request-for-public-record/"
+    }
+  },
+  {
+    "county": "Miami",
+    "city": "Troy",
+    "source": {
+      "url": "https://www.troyohio.gov/departments/city_director/public_records.php",
+      "access": "EMAIL_REQUEST",
+      "agency": "Troy Clerk of Council records custodian / Property Maintenance",
+      "notes": "Current non-police records gateway: Clerk of Council (937-335-1725) routes Property Maintenance cases. Old FormCenter replaced; no public case search confirmed. Obtain existing retained records in maintained format under Ohio R.C. 149.43; not a new custom report or inspection.",
+      "evidence": "https://www.troyohio.gov/departments/city_director/public_records.php",
+      "email": "public.records@troyohio.gov"
+    }
+  },
+  {
+    "county": "Lucas",
+    "city": "Toledo",
+    "source": {
+      "url": "https://toledo.oh.gov/connect/public-records-request",
+      "access": "RECORDS_REQUEST",
+      "agency": "Toledo City public records custodian / Code Compliance",
+      "notes": "Retained-record route includes Building/Zoning/Code Compliance. Specify existing housing/property-maintenance/unsafe-structure cases; Cityworks maps/permit views do not establish case access. Obtain existing retained records in maintained format under Ohio R.C. 149.43; not a new custom report or inspection.",
+      "evidence": "https://toledo.oh.gov/connect/public-records-request"
+    }
+  },
+  {
+    "county": "Hamilton",
+    "city": "Loveland",
+    "source": {
+      "url": "https://www.lovelandoh.gov/forms.aspx?fid=68",
+      "access": "RECORDS_REQUEST",
+      "agency": "Loveland City public records custodian / Building and Zoning",
+      "notes": "City public-records form linked from Report page; request retained enforcement cases. One city records agency covers all three selected county portions. Obtain existing retained records in maintained format under Ohio R.C. 149.43; not a new custom report or inspection. Shared municipality: Hamilton, Warren, Clermont counties; one municipal agency/source reused. Census county parts establish legal coverage; zero-population portions do not create agencies.",
+      "evidence": "https://www.lovelandoh.gov/forms.aspx?fid=68"
+    }
+  },
+  {
+    "county": "Warren",
+    "city": "Loveland",
+    "source": {
+      "url": "https://www.lovelandoh.gov/forms.aspx?fid=68",
+      "access": "RECORDS_REQUEST",
+      "agency": "Loveland City public records custodian / Building and Zoning",
+      "notes": "City public-records form linked from Report page; request retained enforcement cases. One city records agency covers all three selected county portions. Obtain existing retained records in maintained format under Ohio R.C. 149.43; not a new custom report or inspection. Shared municipality: Hamilton, Warren, Clermont counties; one municipal agency/source reused. Census county parts establish legal coverage; zero-population portions do not create agencies.",
+      "evidence": "https://www.lovelandoh.gov/forms.aspx?fid=68"
+    }
+  },
+  {
+    "county": "Clermont",
+    "city": "Loveland",
+    "source": {
+      "url": "https://www.lovelandoh.gov/forms.aspx?fid=68",
+      "access": "RECORDS_REQUEST",
+      "agency": "Loveland City public records custodian / Building and Zoning",
+      "notes": "City public-records form linked from Report page; request retained enforcement cases. One city records agency covers all three selected county portions. Obtain existing retained records in maintained format under Ohio R.C. 149.43; not a new custom report or inspection. Shared municipality: Hamilton, Warren, Clermont counties; one municipal agency/source reused. Census county parts establish legal coverage; zero-population portions do not create agencies.",
+      "evidence": "https://www.lovelandoh.gov/forms.aspx?fid=68"
+    }
+  },
+  {
+    "county": "Lake",
+    "city": "Mentor",
+    "source": {
+      "url": "https://cityofmentor.com/contact-us/",
+      "access": "RECORDS_REQUEST",
+      "agency": "Mentor City records custodian / Code Enforcement",
+      "notes": "City contact page identifies Public Records Requests; route retained property-maintenance/housing cases to Code Enforcement. No public existing-case search confirmed. Obtain existing retained records in maintained format under Ohio R.C. 149.43; not a new custom report or inspection.",
+      "evidence": "https://cityofmentor.com/contact-us/"
+    }
+  },
+  {
+    "county": "Medina",
+    "city": "Medina",
+    "source": {
+      "url": "https://medinaoh.org/city-hall/building/",
+      "access": "RECORDS_REQUEST",
+      "agency": "Medina Building Department",
+      "notes": "Correct city Building contact for retained property-maintenance/zoning cases. City of Medina distinct from county; not permit lookup/new inspection. Obtain existing retained records in maintained format under Ohio R.C. 149.43; not a new custom report or inspection.",
+      "evidence": "https://medinaoh.org/city-hall/building/"
+    }
+  },
+  {
+    "county": "Wood",
+    "city": "Perrysburg",
+    "source": {
+      "url": "https://perrysburgoh.gov/314/Public-Records-Requests",
+      "access": "RECORDS_REQUEST",
+      "agency": "Perrysburg Public Information Officer / Planning and Zoning",
+      "notes": "General city records route, separate from police. Request retained property-maintenance/zoning cases; no public existing-case search confirmed. Obtain existing retained records in maintained format under Ohio R.C. 149.43; not a new custom report or inspection.",
+      "evidence": "https://perrysburgoh.gov/314/Public-Records-Requests"
+    }
+  }
+]

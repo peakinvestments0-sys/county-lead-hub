@@ -15,12 +15,33 @@ let outreachTemplatesCache = null;
 let activeTemplatesChannel = 'sms';
 let selectedTemplateId = null;
 
+function escapeHtml(str) {
+  if (str === null || str === undefined) return "";
+  return String(str)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
+function escapeAttr(str) {
+  if (str === null || str === undefined) return "";
+  return String(str)
+    .replace(/'/g, "\\'")
+    .replace(/"/g, '&quot;');
+}
+
 const SMS_TEMPLATES = {
-  cash_offer: "Hi {FirstName}, I noticed your property at {Address}. I'm an active local investor and wanted to see if you would consider a quick all-cash offer as-is? Let me know!",
-  pre_foreclosure: "Hi {FirstName}, I saw the recent county court filing regarding {Address}. If you need a fast, private resolution before the auction date, we can purchase cash as-is and cover closing costs. Would you be open to a quick call?",
-  probate_estate: "Hi {FirstName}, my condolences on the family estate regarding {Address}. If you or the heirs are planning to sell the property without repairs or realtor fees, I would love to make a fair as-is cash offer. Let me know if you'd like to discuss.",
-  code_violation: "Hi {FirstName}, I was looking at properties in {City} and saw {Address}. If the county code requirements or repairs are becoming a headache, we buy houses in any condition with zero cleanout needed. Would you consider an offer?",
-  casual_followup: "Hi {FirstName}, just following up regarding {Address} in {City}. Are you still open to selling if the price and terms make sense? Thanks!"
+  casual_local: "Hey {FirstName}, quick question, are you still the owner over at {Address}?",
+  drive_by: "Hi {FirstName}, my partner John and I were looking at houses near {Address}. Wondering if you would ever consider an offer or if you are holding onto it?",
+  as_is_no_fees: "Hey {FirstName}, reaching out about {Address}. We are looking to purchase a place in the area as is with no realtor fees or repair work. Would you consider selling?",
+  curious_walkaway: "Hi {FirstName}, I know this is out of the blue, but would you consider parting with {Address} for the right price, or definitely not selling right now?",
+  code_violation: "Hi {FirstName}, noticed the city had some open notices on {Address}. We work with owners in {City} to resolve municipal citations directly and buy as is. Open to chatting about options?",
+  pre_foreclosure: "Hi {FirstName}, reaching out regarding {Address}. We help homeowners in {County} resolve pending bank deadlines before auction dates. Would you be open to a quick call to review your options?",
+  probate_estate: "Hi {FirstName}, my condolences regarding the family estate on {Address}. If the family is ever looking to sell without doing cleanouts, repairs, or realtor fees, we would love to help.",
+  casual_followup: "Hi {FirstName}, just checking back in regarding {Address}. Would you still be open to an offer if the terms make sense? Thanks!",
+  cash_offer: "Hi {FirstName}, are you open to a direct private purchase on {Address}? We handle standard closing costs and buy 100% as is."
 };
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -34,6 +55,12 @@ document.addEventListener("DOMContentLoaded", () => {
   loadEmailSettings();
   loadPandadocSettings();
   fetchOutreachTemplates();
+  loadSellerBotSettings();
+  fetchInboxBadgeCount();
+  loadScheduledCallbacks();
+  fetchLinkZoneHealth();
+  setInterval(pollSellerInboxUpdates, 5000);
+  setInterval(fetchLinkZoneHealth, 30000);
   loadLiveCountyLeads("Pinellas", null, currentState);
   setupSearchFilter();
 });
@@ -49,6 +76,9 @@ async function fetchStates() {
         allStates.forEach(s => {
           const opt = document.createElement("option");
           opt.value = s.code;
+          opt.className = "bg-slate-900 text-white py-1.5 px-3";
+          opt.style.backgroundColor = "#0d1424";
+          opt.style.color = "#ffffff";
           opt.textContent = `${s.name} (${s.code})`;
           if (s.code === currentState) opt.selected = true;
           sel.appendChild(opt);
@@ -114,13 +144,32 @@ async function fetchCounties(state = currentState) {
       selectedCountyKey = allCounties[0].key;
     }
 
-    // Populate Hero County Dropdown
+    // Populate Header & Hero County Dropdowns
+    const headerSelect = document.getElementById("headerCountySelect");
+    if (headerSelect) {
+      headerSelect.innerHTML = "";
+      allCounties.forEach(c => {
+        const opt = document.createElement("option");
+        opt.value = c.key;
+        opt.className = "bg-slate-900 text-white py-1.5 px-3";
+        opt.style.backgroundColor = "#0d1424";
+        opt.style.color = "#ffffff";
+        const statusLabel = c.has_master ? `Live & Ready (${c.records ? c.records.toLocaleString() + ' parcels' : 'Loaded'})` : 'Needs Setup';
+        opt.textContent = `${c.name} County — ${statusLabel}`;
+        if (c.key === selectedCountyKey) opt.selected = true;
+        headerSelect.appendChild(opt);
+      });
+    }
+
     const select = document.getElementById("heroCountySelect");
     if (select) {
       select.innerHTML = "";
       allCounties.forEach(c => {
         const opt = document.createElement("option");
         opt.value = c.key;
+        opt.className = "bg-slate-900 text-white py-1.5 px-3";
+        opt.style.backgroundColor = "#0d1424";
+        opt.style.color = "#ffffff";
         opt.textContent = `${c.name} County ${c.has_master ? `(${c.records.toLocaleString()} records)` : ""}`;
         if (c.key === selectedCountyKey) opt.selected = true;
         select.appendChild(opt);
@@ -131,6 +180,22 @@ async function fetchCounties(state = currentState) {
     updateCategoryCardLinks(selectedCountyKey);
   } catch (err) {
     console.error("Error fetching counties:", err);
+  }
+}
+
+function openCountyCoverageModal() {
+  const modal = document.getElementById("countyCoverageModal");
+  if (modal) {
+    modal.classList.remove("hidden");
+    modal.style.display = "flex";
+  }
+}
+
+function closeCountyCoverageModal() {
+  const modal = document.getElementById("countyCoverageModal");
+  if (modal) {
+    modal.classList.add("hidden");
+    modal.style.display = "none";
   }
 }
 
@@ -180,16 +245,36 @@ function renderCountyGrid(counties) {
   grid.appendChild(moreCard);
 }
 
-let activeLeadsFetch = null;
+let activeLeadsPromise = null;
 
 async function selectCounty(key, targetFilter = null) {
   selectedCountyKey = key;
+  currentFilter = targetFilter || "all";
   updateCategoryCardLinks(key);
   const select = document.getElementById("heroCountySelect");
   if (select) select.value = key;
-  renderCountyGrid(allCounties);
+  const headerSelect = document.getElementById("headerCountySelect");
+  if (headerSelect) headerSelect.value = key;
 
   const countyObj = allCounties.find(c => c.key === key);
+  const countyLabel = document.getElementById("activeCountyDisplayLabel");
+  if (countyLabel && countyObj) {
+    countyLabel.innerText = `${countyObj.name} County, ${currentState}`;
+  }
+  const parcelsCount = document.getElementById("activeCountyParcelsCount");
+  if (parcelsCount && countyObj) {
+    parcelsCount.innerText = countyObj.records ? countyObj.records.toLocaleString() : (countyObj.has_master ? 'Loaded' : '0');
+  }
+  const statusDot = document.getElementById("headerCountyStatusDot");
+  if (statusDot && countyObj) {
+    statusDot.className = countyObj.has_master ? "w-2 h-2 rounded-full bg-emerald-400 shadow-sm shadow-emerald-400/50" : "w-2 h-2 rounded-full bg-amber-400 shadow-sm shadow-amber-400/50";
+  }
+
+  // Close coverage modal if open
+  closeCountyCoverageModal();
+
+  renderCountyGrid(allCounties);
+
   const setupBox = document.getElementById("setupNoticeBox");
   const tableContainer = document.getElementById("liveTableContainer");
   const filterPills = document.getElementById("liveFilterPills");
@@ -213,56 +298,95 @@ async function selectCounty(key, targetFilter = null) {
     tableContainer.classList.remove("hidden");
     filterPills.classList.remove("hidden");
     
-    await loadLiveCountyLeads(key, targetFilter, currentState);
+    await loadLiveCountyLeads(key, currentFilter, currentState);
   }
 }
 
-async function loadLiveCountyLeads(countyKey, initialFilter = null, state = currentState) {
+async function loadLiveCountyLeads(countyKey = (selectedCountyKey || "Pinellas"), initialFilter = null, state = currentState) {
   if (initialFilter) {
     currentFilter = initialFilter;
   }
 
-  // If records are already in memory, simply filter
+  // If records are already in memory for this county and non-empty:
   if (liveRecords && liveRecords.length > 0 && selectedCountyKey === countyKey) {
-    filterLiveRecords(currentFilter);
-    return;
-  }
-
-  // If a fetch is currently in flight, wait for it
-  if (activeLeadsFetch) {
-    await activeLeadsFetch;
-    filterLiveRecords(currentFilter);
-    return;
-  }
-
-  try {
-    await fetchSavedContacts();
-    activeLeadsFetch = fetch(`/api/leads?county=${encodeURIComponent(countyKey)}&state=${encodeURIComponent(state || currentState)}`);
-    const res = await activeLeadsFetch;
-    activeLeadsFetch = null;
-    if (!res.ok) return;
-    const data = await res.json();
-
-    document.getElementById("liveCountyTitle").innerText = `${data.county} County Live Distressed Leads`;
-    document.getElementById("liveCountySub").innerText = `Cross-referenced against ${data.total_records_in_db?.toLocaleString() || '437,559'} official county master parcels with clean owner names and absentee indicators.`;
-    document.getElementById("liveStatusBadge").innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> ${data.kpis.matched_count.toLocaleString()} Verified Properties`;
-
-    // Filter out Corporate LLCs completely so wholesalers only see individual/trust/probate homeowners
-    const validHumanLeads = (data.records || []).filter(r => !isCorporateOwner(r));
-    liveRecords = validHumanLeads;
-
-    // Counts (Strictly non-corporate)
-    const allCnt = validHumanLeads.length;
+    const allCnt = liveRecords.length;
+    const titleEl = document.getElementById("liveCountyTitle");
+    if (titleEl) titleEl.innerText = `${countyKey} County Live Distressed Leads`;
+    const subEl = document.getElementById("liveCountySub");
+    if (subEl) subEl.innerText = `Cross-referenced against official county master parcels with clean owner names and absentee indicators.`;
+    const badgeEl = document.getElementById("liveStatusBadge");
+    if (badgeEl) badgeEl.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> ${allCnt.toLocaleString()} Verified Properties`;
     const pCountAll = document.getElementById("pipelineCountAll");
     if (pCountAll) pCountAll.innerText = allCnt.toLocaleString();
 
     updateSavedPipelineCount();
     updateFilterCounts();
     filterLiveRecords(currentFilter || "all");
-  } catch (err) {
-    activeLeadsFetch = null;
-    console.error("Error loading live leads:", err);
+    return;
   }
+
+  // If a fetch is currently in flight, await it
+  if (activeLeadsPromise) {
+    await activeLeadsPromise;
+    updateFilterCounts();
+    filterLiveRecords(currentFilter || "all");
+    return;
+  }
+
+  // Show clean loading state in table if empty
+  const tbody = document.getElementById("liveTableBody");
+  if (tbody && (!liveRecords || liveRecords.length === 0)) {
+    tbody.innerHTML = `
+      <tr>
+        <td colspan="8" class="p-12 text-center">
+          <div class="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/30 text-blue-400 mb-2 animate-spin text-lg">
+            ⏳
+          </div>
+          <div class="font-bold text-white text-sm">Loading Verified Distressed Leads for ${countyKey} County...</div>
+          <p class="text-xs text-slate-400 mt-1">Cross-referencing lis pendens, code violations, and probate filings against master parcels...</p>
+        </td>
+      </tr>`;
+  }
+
+  activeLeadsPromise = (async () => {
+    try {
+      await fetchSavedContacts();
+      const res = await fetch(`/api/leads?county=${encodeURIComponent(countyKey)}&state=${encodeURIComponent(state || currentState)}`);
+      if (!res.ok) {
+        console.error("Failed to fetch leads for", countyKey, res.status);
+        return;
+      }
+      const data = await res.json();
+
+      const titleEl = document.getElementById("liveCountyTitle");
+      if (titleEl) titleEl.innerText = `${data.county} County Live Distressed Leads`;
+      const subEl = document.getElementById("liveCountySub");
+      if (subEl) subEl.innerText = `Cross-referenced against ${data.total_records_in_db?.toLocaleString() || '437,559'} official county master parcels with clean owner names and absentee indicators.`;
+
+      // Filter out Corporate LLCs completely so wholesalers only see individual/trust/probate homeowners
+      const validHumanLeads = (data.records || []).filter(r => r && !isCorporateOwner(r));
+      liveRecords = validHumanLeads;
+
+      const badgeEl = document.getElementById("liveStatusBadge");
+      const verifiedCount = (data.kpis && typeof data.kpis.matched_count === "number") ? data.kpis.matched_count : validHumanLeads.length;
+      if (badgeEl) badgeEl.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> ${verifiedCount.toLocaleString()} Verified Properties`;
+
+      // Update All County Leads pill count
+      const allCnt = validHumanLeads.length;
+      const pCountAll = document.getElementById("pipelineCountAll");
+      if (pCountAll) pCountAll.innerText = allCnt.toLocaleString();
+
+      updateSavedPipelineCount();
+      updateFilterCounts();
+      filterLiveRecords(currentFilter || "all");
+    } catch (err) {
+      console.error("Error loading live leads:", err);
+    } finally {
+      activeLeadsPromise = null;
+    }
+  })();
+
+  await activeLeadsPromise;
 }
 
 function isCorporateOwner(r) {
@@ -409,7 +533,10 @@ function renderLiveTable(records) {
         <div class="text-[10px] text-slate-400">${r.Property_City || 'ST PETERSBURG'}, FL ${r.Property_Zip || ''}</div>
       </td>
       <td class="px-4 py-3">
-        <div class="font-bold text-blue-300 text-xs">${r.Clean_Full_Name || r.Clean_Last_Name || 'Unknown Owner'}</div>
+        <div class="font-bold text-blue-300 text-xs flex items-center gap-1.5">
+          <span>${r.Clean_Full_Name || r.Clean_Last_Name || 'Unknown Owner'}</span>
+          ${(r.Is_Sandbox || r.Parcel_ID === 'TEST-PINELLAS-001') ? '<span class="px-1.5 py-0.2 rounded text-[9px] font-extrabold bg-violet-500/25 text-violet-300 border border-violet-500/40">🧪 TEST LEAD</span>' : ''}
+        </div>
         <div class="text-[10px] text-slate-500 mono">PIN: ${r.Parcel_ID || 'N/A'}</div>
         ${savedPhone ? `
           <div class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 text-[10px] font-bold mt-1 shadow-sm">
@@ -444,6 +571,11 @@ function renderLiveTable(records) {
       </td>
       <td class="px-4 py-3 text-center whitespace-nowrap min-w-[320px]">
         <div class="flex items-center justify-center gap-1.5">
+          ${(r.Is_Sandbox || r.Parcel_ID === 'TEST-PINELLAS-001') ? `
+            <button type="button" onclick="openSandboxTestModal()" class="px-2.5 py-1 rounded bg-violet-600 hover:bg-violet-500 text-white text-[10px] font-bold transition flex items-center gap-1 shadow-md shadow-violet-600/30 cursor-pointer" title="1-Click Webhook & Deal Scorer Simulator">
+              <span>⚡</span> <span>Test Webhook</span>
+            </button>
+          ` : ''}
           <button type="button" onclick="openContractModal('${r.Parcel_ID}', '${escapeAttr(savedPhone || '')}', '${escapeAttr(savedEmail || '')}', '${escapeAttr(skipName)}', '${escapeAttr(r.Property_Address || '')}', '${escapeAttr(r.Property_City || 'St Petersburg')}', '${escapeAttr(r.Property_Zip || '')}', ${mktVal})" class="px-2.5 py-1 rounded bg-purple-600 hover:bg-purple-500 text-white text-[10px] font-bold transition flex items-center gap-1 shadow-md shadow-purple-600/30 cursor-pointer" title="Generate 1-Page Wholesale Purchase Agreement & E-Sign via PandaDoc">
             <span>📝</span> <span>Contract</span>
           </button>
@@ -477,6 +609,46 @@ function renderLiveTable(records) {
     `;
     tbody.appendChild(tr);
   });
+}
+
+function getActivePipelineDataset() {
+  if (currentPipelineView !== "saved") return liveRecords || [];
+
+  const dataset = [];
+  const pidsInLive = new Set();
+
+  (liveRecords || []).forEach(r => {
+    if (r.Parcel_ID && (savedContactsCache[r.Parcel_ID] || r.Saved_Phone || r.Saved_Email)) {
+      pidsInLive.add(r.Parcel_ID);
+      dataset.push(r);
+    }
+  });
+
+  // Merge any saved contacts (especially sandbox test lead or manually skip-traced leads not in live batch)
+  if (savedContactsCache) {
+    Object.entries(savedContactsCache).forEach(([pid, c]) => {
+      if (!pidsInLive.has(pid)) {
+        dataset.unshift({
+          Parcel_ID: pid,
+          Clean_Full_Name: c.owner || "Property Owner",
+          Property_Address: c.address || "Florida Property",
+          Property_City: c.city || "St Petersburg",
+          Property_Zip: c.zip || "33701",
+          Lead_Type: c.distress_category || "Code Violation",
+          Market_Value: c.just_value || 240000,
+          Just_Value: c.just_value || 240000,
+          Saved_Phone: c.phone || "",
+          Saved_Email: c.email || "",
+          Is_Sandbox: pid.startsWith("TEST-") || c.source === "Sandbox Demo Lead",
+          Absentee_Status: "Owner Occupied",
+          Living_Sqft: "1,450",
+          Year_Built: "1988"
+        });
+      }
+    });
+  }
+
+  return dataset;
 }
 
 function filterLiveRecords(type) {
@@ -519,11 +691,9 @@ function filterLiveRecords(type) {
     }
   });
 
-  if (!liveRecords) return;
+  if (!liveRecords && currentPipelineView !== "saved") return;
 
-  const dataset = (currentPipelineView === "saved")
-    ? liveRecords.filter(r => r.Parcel_ID && (savedContactsCache[r.Parcel_ID] || r.Saved_Phone || r.Saved_Email))
-    : liveRecords;
+  const dataset = getActivePipelineDataset();
 
   if (type === "all") {
     renderLiveTable(dataset);
@@ -547,10 +717,8 @@ function filterLiveRecords(type) {
 }
 
 function updateFilterCounts() {
-  if (!liveRecords) return;
-  const dataset = (currentPipelineView === "saved")
-    ? liveRecords.filter(r => r.Parcel_ID && (savedContactsCache[r.Parcel_ID] || r.Saved_Phone || r.Saved_Email))
-    : liveRecords;
+  if (!liveRecords && currentPipelineView !== "saved") return;
+  const dataset = getActivePipelineDataset();
 
   const elAll = document.getElementById("liveCountAll");
   if (elAll) elAll.innerText = dataset.length.toLocaleString();
@@ -682,14 +850,18 @@ function switchPipelineView(viewMode) {
     if (liveTableContainer) liveTableContainer.classList.remove("hidden");
     if (searchExportBar) searchExportBar.classList.remove("hidden");
 
-    const totalVerified = liveRecords ? liveRecords.length : 3205;
-    if (liveCountyTitle) liveCountyTitle.innerText = `${selectedCountyKey} County Live Distressed Leads`;
-    if (liveStatusBadge) liveStatusBadge.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> ${totalVerified.toLocaleString()} Verified Properties`;
-    if (liveCountySub) liveCountySub.innerText = "Cross-referenced against official county master parcels with clean owner names and absentee indicators.";
-    if (pipelineDesc) pipelineDesc.innerText = "Showing all raw distressed public filings for Pinellas County";
+    if (!liveRecords || liveRecords.length === 0) {
+      loadLiveCountyLeads(selectedCountyKey || "Pinellas", currentFilter || "all", currentState);
+    } else {
+      const totalVerified = liveRecords.length;
+      if (liveCountyTitle) liveCountyTitle.innerText = `${selectedCountyKey} County Live Distressed Leads`;
+      if (liveStatusBadge) liveStatusBadge.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> ${totalVerified.toLocaleString()} Verified Properties`;
+      if (liveCountySub) liveCountySub.innerText = "Cross-referenced against official county master parcels with clean owner names and absentee indicators.";
+      if (pipelineDesc) pipelineDesc.innerText = `Showing all raw distressed public filings for ${selectedCountyKey} County`;
 
-    filterLiveRecords(currentFilter);
-    updateFilterCounts();
+      filterLiveRecords(currentFilter || "all");
+      updateFilterCounts();
+    }
   }
 }
 
@@ -757,8 +929,8 @@ function renderHistoryTable() {
       </td>
       <td class="px-4 py-3 text-center whitespace-nowrap">
         ${isSms ? `
-          <button type="button" onclick="openSmsModal('${entry.parcel_id || ""}', '${escapeAttr(entry.recipient || entry.phone || "")}', '${escapeAttr(entry.owner || "")}', '${escapeAttr(entry.address || "")}')" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-emerald-600 hover:text-white text-slate-300 text-[10px] font-bold transition flex items-center gap-1 mx-auto cursor-pointer">
-            <span>💬</span> <span>Follow Up</span>
+          <button type="button" onclick="openSellerThread('${escapeAttr(entry.recipient || entry.phone || "")}', '${entry.parcel_id || ""}')" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-emerald-600 hover:text-white text-slate-300 text-[10px] font-bold transition flex items-center gap-1 mx-auto cursor-pointer" title="Open 2-Way Chat Stream & Copilot">
+            <span>💬</span> <span>Conversation</span>
           </button>
         ` : `
           <button type="button" onclick="openEmailModal('${entry.parcel_id || ""}', '${escapeAttr(entry.recipient || "")}', '${escapeAttr(entry.owner || "")}', '${escapeAttr(entry.address || "")}')" class="px-2.5 py-1 rounded bg-slate-800 hover:bg-cyan-600 hover:text-white text-slate-300 text-[10px] font-bold transition flex items-center gap-1 mx-auto cursor-pointer">
@@ -790,9 +962,7 @@ function searchLiveTable() {
     filterLiveRecords(currentFilter);
     return;
   }
-  const dataset = (currentPipelineView === "saved")
-    ? liveRecords.filter(r => r.Parcel_ID && (savedContactsCache[r.Parcel_ID] || r.Saved_Phone || r.Saved_Email))
-    : liveRecords;
+  const dataset = getActivePipelineDataset();
   const filtered = dataset.filter(r => {
     const text = `${r.Property_Address} ${r.Clean_Full_Name} ${r.Parcel_ID} ${r.Mailing_Address} ${r.Mailing_City} ${r.Saved_Phone || ""} ${r.Saved_Email || ""}`.toLowerCase();
     return text.includes(q);
@@ -1128,6 +1298,36 @@ function updateCategoryCardLinks(countyKey) {
   if (heroMaster) {
     heroMaster.href = c.master_parcel_download_url || "#";
     heroMaster.title = `Official Master Parcel Download for ${c.name} County`;
+    heroMaster.style.display = c.master_parcel_download_url ? "inline-flex" : "none";
+  }
+
+  // Update 1-click government portals in active county bar
+  const barLp = document.getElementById("barLinkLp");
+  if (barLp) {
+    barLp.href = c.clerk_lis_pendens_url || "#";
+    barLp.title = `Official Lis Pendens Search for ${c.name} County`;
+    barLp.style.display = c.clerk_lis_pendens_url ? "inline-flex" : "none";
+  }
+
+  const barCode = document.getElementById("barLinkCode");
+  if (barCode) {
+    barCode.href = c.code_enforcement_url || "#";
+    barCode.title = `Official Code Enforcement Search for ${c.name} County`;
+    barCode.style.display = c.code_enforcement_url ? "inline-flex" : "none";
+  }
+
+  const barTax = document.getElementById("barLinkTax");
+  if (barTax) {
+    barTax.href = c.tax_liens_url || "#";
+    barTax.title = `Official Tax Delinquent Roll for ${c.name} County`;
+    barTax.style.display = c.tax_liens_url ? "inline-flex" : "none";
+  }
+
+  const barProbate = document.getElementById("barLinkProbate");
+  if (barProbate) {
+    barProbate.href = c.clerk_probate_url || "#";
+    barProbate.title = `Official Probate Court Portal for ${c.name} County`;
+    barProbate.style.display = c.clerk_probate_url ? "inline-flex" : "none";
   }
 
   const linkLp = document.getElementById("cardLinkLp");
@@ -1541,10 +1741,6 @@ function updateDropdownOptionsWithCustomCategories() {
 // -------------------------------------------------------------
 // Contact Management & Android SMS Gateway (capcom6/android-sms-gateway)
 // -------------------------------------------------------------
-function escapeAttr(str) {
-  if (!str) return "";
-  return String(str).replace(/'/g, "\\'").replace(/"/g, '&quot;');
-}
 
 async function fetchSavedContacts() {
   try {
@@ -1622,10 +1818,37 @@ function openSmsModal(parcelId, phone, ownerName, propertyAddress) {
       statusBanner.innerText = "";
     }
 
+    // Setup active SMS lead context for Emma Copilot
+    const matchedRecord = (liveRecords || []).find(r => r && (r.Parcel_ID === parcelId || r.Property_Address === propertyAddress));
+    const marketVal = matchedRecord ? (matchedRecord.Market_Value || matchedRecord.Just_Value || matchedRecord.Assessed_Value || 0) : 0;
+    let distType = "GENERAL_DISTRESS";
+    if (matchedRecord) {
+      if (matchedRecord.Code_Violations || matchedRecord.Category === 'code_violations') distType = "CODE_VIOLATION";
+      else if (matchedRecord.Lis_Pendens || matchedRecord.Category === 'lis_pendens') distType = "LIS_PENDENS";
+      else if (matchedRecord.Probate || matchedRecord.Category === 'probate') distType = "PROBATE";
+    }
+    window.activeSmsLeadContext = {
+      parcelId: parcelId || "",
+      phone: phone || "",
+      ownerName: ownerName || "",
+      propertyAddress: propertyAddress || "",
+      marketValue: marketVal,
+      distressType: distType
+    };
+
+    // Determine smart target initial template (Carrier safe & distress tailored)
+    let targetTemplateId = "casual_local";
+    if (distType === "CODE_VIOLATION") targetTemplateId = "code_violation";
+    else if (distType === "LIS_PENDENS") targetTemplateId = "pre_foreclosure";
+    else if (distType === "PROBATE") targetTemplateId = "probate_estate";
+    else {
+      const casualAngles = ["casual_local", "drive_by", "as_is_no_fees", "curious_walkaway"];
+      targetTemplateId = casualAngles[Math.floor(Math.random() * casualAngles.length)];
+    }
+
     // Refresh template selector options from cache
     const tmplSelect = document.getElementById("smsTemplateSelect");
     if (tmplSelect && outreachTemplatesCache && outreachTemplatesCache.sms) {
-      const curVal = tmplSelect.value;
       tmplSelect.innerHTML = "";
       outreachTemplatesCache.sms.forEach(t => {
         const opt = document.createElement("option");
@@ -1633,19 +1856,71 @@ function openSmsModal(parcelId, phone, ownerName, propertyAddress) {
         opt.textContent = t.name;
         tmplSelect.appendChild(opt);
       });
-      if (curVal && outreachTemplatesCache.sms.some(t => t.id === curVal)) {
-        tmplSelect.value = curVal;
+      tmplSelect.value = targetTemplateId;
+      if (!tmplSelect.value) {
+        tmplSelect.value = outreachTemplatesCache.sms[0]?.id || "casual_local";
+      }
+    } else if (tmplSelect) {
+      tmplSelect.value = targetTemplateId;
+    }
+
+    // Reset Copilot UI
+    const copilotBox = document.getElementById("smsCopilotSuggestionBox");
+    if (copilotBox) copilotBox.classList.add("hidden");
+    const copilotTxt = document.getElementById("smsCopilotSuggestionText");
+    if (copilotTxt) copilotTxt.innerHTML = "";
+    const spreadBadge = document.getElementById("smsDealSpreadBadge");
+    if (spreadBadge) {
+      if (marketVal > 0) {
+        spreadBadge.className = "px-2 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30";
+        spreadBadge.innerText = `Val: $${Number(marketVal).toLocaleString()}`;
+        spreadBadge.classList.remove("hidden");
       } else {
-        tmplSelect.value = outreachTemplatesCache.sms[0]?.id || "cash_offer";
+        spreadBadge.classList.add("hidden");
+      }
+    }
+
+    // Check if lead already has an ongoing conversation thread
+    const threadAlert = document.getElementById("smsExistingThreadAlert");
+    if (threadAlert) {
+      const digits = String(phone || "").replace(/\D/g, "");
+      const cleanDigits = digits.length > 10 && digits.startsWith("1") ? digits.substring(1) : digits;
+      const existing = (inboxThreadsCache || []).find(t => {
+        const tDigits = String(t.clean_phone || t.phone || "").replace(/\D/g, "");
+        const tClean = tDigits.length > 10 && tDigits.startsWith("1") ? tDigits.substring(1) : tDigits;
+        return (cleanDigits && (cleanDigits === tClean || tClean.includes(cleanDigits))) || (parcelId && t.parcel_id === parcelId);
+      });
+      if (existing && existing.messages && existing.messages.length > 0) {
+        threadAlert.classList.remove("hidden");
+        const msgTxt = document.getElementById("smsExistingThreadText");
+        if (msgTxt) msgTxt.innerText = `You have an active chat with ${ownerName || 'seller'} (${existing.messages.length} messages).`;
+        const jumpBtn = document.getElementById("btnJumpToThread");
+        if (jumpBtn) {
+          jumpBtn.onclick = () => {
+            closeSmsModal();
+            openSellerThread(phone, parcelId);
+          };
+        }
+      } else {
+        threadAlert.classList.add("hidden");
       }
     }
 
     // Apply active template
-    const activeKey = tmplSelect ? tmplSelect.value : "cash_offer";
+    const activeKey = tmplSelect ? tmplSelect.value : targetTemplateId;
     applySmsTemplate(activeKey);
   } catch (err) {
     console.error("Error setting up SMS modal:", err);
   }
+}
+
+function cycleNextSmsTemplate() {
+  const tmplSelect = document.getElementById("smsTemplateSelect");
+  if (!tmplSelect || !tmplSelect.options || tmplSelect.options.length === 0) return;
+  const curIdx = tmplSelect.selectedIndex;
+  const nextIdx = (curIdx + 1) % tmplSelect.options.length;
+  tmplSelect.selectedIndex = nextIdx;
+  applySmsTemplate(tmplSelect.value);
 }
 
 function closeSmsModal() {
@@ -3362,6 +3637,50 @@ function closeContractModal() {
   }
 }
 
+function launchContractFromSmsModal() {
+  const parcelId = document.getElementById("smsParcelId")?.value || "";
+  const phone = document.getElementById("smsPhoneInput")?.value || "";
+  const ownerName = document.getElementById("smsOwnerName")?.value || "";
+  const propertyAddress = document.getElementById("smsPropertyAddress")?.value || "";
+
+  let rec = null;
+  if (parcelId && typeof savedContactsCache !== "undefined" && savedContactsCache[parcelId]) {
+    rec = savedContactsCache[parcelId];
+  } else if (parcelId && typeof liveRecords !== "undefined" && Array.isArray(liveRecords)) {
+    rec = liveRecords.find(r => r && r.Parcel_ID === parcelId);
+  }
+
+  const city = rec?.Property_City || rec?.city || "St Petersburg";
+  const zip = rec?.Property_Zip || rec?.zip || "";
+  const marketVal = rec ? (rec.Market_Value || rec.Just_Value || rec.just_value || rec.Assessed_Value || 0) : 0;
+  const email = (rec && (rec.Email || rec.email)) ? (rec.Email || rec.email) : "";
+
+  closeSmsModal();
+  openContractModal(parcelId, phone, email, ownerName, propertyAddress, city, zip, marketVal);
+}
+
+function launchContractFromEmailModal() {
+  const parcelId = document.getElementById("emailParcelId")?.value || "";
+  const email = document.getElementById("emailRecipientInput")?.value || "";
+  const ownerName = document.getElementById("emailOwnerName")?.value || "";
+  const propertyAddress = document.getElementById("emailPropertyAddress")?.value || "";
+
+  let rec = null;
+  if (parcelId && typeof savedContactsCache !== "undefined" && savedContactsCache[parcelId]) {
+    rec = savedContactsCache[parcelId];
+  } else if (parcelId && typeof liveRecords !== "undefined" && Array.isArray(liveRecords)) {
+    rec = liveRecords.find(r => r && r.Parcel_ID === parcelId);
+  }
+
+  const city = rec?.Property_City || rec?.city || "St Petersburg";
+  const zip = rec?.Property_Zip || rec?.zip || "";
+  const marketVal = rec ? (rec.Market_Value || rec.Just_Value || rec.just_value || rec.Assessed_Value || 0) : 0;
+  const phone = (rec && (rec.Phone || rec.phone)) ? (rec.Phone || rec.phone) : "";
+
+  closeEmailModal();
+  openContractModal(parcelId, phone, email, ownerName, propertyAddress, city, zip, marketVal);
+}
+
 function calculateContractFinancials() {
   const price = parseFloat(document.getElementById("contractPurchasePrice").value) || 0;
   const deposit = parseFloat(document.getElementById("contractDeposit").value) || 0;
@@ -3643,4 +3962,2249 @@ async function sendContractViaPandaDoc() {
     btn.innerHTML = "<span>🖋️</span> <span>Send for E-Sign (PandaDoc)</span>";
   }
 }
+
+/* =========================================================================
+   SELLER BOT ENGINE & GOLDEN TRAINING SUITE CONTROLLER
+   Emma & John Florida Distress Acquisitions Architecture
+   ========================================================================= */
+
+let trainingScenariosCache = [];
+let currentTrainingFilterCategory = "ALL";
+let activeTrainingScenarioId = null;
+let sellerBotSettingsCache = null;
+let sellerInboxCache = [];
+
+// -------------------------------------------------------------------------
+// Golden Training Suite Functions
+// -------------------------------------------------------------------------
+
+function openSellerTrainingModal() {
+  const modal = document.getElementById("sellerTrainingModal");
+  if (!modal) return;
+  modal.classList.remove("hidden");
+  modal.style.display = "flex";
+  loadTrainingSuite();
+}
+
+function closeSellerTrainingModal() {
+  const modal = document.getElementById("sellerTrainingModal");
+  if (!modal) return;
+  modal.classList.add("hidden");
+  modal.style.display = "none";
+}
+
+async function loadTrainingSuite() {
+  const listEl = document.getElementById("trainingScenariosList");
+  if (listEl) {
+    listEl.innerHTML = `<div class="p-4 text-center text-xs text-slate-500">Loading golden scenarios...</div>`;
+  }
+  try {
+    const res = await fetch("/api/bot/training");
+    if (!res.ok) throw new Error("Failed to load training database");
+    const data = await res.json();
+    trainingScenariosCache = data.scenarios || [];
+
+    updateTrainingCategoryCounters();
+    filterTrainingByCategory(currentTrainingFilterCategory);
+
+    if (trainingScenariosCache.length > 0 && !activeTrainingScenarioId) {
+      selectTrainingScenario(trainingScenariosCache[0].id);
+    }
+  } catch (err) {
+    console.error("Error loading training suite:", err);
+    if (listEl) {
+      listEl.innerHTML = `<div class="p-4 text-center text-xs text-rose-400">Error loading training scenarios.</div>`;
+    }
+  }
+}
+
+function updateTrainingCategoryCounters() {
+  const allCount = trainingScenariosCache.length;
+  const codeCount = trainingScenariosCache.filter(s => s.category === "CODE_VIOLATION").length;
+  const lisCount = trainingScenariosCache.filter(s => s.category === "LIS_PENDENS").length;
+  const probCount = trainingScenariosCache.filter(s => s.category === "PROBATE").length;
+  const genCount = trainingScenariosCache.filter(s => s.category === "GENERAL_DISTRESS").length;
+
+  const setCnt = (id, cnt) => {
+    const el = document.getElementById(id);
+    if (el) el.innerText = cnt;
+  };
+  setCnt("countTrainAll", allCount);
+  setCnt("countTrainCode", codeCount);
+  setCnt("countTrainLis", lisCount);
+  setCnt("countTrainProbate", probCount);
+  setCnt("countTrainGeneral", genCount);
+}
+
+function filterTrainingByCategory(cat) {
+  currentTrainingFilterCategory = cat;
+  const tabs = {
+    ALL: document.getElementById("tabTrainAll"),
+    CODE_VIOLATION: document.getElementById("tabTrainCode"),
+    LIS_PENDENS: document.getElementById("tabTrainLis"),
+    PROBATE: document.getElementById("tabTrainProbate"),
+    GENERAL_DISTRESS: document.getElementById("tabTrainGeneral")
+  };
+
+  Object.entries(tabs).forEach(([k, el]) => {
+    if (!el) return;
+    if (k === cat) {
+      el.className = "px-3 py-1.5 rounded-xl text-xs font-bold transition flex items-center gap-1.5 bg-amber-500/20 text-amber-300 border border-amber-500/40 cursor-pointer";
+    } else {
+      el.className = "px-3 py-1.5 rounded-xl text-xs font-semibold transition flex items-center gap-1.5 bg-slate-800 text-slate-300 hover:text-white border border-slate-700 cursor-pointer";
+    }
+  });
+
+  const term = (document.getElementById("trainingSearchInput")?.value || "").toLowerCase().trim();
+  renderTrainingScenariosList(term);
+}
+
+function searchTrainingScenarios(term) {
+  renderTrainingScenariosList((term || "").toLowerCase().trim());
+}
+
+function renderTrainingScenariosList(filterTerm = "") {
+  const listEl = document.getElementById("trainingScenariosList");
+  if (!listEl) return;
+
+  let items = trainingScenariosCache;
+  if (currentTrainingFilterCategory !== "ALL") {
+    items = items.filter(s => s.category === currentTrainingFilterCategory);
+  }
+  if (filterTerm) {
+    items = items.filter(s =>
+      (s.title || "").toLowerCase().includes(filterTerm) ||
+      (s.typical_inbound || "").toLowerCase().includes(filterTerm) ||
+      (s.golden_response || "").toLowerCase().includes(filterTerm) ||
+      (s.triggers || []).some(t => t.toLowerCase().includes(filterTerm))
+    );
+  }
+
+  if (items.length === 0) {
+    listEl.innerHTML = `<div class="p-6 text-center text-xs text-slate-500">No matching golden scenarios found.</div>`;
+    return;
+  }
+
+  const categoryBadges = {
+    CODE_VIOLATION: { label: "Code Violation", cls: "bg-amber-500/20 text-amber-300 border-amber-500/30" },
+    LIS_PENDENS: { label: "Pre-Foreclosure", cls: "bg-rose-500/20 text-rose-300 border-rose-500/30" },
+    PROBATE: { label: "Probate / Estate", cls: "bg-purple-500/20 text-purple-300 border-purple-500/30" },
+    GENERAL_DISTRESS: { label: "General Distress", cls: "bg-blue-500/20 text-blue-300 border-blue-500/30" }
+  };
+
+  listEl.innerHTML = items.map(sc => {
+    const isSelected = sc.id === activeTrainingScenarioId;
+    const badge = categoryBadges[sc.category] || { label: sc.category, cls: "bg-slate-700 text-slate-300" };
+    return `
+      <div onclick="selectTrainingScenario('${sc.id}')" class="p-3 rounded-xl border transition cursor-pointer ${isSelected ? 'bg-amber-500/10 border-amber-500/60 shadow-md shadow-amber-950/20' : 'bg-slate-900/70 border-slate-800 hover:border-slate-700 hover:bg-slate-900'}">
+        <div class="flex items-center justify-between gap-1 mb-1">
+          <span class="px-2 py-0.5 rounded text-[10px] font-bold border ${badge.cls}">${badge.label}</span>
+          <span class="text-[9px] font-mono text-slate-500 truncate max-w-[100px]">${sc.deal_criteria ? escapeHtml(sc.deal_criteria) : ''}</span>
+        </div>
+        <div class="text-xs font-bold text-white leading-tight mb-1 truncate">${escapeHtml(sc.title)}</div>
+        <div class="text-[11px] text-slate-400 line-clamp-2 leading-relaxed">"${escapeHtml(sc.typical_inbound || '')}"</div>
+      </div>
+    `;
+  }).join("");
+}
+
+function selectTrainingScenario(id) {
+  activeTrainingScenarioId = id;
+  const scenario = trainingScenariosCache.find(s => s.id === id);
+  if (!scenario) return;
+
+  // Highlight list item
+  const term = (document.getElementById("trainingSearchInput")?.value || "").toLowerCase().trim();
+  renderTrainingScenariosList(term);
+
+  // Fill Editor
+  document.getElementById("editorHeaderTitle").innerText = `✏️ Edit: ${scenario.title}`;
+  document.getElementById("editorScenarioId").innerText = `ID: ${scenario.id}`;
+  document.getElementById("editScenarioId").value = scenario.id;
+  document.getElementById("editScenarioTitle").value = scenario.title || "";
+  document.getElementById("editScenarioCategory").value = scenario.category || "GENERAL_DISTRESS";
+  document.getElementById("editScenarioTriggers").value = (scenario.triggers || []).join(", ");
+  document.getElementById("editScenarioInbound").value = scenario.typical_inbound || "";
+  document.getElementById("editScenarioResponse").value = scenario.golden_response || "";
+  document.getElementById("editScenarioCriteria").value = scenario.deal_criteria || "";
+  document.getElementById("editScenarioHandoff").value = scenario.handoff_action || "";
+
+  // Show delete button
+  const delBtn = document.getElementById("btnDeleteScenario");
+  if (delBtn) delBtn.classList.remove("hidden");
+
+  // Pre-fill playground with this scenario
+  document.getElementById("playDistressType").value = scenario.category || "GENERAL_DISTRESS";
+  document.getElementById("playSellerText").value = scenario.typical_inbound || "";
+}
+
+function createNewTrainingScenario() {
+  activeTrainingScenarioId = null;
+  const term = (document.getElementById("trainingSearchInput")?.value || "").toLowerCase().trim();
+  renderTrainingScenariosList(term);
+
+  document.getElementById("editorHeaderTitle").innerText = "➕ Create New Golden Scenario";
+  document.getElementById("editorScenarioId").innerText = "ID: new";
+  document.getElementById("editScenarioId").value = "";
+  document.getElementById("editScenarioTitle").value = "";
+  document.getElementById("editScenarioCategory").value = currentTrainingFilterCategory !== "ALL" ? currentTrainingFilterCategory : "CODE_VIOLATION";
+  document.getElementById("editScenarioTriggers").value = "";
+  document.getElementById("editScenarioInbound").value = "";
+  document.getElementById("editScenarioResponse").value = "";
+  document.getElementById("editScenarioCriteria").value = "Target <= 70% of county market value";
+  document.getElementById("editScenarioHandoff").value = "Phone appointment with John";
+
+  const delBtn = document.getElementById("btnDeleteScenario");
+  if (delBtn) delBtn.classList.add("hidden");
+
+  const statusBanner = document.getElementById("trainingStatusBanner");
+  if (statusBanner) statusBanner.className = "hidden";
+}
+
+async function handleSaveTrainingScenario(event) {
+  event.preventDefault();
+  const id = document.getElementById("editScenarioId").value;
+  const title = document.getElementById("editScenarioTitle").value.trim();
+  const category = document.getElementById("editScenarioCategory").value;
+  const triggersRaw = document.getElementById("editScenarioTriggers").value;
+  const triggers = triggersRaw.split(",").map(t => t.trim()).filter(Boolean);
+  const typical_inbound = document.getElementById("editScenarioInbound").value.trim();
+  const golden_response = document.getElementById("editScenarioResponse").value.trim();
+  const deal_criteria = document.getElementById("editScenarioCriteria").value.trim();
+  const handoff_action = document.getElementById("editScenarioHandoff").value.trim();
+
+  const banner = document.getElementById("trainingStatusBanner");
+  const btn = document.getElementById("btnSaveScenario");
+  btn.disabled = true;
+  btn.innerHTML = `<span>⏳</span> <span>Saving...</span>`;
+
+  try {
+    const payload = {
+      id: id || undefined,
+      title,
+      category,
+      triggers,
+      typical_inbound,
+      golden_response,
+      deal_criteria,
+      handoff_action
+    };
+
+    const res = await fetch("/api/bot/training/save", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    });
+    const data = await res.json();
+    if (data.status === "ok") {
+      banner.className = "p-3 rounded-xl text-xs font-semibold bg-emerald-950/60 border border-emerald-500/40 text-emerald-300 block";
+      banner.innerText = "✓ Golden scenario saved successfully!";
+      await loadTrainingSuite();
+      if (data.scenario?.id) {
+        selectTrainingScenario(data.scenario.id);
+      }
+    } else {
+      banner.className = "p-3 rounded-xl text-xs font-semibold bg-rose-950/60 border border-rose-500/40 text-rose-300 block";
+      banner.innerText = `⚠️ Failed to save: ${data.message || 'Unknown error'}`;
+    }
+  } catch (err) {
+    banner.className = "p-3 rounded-xl text-xs font-semibold bg-rose-950/60 border border-rose-500/40 text-rose-300 block";
+    banner.innerText = `⚠️ Error: ${err.message}`;
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = `<span>💾</span> <span>Save to Golden Suite</span>`;
+    setTimeout(() => { if (banner) banner.className = "hidden"; }, 4000);
+  }
+}
+
+async function deleteCurrentTrainingScenario() {
+  if (!activeTrainingScenarioId) return;
+  if (!confirm("Are you sure you want to delete this golden training scenario?")) return;
+
+  try {
+    const res = await fetch(`/api/bot/training/${encodeURIComponent(activeTrainingScenarioId)}`, {
+      method: "DELETE"
+    });
+    const data = await res.json();
+    if (data.status === "ok") {
+      activeTrainingScenarioId = null;
+      await loadTrainingSuite();
+      createNewTrainingScenario();
+    } else {
+      alert(`Could not delete scenario: ${data.message || 'Unknown error'}`);
+    }
+  } catch (err) {
+    alert(`Error deleting scenario: ${err.message}`);
+  }
+}
+
+async function testTrainingPlayground() {
+  const distressType = document.getElementById("playDistressType").value;
+  const sellerText = document.getElementById("playSellerText").value.trim();
+  const assessedVal = parseFloat(document.getElementById("playAssessedValue").value) || 250000;
+
+  if (!sellerText) {
+    alert("Please enter a sample seller message to evaluate.");
+    return;
+  }
+
+  const btn = document.getElementById("btnRunPlayground");
+  const spinner = document.getElementById("playLoadingIndicator");
+  const resultCard = document.getElementById("playResultCard");
+
+  btn.disabled = true;
+  spinner.classList.remove("hidden");
+  resultCard.classList.add("hidden");
+
+  try {
+    const res = await fetch("/api/bot/suggest", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        seller_message: sellerText,
+        distress_type: distressType,
+        assessed_value: assessedVal,
+        address: "742 Evergreen Terr, St Petersburg, FL"
+      })
+    });
+    const data = await res.json();
+
+    if (data.status === "ok") {
+      resultCard.classList.remove("hidden");
+      const respEl = document.getElementById("playResponseText");
+      respEl.innerText = data.suggestion || "No response generated.";
+
+      const badgeEl = document.getElementById("playDealBadge");
+      const statsEl = document.getElementById("playDealStats");
+      const spread = data.spread_eval || {};
+
+      if (spread.deal_rating === "GOLD_DEAL") {
+        badgeEl.className = "px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40";
+        badgeEl.innerText = "🔥 GOLD DEAL";
+      } else if (spread.deal_rating === "SPREAD_DEAL") {
+        badgeEl.className = "px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40";
+        badgeEl.innerText = "⚡ SPREAD DEAL";
+      } else if (spread.deal_rating === "RETAIL_CREATIVE") {
+        badgeEl.className = "px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-rose-500/20 text-rose-300 border border-rose-500/40";
+        badgeEl.innerText = "⚠️ RETAIL / CREATIVE";
+      } else {
+        badgeEl.className = "px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/40";
+        badgeEl.innerText = "💬 INFORMATION INQUIRY";
+      }
+
+      if (spread.detected_price && spread.ratio_pct) {
+        statsEl.innerText = `Asking $${Number(spread.detected_price).toLocaleString()} (${spread.ratio_pct}% of $${Number(assessedVal).toLocaleString()})`;
+      } else {
+        statsEl.innerText = `County Assessed: $${Number(assessedVal).toLocaleString()} (No explicit price mentioned)`;
+      }
+    } else {
+      alert(`Playground test error: ${data.message || 'Unknown error'}`);
+    }
+  } catch (err) {
+    alert(`Connection error: ${err.message}`);
+  } finally {
+    btn.disabled = false;
+    spinner.classList.add("hidden");
+  }
+}
+
+function copyPlaygroundToEditor() {
+  const sellerText = document.getElementById("playSellerText").value.trim();
+  const distressType = document.getElementById("playDistressType").value;
+  const responseText = document.getElementById("playResponseText").innerText.trim();
+
+  createNewTrainingScenario();
+  document.getElementById("editScenarioCategory").value = distressType;
+  document.getElementById("editScenarioInbound").value = sellerText;
+  document.getElementById("editScenarioResponse").value = responseText;
+  document.getElementById("editScenarioTitle").value = `Playground: ${distressType.replace('_', ' ')} Inquiry`;
+  document.getElementById("trainingScenarioForm").scrollIntoView({ behavior: 'smooth' });
+}
+
+// -------------------------------------------------------------------------
+// Seller Bot Settings Functions (Emma & John)
+// -------------------------------------------------------------------------
+
+function openSellerBotSettingsModal() {
+  const modal = document.getElementById("sellerBotSettingsModal");
+  if (!modal) return;
+  modal.classList.remove("hidden");
+  modal.style.display = "flex";
+  loadSellerBotSettings();
+}
+
+function closeSellerBotSettingsModal() {
+  const modal = document.getElementById("sellerBotSettingsModal");
+  if (!modal) return;
+  modal.classList.add("hidden");
+  modal.style.display = "none";
+}
+
+async function loadSellerBotSettings() {
+  try {
+    const res = await fetch("/api/bot/settings");
+    if (!res.ok) return;
+    const data = await res.json();
+    if (data.status === "ok" && data.settings) {
+      sellerBotSettingsCache = data.settings;
+      const s = data.settings;
+      const setVal = (id, v) => {
+        const el = document.getElementById(id);
+        if (el) el.value = v || "";
+      };
+      setVal("botName", s.bot_name || "Emma");
+      setVal("botPartnerName", s.partner_name || "John");
+      setVal("botGatewayPhone", s.gateway_phone || "(407) 793-7029");
+      setVal("botOfficePhone", s.office_phone || "(407) 815-5043");
+      setVal("botGeminiApiKey", s.gemini_api_key || "");
+      setVal("botPersonalityPrompt", s.personality_prompt || "Friendly, warm, casual Florida local. Short 1 to 2 sentence texts. Disarming, understanding. Drive toward a quick 5 minute call with John.");
+
+      const enabledEl = document.getElementById("botEnabled");
+      if (enabledEl) enabledEl.checked = s.enabled !== false;
+
+      const mode = s.mode || "copilot";
+      const radCopilot = document.getElementById("botModeCopilot");
+      const radAutopilot = document.getElementById("botModeAutopilot");
+      if (mode === "autopilot") {
+        if (radAutopilot) radAutopilot.checked = true;
+      } else {
+        if (radCopilot) radCopilot.checked = true;
+      }
+    }
+  } catch (err) {
+    console.error("Error loading seller bot settings:", err);
+  }
+}
+
+async function handleSaveSellerBotSettings(event) {
+  event.preventDefault();
+  const banner = document.getElementById("botSettingsStatusBanner");
+  const btn = document.getElementById("btnSaveSellerBot");
+  btn.disabled = true;
+  btn.innerHTML = `<span>⏳</span> <span>Saving...</span>`;
+
+  try {
+    const isAutopilot = document.getElementById("botModeAutopilot")?.checked;
+    const payload = {
+      enabled: document.getElementById("botEnabled")?.checked,
+      mode: isAutopilot ? "autopilot" : "copilot",
+      bot_name: document.getElementById("botName")?.value.trim() || "Emma",
+      partner_name: document.getElementById("botPartnerName")?.value.trim() || "John",
+      gateway_phone: document.getElementById("botGatewayPhone")?.value.trim() || "(407) 793-7029",
+      office_phone: document.getElementById("botOfficePhone")?.value.trim() || "(407) 815-5043",
+      gemini_api_key: document.getElementById("botGeminiApiKey")?.value.trim() || "",
+      personality_prompt: document.getElementById("botPersonalityPrompt")?.value.trim() || ""
+    };
+
+    const res = await fetch("/api/bot/settings", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    });
+    const data = await res.json();
+    if (data.status === "ok") {
+      sellerBotSettingsCache = payload;
+      banner.className = "p-3 rounded-xl text-xs font-semibold bg-emerald-950/60 border border-emerald-500/40 text-emerald-300 block";
+      banner.innerText = "✓ Emma bot settings saved successfully!";
+      setTimeout(() => closeSellerBotSettingsModal(), 1200);
+    } else {
+      banner.className = "p-3 rounded-xl text-xs font-semibold bg-rose-950/60 border border-rose-500/40 text-rose-300 block";
+      banner.innerText = `⚠️ Failed to save: ${data.message || 'Unknown error'}`;
+    }
+  } catch (err) {
+    banner.className = "p-3 rounded-xl text-xs font-semibold bg-rose-950/60 border border-rose-500/40 text-rose-300 block";
+    banner.innerText = `⚠️ Error: ${err.message}`;
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = `<span>💾</span> <span>Save Settings</span>`;
+  }
+}
+
+async function testSellerGeminiApi() {
+  const btn = document.getElementById("btnTestSellerGemini");
+  const banner = document.getElementById("botSettingsStatusBanner");
+  btn.disabled = true;
+  btn.innerHTML = `<span>⏳</span> <span>Connecting...</span>`;
+
+  try {
+    const res = await fetch("/api/bot/test-gemini", { method: "POST" });
+    const data = await res.json();
+    if (data.status === "ok") {
+      banner.className = "p-3 rounded-xl text-xs font-semibold bg-emerald-950/60 border border-emerald-500/40 text-emerald-300 block";
+      banner.innerHTML = `✓ <b>Gemini AI Connected!</b> Model: <span class="font-mono">${data.model}</span> (Reply: "${escapeHtml(data.reply)}")`;
+    } else {
+      banner.className = "p-3 rounded-xl text-xs font-semibold bg-rose-950/60 border border-rose-500/40 text-rose-300 block";
+      banner.innerHTML = `⚠️ <b>Gemini Error:</b> ${data.message}`;
+    }
+  } catch (err) {
+    banner.className = "p-3 rounded-xl text-xs font-semibold bg-rose-950/60 border border-rose-500/40 text-rose-300 block";
+    banner.innerHTML = `⚠️ <b>Connection Error:</b> ${err.message}`;
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = `<span>⚡</span> <span>Test Gemini AI</span>`;
+  }
+}
+
+// -------------------------------------------------------------------------
+// 2-Way Seller Inbox Functions
+// -------------------------------------------------------------------------
+
+let inboxThreadsCache = [];
+let activeInboxThreadKey = null;
+let inboxThreadSearchQuery = "";
+
+function openSellerInboxModal(targetKey = null, prefillReply = null) {
+  const modal = document.getElementById("sellerInboxModal");
+  if (!modal) return;
+  modal.classList.remove("hidden");
+  modal.style.display = "flex";
+  loadSellerInbox(targetKey, prefillReply);
+}
+
+function closeSellerInboxModal() {
+  const modal = document.getElementById("sellerInboxModal");
+  if (!modal) return;
+  modal.classList.add("hidden");
+  modal.style.display = "none";
+}
+
+async function loadSellerInbox(targetKey = null, prefillReply = null) {
+  try {
+    const res = await fetch("/api/inbox");
+    if (!res.ok) throw new Error("Failed to load seller inbox");
+    const data = await res.json();
+    sellerInboxCache = data.messages || [];
+    inboxThreadsCache = data.threads || [];
+
+    // Update Badges
+    const totalBadge = document.getElementById("inboxTotalCountBadge");
+    if (totalBadge) totalBadge.innerText = `${data.count || sellerInboxCache.length} Inbound`;
+
+    const threadCountBadge = document.getElementById("inboxThreadCountBadge");
+    if (threadCountBadge) threadCountBadge.innerText = `${inboxThreadsCache.length} Active`;
+
+    const sideBadge = document.getElementById("sidebarInboxBadge");
+    if (sideBadge) {
+      if (sellerInboxCache.length > 0) {
+        sideBadge.innerText = sellerInboxCache.length;
+        sideBadge.classList.remove("hidden");
+      } else {
+        sideBadge.classList.add("hidden");
+      }
+    }
+
+    renderInboxThreadsList();
+
+    // Determine which thread to select
+    let keyToSelect = targetKey;
+    if (!keyToSelect && activeInboxThreadKey) {
+      if (inboxThreadsCache.some(t => t.key === activeInboxThreadKey)) {
+        keyToSelect = activeInboxThreadKey;
+      }
+    }
+    if (!keyToSelect && inboxThreadsCache.length > 0) {
+      keyToSelect = inboxThreadsCache[0].key;
+    }
+
+    if (keyToSelect) {
+      selectInboxThread(keyToSelect, prefillReply);
+    } else {
+      renderActiveThread();
+    }
+  } catch (err) {
+    console.error("Error loading seller inbox:", err);
+    const listEl = document.getElementById("inboxThreadsList");
+    if (listEl) listEl.innerHTML = `<div class="p-4 text-center text-xs text-rose-400">Failed to load conversations.</div>`;
+  }
+}
+
+function filterInboxThreads() {
+  const input = document.getElementById("inboxThreadSearchInput");
+  inboxThreadSearchQuery = input ? input.value.trim().toLowerCase() : "";
+  renderInboxThreadsList();
+}
+
+function renderInboxThreadsList() {
+  const listEl = document.getElementById("inboxThreadsList");
+  if (!listEl) return;
+
+  let threads = inboxThreadsCache || [];
+  if (inboxThreadSearchQuery) {
+    threads = threads.filter(t => 
+      (t.owner || "").toLowerCase().includes(inboxThreadSearchQuery) ||
+      (t.phone || "").toLowerCase().includes(inboxThreadSearchQuery) ||
+      (t.address || "").toLowerCase().includes(inboxThreadSearchQuery) ||
+      (t.last_message || "").toLowerCase().includes(inboxThreadSearchQuery)
+    );
+  }
+
+  if (threads.length === 0) {
+    listEl.innerHTML = `
+      <div class="p-8 text-center text-slate-500 space-y-1">
+        <div class="text-2xl">📭</div>
+        <div class="text-xs font-semibold text-slate-400">No Conversations Found</div>
+        <div class="text-[10px] text-slate-500">Inbound SMS from homeowners to (407) 793-7029 will appear here live.</div>
+      </div>
+    `;
+    return;
+  }
+
+  listEl.innerHTML = threads.map(t => {
+    const isActive = t.key === activeInboxThreadKey;
+    const isUnrealistic = t.deal_evaluation?.deal_rating === "UNREALISTIC_PRICE";
+    const isGold = t.deal_evaluation?.deal_rating === "GOLD_DEAL";
+    const isSpread = t.deal_evaluation?.deal_rating === "SPREAD_DEAL";
+    
+    let badgeHtml = "";
+    if (isUnrealistic) {
+      badgeHtml = `<span class="px-1.5 py-0.5 rounded text-[9px] font-bold bg-rose-500/20 text-rose-300 border border-rose-500/30">🎲 DREAM PRICE</span>`;
+    } else if (isGold) {
+      badgeHtml = `<span class="px-1.5 py-0.5 rounded text-[9px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">🔥 GOLD DEAL</span>`;
+    } else if (isSpread) {
+      badgeHtml = `<span class="px-1.5 py-0.5 rounded text-[9px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30">⚡ SPREAD</span>`;
+    } else if (t.distress_category) {
+      badgeHtml = `<span class="px-1.5 py-0.5 rounded text-[9px] font-semibold bg-slate-800 text-slate-400 border border-slate-700/60 truncate max-w-[90px]">${escapeHtml(t.distress_category)}</span>`;
+    }
+
+    const unreadDot = t.inbound_count > 0 
+      ? `<span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0"></span>`
+      : `<span class="w-2 h-2 rounded-full bg-slate-600 shrink-0"></span>`;
+
+    const lastTime = t.last_timestamp ? new Date(t.last_timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : "";
+
+    return `
+      <div onclick="selectInboxThread('${escapeAttr(t.key)}')" class="p-3.5 transition cursor-pointer flex flex-col gap-1.5 ${isActive ? 'bg-blue-600/15 border-l-4 border-blue-500' : 'hover:bg-slate-800/40 border-l-4 border-transparent'}">
+        <div class="flex items-center justify-between gap-1">
+          <div class="flex items-center gap-2 min-w-0">
+            ${unreadDot}
+            <span class="text-xs font-bold text-white truncate">${escapeHtml(t.owner || 'Homeowner')}</span>
+          </div>
+          <div class="flex items-center gap-1.5 shrink-0">
+            <span class="text-[10px] text-slate-500 font-mono">${escapeHtml(lastTime)}</span>
+            <button type="button" onclick="event.stopPropagation(); deleteInboxThread('${escapeAttr(t.key)}')" class="hover:text-rose-400 p-0.5 text-slate-500 transition text-[11px] cursor-pointer" title="Delete conversation / Spam">🗑️</button>
+          </div>
+        </div>
+        <div class="flex items-center justify-between gap-1 text-[11px]">
+          <span class="text-emerald-400 font-mono font-semibold text-[11px] truncate">${escapeHtml(t.phone || '')}</span>
+          ${badgeHtml}
+        </div>
+        <div class="text-[10px] text-slate-400 truncate">
+          📍 ${escapeHtml(t.address || 'Florida Property')}
+        </div>
+        <div class="text-[11px] text-slate-300 line-clamp-1 leading-relaxed font-sans ${t.last_direction === 'INBOUND' ? 'font-semibold text-white' : 'text-slate-400'}">
+          ${t.last_direction === 'OUTBOUND' ? '<span class="text-blue-400">You: </span>' : ''}"${escapeHtml(t.last_message || '')}"
+        </div>
+      </div>
+    `;
+  }).join("");
+}
+
+function selectInboxThread(threadKey, prefillReply = null) {
+  activeInboxThreadKey = threadKey;
+  renderInboxThreadsList();
+  renderActiveThread(prefillReply);
+}
+
+function renderActiveThread(prefillReply = null) {
+  const panel = document.getElementById("inboxActiveThreadPanel");
+  if (!panel) return;
+
+  const thread = (inboxThreadsCache || []).find(t => t.key === activeInboxThreadKey);
+  if (!thread) {
+    panel.innerHTML = `
+      <div class="flex-1 flex items-center justify-center p-8 text-center text-slate-500 space-y-2">
+        <div>
+          <div class="text-4xl mb-2">💬</div>
+          <div class="text-sm font-semibold text-slate-300">Select a Conversation</div>
+          <div class="text-xs text-slate-500 max-w-sm mt-1">Choose a seller thread from the left to view the live chat history, deal calculations, and Emma's AI suggestions.</div>
+        </div>
+      </div>
+    `;
+    return;
+  }
+
+  const isUnrealistic = thread.deal_evaluation?.deal_rating === "UNREALISTIC_PRICE";
+  const isGold = thread.deal_evaluation?.deal_rating === "GOLD_DEAL";
+  const isSpread = thread.deal_evaluation?.deal_rating === "SPREAD_DEAL";
+  const isRetail = thread.deal_evaluation?.deal_rating === "RETAIL_CREATIVE";
+  const agreedPrice = thread.deal_evaluation?.detected_price || 0;
+  const justVal = Number(thread.just_value || 0);
+  const marketVal = Number(thread.market_value || thread.deal_evaluation?.market_value || (justVal > 0 ? justVal * 1.30 : 0));
+  const valSource = thread.valuation_source || "Est. Market";
+
+  let dealBadgeHtml = "";
+  if (isUnrealistic) {
+    dealBadgeHtml = `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-rose-500/20 text-rose-300 border border-rose-500/40">🎲 DREAM PRICE (${thread.deal_evaluation.ratio_pct}% of Market)</span>`;
+  } else if (isGold) {
+    dealBadgeHtml = `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">🔥 GOLD DEAL (${thread.deal_evaluation.ratio_pct}% of Market)</span>`;
+  } else if (isSpread) {
+    dealBadgeHtml = `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40">⚡ SPREAD (${thread.deal_evaluation.ratio_pct}%)</span>`;
+  } else if (isRetail) {
+    dealBadgeHtml = `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30">🏷️ RETAIL ASK (${thread.deal_evaluation.ratio_pct}%)</span>`;
+  } else if (marketVal > 0) {
+    dealBadgeHtml = `<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/10 text-emerald-300 border border-emerald-500/20">Market: $${marketVal.toLocaleString()}</span>`;
+  }
+
+  const suggestedReply = prefillReply || thread.latest_bot_response || "";
+
+  panel.innerHTML = `
+    <!-- Pinned Thread Header -->
+    <div class="px-5 py-3 border-b border-slate-800 bg-[#080d1b] flex flex-wrap items-center justify-between gap-3 shrink-0">
+      <div class="space-y-0.5 min-w-0">
+        <div class="flex items-center gap-2 flex-wrap">
+          <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
+          <h4 class="text-sm font-extrabold text-white truncate">${escapeHtml(thread.owner || 'Homeowner')}</h4>
+          <span class="text-xs font-mono font-bold text-emerald-400">${escapeHtml(thread.phone || '')}</span>
+          ${dealBadgeHtml}
+        </div>
+        <p class="text-xs text-slate-400 truncate">
+          📍 <b>${escapeHtml(thread.address || 'Florida Property')}</b> 
+          ${marketVal > 0 ? `&bull; Est. Market: <b class="text-emerald-300 font-mono">$${marketVal.toLocaleString()}</b> <span class="text-[10px] text-slate-500 font-sans">(${escapeHtml(valSource)})</span>` : ''}
+          ${justVal > 0 ? `&bull; Assessed: <span class="font-mono text-slate-300">$${justVal.toLocaleString()}</span>` : ''}
+          ${thread.parcel_id ? `&bull; PIN: <span class="font-mono text-slate-300">${escapeHtml(thread.parcel_id)}</span>` : ''}
+        </p>
+      </div>
+
+      <div class="flex items-center gap-2 shrink-0">
+        <button type="button" onclick="deleteInboxThread('${escapeAttr(thread.key)}')" class="px-3 py-1.5 rounded-xl bg-rose-600/20 hover:bg-rose-600/40 text-rose-300 hover:text-white border border-rose-500/30 text-xs font-bold transition flex items-center gap-1.5 cursor-pointer shadow-sm" title="Delete conversation & remove from queue">
+          <span>🗑️</span> <span>Delete Thread</span>
+        </button>
+        <button type="button" onclick="openContractFromInboxThread('${escapeAttr(thread.key)}')" class="px-3.5 py-1.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white text-xs font-bold transition flex items-center gap-1.5 shadow-md shadow-purple-600/30 cursor-pointer" title="Generate Wholesale Purchase Agreement & PandaDoc E-Sign">
+          <span>📝</span> <span>Send Contract</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Chronological Chat Stream -->
+    <div id="inboxChatStream" class="flex-1 overflow-y-auto p-5 space-y-3.5 bg-[#050811]">
+      ${renderChatBubbles(thread.messages || [], thread.owner)}
+    </div>
+
+    <!-- Emma AI Copilot Smart Suggestion Card -->
+    ${suggestedReply ? `
+      <div class="px-5 py-2.5 bg-gradient-to-r from-blue-950/40 via-purple-950/30 to-slate-900 border-t border-blue-500/30 flex items-center justify-between gap-3 shrink-0">
+        <div class="flex items-start gap-2.5 min-w-0">
+          <span class="text-base mt-0.5">🤖</span>
+          <div class="min-w-0">
+            <div class="text-[10px] font-bold uppercase tracking-wider text-blue-300">Emma AI Next Suggested Reply:</div>
+            <div class="text-xs text-emerald-300 line-clamp-2 leading-relaxed italic font-sans">"${escapeHtml(suggestedReply)}"</div>
+          </div>
+        </div>
+        <div class="flex items-center gap-2 shrink-0">
+          <button type="button" onclick="trainEmmaFromInbox()" class="px-3 py-1.5 rounded-lg bg-indigo-600/20 hover:bg-indigo-600/40 text-indigo-300 hover:text-white border border-indigo-500/40 text-xs font-bold transition flex items-center gap-1 cursor-pointer shadow-sm" title="Save your reply as a permanent Golden Training Rule for Emma">
+            <span>🎓</span> <span>Train Emma</span>
+          </button>
+          <button type="button" onclick="insertEmmaSuggestion('${escapeAttr(suggestedReply)}')" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition flex items-center gap-1 shrink-0 cursor-pointer shadow-sm">
+            <span>⚡</span> <span>Use This Script</span>
+          </button>
+        </div>
+      </div>
+    ` : ''}
+
+    <!-- Bottom Reply Compose Bar -->
+    <div class="p-4 border-t border-slate-800 bg-[#080d1b] space-y-2 shrink-0">
+      <form onsubmit="handleThreadSendReply(event)" class="space-y-2">
+        <div class="relative">
+          <textarea id="inboxReplyTextarea" rows="2" required placeholder="Type your reply to ${escapeAttr(thread.owner || 'homeowner')}... (or click 'Use This Script' above)" class="w-full bg-[#0d1424] border border-slate-700/80 rounded-xl p-3 text-xs text-white focus:outline-none focus:border-blue-500 leading-relaxed font-sans">${escapeHtml(prefillReply || '')}</textarea>
+        </div>
+        <div class="flex items-center justify-between gap-3">
+          <div class="flex items-center gap-2 text-[11px] text-slate-400">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span>Sending via SIM: <b class="text-emerald-300 font-mono">(407) 793-7029</b></span>
+          </div>
+          <button type="submit" id="btnSendThreadReply" class="px-5 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs transition flex items-center gap-1.5 shadow-lg shadow-blue-600/30 cursor-pointer shrink-0">
+            <span>🚀</span> <span>Send SMS via Phone</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  `;
+
+  // Scroll to bottom of chat
+  setTimeout(() => {
+    const stream = document.getElementById("inboxChatStream");
+    if (stream) stream.scrollTop = stream.scrollHeight;
+  }, 40);
+}
+
+function renderChatBubbles(messages, ownerName) {
+  if (!messages || messages.length === 0) {
+    return `<div class="p-8 text-center text-xs text-slate-500 italic">No messages in this conversation yet. Send an opening SMS below!</div>`;
+  }
+
+  return messages.map(m => {
+    const isInbound = (m.direction || "").toUpperCase() === "INBOUND";
+    const timeStr = m.timestamp ? new Date(m.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', month: 'short', day: 'numeric' }) : "";
+    const senderLabel = isInbound ? (ownerName || 'Homeowner') : 'You (Emma / 407 Flips)';
+
+    if (isInbound) {
+      return `
+        <div class="flex flex-col items-start max-w-[85%] sm:max-w-[75%] space-y-1">
+          <div class="flex items-center gap-1.5 text-[10px] text-slate-400 pl-1">
+            <span class="font-bold text-slate-300">${escapeHtml(senderLabel)}</span>
+            <span>&bull;</span>
+            <span class="font-mono text-slate-500">${escapeHtml(timeStr)}</span>
+          </div>
+          <div class="p-3.5 rounded-2xl rounded-tl-sm bg-slate-800/90 border border-slate-700/80 text-white text-xs leading-relaxed shadow-md">
+            "${escapeHtml(m.message || '')}"
+          </div>
+        </div>
+      `;
+    } else {
+      return `
+        <div class="flex flex-col items-end max-w-[85%] sm:max-w-[75%] ml-auto space-y-1">
+          <div class="flex items-center gap-1.5 text-[10px] text-slate-400 pr-1">
+            <span class="font-bold text-blue-300">${escapeHtml(senderLabel)}</span>
+            <span>&bull;</span>
+            <span class="font-mono text-slate-500">${escapeHtml(timeStr)}</span>
+          </div>
+          <div class="p-3.5 rounded-2xl rounded-tr-sm bg-blue-600 text-white text-xs leading-relaxed shadow-md border border-blue-500/60">
+            ${escapeHtml(m.message || '')}
+          </div>
+        </div>
+      `;
+    }
+  }).join("");
+}
+
+function insertEmmaSuggestion(text) {
+  const ta = document.getElementById("inboxReplyTextarea");
+  if (ta) {
+    ta.value = text;
+    ta.focus();
+  }
+}
+
+async function handleThreadSendReply(e) {
+  e.preventDefault();
+  const thread = (inboxThreadsCache || []).find(t => t.key === activeInboxThreadKey);
+  if (!thread) return;
+
+  const ta = document.getElementById("inboxReplyTextarea");
+  const text = ta ? ta.value.trim() : "";
+  const btn = document.getElementById("btnSendThreadReply");
+
+  if (!text) {
+    alert("Please type a message to send.");
+    return;
+  }
+
+  btn.disabled = true;
+  btn.innerHTML = `<span>⏳</span> <span>Sending via Phone...</span>`;
+
+  try {
+    const res = await fetch("/api/sms/send", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        phone: thread.phone,
+        message: text,
+        parcel_id: thread.parcel_id,
+        owner_name: thread.owner,
+        property_address: thread.address,
+        county: "Pinellas"
+      })
+    });
+    const data = await res.json();
+    if (data.status === "success") {
+      const nowStr = new Date().toISOString().replace('T', ' ').substring(0, 19);
+      const newEntry = {
+        timestamp: nowStr,
+        direction: "OUTBOUND",
+        phone: thread.phone,
+        message: text,
+        parcel_id: thread.parcel_id,
+        owner: thread.owner
+      };
+      thread.messages.push(newEntry);
+      thread.last_message = text;
+      thread.last_timestamp = nowStr;
+      thread.last_direction = "OUTBOUND";
+      thread.latest_bot_response = ""; // Clear suggestion so it doesn't linger or prefill
+
+      if (ta) ta.value = "";
+      renderActiveThread();
+      renderInboxThreadsList();
+      fetchOutreachHistory();
+    } else {
+      alert(`Send Error: ${data.message}`);
+    }
+  } catch (err) {
+    alert(`Send Error: ${err.message}`);
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = `<span>🚀</span> <span>Send SMS via Phone</span>`;
+  }
+}
+
+async function deleteInboxThread(threadKey) {
+  const targetKey = threadKey || activeInboxThreadKey;
+  if (!targetKey) return;
+  const thread = (inboxThreadsCache || []).find(t => t.key === targetKey);
+  const label = thread ? (thread.owner || thread.phone || "this conversation") : "this conversation";
+  
+  if (!confirm(`Delete conversation with ${label} and remove from queue?`)) {
+    return;
+  }
+
+  try {
+    const res = await fetch("/api/inbox/thread/delete", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ key: targetKey, phone: thread?.phone, parcel_id: thread?.parcel_id })
+    });
+    const data = await res.json();
+    if (data.status === "success") {
+      if (activeInboxThreadKey === targetKey) {
+        activeInboxThreadKey = null;
+      }
+      await loadSellerInbox();
+    } else {
+      alert(`Failed to delete thread: ${data.message || 'Unknown error'}`);
+    }
+  } catch (err) {
+    alert(`Error deleting thread: ${err.message}`);
+  }
+}
+
+async function trainEmmaFromInbox() {
+  const thread = (inboxThreadsCache || []).find(t => t.key === activeInboxThreadKey);
+  if (!thread) return;
+
+  const ta = document.getElementById("inboxReplyTextarea");
+  const currentText = ta ? ta.value.trim() : "";
+  const inboundText = thread.last_message || (thread.messages && thread.messages.length > 0 ? thread.messages[thread.messages.length - 1].message : "");
+
+  if (!currentText) {
+    alert("Please type or refine your ideal answer in the reply box below first, then click 'Train Emma' to teach her!");
+    if (ta) ta.focus();
+    return;
+  }
+
+  const promptNotes = prompt("Confirm scenario note for Emma (optional):", `Trained on: "${(inboundText || '').substring(0, 45)}"`);
+  if (promptNotes === null) return; // user cancelled prompt
+
+  try {
+    const res = await fetch("/api/bot/training/save", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        category: thread.distress_category || "General Distress",
+        distress_type: thread.distress_category || "General Distress",
+        seller_inbound: inboundText || "General Seller Question",
+        final_approved_text: currentText,
+        notes: promptNotes || "Trained directly from 2-Way Seller Inbox by John"
+      })
+    });
+    const data = await res.json();
+    if (data.status === "ok") {
+      alert(`✅ Emma Trained Successfully!\n\nEmma has permanently learned this response and will use your wording for future homeowners asking similar questions.`);
+    } else {
+      alert(`Failed to train Emma: ${data.message || 'Unknown error'}`);
+    }
+  } catch (err) {
+    alert(`Error training Emma: ${err.message}`);
+  }
+}
+
+function openContractFromInboxThread(threadKey) {
+  const thread = (inboxThreadsCache || []).find(t => t.key === (threadKey || activeInboxThreadKey));
+  if (!thread) return;
+
+  closeSellerInboxModal();
+
+  const parcelId = thread.parcel_id || "";
+  const phone = thread.phone || "";
+  const owner = thread.owner || "Homeowner";
+  const address = thread.address || "";
+  const agreedPrice = thread.deal_evaluation?.detected_price || 0;
+  const justVal = Number(thread.just_value || 0);
+
+  const rec = (liveRecords || []).find(r => r && (r.Parcel_ID === parcelId || r.Property_Address === address));
+  const city = rec?.Property_City || "St Petersburg";
+  const zip = rec?.Property_Zip || "33701";
+  const marketVal = rec ? (rec.Market_Value || rec.Just_Value || justVal) : justVal;
+
+  openContractModal(parcelId, phone, '', owner, address, city, zip, marketVal);
+
+  if (agreedPrice > 0) {
+    setTimeout(() => {
+      const priceInput = document.getElementById("contractPurchasePrice");
+      if (priceInput) {
+        priceInput.value = agreedPrice;
+        if (typeof updateContractCalculations === "function") {
+          updateContractCalculations();
+        }
+      }
+    }, 100);
+  }
+}
+
+function openSellerThread(phoneStr, parcelId = null, prefillReply = null) {
+  const digits = String(phoneStr || "").replace(/\D/g, "");
+  const cleanDigits = digits.length > 10 && digits.startsWith("1") ? digits.substring(1) : digits;
+
+  openSellerInboxModal(null, prefillReply);
+
+  setTimeout(async () => {
+    let match = (inboxThreadsCache || []).find(t => {
+      const tDigits = String(t.clean_phone || t.phone || "").replace(/\D/g, "");
+      const tClean = tDigits.length > 10 && tDigits.startsWith("1") ? tDigits.substring(1) : tDigits;
+      return (cleanDigits && (cleanDigits === tClean || tClean.includes(cleanDigits))) || (parcelId && t.parcel_id === parcelId);
+    });
+
+    if (!match) {
+      await loadSellerInbox();
+      match = (inboxThreadsCache || []).find(t => {
+        const tDigits = String(t.clean_phone || t.phone || "").replace(/\D/g, "");
+        const tClean = tDigits.length > 10 && tDigits.startsWith("1") ? tDigits.substring(1) : tDigits;
+        return (cleanDigits && (cleanDigits === tClean || tClean.includes(cleanDigits))) || (parcelId && t.parcel_id === parcelId);
+      });
+    }
+
+    if (match) {
+      selectInboxThread(match.key, prefillReply);
+    }
+  }, 120);
+}
+
+function toggleInboxSimulator() {
+  const drawer = document.getElementById("inboxSimulatorDrawer");
+  if (!drawer) return;
+  drawer.classList.toggle("hidden");
+}
+
+function fillSimScenario(val) {
+  const simInput = document.getElementById("simMessageText");
+  if (!simInput) return;
+  const scenarios = {
+    code: "We got cited for the garage by the county inspector. What will you offer as-is?",
+    lis: "Auction date is in 3 weeks. Can you buy before then?",
+    probate: "Inherited Dad's house, full of old furniture. Asking 175k cash as-is.",
+    price_gold: "I'll let it go for 130k if you can close cash this month.",
+    stop: "STOP texting me"
+  };
+  simInput.value = scenarios[val] || scenarios.code;
+}
+
+async function dispatchSimulatedInbound() {
+  const phone = document.getElementById("simPhone").value.trim();
+  const text = document.getElementById("simMessageText").value.trim();
+  const btn = document.getElementById("btnDispatchSim");
+
+  if (!phone || !text) {
+    alert("Please provide both phone number and message.");
+    return;
+  }
+
+  btn.disabled = true;
+  btn.innerHTML = `<span>⏳</span> <span>Dispatching...</span>`;
+
+  try {
+    const res = await fetch("/api/sms/inbound", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        event: "sms:received",
+        payload: {
+          phoneNumber: phone,
+          message: text
+        }
+      })
+    });
+    const data = await res.json();
+    if (data.status === "ok" || data.status === "success") {
+      playInboundNotificationChime();
+      showInboundToast(phone, text, "Robert Vance (Test Lead)", text.includes("130k") ? "GOLD_DEAL" : "SPREAD_DEAL");
+      await fetchOutreachHistory();
+      const cleanDigits = phone.replace(/\D/g, "");
+      const targetKey = cleanDigits.length > 10 && cleanDigits.startsWith("1") ? cleanDigits.slice(1) : cleanDigits;
+      await loadSellerInbox(targetKey);
+      toggleInboxSimulator();
+    } else {
+      alert(`Simulation error: ${data.message || data.reason || 'Unknown error'}`);
+    }
+  } catch (err) {
+    alert(`Error: ${err.message}`);
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = `<span>🚀</span> <span>Dispatch Simulated SMS</span>`;
+  }
+}
+
+// -------------------------------------------------------------------------
+// Sandbox Test Lead & Live Webhook Simulator
+// -------------------------------------------------------------------------
+
+function openSandboxTestModal() {
+  const modal = document.getElementById("sandboxTestModal");
+  if (!modal) return;
+  modal.classList.remove("hidden");
+  modal.style.display = "flex";
+  const banner = document.getElementById("sandboxStatusBanner");
+  if (banner) banner.className = "hidden";
+}
+
+function closeSandboxTestModal() {
+  const modal = document.getElementById("sandboxTestModal");
+  if (modal) {
+    modal.classList.add("hidden");
+    modal.style.display = "none";
+  }
+}
+
+async function addSandboxTestLead() {
+  try {
+    const res = await fetch("/api/leads/sandbox-test-lead", { method: "POST" });
+    if (res.ok) {
+      await fetchSavedContacts();
+      switchPipelineView("saved");
+      openSandboxTestModal();
+    }
+  } catch (err) {
+    console.error("Error creating sandbox test lead:", err);
+  }
+}
+
+async function triggerSandboxWebhookScenario(scenarioKey) {
+  const scenarios = {
+    gold: "I'll let it go for 130k if you close this month.",
+    code: "The city gave me a citation for the garage & roof. What will you offer as-is?",
+    lis: "Auction date is set in 3 weeks. Can you purchase before then?",
+    probate: "Inherited Dad's house, full of furniture. Asking 175k cash.",
+    stop: "STOP texting me"
+  };
+
+  const text = scenarios[scenarioKey] || scenarios.gold;
+  await executeWebhookTest(text, scenarioKey === 'gold' ? 'GOLD_DEAL' : (scenarioKey === 'stop' ? 'OPT_OUT' : 'SPREAD_DEAL'));
+}
+
+async function triggerSandboxWebhookCustom() {
+  const input = document.getElementById("sandboxCustomMessage");
+  const text = input ? input.value.trim() : "";
+  if (!text) {
+    alert("Please enter a custom homeowner message to test.");
+    return;
+  }
+  await executeWebhookTest(text, "SPREAD_DEAL");
+  if (input) input.value = "";
+}
+
+async function executeWebhookTest(text, expectedRating) {
+  const banner = document.getElementById("sandboxStatusBanner");
+  if (banner) {
+    banner.className = "p-3 rounded-xl text-xs font-semibold bg-violet-950/60 border border-violet-500/40 text-violet-300 block";
+    banner.innerText = "⏳ Dispatching live webhook to /api/sms/inbound...";
+  }
+
+  const phone = "(727) 555-0199";
+
+  try {
+    const res = await fetch("/api/sms/inbound", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        event: "sms:received",
+        payload: {
+          phoneNumber: phone,
+          message: text
+        }
+      })
+    });
+    const data = await res.json();
+
+    if (data.status === "success" || data.status === "ok") {
+      playInboundNotificationChime();
+      showInboundToast(phone, text, "Robert Vance (Test Lead)", expectedRating);
+
+      if (banner) {
+        banner.className = "p-3 rounded-xl text-xs font-semibold bg-emerald-950/60 border border-emerald-500/40 text-emerald-300 block";
+        banner.innerHTML = `✓ <b>Webhook Accepted (HTTP 200)!</b> Emma scored the deal and prepared a reply.`;
+      }
+
+      await fetchOutreachHistory();
+      await pollSellerInboxUpdates();
+
+      setTimeout(() => {
+        closeSandboxTestModal();
+        openSellerInboxModal();
+      }, 1000);
+    } else {
+      if (banner) {
+        banner.className = "p-3 rounded-xl text-xs font-semibold bg-rose-950/60 border border-rose-500/40 text-rose-300 block";
+        banner.innerText = `⚠️ Webhook returned: ${data.reason || data.status}`;
+      }
+    }
+  } catch (err) {
+    if (banner) {
+      banner.className = "p-3 rounded-xl text-xs font-semibold bg-rose-950/60 border border-rose-500/40 text-rose-300 block";
+      banner.innerText = `⚠️ Connection error: ${err.message}`;
+    }
+  }
+}
+
+function replyInCopilotFromInbox(index) {
+  const item = sellerInboxCache[index];
+  if (!item) return;
+  openSellerThread(item.sender || item.phone, item.parcel_id, item.bot_response);
+}
+
+function openContractFromInbox(index) {
+  const item = sellerInboxCache[index];
+  if (!item) return;
+
+  closeSellerInboxModal();
+
+  const parcelId = item.parcel_id || "";
+  const phone = item.sender || item.phone || "";
+  const owner = item.owner || "Homeowner";
+  const address = item.address || "";
+  const spread = item.spread_eval || {};
+  const agreedPrice = spread.detected_price || 0;
+
+  // Find record in liveRecords to grab market value and city/zip
+  const rec = (liveRecords || []).find(r => r && (r.Parcel_ID === parcelId || r.Property_Address === address));
+  const city = rec?.Property_City || "St Petersburg";
+  const zip = rec?.Property_Zip || "";
+  const marketVal = rec ? (rec.Market_Value || rec.Just_Value || rec.Assessed_Value || 0) : (spread.parcel_value || 0);
+
+  openContractModal(parcelId, phone, '', owner, address, city, zip, marketVal);
+
+  if (agreedPrice > 0) {
+    const priceInput = document.getElementById("contractPurchasePrice");
+    if (priceInput) {
+      priceInput.value = agreedPrice;
+      if (typeof updateContractCalculations === "function") {
+        updateContractCalculations();
+      }
+    }
+  }
+}
+
+// -------------------------------------------------------------------------
+// Live Audio Chime, Visual Toast & Background Polling
+// -------------------------------------------------------------------------
+
+let lastSeenInboxCount = 0;
+let isFirstInboxPoll = true;
+
+function playInboundNotificationChime() {
+  try {
+    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+    if (!AudioCtx) return;
+    const ctx = new AudioCtx();
+    if (ctx.state === "suspended") {
+      ctx.resume();
+    }
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.type = "sine";
+    const now = ctx.currentTime;
+    osc.frequency.setValueAtTime(587.33, now); // D5
+    osc.frequency.setValueAtTime(880, now + 0.12); // A5
+    gain.gain.setValueAtTime(0.18, now);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.4);
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.start(now);
+    osc.stop(now + 0.4);
+  } catch (e) {
+    // Non-blocking
+  }
+}
+
+function showInboundToast(sender, message, owner, dealRating) {
+  const container = document.getElementById("inboundToastContainer");
+  if (!container) return;
+
+  const toast = document.createElement("div");
+  toast.className = "pointer-events-auto max-w-sm w-full bg-slate-900/95 border border-blue-500/50 rounded-2xl p-4 shadow-2xl shadow-blue-950/60 flex items-start gap-3 backdrop-blur-md transition-all duration-300 transform translate-y-[-10px] opacity-0";
+  
+  let badgeHtml = '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/30">💬 Inbound SMS</span>';
+  if (dealRating === 'GOLD_DEAL') {
+    badgeHtml = '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">🔥 GOLD DEAL</span>';
+  } else if (dealRating === 'SPREAD_DEAL') {
+    badgeHtml = '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40">⚡ SPREAD DEAL</span>';
+  }
+
+  toast.innerHTML = `
+    <div class="w-8 h-8 rounded-xl bg-blue-600/20 border border-blue-500/40 text-blue-400 flex items-center justify-center shrink-0 text-base mt-0.5">
+      💬
+    </div>
+    <div class="flex-1 min-w-0">
+      <div class="flex items-center justify-between gap-1 mb-1">
+        <div class="text-xs font-bold text-white truncate">${escapeHtml(owner || 'Florida Homeowner')}</div>
+        ${badgeHtml}
+      </div>
+      <div class="text-[11px] text-slate-300 line-clamp-2 leading-relaxed mb-2 font-sans">"${escapeHtml(message || '')}"</div>
+      <div class="flex items-center justify-between pt-1 border-t border-slate-800">
+        <span class="text-[10px] font-mono text-emerald-400 font-semibold">${escapeHtml(sender || '')}</span>
+        <button type="button" class="text-[11px] font-bold text-blue-400 hover:text-blue-300 cursor-pointer">Open Conversation &rarr;</button>
+      </div>
+    </div>
+  `;
+
+  toast.onclick = () => {
+    openSellerThread(sender, null);
+    toast.remove();
+  };
+
+  container.appendChild(toast);
+
+  setTimeout(() => {
+    toast.classList.remove("translate-y-[-10px]", "opacity-0");
+    toast.classList.add("translate-y-0", "opacity-100");
+  }, 20);
+
+  setTimeout(() => {
+    toast.classList.add("opacity-0", "translate-y-[-10px]");
+    setTimeout(() => toast.remove(), 350);
+  }, 7000);
+}
+
+async function pollSellerInboxUpdates() {
+  try {
+    const res = await fetch("/api/inbox");
+    if (!res.ok) return;
+    const data = await res.json();
+    const messages = data.messages || [];
+    const count = data.count || messages.length;
+
+    // Update sidebar badge
+    const sideBadge = document.getElementById("sidebarInboxBadge");
+    if (sideBadge) {
+      if (count > 0) {
+        sideBadge.innerText = count;
+        sideBadge.classList.remove("hidden");
+      } else {
+        sideBadge.classList.add("hidden");
+      }
+    }
+
+    if (!isFirstInboxPoll && count > lastSeenInboxCount) {
+      // New inbound text arrived!
+      const newest = messages[0];
+      playInboundNotificationChime();
+      if (newest) {
+        showInboundToast(
+          newest.sender || newest.phone,
+          newest.message,
+          newest.owner,
+          newest.spread_eval?.deal_rating
+        );
+      }
+    }
+
+    lastSeenInboxCount = count;
+    isFirstInboxPoll = false;
+
+    // If seller inbox modal is currently visible, live re-render so chat updates in real time
+    const modal = document.getElementById("sellerInboxModal");
+    if (modal && !modal.classList.contains("hidden")) {
+      sellerInboxCache = messages;
+      inboxThreadsCache = data.threads || [];
+      const totalBadge = document.getElementById("inboxTotalCountBadge");
+      if (totalBadge) totalBadge.innerText = `${count} Inbound`;
+      const threadCountBadge = document.getElementById("inboxThreadCountBadge");
+      if (threadCountBadge) threadCountBadge.innerText = `${inboxThreadsCache.length} Active`;
+      renderInboxThreadsList();
+      if (activeInboxThreadKey) {
+        const ta = document.getElementById("inboxReplyTextarea");
+        const userDraft = (ta && ta.value) ? ta.value : "";
+        const wasFocused = (ta && document.activeElement === ta);
+        renderActiveThread();
+        if (userDraft) {
+          const newTa = document.getElementById("inboxReplyTextarea");
+          if (newTa) {
+            newTa.value = userDraft;
+            if (wasFocused) newTa.focus();
+          }
+        }
+      }
+    }
+    // Also silently refresh callbacks in background
+    loadScheduledCallbacks(true);
+  } catch (err) {
+    // Silent background poll
+  }
+}
+
+// -------------------------------------------------------------------------
+// SMS Copilot Card Functions (Inside #smsModal)
+// -------------------------------------------------------------------------
+
+async function generateEmmaCopilotSuggestion() {
+  const ctx = window.activeSmsLeadContext || {};
+  const btn = document.getElementById("btnFetchCopilotSuggest");
+  const box = document.getElementById("smsCopilotSuggestionBox");
+  const txt = document.getElementById("smsCopilotSuggestionText");
+  const spreadBadge = document.getElementById("smsDealSpreadBadge");
+
+  btn.disabled = true;
+  btn.innerHTML = `<span>⏳</span> <span>Thinking...</span>`;
+
+  try {
+    const res = await fetch("/api/bot/suggest", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        seller_message: "INITIAL_HOOK",
+        owner_name: ctx.ownerName || "",
+        property_address: ctx.propertyAddress || "",
+        address: ctx.propertyAddress || "",
+        parcel_id: ctx.parcelId || "",
+        distress_type: ctx.distressType || "GENERAL_DISTRESS",
+        assessed_value: ctx.marketValue || 0,
+        county: selectedCountyKey || "Pinellas",
+        phone: ctx.phone || ""
+      })
+    });
+    const data = await res.json();
+    if (data.status === "ok") {
+      box.classList.remove("hidden");
+      txt.innerText = data.suggestion || "Hi! We'd love to make a quick cash offer on your property.";
+
+      const spread = data.spread_eval || {};
+      if (spreadBadge && spread.deal_rating) {
+        spreadBadge.classList.remove("hidden");
+        if (spread.deal_rating === "GOLD_DEAL") {
+          spreadBadge.className = "px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40";
+          spreadBadge.innerText = `🔥 GOLD DEAL (${spread.ratio_pct}%)`;
+        } else if (spread.deal_rating === "SPREAD_DEAL") {
+          spreadBadge.className = "px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40";
+          spreadBadge.innerText = `⚡ SPREAD DEAL (${spread.ratio_pct}%)`;
+        } else if (spread.deal_rating === "RETAIL_CREATIVE") {
+          spreadBadge.className = "px-2 py-0.5 rounded text-[10px] font-bold bg-rose-500/20 text-rose-300 border border-rose-500/40";
+          spreadBadge.innerText = `⚠️ RETAIL`;
+        }
+      }
+    } else {
+      alert(`Copilot error: ${data.message || 'Unable to generate suggestion'}`);
+    }
+  } catch (err) {
+    alert(`Error generating suggestion: ${err.message}`);
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = `<span>⚡</span> <span>Get Emma's Suggestion</span>`;
+  }
+}
+
+function applyEmmaCopilotSuggestion() {
+  const txt = document.getElementById("smsCopilotSuggestionText")?.innerText;
+  if (!txt) return;
+
+  const msgBox = document.getElementById("smsMessageText");
+  if (msgBox) {
+    msgBox.value = txt.trim();
+    if (typeof updateSmsCharCount === "function") {
+      updateSmsCharCount();
+    }
+  }
+
+  const box = document.getElementById("smsCopilotSuggestionBox");
+  if (box) box.classList.add("hidden");
+}
+
+// -------------------------------------------------------------------------
+// Scheduled Callbacks with John & Google Calendar Sync Controller
+// -------------------------------------------------------------------------
+
+let scheduledCallbacksCache = [];
+
+async function loadScheduledCallbacks(isSilent = false) {
+  try {
+    const res = await fetch("/api/callbacks");
+    if (!res.ok) return;
+    const data = await res.json();
+    scheduledCallbacksCache = data.callbacks || [];
+    renderCallbacksDashboard(scheduledCallbacksCache);
+  } catch (err) {
+    if (!isSilent) console.warn("Could not load callbacks:", err);
+  }
+}
+
+function renderCallbacksDashboard(callbacks) {
+  const container = document.getElementById("callbacksListContainer");
+  const badge = document.getElementById("callbacksPendingCountBadge");
+  const sideBadge = document.getElementById("sidebarCallbacksBadge");
+
+  const pending = (callbacks || []).filter(c => (c.status || "").toUpperCase() === "PENDING");
+
+  if (badge) {
+    badge.innerText = `${pending.length} Pending`;
+    if (pending.length === 0) {
+      badge.className = "px-2 py-0.5 rounded-full text-[11px] font-bold bg-slate-800 text-slate-400 border border-slate-700";
+    } else {
+      badge.className = "px-2 py-0.5 rounded-full text-[11px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40";
+    }
+  }
+
+  if (sideBadge) {
+    if (pending.length > 0) {
+      sideBadge.innerText = pending.length;
+      sideBadge.classList.remove("hidden");
+    } else {
+      sideBadge.classList.add("hidden");
+    }
+  }
+
+  if (!container) return;
+
+  if (pending.length === 0) {
+    container.innerHTML = `
+      <div class="col-span-full p-6 text-center bg-[#070d18]/60 border border-slate-800/80 rounded-xl space-y-1.5">
+        <div class="text-2xl">☕</div>
+        <div class="text-xs font-bold text-slate-300">All Caught Up! No Pending Callbacks</div>
+        <div class="text-[11px] text-slate-400 max-w-md mx-auto">
+          When motivated sellers agree to a phone call with Emma via SMS, their scheduled appointment will appear right here and automatically sync into your Google Calendar at <span class="text-emerald-400 font-mono">johngroberts76@gmail.com</span>.
+        </div>
+      </div>
+    `;
+    return;
+  }
+
+  container.innerHTML = pending.map(c => {
+    const marketFormatted = c.market_value ? `$${Math.round(c.market_value).toLocaleString()}` : "N/A";
+    const phoneDigits = c.clean_phone || (c.phone || "").replace(/\D/g, "");
+
+    return `
+      <div class="bg-[#0b1220]/90 border border-emerald-500/30 hover:border-emerald-500/60 rounded-xl p-4 transition shadow-lg flex flex-col justify-between gap-3 relative group">
+        <div>
+          <!-- Top Row: Owner & Appointment Time Pill -->
+          <div class="flex items-start justify-between gap-2">
+            <div class="min-w-0">
+              <h3 class="text-sm font-extrabold text-white truncate flex items-center gap-1.5">
+                <span>👤</span> <span>${escapeHtml(c.owner || 'Homeowner')}</span>
+              </h3>
+              <p class="text-[11px] text-slate-400 truncate mt-0.5">
+                📍 ${escapeHtml(c.address || 'Florida Property')}
+              </p>
+            </div>
+            <div class="shrink-0 text-right">
+              <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">
+                ⏰ ${escapeHtml(c.display_time || c.scheduled_time_raw || 'Pending')}
+              </span>
+            </div>
+          </div>
+
+          <!-- Mid Info Row: Phone Click-to-dial & Market Value -->
+          <div class="mt-3 pt-2.5 border-t border-slate-800/80 flex items-center justify-between text-xs">
+            <div class="flex items-center gap-1.5 font-mono">
+              <span class="text-slate-400">📞</span>
+              <a href="tel:${escapeAttr(phoneDigits)}" class="font-bold text-emerald-400 hover:text-emerald-300 hover:underline">
+                ${escapeHtml(c.phone || phoneDigits)}
+              </a>
+              <button type="button" onclick="navigator.clipboard.writeText('${escapeAttr(c.phone || phoneDigits)}'); alert('Phone number copied to clipboard: ${escapeAttr(c.phone || phoneDigits)}');" class="text-slate-500 hover:text-slate-300 text-xs ml-1 cursor-pointer" title="Copy Phone Number">
+                📋
+              </button>
+            </div>
+            <div class="text-[11px] text-slate-400">
+              Est. Value: <b class="text-white font-mono">${marketFormatted}</b>
+            </div>
+          </div>
+
+          <!-- Calendar Delivery Status -->
+          <div class="mt-2 text-[10px] text-slate-400 flex items-center justify-between">
+            <div class="flex items-center gap-1.5">
+              <span class="text-emerald-400 font-bold">✓ Invite:</span>
+              <span class="truncate max-w-[200px]">Sent to ${escapeHtml(c.email_recipient || 'johngroberts76@gmail.com')}</span>
+            </div>
+            <span class="text-[9px] font-mono text-slate-500">${escapeHtml(c.created_at || '')}</span>
+          </div>
+        </div>
+
+        <!-- Action Buttons Footer -->
+        <div class="mt-2 pt-2.5 border-t border-slate-800/80 flex items-center justify-between gap-2">
+          <div class="flex items-center gap-1.5">
+            <button type="button" onclick="openSellerInboxModal('${escapeAttr(c.clean_phone || phoneDigits)}')" class="px-2.5 py-1.5 rounded-lg bg-blue-600/30 hover:bg-blue-600/50 border border-blue-500/40 text-blue-300 hover:text-white text-xs font-bold transition flex items-center gap-1 cursor-pointer" title="Open full 2-Way SMS chat thread">
+              <span>💬</span> <span>Open Chat</span>
+            </button>
+            ${c.gcal_url ? `
+              <a href="${escapeAttr(c.gcal_url)}" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-xs font-semibold transition flex items-center gap-1 border border-slate-700 cursor-pointer" title="View or edit in Google Calendar web">
+                <span>📅</span> <span>Google Cal</span>
+              </a>
+            ` : ''}
+          </div>
+          <button type="button" onclick="completeScheduledCallback('${escapeAttr(c.id)}', '${escapeAttr(c.clean_phone || phoneDigits)}')" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition flex items-center gap-1 cursor-pointer shadow-md shadow-emerald-600/30" title="Mark this phone call as completed">
+            <span>✓</span> <span>Done</span>
+          </button>
+        </div>
+      </div>
+    `;
+  }).join("");
+}
+
+async function completeScheduledCallback(id, cleanPhone) {
+  if (!confirm("Mark this callback as completed?")) return;
+  try {
+    const res = await fetch("/api/callbacks/complete", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id: id, clean_phone: cleanPhone })
+    });
+    if (res.ok) {
+      const data = await res.json();
+      scheduledCallbacksCache = data.callbacks || [];
+      renderCallbacksDashboard(scheduledCallbacksCache);
+    } else {
+      alert("Failed to complete callback.");
+    }
+  } catch (err) {
+    alert(`Error: ${err.message}`);
+  }
+}
+
+function scrollOrOpenCallbacks() {
+  const card = document.getElementById("callbacksDashboardCard");
+  if (card) {
+    card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    card.classList.add("ring-2", "ring-emerald-500", "scale-[1.01]");
+    setTimeout(() => {
+      card.classList.remove("ring-2", "ring-emerald-500", "scale-[1.01]");
+    }, 1500);
+  }
+}
+
+// ----------------------------------------------------
+// LINK ZONE LIVE BRIDGE & VERIFICATION AUDIT TRAIL
+// ----------------------------------------------------
+let linkZoneHealthCache = null;
+
+async function fetchLinkZoneHealth() {
+  try {
+    const res = await fetch("/api/link-zone/health");
+    if (!res.ok) return;
+    const data = await res.json();
+    linkZoneHealthCache = data;
+
+    // Update Header Status Heartbeat Pill
+    const pingEl = document.getElementById("linkZonePulsePing");
+    const dotEl = document.getElementById("linkZonePulseDot");
+    const countEl = document.getElementById("linkZoneBadgeCounties");
+    const subEl = document.getElementById("linkZoneStatusSub");
+
+    if (data.status === "HEALTHY") {
+      if (pingEl) pingEl.className = "animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75";
+      if (dotEl) dotEl.className = "relative inline-flex rounded-full h-2 w-2 bg-emerald-500";
+      if (subEl) subEl.textContent = "Live • Synced";
+    } else if (data.status === "FALLBACK") {
+      if (pingEl) pingEl.className = "hidden";
+      if (dotEl) dotEl.className = "relative inline-flex rounded-full h-2 w-2 bg-amber-400";
+      if (subEl) subEl.textContent = "Fallback Snapshot";
+    } else {
+      if (pingEl) pingEl.className = "hidden";
+      if (dotEl) dotEl.className = "relative inline-flex rounded-full h-2 w-2 bg-rose-500";
+      if (subEl) subEl.textContent = "Offline";
+    }
+
+    if (countEl && data.states && data.states.FL) {
+      countEl.textContent = `${data.states.FL.counties || 37} FL`;
+    }
+
+    // If modal is actively open, re-render its contents
+    const modal = document.getElementById("linkZoneMonitorModal");
+    if (modal && !modal.classList.contains("hidden")) {
+      renderLinkZoneMonitorModal(data);
+    }
+  } catch (err) {
+    console.warn("Link Zone health check error:", err);
+  }
+}
+
+function openLinkZoneMonitorModal() {
+  const modal = document.getElementById("linkZoneMonitorModal");
+  if (!modal) return;
+  modal.classList.remove("hidden");
+  modal.style.display = "flex";
+  if (linkZoneHealthCache) {
+    renderLinkZoneMonitorModal(linkZoneHealthCache);
+  }
+  fetchLinkZoneHealth();
+}
+
+function closeLinkZoneMonitorModal() {
+  const modal = document.getElementById("linkZoneMonitorModal");
+  if (modal) {
+    modal.classList.add("hidden");
+    modal.style.display = "none";
+  }
+}
+
+function renderLinkZoneMonitorModal(data) {
+  if (!data) return;
+
+  // Status Badge in Header
+  const badgeEl = document.getElementById("lzModalStatusBadge");
+  if (badgeEl) {
+    if (data.status === "HEALTHY") {
+      badgeEl.className = "px-2.5 py-0.5 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-emerald-500/20 text-emerald-300 border border-emerald-500/40";
+      badgeEl.textContent = "🟢 LIVE DIRECT READ";
+    } else {
+      badgeEl.className = "px-2.5 py-0.5 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-amber-500/20 text-amber-300 border border-amber-500/40";
+      badgeEl.textContent = "⚠️ CACHED SNAPSHOT";
+    }
+  }
+
+  // Master Path
+  const pathEl = document.getElementById("lzModalPathText");
+  if (pathEl) {
+    pathEl.textContent = data.active_path || "C:\\Projects\\Apps\\link-zone\\data";
+  }
+
+  // Stat Cards
+  const modeEl = document.getElementById("lzCardMode");
+  if (modeEl) {
+    modeEl.textContent = data.is_live_connected ? "Direct Live Read" : "Cached Snapshot";
+    modeEl.className = data.is_live_connected ? "text-sm font-extrabold text-emerald-400 mt-1" : "text-sm font-extrabold text-amber-400 mt-1";
+  }
+
+  const statesCountEl = document.getElementById("lzCardStatesCount");
+  if (statesCountEl) {
+    const sCount = data.total_states || Object.keys(data.states || {}).length || 8;
+    statesCountEl.textContent = `${sCount} States`;
+  }
+
+  const flCoverageEl = document.getElementById("lzCardFlCoverage");
+  if (flCoverageEl) {
+    const fl = data.states?.FL;
+    if (fl) {
+      flCoverageEl.textContent = `${fl.counties} Counties (${fl.links} Links)`;
+    } else {
+      flCoverageEl.textContent = "37 Counties (222 Links)";
+    }
+  }
+
+  const lastCheckedEl = document.getElementById("lzCardLastChecked");
+  if (lastCheckedEl) {
+    lastCheckedEl.textContent = data.last_checked ? data.last_checked.split(" ")[1] : "Active";
+  }
+
+  // Left Column: States List
+  const statesContainer = document.getElementById("lzStatesListContainer");
+  if (statesContainer && data.states) {
+    statesContainer.innerHTML = Object.entries(data.states).map(([code, s]) => {
+      const isFl = (code === "FL");
+      return `
+        <div class="p-3 rounded-xl ${isFl ? 'bg-emerald-950/20 border-emerald-500/40' : 'bg-slate-900/60 border-slate-800'} border flex items-center justify-between gap-3 hover:border-slate-700 transition">
+          <div class="flex items-center gap-2.5 min-w-0">
+            <span class="text-xl">${s.icon || '📍'}</span>
+            <div class="min-w-0">
+              <div class="flex items-center gap-1.5">
+                <span class="text-xs font-bold text-white truncate">${escapeHtml(s.name)}</span>
+                <span class="text-[10px] font-mono text-slate-400">(${escapeHtml(code)})</span>
+                ${isFl ? '<span class="px-1.5 py-0.2 rounded text-[9px] font-black bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">LIVE</span>' : ''}
+              </div>
+              <div class="text-[10px] text-slate-400 mt-0.5 truncate font-mono">${escapeHtml(s.filename)} &bull; ${s.last_modified}</div>
+            </div>
+          </div>
+          <div class="text-right shrink-0">
+            <div class="text-xs font-bold text-white font-mono">${s.counties} Counties</div>
+            <div class="text-[10px] text-emerald-400 font-semibold">${s.links} Portals</div>
+          </div>
+        </div>
+      `;
+    }).join("");
+  }
+
+  // Right Column: Audit Log
+  const logContainer = document.getElementById("lzAuditLogContainer");
+  if (logContainer) {
+    if (!data.history || data.history.length === 0) {
+      logContainer.innerHTML = `<div class="p-4 text-center text-xs text-slate-500">No events logged yet.</div>`;
+    } else {
+      logContainer.innerHTML = data.history.map(ev => {
+        let badgeClass = "bg-blue-500/20 text-blue-300 border-blue-500/40";
+        let icon = "ℹ️";
+        if (ev.level === "SUCCESS") {
+          badgeClass = "bg-emerald-500/20 text-emerald-300 border-emerald-500/40";
+          icon = "✓";
+        } else if (ev.level === "UPDATE") {
+          badgeClass = "bg-cyan-500/20 text-cyan-300 border-cyan-500/40";
+          icon = "⚡";
+        } else if (ev.level === "WARNING") {
+          badgeClass = "bg-amber-500/20 text-amber-300 border-amber-500/40";
+          icon = "⚠️";
+        } else if (ev.level === "ERROR") {
+          badgeClass = "bg-rose-500/20 text-rose-300 border-rose-500/40";
+          icon = "✕";
+        }
+
+        return `
+          <div class="p-3 rounded-xl bg-slate-900/70 border border-slate-800 space-y-1 hover:border-slate-700 transition">
+            <div class="flex items-center justify-between gap-2">
+              <div class="flex items-center gap-1.5 min-w-0">
+                <span class="px-1.5 py-0.5 rounded text-[9px] font-black uppercase tracking-wider border ${badgeClass} flex items-center gap-1">
+                  <span>${icon}</span> <span>${escapeHtml(ev.level)}</span>
+                </span>
+                <span class="text-xs font-bold text-white truncate">${escapeHtml(ev.title)}</span>
+              </div>
+              <span class="text-[10px] text-slate-500 font-mono shrink-0">${escapeHtml(ev.timestamp)}</span>
+            </div>
+            <p class="text-[11px] text-slate-300 leading-snug">${escapeHtml(ev.details)}</p>
+            ${ev.metrics && Object.keys(ev.metrics).length > 0 ? `
+              <div class="flex items-center gap-2 pt-1 text-[10px] text-slate-400 font-mono">
+                ${ev.metrics.counties ? `<span>Counties: <strong class="text-white">${ev.metrics.counties}</strong></span>` : ''}
+                ${ev.metrics.links ? `<span>&bull; Links: <strong class="text-white">${ev.metrics.links}</strong></span>` : ''}
+                ${ev.metrics.mtime ? `<span>&bull; File Time: <span class="text-slate-400">${ev.metrics.mtime}</span></span>` : ''}
+              </div>
+            ` : ''}
+          </div>
+        `;
+      }).join("");
+    }
+  }
+}
+
+async function triggerLinkZoneResync() {
+  const btn = document.getElementById("lzForceResyncBtn");
+  const icon = document.getElementById("lzResyncIcon");
+  const banner = document.getElementById("lzStatusBanner");
+
+  if (btn) btn.disabled = true;
+  if (icon) icon.className = "inline-block animate-spin";
+  if (banner) {
+    banner.className = "p-3 rounded-xl text-xs font-semibold bg-blue-900/40 border border-blue-500/40 text-blue-300 block";
+    banner.innerHTML = "⏳ Scanning Link Zone data files...";
+  }
+
+  try {
+    const res = await fetch("/api/link-zone/resync", { method: "POST" });
+    if (res.ok) {
+      const data = await res.json();
+      if (banner) {
+        banner.className = "p-3 rounded-xl text-xs font-semibold bg-emerald-900/40 border border-emerald-500/40 text-emerald-300 block";
+        banner.innerHTML = `✓ Verified &amp; Synced! Read ${data.total_counties || 37} counties and ${data.total_links || 222} verified government portals.`;
+      }
+      await fetchLinkZoneHealth();
+      await fetchStats(currentState);
+      await fetchCounties(currentState);
+      if (selectedCountyKey) {
+        selectCounty(selectedCountyKey);
+      }
+    } else {
+      if (banner) {
+        banner.className = "p-3 rounded-xl text-xs font-semibold bg-rose-900/40 border border-rose-500/40 text-rose-300 block";
+        banner.innerHTML = "❌ Re-sync encountered an issue. Check audit log below.";
+      }
+    }
+  } catch (err) {
+    if (banner) {
+      banner.className = "p-3 rounded-xl text-xs font-semibold bg-rose-900/40 border border-rose-500/40 text-rose-300 block";
+      banner.innerHTML = `❌ Error: ${err.message}`;
+    }
+  } finally {
+    setTimeout(() => {
+      if (btn) btn.disabled = false;
+      if (icon) icon.className = "";
+      if (banner) {
+        setTimeout(() => { banner.className = "hidden"; }, 4000);
+      }
+    }, 1000);
+  }
+}
+
+// ----------------------------------------------------
+// LUCAS - ACQUISITIONS EXECUTIVE OPERATOR & CLOSER
+// ----------------------------------------------------
+let lucasTriageCache = null;
+let lucasActiveTab = 'triage';
+
+async function fetchLucasTriage() {
+  try {
+    const res = await fetch("/api/operator/triage");
+    if (!res.ok) return;
+    const data = await res.json();
+    lucasTriageCache = data;
+
+    // Update Sidebar Priority Badge
+    const sideBadge = document.getElementById("sidebarLucasUrgentBadge");
+    if (sideBadge) {
+      const urgentCount = data.stats?.urgent_count || 0;
+      if (urgentCount > 0) {
+        sideBadge.textContent = `${urgentCount} Priority`;
+        sideBadge.classList.remove("hidden");
+      } else {
+        sideBadge.classList.add("hidden");
+      }
+    }
+
+    // Update Header Lucas Pill
+    const headerBadge = document.getElementById("headerLucasBadge");
+    const headerSpread = document.getElementById("headerLucasSpreadSub");
+    if (headerBadge && data.stats) {
+      headerBadge.textContent = `${data.stats.urgent_count || 0} Priority`;
+    }
+    if (headerSpread && data.stats) {
+      const spreadK = Math.round((data.stats.estimated_pipeline_spread || 0) / 1000);
+      headerSpread.textContent = `Operator • $${spreadK}K Spread`;
+    }
+
+    // Update Floating HUD Widget
+    const alertBubble = document.getElementById("lucasHudAlertBubble");
+    const alertText = document.getElementById("lucasHudAlertText");
+    const spreadText = document.getElementById("lucasHudSpreadText");
+
+    if (spreadText && data.stats) {
+      const spreadK = Math.round((data.stats.estimated_pipeline_spread || 0) / 1000);
+      spreadText.textContent = `$${spreadK}K Active Pipeline`;
+    }
+
+    if (alertBubble && alertText) {
+      const urgentCount = data.stats?.urgent_count || 0;
+      if (urgentCount > 0) {
+        alertText.textContent = `${urgentCount} Deals Need Attention`;
+        alertBubble.classList.remove("hidden");
+      } else {
+        alertBubble.classList.add("hidden");
+      }
+    }
+
+    // If modal is actively open, re-render its contents
+    const modal = document.getElementById("lucasConsoleModal");
+    if (modal && !modal.classList.contains("hidden")) {
+      renderLucasConsole(data);
+    }
+  } catch (err) {
+    console.warn("Lucas triage fetch error:", err);
+  }
+}
+
+function openLucasConsoleModal() {
+  const modal = document.getElementById("lucasConsoleModal");
+  if (!modal) return;
+  modal.classList.remove("hidden");
+  modal.style.display = "flex";
+  if (lucasTriageCache) {
+    renderLucasConsole(lucasTriageCache);
+  }
+  fetchLucasTriage();
+}
+
+function closeLucasConsoleModal() {
+  const modal = document.getElementById("lucasConsoleModal");
+  if (modal) {
+    modal.classList.add("hidden");
+    modal.style.display = "none";
+  }
+}
+
+function refreshLucasTriage() {
+  fetchLucasTriage();
+  showLucasFeedback("⚡ Pipeline re-triaged across all contacts, callbacks and contracts.", "success");
+}
+
+function switchLucasTab(tab) {
+  lucasActiveTab = tab;
+  const btnTriage = document.getElementById("tabBtnLucasTriage");
+  const btnTimers = document.getElementById("tabBtnLucasTimers");
+  const btnMemory = document.getElementById("tabBtnLucasMemory");
+  const panelTriage = document.getElementById("panelLucasTriage");
+  const panelTimers = document.getElementById("panelLucasTimers");
+  const panelMemory = document.getElementById("panelLucasMemory");
+
+  // Reset tab buttons
+  [btnTriage, btnTimers, btnMemory].forEach(b => {
+    if (b) {
+      b.className = "pb-3 text-xs font-bold text-slate-400 hover:text-slate-200 border-b-2 border-transparent cursor-pointer flex items-center gap-2";
+    }
+  });
+
+  // Hide all panels
+  if (panelTriage) panelTriage.classList.add("hidden");
+  if (panelTimers) panelTimers.classList.add("hidden");
+  if (panelMemory) panelMemory.classList.add("hidden");
+
+  if (tab === 'triage') {
+    if (btnTriage) btnTriage.className = "pb-3 text-xs font-extrabold text-indigo-400 border-b-2 border-indigo-500 cursor-pointer flex items-center gap-2";
+    if (panelTriage) panelTriage.classList.remove("hidden");
+    if (lucasTriageCache) renderLucasConsole(lucasTriageCache);
+  } else if (tab === 'timers') {
+    if (btnTimers) btnTimers.className = "pb-3 text-xs font-extrabold text-indigo-400 border-b-2 border-indigo-500 cursor-pointer flex items-center gap-2";
+    if (panelTimers) panelTimers.classList.remove("hidden");
+    fetchLucasTimers();
+  } else if (tab === 'memory') {
+    if (btnMemory) btnMemory.className = "pb-3 text-xs font-extrabold text-indigo-400 border-b-2 border-indigo-500 cursor-pointer flex items-center gap-2";
+    if (panelMemory) panelMemory.classList.remove("hidden");
+    fetchLucasMemory();
+  }
+}
+
+function renderLucasConsole(data) {
+  if (!data) return;
+
+  // 1. Briefing Hero
+  const headlineEl = document.getElementById("lucasBriefingHeadline");
+  const spreadEl = document.getElementById("lucasBriefingSpread");
+  const notesContainer = document.getElementById("lucasBriefingNotesList");
+
+  if (headlineEl && data.briefing) headlineEl.textContent = data.briefing.headline;
+  if (spreadEl && data.briefing) spreadEl.textContent = data.briefing.total_spread_formatted;
+  if (notesContainer && data.briefing?.notes) {
+    notesContainer.innerHTML = data.briefing.notes.map(n => `
+      <div class="flex items-center gap-1.5 font-medium">
+        <span>${escapeHtml(n)}</span>
+      </div>
+    `).join("");
+  }
+
+  // 2. Badges
+  const badgeUrgent = document.getElementById("badgeLucasUrgentCount");
+  const badgeTimers = document.getElementById("badgeLucasTimersCount");
+  if (badgeUrgent) badgeUrgent.textContent = data.stats?.urgent_count || 0;
+  if (badgeTimers) badgeTimers.textContent = data.stats?.active_timers_count || 0;
+
+  // 3. Triage Deals List
+  const dealsContainer = document.getElementById("lucasTriageDealsContainer");
+  if (dealsContainer) {
+    if (!data.deals || data.deals.length === 0) {
+      dealsContainer.innerHTML = `<div class="p-8 text-center text-xs text-slate-500">No active leads under triage. Save leads from the dashboard to start autonomous operations.</div>`;
+      return;
+    }
+
+    dealsContainer.innerHTML = data.deals.map(d => {
+      let urgencyBadgeClass = "bg-blue-500/20 text-blue-300 border-blue-500/40";
+      let cardBorder = "border-slate-800";
+      if (d.urgency_score >= 80) {
+        urgencyBadgeClass = "bg-rose-500/20 text-rose-300 border-rose-500/40 animate-pulse";
+        cardBorder = "border-rose-500/40 bg-gradient-to-r from-rose-950/20 via-[#0d1424] to-[#0a0f1d]";
+      } else if (d.urgency_score >= 60) {
+        urgencyBadgeClass = "bg-amber-500/20 text-amber-300 border-amber-500/40";
+        cardBorder = "border-amber-500/30 bg-[#0d1424]";
+      } else {
+        cardBorder = "border-slate-800 bg-[#0a0f1d]";
+      }
+
+      return `
+        <div class="p-4 rounded-2xl ${cardBorder} border transition space-y-2.5 shadow-md">
+          <div class="flex flex-wrap items-start justify-between gap-3">
+            <div class="space-y-1 min-w-0">
+              <div class="flex items-center gap-2 flex-wrap">
+                <span class="text-sm font-extrabold text-white truncate">${escapeHtml(d.owner)}</span>
+                <span class="px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-wider border ${urgencyBadgeClass}">
+                  ${escapeHtml(d.action_badge)} &bull; ${d.urgency_score}/100
+                </span>
+                <span class="text-[11px] font-mono text-emerald-400 font-bold bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/30">
+                  +$${(d.estimated_spread || 0).toLocaleString()} Spread
+                </span>
+              </div>
+              <div class="text-xs text-slate-400 flex items-center gap-2 flex-wrap">
+                <span>📍 ${escapeHtml(d.address || 'Address Unspecified')}</span>
+                <span class="text-slate-600">&bull;</span>
+                <span class="text-blue-400 font-medium">${escapeHtml(d.category || 'Distressed')}</span>
+                <span class="text-slate-600">&bull;</span>
+                <span class="text-slate-300 font-mono">${escapeHtml(d.phone || d.clean_phone)}</span>
+              </div>
+            </div>
+
+            <!-- 1-Click Action Buttons -->
+            <div class="flex items-center gap-2 shrink-0">
+              <button type="button" onclick="scheduleLucasTimerDirect('${escapeAttr(d.lead_id)}', '${escapeAttr(d.owner)}', '${escapeAttr(d.clean_phone)}', '${escapeAttr(d.address)}', 'SMS_NUDGE', 24)" class="px-3 py-1.5 rounded-xl bg-indigo-600/30 hover:bg-indigo-600/50 border border-indigo-500/40 text-indigo-200 hover:text-white text-xs font-bold transition flex items-center gap-1.5 cursor-pointer" title="Schedule autonomous 24h follow-up SMS via Emma">
+                <span>⏱️ Set 24h Nudge</span>
+              </button>
+              <button type="button" onclick="openSellerInboxModal('${escapeAttr(d.clean_phone)}')" class="px-3 py-1.5 rounded-xl bg-blue-600/30 hover:bg-blue-600/50 border border-blue-500/40 text-blue-200 hover:text-white text-xs font-bold transition flex items-center gap-1.5 cursor-pointer" title="Open 2-Way Chat conversation thread">
+                <span>💬 Chat</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Lucas Recommendation Banner -->
+          <div class="p-2.5 rounded-xl bg-indigo-950/30 border border-indigo-500/20 flex items-start gap-2 text-xs">
+            <span class="text-indigo-400 font-bold shrink-0">👔 Lucas:</span>
+            <span class="text-indigo-200">${escapeHtml(d.recommendation)}</span>
+          </div>
+        </div>
+      `;
+    }).join("");
+  }
+}
+
+async function fetchLucasTimers() {
+  const container = document.getElementById("lucasTimersContainer");
+  if (!container) return;
+  container.innerHTML = `<div class="p-6 text-center text-xs text-slate-400">Loading timers...</div>`;
+
+  try {
+    const res = await fetch("/api/operator/timers");
+    if (!res.ok) return;
+    const data = await res.json();
+    const timers = data.timers || [];
+
+    if (timers.length === 0) {
+      container.innerHTML = `<div class="p-8 text-center text-xs text-slate-500">No delayed follow-up timers scheduled. Use 1-Click "Set 24h Nudge" on any deal or instruct Lucas.</div>`;
+      return;
+    }
+
+    container.innerHTML = timers.map(t => {
+      const isPending = (t.status === "PENDING");
+      let statusClass = "bg-emerald-500/20 text-emerald-300 border-emerald-500/40";
+      if (t.status === "CANCELLED") statusClass = "bg-slate-700 text-slate-400 border-slate-600";
+      else if (t.status === "FAILED") statusClass = "bg-rose-500/20 text-rose-300 border-rose-500/40";
+      else if (isPending) statusClass = "bg-indigo-500/20 text-indigo-300 border-indigo-500/40 animate-pulse";
+
+      return `
+        <div class="p-3.5 rounded-xl bg-slate-900 border border-slate-800 flex flex-wrap items-center justify-between gap-3">
+          <div class="space-y-1 min-w-0">
+            <div class="flex items-center gap-2">
+              <span class="px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-wider border ${statusClass}">
+                ${escapeHtml(t.status)}
+              </span>
+              <span class="text-xs font-bold text-white">${escapeHtml(t.lead_name)}</span>
+              <span class="text-[11px] text-slate-400 font-mono">(${escapeHtml(t.phone)})</span>
+            </div>
+            <div class="text-xs text-slate-300 font-sans italic">
+              "${escapeHtml(t.payload_message || t.action_type)}"
+            </div>
+            <div class="text-[10px] text-slate-500 font-mono">
+              Scheduled for: <strong class="text-slate-300">${escapeHtml(t.scheduled_time)}</strong> (${t.delay_hours}h delay)
+            </div>
+          </div>
+
+          <div class="flex items-center gap-2">
+            ${isPending ? `
+              <button type="button" onclick="cancelLucasTimer('${escapeAttr(t.id)}')" class="px-3 py-1.5 rounded-xl bg-rose-600/20 hover:bg-rose-600/40 border border-rose-500/40 text-rose-300 hover:text-white text-xs font-bold transition cursor-pointer">
+                Cancel Timer
+              </button>
+            ` : ''}
+          </div>
+        </div>
+      `;
+    }).join("");
+  } catch (err) {
+    container.innerHTML = `<div class="p-4 text-xs text-rose-400">Error loading timers: ${escapeHtml(err.message)}</div>`;
+  }
+}
+
+async function fetchLucasMemory() {
+  const container = document.getElementById("lucasMemoryContainer");
+  if (!container) return;
+  container.innerHTML = `<div class="p-6 text-center text-xs text-slate-400">Loading memory trail...</div>`;
+
+  try {
+    const res = await fetch("/api/operator/memory");
+    if (!res.ok) return;
+    const data = await res.json();
+    const memory = data.memory || [];
+
+    if (memory.length === 0) {
+      container.innerHTML = `<div class="p-8 text-center text-xs text-slate-500">No events logged in Lucas memory yet.</div>`;
+      return;
+    }
+
+    container.innerHTML = memory.map(m => `
+      <div class="p-3 rounded-xl bg-slate-900 border border-slate-800 space-y-1">
+        <div class="flex items-center justify-between gap-2">
+          <div class="flex items-center gap-2">
+            <span class="px-1.5 py-0.5 rounded text-[9px] font-black uppercase tracking-wider bg-indigo-500/20 text-indigo-300 border border-indigo-500/40">
+              ${escapeHtml(m.level)}
+            </span>
+            <span class="text-xs font-bold text-white">${escapeHtml(m.title)}</span>
+          </div>
+          <span class="text-[10px] text-slate-500 font-mono">${escapeHtml(m.timestamp)}</span>
+        </div>
+        <p class="text-xs text-slate-300">${escapeHtml(m.details)}</p>
+      </div>
+    `).join("");
+  } catch (err) {
+    container.innerHTML = `<div class="p-4 text-xs text-rose-400">Error loading memory: ${escapeHtml(err.message)}</div>`;
+  }
+}
+
+async function sendLucasCommand() {
+  const input = document.getElementById("lucasCommandInput");
+  if (!input || !input.value.trim()) return;
+  const prompt = input.value.trim();
+  input.value = "";
+
+  showLucasFeedback("Thinking and executing directive...", "info");
+
+  try {
+    const res = await fetch("/api/operator/command", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ prompt: prompt })
+    });
+    if (res.ok) {
+      const data = await res.json();
+      showLucasFeedback(`👔 Lucas: ${data.message}`, "success");
+      await fetchLucasTriage();
+      if (lucasActiveTab === 'timers') fetchLucasTimers();
+      if (lucasActiveTab === 'memory') fetchLucasMemory();
+    } else {
+      showLucasFeedback("Directive execution failed.", "error");
+    }
+  } catch (err) {
+    showLucasFeedback(`Error: ${err.message}`, "error");
+  }
+}
+
+function submitQuickLucasDirective(text) {
+  const input = document.getElementById("lucasCommandInput");
+  if (input) input.value = text;
+  sendLucasCommand();
+}
+
+async function scheduleLucasTimerDirect(leadId, leadName, phone, address, actionType, delayHours) {
+  showLucasFeedback(`Scheduling ${delayHours}h ${actionType} for ${leadName}...`, "info");
+  try {
+    const res = await fetch("/api/operator/timers/schedule", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        lead_id: leadId,
+        lead_name: leadName,
+        phone: phone,
+        address: address,
+        action_type: actionType,
+        delay_hours: delayHours
+      })
+    });
+    if (res.ok) {
+      const data = await res.json();
+      showLucasFeedback(`✓ Scheduled ${delayHours}h autonomous follow-up for ${leadName} (${data.scheduled_time}).`, "success");
+      await fetchLucasTriage();
+    } else {
+      showLucasFeedback("Failed to schedule timer.", "error");
+    }
+  } catch (err) {
+    showLucasFeedback(`Error: ${err.message}`, "error");
+  }
+}
+
+async function cancelLucasTimer(timerId) {
+  if (!confirm("Cancel this delayed timer?")) return;
+  try {
+    const res = await fetch("/api/operator/timers/cancel", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ timer_id: timerId })
+    });
+    if (res.ok) {
+      showLucasFeedback("✓ Timer cancelled.", "success");
+      fetchLucasTimers();
+      fetchLucasTriage();
+    }
+  } catch (err) {
+    alert(`Error: ${err.message}`);
+  }
+}
+
+function showLucasFeedback(msg, type = "info") {
+  const banner = document.getElementById("lucasFeedbackBanner");
+  if (!banner) return;
+  banner.classList.remove("hidden");
+  if (type === "success") {
+    banner.className = "mx-6 mt-3 p-3 rounded-xl text-xs font-semibold bg-emerald-900/40 border border-emerald-500/40 text-emerald-300 block";
+  } else if (type === "error") {
+    banner.className = "mx-6 mt-3 p-3 rounded-xl text-xs font-semibold bg-rose-900/40 border border-rose-500/40 text-rose-300 block";
+  } else {
+    banner.className = "mx-6 mt-3 p-3 rounded-xl text-xs font-semibold bg-indigo-900/40 border border-indigo-500/40 text-indigo-200 block";
+  }
+  banner.textContent = msg;
+  setTimeout(() => {
+    if (banner) banner.classList.add("hidden");
+  }, 5000);
+}
+
+
+
 

@@ -1,0 +1,47 @@
+[
+  {
+    "url": "https://auditorrealestate.fairfieldcountyohio.gov/",
+    "classification": "reachable",
+    "finding": "September 30, 2026: Auditor home rendered; 75,021 county parcels and countywide CAMA download link visible."
+  },
+  {
+    "url": "https://auditorrealestate.fairfieldcountyohio.gov/DelinquencyReport",
+    "classification": "protected",
+    "finding": "September 30, 2026: normal browser rendered 2,664 delinquent parcels; CSV export downloaded all 2,664 records. Automated HTTP 403; normal session required."
+  },
+  {
+    "url": "https://www.portagecounty-oh.gov/geographic-information-systems/pages/data-downloads",
+    "classification": "reachable",
+    "finding": "September 30, 2026: normal browser rendered county CAMA/Appraisal Data and Tax Parcel downloads; GovernmaxExtract file independently inspected."
+  },
+  {
+    "url": "https://www.miamicountyohioauditor.gov/DelinquencyReport",
+    "classification": "protected",
+    "finding": "September 30, 2026: normal browser rendered 531 delinquent parcels and Export CSV; automated 403 possible."
+  },
+  {
+    "url": "https://clarkcountyauditor.org/DelinquencyReport",
+    "classification": "protected",
+    "finding": "September 30, 2026: normal browser rendered 2,301 delinquent parcels and Export CSV; automated 403 possible."
+  },
+  {
+    "url": "https://auditor.medinacounty.gov/DelinquencyReport",
+    "classification": "protected",
+    "finding": "September 30, 2026: normal browser rendered 3,187 delinquent parcels and Export CSV; automated 403 possible."
+  },
+  {
+    "url": "https://probate.miamicountyohio.gov/",
+    "classification": "protected",
+    "finding": "September 30, 2026: normal browser rendered Miami Probate CaseLook legal disclaimer, 24-hour posting delay and Continue gateway. Agreement not accepted; automated TLS access fails."
+  },
+  {
+    "url": "https://court.co.delaware.oh.us/eservices/home.page.2",
+    "classification": "protected",
+    "finding": "September 30, 2026: production Public Portal rendered in normal browser, General/Probate division notice and CAPTCHA gate. No CAPTCHA solved. County Clerk and Probate pages endorse this production route; training portal excluded."
+  },
+  {
+    "url": "https://www.clermontauditorrealestate.org/_web/search/commonsearch.aspx?mode=owner",
+    "classification": "inconclusive",
+    "finding": "September 30, 2026: official owner/account search renders but says System is currently unavailable due to maintenance. Data Current September 29, 2026. Query operation unverified."
+  }
+]

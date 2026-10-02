@@ -1,0 +1,781 @@
+[
+  {
+    "county": "Greenville",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://www.greenvillecounty.org/disclaimer/PublicRecords.aspx?DirURL=RealProperty",
+        "evidence": "https://www.greenvillecounty.org/RealProperty/",
+        "agency": "Greenville County Assessor / Real Property",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual official real-property/parcel search; not a bulk tax roll. Government-authorized system; disclaimer, JavaScript, CAPTCHA or session setup may apply."
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "agency": "Greenville County GIS / Assessor",
+        "url": "https://www.gcgis.org/AccessDistribution.html",
+        "access": "RECORDS_REQUEST",
+        "notes": "Likely custodian: Greenville County GIS / Assessor. Countywide Public Export Not Confirmed — Request Existing Data. GIS data distribution; paid data order route. Individual property lookup is not a master roll. Request existing countywide parcel/ownership/appraisal/CAMA data in its maintained electronic format; fees and availability require custodian confirmation."
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://www.greenvillecounty.org/disclaimer/PublicRecords.aspx?DirURL=TaxQuery",
+        "evidence": "https://www.greenvillecounty.org/disclaimer/PublicRecords.aspx?DirURL=TaxQuery",
+        "agency": "Greenville County Treasurer / Delinquent Tax Collector",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual Tax Status. Official account-level search/payment history; not a confirmed countywide delinquent-account export. Search real-property account/TMS and confirm outstanding prior-year balances and transferred delinquent bills with the Delinquent Tax Collector. Annual tax-sale, redemption, forfeiture and surplus lists are different subsets. "
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://www2.greenvillecounty.org/scjd/publicindex/",
+        "evidence": "https://www.sccourts.org/courts/courthouse-search/greenville/",
+        "agency": "Greenville County Clerk of Court — Court of Common Pleas",
+        "access": "CAPTCHA_PORTAL",
+        "notes": "South Carolina judicial foreclosure filings: county-specific public civil case index authorized by SC Judicial Branch courthouse directory. Select Court of Common Pleas and relevant foreclosure case type/filing; the index also contains unrelated civil cases. Earliest useful case filings are primary; Master-in-Equity judgments/sales are later stages, not the full filing universe. Supporting court rosters: https://www.greenvillecounty.org/scjd/courtrosters/disclaimer.aspx. Disclaimer/CAPTCHA/session restrictions and document access/redactions apply; missing or older files require Clerk court-record procedures, not ordinary county FOIA. No bulk extraction or guaranteed live filing completeness."
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://www.greenvillecounty.org/disclaimer/PublicRecords.aspx?DirURL=Probate",
+        "evidence": "https://www.greenvillecounty.org/Probate/",
+        "access": "SEARCH_PORTAL",
+        "agency": "Greenville County Probate Court",
+        "notes": "Separate Probate Court index; older/offline file copies via Probate Court. Separate Probate Court estate jurisdiction. Online index is not a complete downloadable estate file set; restricted/older documents and copy charges require judicial records procedures."
+      },
+      {
+        "type": "COUNTY_CODE_ENFORCEMENT",
+        "url": "https://www.greenvillecounty.org/BuildingSafety/forms/FOIAFORM.pdf",
+        "access": "RECORDS_REQUEST",
+        "agency": "Greenville County Planning and Code Compliance",
+        "email": "codesfoia@greenvillecounty.org",
+        "notes": "Existing retained enforcement case records — request/contact fallback. Unincorporated county property maintenance, nuisance and building/code records. Building Safety FOIA form obtains retained records. Public case export not confirmed; do not submit a violation complaint or request an inspection to obtain records."
+      }
+    ]
+  },
+  {
+    "county": "Spartanburg",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://qpublic.schneidercorp.com/Application.aspx?App=SpartanburgCountySC&Layer=Parcels&PageType=Search",
+        "evidence": "https://www.spartanburgcounty.gov/288/Assessor-Property-Records-Search",
+        "agency": "Spartanburg County Assessor / Real Property",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual official real-property/parcel search; not a bulk tax roll. Government-authorized system; disclaimer, JavaScript, CAPTCHA or session setup may apply."
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "agency": "Spartanburg County GIS / Assessor",
+        "url": "https://maps.spartanburgcounty.org/server/rest/services/GIS/CAMA_Parcels/FeatureServer/0",
+        "access": "DOWNLOAD_PAGE",
+        "format": "JSON / GeoJSON (paginated ArcGIS query)",
+        "evidence": "https://maps.spartanburgcounty.org/server/rest/services/GIS/CAMA_Parcels/FeatureServer/0",
+        "notes": "Confirmed countywide ownership parcel layer. Metadata, unfiltered count (182,851 feature/card rows) and representative record fields checked 2026-09-30; 2000-record response cap requires pagination or object-ID batches. Feature counts are not unique tax accounts. Ownership, situs/mailing and appraisal/tax-value attributes are present; availability of building fields varies. No extract publication date confirmed; verify refresh date and completeness before use."
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://spartanburgcountytax.com/",
+        "evidence": "https://www.spartanburgcounty.gov/366/Treasurer-Record-Search",
+        "agency": "Spartanburg County Treasurer / Delinquent Tax Collector",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual Tax Status. Official account-level search/payment history; not a confirmed countywide delinquent-account export. Search real-property account/TMS and confirm outstanding prior-year balances and transferred delinquent bills with the Delinquent Tax Collector. Annual tax-sale, redemption, forfeiture and surplus lists are different subsets. "
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://publicindex.sccourts.org/spartanburg/publicindex/",
+        "evidence": "https://www.sccourts.org/courts/courthouse-search/spartanburg/",
+        "agency": "Spartanburg County Clerk of Court — Court of Common Pleas",
+        "access": "CAPTCHA_PORTAL",
+        "notes": "South Carolina judicial foreclosure filings: county-specific public civil case index authorized by SC Judicial Branch courthouse directory. Select Court of Common Pleas and relevant foreclosure case type/filing; the index also contains unrelated civil cases. Earliest useful case filings are primary; Master-in-Equity judgments/sales are later stages, not the full filing universe. Supporting court rosters: https://publicindex.sccourts.org/spartanburg/courtrosters/. Disclaimer/CAPTCHA/session restrictions and document access/redactions apply; missing or older files require Clerk court-record procedures, not ordinary county FOIA. No bulk extraction or guaranteed live filing completeness."
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://www.spartanburgcounty.gov/153/Probate-Court",
+        "evidence": "https://www.spartanburgcounty.gov/153/Probate-Court",
+        "access": "RECORDS_REQUEST",
+        "agency": "Spartanburg County Probate Court",
+        "notes": "Public online estate index not confirmed. Court describes April 27, 2023 ransomware/database loss; physical file research requires an appointment with the Probate Court. Separate Probate Court estate jurisdiction. Online index is not a complete downloadable estate file set; restricted/older documents and copy charges require judicial records procedures."
+      }
+    ]
+  },
+  {
+    "county": "Anderson",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://acpass.andersoncountysc.org/",
+        "evidence": "https://www.andersoncountysc.org/departments-a-z/assessor/",
+        "agency": "Anderson County Assessor / Real Property",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual official real-property/parcel search; not a bulk tax roll. Choose real-property parcel inquiry in ACPASS. Government-authorized system; disclaimer, JavaScript, CAPTCHA or session setup may apply."
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "agency": "Anderson County Assessor",
+        "url": "https://www.andersoncountysc.org/departments-a-z/assessor/",
+        "access": "RECORDS_REQUEST",
+        "email": "Assessor@andersoncountysc.org",
+        "notes": "Likely custodian: Anderson County Assessor. Countywide Public Export Not Confirmed — Request Existing Data. Assessor existing CAMA/data-sale request; confirm fees and reuse restrictions. Individual property lookup is not a master roll. Request existing countywide parcel/ownership/appraisal/CAMA data in its maintained electronic format; fees and availability require custodian confirmation."
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://acpass.andersoncountysc.org/",
+        "evidence": "https://www.andersoncountysc.org/departments-a-z/treasurer/",
+        "agency": "Anderson County Treasurer / Delinquent Tax Collector",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual Tax Status. Official account-level search/payment history; not a confirmed countywide delinquent-account export. Search real-property account/TMS and confirm outstanding prior-year balances and transferred delinquent bills with the Delinquent Tax Collector. Annual tax-sale, redemption, forfeiture and surplus lists are different subsets. "
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://publicindex.sccourts.org/anderson/publicindex/",
+        "evidence": "https://www.sccourts.org/courts/courthouse-search/anderson/",
+        "agency": "Anderson County Clerk of Court — Court of Common Pleas",
+        "access": "CAPTCHA_PORTAL",
+        "notes": "South Carolina judicial foreclosure filings: county-specific public civil case index authorized by SC Judicial Branch courthouse directory. Select Court of Common Pleas and relevant foreclosure case type/filing; the index also contains unrelated civil cases. Earliest useful case filings are primary; Master-in-Equity judgments/sales are later stages, not the full filing universe. Supporting court rosters: https://publicindex.sccourts.org/anderson/courtrosters/. Disclaimer/CAPTCHA/session restrictions and document access/redactions apply; missing or older files require Clerk court-record procedures, not ordinary county FOIA. No bulk extraction or guaranteed live filing completeness. Normal browser verified Accept/Decline gateway; it prohibits automated repetitive record scraping and states home addresses are no longer displayed from January 1, 2026."
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://acpass.andersoncountysc.org/index.htm",
+        "evidence": "https://www.andersoncountysc.org/departments-a-z/probate-court/",
+        "access": "SEARCH_PORTAL",
+        "agency": "Anderson County Probate Court",
+        "email": "probate@andersoncountysc.org",
+        "notes": "Probate Court officially links ACPASS public records. Choose Probate/estate records, not Common Pleas. Separate Probate Court estate jurisdiction. Online index is not a complete downloadable estate file set; restricted/older documents and copy charges require judicial records procedures."
+      },
+      {
+        "type": "COUNTY_CODE_ENFORCEMENT",
+        "url": "https://www.andersoncountysc.org/departments-a-z/environmental-code-enforcement/",
+        "access": "RECORDS_REQUEST",
+        "agency": "Anderson County Environmental Code Enforcement",
+        "email": "AC_Env_Enforcement@andersoncountysc.org",
+        "notes": "Existing retained enforcement case records — request/contact fallback. Unincorporated environmental/nuisance/property cases; department contact is a records fallback, not its complaint process. Public case export not confirmed; do not submit a violation complaint or request an inspection to obtain records."
+      }
+    ]
+  },
+  {
+    "county": "Pickens",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://qpublic.schneidercorp.com/Application.aspx?AppID=927&LayerID=18058&PageTypeID=2&PageID=8075",
+        "evidence": "https://www.pickensassessor.org/",
+        "agency": "Pickens County Assessor / Real Property",
+        "access": "CAPTCHA_PORTAL",
+        "notes": "Individual official real-property search, authorized by Pickens County Assessor. Terms/Agree gateway; not a bulk roll. Normal browser confirmed owner, location, account, parcel and mailing search controls. Last Data Upload displayed 9/30/2026, 10:15:37 AM; assessment values are subject to certification/change.",
+        "captcha": false
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "agency": "Pickens County GIS / Assessor",
+        "url": "https://www.co.pickens.sc.us/departments/gis/index.php",
+        "access": "RECORDS_REQUEST",
+        "notes": "Likely custodian: Pickens County GIS / Assessor. Countywide Public Export Not Confirmed — Request Existing Data. GIS data purchase/request contact; ask for ownership/appraisal attributes, not geometry alone. Individual property lookup is not a master roll. Request existing countywide parcel/ownership/appraisal/CAMA data in its maintained electronic format; fees and availability require custodian confirmation."
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://pickenscountysctax.us/taxes.html#/WildfireSearch/",
+        "evidence": "https://www.pickensassessor.org/",
+        "agency": "Pickens County Treasurer / Delinquent Tax Collector",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual Tax Status. Official account-level search/payment history; not a confirmed countywide delinquent-account export. Search real-property account/TMS and confirm outstanding prior-year balances and transferred delinquent bills with the Delinquent Tax Collector. Annual tax-sale, redemption, forfeiture and surplus lists are different subsets. "
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://publicindex.sccourts.org/pickens/publicindex/",
+        "evidence": "https://www.sccourts.org/courts/courthouse-search/pickens/",
+        "agency": "Pickens County Clerk of Court — Court of Common Pleas",
+        "access": "CAPTCHA_PORTAL",
+        "notes": "South Carolina judicial foreclosure filings: county-specific public civil case index authorized by SC Judicial Branch courthouse directory. Select Court of Common Pleas and relevant foreclosure case type/filing; the index also contains unrelated civil cases. Earliest useful case filings are primary; Master-in-Equity judgments/sales are later stages, not the full filing universe. Supporting court rosters: https://publicindex.sccourts.org/pickens/courtrosters/. Disclaimer/CAPTCHA/session restrictions and document access/redactions apply; missing or older files require Clerk court-record procedures, not ordinary county FOIA. No bulk extraction or guaranteed live filing completeness."
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://www.co.pickens.sc.us/departments/probate_court/index.php",
+        "evidence": "https://www.co.pickens.sc.us/departments/probate_court/index.php",
+        "access": "RECORDS_REQUEST",
+        "agency": "Pickens County Probate Court",
+        "email": "pcprobate@co.pickens.sc.us",
+        "notes": "Online estate index not confirmed; request existing estate indexes/files from Probate Court. Separate Probate Court estate jurisdiction. Online index is not a complete downloadable estate file set; restricted/older documents and copy charges require judicial records procedures."
+      }
+    ]
+  },
+  {
+    "county": "Richland",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://www.richlandcountysc.gov/Property-Business/Mapping-and-Records/Property-Search",
+        "evidence": "https://www.richlandcountysc.gov/Property-Business/Mapping-and-Records/Property-Search",
+        "agency": "Richland County Assessor / Real Property",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual official real-property/parcel search; not a bulk tax roll. Government-authorized system; disclaimer, JavaScript, CAPTCHA or session setup may apply."
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "agency": "Richland County GIS / Assessor",
+        "url": "https://www.richlandcountysc.gov/Property-Business/Mapping-and-Records/Geographic-Information-Systems",
+        "access": "RECORDS_REQUEST",
+        "notes": "Likely custodian: Richland County GIS / Assessor. Countywide Public Export Not Confirmed — Request Existing Data. GIS data licensing/request contact; confirm fees and whether Assessor CAMA tables require a separate custodian. Individual property lookup is not a master roll. Request existing countywide parcel/ownership/appraisal/CAMA data in its maintained electronic format; fees and availability require custodian confirmation."
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://www7.richlandcountysc.gov/TreasurerTaxInfo/Main.aspx",
+        "evidence": "https://www.richlandcountysc.gov/Property-Business/Taxes/Pay-Taxes",
+        "agency": "Richland County Treasurer / Delinquent Tax Collector",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual Tax Status. Official account-level search/payment history; not a confirmed countywide delinquent-account export. Search real-property account/TMS and confirm outstanding prior-year balances and transferred delinquent bills with the Delinquent Tax Collector. Annual tax-sale, redemption, forfeiture and surplus lists are different subsets. "
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://publicindex.sccourts.org/Richland/PublicIndex/disclaimer.aspx",
+        "evidence": "https://www.sccourts.org/courts/courthouse-search/richland/",
+        "agency": "Richland County Clerk of Court — Court of Common Pleas",
+        "access": "CAPTCHA_PORTAL",
+        "notes": "South Carolina judicial foreclosure filings: county-specific public civil case index authorized by SC Judicial Branch courthouse directory. Select Court of Common Pleas and relevant foreclosure case type/filing; the index also contains unrelated civil cases. Earliest useful case filings are primary; Master-in-Equity judgments/sales are later stages, not the full filing universe. Supporting court rosters: https://publicindex.sccourts.org/Richland/CourtRosters/disclaimer.aspx. Disclaimer/CAPTCHA/session restrictions and document access/redactions apply; missing or older files require Clerk court-record procedures, not ordinary county FOIA. No bulk extraction or guaranteed live filing completeness. Normal browser verified Accept/Decline gateway; it prohibits automated repetitive record scraping and states home addresses are no longer displayed from January 1, 2026."
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://www7.richlandcountysc.gov/EstateInquiry/main.aspx",
+        "evidence": "https://www.richlandcountysc.gov/Courts-Safety/Probate-Court/Estates",
+        "access": "SEARCH_PORTAL",
+        "agency": "Richland County Probate Court",
+        "notes": "Estate inquiry covers 1983 onward; earlier files require court contact. Separate Probate Court estate jurisdiction. Online index is not a complete downloadable estate file set; restricted/older documents and copy charges require judicial records procedures."
+      },
+      {
+        "type": "COUNTY_CODE_ENFORCEMENT",
+        "url": "https://www.rcsd.net/code-enforcement",
+        "access": "RECORDS_REQUEST",
+        "agency": "Richland County Sheriff — Code Enforcement",
+        "email": "codeenforcement@rcsd.net",
+        "notes": "Existing retained enforcement case records — request/contact fallback. Sheriff retains county ordinance enforcement cases. Request existing records from Sheriff; municipal cases belong to cities. Public case export not confirmed; do not submit a violation complaint or request an inspection to obtain records."
+      }
+    ]
+  },
+  {
+    "county": "Lexington",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://www.lex-co.com/PropSearch/",
+        "evidence": "https://www.lex-co.sc.gov/",
+        "agency": "Lexington County Assessor / Real Property",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual official real-property/parcel search; not a bulk tax roll. Government-authorized system; disclaimer, JavaScript, CAPTCHA or session setup may apply."
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "agency": "Lexington County FOIA routing to Planning/GIS / Assessor",
+        "url": "https://sc.accessgov.com/lexingtoncounty/Forms/Page/lexingtoncounty/foia",
+        "access": "RECORDS_REQUEST",
+        "notes": "Likely custodian: Lexington County FOIA routing to Planning/GIS / Assessor. Countywide Public Export Not Confirmed — Request Existing Data. County FOIA routes to Planning/GIS and Assessor. Published GIS data price list is not a free countywide download. Individual property lookup is not a master roll. Request existing countywide parcel/ownership/appraisal/CAMA data in its maintained electronic format; fees and availability require custodian confirmation."
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://lexingtoncountytreasurer.qpaybill.com/",
+        "evidence": "https://www.lex-co.sc.gov/",
+        "agency": "Lexington County Treasurer / Delinquent Tax Collector",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual Tax Status. Official account-level search/payment history; not a confirmed countywide delinquent-account export. Search real-property account/TMS and confirm outstanding prior-year balances and transferred delinquent bills with the Delinquent Tax Collector. Annual tax-sale, redemption, forfeiture and surplus lists are different subsets. "
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://publicindex.sccourts.org/lexington/publicindex/",
+        "evidence": "https://www.sccourts.org/courts/courthouse-search/lexington/",
+        "agency": "Lexington County Clerk of Court — Court of Common Pleas",
+        "access": "CAPTCHA_PORTAL",
+        "notes": "South Carolina judicial foreclosure filings: county-specific public civil case index authorized by SC Judicial Branch courthouse directory. Select Court of Common Pleas and relevant foreclosure case type/filing; the index also contains unrelated civil cases. Earliest useful case filings are primary; Master-in-Equity judgments/sales are later stages, not the full filing universe. Supporting court rosters: https://publicindex.sccourts.org/lexington/courtrosters/. Disclaimer/CAPTCHA/session restrictions and document access/redactions apply; missing or older files require Clerk court-record procedures, not ordinary county FOIA. No bulk extraction or guaranteed live filing completeness."
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://www.lex-co.sc.gov/departments/probate-court/disclaimer-estate/acknowledgement-disclaimer",
+        "evidence": "https://www.lex-co.sc.gov/departments/probate-court",
+        "access": "SEARCH_PORTAL",
+        "agency": "Lexington County Probate Court",
+        "notes": "Current estate index: 1995 onward. Separate historical estate/marriage gateway covers 1865–1994; neither is a full document bulk export. Separate Probate Court estate jurisdiction. Online index is not a complete downloadable estate file set; restricted/older documents and copy charges require judicial records procedures."
+      },
+      {
+        "type": "COUNTY_CODE_ENFORCEMENT",
+        "url": "https://www.lex-co.sc.gov/departments/community-development/zoning/code-enforcement",
+        "access": "RECORDS_REQUEST",
+        "agency": "Lexington County Zoning / Sheriff Code Enforcement",
+        "notes": "Existing retained enforcement case records — request/contact fallback. Unincorporated zoning/ordinance cases. County page identifies Sheriff enforcement; ask the identified office for its retained records. Public case export not confirmed; do not submit a violation complaint or request an inspection to obtain records."
+      }
+    ]
+  },
+  {
+    "county": "Charleston",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://gisccweb.charlestoncounty.org/public_search/",
+        "evidence": "https://www.charlestoncounty.gov/online-services.php",
+        "agency": "Charleston County Assessor / Real Property",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual official real-property/parcel search; not a bulk tax roll. Government-authorized system; disclaimer, JavaScript, CAPTCHA or session setup may apply."
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "agency": "Charleston County GIS / Assessor",
+        "url": "https://gisccapps.charlestoncounty.org/arcgis/rest/services/ProVal/ParcelMap/MapServer/0",
+        "access": "DOWNLOAD_PAGE",
+        "format": "JSON / GeoJSON (paginated ArcGIS query)",
+        "evidence": "https://gisccapps.charlestoncounty.org/arcgis/rest/services/ProVal/ParcelMap/MapServer/0",
+        "notes": "Confirmed countywide ownership parcel layer. Metadata, unfiltered count (197,630 feature/card rows) and representative record fields checked 2026-09-30; 1000-record response cap requires pagination or object-ID batches. Feature counts are not unique tax accounts. Ownership, situs/mailing and appraisal/tax-value attributes are present; availability of building fields varies. No extract publication date confirmed; verify refresh date and completeness before use."
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://sc-charleston.publicaccessnow.com/",
+        "evidence": "https://www.charlestoncounty.gov/online-services.php",
+        "agency": "Charleston County Treasurer / Delinquent Tax Collector",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual Tax Status. Official account-level search/payment history; not a confirmed countywide delinquent-account export. Search real-property account/TMS and confirm outstanding prior-year balances and transferred delinquent bills with the Delinquent Tax Collector. Annual tax-sale, redemption, forfeiture and surplus lists are different subsets. "
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://jcmsweb.charlestoncounty.gov/PublicIndex/",
+        "evidence": "https://www.sccourts.org/courts/courthouse-search/charleston/",
+        "agency": "Charleston County Clerk of Court — Court of Common Pleas",
+        "access": "CAPTCHA_PORTAL",
+        "notes": "South Carolina judicial foreclosure filings: county-specific public civil case index authorized by SC Judicial Branch courthouse directory. Select Court of Common Pleas and relevant foreclosure case type/filing; the index also contains unrelated civil cases. Earliest useful case filings are primary; Master-in-Equity judgments/sales are later stages, not the full filing universe. Supporting court rosters: https://jcmsweb.charlestoncounty.gov/CourtRosters/. Disclaimer/CAPTCHA/session restrictions and document access/redactions apply; missing or older files require Clerk court-record procedures, not ordinary county FOIA. No bulk extraction or guaranteed live filing completeness. Normal browser verified Accept/Decline gateway; it prohibits automated repetitive record scraping and states home addresses are no longer displayed from January 1, 2026."
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://www.southcarolinaprobate.net/charlestonprobatesearch/",
+        "evidence": "https://www.charlestoncounty.gov/online-services.php",
+        "access": "SEARCH_PORTAL",
+        "agency": "Charleston County Probate Court",
+        "notes": "County-authorized dedicated Charleston Probate Court estate search. Separate Probate Court estate jurisdiction. Online index is not a complete downloadable estate file set; restricted/older documents and copy charges require judicial records procedures."
+      }
+    ]
+  },
+  {
+    "county": "Berkeley",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://assessor.berkeleycountysc.gov/prop_card_search.php",
+        "evidence": "https://berkeleycountysc.gov/dept/realprop/",
+        "agency": "Berkeley County Assessor / Real Property",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual official real-property/parcel search; not a bulk tax roll. Government-authorized system; disclaimer, JavaScript, CAPTCHA or session setup may apply."
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "agency": "Berkeley County GIS / Assessor",
+        "url": "https://gis.berkeleycountysc.gov/arcgis/rest/services/API/internet_map_with_api/MapServer/4",
+        "access": "DOWNLOAD_PAGE",
+        "format": "JSON / GeoJSON (paginated ArcGIS query)",
+        "evidence": "https://gis.berkeleycountysc.gov/arcgis/rest/services/API/internet_map_with_api/MapServer/4",
+        "notes": "Confirmed countywide ownership parcel layer. Metadata, unfiltered count (123,223 feature/card rows) and representative record fields checked 2026-09-30; 2000-record response cap requires pagination or object-ID batches. Feature counts are not unique tax accounts. Ownership, situs/mailing and appraisal/tax-value attributes are present; availability of building fields varies. No extract publication date confirmed; verify refresh date and completeness before use."
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://berkeleycountysc.paystar.io/",
+        "evidence": "https://berkeleycountysc.gov/dept/realprop/",
+        "agency": "Berkeley County Treasurer / Delinquent Tax Collector",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual Tax Status. Official account-level search/payment history; not a confirmed countywide delinquent-account export. Search real-property account/TMS and confirm outstanding prior-year balances and transferred delinquent bills with the Delinquent Tax Collector. Annual tax-sale, redemption, forfeiture and surplus lists are different subsets. "
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://publicindex.sccourts.org/berkeley/publicindex/",
+        "evidence": "https://www.sccourts.org/courts/courthouse-search/berkeley/",
+        "agency": "Berkeley County Clerk of Court — Court of Common Pleas",
+        "access": "CAPTCHA_PORTAL",
+        "notes": "South Carolina judicial foreclosure filings: county-specific public civil case index authorized by SC Judicial Branch courthouse directory. Select Court of Common Pleas and relevant foreclosure case type/filing; the index also contains unrelated civil cases. Earliest useful case filings are primary; Master-in-Equity judgments/sales are later stages, not the full filing universe. Supporting court rosters: https://publicindex.sccourts.org/berkeley/courtrosters/. Disclaimer/CAPTCHA/session restrictions and document access/redactions apply; missing or older files require Clerk court-record procedures, not ordinary county FOIA. No bulk extraction or guaranteed live filing completeness. Normal browser verified Accept/Decline gateway; it prohibits automated repetitive record scraping and states home addresses are no longer displayed from January 1, 2026."
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://berkeleycountysc.gov/dept/probate/",
+        "evidence": "https://berkeleycountysc.gov/dept/probate/",
+        "access": "RECORDS_REQUEST",
+        "agency": "Berkeley County Probate Court",
+        "notes": "Official PAWS link leads to an Attorney login (govcloud2.hostedbyspartan.com/BerkeleyPRO/Attorney), not a confirmed public estate index. Request existing public estate indexes/files from Probate Court. Separate Probate Court estate jurisdiction. Online index is not a complete downloadable estate file set; restricted/older documents and copy charges require judicial records procedures."
+      }
+    ]
+  },
+  {
+    "county": "Dorchester",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://www.dorchestercountysc.gov/government/property-tax-services/assessor/real-estate-mobile-home-search",
+        "evidence": "https://www.dorchestercountysc.gov/government/property-tax-services/assessor/real-estate-mobile-home-search",
+        "agency": "Dorchester County Assessor / Real Property",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual official real-property/parcel search; not a bulk tax roll. Government-authorized system; disclaimer, JavaScript, CAPTCHA or session setup may apply."
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "agency": "Dorchester County FOIA routing to GIS / Assessor",
+        "url": "https://dorchestercountysc.nextrequest.com/",
+        "access": "RECORDS_REQUEST",
+        "notes": "Likely custodian: Dorchester County FOIA routing to GIS / Assessor. Countywide Public Export Not Confirmed — Request Existing Data. County FOIA routes to GIS/Assessor; maps and data-order forms are not a public owner/CAMA export. Individual property lookup is not a master roll. Request existing countywide parcel/ownership/appraisal/CAMA data in its maintained electronic format; fees and availability require custodian confirmation."
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://dorchestercountyscdelinquenttax.billtrax.com/welcome",
+        "evidence": "https://www.dorchestercountysc.gov/Home/Components/News/News/4195/1255",
+        "agency": "Dorchester County Delinquent Tax Collector",
+        "access": "SEARCH_PORTAL",
+        "notes": "Searchable Delinquent Accounts. Official April 6, 2026 launch announcement identifies the dedicated Delinquent Tax BillTrax portal. Select real property; personal-property accounts may also appear. Public search is not a confirmed full electronic export. Confirm balances and payments with the collector."
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://publicindex.sccourts.org/dorchester/publicindex/",
+        "evidence": "https://www.sccourts.org/courts/courthouse-search/dorchester/",
+        "agency": "Dorchester County Clerk of Court — Court of Common Pleas",
+        "access": "CAPTCHA_PORTAL",
+        "notes": "South Carolina judicial foreclosure filings: county-specific public civil case index authorized by SC Judicial Branch courthouse directory. Select Court of Common Pleas and relevant foreclosure case type/filing; the index also contains unrelated civil cases. Earliest useful case filings are primary; Master-in-Equity judgments/sales are later stages, not the full filing universe. Supporting court rosters: https://publicindex.sccourts.org/dorchester/courtrosters/. Disclaimer/CAPTCHA/session restrictions and document access/redactions apply; missing or older files require Clerk court-record procedures, not ordinary county FOIA. No bulk extraction or guaranteed live filing completeness."
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://www.southcarolinaprobate.net/search/",
+        "evidence": "https://www.dorchestercountysc.gov/government/courts-judicial-services/probate-court/estate-division",
+        "access": "SEARCH_PORTAL",
+        "agency": "Dorchester County Probate Court",
+        "notes": "County authorizes this vendor; select Dorchester County / estate jurisdiction. Separate Probate Court estate jurisdiction. Online index is not a complete downloadable estate file set; restricted/older documents and copy charges require judicial records procedures."
+      },
+      {
+        "type": "COUNTY_CODE_ENFORCEMENT",
+        "url": "https://dorchestercountysc.nextrequest.com/",
+        "access": "RECORDS_REQUEST",
+        "agency": "Dorchester County Planning and Zoning Code Enforcement",
+        "notes": "Existing retained enforcement case records — request/contact fallback. County FOIA request for retained unincorporated-area nuisance/zoning cases; Summerville and North Charleston are separate municipal custodians. Public case export not confirmed; do not submit a violation complaint or request an inspection to obtain records."
+      }
+    ]
+  },
+  {
+    "county": "York",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://evolvepublic.yorkcountygov.com/?Search=assessor",
+        "evidence": "https://www.yorkcountygov.com/QuickLinks.aspx?CID=33",
+        "agency": "York County Assessor / Real Property",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual official real-property/parcel search; not a bulk tax roll. Government-authorized system; disclaimer, JavaScript, CAPTCHA or session setup may apply."
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "agency": "York County GIS / Assessor",
+        "url": "https://www.yorkcountysc.gov/239/GIS-Data-Download",
+        "access": "DOWNLOAD_PAGE",
+        "format": "CSV / shapefile / geodatabase",
+        "notes": "Confirmed countywide bulk data. Official GIS documentation offers entire-county parcel layers and CAMA ownership/assessment tables including square footage and year built. Choose the relevant whole-county dataset, not a map extent export. Download item timestamps vary; no common extract date confirmed. GIS/CAMA keys and one-to-many building rows require validation."
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://onlinetaxes.yorkcountygov.com/taxes#/",
+        "evidence": "https://www.yorkcountygov.com/QuickLinks.aspx?CID=33",
+        "agency": "York County Treasurer / Delinquent Tax Collector",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual Tax Status. Official account-level search/payment history; not a confirmed countywide delinquent-account export. Search real-property account/TMS and confirm outstanding prior-year balances and transferred delinquent bills with the Delinquent Tax Collector. Annual tax-sale, redemption, forfeiture and surplus lists are different subsets. "
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://publicindex.sccourts.org/york/publicindex/",
+        "evidence": "https://www.sccourts.org/courts/courthouse-search/york/",
+        "agency": "York County Clerk of Court — Court of Common Pleas",
+        "access": "CAPTCHA_PORTAL",
+        "notes": "South Carolina judicial foreclosure filings: county-specific public civil case index authorized by SC Judicial Branch courthouse directory. Select Court of Common Pleas and relevant foreclosure case type/filing; the index also contains unrelated civil cases. Earliest useful case filings are primary; Master-in-Equity judgments/sales are later stages, not the full filing universe. Supporting court rosters: https://publicindex.sccourts.org/york/courtrosters/. Disclaimer/CAPTCHA/session restrictions and document access/redactions apply; missing or older files require Clerk court-record procedures, not ordinary county FOIA. No bulk extraction or guaranteed live filing completeness."
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://www.southcarolinaprobate.net/search/",
+        "evidence": "https://www.yorkcountygov.com/169/Probate-Court",
+        "access": "SEARCH_PORTAL",
+        "agency": "York County Probate Court",
+        "notes": "County-authorized estate index; York documentation describes 1975 onward. Select York, not another county. Separate Probate Court estate jurisdiction. Online index is not a complete downloadable estate file set; restricted/older documents and copy charges require judicial records procedures."
+      },
+      {
+        "type": "COUNTY_CODE_ENFORCEMENT",
+        "url": "https://www.yorkcountysc.gov/854/Code-Enforcement",
+        "access": "RECORDS_REQUEST",
+        "agency": "York County Code Enforcement",
+        "notes": "Existing retained enforcement case records — request/contact fallback. County property-maintenance, unsafe structure and zoning cases; incorporated city cases require the respective city custodian. Public case export not confirmed; do not submit a violation complaint or request an inspection to obtain records."
+      }
+    ]
+  },
+  {
+    "county": "Lancaster",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://qpublic.schneidercorp.com/Application.aspx?App=LancasterCountySC&Layer=Parcels&PageType=Search",
+        "evidence": "https://www.lancastercountysc.gov/399/Assessor-Parcel-Map-Search",
+        "agency": "Lancaster County Assessor / Real Property",
+        "access": "CAPTCHA_PORTAL",
+        "notes": "Individual county-authorized real-property search, linked by Lancaster County Assessor Parcel Map Search page. Normal browser confirmed owner, address and parcel search behind Terms/Agree gateway. Last Data Upload displayed 9/30/2026, 8:23:27 AM; data may not reflect the latest records. Not a bulk roll.",
+        "captcha": false
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "agency": "Lancaster County FOIA routing to GIS / Assessor",
+        "url": "https://lancastercountysc.nextrequest.com/",
+        "access": "RECORDS_REQUEST",
+        "notes": "Likely custodian: Lancaster County FOIA routing to GIS / Assessor. Countywide Public Export Not Confirmed — Request Existing Data. County FOIA routes to GIS/Assessor for an existing electronic countywide export. Individual property lookup is not a master roll. Request existing countywide parcel/ownership/appraisal/CAMA data in its maintained electronic format; fees and availability require custodian confirmation."
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://lancastersctax.qpaybill.com/Taxes/TaxesDefaultType4.aspx",
+        "evidence": "https://www.lancastercountysc.gov/416/Treasurer",
+        "agency": "Lancaster County Treasurer / Delinquent Tax Collector",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual Tax Status. Official account-level search/payment history; not a confirmed countywide delinquent-account export. Search real-property account/TMS and confirm outstanding prior-year balances and transferred delinquent bills with the Delinquent Tax Collector. Annual tax-sale, redemption, forfeiture and surplus lists are different subsets. "
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://publicindex.sccourts.org/lancaster/publicindex/",
+        "evidence": "https://www.sccourts.org/courts/courthouse-search/lancaster/",
+        "agency": "Lancaster County Clerk of Court — Court of Common Pleas",
+        "access": "CAPTCHA_PORTAL",
+        "notes": "South Carolina judicial foreclosure filings: county-specific public civil case index authorized by SC Judicial Branch courthouse directory. Select Court of Common Pleas and relevant foreclosure case type/filing; the index also contains unrelated civil cases. Earliest useful case filings are primary; Master-in-Equity judgments/sales are later stages, not the full filing universe. Supporting court rosters: https://publicindex.sccourts.org/lancaster/courtrosters/. Disclaimer/CAPTCHA/session restrictions and document access/redactions apply; missing or older files require Clerk court-record procedures, not ordinary county FOIA. No bulk extraction or guaranteed live filing completeness."
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://www.southcarolinaprobate.net/search/",
+        "evidence": "https://www.lancastercountysc.gov/381/Probate-Court",
+        "access": "SEARCH_PORTAL",
+        "agency": "Lancaster County Probate Court",
+        "notes": "County-authorized vendor estate search; select Lancaster Probate Court. Separate Probate Court estate jurisdiction. Online index is not a complete downloadable estate file set; restricted/older documents and copy charges require judicial records procedures."
+      }
+    ]
+  },
+  {
+    "county": "Horry",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://www.horrycountysc.gov/apps/gis/",
+        "evidence": "https://www.horrycountysc.gov/online-services/",
+        "agency": "Horry County Assessor / Real Property",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual official real-property/parcel search; not a bulk tax roll. Official land-records map gateway requires disclaimer acceptance. Government-authorized system; disclaimer, JavaScript, CAPTCHA or session setup may apply."
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "agency": "Horry County GIS / Assessor",
+        "url": "https://www.horrycounty.org/gispublic/rest/services/Public/Parcels/MapServer/1",
+        "access": "DOWNLOAD_PAGE",
+        "format": "JSON / GeoJSON (paginated ArcGIS query)",
+        "evidence": "https://www.horrycounty.org/gispublic/rest/services/Public/Parcels/MapServer/1",
+        "notes": "Confirmed countywide ownership parcel layer. Metadata, unfiltered count (301,691 feature/card rows) and representative record fields checked 2026-09-30; 2000-record response cap requires pagination or object-ID batches. Feature counts are not unique tax accounts. Owner/mailing/PIN/TMS fields are present; appraisal values and building characteristics require Assessor linkage. No extract publication date confirmed; verify refresh date and completeness before use."
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://horrycountytreasurer.qpaybill.com/Taxes/TaxesDefaultType4.aspx",
+        "evidence": "https://www.horrycountysc.gov/online-services/",
+        "agency": "Horry County Treasurer / Delinquent Tax Collector",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual Tax Status. Official account-level search/payment history; not a confirmed countywide delinquent-account export. Search real-property account/TMS and confirm outstanding prior-year balances and transferred delinquent bills with the Delinquent Tax Collector. Annual tax-sale, redemption, forfeiture and surplus lists are different subsets. "
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://publicindex.sccourts.org/horry/publicindex/",
+        "evidence": "https://www.sccourts.org/courts/courthouse-search/horry/",
+        "agency": "Horry County Clerk of Court — Court of Common Pleas",
+        "access": "CAPTCHA_PORTAL",
+        "notes": "South Carolina judicial foreclosure filings: county-specific public civil case index authorized by SC Judicial Branch courthouse directory. Select Court of Common Pleas and relevant foreclosure case type/filing; the index also contains unrelated civil cases. Earliest useful case filings are primary; Master-in-Equity judgments/sales are later stages, not the full filing universe. Supporting court rosters: https://publicindex.sccourts.org/horry/courtrosters/. Disclaimer/CAPTCHA/session restrictions and document access/redactions apply; missing or older files require Clerk court-record procedures, not ordinary county FOIA. No bulk extraction or guaranteed live filing completeness."
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://scportal.hostedbyspartan.com/HorryPublicProbate/pages/InquiryMainPage.aspx",
+        "evidence": "https://www.horrycountysc.gov/departments/probate-court/",
+        "access": "SEARCH_PORTAL",
+        "agency": "Horry County Probate Court",
+        "notes": "County-authorized Horry public Probate Court inquiry. Separate Probate Court estate jurisdiction. Online index is not a complete downloadable estate file set; restricted/older documents and copy charges require judicial records procedures."
+      }
+    ]
+  },
+  {
+    "county": "Aiken",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://www.qpublic.net/sc/aiken/",
+        "evidence": "https://www.aikencountysc.gov/172/Search-Pay-Taxes",
+        "agency": "Aiken County Assessor / Real Property",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual official real-property/parcel search; not a bulk tax roll. Government-authorized system; disclaimer, JavaScript, CAPTCHA or session setup may apply."
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "agency": "Aiken County GIS / Assessor",
+        "url": "https://lookups.aikencountysc.gov/DspSvc?qSvcID=92",
+        "access": "RECORDS_REQUEST",
+        "email": "geoservices@aikencountysc.gov",
+        "notes": "Likely custodian: Aiken County GIS / Assessor. Countywide Public Export Not Confirmed — Request Existing Data. County GIS data sale/request; request existing ownership/appraisal tables if maintained. Individual property lookup is not a master roll. Request existing countywide parcel/ownership/appraisal/CAMA data in its maintained electronic format; fees and availability require custodian confirmation."
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://www.aikencountysctax.com/",
+        "evidence": "https://www.aikencountysc.gov/172/Search-Pay-Taxes",
+        "agency": "Aiken County Treasurer / Delinquent Tax Collector",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual Tax Status. Official account-level search/payment history; not a confirmed countywide delinquent-account export. Search real-property account/TMS and confirm outstanding prior-year balances and transferred delinquent bills with the Delinquent Tax Collector. Annual tax-sale, redemption, forfeiture and surplus lists are different subsets. "
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://publicindex.sccourts.org/aiken/publicindex/",
+        "evidence": "https://www.sccourts.org/courts/courthouse-search/aiken/",
+        "agency": "Aiken County Clerk of Court — Court of Common Pleas",
+        "access": "CAPTCHA_PORTAL",
+        "notes": "South Carolina judicial foreclosure filings: county-specific public civil case index authorized by SC Judicial Branch courthouse directory. Select Court of Common Pleas and relevant foreclosure case type/filing; the index also contains unrelated civil cases. Earliest useful case filings are primary; Master-in-Equity judgments/sales are later stages, not the full filing universe. Supporting court rosters: https://publicindex.sccourts.org/aiken/courtrosters/. Disclaimer/CAPTCHA/session restrictions and document access/redactions apply; missing or older files require Clerk court-record procedures, not ordinary county FOIA. No bulk extraction or guaranteed live filing completeness. Normal browser verified Accept/Decline gateway; it prohibits automated repetitive record scraping and states home addresses are no longer displayed from January 1, 2026."
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://www.southcarolinaprobate.net/search/",
+        "evidence": "https://www.aikencountysc.gov/374/Probate-Records",
+        "access": "SEARCH_PORTAL",
+        "agency": "Aiken County Probate Court",
+        "notes": "County-authorized vendor search; select Aiken Probate Court. Separate Probate Court estate jurisdiction. Online index is not a complete downloadable estate file set; restricted/older documents and copy charges require judicial records procedures."
+      },
+      {
+        "type": "COUNTY_CODE_ENFORCEMENT",
+        "url": "https://www.aikencountysc.gov/276/Code-Enforcement",
+        "access": "RECORDS_REQUEST",
+        "agency": "Aiken County Code Enforcement",
+        "notes": "Existing retained enforcement case records — request/contact fallback. County property-maintenance/nuisance cases are documented by departmental reports; contact the county custodian for existing records, not a new inspection. Public case export not confirmed; do not submit a violation complaint or request an inspection to obtain records."
+      }
+    ]
+  },
+  {
+    "county": "Florence",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://www.qpublic.net/sc/florence/",
+        "evidence": "https://www.florencecountysc.gov/offices/tax-assessor/",
+        "agency": "Florence County Assessor / Real Property",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual official real-property/parcel search; not a bulk tax roll. Government-authorized system; disclaimer, JavaScript, CAPTCHA or session setup may apply."
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "agency": "Florence County FOIA routing to GIS / Tax Assessor",
+        "url": "https://www.florencecountysc.gov/foia.php",
+        "access": "RECORDS_REQUEST",
+        "notes": "Likely custodian: Florence County FOIA routing to GIS / Tax Assessor. Countywide Public Export Not Confirmed — Request Existing Data. County FOIA routes to GIS/Tax Assessor. Public parcel geometry lacks ownership/appraisal fields; March 3, 2023 GIS price list documents data ordering, not extract freshness. Individual property lookup is not a master roll. Request existing countywide parcel/ownership/appraisal/CAMA data in its maintained electronic format; fees and availability require custodian confirmation."
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://www.florencecountysc.gov/offices/delinquent-tax/",
+        "evidence": "https://www.florencecountysc.gov/offices/delinquent-tax/",
+        "agency": "Florence County Delinquent Tax Collector",
+        "access": "RECORDS_REQUEST",
+        "notes": "No Public Full Delinquency Export Confirmed — Request Existing Data. Ask the Delinquent Tax Collector for the maintained current real-property delinquent-account list/database. September 1, 2026 tax-sale real-estate inventory is a dated sale subset, not all delinquent accounts."
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://publicindex.sccourts.org/florence/publicindex/",
+        "evidence": "https://www.sccourts.org/courts/courthouse-search/florence/",
+        "agency": "Florence County Clerk of Court — Court of Common Pleas",
+        "access": "CAPTCHA_PORTAL",
+        "notes": "South Carolina judicial foreclosure filings: county-specific public civil case index authorized by SC Judicial Branch courthouse directory. Select Court of Common Pleas and relevant foreclosure case type/filing; the index also contains unrelated civil cases. Earliest useful case filings are primary; Master-in-Equity judgments/sales are later stages, not the full filing universe. Supporting court rosters: https://publicindex.sccourts.org/florence/courtrosters/. Disclaimer/CAPTCHA/session restrictions and document access/redactions apply; missing or older files require Clerk court-record procedures, not ordinary county FOIA. No bulk extraction or guaranteed live filing completeness."
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://www.southcarolinaprobate.net/search/",
+        "evidence": "https://www.florencecountysc.gov/offices/elected/probate-court/",
+        "access": "SEARCH_PORTAL",
+        "agency": "Florence County Probate Court",
+        "email": "estaterequest@florencecountysc.gov",
+        "notes": "County authorizes estate search; missing/pre-2018 records require court contact, not a Common Pleas search. Separate Probate Court estate jurisdiction. Online index is not a complete downloadable estate file set; restricted/older documents and copy charges require judicial records procedures."
+      }
+    ]
+  },
+  {
+    "county": "Sumter",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://qpublic.schneidercorp.com/Application.aspx?AppID=1154&LayerID=30904&PageTypeID=2&PageID=12532",
+        "evidence": "https://www.sumtercountysc.org/online_services/index.php",
+        "agency": "Sumter County Assessor / Real Property",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual official real-property/parcel search; not a bulk tax roll. Government-authorized system; disclaimer, JavaScript, CAPTCHA or session setup may apply."
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "agency": "Sumter County Assessor",
+        "url": "https://www.sumtercountysc.org/departments/a_-_d/assessor/index.php",
+        "access": "RECORDS_REQUEST",
+        "notes": "Likely custodian: Sumter County Assessor. Countywide Public Export Not Confirmed — Request Existing Data. Assessor records contact for existing ownership/appraisal/CAMA export; shared GIS viewer is individual access. Individual property lookup is not a master roll. Request existing countywide parcel/ownership/appraisal/CAMA data in its maintained electronic format; fees and availability require custodian confirmation."
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://sumtercounty.qpaybill.com/",
+        "evidence": "https://www.sumtercountysc.org/departments/s_-_z/treasurer/index.php",
+        "agency": "Sumter County Treasurer / Delinquent Tax Collector",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual Tax Status. Official account-level search/payment history; not a confirmed countywide delinquent-account export. Search real-property account/TMS and confirm outstanding prior-year balances and transferred delinquent bills with the Delinquent Tax Collector. Annual tax-sale, redemption, forfeiture and surplus lists are different subsets. "
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://publicindex.sccourts.org/sumter/publicindex/",
+        "evidence": "https://www.sccourts.org/courts/courthouse-search/sumter/",
+        "agency": "Sumter County Clerk of Court — Court of Common Pleas",
+        "access": "CAPTCHA_PORTAL",
+        "notes": "South Carolina judicial foreclosure filings: county-specific public civil case index authorized by SC Judicial Branch courthouse directory. Select Court of Common Pleas and relevant foreclosure case type/filing; the index also contains unrelated civil cases. Earliest useful case filings are primary; Master-in-Equity judgments/sales are later stages, not the full filing universe. Supporting court rosters: https://publicindex.sccourts.org/sumter/courtrosters/. Disclaimer/CAPTCHA/session restrictions and document access/redactions apply; missing or older files require Clerk court-record procedures, not ordinary county FOIA. No bulk extraction or guaranteed live filing completeness."
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://www.southcarolinaprobate.net/search/",
+        "evidence": "https://www.sumtercountysc.org/departments/j_-_r/probate_court/index.php",
+        "access": "SEARCH_PORTAL",
+        "agency": "Sumter County Probate Court",
+        "notes": "County-authorized vendor search; select Sumter Probate Court. Separate Probate Court estate jurisdiction. Online index is not a complete downloadable estate file set; restricted/older documents and copy charges require judicial records procedures."
+      }
+    ]
+  },
+  {
+    "county": "Beaufort",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://sc-beaufort.publicaccessnow.com/Home.aspx",
+        "evidence": "https://www.beaufortcountyauditor.com/",
+        "agency": "Beaufort County Assessor / Real Property",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual official real-property/parcel search; not a bulk tax roll. Government-authorized system; disclaimer, JavaScript, CAPTCHA or session setup may apply."
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "agency": "Beaufort County FOIA routing to Assessor / GIS",
+        "url": "https://beaufortcountysc.justfoia.com/publicportal/home/newrequest",
+        "access": "RECORDS_REQUEST",
+        "notes": "Likely custodian: Beaufort County FOIA routing to Assessor / GIS. Countywide Public Export Not Confirmed — Request Existing Data. County FOIA routes to Assessor/GIS for existing countywide electronic records. Individual property lookup is not a master roll. Request existing countywide parcel/ownership/appraisal/CAMA data in its maintained electronic format; fees and availability require custodian confirmation."
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://sc-beaufort.publicaccessnow.com/",
+        "evidence": "https://www.beaufortcountytreasurer.com/tax-bill-lookup",
+        "agency": "Beaufort County Treasurer / Delinquent Tax Collector",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual Tax Status. Official account-level search/payment history; not a confirmed countywide delinquent-account export. Search real-property account/TMS and confirm outstanding prior-year balances and transferred delinquent bills with the Delinquent Tax Collector. Annual tax-sale, redemption, forfeiture and surplus lists are different subsets. Treasurer’s linked Delinquency Data folder contains Tax Sale and Forfeited Land Commission subsets, so it is excluded from Data Files."
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://publicindex.sccourts.org/beaufort/publicindex/",
+        "evidence": "https://www.sccourts.org/courts/courthouse-search/beaufort/",
+        "agency": "Beaufort County Clerk of Court — Court of Common Pleas",
+        "access": "CAPTCHA_PORTAL",
+        "notes": "South Carolina judicial foreclosure filings: county-specific public civil case index authorized by SC Judicial Branch courthouse directory. Select Court of Common Pleas and relevant foreclosure case type/filing; the index also contains unrelated civil cases. Earliest useful case filings are primary; Master-in-Equity judgments/sales are later stages, not the full filing universe. Supporting court rosters: https://publicindex.sccourts.org/beaufort/courtrosters/. Disclaimer/CAPTCHA/session restrictions and document access/redactions apply; missing or older files require Clerk court-record procedures, not ordinary county FOIA. No bulk extraction or guaranteed live filing completeness. Normal browser verified Accept/Decline gateway; it prohibits automated repetitive record scraping and states home addresses are no longer displayed from January 1, 2026."
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://govcloud2.hostedbyspartan.com/SCBeaufortPRO/PublicProbate/pages/InquiryMainPage.aspx",
+        "evidence": "https://www.beaufortcountysc.gov/probate-court/",
+        "access": "SEARCH_PORTAL",
+        "agency": "Beaufort County Probate Court",
+        "notes": "County-authorized Beaufort public probate/estate inquiry. Separate Probate Court estate jurisdiction. Online index is not a complete downloadable estate file set; restricted/older documents and copy charges require judicial records procedures."
+      },
+      {
+        "type": "COUNTY_CODE_ENFORCEMENT",
+        "url": "https://beaufortcountysc.justfoia.com/publicportal/home/newrequest",
+        "access": "RECORDS_REQUEST",
+        "agency": "Beaufort County Code Enforcement",
+        "notes": "Existing retained enforcement case records — request/contact fallback. Unincorporated Beaufort only. Beaufort, Bluffton and Hilton Head Island municipal cases belong to their own agencies. Public case export not confirmed; do not submit a violation complaint or request an inspection to obtain records."
+      }
+    ]
+  }
+]

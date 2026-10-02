@@ -1,0 +1,689 @@
+[
+  {
+    "county": "Mecklenburg",
+    "city": "Charlotte",
+    "source": {
+      "url": "https://www.charlottenc.gov/Streets-and-Neighborhoods/Code-Enforcement/Code-Cases",
+      "access": "SEARCH_PORTAL",
+      "agency": "Charlotte Code Enforcement / Municipal Records",
+      "notes": "Housing, nuisance, zoning and nonresidential case search by address, parcel, case number and status. Request existing retained electronic records where no public case search/export is available; no new inspection or custom analysis.",
+      "evidence": "https://www.charlottenc.gov/Streets-and-Neighborhoods/Code-Enforcement/Code-Cases"
+    }
+  },
+  {
+    "county": "Gaston",
+    "city": "Gastonia",
+    "source": {
+      "url": "https://devsvcs.gastonianc.gov/",
+      "access": "SEARCH_PORTAL",
+      "agency": "Gastonia Code Enforcement / Municipal Records",
+      "notes": "Development Services official gateway offers existing code-case search. Select code cases rather than construction permits. Request existing retained electronic records where no public case search/export is available; no new inspection or custom analysis.",
+      "evidence": "https://gastonianc.gov/i-want-to/report/code-ordinance-violation.html"
+    }
+  },
+  {
+    "county": "Cabarrus",
+    "city": "Concord",
+    "source": {
+      "url": "https://concordnc.gov/Departments/Police/Code-Enforcement",
+      "access": "RECORDS_REQUEST",
+      "agency": "Concord Code Enforcement / Municipal Records",
+      "notes": "Police Code Enforcement holds city minimum-housing and nuisance files; county Accela records are a separate jurisdiction. Request existing retained electronic records where no public case search/export is available; no new inspection or custom analysis.",
+      "evidence": "https://concordnc.gov/Departments/Police/Code-Enforcement"
+    }
+  },
+  {
+    "county": "Cabarrus",
+    "city": "Kannapolis",
+    "source": {
+      "url": "https://www.kannapolisnc.gov/Government-Departments/Planning/Code-Enforcement",
+      "access": "EMAIL_REQUEST",
+      "agency": "Kannapolis Code Enforcement / Municipal Records",
+      "notes": "Planning minimum housing, nonresidential buildings, nuisance/grass and junk cars. Request retained city cases from named officer. Shared municipal jurisdiction: Cabarrus, Rowan counties; this row covers the Cabarrus portion. The same source is intentionally repeated per supported county scope. Request existing retained electronic records where no public case search/export is available; no new inspection or custom analysis.",
+      "evidence": "https://www.kannapolisnc.gov/Government-Departments/Planning/Code-Enforcement",
+      "email": "twcline@kannapolisnc.gov"
+    }
+  },
+  {
+    "county": "Rowan",
+    "city": "Kannapolis",
+    "source": {
+      "url": "https://www.kannapolisnc.gov/Government-Departments/Planning/Code-Enforcement",
+      "access": "EMAIL_REQUEST",
+      "agency": "Kannapolis Code Enforcement / Municipal Records",
+      "notes": "Planning minimum housing, nonresidential buildings, nuisance/grass and junk cars. Request retained city cases from named officer. Shared municipal jurisdiction: Cabarrus, Rowan counties; this row covers the Rowan portion. The same source is intentionally repeated per supported county scope. Request existing retained electronic records where no public case search/export is available; no new inspection or custom analysis.",
+      "evidence": "https://www.kannapolisnc.gov/Government-Departments/Planning/Code-Enforcement",
+      "email": "twcline@kannapolisnc.gov"
+    }
+  },
+  {
+    "county": "Union",
+    "city": "Monroe",
+    "source": {
+      "url": "https://www.monroenc.org/directory.aspx?did=30",
+      "access": "RECORDS_REQUEST",
+      "agency": "Monroe Code Enforcement / Municipal Records",
+      "notes": "Official Code Enforcement staff contact fallback for minimum-housing and public-health nuisance cases; request existing files, not a complaint. Request existing retained electronic records where no public case search/export is available; no new inspection or custom analysis.",
+      "evidence": "https://www.monroenc.org/directory.aspx?did=30"
+    }
+  },
+  {
+    "county": "Union",
+    "city": "Indian Trail",
+    "source": {
+      "url": "https://indiantrail.org/FormCenter/Town-surveys-9/Public-Information-Requests-68",
+      "access": "RECORDS_REQUEST",
+      "agency": "Indian Trail Code Enforcement / Municipal Records",
+      "notes": "Town public-records form: identify Code Enforcement and request existing nuisance/zoning cases. Form uses reCAPTCHA; normal user completion. Request existing retained electronic records where no public case search/export is available; no new inspection or custom analysis.",
+      "evidence": "https://indiantrail.org/198/How-to-Report-a-Code-Violation"
+    }
+  },
+  {
+    "county": "Iredell",
+    "city": "Statesville",
+    "source": {
+      "url": "https://www.statesvillenc.net/statesville-code-enforcement/",
+      "access": "RECORDS_REQUEST",
+      "agency": "Statesville Code Enforcement / Municipal Records",
+      "notes": "City environmental nuisance, unsafe buildings and junk/inoperable vehicle case custodian; official department contact fallback. Request existing retained electronic records where no public case search/export is available; no new inspection or custom analysis. Audit limitation: normal browser reached a Cloudflare verification screen; live department contents could not be verified in this environment. Use normal user gateway; no CAPTCHA/session automation.",
+      "evidence": "https://www.statesvillenc.net/statesville-code-enforcement/"
+    }
+  },
+  {
+    "county": "Iredell",
+    "city": "Mooresville",
+    "source": {
+      "url": "https://townofmooresvillenc.nextrequest.com/",
+      "access": "RECORDS_REQUEST",
+      "agency": "Mooresville Code Enforcement / Municipal Records",
+      "notes": "Town records portal; identify Code Compliance / Building Permitting & Inspections for existing municipal housing and nuisance cases. County minimum housing excludes Mooresville. Request existing retained electronic records where no public case search/export is available; no new inspection or custom analysis.",
+      "evidence": "https://www.mooresvillenc.gov/"
+    }
+  },
+  {
+    "county": "Rowan",
+    "city": "Salisbury",
+    "source": {
+      "url": "https://salisburync.gov/Government/Community-Planning-Services/Code-Services",
+      "access": "EMAIL_REQUEST",
+      "agency": "Salisbury Code Enforcement / Municipal Records",
+      "notes": "City minimum-housing/nuisance cases and current demolition list. EnerGov report status exists, but contact Code Services for historical/complete case records. Request existing retained electronic records where no public case search/export is available; no new inspection or custom analysis.",
+      "evidence": "https://salisburync.gov/Government/Community-Planning-Services/Code-Services",
+      "email": "codeenforcement@salisburync.gov"
+    }
+  },
+  {
+    "county": "Wake",
+    "city": "Raleigh",
+    "source": {
+      "url": "https://permitportal.raleighnc.gov/",
+      "access": "SEARCH_PORTAL",
+      "agency": "Raleigh Code Enforcement / Municipal Records",
+      "notes": "Public Permit and Development Portal includes housing/neighborhood nuisance and zoning/code violations. Search code records, not building permits. Shared municipal jurisdiction: Wake, Durham counties; this row covers the Wake portion. The same source is intentionally repeated per supported county scope. Request existing retained electronic records where no public case search/export is available; no new inspection or custom analysis.",
+      "evidence": "https://raleighnc.gov/ask-raleigh-fix-report-request/services/records-request"
+    }
+  },
+  {
+    "county": "Durham",
+    "city": "Raleigh",
+    "source": {
+      "url": "https://permitportal.raleighnc.gov/",
+      "access": "SEARCH_PORTAL",
+      "agency": "Raleigh Code Enforcement / Municipal Records",
+      "notes": "Public Permit and Development Portal includes housing/neighborhood nuisance and zoning/code violations. Search code records, not building permits. Shared municipal jurisdiction: Wake, Durham counties; this row covers the Durham portion. The same source is intentionally repeated per supported county scope. Request existing retained electronic records where no public case search/export is available; no new inspection or custom analysis.",
+      "evidence": "https://raleighnc.gov/ask-raleigh-fix-report-request/services/records-request"
+    }
+  },
+  {
+    "county": "Durham",
+    "city": "Durham",
+    "source": {
+      "url": "https://www.durhamnc.gov/601/Code-Enforcement",
+      "access": "RECORDS_REQUEST",
+      "agency": "Durham Code Enforcement / Municipal Records",
+      "notes": "City Neighborhood Improvement Services holds housing/land-use nuisance cases. Open land-use violation map is a subset; request other/closed cases through NIS or City Clerk. Shared municipal jurisdiction: Durham, Wake, Orange counties; this row covers the Durham portion. The same source is intentionally repeated per supported county scope. Request existing retained electronic records where no public case search/export is available; no new inspection or custom analysis.",
+      "evidence": "https://www.durhamnc.gov/601/Code-Enforcement"
+    }
+  },
+  {
+    "county": "Wake",
+    "city": "Durham",
+    "source": {
+      "url": "https://www.durhamnc.gov/601/Code-Enforcement",
+      "access": "RECORDS_REQUEST",
+      "agency": "Durham Code Enforcement / Municipal Records",
+      "notes": "City Neighborhood Improvement Services holds housing/land-use nuisance cases. Open land-use violation map is a subset; request other/closed cases through NIS or City Clerk. Shared municipal jurisdiction: Durham, Wake, Orange counties; this row covers the Wake portion. The same source is intentionally repeated per supported county scope. Request existing retained electronic records where no public case search/export is available; no new inspection or custom analysis.",
+      "evidence": "https://www.durhamnc.gov/601/Code-Enforcement"
+    }
+  },
+  {
+    "county": "Orange",
+    "city": "Durham",
+    "source": {
+      "url": "https://www.durhamnc.gov/601/Code-Enforcement",
+      "access": "RECORDS_REQUEST",
+      "agency": "Durham Code Enforcement / Municipal Records",
+      "notes": "City Neighborhood Improvement Services holds housing/land-use nuisance cases. Open land-use violation map is a subset; request other/closed cases through NIS or City Clerk. Shared municipal jurisdiction: Durham, Wake, Orange counties; this row covers the Orange portion. The same source is intentionally repeated per supported county scope. Request existing retained electronic records where no public case search/export is available; no new inspection or custom analysis.",
+      "evidence": "https://www.durhamnc.gov/601/Code-Enforcement"
+    }
+  },
+  {
+    "county": "Wake",
+    "city": "Cary",
+    "source": {
+      "url": "https://www.carync.gov/business-development/developing-in-cary/development-regulations/zoning-compliance",
+      "access": "RECORDS_REQUEST",
+      "agency": "Cary Code Enforcement / Municipal Records",
+      "notes": "Development Compliance Officers handle zoning/property compliance; use official DCO/311 contact to route existing case requests. No public complete case search confirmed. Shared municipal jurisdiction: Wake, Chatham counties; this row covers the Wake portion. The same source is intentionally repeated per supported county scope. Request existing retained electronic records where no public case search/export is available; no new inspection or custom analysis.",
+      "evidence": "https://www.carync.gov/business-development/developing-in-cary/development-regulations/zoning-compliance"
+    }
+  },
+  {
+    "county": "Chatham",
+    "city": "Cary",
+    "source": {
+      "url": "https://www.carync.gov/business-development/developing-in-cary/development-regulations/zoning-compliance",
+      "access": "RECORDS_REQUEST",
+      "agency": "Cary Code Enforcement / Municipal Records",
+      "notes": "Development Compliance Officers handle zoning/property compliance; use official DCO/311 contact to route existing case requests. No public complete case search confirmed. Shared municipal jurisdiction: Wake, Chatham counties; this row covers the Chatham portion. The same source is intentionally repeated per supported county scope. Request existing retained electronic records where no public case search/export is available; no new inspection or custom analysis.",
+      "evidence": "https://www.carync.gov/business-development/developing-in-cary/development-regulations/zoning-compliance"
+    }
+  },
+  {
+    "county": "Wake",
+    "city": "Garner",
+    "source": {
+      "url": "https://www.garnernc.gov/departments/inspections/code-enforcement",
+      "access": "EMAIL_REQUEST",
+      "agency": "Garner Code Enforcement / Municipal Records",
+      "notes": "Town Code Compliance handles substandard housing, tall grass and junk cars. The former code-enforcement-lookup page returns 404; request existing records from the named department. Request existing retained electronic records where no public case search/export is available; no new inspection or custom analysis.",
+      "evidence": "https://www.garnernc.gov/departments/inspections/code-enforcement",
+      "email": "NOV@garnernc.gov"
+    }
+  },
+  {
+    "county": "Wake",
+    "city": "Wake Forest",
+    "source": {
+      "url": "https://www.wakeforestnc.gov/town-clerk/public-records",
+      "access": "RECORDS_REQUEST",
+      "agency": "Wake Forest Code Enforcement / Municipal Records",
+      "notes": "Town Clerk existing zoning/nuisance/housing case request; no public comprehensive code-case search confirmed. Franklin County portion is outside Phase 1. Request existing retained electronic records where no public case search/export is available; no new inspection or custom analysis.",
+      "evidence": "https://www.wakeforestnc.gov/town-clerk/public-records"
+    }
+  },
+  {
+    "county": "Johnston",
+    "city": "Clayton",
+    "source": {
+      "url": "https://www.townofclaytonnc.org/1147/Code-Enforcement-Maps",
+      "access": "SEARCH_PORTAL",
+      "agency": "Clayton Code Enforcement / Municipal Records",
+      "notes": "Official municipal code-case maps; nuisance jurisdiction within town limits, zoning within town and ETJ. Contact officer for historical/complete cases. Wake portion is jurisdictional land with zero residents in OSBM 2024. Shared municipal jurisdiction: Johnston, Wake counties; this row covers the Johnston portion. The same source is intentionally repeated per supported county scope. Request existing retained electronic records where no public case search/export is available; no new inspection or custom analysis.",
+      "evidence": "https://www.townofclaytonnc.org/227/Code-Enforcement---Nuisance-and-Zoning"
+    }
+  },
+  {
+    "county": "Wake",
+    "city": "Clayton",
+    "source": {
+      "url": "https://www.townofclaytonnc.org/1147/Code-Enforcement-Maps",
+      "access": "SEARCH_PORTAL",
+      "agency": "Clayton Code Enforcement / Municipal Records",
+      "notes": "Official municipal code-case maps; nuisance jurisdiction within town limits, zoning within town and ETJ. Contact officer for historical/complete cases. Wake portion is jurisdictional land with zero residents in OSBM 2024. Shared municipal jurisdiction: Johnston, Wake counties; this row covers the Wake portion. The same source is intentionally repeated per supported county scope. Request existing retained electronic records where no public case search/export is available; no new inspection or custom analysis.",
+      "evidence": "https://www.townofclaytonnc.org/227/Code-Enforcement---Nuisance-and-Zoning"
+    }
+  },
+  {
+    "county": "Johnston",
+    "city": "Smithfield",
+    "source": {
+      "url": "https://www.smithfield-nc.com/page/planning_code_enforcement",
+      "access": "RECORDS_REQUEST",
+      "agency": "Smithfield Code Enforcement / Municipal Records",
+      "notes": "Code Enforcement holds nuisance, vacant-building and housing cases; official contact fallback. Public complaint form is not a records request. Request existing retained electronic records where no public case search/export is available; no new inspection or custom analysis.",
+      "evidence": "https://www.smithfield-nc.com/page/planning_code_enforcement"
+    }
+  },
+  {
+    "county": "Orange",
+    "city": "Chapel Hill",
+    "source": {
+      "url": "https://www.chapelhillnc.gov/Town-Services/Public-Records",
+      "access": "RECORDS_REQUEST",
+      "agency": "Chapel Hill Code Enforcement / Municipal Records",
+      "notes": "Clerk coordinates Chapter 132 requests; identify municipal Planning/Code Enforcement for nuisance and housing/zoning files. This gateway replaces old townofchapelhill.org links. Shared municipal jurisdiction: Orange, Durham counties; this row covers the Orange portion. The same source is intentionally repeated per supported county scope. Request existing retained electronic records where no public case search/export is available; no new inspection or custom analysis.",
+      "evidence": "https://www.chapelhillnc.gov/Town-Services/Public-Records"
+    }
+  },
+  {
+    "county": "Durham",
+    "city": "Chapel Hill",
+    "source": {
+      "url": "https://www.chapelhillnc.gov/Town-Services/Public-Records",
+      "access": "RECORDS_REQUEST",
+      "agency": "Chapel Hill Code Enforcement / Municipal Records",
+      "notes": "Clerk coordinates Chapter 132 requests; identify municipal Planning/Code Enforcement for nuisance and housing/zoning files. This gateway replaces old townofchapelhill.org links. Shared municipal jurisdiction: Orange, Durham counties; this row covers the Durham portion. The same source is intentionally repeated per supported county scope. Request existing retained electronic records where no public case search/export is available; no new inspection or custom analysis.",
+      "evidence": "https://www.chapelhillnc.gov/Town-Services/Public-Records"
+    }
+  },
+  {
+    "county": "Guilford",
+    "city": "Greensboro",
+    "source": {
+      "url": "https://www.greensboro-nc.gov/services/look-up-and-access/code-compliance-cases",
+      "access": "SEARCH_PORTAL",
+      "agency": "Greensboro Code Enforcement / Municipal Records",
+      "notes": "Official Status of Code and Zoning Cases gateway covers nuisance, minimum housing and zoning cases; historical records may need Office of Code Compliance request. Request existing retained electronic records where no public case search/export is available; no new inspection or custom analysis.",
+      "evidence": "https://www.greensboro-nc.gov/departments/executive/code-compliance"
+    }
+  },
+  {
+    "county": "Guilford",
+    "city": "High Point",
+    "source": {
+      "url": "https://www.highpointnc.gov/2982/Development-Records",
+      "access": "SEARCH_PORTAL",
+      "agency": "High Point Code Enforcement / Municipal Records",
+      "notes": "Development Records page routes to ACA public search including code violations. Legacy/missing records require the listed Planning & Development email; do not request a new code-confirmation report. Shared municipal jurisdiction: Guilford, Davidson, Forsyth, Randolph counties; this row covers the Guilford portion. The same source is intentionally repeated per supported county scope. Request existing retained electronic records where no public case search/export is available; no new inspection or custom analysis.",
+      "evidence": "https://www.highpointnc.gov/2982/Development-Records"
+    }
+  },
+  {
+    "county": "Davidson",
+    "city": "High Point",
+    "source": {
+      "url": "https://www.highpointnc.gov/2982/Development-Records",
+      "access": "SEARCH_PORTAL",
+      "agency": "High Point Code Enforcement / Municipal Records",
+      "notes": "Development Records page routes to ACA public search including code violations. Legacy/missing records require the listed Planning & Development email; do not request a new code-confirmation report. Shared municipal jurisdiction: Guilford, Davidson, Forsyth, Randolph counties; this row covers the Davidson portion. The same source is intentionally repeated per supported county scope. Request existing retained electronic records where no public case search/export is available; no new inspection or custom analysis.",
+      "evidence": "https://www.highpointnc.gov/2982/Development-Records"
+    }
+  },
+  {
+    "county": "Forsyth",
+    "city": "High Point",
+    "source": {
+      "url": "https://www.highpointnc.gov/2982/Development-Records",
+      "access": "SEARCH_PORTAL",
+      "agency": "High Point Code Enforcement / Municipal Records",
+      "notes": "Development Records page routes to ACA public search including code violations. Legacy/missing records require the listed Planning & Development email; do not request a new code-confirmation report. Shared municipal jurisdiction: Guilford, Davidson, Forsyth, Randolph counties; this row covers the Forsyth portion. The same source is intentionally repeated per supported county scope. Request existing retained electronic records where no public case search/export is available; no new inspection or custom analysis.",
+      "evidence": "https://www.highpointnc.gov/2982/Development-Records"
+    }
+  },
+  {
+    "county": "Randolph",
+    "city": "High Point",
+    "source": {
+      "url": "https://www.highpointnc.gov/2982/Development-Records",
+      "access": "SEARCH_PORTAL",
+      "agency": "High Point Code Enforcement / Municipal Records",
+      "notes": "Development Records page routes to ACA public search including code violations. Legacy/missing records require the listed Planning & Development email; do not request a new code-confirmation report. Shared municipal jurisdiction: Guilford, Davidson, Forsyth, Randolph counties; this row covers the Randolph portion. The same source is intentionally repeated per supported county scope. Request existing retained electronic records where no public case search/export is available; no new inspection or custom analysis.",
+      "evidence": "https://www.highpointnc.gov/2982/Development-Records"
+    }
+  },
+  {
+    "county": "Forsyth",
+    "city": "Winston-Salem",
+    "source": {
+      "url": "https://aca-prod.accela.com/winsalem/default.aspx",
+      "access": "SEARCH_PORTAL",
+      "agency": "Winston-Salem Code Enforcement / Municipal Records",
+      "notes": "Code Enforcement Citizen Portal: Search Cases for housing/nuisance enforcement; public searches differ from submitting a complaint or registered-user actions. Request existing retained electronic records where no public case search/export is available; no new inspection or custom analysis.",
+      "evidence": "https://www.cityofws.org/164/Code-Enforcement"
+    }
+  },
+  {
+    "county": "Alamance",
+    "city": "Burlington",
+    "source": {
+      "url": "https://www.burlingtonnc.gov/2859/Code-Enforcement-Staff-Directory",
+      "access": "EMAIL_REQUEST",
+      "agency": "Burlington Code Enforcement / Municipal Records",
+      "notes": "Code Enforcement Case File Specialist is the verified custodian/contact for nuisance/zoning/housing cases. Contact fallback, not a public case export. Shared municipal jurisdiction: Alamance, Guilford counties; this row covers the Alamance portion. The same source is intentionally repeated per supported county scope. Request existing retained electronic records where no public case search/export is available; no new inspection or custom analysis.",
+      "evidence": "https://www.burlingtonnc.gov/1542/Code-Enforcement",
+      "email": "hhammond@burlingtonnc.gov"
+    }
+  },
+  {
+    "county": "Guilford",
+    "city": "Burlington",
+    "source": {
+      "url": "https://www.burlingtonnc.gov/2859/Code-Enforcement-Staff-Directory",
+      "access": "EMAIL_REQUEST",
+      "agency": "Burlington Code Enforcement / Municipal Records",
+      "notes": "Code Enforcement Case File Specialist is the verified custodian/contact for nuisance/zoning/housing cases. Contact fallback, not a public case export. Shared municipal jurisdiction: Alamance, Guilford counties; this row covers the Guilford portion. The same source is intentionally repeated per supported county scope. Request existing retained electronic records where no public case search/export is available; no new inspection or custom analysis.",
+      "evidence": "https://www.burlingtonnc.gov/1542/Code-Enforcement",
+      "email": "hhammond@burlingtonnc.gov"
+    }
+  },
+  {
+    "county": "Forsyth",
+    "city": "Kernersville",
+    "source": {
+      "url": "https://toknc.com/community-development/staff-contacts/",
+      "access": "RECORDS_REQUEST",
+      "agency": "Kernersville Code Enforcement / Municipal Records",
+      "notes": "Town Community Development Zoning Administrator/Code Enforcement contact for existing town violation records; separate from Forsyth County minimum housing. Shared municipal jurisdiction: Forsyth, Guilford counties; this row covers the Forsyth portion. The same source is intentionally repeated per supported county scope. Request existing retained electronic records where no public case search/export is available; no new inspection or custom analysis.",
+      "evidence": "https://toknc.com/community-development/staff-contacts/"
+    }
+  },
+  {
+    "county": "Guilford",
+    "city": "Kernersville",
+    "source": {
+      "url": "https://toknc.com/community-development/staff-contacts/",
+      "access": "RECORDS_REQUEST",
+      "agency": "Kernersville Code Enforcement / Municipal Records",
+      "notes": "Town Community Development Zoning Administrator/Code Enforcement contact for existing town violation records; separate from Forsyth County minimum housing. Shared municipal jurisdiction: Forsyth, Guilford counties; this row covers the Guilford portion. The same source is intentionally repeated per supported county scope. Request existing retained electronic records where no public case search/export is available; no new inspection or custom analysis.",
+      "evidence": "https://toknc.com/community-development/staff-contacts/"
+    }
+  },
+  {
+    "county": "Davidson",
+    "city": "Lexington",
+    "source": {
+      "url": "https://www.lexingtonnc.gov/government/about-city-government/contact-us",
+      "access": "RECORDS_REQUEST",
+      "agency": "Lexington Code Enforcement / Municipal Records",
+      "notes": "Business & Community Development handles minimum housing, demolition/blight and overgrown lots at 336-248-3900; ask for retained enforcement cases. Request existing retained electronic records where no public case search/export is available; no new inspection or custom analysis.",
+      "evidence": "https://www.lexingtonnc.gov/government/about-city-government/contact-us"
+    }
+  },
+  {
+    "county": "Davidson",
+    "city": "Thomasville",
+    "source": {
+      "url": "https://cms9files.revize.com/thomasvillenc/Council%20Briefing%20Packet%2003-10-25.pdf",
+      "access": "RECORDS_REQUEST",
+      "agency": "Thomasville Code Enforcement / Municipal Records",
+      "notes": "NC City Planning & Inspections, 10 Salem Street, holds local minimum-housing/nuisance enforcement files. Contact route may show a Cloudflare verification screen. Thomasville.org is a different state and is not used. Shared municipal jurisdiction: Davidson, Randolph counties; this row covers the Davidson portion. The same source is intentionally repeated per supported county scope. Request existing retained electronic records where no public case search/export is available; no new inspection or custom analysis. Audit limitation: normal browser reached a Cloudflare verification screen; live department contents could not be verified in this environment. Use normal user gateway; no CAPTCHA/session automation. The accessible official council packet identifies Planning & Inspections at 10 Salem Street as the contact fallback; the protected department deep link is not asserted as verified.",
+      "evidence": "https://cms9files.revize.com/thomasvillenc/Council%20Briefing%20Packet%2003-10-25.pdf"
+    }
+  },
+  {
+    "county": "Randolph",
+    "city": "Thomasville",
+    "source": {
+      "url": "https://cms9files.revize.com/thomasvillenc/Council%20Briefing%20Packet%2003-10-25.pdf",
+      "access": "RECORDS_REQUEST",
+      "agency": "Thomasville Code Enforcement / Municipal Records",
+      "notes": "NC City Planning & Inspections, 10 Salem Street, holds local minimum-housing/nuisance enforcement files. Contact route may show a Cloudflare verification screen. Thomasville.org is a different state and is not used. Shared municipal jurisdiction: Davidson, Randolph counties; this row covers the Randolph portion. The same source is intentionally repeated per supported county scope. Request existing retained electronic records where no public case search/export is available; no new inspection or custom analysis. Audit limitation: normal browser reached a Cloudflare verification screen; live department contents could not be verified in this environment. Use normal user gateway; no CAPTCHA/session automation. The accessible official council packet identifies Planning & Inspections at 10 Salem Street as the contact fallback; the protected department deep link is not asserted as verified.",
+      "evidence": "https://cms9files.revize.com/thomasvillenc/Council%20Briefing%20Packet%2003-10-25.pdf"
+    }
+  },
+  {
+    "county": "Randolph",
+    "city": "Asheboro",
+    "source": {
+      "url": "https://asheboronc.gov/government/departments/planning_zoning/code_enforcement.php",
+      "access": "EMAIL_REQUEST",
+      "agency": "Asheboro Code Enforcement / Municipal Records",
+      "notes": "Community Development Code Enforcement handles municipal public-nuisance and housing/property cases; named officer contact for retained records. Request existing retained electronic records where no public case search/export is available; no new inspection or custom analysis.",
+      "evidence": "https://asheboronc.gov/government/departments/planning_zoning/code_enforcement.php",
+      "email": "cmorrison@asheboronc.gov"
+    }
+  },
+  {
+    "county": "Cumberland",
+    "city": "Fayetteville",
+    "source": {
+      "url": "https://www.fayettevillenc.gov/City-Departments/Development-Services/Code-Enforcement/Code-Enforcement-Spreadsheet",
+      "access": "DOWNLOAD_PAGE",
+      "agency": "Fayetteville Code Enforcement / Municipal Records",
+      "notes": "City publishes open and closed code-violation cases for the past 12 months; not lifetime/full history. Request older cases from Code Enforcement. Request existing retained electronic records where no public case search/export is available; no new inspection or custom analysis.",
+      "evidence": "https://www.fayettevillenc.gov/City-Departments/Development-Services/Code-Enforcement",
+      "format": "XLSX / case spreadsheet"
+    }
+  },
+  {
+    "county": "Cumberland",
+    "city": "Hope Mills",
+    "source": {
+      "url": "https://www.townofhopemills.com/304/Code-Enforcement",
+      "access": "EMAIL_REQUEST",
+      "agency": "Hope Mills Code Enforcement / Municipal Records",
+      "notes": "Town Code Enforcement contact fallback for existing municipal nuisance, minimum-housing and zoning cases; county and city records are distinct. Request existing retained electronic records where no public case search/export is available; no new inspection or custom analysis.",
+      "evidence": "https://www.townofhopemills.com/304/Code-Enforcement",
+      "email": "codeenforcement@townofhopemills.com"
+    }
+  },
+  {
+    "county": "Cumberland",
+    "city": "Spring Lake",
+    "source": {
+      "url": "https://www.townofspringlake.com/code-enforcement/",
+      "access": "RECORDS_REQUEST",
+      "agency": "Spring Lake Code Enforcement / Municipal Records",
+      "notes": "Town Code Enforcement retained nuisance/housing/zoning records; official department contact fallback. Request existing retained electronic records where no public case search/export is available; no new inspection or custom analysis.",
+      "evidence": "https://www.townofspringlake.com/code-enforcement/"
+    }
+  },
+  {
+    "county": "New Hanover",
+    "city": "Wilmington",
+    "source": {
+      "url": "https://wilmingtonnc-energovweb.tylerhost.net/apps/selfservice#/home",
+      "access": "SEARCH_PORTAL",
+      "agency": "Wilmington Code Enforcement / Municipal Records",
+      "notes": "Active Code Cases: use Wilmington Code Cases then Search Public Records by address/case. City minimum housing, nonresidential structures, nuisance and junk vehicles; older cases may need department request. Request existing retained electronic records where no public case search/export is available; no new inspection or custom analysis.",
+      "evidence": "https://www.wilmingtonnc.gov/Services/Code-Enforcement"
+    }
+  },
+  {
+    "county": "Brunswick",
+    "city": "Leland",
+    "source": {
+      "url": "https://www.townofleland.com/town-clerks-office/public-records-requests",
+      "access": "RECORDS_REQUEST",
+      "agency": "Leland Code Enforcement / Municipal Records",
+      "notes": "For existing case records ask Clerk/Planning & Inspections. Town directs new property letters/reports (including current/closed violations) through Evolve Zoning Letter; do not confuse that report with an existing-record export. Request existing retained electronic records where no public case search/export is available; no new inspection or custom analysis.",
+      "evidence": "https://www.townofleland.com/planning-inspections/code-enforcement"
+    }
+  },
+  {
+    "county": "Pitt",
+    "city": "Greenville",
+    "source": {
+      "url": "https://www.greenvillenc.gov/523/Code-Enforcement-Division",
+      "access": "RECORDS_REQUEST",
+      "agency": "Greenville Code Enforcement / Municipal Records",
+      "notes": "Municipal minimum housing, abandoned structures, weeded lots and junk vehicles; call 252-329-4110 for existing case-record routing. County permit/code records are separate. Request existing retained electronic records where no public case search/export is available; no new inspection or custom analysis.",
+      "evidence": "https://www.greenvillenc.gov/523/Code-Enforcement-Division"
+    }
+  },
+  {
+    "county": "Onslow",
+    "city": "Jacksonville",
+    "source": {
+      "url": "https://www.jacksonvillenc.gov/274/Records-Request",
+      "access": "RECORDS_REQUEST",
+      "agency": "Jacksonville Code Enforcement / Municipal Records",
+      "notes": "City Clerk official records-request gateway routes to cityofjacksonvillenc.nextrequest.com. Since June 2026 city public-records requests must use that portal rather than email. Identify Permits & Inspections municipal nuisance/minimum-housing/zoning case records; confirm city-limits/ETJ scope by case type. Clerk assistance: 910-938-5224. County enforcement is separate. Request existing retained files, not a new complaint or inspection.",
+      "evidence": "https://www.jacksonvillenc.gov/274/Records-Request"
+    }
+  },
+  {
+    "county": "Wake",
+    "city": "Apex",
+    "source": {
+      "url": "https://www.apexnc.org/186/Code-Enforcement",
+      "access": "RECORDS_REQUEST",
+      "agency": "Apex Code Enforcement / Municipal Records",
+      "notes": "Municipal Code Enforcement contact fallback for existing town property/code violations. Includes small Chatham County city portion; county parcel/tax services remain separate. Shared municipal jurisdiction: Wake, Chatham counties; this row covers the Wake portion. The same source is intentionally repeated per supported county scope. Request existing retained electronic records where no public case search/export is available; no new inspection or custom analysis.",
+      "evidence": "https://www.apexnc.org/186/Code-Enforcement"
+    }
+  },
+  {
+    "county": "Chatham",
+    "city": "Apex",
+    "source": {
+      "url": "https://www.apexnc.org/186/Code-Enforcement",
+      "access": "RECORDS_REQUEST",
+      "agency": "Apex Code Enforcement / Municipal Records",
+      "notes": "Municipal Code Enforcement contact fallback for existing town property/code violations. Includes small Chatham County city portion; county parcel/tax services remain separate. Shared municipal jurisdiction: Wake, Chatham counties; this row covers the Chatham portion. The same source is intentionally repeated per supported county scope. Request existing retained electronic records where no public case search/export is available; no new inspection or custom analysis.",
+      "evidence": "https://www.apexnc.org/186/Code-Enforcement"
+    }
+  },
+  {
+    "county": "Wake",
+    "city": "Holly Springs",
+    "source": {
+      "url": "https://cityview.hollyspringsnc.us/Portal/",
+      "access": "SEARCH_PORTAL",
+      "agency": "Holly Springs Code Enforcement / Municipal Records",
+      "notes": "Official CityView gateway has code-enforcement module; search public existing cases if offered. Complaint creation and other registered actions may need login; request unavailable case documents from Development Services. Request existing retained electronic records where no public case search/export is available; no new inspection or custom analysis.",
+      "evidence": "https://hollyspringsnc.gov/8/Departments"
+    }
+  },
+  {
+    "county": "Wake",
+    "city": "Fuquay-Varina",
+    "source": {
+      "url": "https://www.fuquay-varina.org/1061/Transparency-Portal",
+      "access": "RECORDS_REQUEST",
+      "agency": "Fuquay-Varina Code Enforcement / Municipal Records",
+      "notes": "Chapter 132 public-records route for existing Code Compliance/minimum-housing cases. New Special Assessment reports use a different form. Harnett portion has zero residents in OSBM 2024; preserve land jurisdiction. Shared municipal jurisdiction: Wake, Harnett counties; this row covers the Wake portion. The same source is intentionally repeated per supported county scope. Request existing retained electronic records where no public case search/export is available; no new inspection or custom analysis.",
+      "evidence": "https://www.fuquay-varina.org/1287/Code-Compliance"
+    }
+  },
+  {
+    "county": "Harnett",
+    "city": "Fuquay-Varina",
+    "source": {
+      "url": "https://www.fuquay-varina.org/1061/Transparency-Portal",
+      "access": "RECORDS_REQUEST",
+      "agency": "Fuquay-Varina Code Enforcement / Municipal Records",
+      "notes": "Chapter 132 public-records route for existing Code Compliance/minimum-housing cases. New Special Assessment reports use a different form. Harnett portion has zero residents in OSBM 2024; preserve land jurisdiction. Shared municipal jurisdiction: Wake, Harnett counties; this row covers the Harnett portion. The same source is intentionally repeated per supported county scope. Request existing retained electronic records where no public case search/export is available; no new inspection or custom analysis.",
+      "evidence": "https://www.fuquay-varina.org/1287/Code-Compliance"
+    }
+  },
+  {
+    "county": "Wake",
+    "city": "Morrisville",
+    "source": {
+      "url": "https://www.morrisvillenc.gov/Services-Forms/Public-Records-Requests",
+      "access": "RECORDS_REQUEST",
+      "agency": "Morrisville Code Enforcement / Municipal Records",
+      "notes": "Select Planning & Development request for existing zoning/property-compliance files; use All Other Records for other retained municipal cases. Shared municipal jurisdiction: Wake, Durham counties; this row covers the Wake portion. The same source is intentionally repeated per supported county scope. Request existing retained electronic records where no public case search/export is available; no new inspection or custom analysis.",
+      "evidence": "https://www.morrisvillenc.gov/Services-Forms/Public-Records-Requests"
+    }
+  },
+  {
+    "county": "Durham",
+    "city": "Morrisville",
+    "source": {
+      "url": "https://www.morrisvillenc.gov/Services-Forms/Public-Records-Requests",
+      "access": "RECORDS_REQUEST",
+      "agency": "Morrisville Code Enforcement / Municipal Records",
+      "notes": "Select Planning & Development request for existing zoning/property-compliance files; use All Other Records for other retained municipal cases. Shared municipal jurisdiction: Wake, Durham counties; this row covers the Durham portion. The same source is intentionally repeated per supported county scope. Request existing retained electronic records where no public case search/export is available; no new inspection or custom analysis.",
+      "evidence": "https://www.morrisvillenc.gov/Services-Forms/Public-Records-Requests"
+    }
+  },
+  {
+    "county": "Mecklenburg",
+    "city": "Huntersville",
+    "source": {
+      "url": "https://code.mecknc.gov/service/minimum-housing-code-enforcement-0",
+      "access": "EMAIL_REQUEST",
+      "agency": "Mecklenburg County Code Enforcement — Huntersville Minimum Housing",
+      "notes": "Mecklenburg County enforces this town’s minimum-housing code by agreement. This source covers county-held town housing cases; town zoning/nuisances may have separate custodians. Request existing retained electronic records where no public case search/export is available; no new inspection or custom analysis.",
+      "evidence": "https://code.mecknc.gov/service/minimum-housing-code-enforcement-0",
+      "email": "grady.penner@mecklenburgcountync.gov"
+    }
+  },
+  {
+    "county": "Mecklenburg",
+    "city": "Cornelius",
+    "source": {
+      "url": "https://code.mecknc.gov/service/minimum-housing-code-enforcement-0",
+      "access": "EMAIL_REQUEST",
+      "agency": "Mecklenburg County Code Enforcement — Cornelius Minimum Housing",
+      "notes": "Mecklenburg County enforces this town’s minimum-housing code by agreement. This source covers county-held town housing cases; town zoning/nuisances may have separate custodians. Request existing retained electronic records where no public case search/export is available; no new inspection or custom analysis.",
+      "evidence": "https://code.mecknc.gov/service/minimum-housing-code-enforcement-0",
+      "email": "grady.penner@mecklenburgcountync.gov"
+    }
+  },
+  {
+    "county": "Mecklenburg",
+    "city": "Matthews",
+    "source": {
+      "url": "https://code.mecknc.gov/service/minimum-housing-code-enforcement-0",
+      "access": "EMAIL_REQUEST",
+      "agency": "Mecklenburg County Code Enforcement — Matthews Minimum Housing",
+      "notes": "Mecklenburg County enforces this town’s minimum-housing code by agreement. This source covers county-held town housing cases; town zoning/nuisances may have separate custodians. Request existing retained electronic records where no public case search/export is available; no new inspection or custom analysis.",
+      "evidence": "https://code.mecknc.gov/service/minimum-housing-code-enforcement-0",
+      "email": "grady.penner@mecklenburgcountync.gov"
+    }
+  },
+  {
+    "county": "Mecklenburg",
+    "city": "Mint Hill",
+    "source": {
+      "url": "https://www.minthill.com/departments/code_enforcement/index.php",
+      "access": "EMAIL_REQUEST",
+      "agency": "Mint Hill Code Enforcement",
+      "notes": "Town Code Enforcement retains nuisance/UDO cases (high grass, junk cars, front-yard parking, junk and illegal signs) across Mecklenburg/Union portions; request existing records from the named town officer. Mecklenburg County separately handles minimum housing by agreement; verify its service boundary/custodian for Union land. Municipal source intentionally repeated across both county scopes; Union portion had zero residents in OSBM 2024.",
+      "evidence": "https://code.mecknc.gov/service/minimum-housing-code-enforcement-0",
+      "email": "mnichols@admin.minthill.com"
+    }
+  },
+  {
+    "county": "Union",
+    "city": "Mint Hill",
+    "source": {
+      "url": "https://www.minthill.com/departments/code_enforcement/index.php",
+      "access": "EMAIL_REQUEST",
+      "agency": "Mint Hill Code Enforcement",
+      "notes": "Town Code Enforcement retains nuisance/UDO cases (high grass, junk cars, front-yard parking, junk and illegal signs) across Mecklenburg/Union portions; request existing records from the named town officer. Mecklenburg County separately handles minimum housing by agreement; verify its service boundary/custodian for Union land. Municipal source intentionally repeated across both county scopes; Union portion had zero residents in OSBM 2024.",
+      "evidence": "https://code.mecknc.gov/service/minimum-housing-code-enforcement-0",
+      "email": "mnichols@admin.minthill.com"
+    }
+  },
+  {
+    "county": "Harnett",
+    "city": "Dunn",
+    "source": {
+      "url": "https://www.cityofdunn.org/inspections/code-enforcement-603.asp",
+      "access": "RECORDS_REQUEST",
+      "agency": "Dunn Code Enforcement / Municipal Records",
+      "notes": "City Planning & Inspections minimum-housing/nuisance custodian. Ask department for existing cases; public complaint form is not a records request. Request existing retained electronic records where no public case search/export is available; no new inspection or custom analysis.",
+      "evidence": "https://www.cityofdunn.org/inspections/code-enforcement-603.asp"
+    }
+  },
+  {
+    "county": "Harnett",
+    "city": "Angier",
+    "source": {
+      "url": "https://www.angier.org/m/directory/department?did=22",
+      "access": "EMAIL_REQUEST",
+      "agency": "Angier Code Enforcement / Municipal Records",
+      "notes": "Town Planning & Inspections staff directory names Code Enforcement officers Shannon Hodges and Caleb Hodges. Request existing municipal nuisance/housing/zoning case records from Code Enforcement; Harnett/Wake portions share town jurisdiction. A complaint or inspection request is separate from retained-record access.",
+      "evidence": "https://www.angier.org/m/directory/department?did=22",
+      "email": "slhodges@angier.org"
+    }
+  },
+  {
+    "county": "Wake",
+    "city": "Angier",
+    "source": {
+      "url": "https://www.angier.org/m/directory/department?did=22",
+      "access": "EMAIL_REQUEST",
+      "agency": "Angier Code Enforcement / Municipal Records",
+      "notes": "Town Planning & Inspections staff directory names Code Enforcement officers Shannon Hodges and Caleb Hodges. Request existing municipal nuisance/housing/zoning case records from Code Enforcement; Harnett/Wake portions share town jurisdiction. A complaint or inspection request is separate from retained-record access.",
+      "evidence": "https://www.angier.org/m/directory/department?did=22",
+      "email": "slhodges@angier.org"
+    }
+  },
+  {
+    "county": "Chatham",
+    "city": "Pittsboro",
+    "source": {
+      "url": "https://pittsboronc.gov/463/Public-Records-Request",
+      "access": "RECORDS_REQUEST",
+      "agency": "Pittsboro Code Enforcement / Municipal Records",
+      "notes": "Town records request form; identify Code Enforcement/Planning for existing housing/nuisance/property cases. Town form uses normal reCAPTCHA. Request existing retained electronic records where no public case search/export is available; no new inspection or custom analysis.",
+      "evidence": "https://pittsboronc.gov/463/Public-Records-Request"
+    }
+  }
+]

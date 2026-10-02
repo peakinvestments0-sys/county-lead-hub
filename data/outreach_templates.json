@@ -1,0 +1,88 @@
+{
+  "sms": [
+    {
+      "id": "casual_local",
+      "name": "\ud83c\udfe1 Casual Local Inquiry (High Response / Zero Spam)",
+      "category": "casual_inquiry",
+      "body": "Hey {FirstName}, quick question, are you still the owner over at {Address}?"
+    },
+    {
+      "id": "drive_by",
+      "name": "\ud83d\ude97 Neighborly Direct Buyer Hook",
+      "category": "direct_buyer",
+      "body": "Hi {FirstName}, my partner John and I were looking at houses near {Address}. Wondering if you'd ever consider an offer or if you're holding onto it?"
+    },
+    {
+      "id": "as_is_no_fees",
+      "name": "\ud83d\udee0\ufe0f Direct As-Is / No Realtor Fees",
+      "category": "as_is",
+      "body": "Hey {FirstName}, reaching out about {Address}. We're looking to purchase a place in the area as is with no realtor fees or repair work. Would you consider selling?"
+    },
+    {
+      "id": "curious_walkaway",
+      "name": "\u2753 Simple & Direct Inquiry",
+      "category": "direct_inquiry",
+      "body": "Hi {FirstName}, I know this is out of the blue, but would you consider parting with {Address} for the right price, or definitely not selling right now?"
+    },
+    {
+      "id": "code_violation",
+      "name": "\u26a0\ufe0f Code Violation / City Citation Takeover",
+      "category": "code_violations",
+      "body": "Hi {FirstName}, noticed the city had some open notices on {Address}. We work with owners in {City} to resolve municipal citations directly and buy as is. Open to chatting about options?"
+    },
+    {
+      "id": "pre_foreclosure",
+      "name": "\ud83c\udfdb\ufe0f Pre-Foreclosure / Stop Auction Date",
+      "category": "lis_pendens",
+      "body": "Hi {FirstName}, reaching out regarding {Address}. We help homeowners in {County} resolve pending bank deadlines before auction dates. Would you be open to a quick call to review your options?"
+    },
+    {
+      "id": "probate_estate",
+      "name": "\ud83d\udcdc Probate / Inherited Property (Leave Contents)",
+      "category": "probate",
+      "body": "Hi {FirstName}, my condolences regarding the family estate on {Address}. If the family is ever looking to sell without doing cleanouts, repairs, or realtor fees, we'd love to help."
+    },
+    {
+      "id": "casual_followup",
+      "name": "\ud83d\udc4b Friendly Follow-Up",
+      "category": "followup",
+      "body": "Hi {FirstName}, just checking back in regarding {Address}. Would you still be open to an offer if the terms make sense? Thanks!"
+    },
+    {
+      "id": "cash_offer",
+      "name": "\ud83d\udcb0 Direct Private Purchase (Alternative)",
+      "category": "cash_offer",
+      "body": "Hi {FirstName}, are you open to a direct private purchase on {Address}? We handle standard closing costs and buy 100% as is."
+    }
+  ],
+  "email": [
+    {
+      "id": "lis_pendens",
+      "name": "\ud83c\udfdb\ufe0f Pre-Foreclosure / Stop Foreclosure Auction",
+      "category": "lis_pendens",
+      "subject": "Cash Offer & Options to Stop Foreclosure: {Address}",
+      "body": "Hi {FirstName},\n\nI noticed public county records showing a pending foreclosure filing regarding your property at {Address}. I know how stressful this situation can be, but you still have legal rights and options to protect your equity before an auction date is set.\n\nAt 407 Flips, we buy Central Florida homes directly for cash:\n\u2022 Stop the auction immediately with a binding contract & proof of funds\n\u2022 Protect your credit and walk away with cash in hand\n\u2022 $0 Realtor commissions, $0 inspection costs, and $0 closing fees\n\u2022 We buy 100% As-Is \u2014 absolutely no repairs, painting, or cleaning required\n\u2022 We work directly with your lender to obtain payoff statements\n\nIf you'd like to see what a fair cash offer looks like with zero obligation, please reply directly to this email or call/text me at (407) 555-FLIP.\n\nRespectfully,\nJohn Roberts | 407 Flips\nEmail: john@407flips.com | Phone: (407) 555-FLIP\nOrlando, FL | Serving Central Florida Homeowners"
+    },
+    {
+      "id": "probate",
+      "name": "\ud83d\udcdc Probate / Inherited Property (Leave Furniture)",
+      "category": "probate",
+      "subject": "Estate Inquiry & Direct Cash Offer: {Address}",
+      "body": "Hi {FirstName},\n\nPlease accept my condolences if you have recently lost a family member. I am reaching out regarding the estate property at {Address}.\n\nSettling an estate can be an exhausting process, especially when managing cleanouts, repairs, and probate court paperwork.\n\nAt 407 Flips, we specialize in purchasing inherited Florida homes:\n\u2022 Leave anything you don't want: furniture, old appliances, clothing, or clutter. We handle full disposal.\n\u2022 No repairs needed \u2014 we buy strictly in current As-Is condition.\n\u2022 Cash closing in as little as 7 to 14 days, or on whatever timeline works best for the heirs.\n\u2022 Zero realtor commissions, no staging, and no open houses.\n\nIf you and the family are considering liquidating the property, I'd be honored to make a fair, all-cash offer with zero obligation.\n\nFeel free to reply directly to this email or call/text me at (407) 555-FLIP.\n\nWarm regards,\nJohn Roberts | 407 Flips\nEmail: john@407flips.com | Phone: (407) 555-FLIP\nOrlando, FL"
+    },
+    {
+      "id": "code_violation",
+      "name": "\u26a0\ufe0f Code Violations / Heavy Repairs (Taking Over Liens)",
+      "category": "code_violations",
+      "subject": "As-Is Cash Offer (We Take Over Violations): {Address}",
+      "body": "Hi {FirstName},\n\nI am contacting you regarding your property at {Address}.\n\nI work with local Florida homeowners who are dealing with burdensome code enforcement citations, daily municipal fines, open permits, or substantial deferred maintenance. Dealing with the city and contractors can quickly turn into a financial nightmare.\n\nAt 407 Flips, we buy houses in ANY physical condition:\n\u2022 We take over existing city code violations and municipal liens\n\u2022 Zero repair demands \u2014 roof damage, plumbing, electrical, or structural issues welcome\n\u2022 All-cash purchase with no appraisal contingencies or bank inspection delays\n\u2022 Fast closing on your preferred date (7\u201314 days)\n\u2022 Zero fees or closing expenses to you\n\nIf you'd like to walk away with cash and let us handle the city and repairs, reply directly to this email or call/text me at (407) 555-FLIP.\n\nBest regards,\nJohn Roberts | 407 Flips\nEmail: john@407flips.com | Phone: (407) 555-FLIP\nOrlando, FL"
+    },
+    {
+      "id": "quick_cash",
+      "name": "\ud83d\udcb0 Quick As-Is Cash Offer (Close in 7\u201314 Days)",
+      "category": "cash_offer",
+      "subject": "Direct Cash Offer for {Address} - No Fees or Repairs",
+      "body": "Hi {FirstName},\n\nMy name is John with 407 Flips. I am a local Florida private cash buyer actively purchasing homes in your neighborhood.\n\nI am interested in making a direct, all-cash offer on your property at {Address}.\n\nWhy homeowners choose to work with 407 Flips:\n\u2022 All-Cash Offer \u2014 No bank approvals, no appraisal hurdles\n\u2022 As-Is Condition \u2014 No repairs, painting, or cleaning needed\n\u2022 Fast & Flexible Closing \u2014 Close in 7\u201314 days or on your chosen date\n\u2022 Zero Expenses \u2014 No 6% Realtor commissions and no seller closing costs\n\nIf you have considered selling or simply want to know what a cash offer on your property would look like, please reply to this email or call/text me at (407) 555-FLIP.\n\nBest regards,\nJohn Roberts | 407 Flips\nEmail: john@407flips.com | Phone: (407) 555-FLIP\nOrlando, FL"
+    }
+  ]
+}

@@ -1,0 +1,1159 @@
+[
+  {
+    "county": "Mecklenburg",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://property.spatialest.com/nc/mecklenburg/",
+        "evidence": "https://tax.mecknc.gov/",
+        "agency": "Mecklenburg County Tax Administration / Real Property",
+        "notes": "Official county real-property search by owner, parcel/PIN or situs address. Individual assessment/ownership records, not a countywide bulk file and not proof of delinquency. Use the normal gateway and any required disclaimer/session."
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://services.nconemap.gov/secure/rest/services/NC1Map_Parcels/MapServer/0/query?where=cntyname%20%3D%20'Mecklenburg'",
+        "evidence": "https://services.nconemap.gov/secure/rest/services/NC1Map_Parcels/MapServer/0",
+        "agency": "Mecklenburg County parcel data — NC DIT / CGIA (NC OneMap)",
+        "access": "DOWNLOAD_PAGE",
+        "format": "ArcGIS JSON / GeoJSON",
+        "notes": "Complete Mecklenburg County parcel ownership/assessment layer within NC OneMap's statewide service; county-filtered Query gateway, not an individual lookup. Set Out Fields to *, Return Geometry to false for a table, format JSON, and paginate using Result Offset/Record Count (service limit 5000) or retrieve all object IDs and query batches. County counts and sample records were verified; one response is not a complete export. Includes parcel IDs, owner, mailing/situs address, land/improvement/parcel values, acreage, use codes and source dates where supplied. Source dates vary and some are invalid; this is not a certified current CAMA/tax roll. Request missing building detail/exemptions and current existing CAMA file from County Tax Administration. Older OneMap ZIP links returned 404 and were excluded."
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://tax.mecknc.gov/Delinquent-Taxpayer-Lists",
+        "evidence": "https://tax.mecknc.gov/Delinquent-Taxpayer-Lists",
+        "agency": "Mecklenburg County Tax Administration / Collections",
+        "access": "DOWNLOAD_PAGE",
+        "format": "PDF",
+        "notes": "Use the annual real-estate delinquency publication, not the separate Top 100 ranking or personal-property/business lists. This dated annual publication omits later payments and may omit older tax years; verify balances in Tax Bill Lookup. The linked county open-mapping unpaid-bill export needs delinquency/date and real-property filtering."
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://portal-nc.tylertech.cloud/Portal/",
+        "evidence": "https://www.nccourts.gov/locations/mecklenburg-county/contact-directory",
+        "agency": "Mecklenburg County Clerk of Superior Court — Special Proceedings",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "eCourts Portal Smart Search: choose Mecklenburg County/location and nonconfidential Special Proceedings for power-of-sale foreclosure cases (SP), then name/case number and filing date. Judicial foreclosures can also be Civil Actions; tax foreclosures are distinct and may be civil or in rem. This is a court case index, not a complete public-notice feed or Florida Lis Pendens. Filters need a search term. Older paper filings, missing documents and courthouse notices require the county Clerk; use the linked county Judicial Branch contact directory. All NC counties have eCourts as of October 13, 2025. Normal session/verification may be required; no bypass. Audit limitation: official Portal and Judicial Branch pages returned HTTP 403 in this environment, including a normal browser; no live case search/document retrieval was verified. The official statewide rollout and county Clerk routing were checked against Judicial Branch published pages; use normal user access or contact the county Clerk for records. No bypass automation."
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://portal-nc.tylertech.cloud/Portal/",
+        "evidence": "https://www.nccourts.gov/locations/mecklenburg-county/contact-directory",
+        "agency": "Mecklenburg County Clerk of Superior Court — Estates",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "eCourts Portal Smart Search: choose Mecklenburg County/location and Estates (E) case type, then decedent name or estate file number. Related nonconfidential estate Special Proceedings (SP) may be separate cases. Clerk of Superior Court administers estate files; Register of Deeds is not the probate custodian. All NC counties now use eCourts, but older paper documents and restricted/missing filings may need a Clerk request through the linked county contact directory. Public search and elevated/document access differ; no complete estate bulk export claimed. Audit limitation: official Portal and Judicial Branch pages returned HTTP 403 in this environment, including a normal browser; no live case search/document retrieval was verified. The official statewide rollout and county Clerk routing were checked against Judicial Branch published pages; use normal user access or contact the county Clerk for records. No bypass automation."
+      },
+      {
+        "type": "COUNTY_CODE_ENFORCEMENT",
+        "url": "https://code.mecknc.gov/service/minimum-housing-code-enforcement-0",
+        "evidence": "https://code.mecknc.gov/service/minimum-housing-code-enforcement-0",
+        "access": "EMAIL_REQUEST",
+        "agency": "Mecklenburg County Code Enforcement — Minimum Housing",
+        "notes": "Minimum housing for unincorporated county plus Cornelius, Davidson, Huntersville, Matthews and Mint Hill by agreement; Charlotte and Pineville handle their own minimum housing. The county ordinance applies to a small unincorporated area, not all Mecklenburg postal addresses. Request existing case records/export under North Carolina Chapter 132 where records are not public; a complaint form is not a records request. No new inspection or custom analysis.",
+        "email": "grady.penner@mecklenburgcountync.gov"
+      }
+    ]
+  },
+  {
+    "county": "Gaston",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://gastonnc.devnetwedge.com/",
+        "evidence": "https://www.gastongov.com/663/Reappraisal",
+        "agency": "Gaston County Tax Administration / Real Property",
+        "notes": "Official county real-property search by owner, parcel/PIN or situs address. Individual assessment/ownership records, not a countywide bulk file and not proof of delinquency. Use the normal gateway and any required disclaimer/session."
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://services.nconemap.gov/secure/rest/services/NC1Map_Parcels/MapServer/0/query?where=cntyname%20%3D%20'Gaston'",
+        "evidence": "https://services.nconemap.gov/secure/rest/services/NC1Map_Parcels/MapServer/0",
+        "agency": "Gaston County parcel data — NC DIT / CGIA (NC OneMap)",
+        "access": "DOWNLOAD_PAGE",
+        "format": "ArcGIS JSON / GeoJSON",
+        "notes": "Complete Gaston County parcel ownership/assessment layer within NC OneMap's statewide service; county-filtered Query gateway, not an individual lookup. Set Out Fields to *, Return Geometry to false for a table, format JSON, and paginate using Result Offset/Record Count (service limit 5000) or retrieve all object IDs and query batches. County counts and sample records were verified; one response is not a complete export. Includes parcel IDs, owner, mailing/situs address, land/improvement/parcel values, acreage, use codes and source dates where supplied. Source dates vary and some are invalid; this is not a certified current CAMA/tax roll. Request missing building detail/exemptions and current existing CAMA file from County Tax Administration. Older OneMap ZIP links returned 404 and were excluded."
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://gastonnc.devnetwedge.com/",
+        "evidence": "https://gastonnc.devnetwedge.com/",
+        "agency": "Gaston County Tax Administration / Collections",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual Tax Status. Official tax-account/bill search; check outstanding prior years and unpaid balance for real-property accounts. This is not a full countywide delinquent dataset or a tax-sale inventory. Ask Tax Collections for the existing current electronic delinquent real-property account list if maintained."
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://portal-nc.tylertech.cloud/Portal/",
+        "evidence": "https://www.nccourts.gov/locations/gaston-county/contact-directory",
+        "agency": "Gaston County Clerk of Superior Court — Special Proceedings",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "eCourts Portal Smart Search: choose Gaston County/location and nonconfidential Special Proceedings for power-of-sale foreclosure cases (SP), then name/case number and filing date. Judicial foreclosures can also be Civil Actions; tax foreclosures are distinct and may be civil or in rem. This is a court case index, not a complete public-notice feed or Florida Lis Pendens. Filters need a search term. Older paper filings, missing documents and courthouse notices require the county Clerk; use the linked county Judicial Branch contact directory. All NC counties have eCourts as of October 13, 2025. Normal session/verification may be required; no bypass. Audit limitation: official Portal and Judicial Branch pages returned HTTP 403 in this environment, including a normal browser; no live case search/document retrieval was verified. The official statewide rollout and county Clerk routing were checked against Judicial Branch published pages; use normal user access or contact the county Clerk for records. No bypass automation."
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://portal-nc.tylertech.cloud/Portal/",
+        "evidence": "https://www.nccourts.gov/locations/gaston-county/contact-directory",
+        "agency": "Gaston County Clerk of Superior Court — Estates",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "eCourts Portal Smart Search: choose Gaston County/location and Estates (E) case type, then decedent name or estate file number. Related nonconfidential estate Special Proceedings (SP) may be separate cases. Clerk of Superior Court administers estate files; Register of Deeds is not the probate custodian. All NC counties now use eCourts, but older paper documents and restricted/missing filings may need a Clerk request through the linked county contact directory. Public search and elevated/document access differ; no complete estate bulk export claimed. Audit limitation: official Portal and Judicial Branch pages returned HTTP 403 in this environment, including a normal browser; no live case search/document retrieval was verified. The official statewide rollout and county Clerk routing were checked against Judicial Branch published pages; use normal user access or contact the county Clerk for records. No bypass automation."
+      },
+      {
+        "type": "COUNTY_CODE_ENFORCEMENT",
+        "url": "https://www.gastongov.com/1389/Code-Enforcement",
+        "evidence": "https://www.gastongov.com/1389/Code-Enforcement",
+        "access": "RECORDS_REQUEST",
+        "agency": "Gaston County Planning / Code Enforcement",
+        "notes": "County zoning-code complaints and case tracking through CSS; municipal minimum-housing and nuisance cases are distinct. Request existing case records/export under North Carolina Chapter 132 where records are not public; a complaint form is not a records request. No new inspection or custom analysis."
+      }
+    ]
+  },
+  {
+    "county": "Cabarrus",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://tax.cabarruscounty.us/",
+        "evidence": "https://www.cabarruscounty.us/Services/Taxes/Search-Tax-Databases",
+        "agency": "Cabarrus County Tax Administration / Real Property",
+        "notes": "Official county real-property search by owner, parcel/PIN or situs address. Individual assessment/ownership records, not a countywide bulk file and not proof of delinquency. Use the normal gateway and any required disclaimer/session."
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://services.nconemap.gov/secure/rest/services/NC1Map_Parcels/MapServer/0/query?where=cntyname%20%3D%20'Cabarrus'",
+        "evidence": "https://services.nconemap.gov/secure/rest/services/NC1Map_Parcels/MapServer/0",
+        "agency": "Cabarrus County parcel data — NC DIT / CGIA (NC OneMap)",
+        "access": "DOWNLOAD_PAGE",
+        "format": "ArcGIS JSON / GeoJSON",
+        "notes": "Complete Cabarrus County parcel ownership/assessment layer within NC OneMap's statewide service; county-filtered Query gateway, not an individual lookup. Set Out Fields to *, Return Geometry to false for a table, format JSON, and paginate using Result Offset/Record Count (service limit 5000) or retrieve all object IDs and query batches. County counts and sample records were verified; one response is not a complete export. Includes parcel IDs, owner, mailing/situs address, land/improvement/parcel values, acreage, use codes and source dates where supplied. Source dates vary and some are invalid; this is not a certified current CAMA/tax roll. Request missing building detail/exemptions and current existing CAMA file from County Tax Administration. Older OneMap ZIP links returned 404 and were excluded."
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://tax.cabarruscounty.us/TaxBill.aspx",
+        "evidence": "https://tax.cabarruscounty.us/TaxBill.aspx",
+        "agency": "Cabarrus County Tax Administration / Collections",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual Tax Status. Official tax-account/bill search; check outstanding prior years and unpaid balance for real-property accounts. This is not a full countywide delinquent dataset or a tax-sale inventory. Ask Tax Collections for the existing current electronic delinquent real-property account list if maintained."
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://portal-nc.tylertech.cloud/Portal/",
+        "evidence": "https://www.nccourts.gov/locations/cabarrus-county/contact-directory",
+        "agency": "Cabarrus County Clerk of Superior Court — Special Proceedings",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "eCourts Portal Smart Search: choose Cabarrus County/location and nonconfidential Special Proceedings for power-of-sale foreclosure cases (SP), then name/case number and filing date. Judicial foreclosures can also be Civil Actions; tax foreclosures are distinct and may be civil or in rem. This is a court case index, not a complete public-notice feed or Florida Lis Pendens. Filters need a search term. Older paper filings, missing documents and courthouse notices require the county Clerk; use the linked county Judicial Branch contact directory. All NC counties have eCourts as of October 13, 2025. Normal session/verification may be required; no bypass. Audit limitation: official Portal and Judicial Branch pages returned HTTP 403 in this environment, including a normal browser; no live case search/document retrieval was verified. The official statewide rollout and county Clerk routing were checked against Judicial Branch published pages; use normal user access or contact the county Clerk for records. No bypass automation."
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://portal-nc.tylertech.cloud/Portal/",
+        "evidence": "https://www.nccourts.gov/locations/cabarrus-county/contact-directory",
+        "agency": "Cabarrus County Clerk of Superior Court — Estates",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "eCourts Portal Smart Search: choose Cabarrus County/location and Estates (E) case type, then decedent name or estate file number. Related nonconfidential estate Special Proceedings (SP) may be separate cases. Clerk of Superior Court administers estate files; Register of Deeds is not the probate custodian. All NC counties now use eCourts, but older paper documents and restricted/missing filings may need a Clerk request through the linked county contact directory. Public search and elevated/document access differ; no complete estate bulk export claimed. Audit limitation: official Portal and Judicial Branch pages returned HTTP 403 in this environment, including a normal browser; no live case search/document retrieval was verified. The official statewide rollout and county Clerk routing were checked against Judicial Branch published pages; use normal user access or contact the county Clerk for records. No bypass automation."
+      },
+      {
+        "type": "COUNTY_CODE_ENFORCEMENT",
+        "url": "https://aca-prod.accela.com/cabarrus/Default.aspx",
+        "evidence": "https://aca-prod.accela.com/cabarrus/Default.aspx",
+        "access": "SEARCH_PORTAL",
+        "agency": "Cabarrus County Planning / Code Enforcement",
+        "notes": "Shared Central Permitting gateway: choose County Enforcement, not Concord Planning or Kannapolis. County unsafe-structure/minimum-housing and zoning records are distinct from municipal cases. Request existing case records/export under North Carolina Chapter 132 where records are not public; a complaint form is not a records request. No new inspection or custom analysis."
+      }
+    ]
+  },
+  {
+    "county": "Union",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://property.spatialest.com/nc/union/",
+        "evidence": "https://www.unioncountync.gov/government/departments-r-z/taxes-property",
+        "agency": "Union County Tax Administration / Real Property",
+        "notes": "Official county real-property search by owner, parcel/PIN or situs address. Individual assessment/ownership records, not a countywide bulk file and not proof of delinquency. Use the normal gateway and any required disclaimer/session."
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://services.nconemap.gov/secure/rest/services/NC1Map_Parcels/MapServer/0/query?where=cntyname%20%3D%20'Union'",
+        "evidence": "https://services.nconemap.gov/secure/rest/services/NC1Map_Parcels/MapServer/0",
+        "agency": "Union County parcel data — NC DIT / CGIA (NC OneMap)",
+        "access": "DOWNLOAD_PAGE",
+        "format": "ArcGIS JSON / GeoJSON",
+        "notes": "Complete Union County parcel ownership/assessment layer within NC OneMap's statewide service; county-filtered Query gateway, not an individual lookup. Set Out Fields to *, Return Geometry to false for a table, format JSON, and paginate using Result Offset/Record Count (service limit 5000) or retrieve all object IDs and query batches. County counts and sample records were verified; one response is not a complete export. Includes parcel IDs, owner, mailing/situs address, land/improvement/parcel values, acreage, use codes and source dates where supplied. Source dates vary and some are invalid; this is not a certified current CAMA/tax roll. Request missing building detail/exemptions and current existing CAMA file from County Tax Administration. Older OneMap ZIP links returned 404 and were excluded."
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://www.unioncountync.gov/home/showdocument?id=4792&t=639076999845462802",
+        "evidence": "https://www.unioncountync.gov/government/departments-r-z/taxes-property/collection-payment/property-tax-foreclosure-auction",
+        "agency": "Union County Tax Administration / Collections",
+        "access": "DIRECT_DOWNLOAD",
+        "format": "PDF",
+        "notes": "Separate delinquent-tax list updated September 2, 2026, linked below the foreclosure section. This is not the scheduled-sale or properties-in-foreclosure list. Check tax years and subsequent payments."
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://portal-nc.tylertech.cloud/Portal/",
+        "evidence": "https://www.nccourts.gov/locations/union-county/contact-directory",
+        "agency": "Union County Clerk of Superior Court — Special Proceedings",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "eCourts Portal Smart Search: choose Union County/location and nonconfidential Special Proceedings for power-of-sale foreclosure cases (SP), then name/case number and filing date. Judicial foreclosures can also be Civil Actions; tax foreclosures are distinct and may be civil or in rem. This is a court case index, not a complete public-notice feed or Florida Lis Pendens. Filters need a search term. Older paper filings, missing documents and courthouse notices require the county Clerk; use the linked county Judicial Branch contact directory. All NC counties have eCourts as of October 13, 2025. Normal session/verification may be required; no bypass. Audit limitation: official Portal and Judicial Branch pages returned HTTP 403 in this environment, including a normal browser; no live case search/document retrieval was verified. The official statewide rollout and county Clerk routing were checked against Judicial Branch published pages; use normal user access or contact the county Clerk for records. No bypass automation."
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://portal-nc.tylertech.cloud/Portal/",
+        "evidence": "https://www.nccourts.gov/locations/union-county/contact-directory",
+        "agency": "Union County Clerk of Superior Court — Estates",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "eCourts Portal Smart Search: choose Union County/location and Estates (E) case type, then decedent name or estate file number. Related nonconfidential estate Special Proceedings (SP) may be separate cases. Clerk of Superior Court administers estate files; Register of Deeds is not the probate custodian. All NC counties now use eCourts, but older paper documents and restricted/missing filings may need a Clerk request through the linked county contact directory. Public search and elevated/document access differ; no complete estate bulk export claimed. Audit limitation: official Portal and Judicial Branch pages returned HTTP 403 in this environment, including a normal browser; no live case search/document retrieval was verified. The official statewide rollout and county Clerk routing were checked against Judicial Branch published pages; use normal user access or contact the county Clerk for records. No bypass automation."
+      }
+    ]
+  },
+  {
+    "county": "Iredell",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://taxweb.iredellcountync.gov/PublicAccess/",
+        "evidence": "https://taxweb.iredellcountync.gov/PublicAccess/",
+        "agency": "Iredell County Tax Administration / Real Property",
+        "notes": "Official county real-property search by owner, parcel/PIN or situs address. Individual assessment/ownership records, not a countywide bulk file and not proof of delinquency. Use the normal gateway and any required disclaimer/session."
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://services.nconemap.gov/secure/rest/services/NC1Map_Parcels/MapServer/0/query?where=cntyname%20%3D%20'Iredell'",
+        "evidence": "https://services.nconemap.gov/secure/rest/services/NC1Map_Parcels/MapServer/0",
+        "agency": "Iredell County parcel data — NC DIT / CGIA (NC OneMap)",
+        "access": "DOWNLOAD_PAGE",
+        "format": "ArcGIS JSON / GeoJSON",
+        "notes": "Complete Iredell County parcel ownership/assessment layer within NC OneMap's statewide service; county-filtered Query gateway, not an individual lookup. Set Out Fields to *, Return Geometry to false for a table, format JSON, and paginate using Result Offset/Record Count (service limit 5000) or retrieve all object IDs and query batches. County counts and sample records were verified; one response is not a complete export. Includes parcel IDs, owner, mailing/situs address, land/improvement/parcel values, acreage, use codes and source dates where supplied. Source dates vary and some are invalid; this is not a certified current CAMA/tax roll. Request missing building detail/exemptions and current existing CAMA file from County Tax Administration. Older OneMap ZIP links returned 404 and were excluded."
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://taxweb.iredellcountync.gov/PublicAccess/",
+        "evidence": "https://maps.iredellcountync.gov/server/rest/services/Data/DelinquentTaxes/MapServer/0",
+        "agency": "Iredell County Tax Administration / Collections",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual Tax Status. Use tax bill/account search, real-property account type, unpaid balances and prior tax years; not a countywide delinquent dataset or sale inventory. Request the existing current all-year delinquent real-property account export from Tax Collections if maintained. The public delinquency map contains only a delinquency flag/date and geometry, without a verified account/balance table, so it is not labeled bulk."
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://portal-nc.tylertech.cloud/Portal/",
+        "evidence": "https://www.nccourts.gov/locations/iredell-county/contact-directory",
+        "agency": "Iredell County Clerk of Superior Court — Special Proceedings",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "eCourts Portal Smart Search: choose Iredell County/location and nonconfidential Special Proceedings for power-of-sale foreclosure cases (SP), then name/case number and filing date. Judicial foreclosures can also be Civil Actions; tax foreclosures are distinct and may be civil or in rem. This is a court case index, not a complete public-notice feed or Florida Lis Pendens. Filters need a search term. Older paper filings, missing documents and courthouse notices require the county Clerk; use the linked county Judicial Branch contact directory. All NC counties have eCourts as of October 13, 2025. Normal session/verification may be required; no bypass. Audit limitation: official Portal and Judicial Branch pages returned HTTP 403 in this environment, including a normal browser; no live case search/document retrieval was verified. The official statewide rollout and county Clerk routing were checked against Judicial Branch published pages; use normal user access or contact the county Clerk for records. No bypass automation."
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://portal-nc.tylertech.cloud/Portal/",
+        "evidence": "https://www.nccourts.gov/locations/iredell-county/contact-directory",
+        "agency": "Iredell County Clerk of Superior Court — Estates",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "eCourts Portal Smart Search: choose Iredell County/location and Estates (E) case type, then decedent name or estate file number. Related nonconfidential estate Special Proceedings (SP) may be separate cases. Clerk of Superior Court administers estate files; Register of Deeds is not the probate custodian. All NC counties now use eCourts, but older paper documents and restricted/missing filings may need a Clerk request through the linked county contact directory. Public search and elevated/document access differ; no complete estate bulk export claimed. Audit limitation: official Portal and Judicial Branch pages returned HTTP 403 in this environment, including a normal browser; no live case search/document retrieval was verified. The official statewide rollout and county Clerk routing were checked against Judicial Branch published pages; use normal user access or contact the county Clerk for records. No bypass automation."
+      },
+      {
+        "type": "COUNTY_CODE_ENFORCEMENT",
+        "url": "https://iredellcountync.gov/234/Building-Standards-Division",
+        "evidence": "https://iredellcountync.gov/234/Building-Standards-Division",
+        "access": "RECORDS_REQUEST",
+        "agency": "Iredell County Planning / Code Enforcement",
+        "notes": "Minimum housing for dwellings outside Statesville, Troutman and Mooresville; municipal cases remain with the town/city. Request existing violation/unsafe-dwelling files, not new building inspections. Request existing case records/export under North Carolina Chapter 132 where records are not public; a complaint form is not a records request. No new inspection or custom analysis."
+      }
+    ]
+  },
+  {
+    "county": "Rowan",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://tax.rowancountync.gov/search/commonsearch.aspx?mode=realprop",
+        "evidence": "https://tax.rowancountync.gov/search/commonsearch.aspx?mode=realprop",
+        "agency": "Rowan County Tax Administration / Real Property",
+        "notes": "Official county real-property search by owner, parcel/PIN or situs address. Individual assessment/ownership records, not a countywide bulk file and not proof of delinquency. Use the normal gateway and any required disclaimer/session."
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://services.nconemap.gov/secure/rest/services/NC1Map_Parcels/MapServer/0/query?where=cntyname%20%3D%20'Rowan'",
+        "evidence": "https://services.nconemap.gov/secure/rest/services/NC1Map_Parcels/MapServer/0",
+        "agency": "Rowan County parcel data — NC DIT / CGIA (NC OneMap)",
+        "access": "DOWNLOAD_PAGE",
+        "format": "ArcGIS JSON / GeoJSON",
+        "notes": "Complete Rowan County parcel ownership/assessment layer within NC OneMap's statewide service; county-filtered Query gateway, not an individual lookup. Set Out Fields to *, Return Geometry to false for a table, format JSON, and paginate using Result Offset/Record Count (service limit 5000) or retrieve all object IDs and query batches. County counts and sample records were verified; one response is not a complete export. Includes parcel IDs, owner, mailing/situs address, land/improvement/parcel values, acreage, use codes and source dates where supplied. Source dates vary and some are invalid; this is not a certified current CAMA/tax roll. Request missing building detail/exemptions and current existing CAMA file from County Tax Administration. Older OneMap ZIP links returned 404 and were excluded."
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://tax.rowancountync.gov/search/commonsearch.aspx?mode=realprop",
+        "evidence": "https://gis.rowancountync.gov/arcgis/rest/services/Public/publicdata/MapServer/37",
+        "agency": "Rowan County Tax Administration / Collections",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual Tax Status. Use tax bill/account search, real-property account type, unpaid balances and prior tax years; not a countywide delinquent dataset or sale inventory. Request the existing current all-year delinquent real-property account export from Tax Collections if maintained. The public Delinquent Parcels GIS layer returned zero records at audit; no current populated full export was confirmed."
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://portal-nc.tylertech.cloud/Portal/",
+        "evidence": "https://www.nccourts.gov/locations/rowan-county/contact-directory",
+        "agency": "Rowan County Clerk of Superior Court — Special Proceedings",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "eCourts Portal Smart Search: choose Rowan County/location and nonconfidential Special Proceedings for power-of-sale foreclosure cases (SP), then name/case number and filing date. Judicial foreclosures can also be Civil Actions; tax foreclosures are distinct and may be civil or in rem. This is a court case index, not a complete public-notice feed or Florida Lis Pendens. Filters need a search term. Older paper filings, missing documents and courthouse notices require the county Clerk; use the linked county Judicial Branch contact directory. All NC counties have eCourts as of October 13, 2025. Normal session/verification may be required; no bypass. Audit limitation: official Portal and Judicial Branch pages returned HTTP 403 in this environment, including a normal browser; no live case search/document retrieval was verified. The official statewide rollout and county Clerk routing were checked against Judicial Branch published pages; use normal user access or contact the county Clerk for records. No bypass automation."
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://portal-nc.tylertech.cloud/Portal/",
+        "evidence": "https://www.nccourts.gov/locations/rowan-county/contact-directory",
+        "agency": "Rowan County Clerk of Superior Court — Estates",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "eCourts Portal Smart Search: choose Rowan County/location and Estates (E) case type, then decedent name or estate file number. Related nonconfidential estate Special Proceedings (SP) may be separate cases. Clerk of Superior Court administers estate files; Register of Deeds is not the probate custodian. All NC counties now use eCourts, but older paper documents and restricted/missing filings may need a Clerk request through the linked county contact directory. Public search and elevated/document access differ; no complete estate bulk export claimed. Audit limitation: official Portal and Judicial Branch pages returned HTTP 403 in this environment, including a normal browser; no live case search/document retrieval was verified. The official statewide rollout and county Clerk routing were checked against Judicial Branch published pages; use normal user access or contact the county Clerk for records. No bypass automation."
+      },
+      {
+        "type": "COUNTY_CODE_ENFORCEMENT",
+        "url": "https://www.rowancountync.gov/337/Planning-Development",
+        "evidence": "https://www.rowancountync.gov/337/Planning-Development",
+        "access": "EMAIL_REQUEST",
+        "agency": "Rowan County Planning / Code Enforcement",
+        "notes": "County zoning enforcement in its jurisdiction; Salisbury and other municipalities maintain separate cases. Use the named Zoning Code Enforcement contact for existing violation files. Request existing case records/export under North Carolina Chapter 132 where records are not public; a complaint form is not a records request. No new inspection or custom analysis.",
+        "email": "matt.baity@rowancountync.gov"
+      }
+    ]
+  },
+  {
+    "county": "Wake",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://services.wake.gov/realestate/",
+        "evidence": "https://services.wake.gov/realestate/",
+        "agency": "Wake County Tax Administration / Real Property",
+        "notes": "Official county real-property search by owner, parcel/PIN or situs address. Individual assessment/ownership records, not a countywide bulk file and not proof of delinquency. Use the normal gateway and any required disclaimer/session."
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://services.nconemap.gov/secure/rest/services/NC1Map_Parcels/MapServer/0/query?where=cntyname%20%3D%20'Wake'",
+        "evidence": "https://services.nconemap.gov/secure/rest/services/NC1Map_Parcels/MapServer/0",
+        "agency": "Wake County parcel data — NC DIT / CGIA (NC OneMap)",
+        "access": "DOWNLOAD_PAGE",
+        "format": "ArcGIS JSON / GeoJSON",
+        "notes": "Complete Wake County parcel ownership/assessment layer within NC OneMap's statewide service; county-filtered Query gateway, not an individual lookup. Set Out Fields to *, Return Geometry to false for a table, format JSON, and paginate using Result Offset/Record Count (service limit 5000) or retrieve all object IDs and query batches. County counts and sample records were verified; one response is not a complete export. Includes parcel IDs, owner, mailing/situs address, land/improvement/parcel values, acreage, use codes and source dates where supplied. Source dates vary and some are invalid; this is not a certified current CAMA/tax roll. Request missing building detail/exemptions and current existing CAMA file from County Tax Administration. Older OneMap ZIP links returned 404 and were excluded."
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://services.wake.gov/ptax/main/billing/default.aspx",
+        "evidence": "https://taxhelp.wake.gov/hc/en-us/articles/42581587633044-Delinquent-Taxes",
+        "agency": "Wake County Tax Administration / Collections",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual Tax Status. Official bill lookup; full real-estate billing/delinquency files are referenced by Tax Administration but the download gateway could not be confirmed through its protected site during this audit. Use the Tax Administration help/request route for the existing full delinquent real-property electronic file; this search is not that file."
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://portal-nc.tylertech.cloud/Portal/",
+        "evidence": "https://www.nccourts.gov/locations/wake-county/contact-directory",
+        "agency": "Wake County Clerk of Superior Court — Special Proceedings",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "eCourts Portal Smart Search: choose Wake County/location and nonconfidential Special Proceedings for power-of-sale foreclosure cases (SP), then name/case number and filing date. Judicial foreclosures can also be Civil Actions; tax foreclosures are distinct and may be civil or in rem. This is a court case index, not a complete public-notice feed or Florida Lis Pendens. Filters need a search term. Older paper filings, missing documents and courthouse notices require the county Clerk; use the linked county Judicial Branch contact directory. All NC counties have eCourts as of October 13, 2025. Normal session/verification may be required; no bypass. Audit limitation: official Portal and Judicial Branch pages returned HTTP 403 in this environment, including a normal browser; no live case search/document retrieval was verified. The official statewide rollout and county Clerk routing were checked against Judicial Branch published pages; use normal user access or contact the county Clerk for records. No bypass automation."
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://portal-nc.tylertech.cloud/Portal/",
+        "evidence": "https://www.nccourts.gov/locations/wake-county/contact-directory",
+        "agency": "Wake County Clerk of Superior Court — Estates",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "eCourts Portal Smart Search: choose Wake County/location and Estates (E) case type, then decedent name or estate file number. Related nonconfidential estate Special Proceedings (SP) may be separate cases. Clerk of Superior Court administers estate files; Register of Deeds is not the probate custodian. All NC counties now use eCourts, but older paper documents and restricted/missing filings may need a Clerk request through the linked county contact directory. Public search and elevated/document access differ; no complete estate bulk export claimed. Audit limitation: official Portal and Judicial Branch pages returned HTTP 403 in this environment, including a normal browser; no live case search/document retrieval was verified. The official statewide rollout and county Clerk routing were checked against Judicial Branch published pages; use normal user access or contact the county Clerk for records. No bypass automation."
+      }
+    ]
+  },
+  {
+    "county": "Durham",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://taxcama.dconc.gov/camapwa/",
+        "evidence": "https://dconc.gov/Tax-Administration",
+        "agency": "Durham County Tax Administration / Real Property",
+        "notes": "Official county real-property search by owner, parcel/PIN or situs address. Individual assessment/ownership records, not a countywide bulk file and not proof of delinquency. Use the normal gateway and any required disclaimer/session."
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://dconc.gov/Tax-Administration1/Documents/2026_real_property_db_with_bill_amount.csv",
+        "evidence": "https://dconc.gov/Tax-Administration/Real-Property/Real-Property-Database",
+        "agency": "Durham County Tax Administration",
+        "access": "DIRECT_DOWNLOAD",
+        "format": "CSV",
+        "notes": "County publishes its complete 2026 real-property database with bill amount in CSV (also TXT/ZIP on the linked page). Countywide current-year assessment/ownership file; includes real-property accounts, not an individual lookup. Inspect release date, data dictionary and current balances; bill amount alone does not establish delinquency. Ask Tax Administration for any missing existing CAMA fields in their retained electronic format."
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://property.spatialest.com/nc/durham-tax/#/delinquents",
+        "evidence": "https://dconc.gov/Tax-Administration",
+        "agency": "Durham County Tax Administration / Collections",
+        "access": "SEARCH_PORTAL",
+        "notes": "Official searchable Delinquent Taxpayer List linked by Tax Administration. Filter real property and county location; no unrestricted bulk export was verified. Confirm tax years and current balance, including older delinquency."
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://portal-nc.tylertech.cloud/Portal/",
+        "evidence": "https://www.nccourts.gov/locations/durham-county/contact-directory",
+        "agency": "Durham County Clerk of Superior Court — Special Proceedings",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "eCourts Portal Smart Search: choose Durham County/location and nonconfidential Special Proceedings for power-of-sale foreclosure cases (SP), then name/case number and filing date. Judicial foreclosures can also be Civil Actions; tax foreclosures are distinct and may be civil or in rem. This is a court case index, not a complete public-notice feed or Florida Lis Pendens. Filters need a search term. Older paper filings, missing documents and courthouse notices require the county Clerk; use the linked county Judicial Branch contact directory. All NC counties have eCourts as of October 13, 2025. Normal session/verification may be required; no bypass. Audit limitation: official Portal and Judicial Branch pages returned HTTP 403 in this environment, including a normal browser; no live case search/document retrieval was verified. The official statewide rollout and county Clerk routing were checked against Judicial Branch published pages; use normal user access or contact the county Clerk for records. No bypass automation."
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://portal-nc.tylertech.cloud/Portal/",
+        "evidence": "https://www.nccourts.gov/locations/durham-county/contact-directory",
+        "agency": "Durham County Clerk of Superior Court — Estates",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "eCourts Portal Smart Search: choose Durham County/location and Estates (E) case type, then decedent name or estate file number. Related nonconfidential estate Special Proceedings (SP) may be separate cases. Clerk of Superior Court administers estate files; Register of Deeds is not the probate custodian. All NC counties now use eCourts, but older paper documents and restricted/missing filings may need a Clerk request through the linked county contact directory. Public search and elevated/document access differ; no complete estate bulk export claimed. Audit limitation: official Portal and Judicial Branch pages returned HTTP 403 in this environment, including a normal browser; no live case search/document retrieval was verified. The official statewide rollout and county Clerk routing were checked against Judicial Branch published pages; use normal user access or contact the county Clerk for records. No bypass automation."
+      },
+      {
+        "type": "COUNTY_CODE_ENFORCEMENT",
+        "url": "https://www.durhamnc.gov/5479/About-Planning-Development-Teams",
+        "agency": "Durham City-County Planning & Development — Zoning Enforcement",
+        "evidence": "https://www.durhamnc.gov/5479/About-Planning-Development-Teams",
+        "access": "RECORDS_REQUEST",
+        "notes": "Joint city-county zoning-enforcement team investigates complaints and issues NOVs/citations. This source covers the county jurisdiction of shared land-development enforcement; city Neighborhood Improvement Services housing/nuisance records are a separate source. Request retained electronic records under Chapter 132, not a new complaint/inspection or custom report."
+      }
+    ]
+  },
+  {
+    "county": "Johnston",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://www.bttaxpayerportal.com/itspublicjo/",
+        "evidence": "https://www.johnstonnc.gov/gis2/content.cfm?PD=searches",
+        "agency": "Johnston County Tax Administration / Real Property",
+        "notes": "Official county real-property search by owner, parcel/PIN or situs address. Individual assessment/ownership records, not a countywide bulk file and not proof of delinquency. Use the normal gateway and any required disclaimer/session."
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://services.nconemap.gov/secure/rest/services/NC1Map_Parcels/MapServer/0/query?where=cntyname%20%3D%20'Johnston'",
+        "evidence": "https://services.nconemap.gov/secure/rest/services/NC1Map_Parcels/MapServer/0",
+        "agency": "Johnston County parcel data — NC DIT / CGIA (NC OneMap)",
+        "access": "DOWNLOAD_PAGE",
+        "format": "ArcGIS JSON / GeoJSON",
+        "notes": "Complete Johnston County parcel ownership/assessment layer within NC OneMap's statewide service; county-filtered Query gateway, not an individual lookup. Set Out Fields to *, Return Geometry to false for a table, format JSON, and paginate using Result Offset/Record Count (service limit 5000) or retrieve all object IDs and query batches. County counts and sample records were verified; one response is not a complete export. Includes parcel IDs, owner, mailing/situs address, land/improvement/parcel values, acreage, use codes and source dates where supplied. Source dates vary and some are invalid; this is not a certified current CAMA/tax roll. Request missing building detail/exemptions and current existing CAMA file from County Tax Administration. Older OneMap ZIP links returned 404 and were excluded."
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://www.johnstonnc.gov/taxpay",
+        "evidence": "https://www.johnstonnc.gov/taxpay",
+        "agency": "Johnston County Tax Administration / Collections",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual Tax Status. Official tax-account/bill search; check outstanding prior years and unpaid balance for real-property accounts. This is not a full countywide delinquent dataset or a tax-sale inventory. Ask Tax Collections for the existing current electronic delinquent real-property account list if maintained."
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://portal-nc.tylertech.cloud/Portal/",
+        "evidence": "https://www.nccourts.gov/locations/johnston-county/contact-directory",
+        "agency": "Johnston County Clerk of Superior Court — Special Proceedings",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "eCourts Portal Smart Search: choose Johnston County/location and nonconfidential Special Proceedings for power-of-sale foreclosure cases (SP), then name/case number and filing date. Judicial foreclosures can also be Civil Actions; tax foreclosures are distinct and may be civil or in rem. This is a court case index, not a complete public-notice feed or Florida Lis Pendens. Filters need a search term. Older paper filings, missing documents and courthouse notices require the county Clerk; use the linked county Judicial Branch contact directory. All NC counties have eCourts as of October 13, 2025. Normal session/verification may be required; no bypass. Audit limitation: official Portal and Judicial Branch pages returned HTTP 403 in this environment, including a normal browser; no live case search/document retrieval was verified. The official statewide rollout and county Clerk routing were checked against Judicial Branch published pages; use normal user access or contact the county Clerk for records. No bypass automation."
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://portal-nc.tylertech.cloud/Portal/",
+        "evidence": "https://www.nccourts.gov/locations/johnston-county/contact-directory",
+        "agency": "Johnston County Clerk of Superior Court — Estates",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "eCourts Portal Smart Search: choose Johnston County/location and Estates (E) case type, then decedent name or estate file number. Related nonconfidential estate Special Proceedings (SP) may be separate cases. Clerk of Superior Court administers estate files; Register of Deeds is not the probate custodian. All NC counties now use eCourts, but older paper documents and restricted/missing filings may need a Clerk request through the linked county contact directory. Public search and elevated/document access differ; no complete estate bulk export claimed. Audit limitation: official Portal and Judicial Branch pages returned HTTP 403 in this environment, including a normal browser; no live case search/document retrieval was verified. The official statewide rollout and county Clerk routing were checked against Judicial Branch published pages; use normal user access or contact the county Clerk for records. No bypass automation."
+      },
+      {
+        "type": "COUNTY_CODE_ENFORCEMENT",
+        "url": "https://www.johnstonnc.gov/insp/staff.cfm",
+        "agency": "Johnston County Building Inspections — Minimum Housing and Code Enforcement",
+        "evidence": "https://www.johnstonnc.gov/insp/staff.cfm",
+        "access": "EMAIL_REQUEST",
+        "notes": "Existing county minimum-housing/code-enforcement records from the dedicated section of the Inspections staff directory; municipal jurisdictions hold their separate cases. Request retained electronic records under Chapter 132, not a new complaint/inspection or custom report.",
+        "email": "lamar.heath@johnstonnc.gov"
+      }
+    ]
+  },
+  {
+    "county": "Orange",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://property.spatialest.com/nc/orange/",
+        "evidence": "https://orangecountync.gov/728/Tax-Administration",
+        "agency": "Orange County Tax Administration / Real Property",
+        "notes": "Official county real-property search by owner, parcel/PIN or situs address. Individual assessment/ownership records, not a countywide bulk file and not proof of delinquency. Use the normal gateway and any required disclaimer/session."
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://services.nconemap.gov/secure/rest/services/NC1Map_Parcels/MapServer/0/query?where=cntyname%20%3D%20'Orange'",
+        "evidence": "https://services.nconemap.gov/secure/rest/services/NC1Map_Parcels/MapServer/0",
+        "agency": "Orange County parcel data — NC DIT / CGIA (NC OneMap)",
+        "access": "DOWNLOAD_PAGE",
+        "format": "ArcGIS JSON / GeoJSON",
+        "notes": "Complete Orange County parcel ownership/assessment layer within NC OneMap's statewide service; county-filtered Query gateway, not an individual lookup. Set Out Fields to *, Return Geometry to false for a table, format JSON, and paginate using Result Offset/Record Count (service limit 5000) or retrieve all object IDs and query batches. County counts and sample records were verified; one response is not a complete export. Includes parcel IDs, owner, mailing/situs address, land/improvement/parcel values, acreage, use codes and source dates where supplied. Source dates vary and some are invalid; this is not a certified current CAMA/tax roll. Request missing building detail/exemptions and current existing CAMA file from County Tax Administration. Older OneMap ZIP links returned 404 and were excluded."
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://web.co.orange.nc.us/propertytaxdatadownloads/OrangeCountyNC_PropertyTax_DelinquentReport.csv",
+        "evidence": "https://www.orangecountync.gov/2963/Property-Tax-Data-Downloads",
+        "agency": "Orange County Tax Administration / Collections",
+        "access": "DIRECT_DOWNLOAD",
+        "format": "CSV",
+        "notes": "Official full delinquent-report CSV, with XLSX alternative through the county tax-data downloads page; not the auction inventory or single-year advertised-liens subset. Inspect account/property type, tax years, extract date and unpaid balances; do not treat personal-property rows as real property. Verify subsequent payments with Tax Collections."
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://portal-nc.tylertech.cloud/Portal/",
+        "evidence": "https://www.nccourts.gov/locations/orange-county/contact-directory",
+        "agency": "Orange County Clerk of Superior Court — Special Proceedings",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "eCourts Portal Smart Search: choose Orange County/location and nonconfidential Special Proceedings for power-of-sale foreclosure cases (SP), then name/case number and filing date. Judicial foreclosures can also be Civil Actions; tax foreclosures are distinct and may be civil or in rem. This is a court case index, not a complete public-notice feed or Florida Lis Pendens. Filters need a search term. Older paper filings, missing documents and courthouse notices require the county Clerk; use the linked county Judicial Branch contact directory. All NC counties have eCourts as of October 13, 2025. Normal session/verification may be required; no bypass. Audit limitation: official Portal and Judicial Branch pages returned HTTP 403 in this environment, including a normal browser; no live case search/document retrieval was verified. The official statewide rollout and county Clerk routing were checked against Judicial Branch published pages; use normal user access or contact the county Clerk for records. No bypass automation."
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://portal-nc.tylertech.cloud/Portal/",
+        "evidence": "https://www.nccourts.gov/locations/orange-county/contact-directory",
+        "agency": "Orange County Clerk of Superior Court — Estates",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "eCourts Portal Smart Search: choose Orange County/location and Estates (E) case type, then decedent name or estate file number. Related nonconfidential estate Special Proceedings (SP) may be separate cases. Clerk of Superior Court administers estate files; Register of Deeds is not the probate custodian. All NC counties now use eCourts, but older paper documents and restricted/missing filings may need a Clerk request through the linked county contact directory. Public search and elevated/document access differ; no complete estate bulk export claimed. Audit limitation: official Portal and Judicial Branch pages returned HTTP 403 in this environment, including a normal browser; no live case search/document retrieval was verified. The official statewide rollout and county Clerk routing were checked against Judicial Branch published pages; use normal user access or contact the county Clerk for records. No bypass automation."
+      },
+      {
+        "type": "COUNTY_CODE_ENFORCEMENT",
+        "url": "https://www.orangecountync.gov/1657/Public-Records-Requests",
+        "agency": "Orange County Planning & Inspections / Public Records",
+        "evidence": "https://www.orangecountync.gov/3040/Unified-Development-Ordinance-UDO",
+        "access": "RECORDS_REQUEST",
+        "notes": "Official public-records request route for existing county UDO/zoning violation notices and case files. County enforcement applies in its planning jurisdiction; municipal limits/ETJs and Chapel Hill/Carrboro Joint Planning Areas have separate town enforcement authority. Request retained electronic records under Chapter 132, not a new complaint/inspection or custom report."
+      }
+    ]
+  },
+  {
+    "county": "Chatham",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://chathamnc.devnetwedge.com/",
+        "evidence": "https://www.chathamcountync.gov/government/departments-programs-i-z/tax-administration/land-records-division",
+        "agency": "Chatham County Tax Administration / Real Property",
+        "notes": "Official county real-property search by owner, parcel/PIN or situs address. Individual assessment/ownership records, not a countywide bulk file and not proof of delinquency. Use the normal gateway and any required disclaimer/session."
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://services.nconemap.gov/secure/rest/services/NC1Map_Parcels/MapServer/0/query?where=cntyname%20%3D%20'Chatham'",
+        "evidence": "https://services.nconemap.gov/secure/rest/services/NC1Map_Parcels/MapServer/0",
+        "agency": "Chatham County parcel data — NC DIT / CGIA (NC OneMap)",
+        "access": "DOWNLOAD_PAGE",
+        "format": "ArcGIS JSON / GeoJSON",
+        "notes": "Complete Chatham County parcel ownership/assessment layer within NC OneMap's statewide service; county-filtered Query gateway, not an individual lookup. Set Out Fields to *, Return Geometry to false for a table, format JSON, and paginate using Result Offset/Record Count (service limit 5000) or retrieve all object IDs and query batches. County counts and sample records were verified; one response is not a complete export. Includes parcel IDs, owner, mailing/situs address, land/improvement/parcel values, acreage, use codes and source dates where supplied. Source dates vary and some are invalid; this is not a certified current CAMA/tax roll. Request missing building detail/exemptions and current existing CAMA file from County Tax Administration. Older OneMap ZIP links returned 404 and were excluded."
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://www.chathamcountync.gov/government/departments-programs-i-z/tax-administration/delinquent-tax-lists",
+        "evidence": "https://www.chathamcountync.gov/government/departments-programs-i-z/tax-administration/delinquent-tax-lists",
+        "agency": "Chatham County Tax Administration / Collections",
+        "access": "DOWNLOAD_PAGE",
+        "format": "PDF",
+        "notes": "Select Real Property — June 2026. County explicitly distinguishes this list from properties in tax foreclosure. Personal and business-personal-property lists are separate. Snapshot may exclude subsequent payments; verify older years and current balance."
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://portal-nc.tylertech.cloud/Portal/",
+        "evidence": "https://www.nccourts.gov/locations/chatham-county/contact-directory",
+        "agency": "Chatham County Clerk of Superior Court — Special Proceedings",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "eCourts Portal Smart Search: choose Chatham County/location and nonconfidential Special Proceedings for power-of-sale foreclosure cases (SP), then name/case number and filing date. Judicial foreclosures can also be Civil Actions; tax foreclosures are distinct and may be civil or in rem. This is a court case index, not a complete public-notice feed or Florida Lis Pendens. Filters need a search term. Older paper filings, missing documents and courthouse notices require the county Clerk; use the linked county Judicial Branch contact directory. All NC counties have eCourts as of October 13, 2025. Normal session/verification may be required; no bypass. Audit limitation: official Portal and Judicial Branch pages returned HTTP 403 in this environment, including a normal browser; no live case search/document retrieval was verified. The official statewide rollout and county Clerk routing were checked against Judicial Branch published pages; use normal user access or contact the county Clerk for records. No bypass automation."
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://portal-nc.tylertech.cloud/Portal/",
+        "evidence": "https://www.nccourts.gov/locations/chatham-county/contact-directory",
+        "agency": "Chatham County Clerk of Superior Court — Estates",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "eCourts Portal Smart Search: choose Chatham County/location and Estates (E) case type, then decedent name or estate file number. Related nonconfidential estate Special Proceedings (SP) may be separate cases. Clerk of Superior Court administers estate files; Register of Deeds is not the probate custodian. All NC counties now use eCourts, but older paper documents and restricted/missing filings may need a Clerk request through the linked county contact directory. Public search and elevated/document access differ; no complete estate bulk export claimed. Audit limitation: official Portal and Judicial Branch pages returned HTTP 403 in this environment, including a normal browser; no live case search/document retrieval was verified. The official statewide rollout and county Clerk routing were checked against Judicial Branch published pages; use normal user access or contact the county Clerk for records. No bypass automation."
+      }
+    ]
+  },
+  {
+    "county": "Guilford",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://lrcpwa.ncptscloud.com/guilford/",
+        "evidence": "https://www.guilfordcountync.gov/government/departments-and-agencies/tax-department",
+        "agency": "Guilford County Tax Administration / Real Property",
+        "notes": "Official county real-property search by owner, parcel/PIN or situs address. Individual assessment/ownership records, not a countywide bulk file and not proof of delinquency. Use the normal gateway and any required disclaimer/session."
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://services.nconemap.gov/secure/rest/services/NC1Map_Parcels/MapServer/0/query?where=cntyname%20%3D%20'Guilford'",
+        "evidence": "https://services.nconemap.gov/secure/rest/services/NC1Map_Parcels/MapServer/0",
+        "agency": "Guilford County parcel data — NC DIT / CGIA (NC OneMap)",
+        "access": "DOWNLOAD_PAGE",
+        "format": "ArcGIS JSON / GeoJSON",
+        "notes": "Complete Guilford County parcel ownership/assessment layer within NC OneMap's statewide service; county-filtered Query gateway, not an individual lookup. Set Out Fields to *, Return Geometry to false for a table, format JSON, and paginate using Result Offset/Record Count (service limit 5000) or retrieve all object IDs and query batches. County counts and sample records were verified; one response is not a complete export. Includes parcel IDs, owner, mailing/situs address, land/improvement/parcel values, acreage, use codes and source dates where supplied. Source dates vary and some are invalid; this is not a certified current CAMA/tax roll. Request missing building detail/exemptions and current existing CAMA file from County Tax Administration. Older OneMap ZIP links returned 404 and were excluded."
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://bcpwa.ncptscloud.com/Guilford/downloads",
+        "evidence": "https://www.guilfordcountync.gov/government/departments-and-agencies/tax-department",
+        "agency": "Guilford County Tax Administration / Collections",
+        "access": "DOWNLOAD_PAGE",
+        "format": "CSV",
+        "notes": "Official complete DelinquentExtract.csv download gateway; browser confirmed a 46,078 KB extract dated September 29, 2026. Tax Department maintains current billing/collections data; filter real-property account type and verify tax years/refresh date/current amounts. Not the annual advertisement or tax-sale subset."
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://portal-nc.tylertech.cloud/Portal/",
+        "evidence": "https://www.nccourts.gov/locations/guilford-county/contact-directory",
+        "agency": "Guilford County Clerk of Superior Court — Special Proceedings",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "eCourts Portal Smart Search: choose Guilford County/location and nonconfidential Special Proceedings for power-of-sale foreclosure cases (SP), then name/case number and filing date. Judicial foreclosures can also be Civil Actions; tax foreclosures are distinct and may be civil or in rem. This is a court case index, not a complete public-notice feed or Florida Lis Pendens. Filters need a search term. Older paper filings, missing documents and courthouse notices require the county Clerk; use the linked county Judicial Branch contact directory. All NC counties have eCourts as of October 13, 2025. Normal session/verification may be required; no bypass. Audit limitation: official Portal and Judicial Branch pages returned HTTP 403 in this environment, including a normal browser; no live case search/document retrieval was verified. The official statewide rollout and county Clerk routing were checked against Judicial Branch published pages; use normal user access or contact the county Clerk for records. No bypass automation."
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://portal-nc.tylertech.cloud/Portal/",
+        "evidence": "https://www.nccourts.gov/locations/guilford-county/contact-directory",
+        "agency": "Guilford County Clerk of Superior Court — Estates",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "eCourts Portal Smart Search: choose Guilford County/location and Estates (E) case type, then decedent name or estate file number. Related nonconfidential estate Special Proceedings (SP) may be separate cases. Clerk of Superior Court administers estate files; Register of Deeds is not the probate custodian. All NC counties now use eCourts, but older paper documents and restricted/missing filings may need a Clerk request through the linked county contact directory. Public search and elevated/document access differ; no complete estate bulk export claimed. Audit limitation: official Portal and Judicial Branch pages returned HTTP 403 in this environment, including a normal browser; no live case search/document retrieval was verified. The official statewide rollout and county Clerk routing were checked against Judicial Branch published pages; use normal user access or contact the county Clerk for records. No bypass automation."
+      },
+      {
+        "type": "COUNTY_CODE_ENFORCEMENT",
+        "url": "https://guilfordcountync.nextrequest.com/",
+        "evidence": "https://guilfordcountync.nextrequest.com/",
+        "access": "RECORDS_REQUEST",
+        "agency": "Guilford County Planning / Code Enforcement",
+        "notes": "County Inspections minimum-housing/condemnation records, outside separate municipal enforcement. Direct existing-record requests to Inspections, not Greensboro or High Point. Request existing case records/export under North Carolina Chapter 132 where records are not public; a complaint form is not a records request. No new inspection or custom analysis."
+      }
+    ]
+  },
+  {
+    "county": "Forsyth",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://property.spatialest.com/nc/forsyth/",
+        "evidence": "https://forsyth.cc/tax/",
+        "agency": "Forsyth County Tax Administration / Real Property",
+        "notes": "Official county real-property search by owner, parcel/PIN or situs address. Individual assessment/ownership records, not a countywide bulk file and not proof of delinquency. Use the normal gateway and any required disclaimer/session."
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://services.nconemap.gov/secure/rest/services/NC1Map_Parcels/MapServer/0/query?where=cntyname%20%3D%20'Forsyth'",
+        "evidence": "https://services.nconemap.gov/secure/rest/services/NC1Map_Parcels/MapServer/0",
+        "agency": "Forsyth County parcel data — NC DIT / CGIA (NC OneMap)",
+        "access": "DOWNLOAD_PAGE",
+        "format": "ArcGIS JSON / GeoJSON",
+        "notes": "Complete Forsyth County parcel ownership/assessment layer within NC OneMap's statewide service; county-filtered Query gateway, not an individual lookup. Set Out Fields to *, Return Geometry to false for a table, format JSON, and paginate using Result Offset/Record Count (service limit 5000) or retrieve all object IDs and query batches. County counts and sample records were verified; one response is not a complete export. Includes parcel IDs, owner, mailing/situs address, land/improvement/parcel values, acreage, use codes and source dates where supplied. Source dates vary and some are invalid; this is not a certified current CAMA/tax roll. Request missing building detail/exemptions and current existing CAMA file from County Tax Administration. Older OneMap ZIP links returned 404 and were excluded."
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://forsyth.cc/tax/advertisement.aspx",
+        "evidence": "https://forsyth.cc/tax/advertisement.aspx",
+        "agency": "Forsyth County Tax Administration / Collections",
+        "access": "DOWNLOAD_PAGE",
+        "format": "PDF",
+        "notes": "Complete advertised real-estate liens for tax year 2025, published in May 2026, divided into alphabetical files. This is an annual unpaid-tax publication, not an auction list. Earlier years, accrued costs and subsequent payments are not reflected; confirm through Research Tax Bills or request current all-year delinquency data."
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://portal-nc.tylertech.cloud/Portal/",
+        "evidence": "https://www.nccourts.gov/locations/forsyth-county/contact-directory",
+        "agency": "Forsyth County Clerk of Superior Court — Special Proceedings",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "eCourts Portal Smart Search: choose Forsyth County/location and nonconfidential Special Proceedings for power-of-sale foreclosure cases (SP), then name/case number and filing date. Judicial foreclosures can also be Civil Actions; tax foreclosures are distinct and may be civil or in rem. This is a court case index, not a complete public-notice feed or Florida Lis Pendens. Filters need a search term. Older paper filings, missing documents and courthouse notices require the county Clerk; use the linked county Judicial Branch contact directory. All NC counties have eCourts as of October 13, 2025. Normal session/verification may be required; no bypass. Audit limitation: official Portal and Judicial Branch pages returned HTTP 403 in this environment, including a normal browser; no live case search/document retrieval was verified. The official statewide rollout and county Clerk routing were checked against Judicial Branch published pages; use normal user access or contact the county Clerk for records. No bypass automation."
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://portal-nc.tylertech.cloud/Portal/",
+        "evidence": "https://www.nccourts.gov/locations/forsyth-county/contact-directory",
+        "agency": "Forsyth County Clerk of Superior Court — Estates",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "eCourts Portal Smart Search: choose Forsyth County/location and Estates (E) case type, then decedent name or estate file number. Related nonconfidential estate Special Proceedings (SP) may be separate cases. Clerk of Superior Court administers estate files; Register of Deeds is not the probate custodian. All NC counties now use eCourts, but older paper documents and restricted/missing filings may need a Clerk request through the linked county contact directory. Public search and elevated/document access differ; no complete estate bulk export claimed. Audit limitation: official Portal and Judicial Branch pages returned HTTP 403 in this environment, including a normal browser; no live case search/document retrieval was verified. The official statewide rollout and county Clerk routing were checked against Judicial Branch published pages; use normal user access or contact the county Clerk for records. No bypass automation."
+      },
+      {
+        "type": "COUNTY_CODE_ENFORCEMENT",
+        "url": "https://forsyth.cc/housing/code_enforcement.aspx",
+        "evidence": "https://forsyth.cc/housing/code_enforcement.aspx",
+        "access": "RECORDS_REQUEST",
+        "agency": "Forsyth County Community & Economic Development",
+        "notes": "County minimum-housing enforcement outside Winston-Salem and Kernersville; confirm county service coverage before requesting a case. Request existing case records/export under North Carolina Chapter 132 where records are not public; a complaint form is not a records request. No new inspection or custom analysis."
+      }
+    ]
+  },
+  {
+    "county": "Alamance",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://property.spatialest.com/nc/alamance/",
+        "evidence": "https://tax.alamancecountync.gov/",
+        "agency": "Alamance County Tax Administration / Real Property",
+        "notes": "Official county real-property search by owner, parcel/PIN or situs address. Individual assessment/ownership records, not a countywide bulk file and not proof of delinquency. Use the normal gateway and any required disclaimer/session."
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://services.nconemap.gov/secure/rest/services/NC1Map_Parcels/MapServer/0/query?where=cntyname%20%3D%20'Alamance'",
+        "evidence": "https://services.nconemap.gov/secure/rest/services/NC1Map_Parcels/MapServer/0",
+        "agency": "Alamance County parcel data — NC DIT / CGIA (NC OneMap)",
+        "access": "DOWNLOAD_PAGE",
+        "format": "ArcGIS JSON / GeoJSON",
+        "notes": "Complete Alamance County parcel ownership/assessment layer within NC OneMap's statewide service; county-filtered Query gateway, not an individual lookup. Set Out Fields to *, Return Geometry to false for a table, format JSON, and paginate using Result Offset/Record Count (service limit 5000) or retrieve all object IDs and query batches. County counts and sample records were verified; one response is not a complete export. Includes parcel IDs, owner, mailing/situs address, land/improvement/parcel values, acreage, use codes and source dates where supplied. Source dates vary and some are invalid; this is not a certified current CAMA/tax roll. Request missing building detail/exemptions and current existing CAMA file from County Tax Administration. Older OneMap ZIP links returned 404 and were excluded."
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://property.spatialest.com/nc/alamance-tax/",
+        "evidence": "https://tax.alamancecountync.gov/",
+        "agency": "Alamance County Tax Administration / Collections",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual Tax Status. Official tax-account/bill search; check outstanding prior years and unpaid balance for real-property accounts. This is not a full countywide delinquent dataset or a tax-sale inventory. Ask Tax Collections for the existing current electronic delinquent real-property account list if maintained."
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://portal-nc.tylertech.cloud/Portal/",
+        "evidence": "https://www.nccourts.gov/locations/alamance-county/contact-directory",
+        "agency": "Alamance County Clerk of Superior Court — Special Proceedings",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "eCourts Portal Smart Search: choose Alamance County/location and nonconfidential Special Proceedings for power-of-sale foreclosure cases (SP), then name/case number and filing date. Judicial foreclosures can also be Civil Actions; tax foreclosures are distinct and may be civil or in rem. This is a court case index, not a complete public-notice feed or Florida Lis Pendens. Filters need a search term. Older paper filings, missing documents and courthouse notices require the county Clerk; use the linked county Judicial Branch contact directory. All NC counties have eCourts as of October 13, 2025. Normal session/verification may be required; no bypass. Audit limitation: official Portal and Judicial Branch pages returned HTTP 403 in this environment, including a normal browser; no live case search/document retrieval was verified. The official statewide rollout and county Clerk routing were checked against Judicial Branch published pages; use normal user access or contact the county Clerk for records. No bypass automation."
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://portal-nc.tylertech.cloud/Portal/",
+        "evidence": "https://www.nccourts.gov/locations/alamance-county/contact-directory",
+        "agency": "Alamance County Clerk of Superior Court — Estates",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "eCourts Portal Smart Search: choose Alamance County/location and Estates (E) case type, then decedent name or estate file number. Related nonconfidential estate Special Proceedings (SP) may be separate cases. Clerk of Superior Court administers estate files; Register of Deeds is not the probate custodian. All NC counties now use eCourts, but older paper documents and restricted/missing filings may need a Clerk request through the linked county contact directory. Public search and elevated/document access differ; no complete estate bulk export claimed. Audit limitation: official Portal and Judicial Branch pages returned HTTP 403 in this environment, including a normal browser; no live case search/document retrieval was verified. The official statewide rollout and county Clerk routing were checked against Judicial Branch published pages; use normal user access or contact the county Clerk for records. No bypass automation."
+      },
+      {
+        "type": "COUNTY_CODE_ENFORCEMENT",
+        "url": "https://planning.alamancecountync.gov/frequently-asked-questions-helpful-links/",
+        "evidence": "https://planning.alamancecountync.gov/frequently-asked-questions-helpful-links/",
+        "access": "RECORDS_REQUEST",
+        "agency": "Alamance County Planning / Code Enforcement",
+        "notes": "County Planning abandoned/junk/nuisance vehicle enforcement in county jurisdiction; city nuisance/minimum-housing cases remain municipal. Request existing cases using Planning contacts. Request existing case records/export under North Carolina Chapter 132 where records are not public; a complaint form is not a records request. No new inspection or custom analysis."
+      }
+    ]
+  },
+  {
+    "county": "Davidson",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://taxsearch.co.davidson.nc.us/",
+        "evidence": "https://taxsearch.co.davidson.nc.us/",
+        "agency": "Davidson County Tax Administration / Real Property",
+        "notes": "Official county real-property search by owner, parcel/PIN or situs address. Individual assessment/ownership records, not a countywide bulk file and not proof of delinquency. Use the normal gateway and any required disclaimer/session."
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://www.co.davidson.nc.us/866/Tax-Database-Downloads",
+        "evidence": "https://www.co.davidson.nc.us/866/Tax-Database-Downloads",
+        "agency": "Davidson County Tax Administration",
+        "access": "DOWNLOAD_PAGE",
+        "format": "CSV / TXT",
+        "notes": "Countywide existing CAMA database tables: download Account and Parcel plus Building, BuildingSubarea, Land, extra features and Sales; join with the published account/parcel identifiers rather than treating any single table as the full roll. The same page publishes the 2026 Tax Scroll. Countywide files, not individual search results or permits inventory. Inspect release dates and field layouts; NC OneMap remains an alternative countywide service."
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://www.co.davidson.nc.us/DocumentCenter/View/8244/UNPAID-TAXES",
+        "evidence": "https://www.co.davidson.nc.us/866/Tax-Database-Downloads",
+        "agency": "Davidson County Tax Administration / Collections",
+        "access": "DIRECT_DOWNLOAD",
+        "format": "XLSX",
+        "notes": "Official complete UNPAID TAXES spreadsheet, not auction inventory; county data-downloads page identifies unpaid tax bills as of September 1, 2026. Filter real-property account type and check outstanding years and current balances; annual March advertised 2025 liens are a separate, narrower snapshot."
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://portal-nc.tylertech.cloud/Portal/",
+        "evidence": "https://www.nccourts.gov/locations/davidson-county/contact-directory",
+        "agency": "Davidson County Clerk of Superior Court — Special Proceedings",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "eCourts Portal Smart Search: choose Davidson County/location and nonconfidential Special Proceedings for power-of-sale foreclosure cases (SP), then name/case number and filing date. Judicial foreclosures can also be Civil Actions; tax foreclosures are distinct and may be civil or in rem. This is a court case index, not a complete public-notice feed or Florida Lis Pendens. Filters need a search term. Older paper filings, missing documents and courthouse notices require the county Clerk; use the linked county Judicial Branch contact directory. All NC counties have eCourts as of October 13, 2025. Normal session/verification may be required; no bypass. Audit limitation: official Portal and Judicial Branch pages returned HTTP 403 in this environment, including a normal browser; no live case search/document retrieval was verified. The official statewide rollout and county Clerk routing were checked against Judicial Branch published pages; use normal user access or contact the county Clerk for records. No bypass automation."
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://portal-nc.tylertech.cloud/Portal/",
+        "evidence": "https://www.nccourts.gov/locations/davidson-county/contact-directory",
+        "agency": "Davidson County Clerk of Superior Court — Estates",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "eCourts Portal Smart Search: choose Davidson County/location and Estates (E) case type, then decedent name or estate file number. Related nonconfidential estate Special Proceedings (SP) may be separate cases. Clerk of Superior Court administers estate files; Register of Deeds is not the probate custodian. All NC counties now use eCourts, but older paper documents and restricted/missing filings may need a Clerk request through the linked county contact directory. Public search and elevated/document access differ; no complete estate bulk export claimed. Audit limitation: official Portal and Judicial Branch pages returned HTTP 403 in this environment, including a normal browser; no live case search/document retrieval was verified. The official statewide rollout and county Clerk routing were checked against Judicial Branch published pages; use normal user access or contact the county Clerk for records. No bypass automation."
+      },
+      {
+        "type": "COUNTY_CODE_ENFORCEMENT",
+        "url": "https://www.co.davidson.nc.us/336/Zoning",
+        "agency": "Davidson County Planning & Zoning",
+        "evidence": "https://www.co.davidson.nc.us/336/Zoning",
+        "access": "RECORDS_REQUEST",
+        "notes": "County zoning violations and notices/appeals within county jurisdiction; Lexington and Thomasville nuisance/minimum-housing records remain municipal. Request retained electronic records under Chapter 132, not a new complaint/inspection or custom report."
+      }
+    ]
+  },
+  {
+    "county": "Randolph",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://txpwa.randolphcountync.gov/camapwa/",
+        "evidence": "https://www.randolphcountync.gov/335/Tax",
+        "agency": "Randolph County Tax Administration / Real Property",
+        "notes": "Official county real-property search by owner, parcel/PIN or situs address. Individual assessment/ownership records, not a countywide bulk file and not proof of delinquency. Use the normal gateway and any required disclaimer/session."
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://services.nconemap.gov/secure/rest/services/NC1Map_Parcels/MapServer/0/query?where=cntyname%20%3D%20'Randolph'",
+        "evidence": "https://services.nconemap.gov/secure/rest/services/NC1Map_Parcels/MapServer/0",
+        "agency": "Randolph County parcel data — NC DIT / CGIA (NC OneMap)",
+        "access": "DOWNLOAD_PAGE",
+        "format": "ArcGIS JSON / GeoJSON",
+        "notes": "Complete Randolph County parcel ownership/assessment layer within NC OneMap's statewide service; county-filtered Query gateway, not an individual lookup. Set Out Fields to *, Return Geometry to false for a table, format JSON, and paginate using Result Offset/Record Count (service limit 5000) or retrieve all object IDs and query batches. County counts and sample records were verified; one response is not a complete export. Includes parcel IDs, owner, mailing/situs address, land/improvement/parcel values, acreage, use codes and source dates where supplied. Source dates vary and some are invalid; this is not a certified current CAMA/tax roll. Request missing building detail/exemptions and current existing CAMA file from County Tax Administration. Older OneMap ZIP links returned 404 and were excluded."
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://txpwa.randolphcountync.gov/publicwebaccess/BillDelinquentSearch.aspx",
+        "evidence": "https://randolphcountync.gov/343/Tax-Liens",
+        "agency": "Randolph County Tax Administration / Collections",
+        "access": "SEARCH_PORTAL",
+        "notes": "Searchable Delinquent Bill Search by tax year and balance range; may mix real/personal accounts. Select real-property accounts and verify municipal fees separately. No public unrestricted all-year real-property bulk export confirmed."
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://portal-nc.tylertech.cloud/Portal/",
+        "evidence": "https://www.nccourts.gov/locations/randolph-county/contact-directory",
+        "agency": "Randolph County Clerk of Superior Court — Special Proceedings",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "eCourts Portal Smart Search: choose Randolph County/location and nonconfidential Special Proceedings for power-of-sale foreclosure cases (SP), then name/case number and filing date. Judicial foreclosures can also be Civil Actions; tax foreclosures are distinct and may be civil or in rem. This is a court case index, not a complete public-notice feed or Florida Lis Pendens. Filters need a search term. Older paper filings, missing documents and courthouse notices require the county Clerk; use the linked county Judicial Branch contact directory. All NC counties have eCourts as of October 13, 2025. Normal session/verification may be required; no bypass. Audit limitation: official Portal and Judicial Branch pages returned HTTP 403 in this environment, including a normal browser; no live case search/document retrieval was verified. The official statewide rollout and county Clerk routing were checked against Judicial Branch published pages; use normal user access or contact the county Clerk for records. No bypass automation."
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://portal-nc.tylertech.cloud/Portal/",
+        "evidence": "https://www.nccourts.gov/locations/randolph-county/contact-directory",
+        "agency": "Randolph County Clerk of Superior Court — Estates",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "eCourts Portal Smart Search: choose Randolph County/location and Estates (E) case type, then decedent name or estate file number. Related nonconfidential estate Special Proceedings (SP) may be separate cases. Clerk of Superior Court administers estate files; Register of Deeds is not the probate custodian. All NC counties now use eCourts, but older paper documents and restricted/missing filings may need a Clerk request through the linked county contact directory. Public search and elevated/document access differ; no complete estate bulk export claimed. Audit limitation: official Portal and Judicial Branch pages returned HTTP 403 in this environment, including a normal browser; no live case search/document retrieval was verified. The official statewide rollout and county Clerk routing were checked against Judicial Branch published pages; use normal user access or contact the county Clerk for records. No bypass automation."
+      },
+      {
+        "type": "COUNTY_CODE_ENFORCEMENT",
+        "url": "https://www.randolphcountync.gov/668/Code-Enforcement",
+        "evidence": "https://www.randolphcountync.gov/668/Code-Enforcement",
+        "access": "EMAIL_REQUEST",
+        "agency": "Randolph County Planning / Code Enforcement",
+        "notes": "County Planning enforces Unified Development Ordinance zoning/land-use violations; do not substitute Asheboro municipal nuisance cases. Request existing case records/export under North Carolina Chapter 132 where records are not public; a complaint form is not a records request. No new inspection or custom analysis.",
+        "email": "David.Harris@randolphcountync.gov"
+      }
+    ]
+  },
+  {
+    "county": "Cumberland",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://cumberlandgis.maps.arcgis.com/apps/webappviewer/index.html?id=a6ea68995c2349e9a177366288589be7",
+        "evidence": "https://www.cumberlandcountync.gov/top-navigation-groups/business/property/property-tax-search",
+        "agency": "Cumberland County Tax Administration / Real Property",
+        "notes": "Official county real-property search by owner, parcel/PIN or situs address. Individual assessment/ownership records, not a countywide bulk file and not proof of delinquency. Use the normal gateway and any required disclaimer/session."
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://services.nconemap.gov/secure/rest/services/NC1Map_Parcels/MapServer/0/query?where=cntyname%20%3D%20'Cumberland'",
+        "evidence": "https://services.nconemap.gov/secure/rest/services/NC1Map_Parcels/MapServer/0",
+        "agency": "Cumberland County parcel data — NC DIT / CGIA (NC OneMap)",
+        "access": "DOWNLOAD_PAGE",
+        "format": "ArcGIS JSON / GeoJSON",
+        "notes": "Complete Cumberland County parcel ownership/assessment layer within NC OneMap's statewide service; county-filtered Query gateway, not an individual lookup. Set Out Fields to *, Return Geometry to false for a table, format JSON, and paginate using Result Offset/Record Count (service limit 5000) or retrieve all object IDs and query batches. County counts and sample records were verified; one response is not a complete export. Includes parcel IDs, owner, mailing/situs address, land/improvement/parcel values, acreage, use codes and source dates where supplied. Source dates vary and some are invalid; this is not a certified current CAMA/tax roll. Request missing building detail/exemptions and current existing CAMA file from County Tax Administration. Older OneMap ZIP links returned 404 and were excluded."
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://www.cumberlandcountync.gov/departments/tax-group/tax/tax-bill-options/delinquent-taxes",
+        "evidence": "https://www.cumberlandcountync.gov/departments/tax-group/tax/tax-bill-options/delinquent-taxes",
+        "agency": "Cumberland County Tax Administration / Collections",
+        "access": "SEARCH_PORTAL",
+        "notes": "Searchable/paginated 2025 delinquent real-estate advertisement dated June 15, 2026. Separate from Tax Foreclosure Sales; older years, interest and subsequent payments may not be reflected. No complete current all-year downloadable export confirmed."
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://portal-nc.tylertech.cloud/Portal/",
+        "evidence": "https://www.nccourts.gov/locations/cumberland-county/contact-directory",
+        "agency": "Cumberland County Clerk of Superior Court — Special Proceedings",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "eCourts Portal Smart Search: choose Cumberland County/location and nonconfidential Special Proceedings for power-of-sale foreclosure cases (SP), then name/case number and filing date. Judicial foreclosures can also be Civil Actions; tax foreclosures are distinct and may be civil or in rem. This is a court case index, not a complete public-notice feed or Florida Lis Pendens. Filters need a search term. Older paper filings, missing documents and courthouse notices require the county Clerk; use the linked county Judicial Branch contact directory. All NC counties have eCourts as of October 13, 2025. Normal session/verification may be required; no bypass. Audit limitation: official Portal and Judicial Branch pages returned HTTP 403 in this environment, including a normal browser; no live case search/document retrieval was verified. The official statewide rollout and county Clerk routing were checked against Judicial Branch published pages; use normal user access or contact the county Clerk for records. No bypass automation."
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://portal-nc.tylertech.cloud/Portal/",
+        "evidence": "https://www.nccourts.gov/locations/cumberland-county/contact-directory",
+        "agency": "Cumberland County Clerk of Superior Court — Estates",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "eCourts Portal Smart Search: choose Cumberland County/location and Estates (E) case type, then decedent name or estate file number. Related nonconfidential estate Special Proceedings (SP) may be separate cases. Clerk of Superior Court administers estate files; Register of Deeds is not the probate custodian. All NC counties now use eCourts, but older paper documents and restricted/missing filings may need a Clerk request through the linked county contact directory. Public search and elevated/document access differ; no complete estate bulk export claimed. Audit limitation: official Portal and Judicial Branch pages returned HTTP 403 in this environment, including a normal browser; no live case search/document retrieval was verified. The official statewide rollout and county Clerk routing were checked against Judicial Branch published pages; use normal user access or contact the county Clerk for records. No bypass automation."
+      },
+      {
+        "type": "COUNTY_CODE_ENFORCEMENT",
+        "url": "https://www.cumberlandcountync.gov/departments/planning-group/planning-and-inspections/code-enforcement",
+        "evidence": "https://www.cumberlandcountync.gov/departments/planning-group/planning-and-inspections/code-enforcement",
+        "access": "EMAIL_REQUEST",
+        "agency": "Cumberland County Planning / Code Enforcement",
+        "notes": "County zoning, nuisance and minimum-housing violations within county enforcement jurisdiction; Fayetteville, Hope Mills and Spring Lake cases have separate municipal sources. Request existing case records/export under North Carolina Chapter 132 where records are not public; a complaint form is not a records request. No new inspection or custom analysis.",
+        "email": "codeenforcement@cumberlandcountync.gov"
+      }
+    ]
+  },
+  {
+    "county": "Harnett",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://cama.harnett.org/ITSPublicHT/",
+        "evidence": "https://www.harnett.org/tax/appraisal-division.asp",
+        "agency": "Harnett County Tax Administration / Real Property",
+        "notes": "Official county real-property search by owner, parcel/PIN or situs address. Individual assessment/ownership records, not a countywide bulk file and not proof of delinquency. Use the normal gateway and any required disclaimer/session."
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://services.nconemap.gov/secure/rest/services/NC1Map_Parcels/MapServer/0/query?where=cntyname%20%3D%20'Harnett'",
+        "evidence": "https://services.nconemap.gov/secure/rest/services/NC1Map_Parcels/MapServer/0",
+        "agency": "Harnett County parcel data — NC DIT / CGIA (NC OneMap)",
+        "access": "DOWNLOAD_PAGE",
+        "format": "ArcGIS JSON / GeoJSON",
+        "notes": "Complete Harnett County parcel ownership/assessment layer within NC OneMap's statewide service; county-filtered Query gateway, not an individual lookup. Set Out Fields to *, Return Geometry to false for a table, format JSON, and paginate using Result Offset/Record Count (service limit 5000) or retrieve all object IDs and query batches. County counts and sample records were verified; one response is not a complete export. Includes parcel IDs, owner, mailing/situs address, land/improvement/parcel values, acreage, use codes and source dates where supplied. Source dates vary and some are invalid; this is not a certified current CAMA/tax roll. Request missing building detail/exemptions and current existing CAMA file from County Tax Administration. Older OneMap ZIP links returned 404 and were excluded."
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://www.harnett.org/tax/collections-division.asp",
+        "evidence": "https://www.harnett.org/tax/collections-division.asp",
+        "agency": "Harnett County Tax Administration / Collections",
+        "access": "DOWNLOAD_PAGE",
+        "format": "PDF",
+        "notes": "Select 2025 Unpaid Real Estate Property Tax Liens, advertised May 12, 2026. Separate from the foreclosure auction inventory on the same department site. Annual tax-year snapshot; verify older years/current payments via CAMA tax-bill search."
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://portal-nc.tylertech.cloud/Portal/",
+        "evidence": "https://www.nccourts.gov/locations/harnett-county/contact-directory",
+        "agency": "Harnett County Clerk of Superior Court — Special Proceedings",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "eCourts Portal Smart Search: choose Harnett County/location and nonconfidential Special Proceedings for power-of-sale foreclosure cases (SP), then name/case number and filing date. Judicial foreclosures can also be Civil Actions; tax foreclosures are distinct and may be civil or in rem. This is a court case index, not a complete public-notice feed or Florida Lis Pendens. Filters need a search term. Older paper filings, missing documents and courthouse notices require the county Clerk; use the linked county Judicial Branch contact directory. All NC counties have eCourts as of October 13, 2025. Normal session/verification may be required; no bypass. Audit limitation: official Portal and Judicial Branch pages returned HTTP 403 in this environment, including a normal browser; no live case search/document retrieval was verified. The official statewide rollout and county Clerk routing were checked against Judicial Branch published pages; use normal user access or contact the county Clerk for records. No bypass automation."
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://portal-nc.tylertech.cloud/Portal/",
+        "evidence": "https://www.nccourts.gov/locations/harnett-county/contact-directory",
+        "agency": "Harnett County Clerk of Superior Court — Estates",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "eCourts Portal Smart Search: choose Harnett County/location and Estates (E) case type, then decedent name or estate file number. Related nonconfidential estate Special Proceedings (SP) may be separate cases. Clerk of Superior Court administers estate files; Register of Deeds is not the probate custodian. All NC counties now use eCourts, but older paper documents and restricted/missing filings may need a Clerk request through the linked county contact directory. Public search and elevated/document access differ; no complete estate bulk export claimed. Audit limitation: official Portal and Judicial Branch pages returned HTTP 403 in this environment, including a normal browser; no live case search/document retrieval was verified. The official statewide rollout and county Clerk routing were checked against Judicial Branch published pages; use normal user access or contact the county Clerk for records. No bypass automation."
+      },
+      {
+        "type": "COUNTY_CODE_ENFORCEMENT",
+        "url": "https://permits.harnett.org/eTRAKiT/",
+        "evidence": "https://permits.harnett.org/eTRAKiT/",
+        "access": "SEARCH_PORTAL",
+        "agency": "Harnett County Planning / Code Enforcement",
+        "notes": "County existing code-enforcement search is separate from permit/project search. Dashboard also exists; Dunn and Angier municipal cases must be requested from their towns. Request existing case records/export under North Carolina Chapter 132 where records are not public; a complaint form is not a records request. No new inspection or custom analysis."
+      }
+    ]
+  },
+  {
+    "county": "New Hanover",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://etax.nhcgov.com/pt/forms/htmlframe.aspx?mode=content/home.htm",
+        "evidence": "https://www.nhcgov.com/378/Real-Estate-Information",
+        "agency": "New Hanover County Tax Administration / Real Property",
+        "notes": "Official county real-property search by owner, parcel/PIN or situs address. Individual assessment/ownership records, not a countywide bulk file and not proof of delinquency. Use the normal gateway and any required disclaimer/session."
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://services.nconemap.gov/secure/rest/services/NC1Map_Parcels/MapServer/0/query?where=cntyname%20%3D%20'New%20Hanover'",
+        "evidence": "https://services.nconemap.gov/secure/rest/services/NC1Map_Parcels/MapServer/0",
+        "agency": "New Hanover County parcel data — NC DIT / CGIA (NC OneMap)",
+        "access": "DOWNLOAD_PAGE",
+        "format": "ArcGIS JSON / GeoJSON",
+        "notes": "Complete New Hanover County parcel ownership/assessment layer within NC OneMap's statewide service; county-filtered Query gateway, not an individual lookup. Set Out Fields to *, Return Geometry to false for a table, format JSON, and paginate using Result Offset/Record Count (service limit 5000) or retrieve all object IDs and query batches. County counts and sample records were verified; one response is not a complete export. Includes parcel IDs, owner, mailing/situs address, land/improvement/parcel values, acreage, use codes and source dates where supplied. Source dates vary and some are invalid; this is not a certified current CAMA/tax roll. Request missing building detail/exemptions and current existing CAMA file from County Tax Administration. Older OneMap ZIP links returned 404 and were excluded."
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://www.nhcgov.com/DocumentCenter/View/11283/Delinquent_Taxpayers_Report_CSV",
+        "evidence": "https://www.nhcgov.com/2877/Delinquent-Taxes",
+        "agency": "New Hanover County Tax Administration / Collections",
+        "access": "DIRECT_DOWNLOAD",
+        "format": "CSV",
+        "notes": "Monthly county delinquent real-estate account export covers ten tax years; September 2026 files were published at review. Not the foreclosure inventory. Refresh dates matter; verify current balances with Collections."
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://portal-nc.tylertech.cloud/Portal/",
+        "evidence": "https://www.nccourts.gov/locations/new-hanover-county/contact-directory",
+        "agency": "New Hanover County Clerk of Superior Court — Special Proceedings",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "eCourts Portal Smart Search: choose New Hanover County/location and nonconfidential Special Proceedings for power-of-sale foreclosure cases (SP), then name/case number and filing date. Judicial foreclosures can also be Civil Actions; tax foreclosures are distinct and may be civil or in rem. This is a court case index, not a complete public-notice feed or Florida Lis Pendens. Filters need a search term. Older paper filings, missing documents and courthouse notices require the county Clerk; use the linked county Judicial Branch contact directory. All NC counties have eCourts as of October 13, 2025. Normal session/verification may be required; no bypass. Audit limitation: official Portal and Judicial Branch pages returned HTTP 403 in this environment, including a normal browser; no live case search/document retrieval was verified. The official statewide rollout and county Clerk routing were checked against Judicial Branch published pages; use normal user access or contact the county Clerk for records. No bypass automation."
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://portal-nc.tylertech.cloud/Portal/",
+        "evidence": "https://www.nccourts.gov/locations/new-hanover-county/contact-directory",
+        "agency": "New Hanover County Clerk of Superior Court — Estates",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "eCourts Portal Smart Search: choose New Hanover County/location and Estates (E) case type, then decedent name or estate file number. Related nonconfidential estate Special Proceedings (SP) may be separate cases. Clerk of Superior Court administers estate files; Register of Deeds is not the probate custodian. All NC counties now use eCourts, but older paper documents and restricted/missing filings may need a Clerk request through the linked county contact directory. Public search and elevated/document access differ; no complete estate bulk export claimed. Audit limitation: official Portal and Judicial Branch pages returned HTTP 403 in this environment, including a normal browser; no live case search/document retrieval was verified. The official statewide rollout and county Clerk routing were checked against Judicial Branch published pages; use normal user access or contact the county Clerk for records. No bypass automation."
+      },
+      {
+        "type": "COUNTY_CODE_ENFORCEMENT",
+        "url": "https://www.nhcgov.com/2814/COAST-Instructional-Videos-Sample-Docume",
+        "evidence": "https://www.nhcgov.com/2814/COAST-Instructional-Videos-Sample-Docume",
+        "access": "RECORDS_REQUEST",
+        "agency": "New Hanover County Planning / Code Enforcement",
+        "notes": "County COAST code-compliance concern/record guidance. County jurisdiction is distinct from Wilmington municipal minimum housing/nuisances; select code records rather than construction permits. Request existing case records/export under North Carolina Chapter 132 where records are not public; a complaint form is not a records request. No new inspection or custom analysis."
+      }
+    ]
+  },
+  {
+    "county": "Brunswick",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://property.spatialest.com/nc/brunswick/",
+        "evidence": "https://www.brunswickcountync.gov/1104/Search-Property-Tax-Records",
+        "agency": "Brunswick County Tax Administration / Real Property",
+        "notes": "Official county real-property search by owner, parcel/PIN or situs address. Individual assessment/ownership records, not a countywide bulk file and not proof of delinquency. Use the normal gateway and any required disclaimer/session."
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://services.nconemap.gov/secure/rest/services/NC1Map_Parcels/MapServer/0/query?where=cntyname%20%3D%20'Brunswick'",
+        "evidence": "https://services.nconemap.gov/secure/rest/services/NC1Map_Parcels/MapServer/0",
+        "agency": "Brunswick County parcel data — NC DIT / CGIA (NC OneMap)",
+        "access": "DOWNLOAD_PAGE",
+        "format": "ArcGIS JSON / GeoJSON",
+        "notes": "Complete Brunswick County parcel ownership/assessment layer within NC OneMap's statewide service; county-filtered Query gateway, not an individual lookup. Set Out Fields to *, Return Geometry to false for a table, format JSON, and paginate using Result Offset/Record Count (service limit 5000) or retrieve all object IDs and query batches. County counts and sample records were verified; one response is not a complete export. Includes parcel IDs, owner, mailing/situs address, land/improvement/parcel values, acreage, use codes and source dates where supplied. Source dates vary and some are invalid; this is not a certified current CAMA/tax roll. Request missing building detail/exemptions and current existing CAMA file from County Tax Administration. Older OneMap ZIP links returned 404 and were excluded."
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://tax.brunsco.net/itsnet/",
+        "evidence": "https://www.brunswickcountync.gov/1104/Search-Property-Tax-Records",
+        "agency": "Brunswick County Tax Administration / Collections",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual Tax Status. Official tax-account/bill search; check outstanding prior years and unpaid balance for real-property accounts. This is not a full countywide delinquent dataset or a tax-sale inventory. Ask Tax Collections for the existing current electronic delinquent real-property account list if maintained."
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://portal-nc.tylertech.cloud/Portal/",
+        "evidence": "https://www.nccourts.gov/locations/brunswick-county/contact-directory",
+        "agency": "Brunswick County Clerk of Superior Court — Special Proceedings",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "eCourts Portal Smart Search: choose Brunswick County/location and nonconfidential Special Proceedings for power-of-sale foreclosure cases (SP), then name/case number and filing date. Judicial foreclosures can also be Civil Actions; tax foreclosures are distinct and may be civil or in rem. This is a court case index, not a complete public-notice feed or Florida Lis Pendens. Filters need a search term. Older paper filings, missing documents and courthouse notices require the county Clerk; use the linked county Judicial Branch contact directory. All NC counties have eCourts as of October 13, 2025. Normal session/verification may be required; no bypass. Audit limitation: official Portal and Judicial Branch pages returned HTTP 403 in this environment, including a normal browser; no live case search/document retrieval was verified. The official statewide rollout and county Clerk routing were checked against Judicial Branch published pages; use normal user access or contact the county Clerk for records. No bypass automation."
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://portal-nc.tylertech.cloud/Portal/",
+        "evidence": "https://www.nccourts.gov/locations/brunswick-county/contact-directory",
+        "agency": "Brunswick County Clerk of Superior Court — Estates",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "eCourts Portal Smart Search: choose Brunswick County/location and Estates (E) case type, then decedent name or estate file number. Related nonconfidential estate Special Proceedings (SP) may be separate cases. Clerk of Superior Court administers estate files; Register of Deeds is not the probate custodian. All NC counties now use eCourts, but older paper documents and restricted/missing filings may need a Clerk request through the linked county contact directory. Public search and elevated/document access differ; no complete estate bulk export claimed. Audit limitation: official Portal and Judicial Branch pages returned HTTP 403 in this environment, including a normal browser; no live case search/document retrieval was verified. The official statewide rollout and county Clerk routing were checked against Judicial Branch published pages; use normal user access or contact the county Clerk for records. No bypass automation."
+      },
+      {
+        "type": "COUNTY_CODE_ENFORCEMENT",
+        "url": "https://www.brunswickcountync.gov/181/Code-Administration",
+        "evidence": "https://www.brunswickcountync.gov/181/Code-Administration",
+        "access": "RECORDS_REQUEST",
+        "agency": "Brunswick County Planning / Code Enforcement",
+        "notes": "For trash, junk, zoning and UDO cases use the Community Enforcement link, not Building or Fire permits. Leland municipal enforcement is separate. Existing-record contact fallback; no countywide case export confirmed. Request existing case records/export under North Carolina Chapter 132 where records are not public; a complaint form is not a records request. No new inspection or custom analysis."
+      }
+    ]
+  },
+  {
+    "county": "Pitt",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://property.spatialest.com/nc/pitt/",
+        "evidence": "https://www.pittcountync.gov/1160/Real-Property-Land-Records",
+        "agency": "Pitt County Tax Administration / Real Property",
+        "notes": "Official county real-property search by owner, parcel/PIN or situs address. Individual assessment/ownership records, not a countywide bulk file and not proof of delinquency. Use the normal gateway and any required disclaimer/session."
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://services.nconemap.gov/secure/rest/services/NC1Map_Parcels/MapServer/0/query?where=cntyname%20%3D%20'Pitt'",
+        "evidence": "https://services.nconemap.gov/secure/rest/services/NC1Map_Parcels/MapServer/0",
+        "agency": "Pitt County parcel data — NC DIT / CGIA (NC OneMap)",
+        "access": "DOWNLOAD_PAGE",
+        "format": "ArcGIS JSON / GeoJSON",
+        "notes": "Complete Pitt County parcel ownership/assessment layer within NC OneMap's statewide service; county-filtered Query gateway, not an individual lookup. Set Out Fields to *, Return Geometry to false for a table, format JSON, and paginate using Result Offset/Record Count (service limit 5000) or retrieve all object IDs and query batches. County counts and sample records were verified; one response is not a complete export. Includes parcel IDs, owner, mailing/situs address, land/improvement/parcel values, acreage, use codes and source dates where supplied. Source dates vary and some are invalid; this is not a certified current CAMA/tax roll. Request missing building detail/exemptions and current existing CAMA file from County Tax Administration. Older OneMap ZIP links returned 404 and were excluded."
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://www.pittcountync.gov/1163/Delinquent-Accounts-Foreclosure-Auctions",
+        "evidence": "https://www.pittcountync.gov/1163/Delinquent-Accounts-Foreclosure-Auctions",
+        "agency": "Pitt County Tax Administration / Collections",
+        "access": "EMAIL_REQUEST",
+        "notes": "No verified working public bulk delinquency export. County links an ArcGIS Delinquent Taxes item, but its upstream service returned 404/500 during audit; the landing page alone is not a confirmed downloadable dataset. Request the existing current all-year electronic delinquent real-property account list from Tax Collector. County also offers by-email the annual 2025 unpaid-real-estate advertisement (payments through February 28, 2026); older years and later payments are not reflected. Winterville municipal taxes are separately advertised. This request is for existing records, not the separate foreclosure auction list.",
+        "email": "pitttaxcollector@pittcountync.gov"
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://portal-nc.tylertech.cloud/Portal/",
+        "evidence": "https://www.nccourts.gov/locations/pitt-county/contact-directory",
+        "agency": "Pitt County Clerk of Superior Court — Special Proceedings",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "eCourts Portal Smart Search: choose Pitt County/location and nonconfidential Special Proceedings for power-of-sale foreclosure cases (SP), then name/case number and filing date. Judicial foreclosures can also be Civil Actions; tax foreclosures are distinct and may be civil or in rem. This is a court case index, not a complete public-notice feed or Florida Lis Pendens. Filters need a search term. Older paper filings, missing documents and courthouse notices require the county Clerk; use the linked county Judicial Branch contact directory. All NC counties have eCourts as of October 13, 2025. Normal session/verification may be required; no bypass. Audit limitation: official Portal and Judicial Branch pages returned HTTP 403 in this environment, including a normal browser; no live case search/document retrieval was verified. The official statewide rollout and county Clerk routing were checked against Judicial Branch published pages; use normal user access or contact the county Clerk for records. No bypass automation."
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://portal-nc.tylertech.cloud/Portal/",
+        "evidence": "https://www.nccourts.gov/locations/pitt-county/contact-directory",
+        "agency": "Pitt County Clerk of Superior Court — Estates",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "eCourts Portal Smart Search: choose Pitt County/location and Estates (E) case type, then decedent name or estate file number. Related nonconfidential estate Special Proceedings (SP) may be separate cases. Clerk of Superior Court administers estate files; Register of Deeds is not the probate custodian. All NC counties now use eCourts, but older paper documents and restricted/missing filings may need a Clerk request through the linked county contact directory. Public search and elevated/document access differ; no complete estate bulk export claimed. Audit limitation: official Portal and Judicial Branch pages returned HTTP 403 in this environment, including a normal browser; no live case search/document retrieval was verified. The official statewide rollout and county Clerk routing were checked against Judicial Branch published pages; use normal user access or contact the county Clerk for records. No bypass automation."
+      },
+      {
+        "type": "COUNTY_CODE_ENFORCEMENT",
+        "url": "https://www.pittcountync.gov/1280/Permitting-Portal-User-Guide",
+        "evidence": "https://www.pittcountync.gov/1280/Permitting-Portal-User-Guide",
+        "access": "RECORDS_REQUEST",
+        "agency": "Pitt County Planning / Code Enforcement",
+        "notes": "County portal provides code-compliance complaints and existing case information. Building-code complaints require login; request retained violation/condemnation files from Inspections when unavailable publicly. Greenville municipal cases are distinct. Request existing case records/export under North Carolina Chapter 132 where records are not public; a complaint form is not a records request. No new inspection or custom analysis."
+      }
+    ]
+  },
+  {
+    "county": "Onslow",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://tax.onslowcountync.gov/itspublicon/",
+        "evidence": "https://www.onslowcountync.gov/2354/Tax-Office",
+        "agency": "Onslow County Tax Administration / Real Property",
+        "notes": "Official county real-property search by owner, parcel/PIN or situs address. Individual assessment/ownership records, not a countywide bulk file and not proof of delinquency. Use the normal gateway and any required disclaimer/session."
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://services.nconemap.gov/secure/rest/services/NC1Map_Parcels/MapServer/0/query?where=cntyname%20%3D%20'Onslow'",
+        "evidence": "https://services.nconemap.gov/secure/rest/services/NC1Map_Parcels/MapServer/0",
+        "agency": "Onslow County parcel data — NC DIT / CGIA (NC OneMap)",
+        "access": "DOWNLOAD_PAGE",
+        "format": "ArcGIS JSON / GeoJSON",
+        "notes": "Complete Onslow County parcel ownership/assessment layer within NC OneMap's statewide service; county-filtered Query gateway, not an individual lookup. Set Out Fields to *, Return Geometry to false for a table, format JSON, and paginate using Result Offset/Record Count (service limit 5000) or retrieve all object IDs and query batches. County counts and sample records were verified; one response is not a complete export. Includes parcel IDs, owner, mailing/situs address, land/improvement/parcel values, acreage, use codes and source dates where supplied. Source dates vary and some are invalid; this is not a certified current CAMA/tax roll. Request missing building detail/exemptions and current existing CAMA file from County Tax Administration. Older OneMap ZIP links returned 404 and were excluded."
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://tax.onslowcountync.gov/ITSPublicON/TaxBillSearch",
+        "evidence": "https://www.onslowcountync.gov/2354/Tax-Office",
+        "agency": "Onslow County Tax Administration / Collections",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual Tax Status. Use tax bill/account search, real-property account type, unpaid balances and prior tax years; not a countywide delinquent dataset or sale inventory. Request the existing current all-year delinquent real-property account export from Tax Collections if maintained. Tax Office links an obsolete 2022 advertised list; it was excluded. The previous TaxBill.aspx URL returned 404; use the working gateway."
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://portal-nc.tylertech.cloud/Portal/",
+        "evidence": "https://www.nccourts.gov/locations/onslow-county/contact-directory",
+        "agency": "Onslow County Clerk of Superior Court — Special Proceedings",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "eCourts Portal Smart Search: choose Onslow County/location and nonconfidential Special Proceedings for power-of-sale foreclosure cases (SP), then name/case number and filing date. Judicial foreclosures can also be Civil Actions; tax foreclosures are distinct and may be civil or in rem. This is a court case index, not a complete public-notice feed or Florida Lis Pendens. Filters need a search term. Older paper filings, missing documents and courthouse notices require the county Clerk; use the linked county Judicial Branch contact directory. All NC counties have eCourts as of October 13, 2025. Normal session/verification may be required; no bypass. Audit limitation: official Portal and Judicial Branch pages returned HTTP 403 in this environment, including a normal browser; no live case search/document retrieval was verified. The official statewide rollout and county Clerk routing were checked against Judicial Branch published pages; use normal user access or contact the county Clerk for records. No bypass automation."
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://portal-nc.tylertech.cloud/Portal/",
+        "evidence": "https://www.nccourts.gov/locations/onslow-county/contact-directory",
+        "agency": "Onslow County Clerk of Superior Court — Estates",
+        "access": "MANUAL_NAVIGATION",
+        "notes": "eCourts Portal Smart Search: choose Onslow County/location and Estates (E) case type, then decedent name or estate file number. Related nonconfidential estate Special Proceedings (SP) may be separate cases. Clerk of Superior Court administers estate files; Register of Deeds is not the probate custodian. All NC counties now use eCourts, but older paper documents and restricted/missing filings may need a Clerk request through the linked county contact directory. Public search and elevated/document access differ; no complete estate bulk export claimed. Audit limitation: official Portal and Judicial Branch pages returned HTTP 403 in this environment, including a normal browser; no live case search/document retrieval was verified. The official statewide rollout and county Clerk routing were checked against Judicial Branch published pages; use normal user access or contact the county Clerk for records. No bypass automation."
+      },
+      {
+        "type": "COUNTY_CODE_ENFORCEMENT",
+        "url": "https://www.onslowcountync.gov/1106/Zoning-Enforcement",
+        "agency": "Onslow County Planning & Development — Land Use Enforcement",
+        "evidence": "https://www.onslowcountync.gov/1106/Zoning-Enforcement",
+        "access": "RECORDS_REQUEST",
+        "notes": "County Land Use Enforcement retains zoning/site-condition violations; request existing cases at 910-455-3661 ext. 3. County minimum-housing and solid-waste units may hold additional files; Jacksonville has separate municipal enforcement. Request retained electronic records under Chapter 132, not a new complaint/inspection or custom report."
+      }
+    ]
+  }
+]

@@ -1,0 +1,1026 @@
+[
+  {
+    "county": "Franklin",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://property.franklincountyauditor.com/_web/search/commonsearch.aspx?mode=parid",
+        "agency": "Franklin County Auditor",
+        "access": "SEARCH_PORTAL",
+        "notes": "Official County Auditor parcel/owner/address lookup, not a bulk roll. JavaScript/disclaimer/session or automated-access protection may apply.",
+        "evidence": "https://property.franklincountyauditor.com/_web/search/commonsearch.aspx?mode=parid"
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://apps.franklincountyauditor.com/Outside_User_Files/2026/",
+        "agency": "Franklin County Auditor / GIS",
+        "access": "DOWNLOAD_PAGE",
+        "notes": "Countywide appraisal exports: Parcel, Dwelling, Land and Improvement tables; September 15, 2026 snapshot. Choose latest Appraisal directory, Excel.zip or Tab-Delimited.zip. Join by parcel. WebReporter documents parcel population/fields.",
+        "evidence": "https://audr-apps.franklincountyohio.gov/webreporter",
+        "format": "XLSX / TXT / ZIP"
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://treapropsearch.franklincountyohio.gov/",
+        "agency": "Franklin County Treasurer / Auditor tax records",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual Tax Status. Official account tax/unpaid balance/payment history; Treasurer collection authority. Auditor-hosted records may lag payments; confirm current delinquency with Treasurer. No confirmed full-current downloadable delinquent population represented.",
+        "evidence": "https://treasurer.franklincountyohio.gov/Home"
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://clerk.franklincountyohio.gov/Public-Records/Search-Public-Records",
+        "agency": "Franklin County Clerk of Courts / Common Pleas General Division",
+        "access": "SEARCH_PORTAL",
+        "notes": "Ohio judicial foreclosure filings. CIO General civil docket; disclaimer agreement. Bulk mining restricted; arrange distribution with Clerk. Filed cases precede later sheriff-sale inventory. Restricted documents/posting delays limit access.",
+        "evidence": "https://clerk.franklincountyohio.gov/Public-Records/Search-Public-Records"
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://probate.franklincountyohio.gov/Record-Search/General-Case-Search",
+        "agency": "Franklin County Probate Court",
+        "access": "SEARCH_PORTAL",
+        "notes": "Dedicated Probate General Case Search; prior-day data, nightly 10 pm-2 am backup. Public index does not establish unrestricted document/bulk access.",
+        "evidence": "https://probate.franklincountyohio.gov/Record-Search/General-Case-Search"
+      },
+      {
+        "type": "COUNTY_CODE_ENFORCEMENT",
+        "url": "https://www.franklincountyohio.gov/Agency-Directory/Board-of-Commissioners/Contact-Board-of-Commissioners/Commissioners-Public-Records-Request",
+        "agency": "Franklin County Economic Development and Planning / Commissioners records custodian",
+        "access": "RECORDS_REQUEST",
+        "notes": "Retained zoning/code cases via Commissioners custodian / Economic Development and Planning. County zoning covers Brown, Clinton, Franklin, Hamilton, Madison, Mifflin, Norwich, Pleasant, Sharon and Truro townships; Blendon, Jackson, Jefferson, Perry, Plain, Prairie and Washington administer their own zoning. Municipal housing cases belong to cities; not countywide municipal enforcement or new inspection.",
+        "evidence": "https://development.franklincountyohio.gov/planning-zoning"
+      }
+    ]
+  },
+  {
+    "county": "Delaware",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://auditor.delco-gis.org/",
+        "agency": "Delaware County Auditor",
+        "access": "SEARCH_PORTAL",
+        "notes": "Official County Auditor parcel/owner/address lookup, not a bulk roll. JavaScript/disclaimer/session or automated-access protection may apply.",
+        "evidence": "https://auditor.delco-gis.org/"
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://co.delaware.oh.us/contact-form/?to=Auditor",
+        "agency": "Delaware County Auditor",
+        "access": "RECORDS_REQUEST",
+        "notes": "Countywide Public Export Not Confirmed \u2014 Request Existing Data. Auditor contact form; old GIS download-page URLs return 404; usable current countywide ownership/CAMA export not confirmed. Request existing current countywide parcel/ownership/appraisal/CAMA, assessment roll or tax duplicate in maintained electronic format under Ohio R.C. 149.43; not a custom report.",
+        "evidence": "https://co.delaware.oh.us/contact-form/?to=Auditor"
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://auditor.delco-gis.org/",
+        "agency": "Delaware County Treasurer / Auditor tax records",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual Tax Status. Official account tax/unpaid balance/payment history; Treasurer collection authority. Auditor-hosted records may lag payments; confirm current delinquency with Treasurer. No confirmed full-current downloadable delinquent population represented.",
+        "evidence": "https://treasurer.co.delaware.oh.us/payments/"
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://court.co.delaware.oh.us/eservices/home.page.2",
+        "agency": "Delaware County Clerk of Courts / Common Pleas General Division",
+        "access": "SEARCH_PORTAL",
+        "notes": "Ohio judicial foreclosure filings. eServices gateway; select General civil, not Probate/Juvenile. Session/disclaimer. Filed cases precede later sheriff-sale inventory. Restricted documents/posting delays limit access. Production gateway confirmed in normal browser; CAPTCHA required before case search. Training portal eservicestrn excluded.",
+        "evidence": "https://clerkofcourts.co.delaware.oh.us/",
+        "captcha": true
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://court.co.delaware.oh.us/eservices/home.page.2",
+        "agency": "Delaware County Probate Court",
+        "access": "SEARCH_PORTAL",
+        "notes": "Shared gateway: select Probate Division for estates, not General civil. Restricted images/older estates require Probate Court. Public index does not establish unrestricted document/bulk access. Production gateway confirmed in normal browser; CAPTCHA required before case search. Training portal eservicestrn excluded.",
+        "evidence": "https://probate.co.delaware.oh.us/hearings-docket/",
+        "captcha": true
+      }
+    ]
+  },
+  {
+    "county": "Licking",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://ontrac.lickingcounty.gov/",
+        "agency": "Licking County Auditor",
+        "access": "SEARCH_PORTAL",
+        "notes": "Official County Auditor parcel/owner/address lookup, not a bulk roll. JavaScript/disclaimer/session or automated-access protection may apply.",
+        "evidence": "https://ontrac.lickingcounty.gov/"
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://lickingcounty.gov/gis_downloads/default.htm",
+        "agency": "Licking County Auditor / GIS",
+        "access": "DOWNLOAD_PAGE",
+        "notes": "Countywide parcel shapefile; official documentation describes more than 93,000 parcels/full county conversion. GIS attributes less detailed than CAMA; extract date not published. Automated ZIP access may return 403.",
+        "evidence": "https://lickingcounty.gov/gis_downloads/default.htm",
+        "format": "Shapefile / ZIP"
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://ontrac.lickingcounty.gov/",
+        "agency": "Licking County Treasurer / Auditor tax records",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual Tax Status. Official account tax/unpaid balance/payment history; Treasurer collection authority. Auditor-hosted records may lag payments; confirm current delinquency with Treasurer. No confirmed full-current downloadable delinquent population represented.",
+        "evidence": "https://lickingcounty.gov/depts/treasurer/"
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://lickingcounty.gov/depts/clerk/records_search.htm",
+        "agency": "Licking County Clerk of Courts / Common Pleas General Division",
+        "access": "SEARCH_PORTAL",
+        "notes": "Ohio judicial foreclosure filings. Gateway to re:SearchOH LickingCaseSearch; migrated June 2025. Registration may be required; updates ordinarily every 15 minutes during business hours. Clerk requires arranged bulk distribution, not scraping. Filed cases precede later sheriff-sale inventory. Restricted documents/posting delays limit access.",
+        "evidence": "https://lickingcounty.gov/depts/clerk/records_search.htm"
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://pjc-portal.lickingcounty.gov/recordSearch.php?k=acceptAgreementsearchForm4503",
+        "agency": "Licking County Probate Court",
+        "access": "SEARCH_PORTAL",
+        "notes": "Probate CaseLook disclaimer; at least 24-hour delay, pre-1991 records may be absent. Public index does not establish unrestricted document/bulk access.",
+        "evidence": "https://pjc-portal.lickingcounty.gov/recordSearch.php?k=acceptAgreementsearchForm4503"
+      }
+    ]
+  },
+  {
+    "county": "Fairfield",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://auditorrealestate.fairfieldcountyohio.gov/Search",
+        "agency": "Fairfield County Auditor",
+        "access": "SEARCH_PORTAL",
+        "notes": "Official County Auditor parcel/owner/address lookup, not a bulk roll. JavaScript/disclaimer/session or automated-access protection may apply.",
+        "evidence": "https://auditorrealestate.fairfieldcountyohio.gov/Search"
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://share.pivotpoint.us/oh/fairfield/cama/fairfieldaa407.zip",
+        "agency": "Fairfield County Auditor / GIS",
+        "access": "DOWNLOAD_PAGE",
+        "notes": "Countywide CAMA and layout download expressly linked by Auditor. Portal reports 75,021 parcels (2026), processed September 29, 2026. Verify file extract date separately; automated download blocked (403).",
+        "evidence": "https://auditorrealestate.fairfieldcountyohio.gov/",
+        "format": "CAMA / ZIP"
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://auditorrealestate.fairfieldcountyohio.gov/DelinquencyReport",
+        "agency": "Fairfield County Auditor (publication) / Treasurer (collection)",
+        "access": "DOWNLOAD_PAGE",
+        "notes": "Official delinquency population with Export CSV. Browser confirmed all 2,664 listed parcels exported: parcel, owner, certified year, vacant flag, amount. Processed September 29, 2026; current/prior certified years. Treasurer confirms subsequent payments. Automated 403; normal session needed.",
+        "evidence": "https://auditorrealestate.fairfieldcountyohio.gov/",
+        "format": "CSV"
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://eservices.fairfieldcountycpcourt.org/eservices/home.page.3",
+        "agency": "Fairfield County Clerk of Courts / Common Pleas General Division",
+        "access": "SEARCH_PORTAL",
+        "notes": "Ohio judicial foreclosure filings. Common Pleas General civil eServices; session/disclaimer. Filed cases precede later sheriff-sale inventory. Restricted documents/posting delays limit access.",
+        "evidence": "https://eservices.fairfieldcountycpcourt.org/eservices/home.page.3"
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://www.fairfieldcountyprobate.com/ff-Probate-Records-Search-Form.html",
+        "agency": "Fairfield County Probate Court",
+        "access": "SEARCH_PORTAL",
+        "notes": "Probate records search linked by official county search page; distinct estate jurisdiction. Public index does not establish unrestricted document/bulk access.",
+        "evidence": "https://www.fairfieldcountyprobate.com/ff-Probate-Records-Search-Form.html"
+      }
+    ]
+  },
+  {
+    "county": "Pickaway",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://auditor.pickawaycountyohio.gov/Search",
+        "agency": "Pickaway County Auditor",
+        "access": "SEARCH_PORTAL",
+        "notes": "Official County Auditor parcel/owner/address lookup, not a bulk roll. JavaScript/disclaimer/session or automated-access protection may apply.",
+        "evidence": "https://auditor.pickawaycountyohio.gov/Search"
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://pickawaycountyohio.gov/offices/auditor/index.html",
+        "agency": "Pickaway County Auditor",
+        "access": "RECORDS_REQUEST",
+        "notes": "Countywide Public Export Not Confirmed \u2014 Request Existing Data. Auditor Real Estate department; individual/GIS portals do not establish usable full ownership/CAMA export. Request existing current countywide parcel/ownership/appraisal/CAMA, assessment roll or tax duplicate in maintained electronic format under Ohio R.C. 149.43; not a custom report.",
+        "evidence": "https://pickawaycountyohio.gov/offices/auditor/index.html"
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://auditor.pickawaycountyohio.gov/Search",
+        "agency": "Pickaway County Treasurer / Auditor tax records",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual Tax Status. Official account tax/unpaid balance/payment history; Treasurer collection authority. Auditor-hosted records may lag payments; confirm current delinquency with Treasurer. No confirmed full-current downloadable delinquent population represented.",
+        "evidence": "https://pickawaycountyohio.gov/offices/treasurer/index.html"
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://eservices.pickawaycountycourts.com/eservices/home.page",
+        "agency": "Pickaway County Clerk of Courts / Common Pleas General Division",
+        "access": "SEARCH_PORTAL",
+        "notes": "Ohio judicial foreclosure filings. Common Pleas General civil eServices; session/disclaimer. Filed cases precede later sheriff-sale inventory. Restricted documents/posting delays limit access.",
+        "evidence": "https://eservices.pickawaycountycourts.com/eservices/home.page"
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://caselook.pickawaypjcourt.com/search/6503",
+        "agency": "Pickaway County Probate Court",
+        "access": "SEARCH_PORTAL",
+        "notes": "Probate/Juvenile CaseLook; public Probate estates, juvenile/confidential matters restricted. Public index does not establish unrestricted document/bulk access.",
+        "evidence": "https://caselook.pickawaypjcourt.com/search/6503"
+      }
+    ]
+  },
+  {
+    "county": "Hamilton",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://wedge.hcauditor.org/",
+        "agency": "Hamilton County Auditor",
+        "access": "SEARCH_PORTAL",
+        "notes": "Official County Auditor parcel/owner/address lookup, not a bulk roll. JavaScript/disclaimer/session or automated-access protection may apply.",
+        "evidence": "https://wedge.hcauditor.org/"
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://www.hamiltoncountyauditor.org/revalue.asp",
+        "agency": "Hamilton County Auditor / GIS",
+        "access": "DOWNLOAD_PAGE",
+        "notes": "Current Tax Year Information export of countywide active parcels: ownership, mailing, situs, valuation/tax fields. Published as of August 31, 2026; large XLSX monthly snapshot. Historic sales/building exports are companion tables, not the roll.",
+        "evidence": "https://www.hamiltoncountyauditor.org/revalue.asp",
+        "format": "XLSX"
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://www.hamiltoncountyauditor.org/download/Delinquent/unpaid.xlsx",
+        "agency": "Hamilton County Auditor (publication) / Treasurer (collection)",
+        "access": "DIRECT_DOWNLOAD",
+        "notes": "Official current unpaid accounts XLSX: 26,797 data rows, parcel, owner/mailing, property class, unpaid amount, contract flag/district. Snapshot August 31, 2026; posted September 1. Not sale-only inventory. Unpaid snapshot is not a live balance or separately certified-year table; confirm delinquency/current balance with Treasurer.",
+        "evidence": "https://www.hamiltoncountyauditor.org/tax_delinquent.asp",
+        "format": "XLSX"
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://www.courtclerk.org/records-search/classification/",
+        "agency": "Hamilton County Clerk of Courts / Common Pleas General Division",
+        "access": "SEARCH_PORTAL",
+        "notes": "Ohio judicial foreclosure filings. Common Pleas Civil by Classification: select mortgage/tax foreclosure. Separate Foreclosure search may show later sale scheduling, so civil classification is primary. Filed cases precede later sheriff-sale inventory. Restricted documents/posting delays limit access.",
+        "evidence": "https://www.courtclerk.org/records-search/classification/"
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://www.probatect.org/court-records/court-record-search",
+        "agency": "Hamilton County Probate Court",
+        "access": "SEARCH_PORTAL",
+        "notes": "Dedicated Probate records search; historic archives/certified copies separate. Automated page access may return 403. Public index does not establish unrestricted document/bulk access.",
+        "evidence": "https://www.probatect.org/court-records/court-record-search"
+      }
+    ]
+  },
+  {
+    "county": "Butler",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://propertysearch.bcohio.gov/search/commonsearch.aspx?mode=owner",
+        "agency": "Butler County Auditor",
+        "access": "SEARCH_PORTAL",
+        "notes": "Official County Auditor parcel/owner/address lookup, not a bulk roll. JavaScript/disclaimer/session or automated-access protection may apply.",
+        "evidence": "https://propertysearch.bcohio.gov/search/commonsearch.aspx?mode=owner"
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://auditor.bcohio.gov/auditors_office/public_records/records_request_form/index.php",
+        "agency": "Butler County Auditor",
+        "access": "RECORDS_REQUEST",
+        "notes": "Countywide Public Export Not Confirmed \u2014 Request Existing Data. Auditor retained-record request form; no usable countywide CAMA/ownership export confirmed. Individual iasWorld lookup is not a roll. Request existing current countywide parcel/ownership/appraisal/CAMA, assessment roll or tax duplicate in maintained electronic format under Ohio R.C. 149.43; not a custom report.",
+        "evidence": "https://auditor.bcohio.gov/auditors_office/public_records/records_request_form/index.php",
+        "email": "Auditor@bcohio.gov"
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://propertysearch.bcohio.gov/search/commonsearch.aspx?mode=owner",
+        "agency": "Butler County Treasurer / Auditor tax records",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual Tax Status. Official account tax/unpaid balance/payment history; Treasurer collection authority. Auditor-hosted records may lag payments; confirm current delinquency with Treasurer. No confirmed full-current downloadable delinquent population represented.",
+        "evidence": "https://treasurer.bcohio.gov/"
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://clerkservices.bcohio.gov/eservices",
+        "agency": "Butler County Clerk of Courts / Common Pleas General Division",
+        "access": "SEARCH_PORTAL",
+        "notes": "Ohio judicial foreclosure filings. Clerk Court Records Search/eFiling; General civil foreclosure cases; session/disclaimer. Filed cases precede later sheriff-sale inventory. Restricted documents/posting delays limit access.",
+        "evidence": "https://clerkservices.bcohio.gov/eservices"
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://probatecourt.bcohio.gov/recordSearch.php",
+        "agency": "Butler County Probate Court",
+        "access": "SEARCH_PORTAL",
+        "notes": "Dedicated Probate CaseLook disclaimer; at least 24-hour posting delay. Public index does not establish unrestricted document/bulk access.",
+        "evidence": "https://probatecourt.bcohio.gov/recordSearch.php"
+      }
+    ]
+  },
+  {
+    "county": "Warren",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://auditor.warrencountyohio.gov/propertysearch",
+        "agency": "Warren County Auditor",
+        "access": "SEARCH_PORTAL",
+        "notes": "Official County Auditor parcel/owner/address lookup, not a bulk roll. JavaScript/disclaimer/session or automated-access protection may apply.",
+        "evidence": "https://auditor.warrencountyohio.gov/propertysearch"
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://auditor.warrencountyohio.gov/propertysearch/PublicDataExport/Index",
+        "agency": "Warren County Auditor / GIS",
+        "access": "DOWNLOAD_PAGE",
+        "notes": "Countywide Auditor Public Data Export, separate from lookup. Agreement/session gateway; select Download Data. Official page says refreshed nightly at 2:30 am; processed September 30, 2026.",
+        "evidence": "https://auditor.warrencountyohio.gov/propertysearch/PublicDataExport/Index",
+        "format": "Electronic export"
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://www.warrencountyohio.gov/Treasurer/Payments/RealEstate/Index",
+        "agency": "Warren County Treasurer / Auditor tax records",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual Tax Status. Official account tax/unpaid balance/payment history; Treasurer collection authority. Auditor-hosted records may lag payments; confirm current delinquency with Treasurer. No confirmed full-current downloadable delinquent population represented.",
+        "evidence": "https://www.warrencountyohio.gov/"
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://clerkofcourt.co.warren.oh.us/BenchmarkCP",
+        "agency": "Warren County Clerk of Courts / Common Pleas General Division",
+        "access": "SEARCH_PORTAL",
+        "notes": "Ohio judicial foreclosure filings. Common Pleas Benchmark civil search; session/disclaimer. Filed cases precede later sheriff-sale inventory. Restricted documents/posting delays limit access.",
+        "evidence": "https://clerkofcourt.co.warren.oh.us/BenchmarkCP"
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://www.warrencountyohio.gov/Probate_Juvenile/Contact",
+        "agency": "Warren County Probate Court",
+        "access": "RECORDS_REQUEST",
+        "notes": "Dedicated Probate Court custodian fallback, 513-695-1180. County-endorsed online index at probate.co.warren.oh.us/search.php failed HTTPS certificate validation in a normal browser on September 30, 2026; its HTTP link was not used to bypass the warning. Request existing public estate indexes/files from Probate under applicable Ohio court procedures / Rules of Superintendence, not a new report. Current Court page provides record policy and request form; restricted images, older/offline records and fees may apply.",
+        "evidence": "https://www.warrencountyohio.gov/Probate_Juvenile/",
+        "email": "sroberts@warrencountyohio.gov"
+      }
+    ]
+  },
+  {
+    "county": "Clermont",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://www.clermontauditorrealestate.org/_web/search/commonsearch.aspx?mode=owner",
+        "agency": "Clermont County Auditor",
+        "access": "SEARCH_PORTAL",
+        "notes": "Official County Auditor parcel/owner/address lookup, not a bulk roll. JavaScript/disclaimer/session or automated-access protection may apply. September 30 browser/HTTP gateway displays maintenance notice and data current September 29, 2026; actual case/account querying may be temporarily unavailable.",
+        "evidence": "https://clermonttreasurer.org/"
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://www.clermontauditor.org/downloads/",
+        "agency": "Clermont County Auditor / GIS",
+        "access": "DOWNLOAD_PAGE",
+        "notes": "Countywide CLERMONT_AA407.ZIP plus AA407 CSV field layout; September 9, 2026 snapshot. Use AA407, not the three township parcel ZIPs or sales-only files.",
+        "evidence": "https://www.clermontauditor.org/downloads/",
+        "format": "CSV / ZIP"
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://www.clermontauditorrealestate.org/_web/search/commonsearch.aspx?mode=owner",
+        "agency": "Clermont County Treasurer / Auditor tax records",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual Tax Status. Official account tax/unpaid balance/payment history; Treasurer collection authority. Auditor-hosted records may lag payments; confirm current delinquency with Treasurer. No confirmed full-current downloadable delinquent population represented. Clermont publication as of December 15, 2025 is dated, not a live full database. September 30 browser/HTTP gateway displays maintenance notice and data current September 29, 2026; actual case/account querying may be temporarily unavailable.",
+        "evidence": "https://clermonttreasurer.org/"
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://eservices.clermontclerk.org/commonpleas",
+        "agency": "Clermont County Clerk of Courts / Common Pleas General Division",
+        "access": "SEARCH_PORTAL",
+        "notes": "Ohio judicial foreclosure filings. Dedicated Common Pleas civil public access; Probate is separate. Filed cases precede later sheriff-sale inventory. Restricted documents/posting delays limit access.",
+        "evidence": "https://eservices.clermontclerk.org/commonpleas"
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://eservices.clermontclerk.org/probate",
+        "agency": "Clermont County Probate Court",
+        "access": "SEARCH_PORTAL",
+        "notes": "Dedicated Probate access/images endorsed by Clerk and Probate/Juvenile Court; exempt records omitted. Public index does not establish unrestricted document/bulk access.",
+        "evidence": "https://eservices.clermontclerk.org/probate"
+      }
+    ]
+  },
+  {
+    "county": "Cuyahoga",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://myplace.cuyahogacounty.gov/",
+        "agency": "Cuyahoga County Fiscal Officer",
+        "access": "SEARCH_PORTAL",
+        "notes": "Official County Auditor parcel/owner/address lookup, not a bulk roll. JavaScript/disclaimer/session or automated-access protection may apply.",
+        "evidence": "https://myplace.cuyahogacounty.gov/"
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://gis.cuyahogacounty.gov/server/rest/services/CCGIS/Parcel_RP_CAMA_Table/MapServer/1?f=pjson",
+        "agency": "Cuyahoga County Fiscal Officer / GIS",
+        "access": "DOWNLOAD_PAGE",
+        "notes": "Countywide Parcel Real Property and CAMA table. Metadata, count (665,965 rows) and sample reviewed: parcel/year, owner, situs, mailing, class, land/building values and living area. Row count is not unique active parcels; filter year/status and deduplicate. Sample parcel year 2026/tax year 2025; no reliable extract date. REST query paging/export required.",
+        "evidence": "https://gis.cuyahogacounty.gov/server/rest/services/CCGIS/Parcel_RP_CAMA_Table/MapServer/1?f=pjson",
+        "format": "ArcGIS REST / JSON"
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://myplace.cuyahogacounty.gov/",
+        "agency": "Cuyahoga County Treasurer / Fiscal Officer tax records",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual Tax Status. Official account tax/unpaid balance/payment history; Treasurer collection authority. Auditor-hosted records may lag payments; confirm current delinquency with Treasurer. No confirmed full-current downloadable delinquent population represented.",
+        "evidence": "https://www.cuyahogacounty.gov/treasury/view-your-taxes"
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://cpdocket.cp.cuyahogacounty.us/Search.aspx",
+        "agency": "Cuyahoga County Clerk of Courts / Common Pleas General Division",
+        "access": "SEARCH_PORTAL",
+        "notes": "Ohio judicial foreclosure filings. Common Pleas General civil docket; select foreclosure case types; session/terms. Filed cases precede later sheriff-sale inventory. Restricted documents/posting delays limit access.",
+        "evidence": "https://cpdocket.cp.cuyahogacounty.us/Search.aspx"
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://probate.cuyahogacounty.gov/pa/",
+        "agency": "Cuyahoga County Probate Court",
+        "access": "SEARCH_PORTAL",
+        "notes": "Dedicated Probate public access/disclaimer; bulk downloading requires consent under portal conditions. Public index does not establish unrestricted document/bulk access.",
+        "evidence": "https://probate.cuyahogacounty.gov/pa/"
+      }
+    ]
+  },
+  {
+    "county": "Lake",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://auditor.lakecountyohio.gov/search/commonsearch.aspx?mode=owner",
+        "agency": "Lake County Auditor",
+        "access": "SEARCH_PORTAL",
+        "notes": "Official County Auditor parcel/owner/address lookup, not a bulk roll. JavaScript/disclaimer/session or automated-access protection may apply.",
+        "evidence": "https://auditor.lakecountyohio.gov/search/commonsearch.aspx?mode=owner"
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://gis.lakecountyohio.gov/DataDownload/PARCELS_LAK_OH_FEB_2026.zip",
+        "agency": "Lake County Auditor / GIS",
+        "access": "DIRECT_DOWNLOAD",
+        "notes": "Countywide parcel/ownership shapefile ZIP, February 23, 2026 snapshot. Download inspected: 114,607 DBF records with PIN, owner/mailing/situs, acres, land/building/total values, class, year built and legal description. Polygon records are not necessarily unique active parcels; deduplicate PIN and check current Auditor ownership. County GIS page also endorses nightly parcels in its Open Data Hub; static ZIP is dated, not a complete dwelling-level CAMA database.",
+        "evidence": "https://www.lakecountyohio.gov/gis/gis-data-download/",
+        "format": "Shapefile / geodatabase / ZIP"
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://auditor.lakecountyohio.gov/search/commonsearch.aspx?mode=owner",
+        "agency": "Lake County Treasurer / Auditor tax records",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual Tax Status. Official account tax/unpaid balance/payment history; Treasurer collection authority. Auditor-hosted records may lag payments; confirm current delinquency with Treasurer. No confirmed full-current downloadable delinquent population represented.",
+        "evidence": "https://www.lakecountyohio.gov/treasurer/"
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://phoenix.lakecountyohio.gov/eservices/home.page.2",
+        "agency": "Lake County Clerk of Courts / Common Pleas General Division",
+        "access": "SEARCH_PORTAL",
+        "notes": "Ohio judicial foreclosure filings. Common Pleas civil eServices; session/disclaimer. Filed cases precede later sheriff-sale inventory. Restricted documents/posting delays limit access.",
+        "evidence": "https://phoenix.lakecountyohio.gov/eservices/home.page.2"
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://phoenix.lakecountyohio.gov/jwprobate",
+        "agency": "Lake County Probate Court",
+        "access": "SEARCH_PORTAL",
+        "notes": "Dedicated Probate JWorks; most but not all estate/release images public. Restricted records require Court. Public index does not establish unrestricted document/bulk access.",
+        "evidence": "https://phoenix.lakecountyohio.gov/jwprobate"
+      }
+    ]
+  },
+  {
+    "county": "Lorain",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://loraincountyauditor.gov/Search/Name",
+        "agency": "Lorain County Auditor",
+        "access": "SEARCH_PORTAL",
+        "notes": "Official County Auditor parcel/owner/address lookup, not a bulk roll. JavaScript/disclaimer/session or automated-access protection may apply.",
+        "evidence": "https://loraincountyauditor.gov/Search/Name"
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://loraincountyauditor.gov/api/Document/Public%20RecordsSqlite.zip",
+        "agency": "Lorain County Auditor",
+        "access": "DIRECT_DOWNLOAD",
+        "notes": "Countywide full real estate CAMA and tax SQLite database, endorsed by Auditor Downloads menu. September 30, 2026 ZIP contains extract.db and File Layout.xlsx; Parcel 194,842 rows, ownership, location, appraisal, dwelling and tax tables inspected. Filter Tax_Year/Retired and join Property_ID; row count is not unique active parcels. Large 519 MB archive / 4.68 GB expanded database. Auditor warns GIS splits/combinations complete only through mid-May 2026.",
+        "evidence": "https://loraincountyauditor.gov/",
+        "format": "SQLite / ZIP"
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://loraincountyauditor.gov/DelinquentList/ExportCsv?TaxYear=2025",
+        "agency": "Lorain County Treasurer / Auditor tax records",
+        "access": "DIRECT_DOWNLOAD",
+        "notes": "Downloadable Delinquent Tax List. Entire-county tax-year 2025 (payable 2026) published delinquent population: 5,773 accounts exported September 30, 2026; parcel number, owner, situs, amount and property link verified. Includes manufactured homes and public-utility personal property: filter real estate. Annual/tax-year selection and no independent certification of all outstanding prior-year balances; confirm current payoff/payment-plan status with Treasurer. Not a tax-sale or sheriff-sale subset.",
+        "evidence": "https://loraincountyauditor.gov/DelinquentList/Polsub?TaxYear=2025",
+        "format": "CSV"
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://coc.loraincountyohio.gov/eservices/home.page.2",
+        "agency": "Lorain County Clerk of Courts / Common Pleas General Division",
+        "access": "SEARCH_PORTAL",
+        "notes": "Ohio judicial foreclosure filings. Clerk civil eServices; county describes online records from 1988; session/disclaimer. Filed cases precede later sheriff-sale inventory. Restricted documents/posting delays limit access.",
+        "evidence": "https://coc.loraincountyohio.gov/eservices/home.page.2"
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://probate.loraincounty.com/probate/search.shtml",
+        "agency": "Lorain County Probate Court",
+        "access": "SEARCH_PORTAL",
+        "notes": "Dedicated Probate since 1990, updated weekly Saturdays. Older archives/certified copies through Probate Court; not live. Public index does not establish unrestricted document/bulk access.",
+        "evidence": "https://probate.loraincounty.com/probate/search.shtml"
+      }
+    ]
+  },
+  {
+    "county": "Medina",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://auditor.medinacounty.gov/Search",
+        "agency": "Medina County Auditor",
+        "access": "SEARCH_PORTAL",
+        "notes": "Official County Auditor parcel/owner/address lookup, not a bulk roll. JavaScript/disclaimer/session or automated-access protection may apply.",
+        "evidence": "https://auditor.medinacounty.gov/Search"
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://gisdata.co.medina.oh.us/taxmaps/",
+        "agency": "Medina County Auditor / GIS",
+        "access": "DOWNLOAD_PAGE",
+        "notes": "Countywide ownership table plus parcel geometry. Inspected parcel_owner_table_dbf.zip: 95,601 ownership rows, PPN_, F_NAME, L_NAME, owner percentages/old-owner flags; modified December 15, 2025. Join by PPN_ and filter historical/multiple owners. Dated snapshot; old appraisal MDB link has transport failures and is not retained.",
+        "evidence": "https://engineer.medinaco.org/gis_dept_files.html",
+        "format": "DBF / Shapefile / ZIP"
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://auditor.medinacounty.gov/DelinquencyReport",
+        "agency": "Medina County Auditor (publication) / Treasurer (collection)",
+        "access": "DOWNLOAD_PAGE",
+        "notes": "Official delinquency population with Export CSV; browser reports 3,187 parcels September 30, 2026. Certified year and amount; includes utility/nonresidential classes. Auditor publication, Treasurer confirms balance. JavaScript/cookies required; automated 403 possible.",
+        "evidence": "https://auditor.medinacounty.gov/",
+        "format": "CSV"
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://portal-ohmedina.tylertech.cloud/Portal/",
+        "agency": "Medina County Clerk of Courts / Common Pleas General Division",
+        "access": "SEARCH_PORTAL",
+        "notes": "Ohio judicial foreclosure filings. Clerk-endorsed Tyler portal; select General civil foreclosure records. Login/search restrictions may apply. Filed cases precede later sheriff-sale inventory. Restricted documents/posting delays limit access.",
+        "evidence": "https://portal-ohmedina.tylertech.cloud/Portal/"
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://medinaprobate.org/online-docket/",
+        "agency": "Medina County Probate Court",
+        "access": "SEARCH_PORTAL",
+        "notes": "Probate official Online Docket gateway; shared search includes General/Domestic/Probate. Select Probate estate division explicitly. Public index does not establish unrestricted document/bulk access.",
+        "evidence": "https://medinaprobate.org/online-docket/"
+      }
+    ]
+  },
+  {
+    "county": "Summit",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://propertyaccess.summitoh.net/Search/Disclaimer.aspx?FromUrl=../search/commonsearch.aspx?mode=realprop",
+        "agency": "Summit County Fiscal Office",
+        "access": "SEARCH_PORTAL",
+        "notes": "Official County Auditor parcel/owner/address lookup, not a bulk roll. JavaScript/disclaimer/session or automated-access protection may apply.",
+        "evidence": "https://propertyaccess.summitoh.net/Search/Disclaimer.aspx?FromUrl=../search/commonsearch.aspx?mode=realprop"
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://fiscaloffice.summitoh.net/data-downloads",
+        "agency": "Summit County Fiscal Office",
+        "access": "DOWNLOAD_PAGE",
+        "notes": "Countywide CAMA SC700 ownership, SC701 mailing, SC703 assessment, SC704 appraisal, SC705 parcel and SC710 dwelling. SC700 inspected: 266,021 data rows, September 25, 2026 extract (posted September 28). Join by PARID/year; ownership sequences/inactive rows need filtering. DP300 duplicates dated 2018/2019/2023 are not current rolls.",
+        "evidence": "https://fiscaloffice.summitoh.net/data-downloads",
+        "format": "CSV / ZIP"
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://fiscaloffice.summitoh.net/sites/default/files/assets/forms/SC720_DELQ_1.zip",
+        "agency": "Summit County Fiscal Office",
+        "access": "DIRECT_DOWNLOAD",
+        "notes": "Full official CAMA delinquency SC720_DELQ.csv: 27,119 rows, parcel, owner, mailing/situs, LUC, CERTIFIED_YR and DLQ_AMOUNT. Extract September 25, 2026; posted September 28. Includes prior years; subsequent payments change balances.",
+        "evidence": "https://fiscaloffice.summitoh.net/data-downloads",
+        "format": "CSV / ZIP"
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://clerk.summitoh.net/PublicSite/SelectDivision.aspx",
+        "agency": "Summit County Clerk of Courts / Common Pleas General Division",
+        "access": "SEARCH_PORTAL",
+        "notes": "Ohio judicial foreclosure filings. Official Clerk search: select Civil/foreclosure classification; 1850-1991 archive link. Beware imitation sites. Filed cases precede later sheriff-sale inventory. Restricted documents/posting delays limit access.",
+        "evidence": "https://clerk.summitoh.net/PublicSite/SelectDivision.aspx"
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://search.summitohioprobate.com/eservices/",
+        "agency": "Summit County Probate Court",
+        "access": "SEARCH_PORTAL",
+        "notes": "Dedicated Probate eServices; post-1980 records online per Court. Older records through Records Room, some images restricted. Public index does not establish unrestricted document/bulk access.",
+        "evidence": "https://search.summitohioprobate.com/eservices/"
+      }
+    ]
+  },
+  {
+    "county": "Portage",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://beacon.schneidercorp.com/Application.aspx?App=PortageCountyOH&LayerID=30592&PageTypeID=2&PageID=12390",
+        "agency": "Portage County Auditor",
+        "access": "SEARCH_PORTAL",
+        "notes": "Official County Auditor parcel/owner/address lookup, not a bulk roll. JavaScript/disclaimer/session or automated-access protection may apply.",
+        "evidence": "https://beacon.schneidercorp.com/Application.aspx?App=PortageCountyOH&LayerID=30592&PageTypeID=2&PageID=12390"
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://services.portageco.com/GIS/Parcel_PDFs/Misc/GovernmaxExtract.zip",
+        "agency": "Portage County Auditor / GIS",
+        "access": "DOWNLOAD_PAGE",
+        "notes": "Countywide CAMA/Appraisal download. Inspected GovernmaxExtract.txt: 80,660 data rows with parcel, legal, situs, owner/mailing, class, acres, values, building year/living area. Extract September 24, 2026; posted September 25. Filter Par_Deleted and preserve card multiplicity.",
+        "evidence": "https://www.portagecounty-oh.gov/geographic-information-systems/pages/data-downloads",
+        "format": "Pipe-delimited TXT / ZIP"
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://beacon.schneidercorp.com/Application.aspx?App=PortageCountyOH&LayerID=30592&PageTypeID=2&PageID=12390",
+        "agency": "Portage County Treasurer / Auditor tax records",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual Tax Status. Official account tax/unpaid balance/payment history; Treasurer collection authority. Auditor-hosted records may lag payments; confirm current delinquency with Treasurer. No confirmed full-current downloadable delinquent population represented.",
+        "evidence": "https://www.portagecounty-oh.gov/treasurers-office"
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://services.portageco.com/eservices/home.page.3",
+        "agency": "Portage County Clerk of Courts / Common Pleas General Division",
+        "access": "SEARCH_PORTAL",
+        "notes": "Ohio judicial foreclosure filings. Shared court eServices; select Common Pleas General civil, not Municipal/Probate. County says from 1992/daily updates. Filed cases precede later sheriff-sale inventory. Restricted documents/posting delays limit access.",
+        "evidence": "https://services.portageco.com/eservices/home.page.3"
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://services.portageco.com/eservices/home.page.3",
+        "agency": "Portage County Probate Court",
+        "access": "SEARCH_PORTAL",
+        "notes": "County documentation confirms shared system includes Probate from 1992. Select Probate estate cases; earlier records retained by Probate Court (330-297-3870). Public index does not establish unrestricted document/bulk access.",
+        "evidence": "https://services.portageco.com/eservices/home.page.3"
+      }
+    ]
+  },
+  {
+    "county": "Stark",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://realestate.starkcountyohio.gov/Search/Disclaimer.aspx?FromUrl=../search/commonsearch.aspx?mode=realprop",
+        "agency": "Stark County Auditor",
+        "access": "SEARCH_PORTAL",
+        "notes": "Official County Auditor parcel/owner/address lookup, not a bulk roll. JavaScript/disclaimer/session or automated-access protection may apply.",
+        "evidence": "https://realestate.starkcountyohio.gov/Search/Disclaimer.aspx?FromUrl=../search/commonsearch.aspx?mode=realprop"
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://www.starkcountyohio.gov/government/offices/information_technology/geographic_information_systems/data_availability.php",
+        "agency": "Stark County Auditor / GIS",
+        "access": "DOWNLOAD_PAGE",
+        "notes": "Official county GIS page expressly publishes County Auditor Computer Assisted Mass Appraisal (CAMA) ZIP for public use. Follow cama.zip; countywide CAMA, separate from lookup. Large archive not fully downloaded; extract date not established.",
+        "evidence": "https://www.starkcountyohio.gov/government/offices/information_technology/geographic_information_systems/data_availability.php",
+        "format": "CAMA / ZIP"
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://realestate.starkcountyohio.gov/Search/Disclaimer.aspx?FromUrl=../search/commonsearch.aspx?mode=realprop",
+        "agency": "Stark County Treasurer / Auditor tax records",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual Tax Status. Official account tax/unpaid balance/payment history; Treasurer collection authority. Auditor-hosted records may lag payments; confirm current delinquency with Treasurer. No confirmed full-current downloadable delinquent population represented. Published May 1, 2026 Stark file is thresholded (AllThatOwe5k); rejected as full population.",
+        "evidence": "https://www.starkcountyohio.gov/government/offices/treasurer/departments/delinquent_tax_and_foreclosures/index.php"
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://www.starkcjis.org/",
+        "agency": "Stark County Clerk of Courts / Common Pleas General Division",
+        "access": "SEARCH_PORTAL",
+        "notes": "Ohio judicial foreclosure filings. Clerk-endorsed CJIS docket; select Common Pleas civil foreclosure, not municipal criminal. Filed cases precede later sheriff-sale inventory. Restricted documents/posting delays limit access.",
+        "evidence": "https://www.starkcjis.org/"
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://starkcountyohio.gov/government/legal_judicial/probate_court/public_case_search.php",
+        "agency": "Stark County Probate Court",
+        "access": "SEARCH_PORTAL",
+        "notes": "Probate transition gateway: open cases/from July 27, 2026 use new JWorks; earlier cases use Legacy. Some images unavailable during configuration; docket date differs from filing timestamp. Public index does not establish unrestricted document/bulk access.",
+        "evidence": "https://starkcountyohio.gov/government/legal_judicial/probate_court/public_case_search.php"
+      }
+    ]
+  },
+  {
+    "county": "Montgomery",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://www.mcrealestate.org/search/commonsearch.aspx?mode=owner",
+        "agency": "Montgomery County Auditor",
+        "access": "SEARCH_PORTAL",
+        "notes": "Official County Auditor parcel/owner/address lookup, not a bulk roll. JavaScript/disclaimer/session or automated-access protection may apply.",
+        "evidence": "https://www.mcrealestate.org/search/commonsearch.aspx?mode=owner"
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://www.mcohio.org/647/Public-Records-Policy",
+        "agency": "Montgomery County Auditor",
+        "access": "RECORDS_REQUEST",
+        "notes": "Countywide Public Export Not Confirmed \u2014 Request Existing Data. Auditor public-record policy with request contacts (937-225-6372); GIS publishes September 29, 2026 geodatabase, but ownership/CAMA coverage not confirmed. Parcel-line geometry alone is insufficient. Request existing current countywide parcel/ownership/appraisal/CAMA, assessment roll or tax duplicate in maintained electronic format under Ohio R.C. 149.43; not a custom report.",
+        "evidence": "https://www.mcohio.org/647/Public-Records-Policy"
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://go.mcohio.org/applications/treasurer/search/index.cfm",
+        "agency": "Montgomery County Treasurer / Auditor tax records",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual Tax Status. Official account tax/unpaid balance/payment history; Treasurer collection authority. Auditor-hosted records may lag payments; confirm current delinquency with Treasurer. No confirmed full-current downloadable delinquent population represented.",
+        "evidence": "https://go.mcohio.org/applications/treasurer/search/index.cfm"
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://pro.mcohio.org/",
+        "agency": "Montgomery County Clerk of Courts / Common Pleas General Division",
+        "access": "SEARCH_PORTAL",
+        "notes": "Ohio judicial foreclosure filings. Clerk PROv3: Common Pleas General civil, not Municipal/Domestic/Appellate. Restricted documents and certified copies require Clerk. Filed cases precede later sheriff-sale inventory. Restricted documents/posting delays limit access.",
+        "evidence": "https://pro.mcohio.org/"
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://go.mcohio.org/applications/probate/prodcfm/casesearchx.cfm",
+        "agency": "Montgomery County Probate Court",
+        "access": "SEARCH_PORTAL",
+        "notes": "Dedicated Probate ESTATE TYPE SEARCH by name or year/number; separate from PROv3 General civil. Public index does not establish unrestricted document/bulk access.",
+        "evidence": "https://go.mcohio.org/applications/probate/prodcfm/casesearchx.cfm"
+      }
+    ]
+  },
+  {
+    "county": "Greene",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://auditor.greenecountyohio.gov/Search/Name",
+        "agency": "Greene County Auditor",
+        "access": "SEARCH_PORTAL",
+        "notes": "Official County Auditor parcel/owner/address lookup, not a bulk roll. JavaScript/disclaimer/session or automated-access protection may apply.",
+        "evidence": "https://auditor.greenecountyohio.gov/Search/Name"
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://auditor.greenecountyohio.gov/media/Documents/PublicRecords.zip",
+        "agency": "Greene County Auditor / GIS",
+        "access": "DOWNLOAD_PAGE",
+        "notes": "Auditor PublicRecords ZIP expressly linked as Tax Data by county Auditor page: maintained countywide electronic property/tax records. Large file may time out; extract date and included table layouts not independently established. Check active real-property rows.",
+        "evidence": "https://www.greenecountyohio.gov/366/Auditor",
+        "format": "Property/tax data / ZIP"
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://treasurer.greenecountyohio.gov/DelinquentList",
+        "agency": "Greene County Treasurer",
+        "access": "SEARCH_PORTAL",
+        "notes": "Searchable Delinquent Accounts. Treasurer delinquent real-property list/search, not sale inventory. Refresh date/export completeness not established; confirm current balances.",
+        "evidence": "https://www.greenecountyohio.gov/349/Online-Services"
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://courts.greenecountyohio.gov/eservices",
+        "agency": "Greene County Clerk of Courts / Common Pleas General Division",
+        "access": "SEARCH_PORTAL",
+        "notes": "Ohio judicial foreclosure filings. General Common Pleas civil eServices; separate Probate JWorks portal. Filed cases precede later sheriff-sale inventory. Restricted documents/posting delays limit access.",
+        "evidence": "https://courts.greenecountyohio.gov/eservices"
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://www.greenecountyohio.gov/2087/JWorks-Case-Search",
+        "agency": "Greene County Probate Court",
+        "access": "SEARCH_PORTAL",
+        "notes": "Probate official JWorks gateway; estate/nonconfidential Probate matters, separate from General civil eServices. Public index does not establish unrestricted document/bulk access.",
+        "evidence": "https://www.greenecountyohio.gov/2087/JWorks-Case-Search"
+      }
+    ]
+  },
+  {
+    "county": "Miami",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://www.miamicountyohioauditor.gov/Search",
+        "agency": "Miami County Auditor",
+        "access": "SEARCH_PORTAL",
+        "notes": "Official County Auditor parcel/owner/address lookup, not a bulk roll. JavaScript/disclaimer/session or automated-access protection may apply.",
+        "evidence": "https://www.miamicountyohioauditor.gov/Search"
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://www.miamicountyohioauditor.gov/",
+        "agency": "Miami County Auditor",
+        "access": "RECORDS_REQUEST",
+        "notes": "Countywide Public Export Not Confirmed \u2014 Request Existing Data. Auditor contact (937-440-5925); protected GIS parcel ZIP does not establish confirmed countywide ownership/appraisal content. Request existing current countywide parcel/ownership/appraisal/CAMA, assessment roll or tax duplicate in maintained electronic format under Ohio R.C. 149.43; not a custom report.",
+        "evidence": "https://www.miamicountyohioauditor.gov/"
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://www.miamicountyohioauditor.gov/DelinquencyReport",
+        "agency": "Miami County Auditor (publication) / Treasurer (collection)",
+        "access": "DOWNLOAD_PAGE",
+        "notes": "Official delinquency population with Export CSV; browser reports 531 parcels, processed September 30, 2026. Includes prior certified years (e.g. 1998), owner/parcel/amount. Auditor publication, Treasurer confirms current balance. Automated 403 possible.",
+        "evidence": "https://www.miamicountyohio.gov/treasurer/",
+        "format": "CSV"
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://www.miamicountyohio.gov/miami-county-ohio-courts-public-access-terms-and-conditions/",
+        "agency": "Miami County Clerk of Courts / Common Pleas General Division",
+        "access": "SEARCH_PORTAL",
+        "notes": "Ohio judicial foreclosure filings. Official terms gateway to CourtView; choose General civil division, not other court divisions. Filed cases precede later sheriff-sale inventory. Restricted documents/posting delays limit access.",
+        "evidence": "https://www.miamicountyohio.gov/miami-county-ohio-courts-public-access-terms-and-conditions/"
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://probate.miamicountyohio.gov/",
+        "agency": "Miami County Probate Court",
+        "access": "SEARCH_PORTAL",
+        "notes": "Dedicated Probate CaseLook disclaimer; at least 24-hour posting delay. Public index does not establish unrestricted document/bulk access.",
+        "evidence": "https://probate.miamicountyohio.gov/"
+      }
+    ]
+  },
+  {
+    "county": "Clark",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://clarkcountyauditor.org/Search",
+        "agency": "Clark County Auditor",
+        "access": "SEARCH_PORTAL",
+        "notes": "Official County Auditor parcel/owner/address lookup, not a bulk roll. JavaScript/disclaimer/session or automated-access protection may apply.",
+        "evidence": "https://clarkcountyauditor.org/Search"
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://clarkcountyauditor.org/Posts",
+        "agency": "Clark County Auditor",
+        "access": "RECORDS_REQUEST",
+        "notes": "Countywide Public Export Not Confirmed \u2014 Request Existing Data. Auditor/GIS contact (gis@clarkcountyohio.gov); GIS Hub exists, but usable full ownership/CAMA dataset not confirmed. Request existing current countywide parcel/ownership/appraisal/CAMA, assessment roll or tax duplicate in maintained electronic format under Ohio R.C. 149.43; not a custom report.",
+        "evidence": "https://clarkcountyauditor.org/Posts"
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://clarkcountyauditor.org/DelinquencyReport",
+        "agency": "Clark County Auditor (publication) / Treasurer (collection)",
+        "access": "DOWNLOAD_PAGE",
+        "notes": "Official delinquency population with Export CSV; browser reports 2,301 parcels September 30, 2026. Owner, certified year, vacant flag/amount. Auditor publication, Treasurer confirms current balance; not sale-only inventory. Automated 403 possible.",
+        "evidence": "https://clarkcountyohio.gov/632/Public-Records",
+        "format": "CSV"
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://www.clarkcountyohio.gov/314/Legal-Department",
+        "agency": "Clark County Clerk of Courts / Common Pleas General Division",
+        "access": "SEARCH_PORTAL",
+        "notes": "Ohio judicial foreclosure filings. Official agreement gateway to eservices.clarkcountyohiocourt.com; choose Common Pleas General civil. Filed cases precede later sheriff-sale inventory. Restricted documents/posting delays limit access.",
+        "evidence": "https://www.clarkcountyohio.gov/314/Legal-Department"
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://probate.clarkcountyohio.gov/recordSearch.php",
+        "agency": "Clark County Probate Court",
+        "access": "SEARCH_PORTAL",
+        "notes": "Dedicated Probate CaseLook disclaimer; nonconfidential estates, at least 24-hour delay. Public index does not establish unrestricted document/bulk access.",
+        "evidence": "https://probate.clarkcountyohio.gov/recordSearch.php"
+      }
+    ]
+  },
+  {
+    "county": "Lucas",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://icare.co.lucas.oh.us/LucasCare/search/commonsearch.aspx?mode=address",
+        "agency": "Lucas County Auditor",
+        "access": "SEARCH_PORTAL",
+        "notes": "Official County Auditor parcel/owner/address lookup, not a bulk roll. JavaScript/disclaimer/session or automated-access protection may apply.",
+        "evidence": "https://icare.co.lucas.oh.us/LucasCare/search/commonsearch.aspx?mode=address"
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://lucapps.co.lucas.oh.us/Downloads/Home.aspx",
+        "agency": "Lucas County Auditor / GIS",
+        "access": "DOWNLOAD_PAGE",
+        "notes": "Entire county AREIS property database, free Access download. Treasurer explicitly confirms ownership/valuation/land/building data and nightly updates. Registration/login required; select Real Estate then AREIS Data. No account created or file downloaded; verify extract date after access.",
+        "evidence": "https://www.lucascountytreasurer.org/areis",
+        "format": "Microsoft Access / database"
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://icare.co.lucas.oh.us/LucasCare/search/commonsearch.aspx?mode=address",
+        "agency": "Lucas County Treasurer / Auditor tax records",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual Tax Status. Official account tax/unpaid balance/payment history; Treasurer collection authority. Auditor-hosted records may lag payments; confirm current delinquency with Treasurer. No confirmed full-current downloadable delinquent population represented.",
+        "evidence": "https://www.lucascountytreasurer.org/"
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://lucascountyoh.gov/3707/Online-Dockets",
+        "agency": "Lucas County Clerk of Courts / Common Pleas General Division",
+        "access": "SEARCH_PORTAL",
+        "notes": "Ohio judicial foreclosure filings. Clerk gateway to re:SearchOH and Justice Case Access since January 6, 2026; both require account. Legacy docket being phased out. CI mortgage/civil and TF tax foreclosure cases. Login not completed. Filed cases precede later sheriff-sale inventory. Restricted documents/posting delays limit access.",
+        "evidence": "https://lucascountyoh.gov/3707/Online-Dockets"
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://www.lucasprobate.org/case-access",
+        "agency": "Lucas County Probate Court",
+        "access": "SEARCH_PORTAL",
+        "notes": "Probate gateway to new re:SearchOH; EST estates public, adoption/mental-health omitted, guardianship images unavailable. Case formats change August 2001. Court warns hearing times inaccurate; call to confirm. Public index does not establish unrestricted document/bulk access.",
+        "evidence": "https://www.lucasprobate.org/case-access"
+      }
+    ]
+  },
+  {
+    "county": "Wood",
+    "sources": [
+      {
+        "type": "PROPERTY_SEARCH",
+        "url": "https://beacon.schneidercorp.com/Application.aspx?App=WoodCountyOH&PageType=Search",
+        "agency": "Wood County Auditor",
+        "access": "SEARCH_PORTAL",
+        "notes": "Official County Auditor parcel/owner/address lookup, not a bulk roll. JavaScript/disclaimer/session or automated-access protection may apply.",
+        "evidence": "https://beacon.schneidercorp.com/Application.aspx?App=WoodCountyOH&PageType=Search"
+      },
+      {
+        "type": "MASTER_PARCEL",
+        "url": "https://auditor.co.wood.oh.us/contact/",
+        "agency": "Wood County Auditor",
+        "access": "RECORDS_REQUEST",
+        "notes": "Countywide Public Export Not Confirmed \u2014 Request Existing Data. Auditor Real Estate (419-373-4917); individual Beacon lookup is not a roll; usable public countywide file not confirmed. Request existing current countywide parcel/ownership/appraisal/CAMA, assessment roll or tax duplicate in maintained electronic format under Ohio R.C. 149.43; not a custom report.",
+        "evidence": "https://auditor.co.wood.oh.us/contact/"
+      },
+      {
+        "type": "DELINQUENT_PROPERTY_TAX",
+        "url": "https://beacon.schneidercorp.com/Application.aspx?App=WoodCountyOH&PageType=Search",
+        "agency": "Wood County Treasurer / Auditor tax records",
+        "access": "SEARCH_PORTAL",
+        "notes": "Individual Tax Status. Official account tax/unpaid balance/payment history; Treasurer collection authority. Auditor-hosted records may lag payments; confirm current delinquency with Treasurer. No confirmed full-current downloadable delinquent population represented.",
+        "evidence": "https://www.woodcountyohio.gov/101/Quick-Links"
+      },
+      {
+        "type": "FORECLOSURE_LEGAL_NOTICES",
+        "url": "https://pub.clerkofcourt.co.wood.oh.us/eservices/home.page.2",
+        "agency": "Wood County Clerk of Courts / Common Pleas General Division",
+        "access": "SEARCH_PORTAL",
+        "notes": "Ohio judicial foreclosure filings. Common Pleas civil CourtView. Records before 1990 may be absent; posting delay/disclaimer. Filed cases precede later sheriff-sale inventory. Restricted documents/posting delays limit access.",
+        "evidence": "https://pub.clerkofcourt.co.wood.oh.us/eservices/home.page.2"
+      },
+      {
+        "type": "PROBATE",
+        "url": "https://search.co.wood.oh.us/",
+        "agency": "Wood County Probate Court",
+        "access": "SEARCH_PORTAL",
+        "notes": "Probate search linked by current Probate Court; estate jurisdiction, separate from Clerk civil CourtView. Public index does not establish unrestricted document/bulk access.",
+        "evidence": "https://search.co.wood.oh.us/"
+      }
+    ]
+  }
+]

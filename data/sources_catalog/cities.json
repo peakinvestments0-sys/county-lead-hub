@@ -1,0 +1,306 @@
+[
+  {
+    "county": "Alachua",
+    "city": "Gainesville",
+    "source": {
+      "url": "https://www4.citizenserve.com/Portal/PortalController?Action=showHomePage&ctzPagePrefix=Portal_&installationID=308&original_contactID=0&original_iid=0",
+      "notes": "Official PermitGNV portal; choose Code Enforcement, then Search for a project. The deeper search URL is not stable in a fresh session.",
+      "access": "SEARCH_PORTAL"
+    }
+  },
+  {
+    "county": "Brevard",
+    "city": "Palm Bay",
+    "source": {
+      "url": "https://www.palmbayfl.gov/Home/Components/ServiceDirectory/ServiceDirectory/52/",
+      "notes": "Official city service page links the municipal code-violation portal and records contact.",
+      "access": "SEARCH_PORTAL",
+      "email": "pbcodecompliance@palmbayfl.gov"
+    }
+  },
+  {
+    "county": "Brevard",
+    "city": "Melbourne",
+    "source": {
+      "url": "https://www.melbourneflorida.org/Government/Departments/Code-Compliance-Division/Code-Enforcement",
+      "notes": "Official municipal Code Enforcement page provides the online service request and records contact.",
+      "access": "RECORDS_REQUEST",
+      "email": "Code.Compliance@mlbfl.org"
+    }
+  },
+  {
+    "county": "Broward",
+    "city": "Fort Lauderdale",
+    "source": {
+      "url": "https://aca3.accela.com/FTL",
+      "notes": "Direct official LauderBuild portal for public code-case and violation searches.",
+      "access": "SEARCH_PORTAL"
+    }
+  },
+  {
+    "county": "Broward",
+    "city": "Pembroke Pines",
+    "source": {
+      "url": "https://www.ppines.com/176/Code-Compliance",
+      "notes": "Official city Code Compliance page routes prior and active violation research to Public Records.",
+      "access": "RECORDS_REQUEST"
+    }
+  },
+  {
+    "county": "Broward",
+    "city": "Hollywood",
+    "source": {
+      "url": "https://apps.hollywoodfl.org/ViolationSearch/",
+      "notes": "Official city Code Violation Search by property or case.",
+      "access": "SEARCH_PORTAL",
+      "evidence": "https://hollywoodfl.org/220/Liens"
+    }
+  },
+  {
+    "county": "Broward",
+    "city": "Miramar",
+    "source": {
+      "url": "https://www.miramarfl.gov/How-Do-I/Customer-Service",
+      "notes": "Official city page provides code-case status and public-record request routes; online case details are limited to registered contacts.",
+      "access": "RECORDS_REQUEST"
+    }
+  },
+  {
+    "county": "Broward",
+    "city": "Coral Springs",
+    "source": {
+      "url": "https://etrakit.coralsprings.gov/etrakit/",
+      "notes": "Official eTRAKiT portal allows public Code Compliance searches without an account.",
+      "access": "SEARCH_PORTAL"
+    }
+  },
+  {
+    "county": "Broward",
+    "city": "Pompano Beach",
+    "source": {
+      "url": "https://c2g.pompanobeachfl.gov/Click2GovCE/casesearch.html",
+      "notes": "Official Click2Gov Code Compliance search by case, parcel, address, or owner.",
+      "access": "SEARCH_PORTAL",
+      "evidence": "https://www.pompanobeachfl.gov/government/code-compliance/search-code-compliance-cases"
+    }
+  },
+  {
+    "county": "Broward",
+    "city": "Davie",
+    "source": {
+      "url": "https://www.davie-fl.gov/197/Code-Compliance",
+      "notes": "Current official town Code Compliance page and municipal records route.",
+      "access": "RECORDS_REQUEST"
+    }
+  },
+  {
+    "county": "Flagler",
+    "city": "Palm Coast",
+    "source": {
+      "url": "https://records.palmcoast.gov/",
+      "notes": "Official city public-record search for Code Enforcement records.",
+      "access": "SEARCH_PORTAL"
+    }
+  },
+  {
+    "county": "Hillsborough",
+    "city": "Tampa",
+    "source": {
+      "url": "https://www.tampa.gov/neighborhood-enhancement/lien-search",
+      "notes": "Official city source for Code Enforcement lien and balance searches.",
+      "access": "SEARCH_PORTAL"
+    }
+  },
+  {
+    "county": "Lee",
+    "city": "Cape Coral",
+    "source": {
+      "url": "https://energovweb.capecoral.gov/EnerGovProd/selfservice#/home",
+      "notes": "Direct official EnerGov portal for public code-case searches.",
+      "access": "SEARCH_PORTAL"
+    }
+  },
+  {
+    "county": "Lee",
+    "city": "Fort Myers",
+    "source": {
+      "url": "https://cdservices.cityftmyers.com/energovprod/selfservice",
+      "notes": "Direct official Self Service portal for code-case searches.",
+      "access": "SEARCH_PORTAL"
+    }
+  },
+  {
+    "county": "Leon",
+    "city": "Tallahassee",
+    "source": {
+      "url": "https://www.talgov.com/publicsafety/code-hearings",
+      "notes": "Official city page publishes code-case hearing records and provides the municipal case contact.",
+      "access": "DOWNLOAD_PAGE"
+    }
+  },
+  {
+    "county": "Marion",
+    "city": "Ocala",
+    "source": {
+      "url": "https://ocal.csqrcloud.com/community-etrakit/",
+      "notes": "Direct official eTRAKiT portal; use Code Violations Search.",
+      "access": "SEARCH_PORTAL"
+    }
+  },
+  {
+    "county": "Miami-Dade",
+    "city": "Miami",
+    "source": {
+      "url": "https://www.miami.gov/My-Government/Departments/Code-Compliance",
+      "notes": "Official municipal Code Compliance source and case inquiry route.",
+      "access": "RECORDS_REQUEST"
+    }
+  },
+  {
+    "county": "Miami-Dade",
+    "city": "Hialeah",
+    "source": {
+      "url": "https://www.hialeahfl.gov/671/Compliance-Forms",
+      "notes": "Official city page provides violation, lien, and open-permit research forms.",
+      "access": "RECORDS_REQUEST"
+    }
+  },
+  {
+    "county": "Miami-Dade",
+    "city": "Miami Gardens",
+    "source": {
+      "url": "https://miamigardens-fl.gov/148/Code-Enforcement-Business-Licensing",
+      "notes": "Official municipal Code Enforcement source and case-record contact.",
+      "access": "RECORDS_REQUEST"
+    }
+  },
+  {
+    "county": "Orange",
+    "city": "Orlando",
+    "source": {
+      "url": "https://cityoforlandofl-code.myrelayview.com/",
+      "notes": "Direct official Code Enforcement case and lien lookup by address or incident number.",
+      "access": "SEARCH_PORTAL"
+    }
+  },
+  {
+    "county": "Osceola",
+    "city": "Kissimmee",
+    "source": {
+      "url": "https://www.kissimmee.gov/My-Government/City-Departments-Offices/Development-Services/Code-Enforcement",
+      "notes": "Official municipal Code Enforcement source and case-contact route.",
+      "access": "RECORDS_REQUEST",
+      "email": "codeenforcement@kissimmee.gov"
+    }
+  },
+  {
+    "county": "Osceola",
+    "city": "St. Cloud",
+    "source": {
+      "url": "https://www.stcloudfl.gov/2282/Code-Compliance",
+      "notes": "Official municipal Code Compliance page and records contact.",
+      "access": "RECORDS_REQUEST",
+      "email": "community.compliance@stcloudfl.gov"
+    }
+  },
+  {
+    "county": "Palm Beach",
+    "city": "West Palm Beach",
+    "source": {
+      "url": "https://cityofwestpalmbeach-fl-cc.connect.socrata.com/",
+      "notes": "Direct official Citizen Connect search for code-enforcement cases by address.",
+      "access": "SEARCH_PORTAL"
+    }
+  },
+  {
+    "county": "Palm Beach",
+    "city": "Boca Raton",
+    "source": {
+      "url": "https://www.myboca.us/2235/Boca-eHub",
+      "notes": "Official Boca eHub entry point for public code-case searches.",
+      "access": "SEARCH_PORTAL"
+    }
+  },
+  {
+    "county": "Palm Beach",
+    "city": "Boynton Beach",
+    "source": {
+      "url": "https://boynton-beach.org/368/Code-Enforcement",
+      "notes": "Official municipal Code Enforcement source and violation-search records route.",
+      "access": "RECORDS_REQUEST"
+    }
+  },
+  {
+    "county": "Pinellas",
+    "city": "St. Petersburg",
+    "source": {
+      "url": "https://stpe-egov.aspgov.com/Click2GovCE/casesearch.html",
+      "notes": "City of St. Petersburg Codes Compliance case search by case number or address.",
+      "access": "SEARCH_PORTAL"
+    }
+  },
+  {
+    "county": "Pinellas",
+    "city": "Clearwater",
+    "source": {
+      "url": "https://epermit.myclearwater.com/citizenaccess/Welcome.aspx",
+      "notes": "Official Accela portal permits public Code Compliance application searches without login.",
+      "access": "SEARCH_PORTAL",
+      "evidence": "https://www.myclearwater.com/My-Government/0-City-Departments/Planning-Development/Code-Compliance"
+    }
+  },
+  {
+    "county": "Pinellas",
+    "city": "Largo",
+    "source": {
+      "url": "https://largo.civicweb.net/Portal/MeetingTypeList.aspx",
+      "notes": "Official city meeting portal publishes current Municipal Code Enforcement Board and Special Magistrate case records.",
+      "access": "DOWNLOAD_PAGE"
+    }
+  },
+  {
+    "county": "Polk",
+    "city": "Lakeland",
+    "source": {
+      "url": "https://ims.lakelandgov.net/",
+      "notes": "Direct official Code Enforcement case search.",
+      "access": "SEARCH_PORTAL"
+    }
+  },
+  {
+    "county": "St. Lucie",
+    "city": "Port St. Lucie",
+    "source": {
+      "url": "https://forms.cityofpsl.com/LSD/Request/Search",
+      "notes": "Official city lien search includes code, nuisance, building, and utility case information.",
+      "access": "SEARCH_PORTAL"
+    }
+  },
+  {
+    "county": "Sarasota",
+    "city": "North Port",
+    "source": {
+      "url": "https://aca-prod.accela.com/NORTHPORT/Cap/CapHome.aspx?module=Code&TabName=Code&TabList=Home%7C0%7CPlanning%7C1%7CBuilding%7C2%7CCode%7C3%7CEconomicDev%7C4%7CFire%7C5%7CCurrentTabIndex%7C3",
+      "notes": "Direct official Accela Code Enforcement record search.",
+      "access": "SEARCH_PORTAL"
+    }
+  },
+  {
+    "county": "Volusia",
+    "city": "Deltona",
+    "source": {
+      "url": "https://deltonafl-energovweb.tylerhost.net/apps/SelfService#/search",
+      "notes": "Direct official Self Service search for code cases created since July 2019.",
+      "access": "SEARCH_PORTAL"
+    }
+  },
+  {
+    "county": "Volusia",
+    "city": "Daytona Beach",
+    "source": {
+      "url": "https://gis2.codb.us/arcgis/rest/services/DepartmentDivision/CodeEnforcement/MapServer",
+      "notes": "Official city GIS service exposes Code Enforcement operations cases.",
+      "access": "SEARCH_PORTAL"
+    }
+  }
+]

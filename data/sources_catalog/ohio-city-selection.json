@@ -1,0 +1,557 @@
+[
+  {
+    "city": "Columbus",
+    "population2025": 938396,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_39.csv",
+    "counties": [
+      "Franklin",
+      "Delaware",
+      "Fairfield"
+    ],
+    "countyParts": [
+      {
+        "county": "Franklin",
+        "population2025": 911199
+      },
+      {
+        "county": "Delaware",
+        "population2025": 15455
+      },
+      {
+        "county": "Fairfield",
+        "population2025": 11742
+      }
+    ],
+    "rationale": "Established metro/suburban municipality selected for housing-market connectivity, single-family neighborhoods and usable municipal distress/property-maintenance records. Population is a size check, not a mechanical statewide inclusion rule; no unverified ARV/cash-buyer/transaction-volume claims."
+  },
+  {
+    "city": "Grove City",
+    "population2025": 45180,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_39.csv",
+    "counties": [
+      "Franklin"
+    ],
+    "countyParts": [
+      {
+        "county": "Franklin",
+        "population2025": 45180
+      }
+    ],
+    "rationale": "Established metro/suburban municipality selected for housing-market connectivity, single-family neighborhoods and usable municipal distress/property-maintenance records. Population is a size check, not a mechanical statewide inclusion rule; no unverified ARV/cash-buyer/transaction-volume claims."
+  },
+  {
+    "city": "Westerville",
+    "population2025": 38165,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_39.csv",
+    "counties": [
+      "Franklin",
+      "Delaware"
+    ],
+    "countyParts": [
+      {
+        "county": "Franklin",
+        "population2025": 29046
+      },
+      {
+        "county": "Delaware",
+        "population2025": 9119
+      }
+    ],
+    "rationale": "Established metro/suburban municipality selected for housing-market connectivity, single-family neighborhoods and usable municipal distress/property-maintenance records. Population is a size check, not a mechanical statewide inclusion rule; no unverified ARV/cash-buyer/transaction-volume claims."
+  },
+  {
+    "city": "Reynoldsburg",
+    "population2025": 43350,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_39.csv",
+    "counties": [
+      "Franklin",
+      "Licking",
+      "Fairfield"
+    ],
+    "countyParts": [
+      {
+        "county": "Franklin",
+        "population2025": 31016
+      },
+      {
+        "county": "Licking",
+        "population2025": 11108
+      },
+      {
+        "county": "Fairfield",
+        "population2025": 1226
+      }
+    ],
+    "rationale": "Established metro/suburban municipality selected for housing-market connectivity, single-family neighborhoods and usable municipal distress/property-maintenance records. Population is a size check, not a mechanical statewide inclusion rule; no unverified ARV/cash-buyer/transaction-volume claims."
+  },
+  {
+    "city": "Hilliard",
+    "population2025": 38898,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_39.csv",
+    "counties": [
+      "Franklin"
+    ],
+    "countyParts": [
+      {
+        "county": "Franklin",
+        "population2025": 38898
+      }
+    ],
+    "rationale": "Established metro/suburban municipality selected for housing-market connectivity, single-family neighborhoods and usable municipal distress/property-maintenance records. Population is a size check, not a mechanical statewide inclusion rule; no unverified ARV/cash-buyer/transaction-volume claims."
+  },
+  {
+    "city": "Newark",
+    "population2025": 51473,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_39.csv",
+    "counties": [
+      "Licking"
+    ],
+    "countyParts": [
+      {
+        "county": "Licking",
+        "population2025": 51473
+      }
+    ],
+    "rationale": "Established metro/suburban municipality selected for housing-market connectivity, single-family neighborhoods and usable municipal distress/property-maintenance records. Population is a size check, not a mechanical statewide inclusion rule; no unverified ARV/cash-buyer/transaction-volume claims."
+  },
+  {
+    "city": "Lancaster",
+    "population2025": 41956,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_39.csv",
+    "counties": [
+      "Fairfield"
+    ],
+    "countyParts": [
+      {
+        "county": "Fairfield",
+        "population2025": 41956
+      }
+    ],
+    "rationale": "Established metro/suburban municipality selected for housing-market connectivity, single-family neighborhoods and usable municipal distress/property-maintenance records. Population is a size check, not a mechanical statewide inclusion rule; no unverified ARV/cash-buyer/transaction-volume claims."
+  },
+  {
+    "city": "Cincinnati",
+    "population2025": 314367,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_39.csv",
+    "counties": [
+      "Hamilton"
+    ],
+    "countyParts": [
+      {
+        "county": "Hamilton",
+        "population2025": 314367
+      }
+    ],
+    "rationale": "Established metro/suburban municipality selected for housing-market connectivity, single-family neighborhoods and usable municipal distress/property-maintenance records. Population is a size check, not a mechanical statewide inclusion rule; no unverified ARV/cash-buyer/transaction-volume claims."
+  },
+  {
+    "city": "Hamilton",
+    "population2025": 64644,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_39.csv",
+    "counties": [
+      "Butler"
+    ],
+    "countyParts": [
+      {
+        "county": "Butler",
+        "population2025": 64644
+      }
+    ],
+    "rationale": "Established metro/suburban municipality selected for housing-market connectivity, single-family neighborhoods and usable municipal distress/property-maintenance records. Population is a size check, not a mechanical statewide inclusion rule; no unverified ARV/cash-buyer/transaction-volume claims."
+  },
+  {
+    "city": "Middletown",
+    "population2025": 52146,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_39.csv",
+    "counties": [
+      "Butler",
+      "Warren"
+    ],
+    "countyParts": [
+      {
+        "county": "Butler",
+        "population2025": 48152
+      },
+      {
+        "county": "Warren",
+        "population2025": 3994
+      }
+    ],
+    "rationale": "Established metro/suburban municipality selected for housing-market connectivity, single-family neighborhoods and usable municipal distress/property-maintenance records. Population is a size check, not a mechanical statewide inclusion rule; no unverified ARV/cash-buyer/transaction-volume claims."
+  },
+  {
+    "city": "Fairfield",
+    "population2025": 44682,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_39.csv",
+    "counties": [
+      "Hamilton",
+      "Butler"
+    ],
+    "countyParts": [
+      {
+        "county": "Hamilton",
+        "population2025": 0
+      },
+      {
+        "county": "Butler",
+        "population2025": 44682
+      }
+    ],
+    "rationale": "Established metro/suburban municipality selected for housing-market connectivity, single-family neighborhoods and usable municipal distress/property-maintenance records. Population is a size check, not a mechanical statewide inclusion rule; no unverified ARV/cash-buyer/transaction-volume claims."
+  },
+  {
+    "city": "Cleveland",
+    "population2025": 363608,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_39.csv",
+    "counties": [
+      "Cuyahoga"
+    ],
+    "countyParts": [
+      {
+        "county": "Cuyahoga",
+        "population2025": 363608
+      }
+    ],
+    "rationale": "Established metro/suburban municipality selected for housing-market connectivity, single-family neighborhoods and usable municipal distress/property-maintenance records. Population is a size check, not a mechanical statewide inclusion rule; no unverified ARV/cash-buyer/transaction-volume claims."
+  },
+  {
+    "city": "Parma",
+    "population2025": 78581,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_39.csv",
+    "counties": [
+      "Cuyahoga"
+    ],
+    "countyParts": [
+      {
+        "county": "Cuyahoga",
+        "population2025": 78581
+      }
+    ],
+    "rationale": "Established metro/suburban municipality selected for housing-market connectivity, single-family neighborhoods and usable municipal distress/property-maintenance records. Population is a size check, not a mechanical statewide inclusion rule; no unverified ARV/cash-buyer/transaction-volume claims."
+  },
+  {
+    "city": "Lakewood",
+    "population2025": 49027,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_39.csv",
+    "counties": [
+      "Cuyahoga"
+    ],
+    "countyParts": [
+      {
+        "county": "Cuyahoga",
+        "population2025": 49027
+      }
+    ],
+    "rationale": "Established metro/suburban municipality selected for housing-market connectivity, single-family neighborhoods and usable municipal distress/property-maintenance records. Population is a size check, not a mechanical statewide inclusion rule; no unverified ARV/cash-buyer/transaction-volume claims."
+  },
+  {
+    "city": "Cleveland Heights",
+    "population2025": 43750,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_39.csv",
+    "counties": [
+      "Cuyahoga"
+    ],
+    "countyParts": [
+      {
+        "county": "Cuyahoga",
+        "population2025": 43750
+      }
+    ],
+    "rationale": "Established metro/suburban municipality selected for housing-market connectivity, single-family neighborhoods and usable municipal distress/property-maintenance records. Population is a size check, not a mechanical statewide inclusion rule; no unverified ARV/cash-buyer/transaction-volume claims."
+  },
+  {
+    "city": "Euclid",
+    "population2025": 47962,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_39.csv",
+    "counties": [
+      "Cuyahoga"
+    ],
+    "countyParts": [
+      {
+        "county": "Cuyahoga",
+        "population2025": 47962
+      }
+    ],
+    "rationale": "Established metro/suburban municipality selected for housing-market connectivity, single-family neighborhoods and usable municipal distress/property-maintenance records. Population is a size check, not a mechanical statewide inclusion rule; no unverified ARV/cash-buyer/transaction-volume claims."
+  },
+  {
+    "city": "Lorain",
+    "population2025": 65366,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_39.csv",
+    "counties": [
+      "Lorain"
+    ],
+    "countyParts": [
+      {
+        "county": "Lorain",
+        "population2025": 65366
+      }
+    ],
+    "rationale": "Established metro/suburban municipality selected for housing-market connectivity, single-family neighborhoods and usable municipal distress/property-maintenance records. Population is a size check, not a mechanical statewide inclusion rule; no unverified ARV/cash-buyer/transaction-volume claims."
+  },
+  {
+    "city": "Elyria",
+    "population2025": 53634,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_39.csv",
+    "counties": [
+      "Lorain"
+    ],
+    "countyParts": [
+      {
+        "county": "Lorain",
+        "population2025": 53634
+      }
+    ],
+    "rationale": "Established metro/suburban municipality selected for housing-market connectivity, single-family neighborhoods and usable municipal distress/property-maintenance records. Population is a size check, not a mechanical statewide inclusion rule; no unverified ARV/cash-buyer/transaction-volume claims."
+  },
+  {
+    "city": "Akron",
+    "population2025": 189691,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_39.csv",
+    "counties": [
+      "Summit"
+    ],
+    "countyParts": [
+      {
+        "county": "Summit",
+        "population2025": 189691
+      }
+    ],
+    "rationale": "Established metro/suburban municipality selected for housing-market connectivity, single-family neighborhoods and usable municipal distress/property-maintenance records. Population is a size check, not a mechanical statewide inclusion rule; no unverified ARV/cash-buyer/transaction-volume claims."
+  },
+  {
+    "city": "Cuyahoga Falls",
+    "population2025": 50975,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_39.csv",
+    "counties": [
+      "Summit"
+    ],
+    "countyParts": [
+      {
+        "county": "Summit",
+        "population2025": 50975
+      }
+    ],
+    "rationale": "Established metro/suburban municipality selected for housing-market connectivity, single-family neighborhoods and usable municipal distress/property-maintenance records. Population is a size check, not a mechanical statewide inclusion rule; no unverified ARV/cash-buyer/transaction-volume claims."
+  },
+  {
+    "city": "Kent",
+    "population2025": 27737,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_39.csv",
+    "counties": [
+      "Portage"
+    ],
+    "countyParts": [
+      {
+        "county": "Portage",
+        "population2025": 27737
+      }
+    ],
+    "rationale": "Established metro/suburban municipality selected for housing-market connectivity, single-family neighborhoods and usable municipal distress/property-maintenance records. Population is a size check, not a mechanical statewide inclusion rule; no unverified ARV/cash-buyer/transaction-volume claims."
+  },
+  {
+    "city": "Canton",
+    "population2025": 69001,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_39.csv",
+    "counties": [
+      "Stark"
+    ],
+    "countyParts": [
+      {
+        "county": "Stark",
+        "population2025": 69001
+      }
+    ],
+    "rationale": "Established metro/suburban municipality selected for housing-market connectivity, single-family neighborhoods and usable municipal distress/property-maintenance records. Population is a size check, not a mechanical statewide inclusion rule; no unverified ARV/cash-buyer/transaction-volume claims."
+  },
+  {
+    "city": "Massillon",
+    "population2025": 32168,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_39.csv",
+    "counties": [
+      "Stark"
+    ],
+    "countyParts": [
+      {
+        "county": "Stark",
+        "population2025": 32168
+      }
+    ],
+    "rationale": "Established metro/suburban municipality selected for housing-market connectivity, single-family neighborhoods and usable municipal distress/property-maintenance records. Population is a size check, not a mechanical statewide inclusion rule; no unverified ARV/cash-buyer/transaction-volume claims."
+  },
+  {
+    "city": "Dayton",
+    "population2025": 136688,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_39.csv",
+    "counties": [
+      "Montgomery",
+      "Greene"
+    ],
+    "countyParts": [
+      {
+        "county": "Montgomery",
+        "population2025": 136688
+      },
+      {
+        "county": "Greene",
+        "population2025": 0
+      }
+    ],
+    "rationale": "Established metro/suburban municipality selected for housing-market connectivity, single-family neighborhoods and usable municipal distress/property-maintenance records. Population is a size check, not a mechanical statewide inclusion rule; no unverified ARV/cash-buyer/transaction-volume claims."
+  },
+  {
+    "city": "Kettering",
+    "population2025": 57396,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_39.csv",
+    "counties": [
+      "Montgomery",
+      "Greene"
+    ],
+    "countyParts": [
+      {
+        "county": "Montgomery",
+        "population2025": 56666
+      },
+      {
+        "county": "Greene",
+        "population2025": 730
+      }
+    ],
+    "rationale": "Established metro/suburban municipality selected for housing-market connectivity, single-family neighborhoods and usable municipal distress/property-maintenance records. Population is a size check, not a mechanical statewide inclusion rule; no unverified ARV/cash-buyer/transaction-volume claims."
+  },
+  {
+    "city": "Huber Heights",
+    "population2025": 43905,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_39.csv",
+    "counties": [
+      "Montgomery",
+      "Miami"
+    ],
+    "countyParts": [
+      {
+        "county": "Montgomery",
+        "population2025": 38101
+      },
+      {
+        "county": "Miami",
+        "population2025": 5804
+      }
+    ],
+    "rationale": "Established metro/suburban municipality selected for housing-market connectivity, single-family neighborhoods and usable municipal distress/property-maintenance records. Population is a size check, not a mechanical statewide inclusion rule; no unverified ARV/cash-buyer/transaction-volume claims."
+  },
+  {
+    "city": "Springfield",
+    "population2025": 58281,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_39.csv",
+    "counties": [
+      "Clark"
+    ],
+    "countyParts": [
+      {
+        "county": "Clark",
+        "population2025": 58281
+      }
+    ],
+    "rationale": "Established metro/suburban municipality selected for housing-market connectivity, single-family neighborhoods and usable municipal distress/property-maintenance records. Population is a size check, not a mechanical statewide inclusion rule; no unverified ARV/cash-buyer/transaction-volume claims."
+  },
+  {
+    "city": "Troy",
+    "population2025": 27344,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_39.csv",
+    "counties": [
+      "Miami"
+    ],
+    "countyParts": [
+      {
+        "county": "Miami",
+        "population2025": 27344
+      }
+    ],
+    "rationale": "Established metro/suburban municipality selected for housing-market connectivity, single-family neighborhoods and usable municipal distress/property-maintenance records. Population is a size check, not a mechanical statewide inclusion rule; no unverified ARV/cash-buyer/transaction-volume claims."
+  },
+  {
+    "city": "Toledo",
+    "population2025": 263423,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_39.csv",
+    "counties": [
+      "Lucas"
+    ],
+    "countyParts": [
+      {
+        "county": "Lucas",
+        "population2025": 263423
+      }
+    ],
+    "rationale": "Established metro/suburban municipality selected for housing-market connectivity, single-family neighborhoods and usable municipal distress/property-maintenance records. Population is a size check, not a mechanical statewide inclusion rule; no unverified ARV/cash-buyer/transaction-volume claims."
+  },
+  {
+    "city": "Loveland",
+    "population2025": 13288,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_39.csv",
+    "counties": [
+      "Hamilton",
+      "Warren",
+      "Clermont"
+    ],
+    "countyParts": [
+      {
+        "county": "Hamilton",
+        "population2025": 9714
+      },
+      {
+        "county": "Warren",
+        "population2025": 1035
+      },
+      {
+        "county": "Clermont",
+        "population2025": 2539
+      }
+    ],
+    "rationale": "Strategic smaller-city exception: Loveland connects established Cincinnati suburban housing across three selected counties; its municipal records route adds practical coverage. No unverified ARV or transaction-volume claims."
+  },
+  {
+    "city": "Mentor",
+    "population2025": 47010,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_39.csv",
+    "counties": [
+      "Lake"
+    ],
+    "countyParts": [
+      {
+        "county": "Lake",
+        "population2025": 47010
+      }
+    ],
+    "rationale": "Established metro/suburban municipality selected for housing-market connectivity, single-family neighborhoods and usable municipal distress/property-maintenance records. Population is a size check, not a mechanical statewide inclusion rule; no unverified ARV/cash-buyer/transaction-volume claims."
+  },
+  {
+    "city": "Medina",
+    "population2025": 25692,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_39.csv",
+    "counties": [
+      "Medina"
+    ],
+    "countyParts": [
+      {
+        "county": "Medina",
+        "population2025": 25692
+      }
+    ],
+    "rationale": "Established metro/suburban municipality selected for housing-market connectivity, single-family neighborhoods and usable municipal distress/property-maintenance records. Population is a size check, not a mechanical statewide inclusion rule; no unverified ARV/cash-buyer/transaction-volume claims."
+  },
+  {
+    "city": "Perrysburg",
+    "population2025": 25441,
+    "populationSource": "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/cities/totals/sub-est2025_39.csv",
+    "counties": [
+      "Wood"
+    ],
+    "countyParts": [
+      {
+        "county": "Wood",
+        "population2025": 25441
+      }
+    ],
+    "rationale": "Established metro/suburban municipality selected for housing-market connectivity, single-family neighborhoods and usable municipal distress/property-maintenance records. Population is a size check, not a mechanical statewide inclusion rule; no unverified ARV/cash-buyer/transaction-volume claims."
+  }
+]
