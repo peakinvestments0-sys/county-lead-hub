@@ -18,6 +18,14 @@ try:
 except ImportError:
     from valuation_service import get_property_market_valuation
 
+try:
+    from src.suppression_service import add_to_suppression_list
+except ImportError:
+    try:
+        from suppression_service import add_to_suppression_list
+    except ImportError:
+        add_to_suppression_list = None
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA_DIR = os.path.join(BASE_DIR, "data")
 SELLER_BOT_SETTINGS_FILE = os.path.join(DATA_DIR, "seller_bot_settings.json")
@@ -40,30 +48,41 @@ DEFAULT_SELLER_BOT_SETTINGS = {
 }
 
 # --- Core Distress Outreach Scripts & State Machine Constants ---
+# Doorbell Stage 1 Openers (Single-Segment, Under 160 Chars, Tiered by Distress Count)
 DISTRESS_SCRIPTS = {
-    # 1. Non-Spammy Initial Outreach Hooks (Carrier Safe & Conversational, No Dashes)
-    "CASUAL_LOCAL_HOOK": "Hey {first_name}, Emma here with Peak Investments. Quick question, are you still the owner over at {address}?",
-    "DRIVEBY_HOOK": "Hi {first_name}, Emma with Peak Investments. We buy houses as is for cash. Would you ever consider an offer on {address}, or are you holding onto it?",
-    "AS_IS_NO_FEES_HOOK": "Hey {first_name}, Emma with Peak Investments. We're buying in the area cash as is, no realtor fees or repair work. Would you consider selling {address}?",
-    "CURIOUS_WALKAWAY_HOOK": "Hi {first_name}, I know this is out of the blue, but would you consider parting with {address} for the right price, or definitely not selling right now?",
+    # 1. Doorbell Stage 1 Openers (The Doorbell - Only Goal is Getting a Reply)
+    "OPENER_MULTI_LIST": "Hey {first_name} — did you ever decide what you're doing with {address}?",
+    "OPENER_SINGLE_LIST": "Hey {first_name}, quick question on {address}, got a sec?",
+    "OPENER_ULTRA_SHORT": "Hey {first_name}?",
 
-    # 2. Code Violation Branch
-    "CODE_INITIAL_HOOK": "Hi {first_name}, this is Emma with Peak Investments. I noticed the city citations on {address}. We buy properties as is and resolve open code fines so you do not have to deal with them. Would you be open to hearing an offer?",
+    # Legacy hooks retained for backward compatibility
+    "CASUAL_LOCAL_HOOK": "Hey {first_name}, quick question on {address}, got a sec?",
+    "DRIVEBY_HOOK": "Hey {first_name} — did you ever decide what you're doing with {address}?",
+    "AS_IS_NO_FEES_HOOK": "Hey {first_name}, quick question on {address}, got a sec?",
+    "CURIOUS_WALKAWAY_HOOK": "Hey {first_name}?",
+
+    # 2. Stage 1 -> Stage 2 Bridge Golden Replies (Identifies Emma & Bridges to Qualify)
+    "BRIDGE_WHAT_EXCUSE_ME": "It's Emma — I help homeowners in {area} figure out their options on {address}. Are you still the owner there?",
+    "BRIDGE_WHEN_DID_WE_TALK": "We haven't talked — sorry, should've led with that. I'm Emma, I work with homeowners around {area}. Had a quick question on {address}, got a sec?",
+    "BRIDGE_WHO_IS_THIS": "Emma, I work with a local investment group buying in {area}. Not a realtor, no listings — just asking about {address}.",
+
+    # 3. Code Violation Branch
+    "CODE_INITIAL_HOOK": "Hey {first_name} — did you ever decide what you're doing with {address}?",
     "CODE_ASSESS_FINES": "Completely understand, city fines add up fast. What is the current status with the code compliance officer, and what repairs are they demanding?",
     "CODE_OFFER_ASIS": "Got it. That is what we specialize in. We take over the property 100% as is and resolve the city citations directly at closing so you walk away clean. What are you looking to walk away with?",
     
-    # 3. Lis Pendens / Pre-Foreclosure Branch
-    "LIS_PENDENS_INITIAL_HOOK": "Hi {first_name}, this is Emma with Peak Investments reaching out regarding {address}. We help Florida homeowners resolve pending bank deadlines before auction dates. Would you be open to discussing your options?",
+    # 4. Lis Pendens / Pre-Foreclosure Branch
+    "LIS_PENDENS_INITIAL_HOOK": "Hey {first_name} — did you ever decide what you're doing with {address}?",
     "LIS_PENDENS_TIMELINE": "I know how stressful bank notices can be. Do you know if the bank has set a formal auction date yet, or are you still in the early stages?",
     "LIS_PENDENS_PAYOFF": "Understood. We can move fast enough to close before the auction date and pay off the mortgage balance. What would you need to net to make a move work?",
     "LIS_PENDENS_BACKUP": "That makes total sense if you are working on a loan modification. We would love to position ourselves as your backup plan just in case the bank stalls before the auction date. Would you be open to a quick backup agreement?",
     
-    # 4. Probate / Inherited Property Branch
-    "PROBATE_INITIAL_HOOK": "Hi {first_name}, this is Emma with Peak Investments regarding {address}. Please accept our condolences if you recently lost a loved one. We help families liquidate inherited properties as is with zero cleanout needed. Would you be open to a direct offer?",
+    # 5. Probate / Inherited Property Branch
+    "PROBATE_INITIAL_HOOK": "Hey {first_name} — did you ever decide what you're doing with {address}?",
     "PROBATE_STATUS_CHECK": "Thank you for letting me know. Has probate formally been opened with the county court yet, or are you still working through the estate paperwork?",
     "PROBATE_CONTENTS_LEFTOVER": "Take all the time you need for personal keepsakes. For everything else, you can leave furniture, clothing, or clutter right where it is. We handle 100% of the cleanout. What are you and the family hoping to walk away with?",
     
-    # 5. Universal Qualification & Appointment Closes
+    # 6. Universal Qualification & Appointment Closes
     "QUALIFY_CONDITION": "What can you tell me about the overall condition of the home? How are the roof, AC, and plumbing holding up?",
     "QUALIFY_WALKAWAY_PRICE": "Thank you for sharing that. If we pay cash, cover standard closing costs, and buy 100% as is, what is your ideal walkaway price?",
     "GOLD_DEAL_CALL_CLOSE": "That sounds like a fair number we can make work for a fast cash close. I would love to have John, who heads up our acquisitions, give you a quick 5 minute call today to confirm the details. Would later this afternoon or tomorrow morning work better?",
@@ -71,17 +90,105 @@ DISTRESS_SCRIPTS = {
     "RETAIL_CREATIVE_PIVOT": "I completely respect where you want to be on price. For a full retail number with the current situation, the only way we could make that work would be on creative terms. Would you be open to hearing how that works?",
     "UNREALISTIC_DREAM_PRICE": "Haha fair enough, at that price I would pack my bags today too! Seriously though, if you are open to seeing what a realistic as is cash offer looks like without realtors, repairs, or fees, John and I can help. Otherwise, no worries at all!",
     
-    # 6. Handoff to John Closes
+    # 7. Handoff to John Closes
     "BOOK_CALL_PROPOSAL": "Awesome. Let me set you up with John, our managing partner, for a quick 5 minute call to walk through the cash numbers and timeline. Would later today or tomorrow morning work better for a chat with John?",
     "BOOK_CALL_CONFIRMED": "Sounds great! I have scheduled John to call you at {time} from our office line (407) 815-5043. We look forward to helping you get this resolved!",
     
-    # 7. Objection Handlers
+    # 8. Objection Handlers
     "OBJ_HOW_DID_YOU_GET_NUMBER": "We monitor the county clerk and property appraiser public records, and use a licensed skip trace service to reach owners directly by phone.",
     "OBJ_LOWBALL_DEFENSE": "I completely understand your concern. We are not here to waste your time with insult offers. We run our numbers off real county comps, we pay all closing fees, and you do not pay 6% realtor commissions.",
     "OBJ_ALREADY_HAVE_OFFER": "That is great! A lot of buyer offers fall through during inspection. If your current buyer asks for price cuts or backs out, please keep us as your backup cash buyer.",
     "AS_IS_CONTENTS": "No, absolutely not! You do not have to remove anything, and we will never charge you for cleanout. Anything left behind, furniture, old tables, trash, or tenant items, you can leave right there. We buy 100% as is and handle all the cleanup at our own expense. What are you hoping to walk away with cash in hand for the property?",
-    "OPT_OUT_CONFIRMATION": "Understood. You have been removed from our list and will not receive any further messages from us."
+    "OBJECTION_MID_CONVO_NO": "Completely understand. If you don't mind me asking, what bottom dollar number would make letting it go worth it for you?",
+    "OPT_OUT_CONFIRMATION": "Got it, won't text again."
 }
+
+# --- Approved Human Soft Opt-Out Lines (Rotate on Every First Touch) ---
+SOFT_OPT_OUTS = [
+    "If I'm bothering you just say no and I won't text you no more.",
+    "If you don't want these texts just say the word and I'm gone.",
+    "Not interested? Just say no and I'll drop it."
+]
+
+
+def get_soft_opt_out(index: Optional[int] = None) -> str:
+    """Returns an approved human soft opt-out line."""
+    if index is not None:
+        return SOFT_OPT_OUTS[index % len(SOFT_OPT_OUTS)]
+    return random.choice(SOFT_OPT_OUTS)
+
+
+def get_lead_area_name(lead: Dict[str, Any]) -> str:
+    """Extracts local city or county area name for natural conversational phrasing in bridge replies."""
+    if not lead:
+        return "the area"
+
+    # 1. Check explicit city field
+    city = lead.get("city") or lead.get("City") or lead.get("property_city")
+    if city and str(city).strip() and str(city).strip().lower() not in ["florida", "fl"]:
+        return str(city).strip().title()
+
+    # 2. Extract city from address if formatted '123 Main St, Clearwater, FL 33767'
+    addr = str(lead.get("property_address") or lead.get("address") or "")
+    if "," in addr:
+        parts = [p.strip() for p in addr.split(",") if p.strip()]
+        if len(parts) >= 2:
+            candidate_city = parts[1]
+            candidate_city = re.sub(r'\b(FL|Florida|\d{5})\b', '', candidate_city, flags=re.IGNORECASE).strip()
+            if candidate_city and len(candidate_city) >= 3:
+                return candidate_city.title()
+
+    # 3. Check county field
+    county = lead.get("county") or lead.get("County")
+    if county and str(county).strip() and str(county).strip().lower() not in ["florida", "fl"]:
+        return str(county).strip().title()
+
+    return "the area"
+
+
+def is_multi_distress_lead(lead: Dict[str, Any]) -> bool:
+    """Determines whether a lead is on 2+ distress lists (Multi-list tier)."""
+    if not lead:
+        return False
+
+    # Explicit count
+    count = lead.get("distress_count") or lead.get("list_count")
+    if count is not None:
+        try:
+            if int(count) >= 2:
+                return True
+        except (ValueError, TypeError):
+            pass
+
+    # Stacked distress indicators
+    if str(lead.get("Is_Stacked_Distress", "")).strip().lower() in ["yes", "true", "1"]:
+        return True
+    if str(lead.get("is_stacked_distress", "")).strip().lower() in ["yes", "true", "1"]:
+        return True
+    if lead.get("is_stacked") is True:
+        return True
+
+    # Stack notes
+    notes = str(lead.get("Distress_Stack_Notes") or lead.get("distress_stack_notes") or "").upper()
+    if "DOUBLE" in notes or "TRIPLE" in notes or "+" in notes:
+        return True
+
+    # Check distinct category signals
+    signals = 0
+    cat_str = str(lead.get("distress_category") or lead.get("category") or lead.get("lead_type") or "").lower()
+    for sig in ["code", "lis", "probate", "tax"]:
+        if sig in cat_str:
+            signals += 1
+
+    for flag in ["Code_Violations", "Lis_Pendens", "Probate", "Tax_Liens", "code_violations", "lis_pendens", "tax_lien"]:
+        if lead.get(flag):
+            signals += 1
+
+    lists = lead.get("distress_lists")
+    if isinstance(lists, (list, tuple)) and len(lists) >= 2:
+        return True
+
+    return signals >= 2
 
 
 def load_seller_bot_settings() -> Dict[str, Any]:
@@ -250,6 +357,42 @@ def evaluate_deal_spread(asking_price: float, parcel_value: float, market_value:
 def get_preseeded_golden_replies() -> List[Dict[str, Any]]:
     return [
         {
+            "id": "golden_bridge_what_1",
+            "category": "Stage 1-2 Bridge",
+            "node": "BRIDGE_WHAT_EXCUSE_ME",
+            "distress_type": "General",
+            "seller_inbound": "what? who is this and what are you talking about?",
+            "final_approved_text": "It's Emma — I help homeowners in Pinellas figure out their options on 14783 SEMINOLE TRL. Are you still the owner there?",
+            "notes": "Stage 1 to Stage 2 bridge: warm, disarming, identifies Emma, pivots to ownership check."
+        },
+        {
+            "id": "golden_bridge_when_talk_2",
+            "category": "Stage 1-2 Bridge",
+            "node": "BRIDGE_WHEN_DID_WE_TALK",
+            "distress_type": "General",
+            "seller_inbound": "which one were you? when did we talk?",
+            "final_approved_text": "We haven't talked — sorry, should've led with that. I'm Emma, I work with homeowners around Pinellas. Had a quick question on 14783 SEMINOLE TRL, got a sec?",
+            "notes": "Stage 1 to Stage 2 bridge: disarms confusion with apology, establishes local presence, asks for quick sec."
+        },
+        {
+            "id": "golden_bridge_who_is_this_3",
+            "category": "Stage 1-2 Bridge",
+            "node": "BRIDGE_WHO_IS_THIS",
+            "distress_type": "General",
+            "seller_inbound": "who is this?",
+            "final_approved_text": "Emma, I work with a local investment group buying in Pinellas. Not a realtor, no listings — just asking about 14783 SEMINOLE TRL.",
+            "notes": "Stage 1 to Stage 2 bridge: concise, confirms investor not realtor, direct to address inquiry."
+        },
+        {
+            "id": "golden_bridge_wrong_number_4",
+            "category": "Stage 1-2 Bridge",
+            "node": "OPT_OUT",
+            "distress_type": "General",
+            "seller_inbound": "wrong number, never owned that property",
+            "final_approved_text": "Got it, won't text again.",
+            "notes": "Stage 1 to Stage 2 bridge: wrong number treated as opt-out with confirmation."
+        },
+        {
             "id": "golden_code_fines_1",
             "category": "Code Violations",
             "node": "CODE_ASSESS_FINES",
@@ -378,9 +521,11 @@ def polish_seller_reply_with_gemini(
     first_touch_nodes = {
         "INITIAL_HOOK", "INITIAL_OUTREACH", "CASUAL_LOCAL_HOOK", "DRIVEBY_HOOK",
         "AS_IS_NO_FEES_HOOK", "CURIOUS_WALKAWAY_HOOK", "CODE_INITIAL_HOOK",
-        "LIS_PENDENS_INITIAL_HOOK", "PROBATE_INITIAL_HOOK"
+        "LIS_PENDENS_INITIAL_HOOK", "PROBATE_INITIAL_HOOK",
+        "OPENER_MULTI_LIST", "OPENER_SINGLE_LIST", "OPENER_ULTRA_SHORT",
+        "BRIDGE_WHAT_EXCUSE_ME", "BRIDGE_WHEN_DID_WE_TALK", "BRIDGE_WHO_IS_THIS"
     }
-    if node in first_touch_nodes or "INITIAL" in str(node).upper() or str(node).endswith("_HOOK"):
+    if node in first_touch_nodes or "INITIAL" in str(node).upper() or str(node).endswith("_HOOK") or str(node).startswith("BRIDGE_"):
         return template_reply
 
     settings = load_seller_bot_settings()
@@ -511,11 +656,16 @@ def polish_seller_reply_with_gemini(
 
 # --- Keyword & Regex Helper Utilities ---
 
-def is_opt_out_reply(text: str) -> bool:
+def is_opt_out_reply(text: str, is_opener_reply: bool = True) -> bool:
     """
     Detects if a seller wants to opt out / stop receiving messages.
-    Catches variations like 'stop texting me', 'stop calling', 'please stop', 'quit texting', etc.
-    Guards against valid inquiries regarding removing furniture/trash/fines or stopping by.
+    
+    Engine rule: any rejection phrased any way — no, nah, nope, stop, don't text/call/message me,
+    leave me alone, remove me, unsubscribe, quit, wrong number — in reply to the opener = opt-out.
+    Suppress the number permanently, send one confirmation ('Got it, won't text again.'), never text again.
+    
+    Scope guard: a 'no' three messages deep ('would you take 200k?' -> 'no') is a negotiation objection,
+    not an opt-out. Only opener-level rejection kills the thread. Mid-conversation 'no' gets worked, not suppressed.
     """
     clean = text.lower().strip()
     
@@ -525,8 +675,8 @@ def is_opt_out_reply(text: str) -> bool:
     if re.search(r'\bstop\s+(?:by|in|over)\b', clean):
         return False
 
-    # 2. Strict opt-out triggers
-    patterns = [
+    # 2. Strict opt-out triggers (Always opt-out at any stage of the conversation)
+    strict_patterns = [
         r'^\s*stop[\.!\?]?\s*$',
         r'\b(?:please\s+)?stop\s+(?:texting|calling|messaging|contacting)(?:\s+me)?\b',
         r'\b(?:please\s+)?quit\s+(?:texting|calling|messaging|contacting)(?:\s+me)?\b',
@@ -537,7 +687,24 @@ def is_opt_out_reply(text: str) -> bool:
         r'\b(do\s+not\s+(?:text|call|contact|message)|don\'?t\s+(?:text|call|contact|message))(?:\s+me)?\b',
         r'\b(cease\s*(?:and\s*desist)?|leave\s+me\s+alone|f\*\*\*?\s*off|fuck\s*off)\b'
     ]
-    return any(bool(re.search(pat, clean)) for pat in patterns)
+    if any(bool(re.search(pat, clean)) for pat in strict_patterns):
+        return True
+
+    # 3. Opener-level rejections (Engine rule: any rejection in response to the opener = opt-out)
+    if is_opener_reply:
+        opener_rejection_patterns = [
+            r'^\s*(?:no|nah|nope|pass|never)\s*[\.!\?]?\s*$',
+            r'^\s*(?:no\s+thanks|no\s+thank\s+you|no\s+thx|no\s+ty)\s*[\.!\?]?\s*$',
+            r'^\s*(?:not\s+interested|i\'?m\s+not\s+interested|not\s+for\s+me)\s*[\.!\?]?\s*$',
+            r'^\s*(?:no\s*,?\s*(?:not\s+interested|leave\s+me|dont|don\'t|i\'?m\s+good|we\'?re\s+good))\b',
+            r'\b(?:not\s+interested|no\s+thanks|not\s+selling|i\'?m\s+not\s+selling|we\s+aren\'?t\s+selling|not\s+for\s+sale)\b',
+            r'^\s*(?:no\s+way|definitely\s+not|absolutely\s+not|hell\s+no|heck\s+no)\s*[\.!\?]?\s*$',
+            r'\b(?:don\'?t\s+text\s+no\s+more|won\'?t\s+text\s+no\s+more|hell\s+no|heck\s+no)\b'
+        ]
+        if any(bool(re.search(pat, clean)) for pat in opener_rejection_patterns):
+            return True
+
+    return False
 
 
 def extract_dollar_amount(text: str) -> Optional[float]:
@@ -642,11 +809,14 @@ class SellerBotEngine:
     def generate_initial_outreach(
         self, 
         lead: Dict[str, Any], 
-        distress_override: Optional[str] = None
+        distress_override: Optional[str] = None,
+        forced_angle: Optional[str] = None
     ) -> Dict[str, Any]:
         """
-        Generates a fresh, human, carrier-safe opening SMS text for a lead.
-        Appends mandatory 'Reply STOP to opt out' compliance language.
+        Generates a fresh Stage 1 opener SMS text according to the two-stage doctrine.
+        Doorbell stage: Gets a reply under 160 chars, single segment.
+        Tiers by distress-list count (Multi-list vs Single-list vs Ultra-short).
+        Appends mandatory rotating soft opt-out line (Drops 'Reply STOP to opt out').
         First-touch templates send deterministically without Gemini rewrite.
         """
         import random
@@ -658,38 +828,65 @@ class SellerBotEngine:
         raw_addr = lead.get("property_address") or lead.get("address") or "the property"
         street_addr = raw_addr.split(",")[0].strip() if "," in raw_addr else raw_addr
 
-        if distress == "Code Violation":
-            node = "CODE_INITIAL_HOOK"
-            template = DISTRESS_SCRIPTS["CODE_INITIAL_HOOK"]
-        elif distress == "Lis Pendens":
-            node = "LIS_PENDENS_INITIAL_HOOK"
-            template = DISTRESS_SCRIPTS["LIS_PENDENS_INITIAL_HOOK"]
-        elif distress == "Probate":
-            node = "PROBATE_INITIAL_HOOK"
-            template = DISTRESS_SCRIPTS["PROBATE_INITIAL_HOOK"]
+        is_multi = is_multi_distress_lead(lead)
+
+        # 1. Select opener angle tiered by distress list count
+        if forced_angle == "multi_list":
+            opener_angle = "multi_list"
+            node = "OPENER_MULTI_LIST"
+            template = DISTRESS_SCRIPTS["OPENER_MULTI_LIST"]
+        elif forced_angle == "single_list":
+            opener_angle = "single_list"
+            node = "OPENER_SINGLE_LIST"
+            template = DISTRESS_SCRIPTS["OPENER_SINGLE_LIST"]
+        elif forced_angle == "ultra_short":
+            opener_angle = "ultra_short"
+            node = "OPENER_ULTRA_SHORT"
+            template = DISTRESS_SCRIPTS["OPENER_ULTRA_SHORT"]
+        elif is_multi:
+            # Multi-list (2+ lists — getting hammered): rotate multi_list and ultra_short
+            opener_angle = random.choice(["multi_list", "multi_list", "ultra_short"])
+            if opener_angle == "multi_list":
+                node = "OPENER_MULTI_LIST"
+                template = DISTRESS_SCRIPTS["OPENER_MULTI_LIST"]
+            else:
+                node = "OPENER_ULTRA_SHORT"
+                template = DISTRESS_SCRIPTS["OPENER_ULTRA_SHORT"]
         else:
-            # Rotate among carrier-safe conversational hooks
-            general_keys = ["CASUAL_LOCAL_HOOK", "DRIVEBY_HOOK", "AS_IS_NO_FEES_HOOK", "CURIOUS_WALKAWAY_HOOK"]
-            node = random.choice(general_keys)
-            template = DISTRESS_SCRIPTS[node]
+            # Single-list: rotate single_list and ultra_short
+            opener_angle = random.choice(["single_list", "single_list", "ultra_short"])
+            if opener_angle == "single_list":
+                node = "OPENER_SINGLE_LIST"
+                template = DISTRESS_SCRIPTS["OPENER_SINGLE_LIST"]
+            else:
+                node = "OPENER_ULTRA_SHORT"
+                template = DISTRESS_SCRIPTS["OPENER_ULTRA_SHORT"]
 
-        raw_text = template.replace("{first_name}", first_name).replace("{address}", street_addr)
+        base_text = template.replace("{first_name}", first_name).replace("{address}", street_addr)
 
-        # Enforce STOP language for initial outreach compliance
-        if "Reply STOP" not in raw_text:
-            raw_text = f"{raw_text.rstrip()} Reply STOP to opt out"
+        # 2. Append rotating approved human soft opt-out line
+        soft_opt_out = get_soft_opt_out()
+        full_text = f"{base_text} {soft_opt_out}"
 
-        # First-touch bypass: send deterministic template without Gemini rewrite
-        polished = raw_text
+        # 3. Compliance guarantee: single SMS segment (under 160 characters)
+        if len(full_text) > 160:
+            # Truncate ultra-long street address or fallback to ultra-short
+            fallback_ultra = DISTRESS_SCRIPTS["OPENER_ULTRA_SHORT"].replace("{first_name}", first_name)
+            shortest_opt = "Not interested? Just say no and I'll drop it."
+            full_text = f"{fallback_ultra} {shortest_opt}"
+            opener_angle = "ultra_short"
+            node = "OPENER_ULTRA_SHORT"
 
         parcel_value = float(lead.get("just_value") or lead.get("assessed_value") or 250000.0)
         return {
             "status": "ok",
             "action": "INITIAL_OUTREACH",
             "node": node,
+            "opener_angle": opener_angle,
+            "is_multi_list": is_multi,
             "distress_type": distress,
-            "suggested_reply": polished,
-            "suggestion": polished,
+            "suggested_reply": full_text,
+            "suggestion": full_text,
             "deal_evaluation": evaluate_deal_spread(0, parcel_value, parcel_value * 1.3),
             "auto_send_allowed": False
         }
@@ -703,6 +900,7 @@ class SellerBotEngine:
         """
         Processes an incoming seller text through the state machine.
         Returns suggested reply, next node, deal spread evaluation, and action flags.
+        Handles Stage 1 -> Stage 2 bridge, opener-level vs mid-convo opt-out guard, and deal scoring.
         """
         settings = load_seller_bot_settings()
         clean_text = inbound_text.strip()
@@ -723,14 +921,112 @@ class SellerBotEngine:
         val_info = get_property_market_valuation(address, parcel_value)
         market_value = float(lead.get("market_value") or val_info.get("market_value") or parcel_value * 1.30)
 
-        # 1. Check Opt-Out
-        if is_opt_out_reply(clean_text):
+        # Determine conversation depth to apply Scope Guard
+        # Only opener-level rejection suppresses; mid-conversation 'no' gets worked
+        prior_inbounds = [
+            m for m in (conversation_history or [])
+            if (m.get("direction") == "INBOUND" or str(m.get("sender_phone") or "") == str(lead.get("phone") or ""))
+        ]
+        is_opener_reply = (len(prior_inbounds) == 0)
+
+        # 1. Check Opt-Out (Engine rule & Scope guard)
+        if is_opt_out_reply(clean_text, is_opener_reply=is_opener_reply):
+            lead_phone = lead.get("phone") or lead.get("saved_phone") or lead.get("recipient")
+            if lead_phone and add_to_suppression_list:
+                try:
+                    add_to_suppression_list(lead_phone, reason="OPT_OUT", lead_info=lead)
+                except Exception:
+                    pass
             return {
                 "action": "OPT_OUT",
                 "node": "OPT_OUT",
                 "suggested_reply": DISTRESS_SCRIPTS["OPT_OUT_CONFIRMATION"],
                 "deal_evaluation": evaluate_deal_spread(0, parcel_value, market_value),
                 "auto_send_allowed": True
+            }
+
+        # 2. Stage 1 -> Stage 2 Bridge Golden Replies
+        # Emma handles confused curiosity / identification questions warmly and pivots to qualify
+        area = get_lead_area_name(lead)
+        street_addr = address.split(",")[0].strip() if "," in address else address
+        low = clean_text.lower().strip()
+
+        # 2a. "what?" / "excuse me?"
+        what_excuse_patterns = [
+            r'^\s*what[\.!\?]*\s*$',
+            r'^\s*excuse\s+me[\.!\?]*\s*$',
+            r'^\s*huh[\.!\?]*\s*$',
+            r'^\s*pardon[\.!\?]*\s*$',
+            r'\bwhat\s+(?:is\s+this|is\s+this\s+about|do\s+you\s+mean|are\s+you\s+talking\s+about|is\s+this\s+regarding)\b'
+        ]
+        if any(re.search(p, low) for p in what_excuse_patterns):
+            raw_reply = DISTRESS_SCRIPTS["BRIDGE_WHAT_EXCUSE_ME"].replace("{area}", area).replace("{address}", street_addr)
+            node = "BRIDGE_WHAT_EXCUSE_ME"
+            polished = polish_seller_reply_with_gemini(node, raw_reply, lead, clean_text, distress)
+            return {
+                "action": "SUGGESTION_READY",
+                "node": node,
+                "distress_type": distress,
+                "deal_evaluation": evaluate_deal_spread(0, parcel_value, market_value),
+                "suggested_reply": polished,
+                "auto_send_allowed": False
+            }
+
+        # 2b. "which one were you?" / "when did we talk?" / "do I know you?"
+        when_talk_patterns = [
+            r'\bwhich\s+one\s+(?:were\s+you|was\s+this|are\s+you)\b',
+            r'\bwhen\s+did\s+we\s+(?:talk|speak)\b',
+            r'\b(?:did\s+we|have\s+we)\s+(?:talk|talked|spoken|speak|met)\b',
+            r'\bdo\s+i\s+know\s+you\b',
+            r'\bwho\s+were\s+you\s+again\b',
+            r'\bremind\s+me\s+who\s+you\s+are\b'
+        ]
+        if any(re.search(p, low) for p in when_talk_patterns):
+            raw_reply = DISTRESS_SCRIPTS["BRIDGE_WHEN_DID_WE_TALK"].replace("{area}", area).replace("{address}", street_addr)
+            node = "BRIDGE_WHEN_DID_WE_TALK"
+            polished = polish_seller_reply_with_gemini(node, raw_reply, lead, clean_text, distress)
+            return {
+                "action": "SUGGESTION_READY",
+                "node": node,
+                "distress_type": distress,
+                "deal_evaluation": evaluate_deal_spread(0, parcel_value, market_value),
+                "suggested_reply": polished,
+                "auto_send_allowed": False
+            }
+
+        # 2c. "who is this?"
+        who_is_this_patterns = [
+            r'^\s*who\s+(?:is\s+this|are\s+you|dis)[\.!\?]*\s*$',
+            r'^\s*who\'?s\s+this[\.!\?]*\s*$',
+            r'\bwho\s+am\s+i\s+speaking\s+with\b',
+            r'\bwho\s+is\s+texting\s+me\b'
+        ]
+        if any(re.search(p, low) for p in who_is_this_patterns):
+            raw_reply = DISTRESS_SCRIPTS["BRIDGE_WHO_IS_THIS"].replace("{area}", area).replace("{address}", street_addr)
+            node = "BRIDGE_WHO_IS_THIS"
+            polished = polish_seller_reply_with_gemini(node, raw_reply, lead, clean_text, distress)
+            return {
+                "action": "SUGGESTION_READY",
+                "node": node,
+                "distress_type": distress,
+                "deal_evaluation": evaluate_deal_spread(0, parcel_value, market_value),
+                "suggested_reply": polished,
+                "auto_send_allowed": False
+            }
+
+        # 2d. Scope guard for mid-conversation "no" objection (worked, not suppressed)
+        if not is_opener_reply and re.search(r'^\s*(?:no|nah|nope|not\s+interested|no\s+thanks)\s*[\.!\?]?\s*$', low):
+            raw_reply = DISTRESS_SCRIPTS["OBJECTION_MID_CONVO_NO"]
+            node = "OBJECTION_MID_CONVO_NO"
+            deal_eval = evaluate_deal_spread(0, parcel_value, market_value)
+            polished = polish_seller_reply_with_gemini(node, raw_reply, lead, clean_text, distress, deal_eval)
+            return {
+                "action": "SUGGESTION_READY",
+                "node": node,
+                "distress_type": distress,
+                "deal_evaluation": deal_eval,
+                "suggested_reply": polished,
+                "auto_send_allowed": False
             }
 
         # 2. Check for Price Mention

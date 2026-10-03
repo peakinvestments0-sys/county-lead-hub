@@ -869,6 +869,33 @@ class SendSmsRequest(BaseModel):
     owner_name: Optional[str] = None
     property_address: Optional[str] = None
     bypass_suppression: bool = False
+    opener_angle: Optional[str] = None
+
+
+def classify_opener_angle(msg: str) -> str:
+    """Classifies which of the 3 opener angles an outbound message corresponds to."""
+    if not msg:
+        return "other"
+    low = msg.lower()
+    if "did you ever decide what you're doing with" in low or "ever decide" in low:
+        return "multi_list"
+    if "quick question on" in low and ("got a sec" in low or "got a second" in low):
+        return "single_list"
+    if re.search(r'^\s*hey\s+[a-zA-Z0-9_\-\'\.]+\s*\?', low):
+        return "ultra_short"
+    return "other"
+
+
+def classify_opt_out_variant(msg: str) -> str:
+    """Classifies which of the 3 approved soft opt-out lines was appended."""
+    low = (msg or "").lower()
+    if "bothering you" in low:
+        return "bothering"
+    if "say the word" in low:
+        return "say_the_word"
+    if "drop it" in low:
+        return "drop_it"
+    return "other"
 
 @app.get("/api/leads/contacts")
 def get_contacts():
@@ -952,6 +979,10 @@ def send_sms_via_gateway(req: SendSmsRequest):
         "5550199" in digits or "555" in digits
     )
 
+    # Opener angle and soft opt-out tagging
+    angle = getattr(req, "opener_angle", None) or classify_opener_angle(req.message)
+    opt_variant = classify_opt_out_variant(req.message)
+
     if is_sandbox:
         resp_data = {"id": f"sandbox_sms_{int(time.time())}", "state": "Delivered (Sandbox Simulated)"}
         log_entry = {
@@ -966,6 +997,8 @@ def send_sms_via_gateway(req: SendSmsRequest):
             "recipient": phone_e164,
             "subject": "SMS Text Message (Sandbox)",
             "message": req.message,
+            "opener_angle": angle,
+            "opt_out_variant": opt_variant,
             "status": "SENT",
             "status_code": 200,
             "response": resp_data,
@@ -990,13 +1023,17 @@ def send_sms_via_gateway(req: SendSmsRequest):
             })
 
         # Auto-trigger an interactive 2-way reply from Robert Vance 3 seconds later
+        # Rotating Stage 1 target replies: "what?", "who is this?", "which one were you?"
         def simulate_homeowner_reply():
             time.sleep(3)
             sample_inbounds = [
+                "what? who is this?",
+                "which one were you? when did we talk?",
+                "who is this?",
+                "excuse me?",
                 "Hey Emma, thanks for reaching out. What would you offer cash for the place as-is?",
                 "We got cited for the garage and roof by county code enforcement. Can you close fast with cash?",
-                "I might sell if the price makes sense. I'll let it go for 130k if you can close this month.",
-                "How does your as-is purchase work? Do we have to clear out the old furniture?"
+                "I might sell if the price makes sense. I'll let it go for 130k if you can close this month."
             ]
             sim_text = random.choice(sample_inbounds)
             sim_req = InboundSmsWebhookRequest(
@@ -1037,6 +1074,7 @@ def send_sms_via_gateway(req: SendSmsRequest):
         log_entry = {
             "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
             "channel": "SMS",
+            "direction": "OUTBOUND",
             "parcel_id": req.parcel_id,
             "county": req.county,
             "owner": req.owner_name,
@@ -1045,6 +1083,8 @@ def send_sms_via_gateway(req: SendSmsRequest):
             "recipient": phone_e164,
             "subject": "SMS Text Message",
             "message": req.message,
+            "opener_angle": angle,
+            "opt_out_variant": opt_variant,
             "status": "SENT" if resp.status_code in [200, 201, 202] else "FAILED",
             "status_code": resp.status_code,
             "response": resp_data
@@ -1247,6 +1287,10 @@ async def receive_inbound_sms(request: Request):
     history = get_lead_sms_thread(sender_phone, lead.get("parcel_id", ""))
     bot_res = seller_bot.process_inbound_sms(lead, msg_text, history)
 
+    outbound_msgs = [m for m in history if m.get("direction") == "OUTBOUND"]
+    first_outbound = outbound_msgs[0] if outbound_msgs else None
+    reply_to_opener = first_outbound.get("opener_angle") if first_outbound else (classify_opener_angle(first_outbound.get("message", "")) if first_outbound else None)
+
     # Log incoming message to outreach history
     log_entry = {
         "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
@@ -1264,6 +1308,8 @@ async def receive_inbound_sms(request: Request):
         "bot_node": bot_res.get("node"),
         "suggested_reply": bot_res.get("suggested_reply"),
         "bot_response": bot_res.get("suggested_reply"),
+        "reply_to_opener_angle": reply_to_opener,
+        "is_opt_out": (bot_res.get("action") == "OPT_OUT"),
         "deal_evaluation": bot_res.get("deal_evaluation"),
         "spread_eval": bot_res.get("deal_evaluation")
     }
@@ -1282,7 +1328,7 @@ async def receive_inbound_sms(request: Request):
     # If opt-out action was detected, permanently persist to suppression list and dispatch confirmation
     if bot_res.get("action") == "OPT_OUT":
         add_to_suppression_list(sender_phone, reason="OPT_OUT", lead_info=lead)
-        opt_out_reply = bot_res.get("suggested_reply") or "Understood. You have been removed from our list and will not receive any further messages from us."
+        opt_out_reply = bot_res.get("suggested_reply") or "Got it, won't text again."
         try:
             send_sms_via_gateway(SendSmsRequest(
                 phone=sender_phone,
@@ -1350,6 +1396,10 @@ def simulate_seller_inbound(req: InboundSmsWebhookRequest):
     if bot_res.get("action") == "OPT_OUT":
         add_to_suppression_list(sender_phone, reason="OPT_OUT", lead_info=lead)
 
+    outbound_msgs = [m for m in history if m.get("direction") == "OUTBOUND"]
+    first_outbound = outbound_msgs[0] if outbound_msgs else None
+    reply_to_opener = first_outbound.get("opener_angle") if first_outbound else (classify_opener_angle(first_outbound.get("message", "")) if first_outbound else None)
+
     log_entry = {
         "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
         "channel": "SMS",
@@ -1366,6 +1416,8 @@ def simulate_seller_inbound(req: InboundSmsWebhookRequest):
         "bot_node": bot_res.get("node"),
         "suggested_reply": bot_res.get("suggested_reply"),
         "bot_response": bot_res.get("suggested_reply"),
+        "reply_to_opener_angle": reply_to_opener,
+        "is_opt_out": (bot_res.get("action") == "OPT_OUT"),
         "deal_evaluation": bot_res.get("deal_evaluation"),
         "spread_eval": bot_res.get("deal_evaluation")
     }
@@ -1929,6 +1981,133 @@ def clear_outreach_history():
             pass
     return {"status": "success", "message": "Outreach history cleared."}
 
+@app.get("/api/outreach/opener-metrics")
+def get_opener_metrics():
+    """
+    Calculates reply rate and opt-out metrics per opener angle across outreach history.
+    Angles: multi_list, single_list, ultra_short.
+    Primary metric: reply rate (replies / sent).
+    """
+    logs = []
+    if os.path.exists(OUTREACH_LOG_FILE):
+        try:
+            with open(OUTREACH_LOG_FILE, "r", encoding="utf-8") as f:
+                logs = json.load(f)
+        except Exception:
+            logs = []
+
+    leads_sent = {}         # phone -> angle
+    leads_replied = set()   # phones with at least 1 inbound reply
+    leads_opted_out = set() # phones that opted out
+
+    for entry in reversed(logs):
+        phone_digits = "".join(filter(str.isdigit, str(entry.get("phone") or entry.get("recipient") or entry.get("sender_phone") or "")))
+        if len(phone_digits) > 10 and phone_digits.startswith("1"):
+            phone_digits = phone_digits[1:]
+        if not phone_digits:
+            continue
+
+        direction = (entry.get("direction") or "").upper()
+        if direction == "OUTBOUND":
+            if phone_digits not in leads_sent:
+                angle = entry.get("opener_angle") or classify_opener_angle(entry.get("message", ""))
+                if angle in ["multi_list", "single_list", "ultra_short"]:
+                    leads_sent[phone_digits] = angle
+                else:
+                    leads_sent[phone_digits] = "single_list" # default to single_list
+        elif direction == "INBOUND":
+            leads_replied.add(phone_digits)
+            if entry.get("bot_action") == "OPT_OUT" or entry.get("is_opt_out"):
+                leads_opted_out.add(phone_digits)
+
+    angle_stats = {
+        "multi_list": {
+            "key": "multi_list",
+            "name": "Multi-List (2+ Lists)",
+            "tier": "2+ Distress Lists (Getting Hammered)",
+            "opener_sample": "Hey [Name] — did you ever decide what you're doing with [address]?",
+            "sent": 0,
+            "replied": 0,
+            "reply_rate": 0.0,
+            "opt_outs": 0,
+            "opt_out_rate": 0.0
+        },
+        "single_list": {
+            "key": "single_list",
+            "name": "Single-List",
+            "tier": "Single Distress List",
+            "opener_sample": "Hey [Name], quick question on [address], got a sec?",
+            "sent": 0,
+            "replied": 0,
+            "reply_rate": 0.0,
+            "opt_outs": 0,
+            "opt_out_rate": 0.0
+        },
+        "ultra_short": {
+            "key": "ultra_short",
+            "name": "Ultra-Short",
+            "tier": "Universal / Either Tier",
+            "opener_sample": "Hey [Name]?",
+            "sent": 0,
+            "replied": 0,
+            "reply_rate": 0.0,
+            "opt_outs": 0,
+            "opt_out_rate": 0.0
+        }
+    }
+
+    for phone, angle in leads_sent.items():
+        if angle in angle_stats:
+            angle_stats[angle]["sent"] += 1
+            if phone in leads_replied:
+                angle_stats[angle]["replied"] += 1
+            if phone in leads_opted_out:
+                angle_stats[angle]["opt_outs"] += 1
+
+    total_sent = 0
+    total_replied = 0
+    total_opt_outs = 0
+    best_rate = -1.0
+    best_key = None
+    worst_rate = 999.0
+    worst_key = None
+
+    for k, stat in angle_stats.items():
+        s = stat["sent"]
+        r = stat["replied"]
+        o = stat["opt_outs"]
+        stat["reply_rate"] = round((r / s * 100), 1) if s > 0 else 0.0
+        stat["opt_out_rate"] = round((o / s * 100), 1) if s > 0 else 0.0
+        total_sent += s
+        total_replied += r
+        total_opt_outs += o
+
+        if s > 0:
+            if stat["reply_rate"] > best_rate:
+                best_rate = stat["reply_rate"]
+                best_key = k
+            if stat["reply_rate"] < worst_rate:
+                worst_rate = stat["reply_rate"]
+                worst_key = k
+
+    overall_reply_rate = round((total_replied / total_sent * 100), 1) if total_sent > 0 else 0.0
+    overall_opt_out_rate = round((total_opt_outs / total_sent * 100), 1) if total_sent > 0 else 0.0
+
+    return {
+        "status": "success",
+        "angles": angle_stats,
+        "summary": {
+            "total_sent": total_sent,
+            "total_replied": total_replied,
+            "overall_reply_rate": overall_reply_rate,
+            "total_opt_outs": total_opt_outs,
+            "overall_opt_out_rate": overall_opt_out_rate,
+            "top_performer": best_key,
+            "lowest_performer": worst_key if (best_key != worst_key) else None,
+            "review_recommendation": "Review after ~2 weeks of volume; retire the lowest performer and rotate the winners."
+        }
+    }
+
 # -------------------------------------------------------------
 # Outreach Templates Management (SMS & Email)
 # -------------------------------------------------------------
@@ -1937,58 +2116,58 @@ OUTREACH_TEMPLATES_FILE = os.path.join(DATA_DIR, "outreach_templates.json")
 DEFAULT_OUTREACH_TEMPLATES = {
     "sms": [
         {
-            "id": "casual_local",
-            "name": "🏡 Casual Local Hook (Emma - Peak Investments)",
-            "category": "casual_inquiry",
-            "body": "Hey {FirstName}, Emma here with Peak Investments. Quick question, are you still the owner over at {Address}? Reply STOP to opt out"
+            "id": "multi_list",
+            "name": "🔥 Multi-List Hook (2+ Lists: Did you ever decide...)",
+            "category": "multi_distress",
+            "body": "Hey {FirstName} — did you ever decide what you're doing with {Address}? If I'm bothering you just say no and I won't text you no more."
         },
         {
-            "id": "drive_by",
-            "name": "🚗 Neighborly Direct Buyer Hook",
-            "category": "direct_buyer",
-            "body": "Hi {FirstName}, Emma with Peak Investments. We buy houses as is for cash. Would you ever consider an offer on {Address}, or are you holding onto it? Reply STOP to opt out"
+            "id": "single_list",
+            "name": "⚡ Single-List Hook (Quick question on {Address}...)",
+            "category": "single_distress",
+            "body": "Hey {FirstName}, quick question on {Address}, got a sec? If I'm bothering you just say no and I won't text you no more."
         },
         {
-            "id": "as_is_no_fees",
-            "name": "🛠️ Direct As-Is / No Realtor Fees",
-            "category": "as_is",
-            "body": "Hey {FirstName}, Emma with Peak Investments. We're buying in the area cash as is, no realtor fees or repair work. Would you consider selling {Address}? Reply STOP to opt out"
+            "id": "ultra_short",
+            "name": "💬 Ultra-Short Hook (Hey {FirstName}?)",
+            "category": "ultra_short",
+            "body": "Hey {FirstName}? If I'm bothering you just say no and I won't text you no more."
         },
         {
-            "id": "curious_walkaway",
-            "name": "❓ Simple & Direct Inquiry",
-            "category": "direct_inquiry",
-            "body": "Hi {FirstName}, Emma with Peak Investments. I know this is out of the blue, but would you consider parting with {Address} for the right price, or definitely not selling right now? Reply STOP to opt out"
+            "id": "multi_list_opt2",
+            "name": "🔥 Multi-List Hook (Opt-out: Say the word...)",
+            "category": "multi_distress",
+            "body": "Hey {FirstName} — did you ever decide what you're doing with {Address}? If you don't want these texts just say the word and I'm gone."
         },
         {
-            "id": "code_violation",
-            "name": "⚠️ Code Violation / City Citation Takeover",
-            "category": "code_violations",
-            "body": "Hi {FirstName}, Emma with Peak Investments. Noticed open city notices on {Address}. We resolve municipal citations and buy as is. Open to chatting about options? Reply STOP to opt out"
+            "id": "single_list_opt2",
+            "name": "⚡ Single-List Hook (Opt-out: Say the word...)",
+            "category": "single_distress",
+            "body": "Hey {FirstName}, quick question on {Address}, got a sec? If you don't want these texts just say the word and I'm gone."
         },
         {
-            "id": "pre_foreclosure",
-            "name": "🏛️ Pre-Foreclosure / Stop Auction Date",
-            "category": "lis_pendens",
-            "body": "Hi {FirstName}, Emma with Peak Investments reaching out regarding {Address}. We help homeowners resolve pending bank deadlines before auction dates. Would you be open to a quick call? Reply STOP to opt out"
+            "id": "ultra_short_opt2",
+            "name": "💬 Ultra-Short Hook (Opt-out: Say the word...)",
+            "category": "ultra_short",
+            "body": "Hey {FirstName}? If you don't want these texts just say the word and I'm gone."
         },
         {
-            "id": "probate_estate",
-            "name": "📜 Probate / Inherited Property (Leave Contents)",
-            "category": "probate",
-            "body": "Hi {FirstName}, Emma with Peak Investments regarding {Address}. Condolences if you recently lost a loved one. We buy inherited properties as is with zero cleanout needed. Open to an offer? Reply STOP to opt out"
+            "id": "multi_list_opt3",
+            "name": "🔥 Multi-List Hook (Opt-out: Not interested? Drop it...)",
+            "category": "multi_distress",
+            "body": "Hey {FirstName} — did you ever decide what you're doing with {Address}? Not interested? Just say no and I'll drop it."
         },
         {
-            "id": "casual_followup",
-            "name": "👋 Friendly Follow-Up",
-            "category": "followup",
-            "body": "Hi {FirstName}, Emma checking back in regarding {Address}. Would you still be open to an offer if the terms make sense? Reply STOP to opt out"
+            "id": "single_list_opt3",
+            "name": "⚡ Single-List Hook (Opt-out: Not interested? Drop it...)",
+            "category": "single_distress",
+            "body": "Hey {FirstName}, quick question on {Address}, got a sec? Not interested? Just say no and I'll drop it."
         },
         {
-            "id": "cash_offer",
-            "name": "💰 Direct Private Purchase (Alternative)",
-            "category": "cash_offer",
-            "body": "Hi {FirstName}, Emma with Peak Investments. Are you open to a direct private purchase on {Address}? We handle standard closing costs and buy 100% as is. Reply STOP to opt out"
+            "id": "ultra_short_opt3",
+            "name": "💬 Ultra-Short Hook (Opt-out: Not interested? Drop it...)",
+            "category": "ultra_short",
+            "body": "Hey {FirstName}? Not interested? Just say no and I'll drop it."
         }
     ],
     "email": [

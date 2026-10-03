@@ -465,7 +465,7 @@
       </div>
 
       <!-- Outreach Contact History Table (Shows exact messages and delivery records) -->
-      <div id="liveHistoryContainer" class="hidden overflow-x-auto rounded-xl border border-slate-800 max-h-[500px]">
+      <div id="liveHistoryContainer" class="hidden overflow-x-auto rounded-xl border border-slate-800 max-h-[750px]">
         <div class="p-3.5 bg-[#090f1d] border-b border-slate-800 flex items-center justify-between">
           <div class="flex items-center gap-2">
             <span class="text-xs font-bold text-white">Outreach Activity Log</span>
@@ -474,6 +474,92 @@
           <button type="button" onclick="handleClearOutreachHistory()" class="px-2.5 py-1 rounded-lg text-[11px] font-semibold text-rose-400 hover:text-rose-300 hover:bg-rose-500/10 border border-rose-500/20 transition cursor-pointer">
             🗑️ Clear History
           </button>
+        </div>
+
+        <!-- Emma Opener Angle Performance & Reply Rate Tracker -->
+        <div id="openerPerformanceCard" class="p-4 bg-[#0a101d] border-b border-slate-800 space-y-3">
+          <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800/80 pb-2.5">
+            <div class="flex items-center gap-2.5">
+              <div class="w-8 h-8 rounded-lg bg-blue-500/20 text-blue-300 flex items-center justify-center text-sm font-bold border border-blue-500/30">
+                📊
+              </div>
+              <div>
+                <div class="text-xs font-extrabold text-white flex items-center gap-2">
+                  Emma Opener Angle Performance &amp; Reply Rates
+                  <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">2-Stage Doctrine Live</span>
+                </div>
+                <div class="text-[11px] text-slate-400">
+                  Primary metric is <span class="text-emerald-300 font-bold">Reply Rate</span>. Review after ~2 weeks of volume to retire underperforming hooks.
+                </div>
+              </div>
+            </div>
+            <button type="button" onclick="fetchOpenerMetrics()" class="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-[11px] font-semibold border border-slate-700 transition flex items-center gap-1 cursor-pointer">
+              <span>🔄</span> <span>Refresh Rates</span>
+            </button>
+          </div>
+
+          <!-- 3 Opener Angle Metric Cards -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-3" id="openerMetricsGrid">
+            <!-- Multi-List Tier -->
+            <div class="p-3 rounded-xl bg-[#0d1424] border border-slate-800 flex flex-col justify-between" id="metricCardMultiList">
+              <div>
+                <div class="flex items-center justify-between">
+                  <span class="text-[10px] font-bold uppercase tracking-wider text-rose-400">🔥 Multi-List (2+ Lists)</span>
+                  <span id="badgeMultiListTop" class="hidden px-1.5 py-0.5 rounded text-[9px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">🏆 TOP PERFORMER</span>
+                </div>
+                <div class="text-[11px] font-medium text-slate-300 mt-1 italic">"Hey [Name] — did you ever decide what you're doing with [address]?"</div>
+              </div>
+              <div class="mt-3 pt-2 border-t border-slate-800/80 flex items-center justify-between text-xs">
+                <div>
+                  <span class="text-slate-400 text-[11px]">Reply Rate: </span>
+                  <span class="font-extrabold text-white text-sm" id="rateMultiList">0.0%</span>
+                </div>
+                <div class="text-right text-[11px] text-slate-400">
+                  <span id="sentMultiList">0</span> sent &bull; <span id="repliedMultiList" class="text-emerald-400 font-bold">0</span> replies
+                </div>
+              </div>
+            </div>
+
+            <!-- Single-List Tier -->
+            <div class="p-3 rounded-xl bg-[#0d1424] border border-slate-800 flex flex-col justify-between" id="metricCardSingleList">
+              <div>
+                <div class="flex items-center justify-between">
+                  <span class="text-[10px] font-bold uppercase tracking-wider text-amber-400">⚡ Single-List</span>
+                  <span id="badgeSingleListTop" class="hidden px-1.5 py-0.5 rounded text-[9px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">🏆 TOP PERFORMER</span>
+                </div>
+                <div class="text-[11px] font-medium text-slate-300 mt-1 italic">"Hey [Name], quick question on [address], got a sec?"</div>
+              </div>
+              <div class="mt-3 pt-2 border-t border-slate-800/80 flex items-center justify-between text-xs">
+                <div>
+                  <span class="text-slate-400 text-[11px]">Reply Rate: </span>
+                  <span class="font-extrabold text-white text-sm" id="rateSingleList">0.0%</span>
+                </div>
+                <div class="text-right text-[11px] text-slate-400">
+                  <span id="sentSingleList">0</span> sent &bull; <span id="repliedSingleList" class="text-emerald-400 font-bold">0</span> replies
+                </div>
+              </div>
+            </div>
+
+            <!-- Ultra-Short Tier -->
+            <div class="p-3 rounded-xl bg-[#0d1424] border border-slate-800 flex flex-col justify-between" id="metricCardUltraShort">
+              <div>
+                <div class="flex items-center justify-between">
+                  <span class="text-[10px] font-bold uppercase tracking-wider text-purple-400">💬 Ultra-Short</span>
+                  <span id="badgeUltraShortTop" class="hidden px-1.5 py-0.5 rounded text-[9px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">🏆 TOP PERFORMER</span>
+                </div>
+                <div class="text-[11px] font-medium text-slate-300 mt-1 italic">"Hey [Name]?"</div>
+              </div>
+              <div class="mt-3 pt-2 border-t border-slate-800/80 flex items-center justify-between text-xs">
+                <div>
+                  <span class="text-slate-400 text-[11px]">Reply Rate: </span>
+                  <span class="font-extrabold text-white text-sm" id="rateUltraShort">0.0%</span>
+                </div>
+                <div class="text-right text-[11px] text-slate-400">
+                  <span id="sentUltraShort">0</span> sent &bull; <span id="repliedUltraShort" class="text-emerald-400 font-bold">0</span> replies
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <table class="w-full text-left text-xs text-slate-300" id="liveHistoryTable">
           <thead class="bg-[#0b1220] text-slate-400 text-[10px] font-bold uppercase tracking-wider sticky top-0 border-b border-slate-800 z-10">
@@ -1089,15 +1175,15 @@
             </div>
           </div>
           <select id="smsTemplateSelect" onchange="applySmsTemplate(this.value)" class="w-full bg-[#0b1220] border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-emerald-500 cursor-pointer">
-            <option value="casual_local">🏡 Casual Local Inquiry (High Response / Zero Spam)</option>
-            <option value="drive_by">🚗 Neighborly Direct Buyer Hook</option>
-            <option value="as_is_no_fees">🛠️ Direct As-Is / No Realtor Fees</option>
-            <option value="curious_walkaway">❓ Simple &amp; Direct Inquiry</option>
-            <option value="code_violation">⚠️ Code Violation / City Citation Takeover</option>
-            <option value="pre_foreclosure">🏛️ Pre-Foreclosure / Stop Auction Date</option>
-            <option value="probate_estate">📜 Probate / Inherited Property (Leave Contents)</option>
-            <option value="casual_followup">👋 Friendly Follow-Up</option>
-            <option value="cash_offer">💰 Direct As-Is Purchase (Alternative)</option>
+            <option value="multi_list">🔥 Multi-List Hook (2+ Lists: Did you ever decide...)</option>
+            <option value="single_list">⚡ Single-List Hook (Quick question on address...)</option>
+            <option value="ultra_short">💬 Ultra-Short Hook (Hey [Name]?)</option>
+            <option value="multi_list_opt2">🔥 Multi-List Hook (Opt 2: Say the word...)</option>
+            <option value="single_list_opt2">⚡ Single-List Hook (Opt 2: Say the word...)</option>
+            <option value="ultra_short_opt2">💬 Ultra-Short Hook (Opt 2: Say the word...)</option>
+            <option value="multi_list_opt3">🔥 Multi-List Hook (Opt 3: Not interested? Drop it...)</option>
+            <option value="single_list_opt3">⚡ Single-List Hook (Opt 3: Not interested? Drop it...)</option>
+            <option value="ultra_short_opt3">💬 Ultra-Short Hook (Opt 3: Not interested? Drop it...)</option>
           </select>
         </div>
 

@@ -33,15 +33,25 @@ function escapeAttr(str) {
 }
 
 const SMS_TEMPLATES = {
-  casual_local: "Hey {FirstName}, Emma here with Peak Investments. Quick question, are you still the owner over at {Address}? Reply STOP to opt out",
-  drive_by: "Hi {FirstName}, Emma with Peak Investments. We buy houses as is for cash. Would you ever consider an offer on {Address}, or are you holding onto it? Reply STOP to opt out",
-  as_is_no_fees: "Hey {FirstName}, Emma with Peak Investments. We're buying in the area cash as is, no realtor fees or repair work. Would you consider selling {Address}? Reply STOP to opt out",
-  curious_walkaway: "Hi {FirstName}, Emma with Peak Investments. I know this is out of the blue, but would you consider parting with {Address} for the right price, or definitely not selling right now? Reply STOP to opt out",
-  code_violation: "Hi {FirstName}, Emma with Peak Investments. Noticed open city notices on {Address}. We resolve municipal citations and buy as is. Open to chatting about options? Reply STOP to opt out",
-  pre_foreclosure: "Hi {FirstName}, Emma with Peak Investments reaching out regarding {Address}. We help homeowners resolve pending bank deadlines before auction dates. Would you be open to a quick call? Reply STOP to opt out",
-  probate_estate: "Hi {FirstName}, Emma with Peak Investments regarding {Address}. Condolences if you recently lost a loved one. We buy inherited properties as is with zero cleanout needed. Open to an offer? Reply STOP to opt out",
-  casual_followup: "Hi {FirstName}, Emma checking back in regarding {Address}. Would you still be open to an offer if the terms make sense? Reply STOP to opt out",
-  cash_offer: "Hi {FirstName}, Emma with Peak Investments. Are you open to a direct private purchase on {Address}? We handle standard closing costs and buy 100% as is. Reply STOP to opt out"
+  multi_list: "Hey {FirstName} — did you ever decide what you're doing with {Address}? If I'm bothering you just say no and I won't text you no more.",
+  single_list: "Hey {FirstName}, quick question on {Address}, got a sec? If I'm bothering you just say no and I won't text you no more.",
+  ultra_short: "Hey {FirstName}? If I'm bothering you just say no and I won't text you no more.",
+  multi_list_opt2: "Hey {FirstName} — did you ever decide what you're doing with {Address}? If you don't want these texts just say the word and I'm gone.",
+  single_list_opt2: "Hey {FirstName}, quick question on {Address}, got a sec? If you don't want these texts just say the word and I'm gone.",
+  ultra_short_opt2: "Hey {FirstName}? If you don't want these texts just say the word and I'm gone.",
+  multi_list_opt3: "Hey {FirstName} — did you ever decide what you're doing with {Address}? Not interested? Just say no and I'll drop it.",
+  single_list_opt3: "Hey {FirstName}, quick question on {Address}, got a sec? Not interested? Just say no and I'll drop it.",
+  ultra_short_opt3: "Hey {FirstName}? Not interested? Just say no and I'll drop it.",
+  // Legacy aliases mapped to Stage 1 openers
+  casual_local: "Hey {FirstName}, quick question on {Address}, got a sec? If I'm bothering you just say no and I won't text you no more.",
+  drive_by: "Hey {FirstName} — did you ever decide what you're doing with {Address}? If I'm bothering you just say no and I won't text you no more.",
+  as_is_no_fees: "Hey {FirstName}, quick question on {Address}, got a sec? If I'm bothering you just say no and I won't text you no more.",
+  curious_walkaway: "Hey {FirstName}? If I'm bothering you just say no and I won't text you no more.",
+  code_violation: "Hey {FirstName} — did you ever decide what you're doing with {Address}? If I'm bothering you just say no and I won't text you no more.",
+  pre_foreclosure: "Hey {FirstName} — did you ever decide what you're doing with {Address}? If I'm bothering you just say no and I won't text you no more.",
+  probate_estate: "Hey {FirstName} — did you ever decide what you're doing with {Address}? If I'm bothering you just say no and I won't text you no more.",
+  casual_followup: "Hey {FirstName}, quick question on {Address}, got a sec? If I'm bothering you just say no and I won't text you no more.",
+  cash_offer: "Hey {FirstName} — did you ever decide what you're doing with {Address}? If I'm bothering you just say no and I won't text you no more."
 };
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -59,6 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
   fetchInboxBadgeCount();
   loadScheduledCallbacks();
   fetchLinkZoneHealth();
+  fetchOpenerMetrics();
   setInterval(pollSellerInboxUpdates, 5000);
   setInterval(fetchLinkZoneHealth, 30000);
   loadLiveCountyLeads("Pinellas", null, currentState);
@@ -773,6 +784,72 @@ async function fetchOutreachHistory() {
   } catch (err) {
     console.error("Error fetching outreach history:", err);
   }
+  fetchOpenerMetrics();
+}
+
+async function fetchOpenerMetrics() {
+  try {
+    const res = await fetch("/api/outreach/opener-metrics");
+    if (!res.ok) return;
+    const data = await res.json();
+    if (!data || !data.angles) return;
+
+    const angles = data.angles;
+    const topPerformer = data.summary ? data.summary.top_performer : null;
+
+    // Multi-List Tier
+    const ml = angles.multi_list || { sent: 0, replied: 0, reply_rate: 0 };
+    const rML = document.getElementById("rateMultiList");
+    const sML = document.getElementById("sentMultiList");
+    const repML = document.getElementById("repliedMultiList");
+    const badgeML = document.getElementById("badgeMultiListTop");
+    if (rML) rML.innerText = `${ml.reply_rate}%`;
+    if (sML) sML.innerText = ml.sent;
+    if (repML) repML.innerText = ml.replied;
+    if (badgeML) {
+      if (topPerformer === "multi_list" && ml.sent > 0 && ml.replied > 0) {
+        badgeML.classList.remove("hidden");
+      } else {
+        badgeML.classList.add("hidden");
+      }
+    }
+
+    // Single-List Tier
+    const sl = angles.single_list || { sent: 0, replied: 0, reply_rate: 0 };
+    const rSL = document.getElementById("rateSingleList");
+    const sSL = document.getElementById("sentSingleList");
+    const repSL = document.getElementById("repliedSingleList");
+    const badgeSL = document.getElementById("badgeSingleListTop");
+    if (rSL) rSL.innerText = `${sl.reply_rate}%`;
+    if (sSL) sSL.innerText = sl.sent;
+    if (repSL) repSL.innerText = sl.replied;
+    if (badgeSL) {
+      if (topPerformer === "single_list" && sl.sent > 0 && sl.replied > 0) {
+        badgeSL.classList.remove("hidden");
+      } else {
+        badgeSL.classList.add("hidden");
+      }
+    }
+
+    // Ultra-Short Tier
+    const us = angles.ultra_short || { sent: 0, replied: 0, reply_rate: 0 };
+    const rUS = document.getElementById("rateUltraShort");
+    const sUS = document.getElementById("sentUltraShort");
+    const repUS = document.getElementById("repliedUltraShort");
+    const badgeUS = document.getElementById("badgeUltraShortTop");
+    if (rUS) rUS.innerText = `${us.reply_rate}%`;
+    if (sUS) sUS.innerText = us.sent;
+    if (repUS) repUS.innerText = us.replied;
+    if (badgeUS) {
+      if (topPerformer === "ultra_short" && us.sent > 0 && us.replied > 0) {
+        badgeUS.classList.remove("hidden");
+      } else {
+        badgeUS.classList.add("hidden");
+      }
+    }
+  } catch (err) {
+    console.error("Error fetching opener metrics:", err);
+  }
 }
 
 function switchPipelineView(viewMode) {
@@ -898,6 +975,10 @@ function renderHistoryTable() {
       ? `<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/40">✓ SENT</span>`
       : `<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-rose-500/20 text-rose-400 border border-rose-500/40">✕ FAILED</span>`;
 
+    const angleBadge = entry.opener_angle 
+      ? `<span class="inline-block px-1.5 py-0.5 rounded text-[9px] font-extrabold uppercase bg-blue-500/20 text-blue-300 border border-blue-500/30 mr-1.5">${entry.opener_angle.replace('_', ' ')}</span>`
+      : "";
+
     const tr = document.createElement("tr");
     tr.className = "hover:bg-slate-800/40 transition";
     tr.innerHTML = `
@@ -921,7 +1002,7 @@ function renderHistoryTable() {
       <td class="px-4 py-3 max-w-xs">
         ${entry.subject && entry.subject !== "SMS Text Message" ? `<div class="text-[11px] font-bold text-blue-300 truncate">${entry.subject}</div>` : ""}
         <div class="text-[11px] text-slate-300 line-clamp-2 leading-relaxed" title="${escapeAttr(entry.message || "")}">
-          ${entry.message || entry.subject || "Offer dispatched"}
+          ${angleBadge}${entry.message || entry.subject || "Offer dispatched"}
         </div>
       </td>
       <td class="px-4 py-3 text-center whitespace-nowrap">
@@ -1836,15 +1917,13 @@ function openSmsModal(parcelId, phone, ownerName, propertyAddress) {
       distressType: distType
     };
 
-    // Determine smart target initial template (Carrier safe & distress tailored)
-    let targetTemplateId = "casual_local";
-    if (distType === "CODE_VIOLATION") targetTemplateId = "code_violation";
-    else if (distType === "LIS_PENDENS") targetTemplateId = "pre_foreclosure";
-    else if (distType === "PROBATE") targetTemplateId = "probate_estate";
-    else {
-      const casualAngles = ["casual_local", "drive_by", "as_is_no_fees", "curious_walkaway"];
-      targetTemplateId = casualAngles[Math.floor(Math.random() * casualAngles.length)];
-    }
+    // Determine smart target initial template (Tiered by distress-list count: multi-list vs single-list)
+    const isMultiList = matchedRecord ? (
+      matchedRecord.Is_Stacked_Distress === "Yes" ||
+      (matchedRecord.Distress_Stack_Notes && matchedRecord.Distress_Stack_Notes.toUpperCase().includes("DISTRESS"))
+    ) : false;
+
+    let targetTemplateId = isMultiList ? "multi_list" : "single_list";
 
     // Refresh template selector options from cache
     const tmplSelect = document.getElementById("smsTemplateSelect");
@@ -2003,6 +2082,15 @@ async function handleSendSms(e) {
   banner.className = "hidden p-3 rounded-xl text-xs font-semibold";
 
   try {
+    const tmplSelect = document.getElementById("smsTemplateSelect");
+    const chosenTmpl = tmplSelect ? tmplSelect.value : "";
+    let openerAngle = "single_list";
+    if (chosenTmpl.includes("multi_list") || message.toLowerCase().includes("ever decide")) {
+      openerAngle = "multi_list";
+    } else if (chosenTmpl.includes("ultra_short") || (message.toLowerCase().startsWith("hey ") && message.includes("?"))) {
+      openerAngle = "ultra_short";
+    }
+
     const res = await fetch("/api/sms/send", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -2012,7 +2100,8 @@ async function handleSendSms(e) {
         parcel_id: parcelId,
         county: county,
         owner_name: ownerName,
-        property_address: propertyAddress
+        property_address: propertyAddress,
+        opener_angle: openerAngle
       })
     });
 

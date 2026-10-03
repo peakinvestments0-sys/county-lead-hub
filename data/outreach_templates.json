@@ -1,58 +1,58 @@
 {
   "sms": [
     {
-      "id": "casual_local",
-      "name": "\ud83c\udfe1 Casual Local Hook (Emma - Peak Investments)",
-      "category": "casual_inquiry",
-      "body": "Hey {FirstName}, Emma here with Peak Investments. Quick question, are you still the owner over at {Address}? Reply STOP to opt out"
+      "id": "multi_list",
+      "name": "🔥 Multi-List Hook (2+ Lists: Did you ever decide...)",
+      "category": "multi_distress",
+      "body": "Hey {FirstName} — did you ever decide what you're doing with {Address}? If I'm bothering you just say no and I won't text you no more."
     },
     {
-      "id": "drive_by",
-      "name": "\ud83d\ude97 Neighborly Direct Buyer Hook",
-      "category": "direct_buyer",
-      "body": "Hi {FirstName}, Emma with Peak Investments. We buy houses as is for cash. Would you ever consider an offer on {Address}, or are you holding onto it? Reply STOP to opt out"
+      "id": "single_list",
+      "name": "⚡ Single-List Hook (Quick question on {Address}...)",
+      "category": "single_distress",
+      "body": "Hey {FirstName}, quick question on {Address}, got a sec? If I'm bothering you just say no and I won't text you no more."
     },
     {
-      "id": "as_is_no_fees",
-      "name": "\ud83d\udee0\ufe0f Direct As-Is / No Realtor Fees",
-      "category": "as_is",
-      "body": "Hey {FirstName}, Emma with Peak Investments. We're buying in the area cash as is, no realtor fees or repair work. Would you consider selling {Address}? Reply STOP to opt out"
+      "id": "ultra_short",
+      "name": "💬 Ultra-Short Hook (Hey {FirstName}?)",
+      "category": "ultra_short",
+      "body": "Hey {FirstName}? If I'm bothering you just say no and I won't text you no more."
     },
     {
-      "id": "curious_walkaway",
-      "name": "\u2753 Simple & Direct Inquiry",
-      "category": "direct_inquiry",
-      "body": "Hi {FirstName}, Emma with Peak Investments. I know this is out of the blue, but would you consider parting with {Address} for the right price, or definitely not selling right now? Reply STOP to opt out"
+      "id": "multi_list_opt2",
+      "name": "🔥 Multi-List Hook (Opt-out: Say the word...)",
+      "category": "multi_distress",
+      "body": "Hey {FirstName} — did you ever decide what you're doing with {Address}? If you don't want these texts just say the word and I'm gone."
     },
     {
-      "id": "code_violation",
-      "name": "\u26a0\ufe0f Code Violation / City Citation Takeover",
-      "category": "code_violations",
-      "body": "Hi {FirstName}, Emma with Peak Investments. Noticed open city notices on {Address}. We resolve municipal citations and buy as is. Open to chatting about options? Reply STOP to opt out"
+      "id": "single_list_opt2",
+      "name": "⚡ Single-List Hook (Opt-out: Say the word...)",
+      "category": "single_distress",
+      "body": "Hey {FirstName}, quick question on {Address}, got a sec? If you don't want these texts just say the word and I'm gone."
     },
     {
-      "id": "pre_foreclosure",
-      "name": "\ud83c\udfdb\ufe0f Pre-Foreclosure / Stop Auction Date",
-      "category": "lis_pendens",
-      "body": "Hi {FirstName}, Emma with Peak Investments reaching out regarding {Address}. We help homeowners resolve pending bank deadlines before auction dates. Would you be open to a quick call? Reply STOP to opt out"
+      "id": "ultra_short_opt2",
+      "name": "💬 Ultra-Short Hook (Opt-out: Say the word...)",
+      "category": "ultra_short",
+      "body": "Hey {FirstName}? If you don't want these texts just say the word and I'm gone."
     },
     {
-      "id": "probate_estate",
-      "name": "\ud83d\udcdc Probate / Inherited Property (Leave Contents)",
-      "category": "probate",
-      "body": "Hi {FirstName}, Emma with Peak Investments regarding {Address}. Condolences if you recently lost a loved one. We buy inherited properties as is with zero cleanout needed. Open to an offer? Reply STOP to opt out"
+      "id": "multi_list_opt3",
+      "name": "🔥 Multi-List Hook (Opt-out: Not interested? Drop it...)",
+      "category": "multi_distress",
+      "body": "Hey {FirstName} — did you ever decide what you're doing with {Address}? Not interested? Just say no and I'll drop it."
     },
     {
-      "id": "casual_followup",
-      "name": "\ud83d\udc4b Friendly Follow-Up",
-      "category": "followup",
-      "body": "Hi {FirstName}, Emma checking back in regarding {Address}. Would you still be open to an offer if the terms make sense? Reply STOP to opt out"
+      "id": "single_list_opt3",
+      "name": "⚡ Single-List Hook (Opt-out: Not interested? Drop it...)",
+      "category": "single_distress",
+      "body": "Hey {FirstName}, quick question on {Address}, got a sec? Not interested? Just say no and I'll drop it."
     },
     {
-      "id": "cash_offer",
-      "name": "\ud83d\udcb0 Direct Private Purchase (Alternative)",
-      "category": "cash_offer",
-      "body": "Hi {FirstName}, Emma with Peak Investments. Are you open to a direct private purchase on {Address}? We handle standard closing costs and buy 100% as is. Reply STOP to opt out"
+      "id": "ultra_short_opt3",
+      "name": "💬 Ultra-Short Hook (Opt-out: Not interested? Drop it...)",
+      "category": "ultra_short",
+      "body": "Hey {FirstName}? Not interested? Just say no and I'll drop it."
     }
   ],
   "email": [

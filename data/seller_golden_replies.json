@@ -1,5 +1,41 @@
 [
   {
+    "id": "golden_bridge_what_1",
+    "category": "Stage 1-2 Bridge",
+    "node": "BRIDGE_WHAT_EXCUSE_ME",
+    "distress_type": "General",
+    "seller_inbound": "what? who is this and what are you talking about?",
+    "final_approved_text": "It's Emma — I help homeowners in Pinellas figure out their options on 14783 SEMINOLE TRL. Are you still the owner there?",
+    "notes": "Stage 1 to Stage 2 bridge: warm, disarming, identifies Emma, pivots to ownership check."
+  },
+  {
+    "id": "golden_bridge_when_talk_2",
+    "category": "Stage 1-2 Bridge",
+    "node": "BRIDGE_WHEN_DID_WE_TALK",
+    "distress_type": "General",
+    "seller_inbound": "which one were you? when did we talk?",
+    "final_approved_text": "We haven't talked — sorry, should've led with that. I'm Emma, I work with homeowners around Pinellas. Had a quick question on 14783 SEMINOLE TRL, got a sec?",
+    "notes": "Stage 1 to Stage 2 bridge: disarms confusion with apology, establishes local presence, asks for quick sec."
+  },
+  {
+    "id": "golden_bridge_who_is_this_3",
+    "category": "Stage 1-2 Bridge",
+    "node": "BRIDGE_WHO_IS_THIS",
+    "distress_type": "General",
+    "seller_inbound": "who is this?",
+    "final_approved_text": "Emma, I work with a local investment group buying in Pinellas. Not a realtor, no listings — just asking about 14783 SEMINOLE TRL.",
+    "notes": "Stage 1 to Stage 2 bridge: concise, confirms investor not realtor, direct to address inquiry."
+  },
+  {
+    "id": "golden_bridge_wrong_number_4",
+    "category": "Stage 1-2 Bridge",
+    "node": "OPT_OUT",
+    "distress_type": "General",
+    "seller_inbound": "wrong number, never owned that property",
+    "final_approved_text": "Got it, won't text again.",
+    "notes": "Stage 1 to Stage 2 bridge: wrong number treated as opt-out with confirmation."
+  },
+  {
     "id": "golden_code_fines_1",
     "category": "Code Violations",
     "node": "CODE_ASSESS_FINES",
