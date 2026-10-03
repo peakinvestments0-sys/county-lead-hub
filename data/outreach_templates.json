@@ -2,57 +2,57 @@
   "sms": [
     {
       "id": "casual_local",
-      "name": "\ud83c\udfe1 Casual Local Inquiry (High Response / Zero Spam)",
+      "name": "\ud83c\udfe1 Casual Local Hook (Emma - Peak Investments)",
       "category": "casual_inquiry",
-      "body": "Hey {FirstName}, quick question, are you still the owner over at {Address}?"
+      "body": "Hey {FirstName}, Emma here with Peak Investments. Quick question, are you still the owner over at {Address}? Reply STOP to opt out"
     },
     {
       "id": "drive_by",
       "name": "\ud83d\ude97 Neighborly Direct Buyer Hook",
       "category": "direct_buyer",
-      "body": "Hi {FirstName}, my partner John and I were looking at houses near {Address}. Wondering if you'd ever consider an offer or if you're holding onto it?"
+      "body": "Hi {FirstName}, Emma with Peak Investments. We buy houses as is for cash. Would you ever consider an offer on {Address}, or are you holding onto it? Reply STOP to opt out"
     },
     {
       "id": "as_is_no_fees",
       "name": "\ud83d\udee0\ufe0f Direct As-Is / No Realtor Fees",
       "category": "as_is",
-      "body": "Hey {FirstName}, reaching out about {Address}. We're looking to purchase a place in the area as is with no realtor fees or repair work. Would you consider selling?"
+      "body": "Hey {FirstName}, Emma with Peak Investments. We're buying in the area cash as is, no realtor fees or repair work. Would you consider selling {Address}? Reply STOP to opt out"
     },
     {
       "id": "curious_walkaway",
       "name": "\u2753 Simple & Direct Inquiry",
       "category": "direct_inquiry",
-      "body": "Hi {FirstName}, I know this is out of the blue, but would you consider parting with {Address} for the right price, or definitely not selling right now?"
+      "body": "Hi {FirstName}, Emma with Peak Investments. I know this is out of the blue, but would you consider parting with {Address} for the right price, or definitely not selling right now? Reply STOP to opt out"
     },
     {
       "id": "code_violation",
       "name": "\u26a0\ufe0f Code Violation / City Citation Takeover",
       "category": "code_violations",
-      "body": "Hi {FirstName}, noticed the city had some open notices on {Address}. We work with owners in {City} to resolve municipal citations directly and buy as is. Open to chatting about options?"
+      "body": "Hi {FirstName}, Emma with Peak Investments. Noticed open city notices on {Address}. We resolve municipal citations and buy as is. Open to chatting about options? Reply STOP to opt out"
     },
     {
       "id": "pre_foreclosure",
       "name": "\ud83c\udfdb\ufe0f Pre-Foreclosure / Stop Auction Date",
       "category": "lis_pendens",
-      "body": "Hi {FirstName}, reaching out regarding {Address}. We help homeowners in {County} resolve pending bank deadlines before auction dates. Would you be open to a quick call to review your options?"
+      "body": "Hi {FirstName}, Emma with Peak Investments reaching out regarding {Address}. We help homeowners resolve pending bank deadlines before auction dates. Would you be open to a quick call? Reply STOP to opt out"
     },
     {
       "id": "probate_estate",
       "name": "\ud83d\udcdc Probate / Inherited Property (Leave Contents)",
       "category": "probate",
-      "body": "Hi {FirstName}, my condolences regarding the family estate on {Address}. If the family is ever looking to sell without doing cleanouts, repairs, or realtor fees, we'd love to help."
+      "body": "Hi {FirstName}, Emma with Peak Investments regarding {Address}. Condolences if you recently lost a loved one. We buy inherited properties as is with zero cleanout needed. Open to an offer? Reply STOP to opt out"
     },
     {
       "id": "casual_followup",
       "name": "\ud83d\udc4b Friendly Follow-Up",
       "category": "followup",
-      "body": "Hi {FirstName}, just checking back in regarding {Address}. Would you still be open to an offer if the terms make sense? Thanks!"
+      "body": "Hi {FirstName}, Emma checking back in regarding {Address}. Would you still be open to an offer if the terms make sense? Reply STOP to opt out"
     },
     {
       "id": "cash_offer",
       "name": "\ud83d\udcb0 Direct Private Purchase (Alternative)",
       "category": "cash_offer",
-      "body": "Hi {FirstName}, are you open to a direct private purchase on {Address}? We handle standard closing costs and buy 100% as is."
+      "body": "Hi {FirstName}, Emma with Peak Investments. Are you open to a direct private purchase on {Address}? We handle standard closing costs and buy 100% as is. Reply STOP to opt out"
     }
   ],
   "email": [

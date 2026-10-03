@@ -1,720 +1,110 @@
 [
   {
-    "id": "golden_outreach_curious_walkaway",
-    "category": "GENERAL_DISTRESS",
-    "seller_inbound": "[Initial Outreach Inquiry: Simple & direct question for right price]",
-    "final_approved_text": "Hi Thomas, I know this is out of the blue, but would you consider parting with 625 Mayo for the right price, or definitely not selling right now?",
-    "notes": "Low pressure psychological out. Encourages owner to name a number.",
-    "deal_tier": "GOLD_DEAL",
-    "distress_type": "General Distress"
-  },
-  {
-    "id": "golden_outreach_as_is_no_fees",
-    "category": "GENERAL_DISTRESS",
-    "seller_inbound": "[Initial Outreach Inquiry: As-is purchase without realtor fees]",
-    "final_approved_text": "Hey Thomas, reaching out about 625 Mayo. We're looking to purchase a place in the area as is with no realtor fees or repair work. Would you consider selling?",
-    "notes": "Direct as-is angle focusing on seller convenience without saying cash.",
-    "deal_tier": "SPREAD_DEAL",
-    "distress_type": "General Distress"
-  },
-  {
-    "id": "golden_outreach_driveby_partner",
-    "category": "GENERAL_DISTRESS",
-    "seller_inbound": "[Initial Outreach Inquiry: Partner drive-by inquiry for 625 Mayo]",
-    "final_approved_text": "Hi Thomas, my partner John and I were looking at houses near 625 Mayo. Wondering if you'd ever consider an offer or if you're holding onto it?",
-    "notes": "Neighborly partner drive-by angle. Disarming and human.",
-    "deal_tier": "GOLD_DEAL",
-    "distress_type": "General Distress"
-  },
-  {
-    "id": "golden_outreach_casual_local",
-    "category": "GENERAL_DISTRESS",
-    "seller_inbound": "[Initial Outreach Inquiry: Asking if owner is considering selling 625 Mayo]",
-    "final_approved_text": "Hey Thomas, quick question, are you still the owner over at 625 Mayo?",
-    "notes": "High-converting conversational opener. Zero spam trigger words. High response rate.",
-    "deal_tier": "GOLD_DEAL",
-    "distress_type": "General Distress"
-  },
-  {
-    "id": "golden_as_is_tenant_furniture_1",
-    "title": "Tenant Abandoned Furniture & Trash",
-    "category": "GENERAL_DISTRESS",
-    "triggers": [
-      "furniture",
-      "tables",
-      "tenant left",
-      "clean out",
-      "charge me",
-      "left behind"
-    ],
-    "typical_inbound": "Do I have to remove my furniture and old tables tenants left behind, will you charge me for that?",
-    "seller_inbound": "Do I have to remove my furniture and old tables tenants left behind, will you charge me for that?",
-    "golden_response": "No, absolutely not! You don't have to remove anything, and we will never charge you for clean-out. Anything left behind\u2014furniture, old tables, trash, or tenant items\u2014you can leave right there. We buy 100% as-is and handle all the cleanup at our own expense. What are you hoping to walk away with cash in hand for the property?",
-    "final_approved_text": "No, absolutely not! You don't have to remove anything, and we will never charge you for cleanout. Anything left behind, furniture, old tables, trash, or tenant items, you can leave right there. We buy 100% as is and handle all the cleanup at our own expense. What are you hoping to walk away with cash in hand for the property?",
-    "deal_criteria": "Zero clean-out charge, 100% as-is",
-    "handoff_action": "Set phone call with John",
-    "notes": "Relieves anxiety about tenant clean-out fees; confirms 100% as-is purchase."
-  },
-  {
-    "id": "golden_as_is_hoarder_clutter_2",
-    "title": "Hoarder House & Decades of Clutter",
-    "category": "GENERAL_DISTRESS",
-    "triggers": [
-      "hoarder",
-      "clutter",
-      "boxes",
-      "mess",
-      "pack",
-      "cleaning"
-    ],
-    "typical_inbound": "The house is a complete disaster. It's packed to the ceiling with boxes and old stuff. I can't even walk through it.",
-    "seller_inbound": "The house is a complete disaster. It's packed to the ceiling with boxes and old stuff. I can't even walk through it.",
-    "golden_response": "Please don't be embarrassed at all\u2014we buy homes in this exact condition all the time. You literally just take whatever personal papers, photos, or keepsakes you want, and walk away. We bring in our own crews and dumpsters after closing. Are you free for a quick 5-minute call with John today to talk numbers?",
-    "final_approved_text": "Please don't be embarrassed at all, we buy homes in this exact condition all the time. You literally just take whatever personal papers, photos, or keepsakes you want, and walk away. We bring in our own crews and dumpsters after closing. Are you free for a quick 5 minute call with John today to talk numbers?",
-    "deal_criteria": "Heavy clean-out needed, factor $4k-$7k dumpster allowance",
-    "handoff_action": "Phone appointment with John",
-    "notes": "Non-judgmental, warm empathy, eliminates cleanout paralysis."
-  },
-  {
-    "id": "golden_as_is_unfinished_remodel_3",
-    "title": "Unfinished DIY Renovation",
-    "category": "GENERAL_DISTRESS",
-    "triggers": [
-      "remodel",
-      "half done",
-      "gutted",
-      "drywall",
-      "unfinished",
-      "wires"
-    ],
-    "typical_inbound": "I started remodeling the kitchen and bathroom two years ago, but ran out of money. It's down to the studs with exposed plumbing.",
-    "seller_inbound": "I started remodeling the kitchen and bathroom two years ago, but ran out of money. It's down to the studs with exposed plumbing.",
-    "golden_response": "Unfinished projects happen all the time, especially with how expensive contractor materials got. Since we use private cash, we don't need a finished kitchen or bank appraisal to close. If we buy it exactly as it sits today, what price would make this a win for you?",
-    "final_approved_text": "Unfinished projects happen all the time, especially with how expensive contractor materials got. Since we use private cash, we don't need a finished kitchen or bank appraisal to close. If we buy it exactly as it sits today, what price would make this a win for you?",
-    "deal_criteria": "Mid-rehab fixer, conventional buyers disqualified",
-    "handoff_action": "Qualify bottom-dollar cash price",
-    "notes": "Validates why banks reject unfinished homes, positions our cash advantage."
-  },
-  {
-    "id": "golden_as_is_mold_hurricane_4",
-    "title": "Hurricane Roof Leak & Black Mold",
-    "category": "GENERAL_DISTRESS",
-    "triggers": [
-      "mold",
-      "roof leak",
-      "hurricane",
-      "water damage",
-      "ceiling fell",
-      "insurance denied"
-    ],
-    "typical_inbound": "The hurricane tore the shingles off and water leaked into the bedrooms. Insurance denied the claim and now there is black mold.",
-    "seller_inbound": "The hurricane tore the shingles off and water leaked into the bedrooms. Insurance denied the claim and now there is black mold.",
-    "golden_response": "I am so sorry to hear that\u2014Florida insurance companies have been brutal lately. We have certified remediation partners and buy homes with severe roof leaks and mold as-is. What would you need to walk away with so you can move on from this headache?",
-    "final_approved_text": "I am so sorry to hear that, Florida insurance companies have been brutal lately. We have certified remediation partners and buy homes with severe roof leaks and mold as is. What would you need to walk away with so you can move on from this headache?",
-    "deal_criteria": "Major remediation + roof replacement needed",
-    "handoff_action": "Get seller bottom-line ask",
-    "notes": "Relieves insurance frustration; promises total release from mold liability."
-  },
-  {
-    "id": "golden_as_is_abandoned_vehicle_5",
-    "title": "Inoperable Car / Boat Left in Yard",
-    "category": "GENERAL_DISTRESS",
-    "triggers": [
-      "car in yard",
-      "boat",
-      "inoperable vehicle",
-      "junk car",
-      "broken truck"
-    ],
-    "typical_inbound": "There is an old broken truck and an unregistered boat in the driveway with flat tires. Do I need to get them towed?",
-    "seller_inbound": "There is an old broken truck and an unregistered boat in the driveway with flat tires. Do I need to get them towed?",
-    "golden_response": "Nope, don't spend a single dollar towing them! If you have the titles we can transfer them, or we can handle scrap removal after closing at our cost. What are you looking to get cash in hand for the property?",
-    "final_approved_text": "Nope, don't spend a single dollar towing them! If you have the titles we can transfer them, or we can handle scrap removal after closing at our cost. What are you looking to get cash in hand for the property?",
-    "deal_criteria": "Driveway scrap removal handled by buyer",
-    "handoff_action": "Qualify cash walkaway",
-    "notes": "Saves seller towing expenses and hassle."
-  },
-  {
-    "id": "golden_as_is_missing_ac_6",
-    "title": "Stolen or Missing AC Condenser",
-    "category": "GENERAL_DISTRESS",
-    "triggers": [
-      "ac stolen",
-      "no air",
-      "air conditioner missing",
-      "copper stolen",
-      "no heat"
-    ],
-    "typical_inbound": "Someone stole the outside AC condenser unit last month. It has no cooling right now.",
-    "seller_inbound": "Someone stole the outside AC condenser unit last month. It has no cooling right now.",
-    "golden_response": "Completely understood. In Florida, missing AC prevents any normal buyer from getting a mortgage, but because we pay cash, we don't require an appraisal or working HVAC. What is your bottom-dollar cash price to sell as-is?",
-    "final_approved_text": "Completely understood. In Florida, missing AC prevents any normal buyer from getting a mortgage, but because we pay cash, we don't require an appraisal or working HVAC. What is your bottom-dollar cash price to sell as is?",
-    "deal_criteria": "Retail financing uninsurable without HVAC, cash buy only",
-    "handoff_action": "Confirm bottom-dollar cash offer",
-    "notes": "Points out financing barrier for retail buyers to anchor realistic cash expectations."
-  },
-  {
-    "id": "golden_code_fines_daily_7",
-    "title": "Daily Accumulating City Code Fines",
-    "category": "CODE_VIOLATION",
-    "triggers": [
-      "code fines",
-      "fines a day",
-      "$150 a day",
-      "$250 a day",
-      "city citation",
-      "code officer"
-    ],
-    "typical_inbound": "The city has been fining me $150 a day because the roof tarp tore and the grass is high. I can't afford to fix it.",
+    "id": "golden_code_fines_1",
+    "category": "Code Violations",
+    "node": "CODE_ASSESS_FINES",
+    "distress_type": "Code Violation",
     "seller_inbound": "The city has been fining me $150 a day because the roof tarp tore and the grass is high. I can't afford to fix it.",
-    "golden_response": "I completely understand, those daily city fines add up fast. We buy completely as-is, take over the property, and pay off or negotiate the code liens right at closing so it stops hitting your record. What are you looking to walk away with?",
-    "final_approved_text": "I completely understand, those daily city fines add up fast. We buy completely as is, take over the property, and pay off or negotiate the code liens right at closing so it stops hitting your record. What are you looking to walk away with?",
-    "deal_criteria": "Active daily fines, negotiate lien reduction at closing",
-    "handoff_action": "Assess fine total and walkaway price",
+    "final_approved_text": "I completely understand, those daily city fines add up fast. We buy completely as is, take over the property, and pay off the code liens right at closing so it stops hitting your record. What are you looking to walk away with?",
     "notes": "Empathetic, confirms relief from daily fines, asks for walkaway price."
   },
   {
-    "id": "golden_code_condemned_8",
-    "title": "Condemned / Unsafe Structure Placard",
-    "category": "CODE_VIOLATION",
-    "triggers": [
-      "condemned",
-      "unsafe structure",
-      "placard",
-      "red tag",
-      "demo order",
-      "uninhabitable"
-    ],
-    "typical_inbound": "They put an unsafe building placard on the front door and said it might be demolished if repairs aren't made.",
-    "seller_inbound": "They put an unsafe building placard on the front door and said it might be demolished if repairs aren't made.",
-    "golden_response": "No problem at all on our end\u2014we specialize in heavy fixers and buy strictly cash as-is without any city inspection requirements. We work directly with the city building department to halt demolition orders. If we cover all closing costs, what is your bottom-dollar cash price?",
-    "final_approved_text": "No problem at all on our end, we specialize in heavy fixers and buy strictly cash as is without any city inspection requirements. We work directly with the city building department to halt demolition orders. If we cover all closing costs, what is your bottom-dollar cash price?",
-    "deal_criteria": "Emergency intervention, halt municipal demolition",
-    "handoff_action": "Bottom dollar cash qualification",
-    "notes": "Removes fear of inspections and city demo orders."
+    "id": "golden_code_condemned_2",
+    "category": "Code Violations",
+    "node": "CODE_OFFER_ASIS",
+    "distress_type": "Code Violation",
+    "seller_inbound": "They put an unsafe building placard on the door. It needs a full gut rehab.",
+    "final_approved_text": "No problem at all on our end, we specialize in heavy fixers and buy strictly cash as is without any city inspection requirements. If we cover all closing costs, what is your bottom dollar cash price?",
+    "notes": "Removes fear of inspections, asks bottom-dollar cash."
   },
   {
-    "id": "golden_code_unpermitted_work_9",
-    "title": "Unpermitted Garage Conversion / Addition",
-    "category": "CODE_VIOLATION",
-    "triggers": [
-      "unpermitted",
-      "no permit",
-      "garage conversion",
-      "addition without permit",
-      "bootleg room"
-    ],
-    "typical_inbound": "The previous owner enclosed the garage into a 3rd bedroom without a permit, and code enforcement just cited me for it.",
-    "seller_inbound": "The previous owner enclosed the garage into a 3rd bedroom without a permit, and code enforcement just cited me for it.",
-    "golden_response": "That happens all across Florida. Traditional buyers can't get loans on unpermitted additions, but we buy with private cash and take over full responsibility for pulling retroactive permits or restoring it. What cash figure would make you happy to sell?",
-    "final_approved_text": "That happens all across Florida. Traditional buyers can't get loans on unpermitted additions, but we buy with private cash and take over full responsibility for pulling retroactive permits or restoring it. What cash figure would make you happy to sell?",
-    "deal_criteria": "Unpermitted space, title indemnity at closing",
-    "handoff_action": "Cash figure qualification",
-    "notes": "Assumes permitting risk so seller doesn't have to hire architects."
+    "id": "golden_lis_pendens_urgent_3",
+    "category": "Lis Pendens",
+    "node": "LIS_PENDENS_TIMELINE",
+    "distress_type": "Lis Pendens",
+    "seller_inbound": "The bank filed a foreclosure lawsuit last month. I don't know what to do.",
+    "final_approved_text": "I know how stressful that is, but the good news is you still have time to take control. Has the court set a final auction date yet, or are you still in the response window?",
+    "notes": "Disarming reassurance, vets auction urgency."
   },
   {
-    "id": "golden_code_special_magistrate_10",
-    "title": "Upcoming Special Magistrate Hearing",
-    "category": "CODE_VIOLATION",
-    "triggers": [
-      "hearing",
-      "magistrate",
-      "board meeting",
-      "code court",
-      "summons"
-    ],
-    "typical_inbound": "I have a special magistrate hearing with the county next Thursday. If I don't fix the roof by then they'll start daily fines.",
-    "seller_inbound": "I have a special magistrate hearing with the county next Thursday. If I don't fix the roof by then they'll start daily fines.",
-    "golden_response": "We can put an executed cash contract in place before Thursday. Having an active contract with a local cash buyer who provides an affidavit to cure often gets the magistrate to grant an extension or dismiss fines. Can John call you for 5 minutes today to get this squared away?",
-    "final_approved_text": "We can put an executed cash contract in place before Thursday. Having an active contract with a local cash buyer who provides an affidavit to cure often gets the magistrate to grant an extension or dismiss fines. Can John call you for 5 minutes today to get this squared away?",
-    "deal_criteria": "Magistrate affidavit to cure, urgent 5-day lock",
-    "handoff_action": "Emergency call with John",
-    "notes": "Shows deep municipal expertise to build instant seller trust."
-  },
-  {
-    "id": "golden_code_lien_exceeds_value_11",
-    "title": "Code Lien Higher Than Property Value",
-    "category": "CODE_VIOLATION",
-    "triggers": [
-      "lien is 80k",
-      "huge lien",
-      "fines are more than house",
-      "county lien reduction"
-    ],
-    "typical_inbound": "The fines have been running for 3 years and now the city says there is a $65,000 lien on a small lot. It's more than the lot is worth.",
-    "seller_inbound": "The fines have been running for 3 years and now the city says there is a $65,000 lien on a small lot. It's more than the lot is worth.",
-    "golden_response": "Cities do that to force compliance, but Florida municipalities routinely reduce code liens down to hard costs (usually 10-15%) once a legitimate buyer agrees to bring it to code. We handle that negotiation at our expense. What net cash amount would you want to walk away with?",
-    "final_approved_text": "Cities do that to force compliance, but Florida municipalities routinely reduce code liens down to hard costs (usually 10-15%) once a legitimate buyer agrees to bring it to code. We handle that negotiation at our expense. What net cash amount would you want to walk away with?",
-    "deal_criteria": "Municipal lien mitigation petition",
-    "handoff_action": "Establish net walkaway figure",
-    "notes": "Educates seller that municipal liens are negotiable, unlocking dead deals."
-  },
-  {
-    "id": "golden_code_septic_sewer_12",
-    "title": "Failed Septic / Required Sewer Hookup",
-    "category": "CODE_VIOLATION",
-    "triggers": [
-      "septic",
-      "drainfield",
-      "sewer hookup",
-      "septic tank failed",
-      "pump out"
-    ],
-    "typical_inbound": "The septic drain field failed and the county says I either need to replace it for $15,000 or connect to city sewer for $22,000.",
-    "seller_inbound": "The septic drain field failed and the county says I either need to replace it for $15,000 or connect to city sewer for $22,000.",
-    "golden_response": "Septic replacements in Florida have gotten crazy expensive. We buy homes with failed drain fields and dry wells all the time without you spending a dime. If we take on the full county sewer conversion, what cash price would you take?",
-    "final_approved_text": "Septic replacements in Florida have gotten crazy expensive. We buy homes with failed drain fields and dry wells all the time without you spending a dime. If we take on the full county sewer conversion, what cash price would you take?",
-    "deal_criteria": "Capital expense $15k-$20k deduction from ARV",
-    "handoff_action": "Target walkaway price",
-    "notes": "Positions expensive utility conversion as buyer's problem, not seller's."
-  },
-  {
-    "id": "golden_code_overgrown_trash_13",
-    "title": "Overgrown Yard & Debris Citations",
-    "category": "CODE_VIOLATION",
-    "triggers": [
-      "grass",
-      "weeds",
-      "debris",
-      "overgrown",
-      "trash citation",
-      "lawn fine"
-    ],
-    "typical_inbound": "The city cited me for overgrown brush and piles of old tree branches in the yard.",
-    "seller_inbound": "The city cited me for overgrown brush and piles of old tree branches in the yard.",
-    "golden_response": "Don't sweat the yard work\u2014we buy completely as-is and bring in commercial tree trimmers after closing. What price are you hoping to get cash in hand?",
-    "final_approved_text": "Don't sweat the yard work, we buy completely as is and bring in commercial tree trimmers after closing. What price are you hoping to get cash in hand?",
-    "deal_criteria": "Quick close, minimal landscape clean-up",
-    "handoff_action": "Target cash price",
-    "notes": "Fast reassurance, low hurdle."
-  },
-  {
-    "id": "golden_code_squatter_trash_14",
-    "title": "Squatters Left Trash & Damaged Walls",
-    "category": "CODE_VIOLATION",
-    "triggers": [
-      "squatters",
-      "squatter",
-      "broke in",
-      "vandalized",
-      "kicked doors in"
-    ],
-    "typical_inbound": "Squatters broke in while the house was vacant and trashed the interior. Code enforcement showed up yesterday.",
-    "seller_inbound": "Squatters broke in while the house was vacant and trashed the interior. Code enforcement showed up yesterday.",
-    "golden_response": "That is infuriating, but unfortunately happens too often to vacant homes. We can secure the property immediately with steel shutters and buy it in its exact trashed condition. What are you looking to walk away with to be done with it?",
-    "final_approved_text": "That is infuriating, but unfortunately happens too often to vacant homes. We can secure the property immediately with steel shutters and buy it in its exact trashed condition. What are you looking to walk away with to be done with it?",
-    "deal_criteria": "Vacant security + full gut rehab",
-    "handoff_action": "Walkaway price qualification",
-    "notes": "Empathy for squatter nightmare, offers immediate physical security."
-  },
-  {
-    "id": "golden_lis_auction_14_days_15",
-    "title": "Auction Date Set in 14-21 Days",
-    "category": "LIS_PENDENS",
-    "triggers": [
-      "auction",
-      "auction date",
-      "2 weeks",
-      "14 days",
-      "foreclosure sale",
-      "sheriff sale"
-    ],
-    "typical_inbound": "The auction is scheduled on the county clerk site for the 22nd of this month. I owe about $140,000 on the mortgage.",
-    "seller_inbound": "The auction is scheduled on the county clerk site for the 22nd of this month. I owe about $140,000 on the mortgage.",
-    "golden_response": "We can definitely help before that auction date. We can pay off the mortgage balance directly to protect your credit and put cash in your pocket to relocate. What would you need to walk away with?",
-    "final_approved_text": "We can definitely help before that auction date. We can pay off the mortgage balance directly to protect your credit and put cash in your pocket to relocate. What would you need to walk away with?",
-    "deal_criteria": "Emergency 10-day title payoff",
-    "handoff_action": "Emergency appointment with John",
+    "id": "golden_lis_pendens_auction_soon_4",
+    "category": "Lis Pendens",
+    "node": "LIS_PENDENS_PAYOFF",
+    "distress_type": "Lis Pendens",
+    "seller_inbound": "The auction is scheduled for next month on the 24th. I owe about $140,000 on the mortgage.",
+    "final_approved_text": "Understood. We can move fast enough to close before the auction date and pay off the mortgage balance. What would you need to net to make a move work?",
     "notes": "Clear path to credit protection and walkaway cash."
   },
   {
-    "id": "golden_lis_served_lawsuit_16",
-    "title": "Just Served with Foreclosure Summons",
-    "category": "LIS_PENDENS",
-    "triggers": [
-      "served",
-      "summons",
-      "sheriff came",
-      "lis pendens filed",
-      "lawsuit"
-    ],
-    "typical_inbound": "A process server handed me a foreclosure lawsuit from Wells Fargo yesterday. I have 20 days to respond and I'm terrified.",
-    "seller_inbound": "A process server handed me a foreclosure lawsuit from Wells Fargo yesterday. I have 20 days to respond and I'm terrified.",
-    "golden_response": "I know how stressful that is, but take a deep breath\u2014being served is just the very first step. You still have plenty of time to sell on your own terms, protect your credit, and walk away with cash. Can John give you a quick 5-minute call today to explain how we stop this?",
-    "final_approved_text": "I know how stressful that is, but take a deep breath, being served is just the very first step. You still have plenty of time to sell on your own terms, protect your credit, and walk away with cash. Can John give you a quick 5 minute call today to explain how we stop this?",
-    "deal_criteria": "Early stage Lis Pendens (20-day response window)",
-    "handoff_action": "Phone appointment with John",
-    "notes": "Calms panic, establishes control, offers phone roadmap."
+    "id": "golden_probate_heirs_5",
+    "category": "Probate",
+    "node": "PROBATE_STATUS_CHECK",
+    "distress_type": "Probate",
+    "seller_inbound": "My mother passed away and left the house to my brother and me. We don't live in Florida.",
+    "final_approved_text": "Please accept my heartfelt condolences. Handling an out of town estate can be overwhelming. Have you guys filed probate with the Florida court yet, or are you just getting started?",
+    "notes": "Respectful, checks formal probate standing."
   },
   {
-    "id": "golden_lis_failed_modification_17",
-    "title": "Loan Modification Denied by Servicer",
-    "category": "LIS_PENDENS",
-    "triggers": [
-      "modification denied",
-      "bank won't work with me",
-      "servicer rejected",
-      "trial plan failed"
-    ],
-    "typical_inbound": "The bank strung me along for 6 months on a loan modification and then denied it last week. Now they want the full $28,000 arrears.",
-    "seller_inbound": "The bank strung me along for 6 months on a loan modification and then denied it last week. Now they want the full $28,000 arrears.",
-    "golden_response": "That happens all the time and it's so frustrating. If you don't want to come out of pocket for $28k, we can buy the house cash, pay off the mortgage in full, and get you cash for a fresh start. Would later today or tomorrow morning work for a quick chat with John?",
-    "final_approved_text": "That happens all the time and it's so frustrating. If you don't want to come out of pocket for $28k, we can buy the house cash, pay off the mortgage in full, and get you cash for a fresh start. Would later today or tomorrow morning work for a quick chat with John?",
-    "deal_criteria": "Payoff + equity recapture",
-    "handoff_action": "Book 5-minute phone appointment",
-    "notes": "Acknowledges servicer exhaustion, offers immediate clean break."
+    "id": "golden_probate_clutter_6",
+    "category": "Probate",
+    "node": "PROBATE_CONTENTS_LEFTOVER",
+    "distress_type": "Probate",
+    "seller_inbound": "The house is completely packed with 40 years of furniture and clutter. We cannot clean it out.",
+    "final_approved_text": "Please do not worry about cleaning anything out. You take whatever personal items or keepsakes you want, and leave literally everything else behind, we handle 100% of the cleanout at our expense. What price are you guys hoping for?",
+    "notes": "Eliminates the #1 probate objection (clean-out exhaustion)."
   },
   {
-    "id": "golden_lis_relocation_assistance_18",
-    "title": "Homeowner Needs Relocation Cash Before Move",
-    "category": "LIS_PENDENS",
-    "triggers": [
-      "moving money",
-      "nowhere to go",
-      "first and last",
-      "can't afford deposit",
-      "moving truck"
-    ],
-    "typical_inbound": "Even if I sell, I don't have first, last, and security deposit to move into an apartment. How does that work?",
-    "seller_inbound": "Even if I sell, I don't have first, last, and security deposit to move into an apartment. How does that work?",
-    "golden_response": "We solve that for homeowners all the time. Through our title escrow, we can provide an upfront relocation cash advance at closing, or do a post-occupancy agreement so you get your funds before having to pack. Can John call you for 5 minutes to go over the options?",
-    "final_approved_text": "We solve that for homeowners all the time. Through our title escrow, we can provide an upfront relocation cash advance at closing, or do a post-occupancy agreement so you get your funds before having to pack. Can John call you for 5 minutes to go over the options?",
-    "deal_criteria": "Post-occupancy agreement or title escrow advance",
-    "handoff_action": "Call with John to structure leaseback/relocation",
-    "notes": "Removes the #1 reason homeowners delay selling: fear of homelessness."
+    "id": "golden_obj_how_number_7",
+    "category": "Objection Handling",
+    "node": "OBJ_HOW_DID_YOU_GET_NUMBER",
+    "distress_type": "General",
+    "seller_inbound": "Who is this and how did you get my cell number?",
+    "final_approved_text": "We monitor the county clerk and property appraiser public records, and use a licensed skip trace service to reach owners directly by phone.",
+    "notes": "Concrete, transparent, honest, non-defensive."
   },
   {
-    "id": "golden_lis_second_mortgage_19",
-    "title": "Underwater 2nd Mortgage or HELOC",
-    "category": "LIS_PENDENS",
-    "triggers": [
-      "heloc",
-      "second mortgage",
-      "second lien",
-      "pnc heloc"
-    ],
-    "typical_inbound": "I have a primary mortgage with Chase and a $30,000 HELOC with PNC. Can you buy if there are two loans?",
-    "seller_inbound": "I have a primary mortgage with Chase and a $30,000 HELOC with PNC. Can you buy if there are two loans?",
-    "golden_response": "Yes, absolutely! Our closing attorney orders payoff statements for both loans and clears them both right on the closing statement so you have zero debt left. If both are paid off, what cash amount are you hoping to walk away with?",
-    "final_approved_text": "Yes, absolutely! Our closing attorney orders payoff statements for both loans and clears them both right on the closing statement so you have zero debt left. If both are paid off, what cash amount are you hoping to walk away with?",
-    "deal_criteria": "Dual mortgage payoff verification",
-    "handoff_action": "Net walkaway cash qualification",
-    "notes": "Clarifies title closing mechanics for multiple liens."
+    "id": "golden_obj_lowball_8",
+    "category": "Objection Handling",
+    "node": "OBJ_LOWBALL_DEFENSE",
+    "distress_type": "General",
+    "seller_inbound": "Are you just another wholesaler who's going to offer me 30 cents on the dollar?",
+    "final_approved_text": "Not at all, I completely understand your frustration with lowball callers. We buy direct with our own capital, cover 100% of standard closing costs, and charge zero commissions. What is the number you would need to make a deal make sense?",
+    "notes": "Validates frustration, differentiates direct buyer, asks for their number."
   },
   {
-    "id": "golden_lis_reverse_mortgage_20",
-    "title": "Reverse Mortgage Foreclosure",
-    "category": "LIS_PENDENS",
-    "triggers": [
-      "reverse mortgage",
-      "champion",
-      "hud",
-      "hecm",
-      "mom passed reverse mortgage"
-    ],
-    "typical_inbound": "My dad had a reverse mortgage and passed away last year. The lender is foreclosing because no one is living there.",
-    "seller_inbound": "My dad had a reverse mortgage and passed away last year. The lender is foreclosing because no one is living there.",
-    "golden_response": "Under HUD rules, heirs have the right to sell the property for 95% of appraised value or payoff balance and keep any remaining equity. We can close before their foreclosure deadline. Can John call you today to look at the numbers together?",
-    "final_approved_text": "Under HUD rules, heirs have the right to sell the property for 95% of appraised value or payoff balance and keep any remaining equity. We can close before their foreclosure deadline. Can John call you today to look at the numbers together?",
-    "deal_criteria": "Reverse mortgage 95% HUD rule or full payoff",
-    "handoff_action": "Phone appointment with John",
-    "notes": "Demonstrates technical mastery of reverse mortgage guidelines."
+    "id": "golden_gold_price_received_9",
+    "category": "Gold Deal",
+    "node": "GOLD_DEAL_CALL_CLOSE",
+    "distress_type": "General",
+    "seller_inbound": "I just want $130,000 cash and I want it gone by next Friday.",
+    "final_approved_text": "That sounds very reasonable and within our cash budget. I want to have John, who manages our acquisitions, give you a quick 5 minute call today to confirm the details. Would 2pm or later this afternoon work better for a quick call with John?",
+    "notes": "Validates number immediately, transitions smoothly to call with John."
   },
   {
-    "id": "golden_lis_tax_deed_auction_21",
-    "title": "County Tax Deed Sale Approaching",
-    "category": "LIS_PENDENS",
-    "triggers": [
-      "tax deed",
-      "tax sale",
-      "county auction",
-      "tax collector auction"
-    ],
-    "typical_inbound": "The county has scheduled a tax deed sale for unpaid property taxes on the 15th. Can you buy before then?",
-    "seller_inbound": "The county has scheduled a tax deed sale for unpaid property taxes on the 15th. Can you buy before then?",
-    "golden_response": "Yes, absolutely! We can wire the delinquent tax amount directly to the County Tax Collector to redeem the certificate and close cash. What price are you looking to walk away with?",
-    "final_approved_text": "Yes, absolutely! We can wire the delinquent tax amount directly to the County Tax Collector to redeem the certificate and close cash. What price are you looking to walk away with?",
-    "deal_criteria": "Tax deed redemption wire + cash closing",
-    "handoff_action": "Walkaway price qualification",
-    "notes": "Explains tax certificate redemption timeline."
+    "id": "golden_spread_price_received_10",
+    "category": "Negotiation",
+    "node": "SPREAD_DEAL_COUNTER",
+    "distress_type": "Code Violation",
+    "seller_inbound": "I'm looking for around $220,000 cash.",
+    "final_approved_text": "Got it. Normally for homes with open code fines and deferred maintenance, our cash numbers need to be a bit lower so we can clear the city liens. What is the absolute bottom dollar you would feel comfortable walking away with?",
+    "notes": "Polite anchor on distress fines, prompts for true walkaway bottom."
   },
   {
-    "id": "golden_probate_out_of_state_22",
-    "title": "Out-of-State Executor / Heirs",
-    "category": "PROBATE",
-    "triggers": [
-      "out of state",
-      "live in ny",
-      "don't live in florida",
-      "inherited",
-      "distance"
-    ],
-    "typical_inbound": "My mother passed away and left the house to my brother and me. Neither of us live in Florida, we are in Ohio.",
-    "seller_inbound": "My mother passed away and left the house to my brother and me. Neither of us live in Florida, we are in Ohio.",
-    "golden_response": "Please accept my sincere condolences. You do not need to travel to Florida at all\u2014we handle mobile notary signings in your home state, remote electronic closings, and all property cleanup. Has probate formally been opened in Florida yet?",
-    "final_approved_text": "Please accept my sincere condolences. You do not need to travel to Florida at all, we handle mobile notary signings in your home state, remote electronic closings, and all property cleanup. Has probate formally been opened in Florida yet?",
-    "deal_criteria": "Out-of-state remote closing via mobile notary",
-    "handoff_action": "Check probate filing status",
-    "notes": "Eliminates the huge travel anxiety for out-of-town executors."
+    "id": "golden_book_call_time_11",
+    "category": "Appointment Booking",
+    "node": "BOOK_CALL_PROPOSAL",
+    "distress_type": "General",
+    "seller_inbound": "Yeah, I'd be open to speaking with someone about a cash offer.",
+    "final_approved_text": "Awesome! Let me have John give you a brief 5 minute call to walk through the cash numbers and closing timeline. Would later today around 3pm or tomorrow morning work better for a chat with John?",
+    "notes": "Simple two-option time choice."
   },
   {
-    "id": "golden_probate_sibling_dispute_23",
-    "title": "Multiple Heirs / Sibling Disagreement",
-    "category": "PROBATE",
-    "triggers": [
-      "siblings",
-      "brother won't agree",
-      "heirs fighting",
-      "sister wants more",
-      "4 kids"
-    ],
-    "typical_inbound": "There are 3 of us on the deed. I want to sell, but my sister thinks we can get rich if we hold it. How do you deal with multiple heirs?",
-    "seller_inbound": "There are 3 of us on the deed. I want to sell, but my sister thinks we can get rich if we hold it. How do you deal with multiple heirs?",
-    "golden_response": "That is very common with family estates. The title company can cut separate, individual wire checks to each sibling directly at closing so everyone gets their exact share cleanly without fighting. Would you be open to an all-cash offer to show your siblings?",
-    "final_approved_text": "That is very common with family estates. The title company can cut separate, individual wire checks to each sibling directly at closing so everyone gets their exact share cleanly without fighting. Would you be open to an cash offer to show your siblings?",
-    "deal_criteria": "Split disbursements on settlement statement",
-    "handoff_action": "Prepare written proof-of-funds cash offer for family review",
-    "notes": "Solves inheritance friction by explaining individual disbursements."
-  },
-  {
-    "id": "golden_probate_no_will_24",
-    "title": "No Will Left (Intestate Florida Succession)",
-    "category": "PROBATE",
-    "triggers": [
-      "no will",
-      "intestate",
-      "didn't leave a will",
-      "never wrote a will"
-    ],
-    "typical_inbound": "My father passed away unexpectedly without a will. Can we even sell the property without one?",
-    "seller_inbound": "My father passed away unexpectedly without a will. Can we even sell the property without one?",
-    "golden_response": "Yes, absolutely! Florida has a straightforward statutory process (Intestate Succession). We work with excellent probate attorneys who can open a summary administration and often have attorney fees paid right out of closing proceeds so you pay nothing out of pocket. Can John call you for 5 minutes today?",
-    "final_approved_text": "Yes, absolutely! Florida has a straightforward statutory process (Intestate Succession). We work with excellent probate attorneys who can open a summary administration and often have attorney fees paid right out of closing proceeds so you pay nothing out of pocket. Can John call you for 5 minutes today?",
-    "deal_criteria": "Summary administration or formal probate with fee paid at title",
-    "handoff_action": "Phone appointment with John",
-    "notes": "Removes fear that lack of a will prevents sale; offers attorney fee deferral."
-  },
-  {
-    "id": "golden_probate_medicaid_lien_25",
-    "title": "Medicaid Estate Recovery Lien",
-    "category": "PROBATE",
-    "triggers": [
-      "medicaid",
-      "nursing home lien",
-      "estate recovery",
-      "ahca lien"
-    ],
-    "typical_inbound": "The state sent a letter saying Medicaid wants $40,000 back for nursing home care before the house can be sold.",
-    "seller_inbound": "The state sent a letter saying Medicaid wants $40,000 back for nursing home care before the house can be sold.",
-    "golden_response": "In Florida, homestead property is constitutionally protected from Medicaid recovery liens in most cases if passed to lineal heirs. Our probate attorneys can file a Petition to Determine Homestead to clear that lien completely. Can John connect with you today?",
-    "final_approved_text": "In Florida, homestead property is constitutionally protected from Medicaid recovery liens in most cases if passed to lineal heirs. Our probate attorneys can file a Petition to Determine Homestead to clear that lien completely. Can John connect with you today?",
-    "deal_criteria": "Homestead exemption defense against AHCA claims",
-    "handoff_action": "Connect with John & title attorney",
-    "notes": "High-level Florida constitutional knowledge establishes immense credibility."
-  },
-  {
-    "id": "golden_probate_delinquent_taxes_26",
-    "title": "Years of Back Taxes on Inherited Home",
-    "category": "PROBATE",
-    "triggers": [
-      "back taxes",
-      "taxes owed",
-      "tax certificate",
-      "3 years taxes"
-    ],
-    "typical_inbound": "No one paid property taxes for the last 3 years since mom passed and now there's $11,000 due. We don't have the money.",
-    "seller_inbound": "No one paid property taxes for the last 3 years since mom passed and now there's $11,000 due. We don't have the money.",
-    "golden_response": "You don't need to pay that out of pocket. All back taxes are deducted directly from the cash proceeds at closing, and the rest is wired straight to you. What price are you hoping to walk away with?",
-    "final_approved_text": "You don't need to pay that out of pocket. All back taxes are deducted directly from the cash proceeds at closing, and the rest is wired straight to you. What price are you hoping to walk away with?",
-    "deal_criteria": "Title payoff of delinquent tax certificates",
-    "handoff_action": "Target walkaway price qualification",
-    "notes": "Shows seller they don't need liquid cash to settle back taxes."
-  },
-  {
-    "id": "golden_probate_mobile_home_27",
-    "title": "Manufactured / Mobile Home in Park",
-    "category": "PROBATE",
-    "triggers": [
-      "mobile home",
-      "lot rent",
-      "park approval",
-      "manufactured home",
-      "trailer"
-    ],
-    "typical_inbound": "It's an older manufactured home in a 55+ park. The lot rent is $850 a month and adding up.",
-    "seller_inbound": "It's an older manufactured home in a 55+ park. The lot rent is $850 a month and adding up.",
-    "golden_response": "Lot rent eats away at family money fast. We buy mobile homes with DHSMV titles as-is, take over lot rent payments immediately upon closing, and handle the park approval. What cash amount would you accept to transfer the title?",
-    "final_approved_text": "Lot rent eats away at family money fast. We buy mobile homes with DHSMV titles as is, take over lot rent payments immediately upon closing, and handle the park approval. What cash amount would you accept to transfer the title?",
-    "deal_criteria": "DHSMV title transfer + park application approval",
-    "handoff_action": "Cash walkaway ask",
-    "notes": "Relieves ongoing lot rent drain."
-  },
-  {
-    "id": "golden_probate_contents_sentimental_28",
-    "title": "Sorting Sentimental Items vs Trash",
-    "category": "PROBATE",
-    "triggers": [
-      "memorabilia",
-      "photo albums",
-      "sentimental",
-      "belongings",
-      "take time"
-    ],
-    "typical_inbound": "We want to sell, but we need time to go through 50 years of family photo albums and my mom's jewelry.",
-    "seller_inbound": "We want to sell, but we need time to go through 50 years of family photo albums and my mom's jewelry.",
-    "golden_response": "Please take all the time you need for personal memories and family keepsakes. We can set the closing date for 30 or 45 days out\u2014or give you extra days after closing with keys in hand. What timeline would feel most comfortable?",
-    "final_approved_text": "Please take all the time you need for personal memories and family keepsakes. We can set the closing date for 30 or 45 days out, or give you extra days after closing with keys in hand. What timeline would feel most comfortable?",
-    "deal_criteria": "Flexible 45-day closing or post-close access",
-    "handoff_action": "Timeline qualification",
-    "notes": "Shows respect for grieving family, flexible closing dates."
-  },
-  {
-    "id": "golden_obj_zillow_comp_29",
-    "title": "Zestimate / Retail Price Pushback",
-    "category": "GENERAL_DISTRESS",
-    "triggers": [
-      "zillow says",
-      "zestimate",
-      "realtor said",
-      "worth more",
-      "market value is"
-    ],
-    "typical_inbound": "Zillow shows my house is worth $340,000, why would I take a cash offer for less?",
-    "seller_inbound": "Zillow shows my house is worth $340,000, why would I take a cash offer for less?",
-    "golden_response": "That Zestimate is based on fully renovated homes with brand new roofs, modern kitchens, and zero inspection issues. After subtracting 6% realtor commissions, 3% closing fees, and $45k in repairs, a retail sale nets much less than you think. Our cash offer has zero fees, zero repairs, and closes in days. What is your bottom-line net number?",
-    "final_approved_text": "That Zestimate is based on fully renovated homes with brand new roofs, modern kitchens, and zero inspection issues. After subtracting 6% realtor commissions, 3% closing fees, and $45k in repairs, a retail sale nets much less than you think. Our cash offer has zero fees, zero repairs, and closes in days. What is your bottom-line net number?",
-    "deal_criteria": "Net walkaway breakdown vs retail gross illusion",
-    "handoff_action": "Net cash qualification",
-    "notes": "Breaks down net vs gross without arguing or insulting seller."
-  },
-  {
-    "id": "golden_obj_creative_pivot_30",
-    "title": "Seller Firm on Full Retail (Creative Terms Pivot)",
-    "category": "GENERAL_DISTRESS",
-    "triggers": [
-      "firm on price",
-      "won't take a dime less",
-      "full price",
-      "top dollar",
-      "retail price"
-    ],
-    "typical_inbound": "I'm strictly firm at $275,000. I won't take a penny less, so don't bother if you can't pay that.",
-    "seller_inbound": "I'm strictly firm at $275,000. I won't take a penny less, so don't bother if you can't pay that.",
-    "golden_response": "I completely respect you standing firm on your number. For full retail value, the only way we could make $275k work is through creative seller financing or terms where you get monthly income and zero taxes. Would you be open to hearing how that works?",
-    "final_approved_text": "I completely respect you standing firm on your number. For full retail value, the only way we could make $275k work is through creative seller financing or terms where you get monthly income and zero taxes. Would you be open to hearing how that works?",
-    "deal_criteria": "Creative finance / SubTo / Seller carry pivot",
-    "handoff_action": "Creative terms exploration call with John",
-    "notes": "Converts dead leads into high-margin creative deals."
-  },
-  {
-    "id": "golden_obj_how_got_number_31",
-    "title": "How Did You Get My Cell Phone Number?",
-    "category": "GENERAL_DISTRESS",
-    "triggers": [
-      "how did you get my number",
-      "who gave you my phone",
-      "how did you find me",
-      "why are you texting me"
-    ],
-    "typical_inbound": "How did you get my private cell phone number? Who gave you permission to text me?",
-    "seller_inbound": "How did you get my private cell phone number? Who gave you permission to text me?",
-    "golden_response": "Great question! We monitor public Florida county clerk and property appraiser records weekly for property filings, and use a verified public records directory to reach property owners directly. We're local private buyers in Central Florida. If you're not interested in selling, just let me know and I'll remove you immediately!",
-    "final_approved_text": "Great question! We monitor public Florida county clerk and property appraiser records weekly for property filings, and use a verified public records directory to reach property owners directly. We're local private buyers in Central Florida. If you're not interested in selling, just let me know and I'll remove you immediately!",
-    "deal_criteria": "Public records transparency, disarming opt-out courtesy",
-    "handoff_action": "Transparency check",
-    "notes": "Completely disarms suspicion; explains county public records legally."
-  },
-  {
-    "id": "golden_obj_already_have_offer_32",
-    "title": "Already Have an Offer from Another Investor",
-    "category": "GENERAL_DISTRESS",
-    "triggers": [
-      "already have an offer",
-      "someone offered me",
-      "got another buyer",
-      "under contract with someone"
-    ],
-    "typical_inbound": "I already have an offer from another investor for $175,000 so I don't need yours.",
-    "seller_inbound": "I already have an offer from another investor for $175,000 so I don't need yours.",
-    "golden_response": "That's great! A lot of wholesalers tie up contracts and then demand a $20k price drop at the last minute or cancel. If your current buyer asks for price cuts or backs out, can we be your backup cash buyer with zero contingencies?",
-    "final_approved_text": "That's great! A lot of wholesalers tie up contracts and then demand a $20k price drop at the last minute or cancel. If your current buyer asks for price cuts or backs out, can we be your backup cash buyer with zero contingencies?",
-    "deal_criteria": "Backup contract positioning",
-    "handoff_action": "Keep in active backup queue",
-    "notes": "Prepares for the common re-trade by competitors."
-  },
-  {
-    "id": "golden_obj_hidden_fees_33",
-    "title": "Are There Any Hidden Fees or Commissions?",
-    "category": "GENERAL_DISTRESS",
-    "triggers": [
-      "fees",
-      "closing costs",
-      "commissions",
-      "hidden costs",
-      "what do you charge"
-    ],
-    "typical_inbound": "What fees or commissions do you charge? What is this going to cost me?",
-    "seller_inbound": "What fees or commissions do you charge? What is this going to cost me?",
-    "golden_response": "Zero! We are direct buyers, not realtors, so there are zero commissions (saving you 6%). We also pay 100% of standard title and escrow closing fees. The cash offer we agree on is the exact amount wired to your bank. What are you hoping to walk away with?",
-    "final_approved_text": "Zero! We are direct buyers, not realtors, so there are zero commissions (saving you 6%). We also pay 100% of standard title and escrow closing fees. The cash offer we agree on is the exact amount wired to your bank. What are you hoping to walk away with?",
-    "deal_criteria": "Zero commission, buyer pays standard closing costs",
-    "handoff_action": "Walkaway ask",
-    "notes": "Absolute transparency on zero realtor fees."
-  },
-  {
-    "id": "golden_obj_speed_timeline_34",
-    "title": "How Fast Can You Actually Close and Pay Me?",
-    "category": "GENERAL_DISTRESS",
-    "triggers": [
-      "how fast",
-      "how long does it take",
-      "when do i get paid",
-      "closing timeline"
-    ],
-    "typical_inbound": "If I accept your offer, how fast can you actually close and put cash in my bank account?",
-    "seller_inbound": "If I accept your offer, how fast can you actually close and put cash in my bank account?",
-    "golden_response": "As fast as 7 to 10 days! As soon as the title company confirms a clear title, funds are wired directly into your bank account. If you need more time to pack, we can also close later on whatever date you choose. What closing date works best for you?",
-    "final_approved_text": "As fast as 7 to 10 days! As soon as the title company confirms a clear title, funds are wired directly into your bank account. If you need more time to pack, we can also close later on whatever date you choose. What closing date works best for you?",
-    "deal_criteria": "7-10 day cash wire closing",
-    "handoff_action": "Timeline selection",
-    "notes": "Provides concrete 7-10 day escrow guarantee."
-  },
-  {
-    "id": "golden_gold_price_received_35",
-    "title": "Gold Deal: Deep Discount Cash Price Stated",
-    "category": "GENERAL_DISTRESS",
-    "triggers": [
-      "120k",
-      "130k",
-      "take 140k",
-      "just want 150k",
-      "let it go cheap"
-    ],
-    "typical_inbound": "I'll let it go for $125k cash if you can close this month and take it as-is.",
-    "seller_inbound": "I'll let it go for $125k cash if you can close this month and take it as-is.",
-    "golden_response": "That sounds like a fair number we can definitely make work for an as-is cash close. I'd love to have John, our acquisitions partner, give you a quick 5-minute call today to confirm the details and lock this in. Would later this afternoon work?",
-    "final_approved_text": "That sounds like a fair number we can definitely make work for an as is cash close. I'd love to have John, our acquisitions partner, give you a quick 5 minute call today to confirm the details and lock this in. Would later this afternoon work?",
-    "deal_criteria": "Gold Deal Spread >= $30k, lock appointment immediately",
-    "handoff_action": "Immediate phone handoff to John",
-    "notes": "Recognizes deep discount, halts haggling, secures phone appointment immediately."
-  },
-  {
-    "id": "golden_bad_tenants_eviction_36",
-    "title": "Non-Paying Tenants / Eviction in Progress",
-    "category": "GENERAL_DISTRESS",
-    "triggers": [
-      "tenants won't pay",
-      "eviction",
-      "squatting",
-      "haven't paid rent",
-      "nightmare tenants"
-    ],
-    "typical_inbound": "The tenants stopped paying rent 4 months ago and won't leave. I can't afford the legal fees for an eviction. Can you buy it with them inside?",
-    "seller_inbound": "The tenants stopped paying rent 4 months ago and won't leave. I can't afford the legal fees for an eviction. Can you buy it with them inside?",
-    "golden_response": "Yes! You don't have to deal with the eviction court or pay any legal fees. We buy properties with non-paying or holdover tenants in place and handle the complete legal transition ourselves. What would you take in cash to hand over the keys and leases?",
-    "final_approved_text": "Yes! You don't have to deal with the eviction court or pay any legal fees. We buy properties with non-paying or holdover tenants in place and handle the complete legal transition ourselves. What would you take in cash to hand over the keys and leases?",
-    "deal_criteria": "Tenant transition assumed by buyer, title assignment",
-    "handoff_action": "Cash figure qualification",
-    "notes": "Relieves severe landlord fatigue, buys with tenants in possession."
+    "id": "golden_book_call_confirmed_12",
+    "category": "Appointment Booking",
+    "node": "BOOK_CALL_CONFIRMED",
+    "distress_type": "General",
+    "seller_inbound": "Tomorrow morning around 10am works for me.",
+    "final_approved_text": "Sounds great! I have scheduled John to call you tomorrow at 10:00 AM from our office line (407) 815-5043. We look forward to connecting and helping you get this solved!",
+    "notes": "Locks in time, establishes office caller ID (407-815-5043)."
   }
 ]

@@ -2034,19 +2034,6 @@
                     "access": "RECORDS_REQUEST"
                 }
             ]
-        },
-        "Sources Catalog": {
-            "full_name": "Sources Catalog County",
-            "folder_name": "sources_catalog",
-            "state": "FL",
-            "csv_name": "RP_PROPERTY_INFO.csv",
-            "parquet_name": "RP_PROPERTY_INFO.parquet",
-            "sample_lp": "",
-            "sample_code": "",
-            "sample_probate": "",
-            "clerk_lis_pendens_url": "",
-            "code_enforcement_url": "",
-            "master_parcel_download_url": ""
         }
     }
 }

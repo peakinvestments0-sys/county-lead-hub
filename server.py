@@ -57,6 +57,11 @@ from src.calendar_service import (
     load_scheduled_callbacks, save_scheduled_callbacks,
     send_calendar_invite_email, build_google_calendar_url
 )
+from src.suppression_service import (
+    is_number_suppressed, add_to_suppression_list, remove_from_suppression_list,
+    load_suppression_list, is_dnc_number, add_to_dnc_list, load_dnc_list,
+    is_lead_blocked_from_outreach, scrub_outbound_lead_list, normalize_phone_digits
+)
 seller_bot = SellerBotEngine()
 
 app = FastAPI(title="Florida Lead Hub API", version="1.0.0")
@@ -863,6 +868,7 @@ class SendSmsRequest(BaseModel):
     county: Optional[str] = "Pinellas"
     owner_name: Optional[str] = None
     property_address: Optional[str] = None
+    bypass_suppression: bool = False
 
 @app.get("/api/leads/contacts")
 def get_contacts():
@@ -903,7 +909,23 @@ def send_sms_via_gateway(req: SendSmsRequest):
     """
     Send an SMS using Android SMS Gateway (https://github.com/capcom6/android-sms-gateway).
     Formats payload according to official OpenAPI spec: POST /3rdparty/v1/messages
+    Enforces permanent suppression and DNC registry scrub before dispatch.
     """
+    # 1. Check permanent suppression and DNC registry before any outbound SMS
+    if not req.bypass_suppression:
+        is_blocked, block_reason = is_lead_blocked_from_outreach(req.phone, {
+            "parcel_id": req.parcel_id,
+            "owner_name": req.owner_name,
+            "property_address": req.property_address
+        })
+        if is_blocked:
+            return {
+                "status": "error",
+                "message": f"Outbound SMS blocked: {block_reason}",
+                "suppressed": True,
+                "blocked_reason": block_reason
+            }
+
     settings = load_sms_settings()
     mode = settings.get("mode", "local")
     base_url = settings.get("base_url", "http://192.168.1.100:8080").rstrip("/")
@@ -1257,6 +1279,22 @@ async def receive_inbound_sms(request: Request):
     with open(OUTREACH_LOG_FILE, "w", encoding="utf-8") as f:
         json.dump(logs[:500], f, indent=2)
 
+    # If opt-out action was detected, permanently persist to suppression list and dispatch confirmation
+    if bot_res.get("action") == "OPT_OUT":
+        add_to_suppression_list(sender_phone, reason="OPT_OUT", lead_info=lead)
+        opt_out_reply = bot_res.get("suggested_reply") or "Understood. You have been removed from our list and will not receive any further messages from us."
+        try:
+            send_sms_via_gateway(SendSmsRequest(
+                phone=sender_phone,
+                message=opt_out_reply,
+                parcel_id=lead.get("parcel_id"),
+                owner_name=lead.get("owner_name"),
+                property_address=lead.get("property_address"),
+                bypass_suppression=True
+            ))
+        except Exception as e:
+            print(f"[OptOut] Error dispatching opt-out confirmation: {e}")
+
     # If appointment was confirmed, automatically dispatch calendar invite (.ics) to John's Gmail
     if bot_res.get("action") == "APPOINTMENT_CONFIRMED":
         try:
@@ -1307,6 +1345,10 @@ def simulate_seller_inbound(req: InboundSmsWebhookRequest):
 
     history = get_lead_sms_thread(sender_phone, lead.get("parcel_id", ""))
     bot_res = seller_bot.process_inbound_sms(lead, msg_text, history)
+
+    # If opt-out action was detected, persist to suppression list
+    if bot_res.get("action") == "OPT_OUT":
+        add_to_suppression_list(sender_phone, reason="OPT_OUT", lead_info=lead)
 
     log_entry = {
         "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
@@ -1896,57 +1938,57 @@ DEFAULT_OUTREACH_TEMPLATES = {
     "sms": [
         {
             "id": "casual_local",
-            "name": "🏡 Casual Local Inquiry (High Response / Zero Spam)",
+            "name": "🏡 Casual Local Hook (Emma - Peak Investments)",
             "category": "casual_inquiry",
-            "body": "Hey {FirstName}, quick question, are you still the owner over at {Address}?"
+            "body": "Hey {FirstName}, Emma here with Peak Investments. Quick question, are you still the owner over at {Address}? Reply STOP to opt out"
         },
         {
             "id": "drive_by",
             "name": "🚗 Neighborly Direct Buyer Hook",
             "category": "direct_buyer",
-            "body": "Hi {FirstName}, my partner John and I were looking at houses near {Address}. Wondering if you would ever consider an offer or if you are holding onto it?"
+            "body": "Hi {FirstName}, Emma with Peak Investments. We buy houses as is for cash. Would you ever consider an offer on {Address}, or are you holding onto it? Reply STOP to opt out"
         },
         {
             "id": "as_is_no_fees",
             "name": "🛠️ Direct As-Is / No Realtor Fees",
             "category": "as_is",
-            "body": "Hey {FirstName}, reaching out about {Address}. We are looking to purchase a place in the area as is with no realtor fees or repair work. Would you consider selling?"
+            "body": "Hey {FirstName}, Emma with Peak Investments. We're buying in the area cash as is, no realtor fees or repair work. Would you consider selling {Address}? Reply STOP to opt out"
         },
         {
             "id": "curious_walkaway",
             "name": "❓ Simple & Direct Inquiry",
             "category": "direct_inquiry",
-            "body": "Hi {FirstName}, I know this is out of the blue, but would you consider parting with {Address} for the right price, or definitely not selling right now?"
+            "body": "Hi {FirstName}, Emma with Peak Investments. I know this is out of the blue, but would you consider parting with {Address} for the right price, or definitely not selling right now? Reply STOP to opt out"
         },
         {
             "id": "code_violation",
             "name": "⚠️ Code Violation / City Citation Takeover",
             "category": "code_violations",
-            "body": "Hi {FirstName}, noticed the city had some open notices on {Address}. We work with owners in {City} to resolve municipal citations directly and buy as is. Open to chatting about options?"
+            "body": "Hi {FirstName}, Emma with Peak Investments. Noticed open city notices on {Address}. We resolve municipal citations and buy as is. Open to chatting about options? Reply STOP to opt out"
         },
         {
             "id": "pre_foreclosure",
             "name": "🏛️ Pre-Foreclosure / Stop Auction Date",
             "category": "lis_pendens",
-            "body": "Hi {FirstName}, reaching out regarding {Address}. We help homeowners in {County} resolve pending bank deadlines before auction dates. Would you be open to a quick call to review your options?"
+            "body": "Hi {FirstName}, Emma with Peak Investments reaching out regarding {Address}. We help homeowners resolve pending bank deadlines before auction dates. Would you be open to a quick call? Reply STOP to opt out"
         },
         {
             "id": "probate_estate",
             "name": "📜 Probate / Inherited Property (Leave Contents)",
             "category": "probate",
-            "body": "Hi {FirstName}, my condolences regarding the family estate on {Address}. If the family is ever looking to sell without doing cleanouts, repairs, or realtor fees, we would love to help."
+            "body": "Hi {FirstName}, Emma with Peak Investments regarding {Address}. Condolences if you recently lost a loved one. We buy inherited properties as is with zero cleanout needed. Open to an offer? Reply STOP to opt out"
         },
         {
             "id": "casual_followup",
             "name": "👋 Friendly Follow-Up",
             "category": "followup",
-            "body": "Hi {FirstName}, just checking back in regarding {Address}. Would you still be open to an offer if the terms make sense? Thanks!"
+            "body": "Hi {FirstName}, Emma checking back in regarding {Address}. Would you still be open to an offer if the terms make sense? Reply STOP to opt out"
         },
         {
             "id": "cash_offer",
             "name": "💰 Direct Private Purchase (Alternative)",
             "category": "cash_offer",
-            "body": "Hi {FirstName}, are you open to a direct private purchase on {Address}? We handle standard closing costs and buy 100% as is."
+            "body": "Hi {FirstName}, Emma with Peak Investments. Are you open to a direct private purchase on {Address}? We handle standard closing costs and buy 100% as is. Reply STOP to opt out"
         }
     ],
     "email": [
@@ -2010,6 +2052,70 @@ def reset_templates():
     """Reset outreach templates to default factory scripts."""
     save_outreach_templates(DEFAULT_OUTREACH_TEMPLATES)
     return {"status": "success", "message": "Templates reset to defaults.", "templates": DEFAULT_OUTREACH_TEMPLATES}
+
+# -------------------------------------------------------------
+# Permanent Suppression List & DNC Scrub Endpoints
+# -------------------------------------------------------------
+
+class SuppressionAddRequest(BaseModel):
+    phone: str
+    reason: Optional[str] = "OPT_OUT"
+    parcel_id: Optional[str] = ""
+    owner_name: Optional[str] = ""
+    property_address: Optional[str] = ""
+    county: Optional[str] = ""
+
+class SuppressionRemoveRequest(BaseModel):
+    phone: str
+
+class DncScrubRequest(BaseModel):
+    leads: List[Dict[str, Any]] = []
+
+@app.get("/api/suppression")
+def get_suppression_endpoint():
+    """Get all permanently suppressed numbers and opt-out history."""
+    items = load_suppression_list()
+    return {"status": "success", "count": len(items), "suppression_list": items}
+
+@app.post("/api/suppression/add")
+def add_suppression_endpoint(req: SuppressionAddRequest):
+    """Manually add a number to permanent suppression list."""
+    entry = add_to_suppression_list(
+        phone_str=req.phone,
+        reason=req.reason or "OPT_OUT",
+        lead_info={
+            "parcel_id": req.parcel_id,
+            "owner_name": req.owner_name,
+            "property_address": req.property_address,
+            "county": req.county
+        }
+    )
+    return {"status": "success", "message": f"Phone {req.phone} permanently suppressed.", "entry": entry}
+
+@app.post("/api/suppression/remove")
+def remove_suppression_endpoint(req: SuppressionRemoveRequest):
+    """Remove a number from suppression list."""
+    success = remove_from_suppression_list(req.phone)
+    return {"status": "success" if success else "not_found", "phone": req.phone}
+
+@app.get("/api/dnc")
+def get_dnc_endpoint():
+    """Get all numbers on DNC registry list."""
+    items = load_dnc_list()
+    return {"status": "success", "count": len(items), "dnc_list": items}
+
+@app.post("/api/dnc/scrub")
+def scrub_leads_dnc_endpoint(req: DncScrubRequest):
+    """Scrub a list of leads against federal/state DNC and permanent suppression list."""
+    clean_leads, blocked_leads = scrub_outbound_lead_list(req.leads)
+    return {
+        "status": "success",
+        "total_submitted": len(req.leads),
+        "clean_count": len(clean_leads),
+        "blocked_count": len(blocked_leads),
+        "clean_leads": clean_leads,
+        "blocked_leads": blocked_leads
+    }
 
 # -------------------------------------------------------------
 # Wholesale Purchase Agreement & PandaDoc E-Sign Integration

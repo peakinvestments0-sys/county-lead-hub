@@ -33,15 +33,15 @@ function escapeAttr(str) {
 }
 
 const SMS_TEMPLATES = {
-  casual_local: "Hey {FirstName}, quick question, are you still the owner over at {Address}?",
-  drive_by: "Hi {FirstName}, my partner John and I were looking at houses near {Address}. Wondering if you would ever consider an offer or if you are holding onto it?",
-  as_is_no_fees: "Hey {FirstName}, reaching out about {Address}. We are looking to purchase a place in the area as is with no realtor fees or repair work. Would you consider selling?",
-  curious_walkaway: "Hi {FirstName}, I know this is out of the blue, but would you consider parting with {Address} for the right price, or definitely not selling right now?",
-  code_violation: "Hi {FirstName}, noticed the city had some open notices on {Address}. We work with owners in {City} to resolve municipal citations directly and buy as is. Open to chatting about options?",
-  pre_foreclosure: "Hi {FirstName}, reaching out regarding {Address}. We help homeowners in {County} resolve pending bank deadlines before auction dates. Would you be open to a quick call to review your options?",
-  probate_estate: "Hi {FirstName}, my condolences regarding the family estate on {Address}. If the family is ever looking to sell without doing cleanouts, repairs, or realtor fees, we would love to help.",
-  casual_followup: "Hi {FirstName}, just checking back in regarding {Address}. Would you still be open to an offer if the terms make sense? Thanks!",
-  cash_offer: "Hi {FirstName}, are you open to a direct private purchase on {Address}? We handle standard closing costs and buy 100% as is."
+  casual_local: "Hey {FirstName}, Emma here with Peak Investments. Quick question, are you still the owner over at {Address}? Reply STOP to opt out",
+  drive_by: "Hi {FirstName}, Emma with Peak Investments. We buy houses as is for cash. Would you ever consider an offer on {Address}, or are you holding onto it? Reply STOP to opt out",
+  as_is_no_fees: "Hey {FirstName}, Emma with Peak Investments. We're buying in the area cash as is, no realtor fees or repair work. Would you consider selling {Address}? Reply STOP to opt out",
+  curious_walkaway: "Hi {FirstName}, Emma with Peak Investments. I know this is out of the blue, but would you consider parting with {Address} for the right price, or definitely not selling right now? Reply STOP to opt out",
+  code_violation: "Hi {FirstName}, Emma with Peak Investments. Noticed open city notices on {Address}. We resolve municipal citations and buy as is. Open to chatting about options? Reply STOP to opt out",
+  pre_foreclosure: "Hi {FirstName}, Emma with Peak Investments reaching out regarding {Address}. We help homeowners resolve pending bank deadlines before auction dates. Would you be open to a quick call? Reply STOP to opt out",
+  probate_estate: "Hi {FirstName}, Emma with Peak Investments regarding {Address}. Condolences if you recently lost a loved one. We buy inherited properties as is with zero cleanout needed. Open to an offer? Reply STOP to opt out",
+  casual_followup: "Hi {FirstName}, Emma checking back in regarding {Address}. Would you still be open to an offer if the terms make sense? Reply STOP to opt out",
+  cash_offer: "Hi {FirstName}, Emma with Peak Investments. Are you open to a direct private purchase on {Address}? We handle standard closing costs and buy 100% as is. Reply STOP to opt out"
 };
 
 document.addEventListener("DOMContentLoaded", () => {

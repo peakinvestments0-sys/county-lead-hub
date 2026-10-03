@@ -130,6 +130,21 @@ class LucasOperatorEngine:
         message = timer.get("payload_message", "")
 
         try:
+            from src.suppression_service import is_lead_blocked_from_outreach
+            is_blocked, reason = is_lead_blocked_from_outreach(phone)
+            if is_blocked:
+                with self._lock:
+                    timer["status"] = "SUPPRESSED"
+                    timer["error"] = f"Outreach blocked: {reason}"
+                    self._save_timers()
+                self.log_memory(
+                    "WARNING",
+                    f"Timer Canceled for {lead_name} (Suppressed/DNC)",
+                    f"Outbound follow-up blocked: {reason}",
+                    lead_id=timer.get("lead_id")
+                )
+                return
+
             if action in ["SMS_NUDGE", "AUTO_FOLLOWUP"] and phone:
                 # Dispatch follow-up SMS via backend SMS sender or log simulation
                 self._dispatch_sms(phone, message, lead_name)
