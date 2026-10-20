@@ -1,0 +1,916 @@
+{
+  "id": "b8875c6d-0a3e-4b06-99ed-29e03552acf3",
+  "status": "complete",
+  "items": [
+    {
+      "parcel_id": "SKIP-ORANGE-1918-WOODWARD-ST",
+      "email": "digital_kiss74@yahoo.com",
+      "property_key": "FL:orange:302219151206020",
+      "owner": "Tuong Vo",
+      "template_type": "code_violation",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-2013-FOREST-CIR",
+      "email": "awsessions@yahoo.com",
+      "property_key": "FL:orange:302230283200390",
+      "owner": "Andrew Sessions",
+      "template_type": "code_violation",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-3018-WILLOW-BEND-BLVD",
+      "email": "iceprincess0117@aol.com",
+      "property_key": "FL:orange:292207863002500",
+      "owner": "Troy White",
+      "template_type": "code_violation",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-201-CAMBRIDGE-BLVD",
+      "email": "dianeebennett@earthlink.net",
+      "property_key": "FL:orange:292202299610140",
+      "owner": "Michael Bennett",
+      "template_type": "quick_cash",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-4519-ARCH-ST",
+      "email": "necha_18@yahoo.com",
+      "property_key": "FL:orange:292220456402230",
+      "owner": "Nathaniel Weathers",
+      "template_type": "quick_cash",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-21622-SLED-RD",
+      "email": "hubertgomez@yahoo.com",
+      "property_key": "FL:orange:332218132204140",
+      "owner": "Charles Anderson",
+      "template_type": "quick_cash",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-4800-ELKMONT-RD",
+      "email": "bennett102@hotmail.com",
+      "property_key": "FL:orange:292218958007100",
+      "owner": "Michael Bennett",
+      "template_type": "quick_cash",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-1433-FALCONWOOD-CT",
+      "email": "patrica_32712_@yahoo.com",
+      "property_key": "FL:orange:282033691800920",
+      "owner": "Nathaniel Weathers",
+      "template_type": "quick_cash",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-16040-CITRUS-KNOLL-DR",
+      "email": "heidibennett@verizon.net",
+      "property_key": "FL:orange:272232360201270",
+      "owner": "Michael Bennett",
+      "template_type": "quick_cash",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-3727-BRITAINSHIRE-CT",
+      "email": "blsmith429xk@earthlink.net",
+      "property_key": "FL:orange:292432382500190",
+      "owner": "Smith Bruce L Tr nan",
+      "template_type": "quick_cash",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-11909-BENTRY-ST",
+      "email": "danilo_sotto@hotmail.com",
+      "property_key": "FL:orange:302418887401510",
+      "owner": "Bruce Smith",
+      "template_type": "quick_cash",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-755-ELLWOOD-AVE",
+      "email": "rebeccamayo71@yahoo.com",
+      "property_key": "FL:orange:292222625600420",
+      "owner": "Karen Anderson",
+      "template_type": "quick_cash",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-12954-BROAKFIELD-CIR",
+      "email": "huville@msn.com",
+      "property_key": "FL:orange:292422199500180",
+      "owner": "Julio Lopez",
+      "template_type": "quick_cash",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-330-SILVERDALE-AVE",
+      "email": "chris.dobson72@gmail.com",
+      "property_key": "FL:orange:272213179300050",
+      "owner": "Charles Anderson",
+      "template_type": "quick_cash",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-1815-JILL-CT",
+      "email": "charlie@distdata.com",
+      "property_key": "FL:orange:302217904600680",
+      "owner": "Charles Anderson",
+      "template_type": "quick_cash",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-1956-IBIS-BAY-CT",
+      "email": "radislav57@gmail.com",
+      "property_key": "FL:orange:282216615400230",
+      "owner": "Charles Anderson",
+      "template_type": "quick_cash",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-860-HUNTINGTON-PL",
+      "email": "jimarr372@aol.com",
+      "property_key": "FL:orange:302231634404040",
+      "owner": "Kenneth Lewis",
+      "template_type": "quick_cash",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-3023-HARRISON-AVE",
+      "email": "rj.bennett@hotmail.com",
+      "property_key": "FL:orange:292214016016190",
+      "owner": "Michael Bennett",
+      "template_type": "quick_cash",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-14832-TRAPPER-RD",
+      "email": "ecanderson12@yahoo.com",
+      "property_key": "FL:orange:282436719500990",
+      "owner": "Charles Anderson",
+      "template_type": "quick_cash",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-3964-HUNTERS-ISLE-DR",
+      "email": "lydialopez928@gmail.com",
+      "property_key": "FL:orange:292432378900710",
+      "owner": "Graciela Lopez",
+      "template_type": "quick_cash",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-1807-WHITE-HERON-BAY-CIR",
+      "email": "gordimar@hotmail.com",
+      "property_key": "FL:orange:302431351000680",
+      "owner": "Duyen Le",
+      "template_type": "quick_cash",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-1210-HOLLY-SPRINGS-CIR",
+      "email": "devjohnson71@hotmail.com",
+      "property_key": "FL:orange:312219847700330",
+      "owner": "Devon Johnson",
+      "template_type": "quick_cash",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-3020-HARRISON-AVE",
+      "email": "profisha@hotmail.com",
+      "property_key": "FL:orange:292215016400080",
+      "owner": "Michael Bennett",
+      "template_type": "quick_cash",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-1795-BOBTAIL-DR",
+      "email": "laurenmccullum@aol.com",
+      "property_key": "FL:orange:292127946901100",
+      "owner": "Lauren Mccullum",
+      "template_type": "quick_cash",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-1860-CHINOOK-TRL",
+      "email": "donnadg@bellsouth.net",
+      "property_key": "FL:orange:302130213003080",
+      "owner": "Natasha Lewis",
+      "template_type": "quick_cash",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-2209-SAND-ARBOR-CIR",
+      "email": "stevieswife23@yahoo.com",
+      "property_key": "FL:orange:302430742900320",
+      "owner": "Julio Lopez",
+      "template_type": "quick_cash",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-2692-WHITE-ISLE-LN",
+      "email": "mkyle7124@gmail.com",
+      "property_key": "FL:orange:312306192101030",
+      "owner": "Michael Bennett",
+      "template_type": "quick_cash",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-1305-HEATHER-LAKE-DR",
+      "email": "elmuertofg3@hotmail.com",
+      "property_key": "FL:orange:292436672401690",
+      "owner": "Julio Lopez",
+      "template_type": "quick_cash",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-4879-FISKE-CIR",
+      "email": "obeygod1@ymail.com",
+      "property_key": "FL:orange:312201835900710",
+      "owner": "Rebekah Lewis",
+      "template_type": "quick_cash",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-7125-TRIPOLI-WAY",
+      "email": "yoaelias@gmail.com",
+      "property_key": "FL:orange:302302043505120",
+      "owner": "Yohandra Martinez",
+      "template_type": "quick_cash",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-2927-RIO-LN",
+      "email": "hjardemaalp@yahoo.com",
+      "property_key": "FL:orange:292303741902010",
+      "owner": "Paul Hjardemaal",
+      "template_type": "code_violation",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-3912-ROSE-PETAL-LN",
+      "email": "agore@aol.com",
+      "property_key": "FL:orange:292205774201190",
+      "owner": "Alice Gore",
+      "template_type": "code_violation",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-4445-CASSIUS-ST",
+      "email": "cpoposky@yahoo.com",
+      "property_key": "FL:orange:292305740516280",
+      "owner": "Cherichel Poposky",
+      "template_type": "code_violation",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-4058-SHELLMAN-ST",
+      "email": "roadrash17@hotmail.com",
+      "property_key": "FL:orange:292232359202050",
+      "owner": "Ramical Properties Llc nan",
+      "template_type": "code_violation",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-817-POLK-ST",
+      "email": "sexyladydee100@yahoo.com",
+      "property_key": "FL:orange:292226327900010",
+      "owner": "Thomas Linda Estate nan",
+      "template_type": "code_violation",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-2618-SANTANA-AVE",
+      "email": "esthere.bredy@hotmail.com",
+      "property_key": "FL:orange:292305739902460",
+      "owner": "Mystale Bredy Revocable Living Trust nan",
+      "template_type": "code_violation",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-4840-RED-WILLOW-AVE",
+      "email": "angelheath1983@yahoo.com",
+      "property_key": "FL:orange:292207863002210",
+      "owner": "Al & Yen Homes Llc nan",
+      "template_type": "probate",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-6105-AMBASSADOR-DR",
+      "email": "joshua_charles@rocketmail.com",
+      "property_key": "FL:orange:282213517606030",
+      "owner": "Joshua Charles",
+      "template_type": "quick_cash",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-14421-CONGRESS-ST",
+      "email": "lana.smith.68@gmail.com",
+      "property_key": "FL:orange:312224105601050",
+      "owner": "Lana Smith",
+      "template_type": "quick_cash",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-5405-BAYBROOK-AVE",
+      "email": "ranger2553@yahoo.com",
+      "property_key": "FL:orange:282314794400560",
+      "owner": "David T Duffy Revocable Trust nan",
+      "template_type": "lis_pendens",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-125-KRUEGER-ST",
+      "email": "jose192750@yahoo.com",
+      "property_key": "FL:orange:292311557208050",
+      "owner": "Jose Vasquez",
+      "template_type": "quick_cash",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-13048-HATHERTON-CIR",
+      "email": "trenchdigg@yahoo.com",
+      "property_key": "FL:orange:312429224300490",
+      "owner": "Raymond Henry",
+      "template_type": "quick_cash",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-2246-WAUTOMA-PL",
+      "email": "bbenjamin1965@gmail.com",
+      "property_key": "FL:orange:282214353104070",
+      "owner": "Benjamin Family Trust nan",
+      "template_type": "lis_pendens",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-1251-REAGANS-RESERVE-BLV",
+      "email": "rachelandjason10@gmail.com",
+      "property_key": "FL:orange:282102728400210",
+      "owner": "Jason Smith",
+      "template_type": "quick_cash",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-1402-ROOSEVELT-ST",
+      "email": "sstellmon@gmail.com",
+      "property_key": "FL:orange:292215027203070",
+      "owner": "Stephanie Simmons",
+      "template_type": "quick_cash",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-2514-SUGARSAND-CT",
+      "email": "aguileramadeline@gmail.com",
+      "property_key": "FL:orange:282030023103360",
+      "owner": "Madeline Aguilera",
+      "template_type": "lis_pendens",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-3313-JANET-ST",
+      "email": "johnthomasjr@yahoo.com",
+      "property_key": "FL:orange:272036718902220",
+      "owner": "John Thomas",
+      "template_type": "lis_pendens",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-2929-SOMERSWORTH-CT",
+      "email": "jfbryant17@yahoo.com",
+      "property_key": "FL:orange:282302680101030",
+      "owner": "Jonah Bryant",
+      "template_type": "lis_pendens",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "292231182103080",
+      "email": "burke@noemail.viswiss.com",
+      "property_key": "FL:orange:292231182103080",
+      "owner": "Beechram Burke",
+      "template_type": "quick_cash",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-10213-FACET-CT",
+      "email": "l.mcdowell@windermerefamilypractice.com",
+      "property_key": "FL:orange:282410203501040",
+      "owner": "Lisa Lloyd Mcdowell Family Trust nan",
+      "template_type": "lis_pendens",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-101-REESE-CT",
+      "email": "dperez3079@gmail.com",
+      "property_key": "FL:orange:282220482500800",
+      "owner": "Daniel Perez",
+      "template_type": "quick_cash",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-1515-DESS-DR",
+      "email": "b69gator@yahoo.com",
+      "property_key": "FL:orange:282222307300030",
+      "owner": "Brian Scott",
+      "template_type": "probate",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-19204-PADDOCK-ST",
+      "email": "treyszyszko10@gmail.com",
+      "property_key": "FL:orange:322310118426030",
+      "owner": "Michael Maloney",
+      "template_type": "quick_cash",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-14424-BELLA-LN",
+      "email": "bill@castlecanyon.com",
+      "property_key": "FL:orange:312413511200350",
+      "owner": "William Brockmeyer Ii Revocable Trus nan",
+      "template_type": "lis_pendens",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-4028-MEANDERING-BAY-DR",
+      "email": "myjohnson77@yahoo.com",
+      "property_key": "FL:orange:272013933500660",
+      "owner": "Myles Johnson",
+      "template_type": "quick_cash",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-4643-KOZART-ST",
+      "email": "jeancidel@hotmail.com",
+      "property_key": "FL:orange:292232548600190",
+      "owner": "Jean Alfredo Cidel Revocable Trust A nan",
+      "template_type": "lis_pendens",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-3199-SHADY-WILLOW-DR",
+      "email": "melysortiz1980@gmail.com",
+      "property_key": "FL:orange:292207863002020",
+      "owner": "Melissa Sanchez",
+      "template_type": "quick_cash",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-1739-CANOE-CREEK-FALLS-D",
+      "email": "yuli_249@hotmail.com",
+      "property_key": "FL:orange:302429033001070",
+      "owner": "Sheila Vargas",
+      "template_type": "quick_cash",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-425-THUNDER-GULCH-CT",
+      "email": "rusty328122@aol.com",
+      "property_key": "FL:orange:292423819000940",
+      "owner": "Danielle A Isaacs Homestead Trust nan",
+      "template_type": "lis_pendens",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-6441-MARLBERRY-DR",
+      "email": "francisphaneuf@bellsouth.net",
+      "property_key": "FL:orange:282322782005320",
+      "owner": "Francis Phaneuf",
+      "template_type": "probate",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-2117-PARKSIDE-MEADOW-DR",
+      "email": "christopherjohnson72@gmail.com",
+      "property_key": "FL:orange:282030914402160",
+      "owner": "Christopher Johnson",
+      "template_type": "probate",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-654-GRAND-ROYAL-CIR",
+      "email": "chilliesena@aol.com",
+      "property_key": "FL:orange:272223680100720",
+      "owner": "Jose Rivera",
+      "template_type": "probate",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-14932-YORKSHIRE-RUN-DR",
+      "email": "rosalylugaro@hotmail.com",
+      "property_key": "FL:orange:312301198514146",
+      "owner": "Cesar Lugaro",
+      "template_type": "quick_cash",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "292233901601110",
+      "email": "alexstrada2000@hotmail.com",
+      "property_key": "FL:orange:292233901601110",
+      "owner": "Alex Estrada",
+      "template_type": "quick_cash",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-2003-SUMMERFIELD-RD",
+      "email": "caryc6644@gmail.com",
+      "property_key": "FL:orange:302209413402010",
+      "owner": "James F Hoover Revocable Trust nan",
+      "template_type": "lis_pendens",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-4866-OAKBROOKE-PL",
+      "email": "fmratafa@yahoo.com",
+      "property_key": "FL:orange:302304215103060",
+      "owner": "Lynda Dennis",
+      "template_type": "lis_pendens",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-301-ILLINOIS-AVE",
+      "email": "jmhford@gmail.com",
+      "property_key": "FL:orange:282111380001280",
+      "owner": "James Mark Hays Trust nan",
+      "template_type": "lis_pendens",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-1923-HAMMERLIN-AVE",
+      "email": "mann_gupt@yahoo.com",
+      "property_key": "FL:orange:302218244400380",
+      "owner": "Asha Palta Trust nan",
+      "template_type": "quick_cash",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-5113-BEACH-RIVER-RD",
+      "email": "ggumpert@gmail.com",
+      "property_key": "FL:orange:272310839000120",
+      "owner": "Carol Prado Family Trust nan",
+      "template_type": "lis_pendens",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-2013-ROBERTS-POINT-DR",
+      "email": "b.goodwin@goodwest.com",
+      "property_key": "FL:orange:272301764300360",
+      "owner": "William T Goodwin Revocable Trust nan",
+      "template_type": "lis_pendens",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "322230789702930",
+      "email": "gvminardi@aol.com",
+      "property_key": "FL:orange:322230789702930",
+      "owner": "Gaetano Minardi",
+      "template_type": "lis_pendens",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-13548-GORGONA-ISLE-DR",
+      "email": "mamabear36@comcast.net",
+      "property_key": "FL:orange:272334917500220",
+      "owner": "Andrew C Taleas Revocable Trust nan",
+      "template_type": "lis_pendens",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-1427-FALCONWOOD-CT",
+      "email": "vernet22@netzero.com",
+      "property_key": "FL:orange:282033710400740",
+      "owner": "Gregory Vernet",
+      "template_type": "quick_cash",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-1652-MESSINA-AVE",
+      "email": "rwengrzyn@rollins.edu",
+      "property_key": "FL:orange:292305740801660",
+      "owner": "Thomas Ryan",
+      "template_type": "quick_cash",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-702-PARKMONT-PL",
+      "email": "djolima001@yahoo.com",
+      "property_key": "FL:orange:272213179300880",
+      "owner": "Jose Lima",
+      "template_type": "quick_cash",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "35-27-15-79434-000-0020",
+      "email": "sharissareeves@ymail.com",
+      "property_key": "FL:pinellas:35-27-15-79434-000-0020",
+      "owner": "Thomas Morris",
+      "template_type": "code_violation",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "292235309202140",
+      "email": "jeremymontemayor@yahoo.com",
+      "property_key": "FL:orange:292235309202140",
+      "owner": "Jeremy Montemayor",
+      "template_type": "code_violation",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "36-31-16-49176-000-1100",
+      "email": "shebellashanice@yahoo.com",
+      "property_key": "FL:pinellas:36-31-16-49176-000-1100",
+      "owner": "Shebella Smalls",
+      "template_type": "lis_pendens",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "08-29-16-94302-008-0130",
+      "email": "rosalcindy@hotmail.com",
+      "property_key": "FL:pinellas:08-29-16-94302-008-0130",
+      "owner": "Ramon Rosal",
+      "template_type": "code_violation",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "21-30-15-77645-000-0090",
+      "email": "chungdem@gmail.com",
+      "property_key": "FL:pinellas:21-30-15-77645-000-0090",
+      "owner": "Bradley Chung",
+      "template_type": "code_violation",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "19-30-15-89776-000-0780",
+      "email": "william.trudelle@yahoo.com",
+      "property_key": "FL:pinellas:19-30-15-89776-000-0780",
+      "owner": "William Trudelle",
+      "template_type": "lis_pendens",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "292225250803140",
+      "email": "myrna.arias@yahoo.com",
+      "property_key": "FL:orange:292225250803140",
+      "owner": "Aguirre Myrna",
+      "template_type": "lis_pendens",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "292231182405120",
+      "email": "egainer@hotmail.com",
+      "property_key": "FL:orange:292231182405120",
+      "owner": "Ebborah Gainer",
+      "template_type": "quick_cash",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "302232216601060",
+      "email": "becki236@sbcglobal.net",
+      "property_key": "FL:orange:302232216601060",
+      "owner": "Rebecca Douglas",
+      "template_type": "quick_cash",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "302304803454241",
+      "email": "donlynlar@aol.com",
+      "property_key": "FL:orange:302304803454241",
+      "owner": "Lynda Larsen",
+      "template_type": "quick_cash",
+      "status": "sent"
+    }
+  ],
+  "templates": {
+    "lis_pendens": {
+      "id": "lis_pendens",
+      "name": "Pre-Foreclosure / Stop Foreclosure Auction",
+      "category": "lis_pendens",
+      "subject": "Options to Stop Foreclosure: {Address}",
+      "body": "Hi {FirstName},\n\nI noticed public county records showing a pending foreclosure filing regarding your property at {Address}.\n\nAt 407 Flips, we buy Central Florida homes directly:\nStop the auction before the sale date\nProtect your credit and walk away with funds in hand\nZero Realtor commissions, zero inspection costs, and zero closing fees\nWe buy 100% as is\n\nFeel free to reply directly to this email or call/text me at (407) 555-FLIP.\n\nRespectfully,\nJohn | 407 Flips\nEmail: john@407flips.com | Phone: (407) 555-FLIP\nOrlando, FL"
+    },
+    "probate": {
+      "id": "probate",
+      "name": "Probate / Inherited Property",
+      "category": "probate",
+      "subject": "Estate Inquiry: {Address}",
+      "body": "Hi {FirstName},\n\nPlease accept my condolences if you have recently lost a family member. I am reaching out regarding the estate property at {Address}.\n\nAt 407 Flips, we specialize in inherited Florida homes:\nLeave anything you do not want: furniture, old appliances, clothing, or clutter. We handle full disposal.\nNo repairs needed, we buy strictly in current as is condition.\nFlexible closing timeline.\nZero realtor commissions.\n\nFeel free to reply directly to this email or call/text me at (407) 555-FLIP.\n\nWarm regards,\nJohn | 407 Flips\nEmail: john@407flips.com | Phone: (407) 555-FLIP\nOrlando, FL"
+    },
+    "code_violation": {
+      "id": "code_violation",
+      "name": "Code Violations / Heavy Repairs",
+      "category": "code_violations",
+      "subject": "Property Inquiry: {Address}",
+      "body": "Hi {FirstName},\n\nI am contacting you regarding your property at {Address}.\n\nAt 407 Flips, we take properties in any condition:\nWe pay off existing city code violations and municipal liens at closing\nZero repair demands, roof damage, plumbing, electrical, or structural issues welcome\nDirect purchase with no lender appraisal delays\nZero fees or closing expenses to you\n\nReply directly to this email or call/text me at (407) 555-FLIP.\n\nBest regards,\nJohn | 407 Flips\nEmail: john@407flips.com | Phone: (407) 555-FLIP\nOrlando, FL"
+    },
+    "quick_cash": {
+      "id": "quick_cash",
+      "name": "Direct Offer",
+      "category": "cash_offer",
+      "subject": "Direct Offer for {Address}",
+      "body": "Hi {FirstName},\n\nMy name is John with 407 Flips. I am actively working on projects in your neighborhood.\n\nI am interested in making an offer on your property at {Address}.\n\nAs is condition with no repairs, painting, or cleaning needed.\nFast and flexible timeline.\nZero expenses, no Realtor commissions and no seller closing costs.\n\nPlease reply to this email or call/text me at (407) 555-FLIP.\n\nBest regards,\nJohn | 407 Flips\nEmail: john@407flips.com | Phone: (407) 555-FLIP\nOrlando, FL"
+    }
+  },
+  "next_send_at": 1792039624.8400338,
+  "sent_emails": [
+    "agore@aol.com",
+    "aguileramadeline@gmail.com",
+    "alexstrada2000@hotmail.com",
+    "angelheath1983@yahoo.com",
+    "awsessions@yahoo.com",
+    "b.goodwin@goodwest.com",
+    "b69gator@yahoo.com",
+    "bbenjamin1965@gmail.com",
+    "bbruton@attbi.com",
+    "becki236@sbcglobal.net",
+    "bennett102@hotmail.com",
+    "bill@castlecanyon.com",
+    "blsmith429xk@earthlink.net",
+    "bthomas4717@yahoo.com",
+    "bucknyl@yahoo.com",
+    "burke@noemail.viswiss.com",
+    "caryc6644@gmail.com",
+    "charlie@distdata.com",
+    "chilliesena@aol.com",
+    "chris.dobson72@gmail.com",
+    "christopherjohnson72@gmail.com",
+    "chungdem@gmail.com",
+    "cpoposky@yahoo.com",
+    "danilo_sotto@hotmail.com",
+    "devjohnson71@hotmail.com",
+    "dianeebennett@earthlink.net",
+    "digital_kiss74@yahoo.com",
+    "djolima001@yahoo.com",
+    "donlynlar@aol.com",
+    "donnadg@bellsouth.net",
+    "dperez3079@gmail.com",
+    "ecanderson12@yahoo.com",
+    "egainer@hotmail.com",
+    "elmuertofg3@hotmail.com",
+    "esthere.bredy@hotmail.com",
+    "fmratafa@yahoo.com",
+    "francisphaneuf@bellsouth.net",
+    "ggumpert@gmail.com",
+    "gordimar@hotmail.com",
+    "gvminardi@aol.com",
+    "hahcooper1221@yahoo.com",
+    "heidibennett@verizon.net",
+    "hjardemaalp@yahoo.com",
+    "hubertgomez@yahoo.com",
+    "huville@msn.com",
+    "iceprincess0117@aol.com",
+    "jeancidel@hotmail.com",
+    "jeremymontemayor@yahoo.com",
+    "jfbryant17@yahoo.com",
+    "jimarr372@aol.com",
+    "jmhford@gmail.com",
+    "johnthomasjr@yahoo.com",
+    "jose192750@yahoo.com",
+    "joshua_charles@rocketmail.com",
+    "l.mcdowell@windermerefamilypractice.com",
+    "lana.smith.68@gmail.com",
+    "laurenmccullum@aol.com",
+    "lydialopez928@gmail.com",
+    "mamabear36@comcast.net",
+    "mann_gupt@yahoo.com",
+    "melysortiz1980@gmail.com",
+    "mkyle7124@gmail.com",
+    "myjohnson77@yahoo.com",
+    "mykeg69@gmail.com",
+    "myrna.arias@yahoo.com",
+    "necha_18@yahoo.com",
+    "obeygod1@ymail.com",
+    "patrica_32712_@yahoo.com",
+    "profisha@hotmail.com",
+    "rachelandjason10@gmail.com",
+    "radislav57@gmail.com",
+    "ranger2553@yahoo.com",
+    "rebeccamayo71@yahoo.com",
+    "richardwesley@outlook.com",
+    "rj.bennett@hotmail.com",
+    "roadrash17@hotmail.com",
+    "rosalcindy@hotmail.com",
+    "rosalylugaro@hotmail.com",
+    "rusty328122@aol.com",
+    "rwengrzyn@rollins.edu",
+    "sexyladydee100@yahoo.com",
+    "sharissareeves@ymail.com",
+    "shebellashanice@yahoo.com",
+    "smileybrenna@aol.com",
+    "sstellmon@gmail.com",
+    "stevieswife23@yahoo.com",
+    "trenchdigg@yahoo.com",
+    "treyszyszko10@gmail.com",
+    "vernet22@netzero.com",
+    "william.trudelle@yahoo.com",
+    "yoaelias@gmail.com",
+    "yuli_249@hotmail.com",
+    "zakariabani@icloud.com"
+  ],
+  "sent_properties": [
+    "FL:orange:272013933500660",
+    "FL:orange:272036718902220",
+    "FL:orange:272213179300050",
+    "FL:orange:272213179300880",
+    "FL:orange:272223680100720",
+    "FL:orange:272232360201270",
+    "FL:orange:272301764300360",
+    "FL:orange:272310839000120",
+    "FL:orange:272334917500220",
+    "FL:orange:282030023103360",
+    "FL:orange:282030914402160",
+    "FL:orange:282033691800920",
+    "FL:orange:282033710400740",
+    "FL:orange:282102728400210",
+    "FL:orange:282111380001280",
+    "FL:orange:282213517606030",
+    "FL:orange:282214353104070",
+    "FL:orange:282216615400230",
+    "FL:orange:282220482500800",
+    "FL:orange:282222307300030",
+    "FL:orange:282302680101030",
+    "FL:orange:282314794400560",
+    "FL:orange:282322782005320",
+    "FL:orange:282410203501040",
+    "FL:orange:282436719500990",
+    "FL:orange:292127946901100",
+    "FL:orange:292202299610140",
+    "FL:orange:292205774201190",
+    "FL:orange:292207863002020",
+    "FL:orange:292207863002210",
+    "FL:orange:292207863002500",
+    "FL:orange:292214016016190",
+    "FL:orange:292215016400080",
+    "FL:orange:292215027203070",
+    "FL:orange:292218958007100",
+    "FL:orange:292220456402230",
+    "FL:orange:292222625600420",
+    "FL:orange:292225250803140",
+    "FL:orange:292226327900010",
+    "FL:orange:292231182103080",
+    "FL:orange:292231182405120",
+    "FL:orange:292232359202050",
+    "FL:orange:292232548600190",
+    "FL:orange:292233459602030",
+    "FL:orange:292233901601110",
+    "FL:orange:292235309202140",
+    "FL:orange:292303741902010",
+    "FL:orange:292305739902460",
+    "FL:orange:292305740516280",
+    "FL:orange:292305740801660",
+    "FL:orange:292311557208050",
+    "FL:orange:292417200103850",
+    "FL:orange:292422199500180",
+    "FL:orange:292423819000940",
+    "FL:orange:292432378900710",
+    "FL:orange:292432382500190",
+    "FL:orange:292436672401690",
+    "FL:orange:302130213003080",
+    "FL:orange:302209413402010",
+    "FL:orange:302217904600680",
+    "FL:orange:302218244400380",
+    "FL:orange:302219151206020",
+    "FL:orange:302230283200390",
+    "FL:orange:302231634404040",
+    "FL:orange:302232216601060",
+    "FL:orange:302302043505120",
+    "FL:orange:302304215103060",
+    "FL:orange:302304803454241",
+    "FL:orange:302418887401510",
+    "FL:orange:302429033001070",
+    "FL:orange:302430742900320",
+    "FL:orange:302431351000680",
+    "FL:orange:312201835900710",
+    "FL:orange:312218023203040",
+    "FL:orange:312219847700330",
+    "FL:orange:312224105601050",
+    "FL:orange:312301198514146",
+    "FL:orange:312306192101030",
+    "FL:orange:312319200600310",
+    "FL:orange:312413511200350",
+    "FL:orange:312429224300490",
+    "FL:orange:322230789702930",
+    "FL:orange:322310118426030",
+    "FL:orange:332218132204140",
+    "FL:pinellas:06-29-16-58470-000-0110",
+    "FL:pinellas:08-29-16-94302-008-0130",
+    "FL:pinellas:19-30-15-89776-000-0780",
+    "FL:pinellas:21-30-15-77645-000-0090",
+    "FL:pinellas:31-28-16-64020-027-0430",
+    "FL:pinellas:34-28-16-99575-032-0020",
+    "FL:pinellas:35-27-15-79434-000-0020",
+    "FL:pinellas:35-30-16-01404-006-0200",
+    "FL:pinellas:36-31-16-49176-000-1100"
+  ],
+  "held_emails": [],
+  "held_properties": [],
+  "skipped_reasons": {
+    "Phone number is on permanent suppression list (OPT_OUT).": 4,
+    "Missing or malformed email": 13,
+    "Already emailed": 8,
+    "Duplicate email or property": 3
+  },
+  "notice": ""
+}

@@ -1,0 +1,64 @@
+{
+  "market_region": "Central Florida (Orlando Metro, Brevard County, Tampa Bay)",
+  "updated_date": "2026-10-04",
+  "rates_per_sqft": {
+    "tier1_full_retail_flip": {
+      "base_cosmetic_per_sqft": 45.0,
+      "heavy_gut_per_sqft": 52.0,
+      "scope_allocations": {
+        "kitchen_countertops_cabinets": "24%",
+        "two_bathrooms_tile_vanities": "19%",
+        "lvp_flooring_throughout": "14%",
+        "interior_paint_drywall_skim": "16%",
+        "doors_trim_baseboards_5inch": "14%",
+        "lighting_switches_fans_led": "6%",
+        "demo_dumpster_final_clean": "7%"
+      }
+    },
+    "tier2_landlord_rental_brrrr": {
+      "base_rental_per_sqft": 26.0,
+      "heavy_rental_per_sqft": 32.0,
+      "scope_allocations": {
+        "kitchen_refresh_granite_laminate": "25%",
+        "bathrooms_reglaze_standard_vanities": "18%",
+        "commercial_vinyl_plank": "16%",
+        "standard_drywall_patch_paint": "18%",
+        "trim_doors_exterior_wash": "11%",
+        "fixtures_gfci_safety": "5%",
+        "trashout_clean": "7%"
+      }
+    }
+  },
+  "florida_4point_capital_allowances": {
+    "architectural_shingle_roof": {
+      "allowance": 14500.0,
+      "range": [12000.0, 16000.0],
+      "trigger_age_years": 15,
+      "mandate": "F.S. § 627.7011 / Citizens 3-yr RUL requirement & FBC SB 4-D 25% tear-off rule"
+    },
+    "matched_split_hvac_heat_pump": {
+      "allowance": 9500.0,
+      "range": [8000.0, 10500.0],
+      "trigger_age_years": 12,
+      "mandate": "2023 DOE SEER2 (14.3 Min FL) & 2025/2026 EPA AIM Act Low-GWP (R-454B/A2L)"
+    },
+    "polybutylene_pex_whole_house_repipe": {
+      "allowance": 6500.0,
+      "range": [5000.0, 8000.0],
+      "era": "1978-1995",
+      "mandate": "Major FL carriers refuse binding without 30-day repipe commitment"
+    },
+    "cast_iron_sewer_line_lining_or_trench": {
+      "allowance": 12500.0,
+      "range": [10000.0, 18000.0],
+      "era": "Pre-1975",
+      "mandate": "Mandatory sewer scope video inspection; bottom channeling causes insurance denial"
+    },
+    "electrical_panel_200a_service_upgrade": {
+      "allowance": 3500.0,
+      "range": [2500.0, 4000.0],
+      "risk_brands": ["Federal Pacific Stab-Lok", "Zinsco", "Sylvania-Zinsco", "Challenger"],
+      "mandate": "Automatic 4-point decline across all voluntary and involuntary carriers"
+    }
+  }
+}

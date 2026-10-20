@@ -1,0 +1,15 @@
+{
+  "refresh_result": {
+    "status": "success",
+    "matched_contacts": 117,
+    "unique_properties": 111,
+    "unresolved": [],
+    "backup": "C:\\Projects\\Apps\\Pinellas-county-app\\data\\backups\\saved_contacts-before-property-matches-1792015333789691900.json"
+  },
+  "original_contact_fields_preserved": true,
+  "imported_linked": 85,
+  "imported_double_distress": 39,
+  "explicit_probate_records": 5,
+  "unique_saved_properties": 113,
+  "emails_preserved": 106
+}

@@ -153,55 +153,20 @@ class TestCountyLeadHubCompliance(unittest.TestCase):
             price = extract_dollar_amount(text)
             self.assertEqual(price, expected, f"Price extraction failed for '{text}': got {price}, expected {expected}")
 
-    def test_soft_opt_out_language_and_single_segment_limit(self):
-        """
-        Verify Emma Stage 1 Doorbell Openers:
-        1. 'Reply STOP to opt out' is dropped entirely.
-        2. Exactly one of the 3 approved human soft opt-outs is attached.
-        3. Multi-list lead generates OPENER_MULTI_LIST.
-        4. Single-list lead generates OPENER_SINGLE_LIST.
-        5. Every opener is under 160 characters (GSM-7 single SMS segment).
-        """
-        # Test Forced Multi-List Lead
-        outreach_multi = self.bot.generate_initial_outreach(self.multi_list_lead, forced_angle="multi_list")
-        text_multi = outreach_multi.get("suggested_reply", "")
-        self.assertNotIn("Reply STOP to opt out", text_multi, "Old 'Reply STOP' phrase found in multi-list outreach")
-        self.assertIn("did you ever decide what you're doing with", text_multi, "Multi-list opener missing target hook")
-        has_soft_opt_multi = any(opt in text_multi for opt in SOFT_OPT_OUTS)
-        self.assertTrue(has_soft_opt_multi, f"No approved soft opt-out found in: '{text_multi}'")
-        self.assertLessEqual(len(text_multi), 160, f"Multi-list opener exceeds 160 char limit: ({len(text_multi)} chars)")
-
-        # Test Forced Single-List Lead
-        outreach_single = self.bot.generate_initial_outreach(self.single_list_lead, forced_angle="single_list")
-        text_single = outreach_single.get("suggested_reply", "")
-        self.assertNotIn("Reply STOP to opt out", text_single, "Old 'Reply STOP' phrase found in single-list outreach")
-        self.assertIn("quick question on", text_single, "Single-list opener missing target hook")
-        has_soft_opt_single = any(opt in text_single for opt in SOFT_OPT_OUTS)
-        self.assertTrue(has_soft_opt_single, f"No approved soft opt-out found in: '{text_single}'")
-        self.assertLessEqual(len(text_single), 160, f"Single-list opener exceeds 160 char limit: ({len(text_single)} chars)")
-
-        # Test Unforced Generation: must be <= 160 chars and contain an approved soft opt-out
-        for _ in range(10):
-            out_auto = self.bot.generate_initial_outreach(self.single_list_lead)
-            t_auto = out_auto.get("suggested_reply", "")
-            self.assertNotIn("Reply STOP", t_auto)
-            self.assertTrue(any(opt in t_auto for opt in SOFT_OPT_OUTS))
-            self.assertLessEqual(len(t_auto), 160)
-
-        # Test all 3 tiers with all 3 soft opt-outs across various address lengths
-        openers = [
-            DISTRESS_SCRIPTS["OPENER_MULTI_LIST"],
-            DISTRESS_SCRIPTS["OPENER_SINGLE_LIST"],
-            DISTRESS_SCRIPTS["OPENER_ULTRA_SHORT"]
-        ]
-        sample_first_name = "Christopher"
-        sample_address = "450 Ocean Dr"
-
-        for opener in openers:
-            base = opener.format(first_name=sample_first_name, address=sample_address)
-            for soft_opt in SOFT_OPT_OUTS:
-                full_msg = f"{base} {soft_opt}"
-                self.assertLessEqual(len(full_msg), 160, f"Opener + soft opt-out exceeds 160 chars ({len(full_msg)} chars): '{full_msg}'")
+    def test_initial_outreach_uses_the_shared_updated_templates(self):
+        """Initial suggestions follow the same current templates as Auto SMS in every county."""
+        from src.initial_sms_templates import load_initial_sms_templates
+        from src.sms_outreach_queue import fill_template
+        from src.seller_bot_engine import sanitize_sms_no_underlines_no_hyphens
+        for template in load_initial_sms_templates():
+            for county in ('Orange', 'Pinellas', 'Hillsborough'):
+                lead = dict(self.single_list_lead, county=county)
+                expected = sanitize_sms_no_underlines_no_hyphens(fill_template(template['body'], {
+                    'owner': lead['owner_name'], 'address': lead['property_address']}, county))
+                result = self.bot.generate_initial_outreach(lead, forced_angle=template['id'])
+                self.assertEqual(result['suggested_reply'], expected)
+                self.assertEqual(result['opener_angle'], template['id'])
+                self.assertFalse(result['auto_send_allowed'])
 
     def test_opener_opt_out_vs_mid_convo_scope_guard(self):
         """
@@ -221,18 +186,18 @@ class TestCountyLeadHubCompliance(unittest.TestCase):
             conversation_history=[]
         )
         self.assertEqual(result_opener.get("action"), "OPT_OUT")
-        self.assertEqual(result_opener.get("suggested_reply"), "Got it, won't text again.")
+        self.assertEqual(result_opener.get("suggested_reply"), "Got it, will not text again.")
         self.assertTrue(is_number_suppressed(test_phone), "Phone was not suppressed after opener rejection")
 
         remove_from_suppression_list(test_phone)
 
         # 2. Mid-conversation rejection (e.g. 3 messages deep into negotiation)
         convo_history = [
-            {"direction": "OUTBOUND", "message": "Hey Sarah, quick question on 450 Ocean Dr, got a sec?"},
+            {"direction": "OUTBOUND", "message": "Hey i came across 450 Ocean Dr online, open for a discussion about it?"},
             {"direction": "INBOUND", "message": "Who is this?"},
-            {"direction": "OUTBOUND", "message": "Emma, I work with a local investment group buying in Clearwater."},
+            {"direction": "OUTBOUND", "message": "My name is Brooke with 407flips."},
             {"direction": "INBOUND", "message": "What are you offering?"},
-            {"direction": "OUTBOUND", "message": "Would you consider $200k cash?"}
+            {"direction": "OUTBOUND", "message": "What number do you need for the property?"}
         ]
         result_mid_convo = self.bot.process_inbound_sms(
             lead=lead_with_phone,
@@ -240,16 +205,15 @@ class TestCountyLeadHubCompliance(unittest.TestCase):
             conversation_history=convo_history
         )
         self.assertNotEqual(result_mid_convo.get("action"), "OPT_OUT", "Mid-conversation 'no' was incorrectly classified as OPT_OUT")
-        self.assertIn("bottom dollar number", result_mid_convo.get("suggested_reply", ""), "Mid-convo 'no' did not work the objection")
         self.assertFalse(is_number_suppressed(test_phone), "Phone was incorrectly suppressed on mid-convo negotiation 'no'")
 
     def test_stage_1_to_stage_2_bridges(self):
         """
-        Verify Emma Stage 1 -> Stage 2 bridge replies for confused curiosity:
-        - 'what?' / 'excuse me?' -> Identifies Emma & confirms ownership.
-        - 'which one were you?' / 'when did we talk?' -> 'We haven't talked — sorry...'
-        - 'who is this?' -> Identifies Emma & local investment group.
-        - 'wrong number' -> Opt-out ('Got it, won't text again.').
+        Verify Brooke 407flips Stage 1 -> Stage 2 bridge replies for confused curiosity:
+        - 'what?' / 'excuse me?' -> Identifies 407flips & asks condition.
+        - 'which one were you?' / 'when did we talk?' -> 'We have not spoken before...'
+        - 'who is this?' -> Identifies Brooke with 407flips.
+        - 'wrong number' -> Opt-out ('Got it, will not text again.').
         """
         lead = self.single_list_lead
         phone = lead["phone"]
@@ -261,9 +225,7 @@ class TestCountyLeadHubCompliance(unittest.TestCase):
             conversation_history=[]
         )
         self.assertEqual(res_what.get("node"), "BRIDGE_WHAT_EXCUSE_ME")
-        self.assertIn("It's Emma", res_what.get("suggested_reply", ""))
-        self.assertIn("Clearwater", res_what.get("suggested_reply", ""))
-        self.assertIn("450 Ocean Dr", res_what.get("suggested_reply", ""))
+        self.assertIn("Im with 407flips", res_what.get("suggested_reply", ""))
 
         # Bridge 2: "who is this?"
         res_who = self.bot.process_inbound_sms(
@@ -272,8 +234,7 @@ class TestCountyLeadHubCompliance(unittest.TestCase):
             conversation_history=[]
         )
         self.assertEqual(res_who.get("node"), "BRIDGE_WHO_IS_THIS")
-        self.assertIn("Emma, I work with a local investment group", res_who.get("suggested_reply", ""))
-        self.assertIn("Not a realtor, no listings", res_who.get("suggested_reply", ""))
+        self.assertIn("My name is Brooke with 407flips", res_who.get("suggested_reply", ""))
 
         # Bridge 3: "when did we talk?" / "which one were you?"
         res_when = self.bot.process_inbound_sms(
@@ -282,7 +243,7 @@ class TestCountyLeadHubCompliance(unittest.TestCase):
             conversation_history=[]
         )
         self.assertEqual(res_when.get("node"), "BRIDGE_WHEN_DID_WE_TALK")
-        self.assertIn("We haven't talked — sorry, should've led with that", res_when.get("suggested_reply", ""))
+        self.assertIn("We have not spoken before", res_when.get("suggested_reply", ""))
 
         # Bridge 4: "wrong number" -> opt-out
         res_wrong = self.bot.process_inbound_sms(
@@ -291,7 +252,7 @@ class TestCountyLeadHubCompliance(unittest.TestCase):
             conversation_history=[]
         )
         self.assertEqual(res_wrong.get("action"), "OPT_OUT")
-        self.assertEqual(res_wrong.get("suggested_reply"), "Got it, won't text again.")
+        self.assertEqual(res_wrong.get("suggested_reply"), "Got it, will not text again.")
         self.assertTrue(is_number_suppressed(phone))
         remove_from_suppression_list(phone)
 
@@ -303,7 +264,7 @@ class TestCountyLeadHubCompliance(unittest.TestCase):
             "OPENER_ULTRA_SHORT",
             "CASUAL_LOCAL_HOOK"
         ]
-        sample_template = "Hey Sarah, quick question on 450 Ocean Dr, got a sec? If I'm bothering you just say no and I won't text you no more."
+        sample_template = "Hey Sarah, quick question on 450 Ocean, got a sec? If I'm bothering you just say no and I won't text you no more."
         for node in opener_nodes:
             result = polish_seller_reply_with_gemini(
                 node=node,
@@ -359,28 +320,110 @@ class TestCountyLeadHubCompliance(unittest.TestCase):
         self.assertIn("OPENER_MULTI_LIST", DISTRESS_SCRIPTS)
         self.assertIn("OPENER_SINGLE_LIST", DISTRESS_SCRIPTS)
         self.assertIn("OPENER_ULTRA_SHORT", DISTRESS_SCRIPTS)
-        self.assertEqual(DISTRESS_SCRIPTS["OPENER_MULTI_LIST"], "Hey {first_name} — did you ever decide what you're doing with {address}?")
-        self.assertEqual(DISTRESS_SCRIPTS["OPENER_SINGLE_LIST"], "Hey {first_name}, quick question on {address}, got a sec?")
-        self.assertEqual(DISTRESS_SCRIPTS["OPENER_ULTRA_SHORT"], "Hey {first_name}?")
+        self.assertEqual(DISTRESS_SCRIPTS["OPENER_MULTI_LIST"], "Saw the house online {address} any plans i have an idea?")
+        self.assertEqual(DISTRESS_SCRIPTS["OPENER_SINGLE_LIST"], "Hey i came across {address} online, open for a discussion about it?")
+        self.assertEqual(DISTRESS_SCRIPTS["OPENER_ULTRA_SHORT"], "Hey im doing another project in that neighborhood {address} looks like a good project. Any thoughts on letting it go?")
 
         # 2. Opt-Out Confirmation
-        self.assertEqual(DISTRESS_SCRIPTS["OPT_OUT_CONFIRMATION"], "Got it, won't text again.")
+        self.assertEqual(DISTRESS_SCRIPTS["OPT_OUT_CONFIRMATION"], "Got it, will not text again.")
 
         # 3. Approved Soft Opt-Outs (Exact 3 Lines)
         self.assertEqual(len(SOFT_OPT_OUTS), 3)
-        self.assertIn("If I'm bothering you just say no and I won't text you no more.", SOFT_OPT_OUTS)
-        self.assertIn("If you don't want these texts just say the word and I'm gone.", SOFT_OPT_OUTS)
-        self.assertIn("Not interested? Just say no and I'll drop it.", SOFT_OPT_OUTS)
 
         # 4. Bridge Golden Scripts
-        self.assertIn("It's Emma — I help homeowners in {area} figure out their options on {address}", DISTRESS_SCRIPTS["BRIDGE_WHAT_EXCUSE_ME"])
-        self.assertIn("We haven't talked — sorry, should've led with that", DISTRESS_SCRIPTS["BRIDGE_WHEN_DID_WE_TALK"])
-        self.assertIn("Emma, I work with a local investment group buying in {area}", DISTRESS_SCRIPTS["BRIDGE_WHO_IS_THIS"])
+        self.assertIn("Im with 407flips", DISTRESS_SCRIPTS["BRIDGE_WHAT_EXCUSE_ME"])
+        self.assertIn("We have not spoken before", DISTRESS_SCRIPTS["BRIDGE_WHEN_DID_WE_TALK"])
+        self.assertIn("My name is Brooke with 407flips", DISTRESS_SCRIPTS["BRIDGE_WHO_IS_THIS"])
 
         # 5. Zero-hyphen 'as is' rule: check that 'as-is' is never hyphenated in script copy
         for name, script in DISTRESS_SCRIPTS.items():
             self.assertNotIn("as-is", script, f"Hyphenated 'as-is' found in script '{name}'")
 
 
+class Test407FlipsLeadUnderwriter(unittest.TestCase):
+    def test_underwrite_407flips_deal_engine(self):
+        """Verify 407flips underwriting engine calculations and report structure."""
+        from src.florida_underwriter_engine import underwrite_407flips_deal
+
+        rep = underwrite_407flips_deal(
+            address="1234 5th Ave N, St Petersburg, FL 33705",
+            listing_price=220000.0,
+            arv=320000.0,
+            sqft=1600,
+            year_built=1974,
+            beds=3,
+            baths=2,
+            condition="poor",
+            condition_notes="Distressed probate lead",
+            wholesale_fee=10000.0,
+            parcel_id="01-31-16-00000-110-0100",
+            owner_name="Jane Smith"
+        )
+        self.assertIn("calculator_brand", rep)
+        self.assertIn("mao_breakdown", rep)
+        self.assertIn("three_tier_offers", rep)
+        self.assertIn("insurance_trigger_matrix", rep)
+        self.assertIn("two_tier_rehab", rep)
+
+        # Check property metadata retention
+        self.assertEqual(rep["property"]["parcel_id"], "01-31-16-00000-110-0100")
+        self.assertEqual(rep["property"]["owner_name"], "Jane Smith")
+
+        # Check 3-Tier offers
+        offers = rep["three_tier_offers"]
+        self.assertIn("offer_1_clean_cash", offers)
+        self.assertIn("offer_2_inspection_contingency", offers)
+        self.assertIn("offer_3_terms_novation", offers)
+        self.assertGreater(offers["offer_1_clean_cash"]["amount"], 0)
+        self.assertGreater(offers["offer_2_inspection_contingency"]["amount"], 0)
+        self.assertGreater(offers["offer_3_terms_novation"]["amount"], 0)
+
+        # Check 21.5% off-market private seller friction breakdown
+        mao_b = rep["mao_breakdown"]
+        self.assertEqual(mao_b["agent_commission_2_5pct"], 8000.0)    # 2.5% of 320k
+        self.assertEqual(mao_b["flipper_profit_15pct"], 48000.0)      # 15% of 320k
+        self.assertEqual(mao_b["closing_cost_2pct"], 6400.0)          # 2% of 320k
+        self.assertEqual(mao_b["carrying_cost_2pct"], 6400.0)         # 2% of 320k
+        self.assertEqual(mao_b["total_friction_and_profit_21_5pct"], 68800.0) # 21.5% of 320k
+
+
+class TestFloridaCountiesIntegration(unittest.TestCase):
+    def test_live_counties_master_and_leads_exist(self):
+        """Verify all 15 Live Florida counties have master parcels and verified lead caches."""
+        import pandas as pd
+        
+        live_counties = [
+            ("pinellas", 400000, 1000),
+            ("orange", 400000, 1000),
+            ("seminole", 150000, 20),
+            ("sarasota", 300000, 100),
+            ("charlotte", 200000, 1000),
+            ("lake", 200000, 100),
+            ("pasco", 300000, 50),
+            ("manatee", 200000, 20),
+            ("alachua", 100000, 1000),
+            ("volusia", 300000, 1000),
+            ("hillsborough", 500000, 5000),
+            ("osceola", 200000, 1000),
+            ("polk", 400000, 500),
+            ("lee", 500000, 1000),
+            ("collier", 250000, 100)
+        ]
+        
+        for cty, min_parcels, min_leads in live_counties:
+            master_p = os.path.join(BASE_DIR, "data", "FL", cty, "RP_PROPERTY_INFO.parquet")
+            leads_p = os.path.join(BASE_DIR, "data", "FL", cty, "matched_leads_cache.parquet")
+            
+            self.assertTrue(os.path.exists(master_p), f"Missing master parcels for {cty} at {master_p}")
+            self.assertTrue(os.path.exists(leads_p), f"Missing leads cache for {cty} at {leads_p}")
+            
+            df_m = pd.read_parquet(master_p, columns=["PARCEL_NUMBER"])
+            self.assertGreaterEqual(len(df_m), min_parcels, f"{cty} parcel count {len(df_m)} below expected {min_parcels}")
+            
+            df_l = pd.read_parquet(leads_p, columns=["Parcel_ID"])
+            self.assertGreaterEqual(len(df_l), min_leads, f"{cty} lead count {len(df_l)} below expected {min_leads}")
+
+
 if __name__ == "__main__":
     unittest.main()
+

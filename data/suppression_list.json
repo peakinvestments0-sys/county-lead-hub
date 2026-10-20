@@ -1,1 +1,202 @@
-[]
+[
+  {
+    "phone": "56404",
+    "normalized_phone": "56404",
+    "reason": "OPT_OUT",
+    "timestamp": "2026-10-16 21:32:37",
+    "parcel_id": "",
+    "owner_name": "Florida Homeowner",
+    "property_address": "Florida Property",
+    "county": ""
+  },
+  {
+    "phone": "(404) 558-5364",
+    "normalized_phone": "4045585364",
+    "reason": "OPT_OUT",
+    "timestamp": "2026-10-15 13:42:39",
+    "parcel_id": "10-31-15-43272-000-0050",
+    "owner_name": "Matthew Ritterbeck",
+    "property_address": "535 Normandy Rd",
+    "county": ""
+  },
+  {
+    "phone": "275123",
+    "normalized_phone": "275123",
+    "reason": "OPT_OUT",
+    "timestamp": "2026-10-15 12:27:26",
+    "parcel_id": "",
+    "owner_name": "Florida Homeowner",
+    "property_address": "Florida Property",
+    "county": ""
+  },
+  {
+    "phone": "(407) 491-2354",
+    "normalized_phone": "4074912354",
+    "reason": "OPT_OUT",
+    "timestamp": "2026-10-14 11:10:26",
+    "parcel_id": "SKIP-ORANGE-325-OAK-ESTATES-DR",
+    "owner_name": "Carol M Latham Trust nan",
+    "property_address": "325 Oak Estates Dr",
+    "county": ""
+  },
+  {
+    "phone": "(407) 227-0438",
+    "normalized_phone": "4072270438",
+    "reason": "OPT_OUT",
+    "timestamp": "2026-10-14 11:10:19",
+    "parcel_id": "SKIP-ORANGE-3403-GOLDEN-GEM-RD",
+    "owner_name": "Juan Rodriguez",
+    "property_address": "3403 Golden Gem Rd",
+    "county": ""
+  },
+  {
+    "phone": "(845) 707-0432",
+    "normalized_phone": "8457070432",
+    "reason": "OPT_OUT",
+    "timestamp": "2026-10-14 10:02:53",
+    "parcel_id": "SKIP-ORANGE-315-THORNTON-LN",
+    "owner_name": "Bobby Mathews",
+    "property_address": "315 Thornton Ln",
+    "county": ""
+  },
+  {
+    "phone": "+17046102329",
+    "normalized_phone": "7046102329",
+    "reason": "OPT_OUT",
+    "timestamp": "2026-10-14 08:00:04",
+    "parcel_id": "",
+    "owner_name": "Florida Homeowner",
+    "property_address": "Florida Property",
+    "county": ""
+  },
+  {
+    "phone": "+13122099218",
+    "normalized_phone": "3122099218",
+    "reason": "OPT_OUT",
+    "timestamp": "2026-10-13 15:10:16",
+    "parcel_id": "",
+    "owner_name": "Florida Homeowner",
+    "property_address": "Florida Property",
+    "county": ""
+  },
+  {
+    "phone": "(407) 963-2133",
+    "normalized_phone": "4079632133",
+    "reason": "OPT_OUT",
+    "timestamp": "2026-10-13 11:44:00",
+    "parcel_id": "SKIP-ORANGE-5220-PHILLIPS-OAKS-LN",
+    "owner_name": "Nutt Andrew L Trustee nan",
+    "property_address": "5220 Phillips Oaks Ln",
+    "county": ""
+  },
+  {
+    "phone": "+18888989304",
+    "normalized_phone": "8888989304",
+    "reason": "OPT_OUT",
+    "timestamp": "2026-10-13 05:24:46",
+    "parcel_id": "",
+    "owner_name": "Florida Homeowner",
+    "property_address": "Florida Property",
+    "county": ""
+  },
+  {
+    "phone": "777203825015",
+    "normalized_phone": "777203825015",
+    "reason": "OPT_OUT",
+    "timestamp": "2026-10-09 12:13:32",
+    "parcel_id": "",
+    "owner_name": "Florida Homeowner",
+    "property_address": "Florida Property",
+    "county": ""
+  },
+  {
+    "phone": "+18332682940",
+    "normalized_phone": "8332682940",
+    "reason": "OPT_OUT",
+    "timestamp": "2026-10-08 17:00:31",
+    "parcel_id": "",
+    "owner_name": "Florida Homeowner",
+    "property_address": "Florida Property",
+    "county": ""
+  },
+  {
+    "phone": "+14079026236",
+    "normalized_phone": "4079026236",
+    "reason": "OPT_OUT",
+    "timestamp": "2026-10-08 03:48:49",
+    "parcel_id": "",
+    "owner_name": "Florida Homeowner",
+    "property_address": "Florida Property",
+    "county": ""
+  },
+  {
+    "phone": "+14075521499",
+    "normalized_phone": "4075521499",
+    "reason": "OPT_OUT",
+    "timestamp": "2026-10-07 19:36:48",
+    "parcel_id": "",
+    "owner_name": "Florida Homeowner",
+    "property_address": "Florida Property",
+    "county": ""
+  },
+  {
+    "phone": "+13214229440",
+    "normalized_phone": "3214229440",
+    "reason": "OPT_OUT",
+    "timestamp": "2026-10-07 18:47:34",
+    "parcel_id": "",
+    "owner_name": "Florida Homeowner",
+    "property_address": "Florida Property",
+    "county": ""
+  },
+  {
+    "phone": "+19048599603",
+    "normalized_phone": "9048599603",
+    "reason": "OPT_OUT",
+    "timestamp": "2026-10-06 11:49:35",
+    "parcel_id": "",
+    "owner_name": "Florida Homeowner",
+    "property_address": "Florida Property",
+    "county": ""
+  },
+  {
+    "phone": "+14072217134",
+    "normalized_phone": "4072217134",
+    "reason": "OPT_OUT",
+    "timestamp": "2026-10-06 11:16:15",
+    "parcel_id": "",
+    "owner_name": "Florida Homeowner",
+    "property_address": "Florida Property",
+    "county": ""
+  },
+  {
+    "phone": "+14076412808",
+    "normalized_phone": "4076412808",
+    "reason": "OPT_OUT",
+    "timestamp": "2026-10-06 10:47:53",
+    "parcel_id": "",
+    "owner_name": "Florida Homeowner",
+    "property_address": "Florida Property",
+    "county": ""
+  },
+  {
+    "phone": "+18447305597",
+    "normalized_phone": "8447305597",
+    "reason": "OPT_OUT",
+    "timestamp": "2026-10-06 10:18:46",
+    "parcel_id": "",
+    "owner_name": "Florida Homeowner",
+    "property_address": "Florida Property",
+    "county": ""
+  },
+  {
+    "phone": "+13215445860",
+    "normalized_phone": "3215445860",
+    "reason": "OPT_OUT",
+    "timestamp": "2026-10-05 23:07:07",
+    "parcel_id": "",
+    "owner_name": "Florida Homeowner",
+    "property_address": "Florida Property",
+    "county": ""
+  }
+]

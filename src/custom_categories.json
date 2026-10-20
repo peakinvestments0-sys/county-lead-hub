@@ -1,1 +1,38 @@
-[]
+[
+    {
+        "id": "ouc_water_shutoff",
+        "name": "OUC water shutoff",
+        "badge": "Water Shut-off",
+        "description": "Delinquent municipal utility shutoff records with disconnected meters.",
+        "icon": "\ud83d\udca7",
+        "color": "cyan",
+        "portal_url": "https://www.ouc.com"
+    },
+    {
+        "id": "divorce",
+        "name": "Divorce (Domestic Relations)",
+        "badge": "Family Court",
+        "description": "Spouses dividing real property in marital dissolution filings.",
+        "icon": "\ud83d\udc94",
+        "color": "pink",
+        "portal_url": "https://selfservice.or.occompt.com/ssweb/search/DOCSEARCH2950S3"
+    },
+    {
+        "id": "judgments_liens",
+        "name": "Civil Judgments & Liens",
+        "badge": "Monetary Judgments",
+        "description": "Recorded monetary civil court judgments and municipal/contractor liens.",
+        "icon": "\ud83d\udd28",
+        "color": "amber",
+        "portal_url": "https://selfservice.or.occompt.com/ssweb/search/DOCSEARCH2950S3"
+    },
+    {
+        "id": "sanford_code_violations",
+        "name": "Sanford Code Violations",
+        "badge": "Csv  Download Page",
+        "description": "Homes with reporte code violations in the city of Sanford",
+        "icon": "\ud83c\udfda\ufe0f",
+        "color": "rose",
+        "portal_url": "https://www6.citizenserve.com/Portal/PortalController"
+    }
+]

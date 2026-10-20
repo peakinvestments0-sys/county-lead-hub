@@ -111,7 +111,9 @@ DEFAULT_COUNTIES = {
         "clerk_lis_pendens_url": "https://selfservice.or.occompt.com/ssweb/search/DOCSEARCH2950S3",
         "code_enforcement_url": "https://netapps.ocfl.net/CETitleViolationSearch/",
         "tax_liens_url": "https://octaxcol.com/",
-        "clerk_probate_url": "https://www.myorangeclerk.com/"
+        "clerk_probate_url": "https://myeclerk.myorangeclerk.com/cases/search",
+        "comptroller_url": "https://selfservice.or.occompt.com/ssweb/search/DOCSEARCH2950S3",
+        "comptroller_probate_url": "https://selfservice.or.occompt.com/ssweb/search/DOCSEARCH2950S3"
     },
     "Osceola": {
         "full_name": "Osceola County",
@@ -127,6 +129,21 @@ DEFAULT_COUNTIES = {
         "code_enforcement_note": "Choose Board of County Commissioners (BOCC) Records for code enforcement by email request only",
         "tax_liens_url": "https://osceola.county-taxes.com/public",
         "clerk_probate_url": "https://records.osceolaclerk.org/"
+    },
+    "Seminole": {
+        "full_name": "Seminole County",
+        "folder_name": "seminole",
+        "csv_name": "RP_PROPERTY_INFO.csv",
+        "parquet_name": "RP_PROPERTY_INFO.parquet",
+        "sample_lp": "",
+        "sample_code": "",
+        "sample_probate": "",
+        "master_parcel_download_url": "https://files.scpafl.org/data/cama/SeminoleCounty.zip",
+        "clerk_lis_pendens_url": "https://recording.seminoleclerk.org/DuProcessWebInquiry/index.html",
+        "code_enforcement_url": "https://www.seminolecountyfl.gov/departments-services/development-services/code-enforcement",
+        "tax_liens_url": "https://seminolecounty.tax/public-records-requests/",
+        "clerk_probate_url": "https://www.seminoleclerk.org/search-for-a-court-case/",
+        "jail_bookings_url": "https://www.seminolesheriff.org/reports/List.aspx?mediareporttypeid=2"
     }
 }
 
@@ -138,15 +155,79 @@ DEFAULT_STATES = {
         "tagline": "Opportunity Lives Here",
         "script_text": "Florida",
         "default_county": "Pinellas"
+    },
+    "IN": {
+        "code": "IN",
+        "name": "Indiana",
+        "icon": "🏁",
+        "tagline": "The Hoosier State",
+        "script_text": "Indiana",
+        "default_county": "Marion"
+    },
+    "GA": {
+        "code": "GA",
+        "name": "Georgia",
+        "icon": "🍑",
+        "tagline": "The Peach State",
+        "script_text": "Georgia",
+        "default_county": "Fulton"
+    },
+    "TN": {
+        "code": "TN",
+        "name": "Tennessee",
+        "icon": "🎸",
+        "tagline": "The Volunteer State",
+        "script_text": "Tennessee",
+        "default_county": "Shelby"
+    },
+    "TX": {
+        "code": "TX",
+        "name": "Texas",
+        "icon": "🤠",
+        "tagline": "The Lone Star State",
+        "script_text": "Texas",
+        "default_county": "Harris"
+    },
+    "NC": {
+        "code": "NC",
+        "name": "North Carolina",
+        "icon": "🌲",
+        "tagline": "First in Flight",
+        "script_text": "North Carolina",
+        "default_county": "Mecklenburg"
+    },
+    "SC": {
+        "code": "SC",
+        "name": "South Carolina",
+        "icon": "🏖️",
+        "tagline": "The Palmetto State",
+        "script_text": "South Carolina",
+        "default_county": "Charleston"
+    },
+    "OH": {
+        "code": "OH",
+        "name": "Ohio",
+        "icon": "🌰",
+        "tagline": "The Buckeye State",
+        "script_text": "Ohio",
+        "default_county": "Franklin"
     }
 }
 
 def load_available_states() -> list:
-    """Return all active states (discovers folders in data/ matching active state codes)."""
+    """Return all active states (discovers folders in data/ matching active state codes or available in Link Zone)."""
     states = []
+    lz_states = set()
+    if link_zone_service:
+        try:
+            health = link_zone_service.get_health_report()
+            lz_states = set(health.get("states", {}).keys())
+        except Exception:
+            pass
+
     for code, info in DEFAULT_STATES.items():
         state_dir = os.path.join(DATA_DIR, code)
-        if os.path.exists(state_dir) or code == "FL":
+        if os.path.exists(state_dir) or code == "FL" or code in lz_states:
             states.append({
                 "code": code,
                 "name": info["name"],
@@ -196,17 +277,25 @@ def load_county_portals(state: str = "FL") -> Dict[str, Any]:
     for k in registry:
         registry[k]["state"] = state
 
-    # Auto-discover any new county directories in data/<state>/ and data/
+    # Auto-discover any new county directories in data/<state>/ (and data/ only for legacy FL)
     modified = False
     existing_folders = {v.get("folder_name", k.lower()) for k, v in registry.items()}
     state_dir = os.path.join(DATA_DIR, state)
-    dirs_to_check = [state_dir, DATA_DIR]
+    dirs_to_check = [state_dir]
+    if state == "FL":
+        dirs_to_check.append(DATA_DIR)
 
+    EXCLUDED_DIRS = {"sources_catalog", "exports", "imports", "temp", "leads", "matched_parcels", "cache"}
     for d in dirs_to_check:
         if os.path.exists(d):
             for item in sorted(os.listdir(d)):
                 item_path = os.path.join(d, item)
-                if os.path.isdir(item_path) and not item.startswith('.') and item.upper() not in DEFAULT_STATES:
+                if (
+                    os.path.isdir(item_path)
+                    and not item.startswith('.')
+                    and item.upper() not in DEFAULT_STATES
+                    and item.lower() not in EXCLUDED_DIRS
+                ):
                     folder_lower = item.lower()
                     if folder_lower not in existing_folders:
                         clean_name = item.replace('_', ' ').replace('-', ' ').title()

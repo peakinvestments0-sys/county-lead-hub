@@ -1,0 +1,8 @@
+{
+  "mode": "cloud",
+  "base_url": "https://api.sms-gate.app/3rdparty/v1",
+  "username": "DQM3EH",
+  "password": "dtcs42ph2ifats",
+  "sim_number": 1,
+  "template": "Hi {FirstName}, I noticed your property at {Address}. I'm an active local investor and wanted to see if you would consider a quick cash offer as-is? Let me know!"
+}

@@ -64,7 +64,7 @@ def fetch_online_zestimate(address: str) -> Optional[int]:
 
     return None
 
-def get_property_market_valuation(address: str, just_value: float = 0.0) -> Dict[str, Any]:
+def get_property_market_valuation(address: str, just_value: float = 0.0, *, allow_online_lookup: bool = True, cache: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
     """
     Returns market valuation info:
     - market_value: Estimated current retail market value (ARV / Zestimate)
@@ -73,7 +73,8 @@ def get_property_market_valuation(address: str, just_value: float = 0.0) -> Dict
     - is_estimated_model: bool
     """
     key = normalize_address_key(address)
-    cache = load_valuations_cache()
+    if cache is None:
+        cache = load_valuations_cache()
 
     # Pre-seed Marcus Sterling with true Pass-a-Grille coastal retail valuation
     if "1204gulfway" in key or "gulfway" in key:
@@ -102,7 +103,7 @@ def get_property_market_valuation(address: str, just_value: float = 0.0) -> Dict
         return cached
 
     # Attempt online lookup
-    online_val = fetch_online_zestimate(address)
+    online_val = fetch_online_zestimate(address) if allow_online_lookup else None
     if online_val and online_val > 0:
         result = {
             "address": address,
@@ -123,7 +124,7 @@ def get_property_market_valuation(address: str, just_value: float = 0.0) -> Dict
             "is_estimated_model": True
         }
 
-    if key:
+    if key and allow_online_lookup:
         cache[key] = result
         save_valuations_cache(cache)
 

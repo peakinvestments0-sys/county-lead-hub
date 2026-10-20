@@ -1,0 +1,12 @@
+{
+  "name": "county-lead-hub-watcher",
+  "private": true,
+  "scripts": {
+    "watch:inbound": "node --env-file-if-exists=.env scripts/inbound-watcher.js",
+    "test:inbound": "node --test tests/test_inbound_watcher.cjs"
+  },
+  "dependencies": {
+    "chokidar": "^4.0.3"
+  },
+  "engines": { "node": ">=22.9" }
+}

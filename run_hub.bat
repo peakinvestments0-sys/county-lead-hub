@@ -3,11 +3,10 @@ title Florida Lead Hub
 echo ========================================================
 echo  Starting Florida Lead Hub - Public Records Platform
 echo ========================================================
-echo  Checking port 8505...
-for /f "tokens=5" %%a in ('netstat -aon ^| findstr :8505 ^| findstr LISTENING') do (
-    taskkill /f /pid %%a >nul 2>&1
+cd /d "%~dp0"
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File "%~dp0scripts\start_lead_hub.ps1"
+if errorlevel 1 (
+    pause
+    exit /b 1
 )
-timeout /t 1 >nul
-echo  Launching server at http://localhost:8505...
-python server.py
-pause
+start "" "http://localhost:8505"

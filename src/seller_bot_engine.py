@@ -12,6 +12,7 @@ import random
 import requests
 from typing import Dict, Any, Optional, Tuple, List
 from datetime import datetime
+from src.initial_sms_templates import load_initial_sms_templates, LEGACY_TEMPLATE_IDS
 
 try:
     from src.valuation_service import get_property_market_valuation
@@ -34,7 +35,7 @@ SELLER_TRAINING_FILE = os.path.join(DATA_DIR, "seller_golden_replies.json")
 DEFAULT_SELLER_BOT_SETTINGS = {
     "enabled": True,
     "mode": "copilot",  # "copilot" (review first) or "autopilot" (hands-free auto dispatch)
-    "bot_name": "Emma",
+    "bot_name": "Brooke",
     "partner_name": "John",
     "office_phone": "(407) 815-5043",
     "gateway_phone": "(407) 793-7029",
@@ -44,63 +45,154 @@ DEFAULT_SELLER_BOT_SETTINGS = {
     "gemini_api_key": os.environ.get("GEMINI_API_KEY", ""),
     "gemini_model": "gemini-3.8-flash",
     "use_gemini_enhancer": True,
-    "personality_prompt": "Friendly, warm, casual Florida local. Short 1 to 2 sentence texts. Disarming, understanding. Drive toward a quick 5 minute call with John."
+    "personality_prompt": "Brooke is a competent acquisitions agent with 407flips. Direct, casual, local Florida tone. Gets condition, timeline, and price, then tells them John will call with the offer. No fluff, no exclamation marks, no hyphens."
 }
+
+# --- Address & SMS Sanitizer Utilities (Zero Underlines, Zero Hyphens) ---
+
+SUFFIX_REGEX = re.compile(
+    r'\b(?:street|st|avenue|ave|boulevard|blvd|road|rd|drive|dr|lane|ln|court|ct|terrace|terr|ter|way|circle|cir|place|pl|parkway|pkwy|highway|hwy|trail|trl|loop|run|path|cove|cv|crossing|xing|pass|trace|trce|alley|aly|bend|bnd)\.?\b',
+    re.IGNORECASE
+)
+DIR_REGEX = re.compile(r'\b(?:n|s|e|w|north|south|east|west|ne|nw|se|sw)\.?\b', re.IGNORECASE)
+UNIT_REGEX = re.compile(r'\b(?:apt|ste|suite|unit|#)\s*[\w-]+\b', re.IGNORECASE)
+
+def clean_address_for_sms(addr: str) -> str:
+    """
+    Cleans physical address for cellular SMS to prevent smartphone OS linkification/underlining.
+    Strips postal suffixes (Blvd, St, Ave, Way, Terr, etc.) leaving natural street reference like '123 Sandbox'.
+    """
+    if not addr or addr in ["the property", "your property"]:
+        return addr or "the property"
+    first_part = addr.split(",")[0].strip()
+    clean = UNIT_REGEX.sub("", first_part).strip()
+    parts = clean.split()
+    if len(parts) > 2 and DIR_REGEX.match(parts[-1]):
+        parts = parts[:-1]
+    if len(parts) > 1 and SUFFIX_REGEX.match(parts[-1]):
+        parts = parts[:-1]
+    res = " ".join(parts).strip()
+    if res.isupper():
+        res = res.title()
+    return res or first_part
+
+
+STREET_SUFFIX_PATTERN = re.compile(
+    r'\b(\d+\s+[A-Za-z0-9\s]+?)\s+(?:street|st|avenue|ave|boulevard|blvd|road|rd|drive|dr|lane|ln|court|ct|terrace|terr|ter|way|circle|cir|place|pl|parkway|pkwy|highway|hwy|trail|trl|loop|run|path|cove|cv)\b(?:\s+(?:n|s|e|w|north|south|east|west|ne|nw|se|sw)\b)?(\.?)',
+    re.IGNORECASE
+)
+
+def sanitize_sms_no_underlines_no_hyphens(text: str) -> str:
+    """
+    Comprehensive cellular SMS sanitizer:
+    1. Zero underlines: Strips HTML tags, Markdown underscores/backticks, and street suffixes that trigger smartphone linkification/underlines.
+    2. Zero hyphens: Strips em-dashes, en-dashes, conversational hyphens, and word hyphens ('as is', 'off market', '21 day', '5 minute', etc.).
+    """
+    if not text:
+        return ""
+    
+    # 1. Strip HTML tags like <u>, <p>, <span>
+    text = re.sub(r'<[^>]+>', '', text)
+
+    # 2. Strip Markdown formatting that could cause underlines or italics (_word_, *word*, `code`)
+    text = re.sub(r'\[([^\]]+)\]\([^\)]+\)', r'\1', text)
+    text = text.replace('_', ' ').replace('*', '').replace('`', '').replace('~', '')
+
+    # 3. Clean full street address suffixes to prevent smartphone OS from auto-linkifying / underlining addresses
+    def repl_addr(m):
+        base_addr = m.group(1).rstrip()
+        had_dot = m.group(2) == '.'
+        return base_addr + ('.' if had_dot else '')
+    text = STREET_SUFFIX_PATTERN.sub(repl_addr, text)
+
+    # 4. Convert specific common hyphenated phrases to natural text (MUST BE BEFORE standalone dash replacement)
+    text = re.sub(r'\bas-is\b', 'as is', text, flags=re.IGNORECASE)
+    text = re.sub(r'\boff-market\b', 'off market', text, flags=re.IGNORECASE)
+    text = re.sub(r'\ball-cash\b', 'cash', text, flags=re.IGNORECASE)
+    text = re.sub(r'\bclean-out(s?)\b', r'cleanout\1', text, flags=re.IGNORECASE)
+    text = re.sub(r'\bfixer-upper\b', 'fixer upper', text, flags=re.IGNORECASE)
+    text = re.sub(r'\bmove-in-ready\b', 'move in ready', text, flags=re.IGNORECASE)
+    text = re.sub(r'\bpre-MLS\b', 'pre MLS', text, flags=re.IGNORECASE)
+
+    # Phone numbers with hyphens: '(407) 815-5043' -> '(407) 815 5043', '407-815-5043' -> '407 815 5043'
+    text = re.sub(r'(\d{3})-(\d{3})-(\d{4})', r'\1 \2 \3', text)
+    text = re.sub(r'(\d{3})-(\d{4})', r'\1 \2', text)
+
+    # Number ranges: '2-3 fixers' -> '2 to 3 fixers'
+    text = re.sub(r'(\d+)\s*-\s*(\d+)', r'\1 to \2', text)
+
+    # Hyphenated word-word: '21-day' -> '21 day', '5-minute' -> '5 minute', etc.
+    text = re.sub(r'(\w+)-(\w+)', r'\1 \2', text)
+
+    # Em/en dashes and dashes surrounded by spaces: convert to natural commas
+    text = text.replace('—', ', ').replace('–', ', ').replace('―', ', ').replace('‒', ' ').replace('−', ' ')
+    text = re.sub(r'\s+-\s+', ', ', text)
+
+    # Any remaining hyphens or dashes anywhere in text: convert to space
+    text = re.sub(r'[-–—]+', ' ', text)
+
+    # Clean up commas and whitespace (preserve commas inside numbers like $260,000)
+    text = re.sub(r'\s+,', ',', text)
+    text = re.sub(r',(?!\d|\s)', ', ', text)
+    text = re.sub(r'(?:,\s*){2,}', ', ', text)
+    text = re.sub(r'\s+', ' ', text)
+    return text.strip()
+
 
 # --- Core Distress Outreach Scripts & State Machine Constants ---
 # Doorbell Stage 1 Openers (Single-Segment, Under 160 Chars, Tiered by Distress Count)
 DISTRESS_SCRIPTS = {
-    # 1. Doorbell Stage 1 Openers (The Doorbell - Only Goal is Getting a Reply)
-    "OPENER_MULTI_LIST": "Hey {first_name} — did you ever decide what you're doing with {address}?",
-    "OPENER_SINGLE_LIST": "Hey {first_name}, quick question on {address}, got a sec?",
-    "OPENER_ULTRA_SHORT": "Hey {first_name}?",
+    # 1. Doorbell Stage 1 Openers (John's Authentic Florida Openers)
+    "OPENER_MULTI_LIST": "Saw the house online {address} any plans i have an idea?",
+    "OPENER_SINGLE_LIST": "Hey i came across {address} online, open for a discussion about it?",
+    "OPENER_ULTRA_SHORT": "Hey im doing another project in that neighborhood {address} looks like a good project. Any thoughts on letting it go?",
 
-    # Legacy hooks retained for backward compatibility
-    "CASUAL_LOCAL_HOOK": "Hey {first_name}, quick question on {address}, got a sec?",
-    "DRIVEBY_HOOK": "Hey {first_name} — did you ever decide what you're doing with {address}?",
-    "AS_IS_NO_FEES_HOOK": "Hey {first_name}, quick question on {address}, got a sec?",
-    "CURIOUS_WALKAWAY_HOOK": "Hey {first_name}?",
+    # Legacy hooks mapped to John's authentic openers
+    "CASUAL_LOCAL_HOOK": "Hey i came across {address} online, open for a discussion about it?",
+    "DRIVEBY_HOOK": "Saw the house online {address} any plans i have an idea?",
+    "AS_IS_NO_FEES_HOOK": "Hey i came across {address} online, open for a discussion about it?",
+    "CURIOUS_WALKAWAY_HOOK": "Hey im doing another project in that neighborhood {address} looks like a good project. Any thoughts on letting it go?",
 
-    # 2. Stage 1 -> Stage 2 Bridge Golden Replies (Identifies Emma & Bridges to Qualify)
-    "BRIDGE_WHAT_EXCUSE_ME": "It's Emma — I help homeowners in {area} figure out their options on {address}. Are you still the owner there?",
-    "BRIDGE_WHEN_DID_WE_TALK": "We haven't talked — sorry, should've led with that. I'm Emma, I work with homeowners around {area}. Had a quick question on {address}, got a sec?",
-    "BRIDGE_WHO_IS_THIS": "Emma, I work with a local investment group buying in {area}. Not a realtor, no listings — just asking about {address}.",
+    # 2. Stage 1 -> Stage 2 Bridge Replies (Brooke with 407flips)
+    "BRIDGE_WHAT_EXCUSE_ME": "Im with 407flips doing projects around town. We could take it as is if you want to sell. How is the condition of the place?",
+    "BRIDGE_WHEN_DID_WE_TALK": "We have not spoken before. I am Brooke with 407flips. We do projects in the area and wanted to see if you had any thoughts on letting {address} go.",
+    "BRIDGE_WHO_IS_THIS": "My name is Brooke with 407flips. We do projects in the area and wanted to see if you had any thoughts on letting {address} go.",
 
     # 3. Code Violation Branch
-    "CODE_INITIAL_HOOK": "Hey {first_name} — did you ever decide what you're doing with {address}?",
-    "CODE_ASSESS_FINES": "Completely understand, city fines add up fast. What is the current status with the code compliance officer, and what repairs are they demanding?",
-    "CODE_OFFER_ASIS": "Got it. That is what we specialize in. We take over the property 100% as is and resolve the city citations directly at closing so you walk away clean. What are you looking to walk away with?",
+    "CODE_INITIAL_HOOK": "Saw the house online {address} any plans i have an idea?",
+    "CODE_ASSESS_FINES": "We do not pay fines, but we can call the county to request a reduction or removal of them. We have had success with that occasionally. How much were you hoping to get for the house?",
+    "CODE_OFFER_ASIS": "We take it as is. We do not pay fines, but we can call the county to request a reduction or removal of them. What are you looking to get for the house?",
     
     # 4. Lis Pendens / Pre-Foreclosure Branch
-    "LIS_PENDENS_INITIAL_HOOK": "Hey {first_name} — did you ever decide what you're doing with {address}?",
-    "LIS_PENDENS_TIMELINE": "I know how stressful bank notices can be. Do you know if the bank has set a formal auction date yet, or are you still in the early stages?",
-    "LIS_PENDENS_PAYOFF": "Understood. We can move fast enough to close before the auction date and pay off the mortgage balance. What would you need to net to make a move work?",
-    "LIS_PENDENS_BACKUP": "That makes total sense if you are working on a loan modification. We would love to position ourselves as your backup plan just in case the bank stalls before the auction date. Would you be open to a quick backup agreement?",
+    "LIS_PENDENS_INITIAL_HOOK": "Saw the house online {address} any plans i have an idea?",
+    "LIS_PENDENS_TIMELINE": "We can stop the auction and pay off the loan before the sale date. What do you need to walk away with?",
+    "LIS_PENDENS_PAYOFF": "We can close before the auction date and pay off the mortgage balance. What is the payoff amount?",
+    "LIS_PENDENS_BACKUP": "We can buy before the auction date to protect your equity. What is your bottom dollar to sell?",
     
     # 5. Probate / Inherited Property Branch
-    "PROBATE_INITIAL_HOOK": "Hey {first_name} — did you ever decide what you're doing with {address}?",
-    "PROBATE_STATUS_CHECK": "Thank you for letting me know. Has probate formally been opened with the county court yet, or are you still working through the estate paperwork?",
-    "PROBATE_CONTENTS_LEFTOVER": "Take all the time you need for personal keepsakes. For everything else, you can leave furniture, clothing, or clutter right where it is. We handle 100% of the cleanout. What are you and the family hoping to walk away with?",
+    "PROBATE_INITIAL_HOOK": "Saw the house online {address} any plans i have an idea?",
+    "PROBATE_STATUS_CHECK": "Sorry for your loss. We work with probate attorneys regularly and buy as is. Has an attorney been assigned yet?",
+    "PROBATE_CONTENTS_LEFTOVER": "You do not have to touch a thing. Take whatever personal items you want and leave the rest, we handle the full cleanout. What price are you hoping for?",
     
-    # 6. Universal Qualification & Appointment Closes
-    "QUALIFY_CONDITION": "What can you tell me about the overall condition of the home? How are the roof, AC, and plumbing holding up?",
-    "QUALIFY_WALKAWAY_PRICE": "Thank you for sharing that. If we pay cash, cover standard closing costs, and buy 100% as is, what is your ideal walkaway price?",
-    "GOLD_DEAL_CALL_CLOSE": "That sounds like a fair number we can make work for a fast cash close. I would love to have John, who heads up our acquisitions, give you a quick 5 minute call today to confirm the details. Would later this afternoon or tomorrow morning work better?",
-    "SPREAD_DEAL_COUNTER": "Got it. Because we take on the open citations and all needed repairs with cash, our offer typically needs to be a bit lower to account for the work. What is the absolute bottom dollar you would feel comfortable taking?",
-    "RETAIL_CREATIVE_PIVOT": "I completely respect where you want to be on price. For a full retail number with the current situation, the only way we could make that work would be on creative terms. Would you be open to hearing how that works?",
-    "UNREALISTIC_DREAM_PRICE": "Haha fair enough, at that price I would pack my bags today too! Seriously though, if you are open to seeing what a realistic as is cash offer looks like without realtors, repairs, or fees, John and I can help. Otherwise, no worries at all!",
+    # 6. Universal Qualification & Handoff
+    "QUALIFY_CONDITION": "How is the condition of the house? Does the roof, ac or plumbing need work?",
+    "QUALIFY_WALKAWAY_PRICE": "John does our underwriting based on what the house needs. What price were you hoping to get to let it go?",
+    "GOLD_DEAL_CALL_CLOSE": "That price works. Ill give this to John and he will call you with the offer so we can get the paperwork started. Thank you.",
+    "SPREAD_DEAL_COUNTER": "With the repairs needed we would have to be a little lower. What is your bottom dollar price?",
+    "RETAIL_CREATIVE_PIVOT": "For full retail price we would have to look at terms. What is your bottom dollar cash price?",
+    "UNREALISTIC_DREAM_PRICE": "So are you willing to sell the house as is for cash, or do you just want more than the house is really worth?",
     
-    # 7. Handoff to John Closes
-    "BOOK_CALL_PROPOSAL": "Awesome. Let me set you up with John, our managing partner, for a quick 5 minute call to walk through the cash numbers and timeline. Would later today or tomorrow morning work better for a chat with John?",
-    "BOOK_CALL_CONFIRMED": "Sounds great! I have scheduled John to call you at {time} from our office line (407) 815-5043. We look forward to helping you get this resolved!",
+    # 7. Handoff to John
+    "BOOK_CALL_PROPOSAL": "Got it. Ill give this to John and he will call you with the offer. Thank you.",
+    "BOOK_CALL_CONFIRMED": "Got it. John will call you with the offer from 407 815 5043. Thank you.",
     
     # 8. Objection Handlers
-    "OBJ_HOW_DID_YOU_GET_NUMBER": "We monitor the county clerk and property appraiser public records, and use a licensed skip trace service to reach owners directly by phone.",
-    "OBJ_LOWBALL_DEFENSE": "I completely understand your concern. We are not here to waste your time with insult offers. We run our numbers off real county comps, we pay all closing fees, and you do not pay 6% realtor commissions.",
-    "OBJ_ALREADY_HAVE_OFFER": "That is great! A lot of buyer offers fall through during inspection. If your current buyer asks for price cuts or backs out, please keep us as your backup cash buyer.",
-    "AS_IS_CONTENTS": "No, absolutely not! You do not have to remove anything, and we will never charge you for cleanout. Anything left behind, furniture, old tables, trash, or tenant items, you can leave right there. We buy 100% as is and handle all the cleanup at our own expense. What are you hoping to walk away with cash in hand for the property?",
-    "OBJECTION_MID_CONVO_NO": "Completely understand. If you don't mind me asking, what bottom dollar number would make letting it go worth it for you?",
-    "OPT_OUT_CONFIRMATION": "Got it, won't text again."
+    "OBJ_HOW_DID_YOU_GET_NUMBER": "Public county records show the property address and we looked up the number online.",
+    "OBJ_LOWBALL_DEFENSE": "No lowballs and no games. We run our numbers off real comps and pay all closing costs. What number makes sense for you?",
+    "OBJ_ALREADY_HAVE_OFFER": "Why didn't you take it? A lot of buyers offer high to lock you up and then try to drop the price during inspection. If they back out let us know.",
+    "AS_IS_CONTENTS": "You do not have to touch a thing. Take whatever personal items you want and leave the rest, we handle the full cleanout. What price are you hoping for?",
+    "OBJECTION_MID_CONVO_NO": "No problem at all, thanks for letting me know.",
+    "OPT_OUT_CONFIRMATION": "Got it, will not text again."
 }
 
 # --- Approved Human Soft Opt-Out Lines (Rotate on Every First Touch) ---
@@ -362,7 +454,7 @@ def get_preseeded_golden_replies() -> List[Dict[str, Any]]:
             "node": "BRIDGE_WHAT_EXCUSE_ME",
             "distress_type": "General",
             "seller_inbound": "what? who is this and what are you talking about?",
-            "final_approved_text": "It's Emma — I help homeowners in Pinellas figure out their options on 14783 SEMINOLE TRL. Are you still the owner there?",
+            "final_approved_text": "It's Emma. I help homeowners in Pinellas figure out their options on 14783 SEMINOLE TRL. Are you still the owner there?",
             "notes": "Stage 1 to Stage 2 bridge: warm, disarming, identifies Emma, pivots to ownership check."
         },
         {
@@ -371,7 +463,7 @@ def get_preseeded_golden_replies() -> List[Dict[str, Any]]:
             "node": "BRIDGE_WHEN_DID_WE_TALK",
             "distress_type": "General",
             "seller_inbound": "which one were you? when did we talk?",
-            "final_approved_text": "We haven't talked — sorry, should've led with that. I'm Emma, I work with homeowners around Pinellas. Had a quick question on 14783 SEMINOLE TRL, got a sec?",
+            "final_approved_text": "We haven't talked, sorry, should've led with that. I'm Emma, I work with homeowners around Pinellas. Had a quick question on 14783 SEMINOLE TRL, got a sec?",
             "notes": "Stage 1 to Stage 2 bridge: disarms confusion with apology, establishes local presence, asks for quick sec."
         },
         {
@@ -380,7 +472,7 @@ def get_preseeded_golden_replies() -> List[Dict[str, Any]]:
             "node": "BRIDGE_WHO_IS_THIS",
             "distress_type": "General",
             "seller_inbound": "who is this?",
-            "final_approved_text": "Emma, I work with a local investment group buying in Pinellas. Not a realtor, no listings — just asking about 14783 SEMINOLE TRL.",
+            "final_approved_text": "Emma, I work with a local investment group buying in Pinellas. Not a realtor, no listings, just asking about 14783 SEMINOLE TRL.",
             "notes": "Stage 1 to Stage 2 bridge: concise, confirms investor not realtor, direct to address inquiry."
         },
         {
@@ -398,8 +490,8 @@ def get_preseeded_golden_replies() -> List[Dict[str, Any]]:
             "node": "CODE_ASSESS_FINES",
             "distress_type": "Code Violation",
             "seller_inbound": "The city has been fining me $150 a day because the roof tarp tore and the grass is high. I can't afford to fix it.",
-            "final_approved_text": "I completely understand, those daily city fines add up fast. We buy completely as is, take over the property, and pay off the code liens right at closing so it stops hitting your record. What are you looking to walk away with?",
-            "notes": "Empathetic, confirms relief from daily fines, asks for walkaway price."
+            "final_approved_text": "We do not pay fines, but we can call the county to request a reduction or removal of them. We have had success with that occasionally. How much were you hoping to get for the house?",
+            "notes": "Honest policy that buyer requests reduction or removal from county."
         },
         {
             "id": "golden_code_condemned_2",
@@ -460,9 +552,9 @@ def get_preseeded_golden_replies() -> List[Dict[str, Any]]:
             "category": "Objection Handling",
             "node": "OBJ_LOWBALL_DEFENSE",
             "distress_type": "General",
-            "seller_inbound": "Are you just another wholesaler who's going to offer me 30 cents on the dollar?",
-            "final_approved_text": "Not at all, I completely understand your frustration with lowball callers. We buy direct with our own capital, cover 100% of standard closing costs, and charge zero commissions. What is the number you would need to make a deal make sense?",
-            "notes": "Validates frustration, differentiates direct buyer, asks for their number."
+            "seller_inbound": "Are you just another wholesaler who is going to tie up my house?",
+            "final_approved_text": "Sometimes, wholesale is an exit strategy. We can do the flip ourselves or buy and hold depends on the numbers. How much were you hoping to get?",
+            "notes": "Transparent exit strategy operator response."
         },
         {
             "id": "golden_gold_price_received_9",
@@ -523,22 +615,23 @@ def polish_seller_reply_with_gemini(
         "AS_IS_NO_FEES_HOOK", "CURIOUS_WALKAWAY_HOOK", "CODE_INITIAL_HOOK",
         "LIS_PENDENS_INITIAL_HOOK", "PROBATE_INITIAL_HOOK",
         "OPENER_MULTI_LIST", "OPENER_SINGLE_LIST", "OPENER_ULTRA_SHORT",
-        "BRIDGE_WHAT_EXCUSE_ME", "BRIDGE_WHEN_DID_WE_TALK", "BRIDGE_WHO_IS_THIS"
+        "BRIDGE_WHAT_EXCUSE_ME", "BRIDGE_WHEN_DID_WE_TALK", "BRIDGE_WHO_IS_THIS",
+        "OBJECTION_MID_CONVO_NO"
     }
     if node in first_touch_nodes or "INITIAL" in str(node).upper() or str(node).endswith("_HOOK") or str(node).startswith("BRIDGE_"):
-        return template_reply
+        return sanitize_sms_no_underlines_no_hyphens(template_reply)
 
     settings = load_seller_bot_settings()
     api_key = (settings.get("gemini_api_key") or os.environ.get("GEMINI_API_KEY") or "").strip()
     if not api_key or not settings.get("use_gemini_enhancer", True):
-        return template_reply
+        return sanitize_sms_no_underlines_no_hyphens(template_reply)
 
     model = settings.get("gemini_model", "gemini-3.8-flash")
     bot_name = settings.get("bot_name", "Emma")
     partner_name = settings.get("partner_name", "John")
     office_phone = settings.get("office_phone", "(407) 815-5043")
     owner_name = lead.get("owner_name") or lead.get("first_name") or "there"
-    address = lead.get("property_address") or lead.get("address") or "your property"
+    address = clean_address_for_sms(lead.get("property_address") or lead.get("address") or "your property")
 
     # Grab top 5 most relevant golden replies
     goldens = load_seller_golden_replies()[:5]
@@ -565,9 +658,9 @@ def polish_seller_reply_with_gemini(
         )
         if tier == "UNREALISTIC_PRICE":
             intel_section += (
-                f"- TIER GUIDANCE: The seller dropped an unrealistic or sarcastic dream price anchor (e.g. $1.5M or far above retail). "
-                f"Acknowledge their number with humor and disarming warmth ('at that price I'd pack my bags today too! 😄'). "
-                f"Never argue comps, give real estate lectures, or sound offended. Disarm the joke and politely see if they're open to a realistic as-is cash offer, or wish them well.\n"
+                "- TIER GUIDANCE: Never entertain ridiculous highballs. Ask if they are willing to sell the house as is for cash or just want more than the house is really worth. "
+                "If they respond smart or rude, tell them when you come back to reality and want a real cash offer let me know and ill make you a real one. "
+                "If they want retail, suggest investing their own cash and time to update it and list with a realtor on the MLS, because we are in business to make money, not go broke.\n"
             )
         elif tier == "GOLD_DEAL":
             intel_section += "- TIER GUIDANCE: Deep equity spread! Do not haggle or bargain them down. Lock in a quick call with John right away.\n"
@@ -580,10 +673,9 @@ def polish_seller_reply_with_gemini(
         personality_block = f"\nCUSTOM PERSONALITY & TONE GUIDELINES:\n{custom_personality}\n"
 
     system_prompt = (
-        f"You are {bot_name}, a friendly, warm, empathetic acquisitions coordinator at Peak Investments LLC (407 Flips).\n"
-        f"You are texting via cellular SMS with a Florida homeowner facing distress ({distress_type}).\n"
-        f"Your principal acquisitions partner who makes the cash purchasing decisions is {partner_name}.\n"
-        f"Main office phone for calls: {office_phone}.\n"
+        f"You are {bot_name}, a competent acquisitions agent with 407flips.\n"
+        f"You are texting via cellular SMS with a Florida homeowner.\n"
+        f"Your partner is {partner_name}, who does the underwriting and calls the seller with the offer.\n"
         f"Target Property: {address}.\n"
         f"{intel_section}\n"
         f"{personality_block}"
@@ -592,11 +684,16 @@ def polish_seller_reply_with_gemini(
         f"CRITICAL RULES:\n"
         f"1. Keep it short, natural, and human (1 to 2 sentences max). Real people text casually.\n"
         f"2. Never use corporate or scammy phrases ('Dear Sir', 'As a real estate investor', 'I hope this finds you well').\n"
-        f"3. Be empathetic, disarming, and helpful (solve code fines, stop auction date, handle estate contents).\n"
-        f"4. Drive toward setting a quick 5 minute call with {partner_name} from office line {office_phone}.\n"
-        f"5. CARRIER SPAM COMPLIANCE: In initial outreach or early messages, do NOT spam repetitive buzzwords like 'cash offer', 'all-cash', or 'local investor'. Sound like a normal, local person asking a simple conversational question.\n"
-        f"6. NO DASHES OR HYPHENS: Absolutely NEVER use em-dashes (—), en-dashes (–), or hyphens (-). Real people texting use natural commas, periods, or spaces. Use 'as is' instead of 'as-is'. Dashes look robotic and break carrier SMS GSM-7 encoding.\n"
-        f"7. Output ONLY the raw SMS text reply. No quotes, no markdown."
+        f"3. When appropriate you can say John does our underwriting.\n"
+        f"4. Never ask for price after every question. Ask once near the beginning, then at the end if not given. Do not push for price after that.\n"
+        f"5. EARNEST MONEY DEPOSIT: If asked about earnest money or deposit amount, do not quote a number. Say it varies and John will go over it with you.\n"
+        f"6. LIENS AND DEBT: When liens are mentioned, ask 'After we pay off your liens, what were you hoping to walk away with?'. Never say payoffs come out of the purchase price.\n"
+        f"7. CLOSING SPEED: If asked how fast we can close, say 7 days is the fastest. Less time is bigger risk on our end with less time to inspect, and a longer close is less risk for us.\n"
+        f"8. RIDICULOUS HIGHBALLS: Never entertain ridiculous highballs. Ask if they are willing to sell as is for cash or just want more than the house is really worth. If they get smart, reply 'When you come back to reality and want a real cash offer let me know and ill make you a real one.' Suggest investing their own cash and time to update it and list with a realtor on the MLS, because we are in business to make money, not go broke.\n"
+        f"9. TITLE COMPANY: We always use our own title company since we cover closing costs and they move fast. Never agree or mention using the seller's title company. Any further title questions go through our underwriter John.\n"
+        f"10. CARRIER SPAM COMPLIANCE: Sound like a normal, local person asking simple conversational questions.\n"
+        f"11. NO DASHES, HYPHENS, OR UNDERLINES: Absolutely NEVER use em-dashes, en-dashes, hyphens, colons, semicolons, exclamation marks, or underscores. Real people texting use natural commas, periods, or spaces. Use 'as is' instead of 'as-is', 'off market' instead of 'off-market', 'cleanout' instead of 'clean-out'.\n"
+        f"12. Output ONLY the raw SMS text reply. No quotes, no markdown."
     )
 
     user_prompt = (
@@ -631,27 +728,14 @@ def polish_seller_reply_with_gemini(
             if cand.lower().startswith(f"{bot_name.lower()}:"):
                 cand = cand[len(bot_name) + 1:].strip()
             
-            # Sanitize away any em-dashes, en-dashes, or conversational hyphens
-            cand = cand.replace("—", ", ").replace("–", ", ")
-            cand = cand.replace(" - ", ", ")
-            cand = cand.replace("as-is", "as is").replace("As-is", "As is").replace("As-Is", "As is")
-            cand = cand.replace("clean-out", "cleanout").replace("clean-outs", "cleanouts")
-            cand = cand.replace("out-of-the-blue", "out of the blue")
-            cand = cand.replace("5-minute", "5 minute").replace("10-minute", "10 minute")
-            cand = cand.replace("all-cash", "cash").replace("All-cash", "Cash")
-            # Replace any stray hyphen surrounded by spaces
-            import re
-            cand = re.sub(r'\s+-\s+', ', ', cand)
-            cand = re.sub(r'(\w+)-(\w+)', r'\1 \2', cand)  # Replace words-separated-by-hyphen with spaces
-            cand = re.sub(r'\s+', ' ', cand).strip()
+            cand = sanitize_sms_no_underlines_no_hyphens(cand)
 
             if len(cand) >= 12:
                 return cand
     except Exception:
         pass
 
-    clean_template = template_reply.replace("—", ", ").replace("–", ", ").replace(" - ", ", ")
-    return clean_template
+    return sanitize_sms_no_underlines_no_hyphens(template_reply)
 
 
 # --- Keyword & Regex Helper Utilities ---
@@ -812,70 +896,21 @@ class SellerBotEngine:
         distress_override: Optional[str] = None,
         forced_angle: Optional[str] = None
     ) -> Dict[str, Any]:
-        """
-        Generates a fresh Stage 1 opener SMS text according to the two-stage doctrine.
-        Doorbell stage: Gets a reply under 160 chars, single segment.
-        Tiers by distress-list count (Multi-list vs Single-list vs Ultra-short).
-        Appends mandatory rotating soft opt-out line (Drops 'Reply STOP to opt out').
-        First-touch templates send deterministically without Gemini rewrite.
-        """
-        import random
+        """Use the same configured initial outreach as manual and Auto SMS in every county."""
+        from src.sms_outreach_queue import fill_template
         distress = distress_override or self.detect_distress_type(lead)
-        first_name = lead.get("owner_name") or lead.get("first_name") or "there"
-        if " " in first_name:
-            first_name = first_name.split()[0].title()
-
-        raw_addr = lead.get("property_address") or lead.get("address") or "the property"
-        street_addr = raw_addr.split(",")[0].strip() if "," in raw_addr else raw_addr
-
+        templates = load_initial_sms_templates()
+        requested = LEGACY_TEMPLATE_IDS.get(forced_angle, forced_angle)
+        template = next((t for t in templates if t['id'] == requested), None)
+        if template is None:
+            template = random.choice(templates)
+        opener_angle = template['id']
+        node = 'INITIAL_OUTREACH'
         is_multi = is_multi_distress_lead(lead)
-
-        # 1. Select opener angle tiered by distress list count
-        if forced_angle == "multi_list":
-            opener_angle = "multi_list"
-            node = "OPENER_MULTI_LIST"
-            template = DISTRESS_SCRIPTS["OPENER_MULTI_LIST"]
-        elif forced_angle == "single_list":
-            opener_angle = "single_list"
-            node = "OPENER_SINGLE_LIST"
-            template = DISTRESS_SCRIPTS["OPENER_SINGLE_LIST"]
-        elif forced_angle == "ultra_short":
-            opener_angle = "ultra_short"
-            node = "OPENER_ULTRA_SHORT"
-            template = DISTRESS_SCRIPTS["OPENER_ULTRA_SHORT"]
-        elif is_multi:
-            # Multi-list (2+ lists — getting hammered): rotate multi_list and ultra_short
-            opener_angle = random.choice(["multi_list", "multi_list", "ultra_short"])
-            if opener_angle == "multi_list":
-                node = "OPENER_MULTI_LIST"
-                template = DISTRESS_SCRIPTS["OPENER_MULTI_LIST"]
-            else:
-                node = "OPENER_ULTRA_SHORT"
-                template = DISTRESS_SCRIPTS["OPENER_ULTRA_SHORT"]
-        else:
-            # Single-list: rotate single_list and ultra_short
-            opener_angle = random.choice(["single_list", "single_list", "ultra_short"])
-            if opener_angle == "single_list":
-                node = "OPENER_SINGLE_LIST"
-                template = DISTRESS_SCRIPTS["OPENER_SINGLE_LIST"]
-            else:
-                node = "OPENER_ULTRA_SHORT"
-                template = DISTRESS_SCRIPTS["OPENER_ULTRA_SHORT"]
-
-        base_text = template.replace("{first_name}", first_name).replace("{address}", street_addr)
-
-        # 2. Append rotating approved human soft opt-out line
-        soft_opt_out = get_soft_opt_out()
-        full_text = f"{base_text} {soft_opt_out}"
-
-        # 3. Compliance guarantee: single SMS segment (under 160 characters)
-        if len(full_text) > 160:
-            # Truncate ultra-long street address or fallback to ultra-short
-            fallback_ultra = DISTRESS_SCRIPTS["OPENER_ULTRA_SHORT"].replace("{first_name}", first_name)
-            shortest_opt = "Not interested? Just say no and I'll drop it."
-            full_text = f"{fallback_ultra} {shortest_opt}"
-            opener_angle = "ultra_short"
-            node = "OPENER_ULTRA_SHORT"
+        contact = dict(lead, owner=lead.get('owner_name') or lead.get('owner') or lead.get('first_name') or '',
+                       address=lead.get('property_address') or lead.get('address') or 'your property')
+        full_text = sanitize_sms_no_underlines_no_hyphens(
+            fill_template(template['body'], contact, lead.get('county') or ''))
 
         parcel_value = float(lead.get("just_value") or lead.get("assessed_value") or 250000.0)
         return {
@@ -948,7 +983,7 @@ class SellerBotEngine:
         # 2. Stage 1 -> Stage 2 Bridge Golden Replies
         # Emma handles confused curiosity / identification questions warmly and pivots to qualify
         area = get_lead_area_name(lead)
-        street_addr = address.split(",")[0].strip() if "," in address else address
+        street_addr = clean_address_for_sms(address)
         low = clean_text.lower().strip()
 
         # 2a. "what?" / "excuse me?"

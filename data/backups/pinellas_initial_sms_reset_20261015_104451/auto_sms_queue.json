@@ -1,0 +1,900 @@
+{
+  "id": "74ef9ac2-81c4-4256-812a-7d046ec338c0",
+  "status": "complete",
+  "campaign": "follow_up",
+  "counties": [
+    "Orange"
+  ],
+  "items": [
+    {
+      "parcel_id": "SKIP-ORANGE-12257-DICKENSON-LN",
+      "phone": "3219464815",
+      "owner": "Mourad Bani",
+      "county": "Orange",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-1652-MESSINA-AVE",
+      "phone": "2393337044",
+      "owner": "Thomas Ryan",
+      "county": "Orange",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-6441-MARLBERRY-DR",
+      "phone": "4078106068",
+      "owner": "Francis Phaneuf",
+      "county": "Orange",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-3912-ROSE-PETAL-LN",
+      "phone": "4079232211",
+      "owner": "Alice Gore",
+      "county": "Orange",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-4840-RED-WILLOW-AVE",
+      "phone": "4079135664",
+      "owner": "Al & Yen Homes Llc nan",
+      "county": "Orange",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-2514-SUGARSAND-CT",
+      "phone": "4074614594",
+      "owner": "Madeline Aguilera",
+      "county": "Orange",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-1739-CANOE-CREEK-FALLS-D",
+      "phone": "9294203468",
+      "owner": "Sheila Vargas",
+      "county": "Orange",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-817-POLK-ST",
+      "phone": "4075385436",
+      "owner": "Thomas Linda Estate nan",
+      "county": "Orange",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-14421-CONGRESS-ST",
+      "phone": "4077615593",
+      "owner": "Lana Smith",
+      "county": "Orange",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-2929-SOMERSWORTH-CT",
+      "phone": "7028603447",
+      "owner": "Jonah Bryant",
+      "county": "Orange",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-7125-TRIPOLI-WAY",
+      "phone": "4079523407",
+      "owner": "Yohandra Martinez",
+      "county": "Orange",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-9537-TURKEY-OAK-BND",
+      "phone": "4074033198",
+      "owner": "Manuel Garcia",
+      "county": "Orange",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-301-ILLINOIS-AVE",
+      "phone": "4077569206",
+      "owner": "James Mark Hays Trust nan",
+      "county": "Orange",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-19204-PADDOCK-ST",
+      "phone": "6175494960",
+      "owner": "Michael Maloney",
+      "county": "Orange",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-4445-CASSIUS-ST",
+      "phone": "4075363071",
+      "owner": "Cherichel Poposky",
+      "county": "Orange",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-5405-BAYBROOK-AVE",
+      "phone": "3212393020",
+      "owner": "David T Duffy Revocable Trust nan",
+      "county": "Orange",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-2618-SANTANA-AVE",
+      "phone": "4077159221",
+      "owner": "Mystale Bredy Revocable Living Trust nan",
+      "county": "Orange",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-4058-SHELLMAN-ST",
+      "phone": "6103905819",
+      "owner": "Ramical Properties Llc nan",
+      "county": "Orange",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-1923-HAMMERLIN-AVE",
+      "phone": "8037436330",
+      "owner": "Asha Palta Trust nan",
+      "county": "Orange",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-1402-ROOSEVELT-ST",
+      "phone": "4072522739",
+      "owner": "Stephanie Simmons",
+      "county": "Orange",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-4879-FISKE-CIR",
+      "phone": "4077660020",
+      "owner": "Rebekah Lewis",
+      "county": "Orange",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-1305-HEATHER-LAKE-DR",
+      "phone": "4078403224",
+      "owner": "Julio Lopez",
+      "county": "Orange",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-6900-WESTMAR-DR",
+      "phone": "4075385435",
+      "owner": "Cw Investment Group Llc nan",
+      "county": "Orange",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-3199-SHADY-WILLOW-DR",
+      "phone": "4077952189",
+      "owner": "Melissa Sanchez",
+      "county": "Orange",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-2692-WHITE-ISLE-LN",
+      "phone": "4077739979",
+      "owner": "Michael Bennett",
+      "county": "Orange",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-2209-SAND-ARBOR-CIR",
+      "phone": "4073018837",
+      "owner": "Julio Lopez",
+      "county": "Orange",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-1860-CHINOOK-TRL",
+      "phone": "4076692929",
+      "owner": "Natasha Lewis",
+      "county": "Orange",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-6105-AMBASSADOR-DR",
+      "phone": "4072922206",
+      "owner": "Joshua Charles",
+      "county": "Orange",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-315-THORNTON-LN",
+      "phone": "8457070432",
+      "owner": "Bobby Mathews",
+      "county": "Orange",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-14932-YORKSHIRE-RUN-DR",
+      "phone": "4076805138",
+      "owner": "Cesar Lugaro",
+      "county": "Orange",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-3018-WILLOW-BEND-BLVD",
+      "phone": "4078609613",
+      "owner": "Troy White",
+      "county": "Orange",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-1795-BOBTAIL-DR",
+      "phone": "8134479053",
+      "owner": "Lauren Mccullum",
+      "county": "Orange",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-3020-HARRISON-AVE",
+      "phone": "5309138011",
+      "owner": "Michael Bennett",
+      "county": "Orange",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-1210-HOLLY-SPRINGS-CIR",
+      "phone": "4079526599",
+      "owner": "Devon Johnson",
+      "county": "Orange",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-1035-BUTTERFLY-BLVD",
+      "phone": "4076142137",
+      "owner": "Jose Lopez",
+      "county": "Orange",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-654-GRAND-ROYAL-CIR",
+      "phone": "3216953925",
+      "owner": "Jose Rivera",
+      "county": "Orange",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-566-LANCER-OAK-DR",
+      "phone": "4078863093",
+      "owner": "Voeurn Voeung",
+      "county": "Orange",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-1807-WHITE-HERON-BAY-CIR",
+      "phone": "4077823679",
+      "owner": "Duyen Le",
+      "county": "Orange",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-1427-FALCONWOOD-CT",
+      "phone": "7868598957",
+      "owner": "Gregory Vernet",
+      "county": "Orange",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-3964-HUNTERS-ISLE-DR",
+      "phone": "3059920423",
+      "owner": "Graciela Lopez",
+      "county": "Orange",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-14832-TRAPPER-RD",
+      "phone": "3213911286",
+      "owner": "Charles Anderson",
+      "county": "Orange",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-860-HUNTINGTON-PL",
+      "phone": "4078988949",
+      "owner": "Kenneth Lewis",
+      "county": "Orange",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-1956-IBIS-BAY-CT",
+      "phone": "4077291673",
+      "owner": "Charles Anderson",
+      "county": "Orange",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-1515-DESS-DR",
+      "phone": "4072095216",
+      "owner": "Brian Scott",
+      "county": "Orange",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-2013-FOREST-CIR",
+      "phone": "4072720408",
+      "owner": "Andrew Sessions",
+      "county": "Orange",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-3403-GOLDEN-GEM-RD",
+      "phone": "4072270438",
+      "owner": "Juan Rodriguez",
+      "county": "Orange",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-11570-THURSTON-WAY",
+      "phone": "4078576176",
+      "owner": "Kenneth Lewis",
+      "county": "Orange",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-1815-JILL-CT",
+      "phone": "4076282925",
+      "owner": "Charles Anderson",
+      "county": "Orange",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-2246-WAUTOMA-PL",
+      "phone": "4075383807",
+      "owner": "Benjamin Family Trust nan",
+      "county": "Orange",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-696-POINTE-EMERSON-BLVD",
+      "phone": "8082844895",
+      "owner": "Joanne Lewis",
+      "county": "Orange",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-4028-MEANDERING-BAY-DR",
+      "phone": "3304646327",
+      "owner": "Myles Johnson",
+      "county": "Orange",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-4643-KOZART-ST",
+      "phone": "4077229024",
+      "owner": "Jean Alfredo Cidel Revocable Trust A nan",
+      "county": "Orange",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-12954-BROAKFIELD-CIR",
+      "phone": "4072570592",
+      "owner": "Julio Lopez",
+      "county": "Orange",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-11909-BENTRY-ST",
+      "phone": "6095178021",
+      "owner": "Bruce Smith",
+      "county": "Orange",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-2927-RIO-LN",
+      "phone": "2405505749",
+      "owner": "Paul Hjardemaal",
+      "county": "Orange",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-2013-ROBERTS-POINT-DR",
+      "phone": "8634244515",
+      "owner": "William T Goodwin Revocable Trust nan",
+      "county": "Orange",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-425-THUNDER-GULCH-CT",
+      "phone": "4079208264",
+      "owner": "Danielle A Isaacs Homestead Trust nan",
+      "county": "Orange",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-5113-BEACH-RIVER-RD",
+      "phone": "4073959402",
+      "owner": "Carol Prado Family Trust nan",
+      "county": "Orange",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-10213-FACET-CT",
+      "phone": "4073635595",
+      "owner": "Lisa Lloyd Mcdowell Family Trust nan",
+      "county": "Orange",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-13548-GORGONA-ISLE-DR",
+      "phone": "6173060169",
+      "owner": "Andrew C Taleas Revocable Trust nan",
+      "county": "Orange",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-3727-BRITAINSHIRE-CT",
+      "phone": "4072344036",
+      "owner": "Smith Bruce L Tr nan",
+      "county": "Orange",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-325-OAK-ESTATES-DR",
+      "phone": "4074912354",
+      "owner": "Carol M Latham Trust nan",
+      "county": "Orange",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-14424-BELLA-LN",
+      "phone": "4087814355",
+      "owner": "William Brockmeyer Ii Revocable Trus nan",
+      "county": "Orange",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-2003-SUMMERFIELD-RD",
+      "phone": "2543944119",
+      "owner": "James F Hoover Revocable Trust nan",
+      "county": "Orange",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-16040-CITRUS-KNOLL-DR",
+      "phone": "8033717618",
+      "owner": "Michael Bennett",
+      "county": "Orange",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-1433-FALCONWOOD-CT",
+      "phone": "4072223944",
+      "owner": "Nathaniel Weathers",
+      "county": "Orange",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-3313-JANET-ST",
+      "phone": "4073538583",
+      "owner": "John Thomas",
+      "county": "Orange",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-5936-THAMES-WAY",
+      "phone": "4072723852",
+      "owner": "Davila Johny Estate nan",
+      "county": "Orange",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-427-ALEXANDRIA-PLACE-DR",
+      "phone": "4073347764",
+      "owner": "Kenneth Lewis",
+      "county": "Orange",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-13048-HATHERTON-CIR",
+      "phone": "9146687757",
+      "owner": "Raymond Henry",
+      "county": "Orange",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-2117-PARKSIDE-MEADOW-DR",
+      "phone": "2089650565",
+      "owner": "Christopher Johnson",
+      "county": "Orange",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-4800-ELKMONT-RD",
+      "phone": "4073758882",
+      "owner": "Michael Bennett",
+      "county": "Orange",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-4519-ARCH-ST",
+      "phone": "4072953865",
+      "owner": "Nathaniel Weathers",
+      "county": "Orange",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-101-REESE-CT",
+      "phone": "3219455631",
+      "owner": "Daniel Perez",
+      "county": "Orange",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-1918-WOODWARD-ST",
+      "phone": "3017554618",
+      "owner": "Tuong Vo",
+      "county": "Orange",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-125-KRUEGER-ST",
+      "phone": "4075162566",
+      "owner": "Jose Vasquez",
+      "county": "Orange",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-201-CAMBRIDGE-BLVD",
+      "phone": "4077161498",
+      "owner": "Michael Bennett",
+      "county": "Orange",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "SKIP-ORANGE-1251-REAGANS-RESERVE-BLV",
+      "phone": "4072641465",
+      "owner": "Jason Smith",
+      "county": "Orange",
+      "status": "sent"
+    }
+  ],
+  "templates": [
+    {
+      "id": "follow_up_1",
+      "body": "Hello, I'm trying to locate the property owner of {Address}. Would that be you?"
+    },
+    {
+      "id": "follow_up_2",
+      "body": "Hi, I'm looking for the homeowner at {Address}. Is that you?"
+    },
+    {
+      "id": "follow_up_3",
+      "body": "Hello, is this the right person to reach about ownership of {Address}?"
+    },
+    {
+      "id": "follow_up_4",
+      "body": "Hi there, I'm trying to get in touch with the owner of {Address}. Are you the owner?"
+    },
+    {
+      "id": "follow_up_5",
+      "body": "Hello, would you happen to be the homeowner at {Address}?"
+    },
+    {
+      "id": "follow_up_6",
+      "body": "Hi, I wanted to check if you own the property at {Address}. Do I have the right person?"
+    },
+    {
+      "id": "follow_up_7",
+      "body": "Hello, I'm hoping to reach the property owner of {Address}. Is this you?"
+    },
+    {
+      "id": "follow_up_8",
+      "body": "Hi there, are you the person who owns the home at {Address}?"
+    },
+    {
+      "id": "follow_up_9",
+      "body": "Hello, just following up. I'm looking for the owner of {Address}. Would that be you?"
+    },
+    {
+      "id": "follow_up_10",
+      "body": "Hi, am I reaching the homeowner for {Address}, or do I have the wrong person?"
+    }
+  ],
+  "angle_index": 78,
+  "next_send_at": 1791990835.0902085,
+  "sent_phones": [
+    "2089650565",
+    "2393337044",
+    "2405505749",
+    "2543944119",
+    "3017554618",
+    "3054589293",
+    "3059920423",
+    "3212393020",
+    "3213911286",
+    "3216953925",
+    "3219455631",
+    "3219464815",
+    "3304646327",
+    "4072095216",
+    "4072223944",
+    "4072270438",
+    "4072344036",
+    "4072522739",
+    "4072570592",
+    "4072641465",
+    "4072720408",
+    "4072723852",
+    "4072922206",
+    "4072953865",
+    "4073018837",
+    "4073347764",
+    "4073428527",
+    "4073538583",
+    "4073635595",
+    "4073758882",
+    "4073959402",
+    "4074033198",
+    "4074614594",
+    "4074912354",
+    "4075162566",
+    "4075363071",
+    "4075383807",
+    "4075385435",
+    "4075385436",
+    "4076142137",
+    "4076173506",
+    "4076282925",
+    "4076692929",
+    "4076805138",
+    "4077159221",
+    "4077161498",
+    "4077229024",
+    "4077291673",
+    "4077569206",
+    "4077615593",
+    "4077660020",
+    "4077739979",
+    "4077823679",
+    "4077952189",
+    "4078106068",
+    "4078403224",
+    "4078576176",
+    "4078609613",
+    "4078863093",
+    "4078988949",
+    "4079135664",
+    "4079208264",
+    "4079232211",
+    "4079523407",
+    "4079526599",
+    "4079632133",
+    "4087814355",
+    "5309138011",
+    "6095178021",
+    "6103905819",
+    "6173060169",
+    "6175494960",
+    "7028603447",
+    "7868598957",
+    "8033717618",
+    "8037436330",
+    "8082844895",
+    "8134479053",
+    "8457070432",
+    "8634244515",
+    "9146687757",
+    "9294203468"
+  ],
+  "held_phones": [],
+  "replied_phones": [
+    "2163756274",
+    "2164101867",
+    "3054589293",
+    "3214229440",
+    "3215445860",
+    "3215449684",
+    "3474213139",
+    "4072217134",
+    "4072270438",
+    "4073428527",
+    "4073837782",
+    "4074807012",
+    "4074912354",
+    "4075042503",
+    "4075128121",
+    "4075521499",
+    "4075839501",
+    "4075845076",
+    "4076173506",
+    "4076412808",
+    "4077024248",
+    "4077612009",
+    "4077615593",
+    "4077827799",
+    "4078085353",
+    "4078091193",
+    "4079026236",
+    "4079218062",
+    "4079632133",
+    "4804625392",
+    "6789285792",
+    "6892456920",
+    "7046102329",
+    "7275550199",
+    "7472794427",
+    "8046565007",
+    "8332682940",
+    "8336731759",
+    "8339913448",
+    "8447305597",
+    "8457070432",
+    "8575261572",
+    "8636402442",
+    "8888989304",
+    "9048599603",
+    "9374596876",
+    "9728845504"
+  ],
+  "follow_up_sent_phones": [
+    "2089650565",
+    "2393337044",
+    "2405505749",
+    "2543944119",
+    "3017554618",
+    "3059920423",
+    "3212393020",
+    "3213911286",
+    "3216953925",
+    "3219455631",
+    "3219464815",
+    "3304646327",
+    "4072095216",
+    "4072223944",
+    "4072270438",
+    "4072344036",
+    "4072522739",
+    "4072570592",
+    "4072641465",
+    "4072720408",
+    "4072723852",
+    "4072922206",
+    "4072953865",
+    "4073018837",
+    "4073347764",
+    "4073538583",
+    "4073635595",
+    "4073758882",
+    "4073959402",
+    "4074033198",
+    "4074614594",
+    "4074912354",
+    "4075162566",
+    "4075363071",
+    "4075383807",
+    "4075385435",
+    "4075385436",
+    "4076142137",
+    "4076282925",
+    "4076692929",
+    "4076805138",
+    "4077159221",
+    "4077161498",
+    "4077229024",
+    "4077291673",
+    "4077569206",
+    "4077615593",
+    "4077660020",
+    "4077739979",
+    "4077823679",
+    "4077952189",
+    "4078106068",
+    "4078403224",
+    "4078576176",
+    "4078609613",
+    "4078863093",
+    "4078988949",
+    "4079135664",
+    "4079208264",
+    "4079232211",
+    "4079523407",
+    "4079526599",
+    "4087814355",
+    "5309138011",
+    "6095178021",
+    "6103905819",
+    "6173060169",
+    "6175494960",
+    "7028603447",
+    "7868598957",
+    "8033717618",
+    "8037436330",
+    "8082844895",
+    "8134479053",
+    "8457070432",
+    "8634244515",
+    "9146687757",
+    "9294203468"
+  ],
+  "manual_reply_phones": [
+    "2089650565",
+    "2393337044",
+    "2405505749",
+    "2543944119",
+    "3017554618",
+    "3059920423",
+    "3212393020",
+    "3213911286",
+    "3216953925",
+    "3219455631",
+    "3219464815",
+    "3304646327",
+    "4072095216",
+    "4072223944",
+    "4072270438",
+    "4072344036",
+    "4072522739",
+    "4072570592",
+    "4072641465",
+    "4072720408",
+    "4072723852",
+    "4072922206",
+    "4072953865",
+    "4073018837",
+    "4073347764",
+    "4073538583",
+    "4073635595",
+    "4073758882",
+    "4073959402",
+    "4074033198",
+    "4074614594",
+    "4074912354",
+    "4075162566",
+    "4075363071",
+    "4075383807",
+    "4075385435",
+    "4075385436",
+    "4076142137",
+    "4076282925",
+    "4076692929",
+    "4076805138",
+    "4077159221",
+    "4077161498",
+    "4077229024",
+    "4077291673",
+    "4077569206",
+    "4077615593",
+    "4077660020",
+    "4077739979",
+    "4077823679",
+    "4077952189",
+    "4078106068",
+    "4078403224",
+    "4078576176",
+    "4078609613",
+    "4078863093",
+    "4078988949",
+    "4079135664",
+    "4079208264",
+    "4079232211",
+    "4079523407",
+    "4079526599",
+    "4087814355",
+    "5309138011",
+    "6095178021",
+    "6103905819",
+    "6173060169",
+    "6175494960",
+    "7028603447",
+    "7868598957",
+    "8033717618",
+    "8037436330",
+    "8082844895",
+    "8134479053",
+    "8457070432",
+    "8634244515",
+    "9146687757",
+    "9294203468"
+  ],
+  "skipped_reasons": {
+    "Already replied": 5,
+    "Duplicate phone": 1,
+    "Missing or invalid phone": 1
+  },
+  "notice": ""
+}

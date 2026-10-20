@@ -828,8 +828,8 @@
     "county": "Orange",
     "sources": [
       {
-        "url": "https://officialrecords.occompt.com/recorder/web/",
-        "notes": "Requires I Accept. Official Comptroller recorded-document search; select Lis Pendens."
+        "url": "https://selfservice.or.occompt.com/ssweb/search/DOCSEARCH2950S3",
+        "notes": "Comptroller Official Records (Lis Pendens, Divorce, Judgments, Deeds, Recorded Probate). Requires clicking Accept on disclaimer."
       },
       {
         "url": "https://www.ocfl.net/NeighborsHousing/CodeCompliance.aspx",
@@ -1187,6 +1187,12 @@
         "url": "https://seminolecounty.tax/public-records-requests/",
         "notes": "Official Tax Collector public-record request for an existing bulk property-tax file.",
         "access": "RECORDS_REQUEST"
+      },
+      {
+        "url": "https://www.seminolesheriff.org/reports/List.aspx?mediareporttypeid=2",
+        "notes": "Daily Booking Reports (Seminole County Sheriff's Office). Nightly arrest PDFs with defendant names, DOBs, booking numbers, and Florida criminal statute charges.",
+        "category": "legal_distress",
+        "access": "DIRECT_DOWNLOAD"
       }
     ]
   },

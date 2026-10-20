@@ -1,0 +1,56 @@
+{
+  "title": "Florida Department of Revenue (DOR) Standard Land Use Code Classification",
+  "authority": "Rule 12D-8.008, Florida Administrative Code (F.A.C.)",
+  "purpose": "Statewide parcel use codes utilized by all 67 Florida County Property Appraisers (Orange, Pinellas, Hillsborough, Brevard, etc.)",
+  "residential_codes": {
+    "0000": { "category": "Vacant Residential", "description": "Platted vacant residential parcel with no permanent structural improvements" },
+    "0100": { "category": "Single Family Residential", "description": "Single-family detached dwelling" },
+    "0200": { "category": "Mobile Home", "description": "Manufactured or mobile home on fee-simple residential land" },
+    "0300": { "category": "Multi-Family (10+ Units)", "description": "Apartments, multi-family residential complexes with 10 or more living units" },
+    "0400": { "category": "Condominium", "description": "Residential condominium unit" },
+    "0500": { "category": "Cooperatives", "description": "Residential cooperative housing unit" },
+    "0600": { "category": "Retirement Homes", "description": "Homes for the aged, senior independent/assisted living facilities" },
+    "0700": { "category": "Miscellaneous Residential", "description": "Boarding houses, migrant housing, dormitories" },
+    "0800": { "category": "Multi-Family (Less than 10 Units)", "description": "Duplexes (0801), Triplexes (0802), Fourplexes / Quadplexes (0803)" },
+    "0900": { "category": "Residential Common Area", "description": "HOA or condo association common grounds, green spaces, retention areas" }
+  },
+  "commercial_and_industrial_codes": {
+    "1000": { "category": "Vacant Commercial", "description": "Platted commercial vacant land" },
+    "1100": { "category": "Stores, One Story", "description": "Retail storefront, standalone retail" },
+    "1200": { "category": "Mixed Use Commercial/Residential", "description": "Storefront below, residential living units above" },
+    "1300": { "category": "Department Stores", "description": "Large format department stores, anchor retail" },
+    "1400": { "category": "Supermarkets", "description": "Grocery stores, food markets" },
+    "1500": { "category": "Regional Shopping Centers", "description": "Enclosed or outdoor shopping malls" },
+    "1600": { "category": "Community Shopping Centers", "description": "Strip plazas, neighborhood centers" },
+    "1700": { "category": "Office Buildings, Non-Professional", "description": "General office 1-story" },
+    "1800": { "category": "Office Buildings, Multi-Story", "description": "Mid-rise and high-rise professional offices" },
+    "1900": { "category": "Professional Service Buildings", "description": "Medical, dental, legal, veterinary clinics" },
+    "2100": { "category": "Restaurants / Cafeterias", "description": "Standalone dining establishments" },
+    "2200": { "category": "Drive-In / Fast Food", "description": "Fast food with drive-thru facility" },
+    "2300": { "category": "Financial Institutions", "description": "Banks, credit unions, savings institutions" },
+    "2700": { "category": "Auto Sales & Repair", "description": "Car dealerships, repair garages, tire shops" },
+    "2800": { "category": "Parking Lots / Mobile Home Parks", "description": "Commercial parking or commercial mobile home park land" },
+    "3900": { "category": "Hotels & Motels", "description": "Commercial lodging, hospitality" },
+    "4000": { "category": "Vacant Industrial", "description": "Platted industrial vacant land" },
+    "4100": { "category": "Light Manufacturing", "description": "Assembly, small scale machine shops" },
+    "4800": { "category": "Warehousing & Distribution", "description": "Distribution centers, flex warehouses, logistics terminals" }
+  },
+  "agricultural_codes": {
+    "5000": { "category": "Improved Agricultural", "description": "Cattle, citrus, pastures, row crops with Florida Greenbelt Exemption" },
+    "6000": { "category": "Pastureland", "description": "Grazing land" },
+    "6600": { "category": "Citrus Groves", "description": "Commercial orange, grapefruit groves" },
+    "6900": { "category": "Ornamentals / Nurseries", "description": "Greenhouses, tree farms" }
+  },
+  "institutional_and_governmental": {
+    "7000": { "category": "Vacant Institutional", "description": "Churches, private schools land" },
+    "7100": { "category": "Churches / Houses of Worship", "description": "Religious facilities (Tax Exempt)" },
+    "8000": { "category": "Vacant Governmental", "description": "County, municipal, state vacant land" },
+    "8600": { "category": "Public Schools / Universities", "description": "State and local school board properties" }
+  },
+  "investor_underwriting_cheat_sheet": {
+    "prime_wholesale_target": ["0100", "0800", "0801", "0802", "0803"],
+    "infill_lot_target": ["0000", "1000"],
+    "commercial_conversion_target": ["1200", "1700"],
+    "mobile_home_investing": ["0200", "2800"]
+  }
+}

@@ -1,146 +1,434 @@
 [
   {
-    "id": "golden_bridge_what_1",
-    "category": "Stage 1-2 Bridge",
-    "node": "BRIDGE_WHAT_EXCUSE_ME",
+    "id": "golden_price_what_offering_1",
+    "category": "Price",
+    "node": "QUALIFY_PRICE",
     "distress_type": "General",
-    "seller_inbound": "what? who is this and what are you talking about?",
-    "final_approved_text": "It's Emma — I help homeowners in Pinellas figure out their options on 14783 SEMINOLE TRL. Are you still the owner there?",
-    "notes": "Stage 1 to Stage 2 bridge: warm, disarming, identifies Emma, pivots to ownership check."
+    "seller_inbound": "What are you offering? Give me an offer first.",
+    "final_approved_text": "John does our underwriting based on what the house needs. What are you hoping to walk away with?",
+    "notes": "Handles seller pushing for offer first by anchoring on John doing underwriting."
   },
   {
-    "id": "golden_bridge_when_talk_2",
-    "category": "Stage 1-2 Bridge",
-    "node": "BRIDGE_WHEN_DID_WE_TALK",
+    "id": "golden_price_retail_zillow_2",
+    "category": "Price",
+    "node": "SPREAD_DEAL_COUNTER",
     "distress_type": "General",
-    "seller_inbound": "which one were you? when did we talk?",
-    "final_approved_text": "We haven't talked — sorry, should've led with that. I'm Emma, I work with homeowners around Pinellas. Had a quick question on 14783 SEMINOLE TRL, got a sec?",
-    "notes": "Stage 1 to Stage 2 bridge: disarms confusion with apology, establishes local presence, asks for quick sec."
+    "seller_inbound": "I saw on Zillow it is worth $350k, I want retail price.",
+    "final_approved_text": "Zillow does not factor in repairs or holding costs. We take it as is without any realtor fees. What is your bottom dollar to let it go?",
+    "notes": "Counters retail Zillow anchor with as is and zero realtor fees."
   },
   {
-    "id": "golden_bridge_who_is_this_3",
-    "category": "Stage 1-2 Bridge",
-    "node": "BRIDGE_WHO_IS_THIS",
-    "distress_type": "General",
-    "seller_inbound": "who is this?",
-    "final_approved_text": "Emma, I work with a local investment group buying in Pinellas. Not a realtor, no listings — just asking about 14783 SEMINOLE TRL.",
-    "notes": "Stage 1 to Stage 2 bridge: concise, confirms investor not realtor, direct to address inquiry."
-  },
-  {
-    "id": "golden_bridge_wrong_number_4",
-    "category": "Stage 1-2 Bridge",
-    "node": "OPT_OUT",
-    "distress_type": "General",
-    "seller_inbound": "wrong number, never owned that property",
-    "final_approved_text": "Got it, won't text again.",
-    "notes": "Stage 1 to Stage 2 bridge: wrong number treated as opt-out with confirmation."
-  },
-  {
-    "id": "golden_code_fines_1",
-    "category": "Code Violations",
-    "node": "CODE_ASSESS_FINES",
-    "distress_type": "Code Violation",
-    "seller_inbound": "The city has been fining me $150 a day because the roof tarp tore and the grass is high. I can't afford to fix it.",
-    "final_approved_text": "I completely understand, those daily city fines add up fast. We buy completely as is, take over the property, and pay off the code liens right at closing so it stops hitting your record. What are you looking to walk away with?",
-    "notes": "Empathetic, confirms relief from daily fines, asks for walkaway price."
-  },
-  {
-    "id": "golden_code_condemned_2",
-    "category": "Code Violations",
-    "node": "CODE_OFFER_ASIS",
-    "distress_type": "Code Violation",
-    "seller_inbound": "They put an unsafe building placard on the door. It needs a full gut rehab.",
-    "final_approved_text": "No problem at all on our end, we specialize in heavy fixers and buy strictly cash as is without any city inspection requirements. If we cover all closing costs, what is your bottom dollar cash price?",
-    "notes": "Removes fear of inspections, asks bottom-dollar cash."
-  },
-  {
-    "id": "golden_lis_pendens_urgent_3",
-    "category": "Lis Pendens",
-    "node": "LIS_PENDENS_TIMELINE",
-    "distress_type": "Lis Pendens",
-    "seller_inbound": "The bank filed a foreclosure lawsuit last month. I don't know what to do.",
-    "final_approved_text": "I know how stressful that is, but the good news is you still have time to take control. Has the court set a final auction date yet, or are you still in the response window?",
-    "notes": "Disarming reassurance, vets auction urgency."
-  },
-  {
-    "id": "golden_lis_pendens_auction_soon_4",
-    "category": "Lis Pendens",
-    "node": "LIS_PENDENS_PAYOFF",
-    "distress_type": "Lis Pendens",
-    "seller_inbound": "The auction is scheduled for next month on the 24th. I owe about $140,000 on the mortgage.",
-    "final_approved_text": "Understood. We can move fast enough to close before the auction date and pay off the mortgage balance. What would you need to net to make a move work?",
-    "notes": "Clear path to credit protection and walkaway cash."
-  },
-  {
-    "id": "golden_probate_heirs_5",
-    "category": "Probate",
-    "node": "PROBATE_STATUS_CHECK",
-    "distress_type": "Probate",
-    "seller_inbound": "My mother passed away and left the house to my brother and me. We don't live in Florida.",
-    "final_approved_text": "Please accept my heartfelt condolences. Handling an out of town estate can be overwhelming. Have you guys filed probate with the Florida court yet, or are you just getting started?",
-    "notes": "Respectful, checks formal probate standing."
-  },
-  {
-    "id": "golden_probate_clutter_6",
-    "category": "Probate",
-    "node": "PROBATE_CONTENTS_LEFTOVER",
-    "distress_type": "Probate",
-    "seller_inbound": "The house is completely packed with 40 years of furniture and clutter. We cannot clean it out.",
-    "final_approved_text": "Please do not worry about cleaning anything out. You take whatever personal items or keepsakes you want, and leave literally everything else behind, we handle 100% of the cleanout at our expense. What price are you guys hoping for?",
-    "notes": "Eliminates the #1 probate objection (clean-out exhaustion)."
-  },
-  {
-    "id": "golden_obj_how_number_7",
-    "category": "Objection Handling",
-    "node": "OBJ_HOW_DID_YOU_GET_NUMBER",
-    "distress_type": "General",
-    "seller_inbound": "Who is this and how did you get my cell number?",
-    "final_approved_text": "We monitor the county clerk and property appraiser public records, and use a licensed skip trace service to reach owners directly by phone.",
-    "notes": "Concrete, transparent, honest, non-defensive."
-  },
-  {
-    "id": "golden_obj_lowball_8",
-    "category": "Objection Handling",
+    "id": "golden_price_lowball_defense_3",
+    "category": "Price",
     "node": "OBJ_LOWBALL_DEFENSE",
     "distress_type": "General",
-    "seller_inbound": "Are you just another wholesaler who's going to offer me 30 cents on the dollar?",
-    "final_approved_text": "Not at all, I completely understand your frustration with lowball callers. We buy direct with our own capital, cover 100% of standard closing costs, and charge zero commissions. What is the number you would need to make a deal make sense?",
-    "notes": "Validates frustration, differentiates direct buyer, asks for their number."
+    "seller_inbound": "Are you just going to lowball me like everyone else?",
+    "final_approved_text": "No lowballs and no games. We run our numbers off real comps and pay all closing costs. What number makes sense for you?",
+    "notes": "Defuses lowball skepticism with real comps and covered closing costs."
   },
   {
-    "id": "golden_gold_price_received_9",
-    "category": "Gold Deal",
-    "node": "GOLD_DEAL_CALL_CLOSE",
+    "id": "golden_cond_roof_ac_4",
+    "category": "Condition",
+    "node": "QUALIFY_CONDITION",
     "distress_type": "General",
-    "seller_inbound": "I just want $130,000 cash and I want it gone by next Friday.",
-    "final_approved_text": "That sounds very reasonable and within our cash budget. I want to have John, who manages our acquisitions, give you a quick 5 minute call today to confirm the details. Would 2pm or later this afternoon work better for a quick call with John?",
-    "notes": "Validates number immediately, transitions smoothly to call with John."
+    "seller_inbound": "The roof is leaking and the AC is dead, is that an issue?",
+    "final_approved_text": "Not an issue at all. We take on major repairs like roofs and AC units all the time. How is the rest of the house holding up inside?",
+    "notes": "Reassures on heavy repairs and probes interior condition without pushing price."
   },
   {
-    "id": "golden_spread_price_received_10",
-    "category": "Negotiation",
-    "node": "SPREAD_DEAL_COUNTER",
+    "id": "golden_cond_cleanout_clutter_5",
+    "category": "Condition",
+    "node": "AS_IS_CONTENTS",
+    "distress_type": "General",
+    "seller_inbound": "The house is full of old furniture and 30 years of clutter, do I have to clean it out?",
+    "final_approved_text": "You do not have to touch a thing. Take whatever personal items you want and leave the rest, we handle the full cleanout.",
+    "notes": "Removes cleanout burden completely without pushing for price."
+  },
+  {
+    "id": "golden_cond_code_violations_6",
+    "category": "Condition",
+    "node": "CODE_OFFER_ASIS",
     "distress_type": "Code Violation",
-    "seller_inbound": "I'm looking for around $220,000 cash.",
-    "final_approved_text": "Got it. Normally for homes with open code fines and deferred maintenance, our cash numbers need to be a bit lower so we can clear the city liens. What is the absolute bottom dollar you would feel comfortable walking away with?",
-    "notes": "Polite anchor on distress fines, prompts for true walkaway bottom."
+    "seller_inbound": "The city has daily code violations and fines piling up on the property.",
+    "final_approved_text": "We do not pay fines, but we can call the county to request a reduction or removal of them. We have had success with that occasionally. How much were you hoping to get for the house?",
+    "notes": "Honest policy that buyer requests reduction or removal from county."
   },
   {
-    "id": "golden_book_call_time_11",
-    "category": "Appointment Booking",
+    "id": "golden_about_407flips_realtor_7",
+    "category": "About 407flips",
+    "node": "OBJ_WHO_IS_407FLIPS",
+    "distress_type": "General",
+    "seller_inbound": "Who is 407flips and are you licensed realtors?",
+    "final_approved_text": "We are local direct buyers here in Central Florida, not realtors. No commissions, no fees, and no showings. Just seeing if you want to sell {Address}.",
+    "notes": "Establishes 407flips as direct buyer with zero commissions or showings."
+  },
+  {
+    "id": "golden_about_407flips_wholesaler_8",
+    "category": "About 407flips",
+    "node": "OBJ_WHOLESALER",
+    "distress_type": "General",
+    "seller_inbound": "Are you wholesalers who are going to tie up my house and assign the contract?",
+    "final_approved_text": "Sometimes, wholesale is an exit strategy. We can do the flip ourselves or buy and hold depends on the numbers. How much were you hoping to get?",
+    "notes": "Transparent operator response confirming multiple exit strategies."
+  },
+  {
+    "id": "golden_process_timeline_closing_9",
+    "category": "The Process",
+    "node": "QUALIFY_TIMELINE",
+    "distress_type": "General",
+    "seller_inbound": "How fast can you close?",
+    "final_approved_text": "7 days is the fastest. Less time is bigger risk on our end with less time to inspect, and a longer close is less risk for us. How soon were you looking to do something?",
+    "notes": "Explains 7 days fastest and ties speed directly to inspection risk."
+  },
+  {
+    "id": "golden_process_post_occupancy_10",
+    "category": "The Process",
     "node": "BOOK_CALL_PROPOSAL",
     "distress_type": "General",
-    "seller_inbound": "Yeah, I'd be open to speaking with someone about a cash offer.",
-    "final_approved_text": "Awesome! Let me have John give you a brief 5 minute call to walk through the cash numbers and closing timeline. Would later today around 3pm or tomorrow morning work better for a chat with John?",
-    "notes": "Simple two-option time choice."
+    "seller_inbound": "I need to stay in the home for 30 days after closing until I find another place.",
+    "final_approved_text": "We are not in the business of kicking people on the street. Ill mention it to John and he will go over options we can offer. If we can help with that, what would you be looking to walk away with?",
+    "notes": "Empathetic post occupancy reassurance pivoting to walkaway price."
   },
   {
-    "id": "golden_book_call_confirmed_12",
-    "category": "Appointment Booking",
-    "node": "BOOK_CALL_CONFIRMED",
+    "id": "golden_cond_cast_iron_11",
+    "category": "Condition",
+    "node": "QUALIFY_CONDITION",
     "distress_type": "General",
-    "seller_inbound": "Tomorrow morning around 10am works for me.",
-    "final_approved_text": "Sounds great! I have scheduled John to call you tomorrow at 10:00 AM from our office line (407) 815-5043. We look forward to connecting and helping you get this solved!",
-    "notes": "Locks in time, establishes office caller ID (407-815-5043)."
+    "seller_inbound": "It has cast iron pipes that are broken under the slab, does that scare you off?",
+    "final_approved_text": "Not at all. We repipe homes on our projects frequently. How are the roof and AC holding up?",
+    "notes": "Comfortable with cast iron replumbing without badgering on price."
+  },
+  {
+    "id": "golden_cond_termite_rot_12",
+    "category": "Condition",
+    "node": "QUALIFY_CONDITION",
+    "distress_type": "General",
+    "seller_inbound": "There is active termite damage and wood rot throughout the porch and eaves.",
+    "final_approved_text": "We deal with wood rot and termite damage on most of our projects. Has an inspector looked at the structure?",
+    "notes": "Validates termite and rot damage experience without badgering on price."
+  },
+  {
+    "id": "golden_cond_hurricane_mold_13",
+    "category": "Condition",
+    "node": "QUALIFY_CONDITION",
+    "distress_type": "General",
+    "seller_inbound": "The house was damaged in the last hurricane and has mold inside.",
+    "final_approved_text": "We handle storm damage and remediation. We take it exactly as it sits.",
+    "notes": "Takes storm and mold properties in current state without pushing for price."
+  },
+  {
+    "id": "golden_cond_pool_broken_14",
+    "category": "Condition",
+    "node": "QUALIFY_CONDITION",
+    "distress_type": "General",
+    "seller_inbound": "The pool is green and the pump equipment is completely broken.",
+    "final_approved_text": "Pool repairs are standard for our renovations. How is the rest of the house holding up inside?",
+    "notes": "Disarms pool repair concerns and probes interior condition."
+  },
+  {
+    "id": "golden_price_firm_anchor_15",
+    "category": "Price",
+    "node": "SPREAD_DEAL_COUNTER",
+    "distress_type": "General",
+    "seller_inbound": "I need at least $250k cash in my pocket or I will just keep it.",
+    "final_approved_text": "Got it. If the condition lines up with that number we can make it work. How are the roof and AC holding up?",
+    "notes": "Validates price anchor conditionally and probes roof AC age."
+  },
+  {
+    "id": "golden_price_closing_costs_16",
+    "category": "Price",
+    "node": "QUALIFY_PRICE",
+    "distress_type": "General",
+    "seller_inbound": "Can you pay my closing costs and fees?",
+    "final_approved_text": "Yes, we cover all standard closing costs so you walk away with the agreed price. What number do you need?",
+    "notes": "Confirms buyer covers closing costs."
+  },
+  {
+    "id": "golden_price_realtor_comp_17",
+    "category": "Price",
+    "node": "SPREAD_DEAL_COUNTER",
+    "distress_type": "General",
+    "seller_inbound": "A realtor told me they can list it for $400k.",
+    "final_approved_text": "With a realtor you pay 6 percent commission, closing fees, and buyers ask for repair credits. We buy direct with zero fees. What is your bottom dollar cash price?",
+    "notes": "Contrasts realtor listing deductions with net cash offer."
+  },
+  {
+    "id": "golden_price_fast_accept_18",
+    "category": "Price",
+    "node": "GOLD_DEAL_CALL_CLOSE",
+    "distress_type": "General",
+    "seller_inbound": "I will sell it for $150k if you can close by next Friday.",
+    "final_approved_text": "That price works. Ill give this to John and he will call you with the offer so we can get the paperwork started. Thank you.",
+    "notes": "Fast gold deal acceptance transitioning to John call."
+  },
+  {
+    "id": "golden_about_407flips_office_19",
+    "category": "About 407flips",
+    "node": "OBJ_WHO_IS_407FLIPS",
+    "distress_type": "General",
+    "seller_inbound": "Where is your office located and how long have you been in business?",
+    "final_approved_text": "We are based right here in Orlando and work across Central Florida and Pinellas. We do projects all year round. How is the condition of {Address}?",
+    "notes": "Confirms local Orlando and Central Florida presence."
+  },
+  {
+    "id": "golden_about_407flips_pof_20",
+    "category": "About 407flips",
+    "node": "OBJ_WHO_IS_407FLIPS",
+    "distress_type": "General",
+    "seller_inbound": "Can you provide proof of funds or references from past sellers?",
+    "final_approved_text": "John does our underwriting and can provide proof of funds with the purchase agreement.",
+    "notes": "Confirms John does underwriting and provides proof of funds without pushing price."
+  },
+  {
+    "id": "golden_process_no_open_houses_21",
+    "category": "The Process",
+    "node": "QUALIFY_TIMELINE",
+    "distress_type": "General",
+    "seller_inbound": "Do I have to let dozens of people walk through my house for open houses?",
+    "final_approved_text": "No open houses and no strangers walking through. Just John doing a quick walkthrough to verify condition. Does that work for you?",
+    "notes": "Eliminates open house fear with single buyer walkthrough."
+  },
+  {
+    "id": "golden_process_florida_contract_22",
+    "category": "The Process",
+    "node": "QUALIFY_TIMELINE",
+    "distress_type": "General",
+    "seller_inbound": "What kind of contract do you use, is it standard Florida paperwork?",
+    "final_approved_text": "Yes, we use a standard Florida purchase agreement with clean terms and zero junk fees. What timeline works best for you to close?",
+    "notes": "Standard Florida purchase contract reassurance."
+  },
+  {
+    "id": "golden_process_no_appraisal_23",
+    "category": "The Process",
+    "node": "QUALIFY_TIMELINE",
+    "distress_type": "General",
+    "seller_inbound": "Do you require an appraisal or bank financing approval?",
+    "final_approved_text": "No bank financing and no appraisals. We use our own funds so there are no lender delays. When were you looking to do something?",
+    "notes": "Confirms zero bank or appraisal contingencies."
+  },
+  {
+    "id": "golden_distress_auction_date_24",
+    "category": "The Process",
+    "node": "LIS_PENDENS_TIMELINE",
+    "distress_type": "Lis Pendens",
+    "seller_inbound": "The bank set an auction date for next month, can you close in time?",
+    "final_approved_text": "Yes, we can close before the auction date and pay off the mortgage balance so it protects your equity. What is the payoff amount?",
+    "notes": "Pivots pre foreclosure urgency to mortgage payoff balance."
+  },
+  {
+    "id": "golden_distress_probate_court_25",
+    "category": "The Process",
+    "node": "PROBATE_STATUS_CHECK",
+    "distress_type": "Probate",
+    "seller_inbound": "My sibling and I inherited this from our parents, probate is not finished yet.",
+    "final_approved_text": "Sorry for your loss. We work with probate attorneys regularly and can buy once the court grants authority. Has an attorney been assigned yet?",
+    "notes": "Navigates probate estate process respectfully."
+  },
+  {
+    "id": "golden_distress_red_tag_26",
+    "category": "Condition",
+    "node": "CODE_OFFER_ASIS",
+    "distress_type": "Code Violation",
+    "seller_inbound": "The building department red tagged the property as unsafe.",
+    "final_approved_text": "We take on red tagged and condemned properties. We pull our own permits to fix the violations.",
+    "notes": "Handles red tagged condemned properties without pushing for price."
+  },
+  {
+    "id": "golden_distress_back_taxes_27",
+    "category": "The Process",
+    "node": "SPREAD_DEAL_COUNTER",
+    "distress_type": "General",
+    "seller_inbound": "There are back property taxes owed from the last three years.",
+    "final_approved_text": "Back taxes are paid right out of proceeds at closing so you do not come out of pocket. What are you looking to walk away with?",
+    "notes": "Explains tax payoff at closing without out of pocket expense."
+  },
+  {
+    "id": "golden_bridge_what_idea_28",
+    "category": "About 407flips",
+    "node": "BRIDGE_WHAT_EXCUSE_ME",
+    "distress_type": "General",
+    "seller_inbound": "What idea do you have for my house?",
+    "final_approved_text": "Im with 407flips doing projects around town. We could take it as is if you want to sell. How is the condition of the place?",
+    "notes": "Brooke competent intro answering what idea."
+  },
+  {
+    "id": "golden_bridge_who_is_this_29",
+    "category": "About 407flips",
+    "node": "BRIDGE_WHO_IS_THIS",
+    "distress_type": "General",
+    "seller_inbound": "Who is this and why are you texting me?",
+    "final_approved_text": "My name is Brooke with 407flips. We do projects in the area and wanted to see if you had any thoughts on letting {Address} go.",
+    "notes": "Brooke direct intro answering who is this."
+  },
+  {
+    "id": "golden_handoff_next_step_30",
+    "category": "The Process",
+    "node": "GOLD_DEAL_CALL_CLOSE",
+    "distress_type": "General",
+    "seller_inbound": "Sounds good, what is the next step?",
+    "final_approved_text": "Got it. Ill give this to John and he will call you with the offer. Thank you.",
+    "notes": "Clean direct closing handoff to John call with offer."
+  },
+  {
+    "id": "golden_process_emd_question_31",
+    "category": "The Process",
+    "node": "QUALIFY_TIMELINE",
+    "distress_type": "General",
+    "seller_inbound": "Do you put down an earnest money deposit with your contract?",
+    "final_approved_text": "Yes, we put up earnest money. John will go over the deposit when he makes the offer.",
+    "notes": "Confirms earnest money deposit and deferral to John offer."
+  },
+  {
+    "id": "golden_process_emd_push_32",
+    "category": "The Process",
+    "node": "QUALIFY_TIMELINE",
+    "distress_type": "General",
+    "seller_inbound": "How much earnest money deposit do you put up in escrow?",
+    "final_approved_text": "It varies, John will go over it with you.",
+    "notes": "Does not quote a number, explains it varies and defers to John."
+  },
+  {
+    "id": "golden_title_liens_33",
+    "category": "The Process",
+    "node": "QUALIFY_TIMELINE",
+    "distress_type": "General",
+    "seller_inbound": "There is an IRS tax lien and an old contractor lien on the title.",
+    "final_approved_text": "After we pay off your liens, what were you hoping to walk away with?",
+    "notes": "Phrased so seller feels relief from liens. Paid at closing from purchase price by title."
+  },
+  {
+    "id": "golden_cond_bad_tenants_34",
+    "category": "Condition",
+    "node": "QUALIFY_CONDITION",
+    "distress_type": "General",
+    "seller_inbound": "There are non paying tenants in the house and they refuse to leave.",
+    "final_approved_text": "We take properties with problem tenants and handle the eviction process ourselves after closing.",
+    "notes": "Takes occupied properties with non paying tenants without asking for price."
+  },
+  {
+    "id": "golden_cond_insurance_canceled_35",
+    "category": "Condition",
+    "node": "QUALIFY_CONDITION",
+    "distress_type": "General",
+    "seller_inbound": "Insurance dropped our policy because the roof is 20 years old and uninsurable.",
+    "final_approved_text": "We buy without insurance requirements and handle the roof ourselves. How is the rest of the property holding up inside?",
+    "notes": "Reassures on uninsurable roofs and dropped policies."
+  },
+  {
+    "id": "golden_cond_septic_failed_36",
+    "category": "Condition",
+    "node": "QUALIFY_CONDITION",
+    "distress_type": "General",
+    "seller_inbound": "The septic tank failed and the drain field needs to be completely replaced.",
+    "final_approved_text": "Septic replacements are common on our projects. How are the roof and AC holding up?",
+    "notes": "Normalizes septic and drain field failures and checks roof AC."
+  },
+  {
+    "id": "golden_cond_electrical_panel_37",
+    "category": "Condition",
+    "node": "QUALIFY_CONDITION",
+    "distress_type": "General",
+    "seller_inbound": "It still has an old Federal Pacific electrical panel and cloth wiring.",
+    "final_approved_text": "We rewire and upgrade electrical panels on our projects regularly. Has any work been updated recently?",
+    "notes": "Normalizes vintage wiring and panels without pushing for price."
+  },
+  {
+    "id": "golden_title_solar_panels_38",
+    "category": "The Process",
+    "node": "QUALIFY_TIMELINE",
+    "distress_type": "General",
+    "seller_inbound": "There is a solar panel loan on the roof that I still owe money on.",
+    "final_approved_text": "John does our underwriting and will look at whether the solar loan can be paid off or transferred.",
+    "notes": "Uses underwriting reference for solar loan payoff or transfer."
+  },
+  {
+    "id": "golden_distress_multiple_heirs_39",
+    "category": "About 407flips",
+    "node": "PROBATE_STATUS_CHECK",
+    "distress_type": "Probate",
+    "seller_inbound": "My brother and I both own the house but we disagree on what to do with it.",
+    "final_approved_text": "We see that all the time. John will go over the numbers and options so both of you can decide if it works.",
+    "notes": "De-escalates family disagreement and positions John as neutral numbers resource."
+  },
+  {
+    "id": "golden_title_hoa_violations_40",
+    "category": "The Process",
+    "node": "QUALIFY_TIMELINE",
+    "distress_type": "General",
+    "seller_inbound": "The HOA has thousands of dollars in past due dues and violation fines.",
+    "final_approved_text": "After we clear the HOA dues and liens at closing, what were you hoping to walk away with?",
+    "notes": "Phrased so seller feels relief from HOA liens. Paid at closing from purchase price by title."
+  },
+  {
+    "id": "golden_process_time_to_decide_41",
+    "category": "The Process",
+    "node": "QUALIFY_TIMELINE",
+    "distress_type": "General",
+    "seller_inbound": "If John makes an offer how long do I have to decide?",
+    "final_approved_text": "Take your time to look it over. There is zero pressure and no obligation.",
+    "notes": "Zero pressure reassurance when seller asks how long to decide."
+  },
+  {
+    "id": "golden_process_hire_lawyer_42",
+    "category": "The Process",
+    "node": "QUALIFY_TIMELINE",
+    "distress_type": "General",
+    "seller_inbound": "Do I need to hire an attorney to review the agreement?",
+    "final_approved_text": "You are always welcome to have an attorney review it. Everything closes through a licensed Florida title company.",
+    "notes": "Welcomes attorney review and confirms licensed title company closing."
+  },
+  {
+    "id": "golden_price_ridiculous_highball_43",
+    "category": "Price",
+    "node": "UNREALISTIC_DREAM_PRICE",
+    "distress_type": "General",
+    "seller_inbound": "I want $600k, that is my price take it or leave it.",
+    "final_approved_text": "So are you willing to sell the house as is for cash, or do you just want more than the house is really worth?",
+    "notes": "Reality check for ridiculous highball asking price."
+  },
+  {
+    "id": "golden_price_smart_response_44",
+    "category": "Price",
+    "node": "UNREALISTIC_DREAM_PRICE",
+    "distress_type": "General",
+    "seller_inbound": "Good luck finding anything cheaper, you guys are a joke.",
+    "final_approved_text": "When you come back to reality and want a real cash offer let me know and ill make you a real one.",
+    "notes": "Direct response to smart or rude seller when they refuse reality."
+  },
+  {
+    "id": "golden_price_retail_mls_suggestion_45",
+    "category": "Price",
+    "node": "SPREAD_DEAL_COUNTER",
+    "distress_type": "General",
+    "seller_inbound": "I am not taking a discount, I want full retail value.",
+    "final_approved_text": "If you want full retail, you should invest the cash and time to update it and list with a realtor on the MLS. We are in business to make money, not go broke.",
+    "notes": "Redirects full retail seller to MLS and realtor with direct business reality."
+  },
+  {
+    "id": "golden_price_higher_offers_46",
+    "category": "Price",
+    "node": "OBJ_ALREADY_HAVE_OFFER",
+    "distress_type": "General",
+    "seller_inbound": "We have had higher offers.",
+    "final_approved_text": "Why didn't you take it? A lot of buyers offer high to lock you up and then try to drop the price during inspection. If they back out let us know.",
+    "notes": "Direct challenge on higher offers exposing inspection price drop games."
+  },
+  {
+    "id": "golden_title_company_choice_47",
+    "category": "The Process",
+    "node": "QUALIFY_TIMELINE",
+    "distress_type": "General",
+    "seller_inbound": "What title company do you use, can we use my title company?",
+    "final_approved_text": "We use our title company since we cover the closing costs and they move fast. Any further questions on title go through our underwriter John.",
+    "notes": "Firm policy using internal title company and deferring questions to John."
+  },
+  {
+    "id": "golden_price_realistic_zestimate_counter_48",
+    "category": "Price",
+    "node": "SPREAD_DEAL_COUNTER",
+    "distress_type": "General",
+    "seller_inbound": "I was thinking around $285k for it.",
+    "final_approved_text": "That could work if the place is completely updated. Does the roof, ac or plumbing need any work?",
+    "notes": "Counter to asking price near Zestimate by qualifying whether roof, ac, or plumbing need work."
   }
 ]

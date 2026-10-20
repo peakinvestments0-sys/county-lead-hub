@@ -5,6 +5,7 @@ import time
 import json
 import webbrowser
 import pandas as pd
+import numpy as np
 import requests
 from requests.auth import HTTPBasicAuth
 import smtplib
@@ -24,7 +25,7 @@ if sys.platform == "win32":
     except Exception:
         pass
 
-from fastapi import FastAPI, UploadFile, File, Form, HTTPException, Response, Request
+from fastapi import FastAPI, UploadFile, File, Form, HTTPException, Response, Request, BackgroundTasks, Query
 from fastapi.responses import HTMLResponse, FileResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
@@ -35,6 +36,8 @@ if BASE_DIR not in sys.path:
     sys.path.insert(0, BASE_DIR)
 
 from src.config import WHOLESALE_EXPORT_PRESET, DATA_DIR
+from src.initial_sms_templates import DEFAULT_SMS_TEMPLATES, load_initial_sms_templates
+from src.saved_property_matches import load_property_index, address_key
 from src.counties import (
     DEFAULT_STATES, load_available_states,
     load_county_portals, get_county_paths, update_county_portal_urls,
@@ -42,17 +45,27 @@ from src.counties import (
 )
 from src.data_loader import load_master_parcels, ParcelDatabase
 from src.matcher import CrossReferenceEngine
-from src.normalizer import parse_owner_name, extract_human_defendants
+from src.normalizer import (
+    parse_owner_name, extract_human_defendants,
+    clean_display_address, clean_display_name, clean_display_city
+)
 from pydantic import BaseModel
 
 from src.link_zone_service import link_zone_service
-from src.lucas_operator import lucas_operator
+from src.scout_operator_agent import (
+    query_statewide_leads,
+    generate_executive_briefing,
+    get_sentinel_status,
+    process_scout_chat
+)
 from src.seller_bot_engine import (
     SellerBotEngine, load_seller_bot_settings, save_seller_bot_settings,
     load_seller_golden_replies, save_seller_golden_reply, delete_seller_golden_reply,
-    evaluate_deal_spread, test_seller_gemini_connection
+    evaluate_deal_spread, test_seller_gemini_connection,
+    clean_address_for_sms, sanitize_sms_no_underlines_no_hyphens
 )
-from src.valuation_service import get_property_market_valuation
+from src.valuation_service import get_property_market_valuation, load_valuations_cache
+from src.florida_underwriter_engine import underwrite_407flips_deal
 from src.calendar_service import (
     load_scheduled_callbacks, save_scheduled_callbacks,
     send_calendar_invite_email, build_google_calendar_url
@@ -77,19 +90,25 @@ app.add_middleware(
 # Global in-memory cache for county ParcelDatabases
 DB_CACHE = {}
 
-class LucasTimerScheduleRequest(BaseModel):
-    lead_id: str
-    lead_name: str
-    phone: str
-    address: str
-    action_type: str = "SMS_NUDGE"
-    delay_hours: float = 24.0
-    custom_message: Optional[str] = None
+class ScoutChatRequest(BaseModel):
+    message: str
+    state: str = "FL"
+    county: Optional[str] = None
 
-class LucasTimerCancelRequest(BaseModel):
-    timer_id: str
+class ScoutCrossQueryRequest(BaseModel):
+    state: str = "FL"
+    counties: Optional[List[str]] = None
+    filter_type: str = "all"
+    distress_type: str = "all"
+    search_text: str = ""
+    min_equity_val: int = 0
+    min_market_val: int = 0
+    max_market_val: int = 0
+    exclude_llc: bool = False
+    property_type: str = "all"
+    max_records: int = 150
 
-class LucasCommandRequest(BaseModel):
+class LegacyOperatorCommandRequest(BaseModel):
     prompt: str
     phone: Optional[str] = None
 
@@ -103,49 +122,630 @@ def get_link_zone_health():
     """Get live connection health, status, state statistics, and audit history for Link Zone."""
     return link_zone_service.get_health_report()
 
+@app.get("/api/florida/apis")
+def get_florida_apis_catalog(state: str = "FL"):
+    """Return all verified government APIs from Link Zone for specified state (FL, GA, TN, TX, etc.)."""
+    return link_zone_service.get_state_api_catalog(state=state)
+
 @app.post("/api/link-zone/resync")
 def trigger_link_zone_resync():
     """Manually force re-scan of C:\\Projects\\Apps\\link-zone\\data and refresh portals."""
     return link_zone_service.force_resync()
 
+@app.post("/api/orange/sync-apis")
+@app.post("/api/code-enforcement/sync-orlando")
+def trigger_orlando_code_sync():
+    """Live sync open residential neglect code violations from City of Orlando SODA API."""
+    try:
+        from src.orlando_code_sync import sync_orlando_code_enforcement
+        db = get_database("Orange", state="FL")
+        result = sync_orlando_code_enforcement(db=db)
+        return result
+    except Exception as e:
+        return {"status": "error", "message": str(e)}
+
+@app.post("/api/pinellas/sync-apis")
+@app.post("/api/code-enforcement/sync-pinellas")
+def trigger_pinellas_api_sync():
+    """Live sync Pinellas County APIs: Accela Substantial Damage & SeeClickFix Code Violations."""
+    try:
+        from src.pinellas_code_sync import sync_pinellas_live_apis
+        result = sync_pinellas_live_apis()
+        if getattr(app.state, 'last_county', '') == 'Pinellas':
+            app.state.last_results = None
+        return result
+    except Exception as e:
+        return {"status": "error", "message": str(e)}
+
+@app.post("/api/sarasota/sync-apis")
+@app.post("/api/code-enforcement/sync-sarasota")
+def trigger_sarasota_api_sync():
+    """Live sync Sarasota County SeeClickFix code and property distress API."""
+    try:
+        from src.sarasota_code_sync import sync_sarasota_live_apis
+        result = sync_sarasota_live_apis()
+        if getattr(app.state, 'last_county', '') == 'Sarasota':
+            app.state.last_results = None
+        return result
+    except Exception as e:
+        return {"status": "error", "message": str(e)}
+
+@app.post("/api/charlotte/sync-apis")
+@app.post("/api/code-enforcement/sync-charlotte")
+def trigger_charlotte_api_sync():
+    """Live sync Charlotte County ArcGIS code enforcement and FEMA distress API."""
+    try:
+        from src.charlotte_code_sync import sync_charlotte_live_apis
+        result = sync_charlotte_live_apis()
+        if getattr(app.state, 'last_county', '') == 'Charlotte':
+            app.state.last_results = None
+        return result
+    except Exception as e:
+        return {"status": "error", "message": str(e)}
+
+@app.post("/api/lake/sync-apis")
+@app.post("/api/code-enforcement/sync-lake")
+def trigger_lake_api_sync():
+    """Live sync Lake County GIS code enforcement cases API."""
+    try:
+        from src.lake_code_sync import sync_lake_live_apis
+        result = sync_lake_live_apis()
+        if getattr(app.state, 'last_county', '') == 'Lake':
+            app.state.last_results = None
+        return result
+    except Exception as e:
+        return {"status": "error", "message": str(e)}
+
+@app.post("/api/pasco/sync-apis")
+@app.post("/api/code-enforcement/sync-pasco")
+def trigger_pasco_api_sync():
+    """Live sync Pasco County SeeClickFix code & distress API."""
+    try:
+        from src.pasco_code_sync import sync_pasco_live_apis
+        result = sync_pasco_live_apis()
+        if getattr(app.state, 'last_county', '') == 'Pasco':
+            app.state.last_results = None
+        return result
+    except Exception as e:
+        return {"status": "error", "message": str(e)}
+
+@app.post("/api/manatee/sync-apis")
+@app.post("/api/code-enforcement/sync-manatee")
+def trigger_manatee_api_sync():
+    """Live sync Manatee County SeeClickFix code & distress API."""
+    try:
+        from src.manatee_code_sync import sync_manatee_live_apis
+        result = sync_manatee_live_apis()
+        if getattr(app.state, 'last_county', '') == 'Manatee':
+            app.state.last_results = None
+        return result
+    except Exception as e:
+        return {"status": "error", "message": str(e)}
+
+@app.post("/api/alachua/sync-apis")
+@app.post("/api/code-enforcement/sync-alachua")
+def trigger_alachua_api_sync():
+    """Live sync Alachua County GIS code enforcement cases API."""
+    try:
+        from src.alachua_code_sync import sync_alachua_live_apis
+        result = sync_alachua_live_apis()
+        if getattr(app.state, 'last_county', '') == 'Alachua':
+            app.state.last_results = None
+        return result
+    except Exception as e:
+        return {"status": "error", "message": str(e)}
+
+@app.post("/api/volusia/sync-apis")
+@app.post("/api/code-enforcement/sync-volusia")
+def trigger_volusia_api_sync():
+    """Live sync Volusia County / Daytona Beach code enforcement & SeeClickFix distress API."""
+    try:
+        from src.volusia_code_sync import sync_volusia_live_apis
+        result = sync_volusia_live_apis()
+        if getattr(app.state, 'last_county', '') == 'Volusia':
+            app.state.last_results = None
+        return result
+    except Exception as e:
+        return {"status": "error", "message": str(e)}
+
+@app.post("/api/hillsborough/sync-apis")
+@app.post("/api/code-enforcement/sync-hillsborough")
+def trigger_hillsborough_api_sync():
+    """Live sync Hillsborough County structural damage assessments & open distress API."""
+    try:
+        from src.hillsborough_code_sync import sync_hillsborough_live_apis
+        result = sync_hillsborough_live_apis()
+        if getattr(app.state, 'last_county', '') == 'Hillsborough':
+            app.state.last_results = None
+        return result
+    except Exception as e:
+        return {"status": "error", "message": str(e)}
+
+@app.post("/api/osceola/sync-apis")
+@app.post("/api/code-enforcement/sync-osceola")
+def trigger_osceola_api_sync():
+    """Live sync Osceola County GIS residential damage & structural distress API."""
+    try:
+        from src.osceola_code_sync import sync_osceola_live_apis
+        result = sync_osceola_live_apis()
+        if getattr(app.state, 'last_county', '') == 'Osceola':
+            app.state.last_results = None
+        return result
+    except Exception as e:
+        return {"status": "error", "message": str(e)}
+
+@app.post("/api/polk/sync-apis")
+@app.post("/api/code-enforcement/sync-polk")
+def trigger_polk_api_sync():
+    """Live sync Polk County / Lakeland IMS code enforcement & SeeClickFix distress API."""
+    try:
+        from src.polk_code_sync import sync_polk_live_apis
+        result = sync_polk_live_apis()
+        if getattr(app.state, 'last_county', '') == 'Polk':
+            app.state.last_results = None
+        return result
+    except Exception as e:
+        return {"status": "error", "message": str(e)}
+
+@app.post("/api/lee/sync-apis")
+@app.post("/api/code-enforcement/sync-lee")
+def trigger_lee_api_sync():
+    """Live sync Lee County GIS Nuisance Accumulation Violations & Municipal Liens API."""
+    try:
+        from src.lee_code_sync import sync_lee_leads
+        result = sync_lee_leads(force_refresh=True)
+        if getattr(app.state, 'last_county', '') == 'Lee':
+            app.state.last_results = None
+        return result
+    except Exception as e:
+        return {"status": "error", "message": str(e)}
+
+@app.post("/api/collier/sync-apis")
+@app.post("/api/code-enforcement/sync-collier")
+def trigger_collier_api_sync():
+    """Live sync Collier County GIS Milestone Structural Inspections & Property Distress API."""
+    try:
+        from src.collier_code_sync import sync_collier_leads
+        result = sync_collier_leads(force_refresh=True)
+        if getattr(app.state, 'last_county', '') == 'Collier':
+            app.state.last_results = None
+        return result
+    except Exception as e:
+        return {"status": "error", "message": str(e)}
+
+@app.post("/api/brevard/sync-apis")
+@app.post("/api/code-enforcement/sync-brevard")
+def trigger_brevard_api_sync():
+    """Live sync Brevard County & Municipalities SeeClickFix Property Distress API."""
+    try:
+        from src.brevard_code_sync import sync_brevard_leads
+        result = sync_brevard_leads(force_refresh=True)
+        if getattr(app.state, 'last_county', '') == 'Brevard':
+            app.state.last_results = None
+        return result
+    except Exception as e:
+        return {"status": "error", "message": str(e)}
+
+@app.post("/api/duval/sync-apis")
+@app.post("/api/code-enforcement/sync-duval")
+def trigger_duval_api_sync():
+    """Live sync Duval County / Jacksonville SeeClickFix distress API."""
+    try:
+        from src.duval_code_sync import sync_duval_leads
+        result = sync_duval_leads(force_refresh=True)
+        if getattr(app.state, 'last_county', '') == 'Duval':
+            app.state.last_results = None
+        return result
+    except Exception as e:
+        return {"status": "error", "message": str(e)}
+
+@app.post("/api/marion/sync-apis")
+@app.post("/api/code-enforcement/sync-marion")
+def trigger_marion_api_sync():
+    """Live sync Marion County / Ocala Recorded Municipal Liens & SeeClickFix distress API."""
+    try:
+        from src.marion_code_sync import sync_marion_leads
+        result = sync_marion_leads(force_refresh=True)
+        if getattr(app.state, 'last_county', '') == 'Marion':
+            app.state.last_results = None
+        return result
+    except Exception as e:
+        return {"status": "error", "message": str(e)}
+
+@app.post("/api/broward/sync-apis")
+@app.post("/api/code-enforcement/sync-broward")
+def trigger_broward_api_sync():
+    """Live sync Broward County (Fort Lauderdale, Hollywood, etc.) SeeClickFix distress API."""
+    try:
+        from src.broward_code_sync import sync_broward_leads
+        result = sync_broward_leads(force_refresh=True)
+        if getattr(app.state, 'last_county', '') == 'Broward':
+            app.state.last_results = None
+        return result
+    except Exception as e:
+        return {"status": "error", "message": str(e)}
+
+@app.post("/api/miami-dade/sync-apis")
+@app.post("/api/code-enforcement/sync-miami-dade")
+def trigger_miami_dade_api_sync():
+    """Live sync Miami-Dade County (Miami, Hialeah, Miami Beach, etc.) SeeClickFix distress API."""
+    try:
+        from src.miami_dade_code_sync import sync_miami_dade_leads
+        result = sync_miami_dade_leads(force_refresh=True)
+        if getattr(app.state, 'last_county', '') in ['Miami-Dade', 'Miami_Dade', 'miami_dade']:
+            app.state.last_results = None
+        return result
+    except Exception as e:
+        return {"status": "error", "message": str(e)}
+
+@app.post("/api/palm-beach/sync-apis")
+@app.post("/api/code-enforcement/sync-palm-beach")
+def trigger_palm_beach_api_sync():
+    """Live sync Palm Beach County (West Palm Beach, Boca Raton, etc.) SeeClickFix distress API."""
+    try:
+        from src.palm_beach_code_sync import sync_palm_beach_leads
+        result = sync_palm_beach_leads(force_refresh=True)
+        if getattr(app.state, 'last_county', '') in ['Palm Beach', 'Palm_Beach', 'palm_beach']:
+            app.state.last_results = None
+        return result
+    except Exception as e:
+        return {"status": "error", "message": str(e)}
+
+@app.post("/api/st-lucie/sync-apis")
+@app.post("/api/code-enforcement/sync-st-lucie")
+def trigger_st_lucie_api_sync():
+    """Live sync St. Lucie County (Port St. Lucie, Fort Pierce, etc.) SeeClickFix distress API."""
+    try:
+        from src.st_lucie_code_sync import sync_st_lucie_leads
+        result = sync_st_lucie_leads(force_refresh=True)
+        if getattr(app.state, 'last_county', '') in ['St. Lucie', 'St_Lucie', 'st._lucie', 'st_lucie']:
+            app.state.last_results = None
+        return result
+    except Exception as e:
+        return {"status": "error", "message": str(e)}
+
+@app.post("/api/martin/sync-apis")
+@app.post("/api/code-enforcement/sync-martin")
+def trigger_martin_api_sync():
+    """Live sync Martin County (Stuart, Jensen Beach, etc.) SeeClickFix distress API."""
+    try:
+        from src.martin_code_sync import sync_martin_leads
+        result = sync_martin_leads(force_refresh=True)
+        if getattr(app.state, 'last_county', '') in ['Martin', 'martin']:
+            app.state.last_results = None
+        return result
+    except Exception as e:
+        return {"status": "error", "message": str(e)}
+
+@app.post("/api/indian-river/sync-apis")
+@app.post("/api/code-enforcement/sync-indian-river")
+def trigger_indian_river_api_sync():
+    """Live sync Indian River County (Vero Beach, Sebastian, etc.) SeeClickFix distress API."""
+    try:
+        from src.indian_river_code_sync import sync_indian_river_leads
+        result = sync_indian_river_leads(force_refresh=True)
+        if getattr(app.state, 'last_county', '') in ['Indian River', 'Indian_River', 'indian_river']:
+            app.state.last_results = None
+        return result
+    except Exception as e:
+        return {"status": "error", "message": str(e)}
+
+@app.post("/api/st-johns/sync-apis")
+@app.post("/api/code-enforcement/sync-st-johns")
+def trigger_st_johns_api_sync():
+    """Live sync St. Johns County (St. Augustine, Ponte Vedra, etc.) code enforcement distress."""
+    try:
+        from src.st_johns_code_sync import sync_st_johns_leads
+        result = sync_st_johns_leads(force_refresh=True)
+        if getattr(app.state, 'last_county', '') in ['St. Johns', 'St_Johns', 'st._johns', 'st_johns']:
+            app.state.last_results = None
+        return result
+    except Exception as e:
+        return {"status": "error", "message": str(e)}
+
+@app.post("/api/flagler/sync-apis")
+@app.post("/api/code-enforcement/sync-flagler")
+def trigger_flagler_api_sync():
+    """Live sync Flagler County (Palm Coast, Flagler Beach, etc.) code enforcement distress."""
+    try:
+        from src.flagler_code_sync import sync_flagler_leads
+        result = sync_flagler_leads(force_refresh=True)
+        if getattr(app.state, 'last_county', '') in ['Flagler', 'flagler']:
+            app.state.last_results = None
+        return result
+    except Exception as e:
+        return {"status": "error", "message": str(e)}
+
+@app.post("/api/nassau/sync-apis")
+@app.post("/api/code-enforcement/sync-nassau")
+def trigger_nassau_api_sync():
+    """Live sync Nassau County (Fernandina Beach, Yulee, etc.) code enforcement distress."""
+    try:
+        from src.nassau_code_sync import sync_nassau_leads
+        result = sync_nassau_leads(force_refresh=True)
+        if getattr(app.state, 'last_county', '') in ['Nassau', 'nassau']:
+            app.state.last_results = None
+        return result
+    except Exception as e:
+        return {"status": "error", "message": str(e)}
+
+@app.post("/api/citrus/sync-apis")
+@app.post("/api/code-enforcement/sync-citrus")
+def trigger_citrus_api_sync():
+    """Live sync Citrus County (Inverness, Crystal River, etc.) code enforcement distress."""
+    try:
+        from src.citrus_code_sync import sync_citrus_leads
+        result = sync_citrus_leads(force_refresh=True)
+        if getattr(app.state, 'last_county', '') in ['Citrus', 'citrus']:
+            app.state.last_results = None
+        return result
+    except Exception as e:
+        return {"status": "error", "message": str(e)}
+
+@app.post("/api/hernando/sync-apis")
+@app.post("/api/code-enforcement/sync-hernando")
+def trigger_hernando_api_sync():
+    """Live sync Hernando County (Brooksville, Spring Hill, etc.) structural damage & code enforcement distress."""
+    try:
+        from src.hernando_code_sync import sync_hernando_leads
+        result = sync_hernando_leads(force_refresh=True)
+        if getattr(app.state, 'last_county', '') in ['Hernando', 'hernando']:
+            app.state.last_results = None
+        return result
+    except Exception as e:
+        return {"status": "error", "message": str(e)}
+
+@app.post("/api/sumter/sync-apis")
+@app.post("/api/code-enforcement/sync-sumter")
+def trigger_sumter_api_sync():
+    """Live sync Sumter County (The Villages, Wildwood, etc.) code enforcement distress."""
+    try:
+        from src.sumter_code_sync import sync_sumter_leads
+        result = sync_sumter_leads(force_refresh=True)
+        if getattr(app.state, 'last_county', '') in ['Sumter', 'sumter']:
+            app.state.last_results = None
+        return result
+    except Exception as e:
+        return {"status": "error", "message": str(e)}
+
+@app.post("/api/highlands/sync-apis")
+@app.post("/api/code-enforcement/sync-highlands")
+def trigger_highlands_api_sync():
+    """Live sync Highlands County (Sebring, Avon Park, Lake Placid) code enforcement distress."""
+    try:
+        from src.highlands_code_sync import sync_highlands_leads
+        result = sync_highlands_leads(force_refresh=True)
+        if getattr(app.state, 'last_county', '') in ['Highlands', 'highlands']:
+            app.state.last_results = None
+        return result
+    except Exception as e:
+        return {"status": "error", "message": str(e)}
+
+@app.post("/api/clay/sync-apis")
+@app.post("/api/code-enforcement/sync-clay")
+def trigger_clay_api_sync():
+    """Live sync Clay County (Orange Park, Green Cove Springs, etc.) code enforcement distress."""
+    try:
+        from src.clay_code_sync import sync_clay_leads
+        result = sync_clay_leads(force_refresh=True)
+        if getattr(app.state, 'last_county', '') in ['Clay', 'clay']:
+            app.state.last_results = None
+        return result
+    except Exception as e:
+        return {"status": "error", "message": str(e)}
+
+@app.post("/api/leon/sync-apis")
+@app.post("/api/code-enforcement/sync-leon")
+def trigger_leon_api_sync():
+    """Live sync Leon County / Tallahassee Cityworks code enforcement violations distress."""
+    try:
+        from src.leon_code_sync import sync_leon_leads
+        result = sync_leon_leads(force_refresh=True)
+        if getattr(app.state, 'last_county', '') in ['Leon', 'leon']:
+            app.state.last_results = None
+        return result
+    except Exception as e:
+        return {"status": "error", "message": str(e)}
+
+@app.post("/api/escambia/sync-apis")
+@app.post("/api/code-enforcement/sync-escambia")
+def trigger_escambia_api_sync():
+    """Live sync Escambia County (Pensacola, Cantonment, Century) code enforcement distress."""
+    try:
+        from src.escambia_code_sync import sync_escambia_leads
+        result = sync_escambia_leads(force_refresh=True)
+        if getattr(app.state, 'last_county', '') in ['Escambia', 'escambia']:
+            app.state.last_results = None
+        return result
+    except Exception as e:
+        return {"status": "error", "message": str(e)}
+
+@app.post("/api/bay/sync-apis")
+@app.post("/api/code-enforcement/sync-bay")
+def trigger_bay_api_sync():
+    """Live sync Bay County (Panama City, Lynn Haven, Panama City Beach) code enforcement distress."""
+    try:
+        from src.bay_code_sync import sync_bay_leads
+        result = sync_bay_leads(force_refresh=True)
+        if getattr(app.state, 'last_county', '') in ['Bay', 'bay']:
+            app.state.last_results = None
+        return result
+    except Exception as e:
+        return {"status": "error", "message": str(e)}
+
+@app.post("/api/okaloosa/sync-apis")
+@app.post("/api/code-enforcement/sync-okaloosa")
+def trigger_okaloosa_api_sync():
+    """Live sync Okaloosa County (Fort Walton Beach, Destin, Crestview) code enforcement distress."""
+    try:
+        from src.okaloosa_code_sync import sync_okaloosa_leads
+        result = sync_okaloosa_leads(force_refresh=True)
+        if getattr(app.state, 'last_county', '') in ['Okaloosa', 'okaloosa']:
+            app.state.last_results = None
+        return result
+    except Exception as e:
+        return {"status": "error", "message": str(e)}
+
+@app.post("/api/santa-rosa/sync-apis")
+@app.post("/api/code-enforcement/sync-santa-rosa")
+def trigger_santa_rosa_api_sync():
+    """Live sync Santa Rosa County (Milton, Gulf Breeze, Navarre, Pace) code enforcement distress."""
+    try:
+        from src.santa_rosa_code_sync import sync_santa_rosa_leads
+        result = sync_santa_rosa_leads(force_refresh=True)
+        if getattr(app.state, 'last_county', '') in ['Santa Rosa', 'santa_rosa', 'santa-rosa']:
+            app.state.last_results = None
+        return result
+    except Exception as e:
+        return {"status": "error", "message": str(e)}
+
+
+
+
+
+@app.post("/api/orange/sync-jail-leads")
+def trigger_orange_jail_sync():
+    """Live sync daily Orange County Jail Felony bookings, match against master parcels, and update cache."""
+    try:
+        from src.jail_lead_agent import sync_orange_county_jail_leads
+        result = sync_orange_county_jail_leads(force_download=True)
+        if getattr(app.state, 'last_county', '') == 'Orange':
+            app.state.last_results = None
+        return result
+    except Exception as e:
+        return {"status": "error", "message": str(e)}
+
+@app.post("/api/seminole/sync-apis")
+@app.post("/api/seminole/sync-jail-leads")
+def trigger_seminole_jail_sync():
+    """Live sync daily Seminole County Jail Felony bookings, match against master parcels, and update cache."""
+    try:
+        from src.seminole_jail_lead_agent import sync_seminole_county_jail_leads
+        result = sync_seminole_county_jail_leads(max_reports=7)
+        if getattr(app.state, 'last_county', '') == 'Seminole':
+            app.state.last_results = None
+        return result
+    except Exception as e:
+        return {"status": "error", "message": str(e)}
+
+# =====================================================================
+# SCOUT OPERATOR & SENTINEL AGENT ENDPOINTS
+# =====================================================================
+
+@app.post("/api/scout/chat")
+def scout_chat(req: ScoutChatRequest):
+    """
+    Process natural language commands, questions, and instructions to Scout.
+    Dispatches queries, briefings, health status, and live sync triggers.
+    """
+    try:
+        res = process_scout_chat(message=req.message, state=req.state, current_county=req.county)
+        return res
+    except Exception as e:
+        return {"reply": f"⚠️ Scout encountered an error: {str(e)}", "action": "error", "error": str(e)}
+
+@app.get("/api/scout/status")
+def scout_status(state: str = Query("FL")):
+    """
+    Real-time Sentinel system health, county cache freshness, and background worker state.
+    """
+    try:
+        return get_sentinel_status(state=state)
+    except Exception as e:
+        return {"sentinel_status": "ERROR", "error": str(e)}
+
+@app.get("/api/scout/briefing")
+def scout_briefing(state: str = Query("FL"), counties: Optional[str] = Query(None)):
+    """
+    High-level executive briefing across target counties or the entire state.
+    """
+    try:
+        c_list = [c.strip() for c in counties.split(",")] if counties else None
+        return generate_executive_briefing(state=state, counties=c_list)
+    except Exception as e:
+        return {"status": "error", "message": str(e)}
+
+@app.post("/api/scout/cross-query")
+def scout_cross_query(req: ScoutCrossQueryRequest):
+    """
+    Columnar sub-second query across all counties in the target state.
+    """
+    try:
+        return query_statewide_leads(
+            state=req.state,
+            counties=req.counties,
+            filter_type=req.filter_type,
+            distress_type=req.distress_type,
+            search_text=req.search_text,
+            min_equity_val=req.min_equity_val,
+            min_market_val=req.min_market_val,
+            max_market_val=req.max_market_val,
+            exclude_llc=req.exclude_llc,
+            property_type=req.property_type,
+            max_records=req.max_records
+        )
+    except Exception as e:
+        return {"status": "error", "message": str(e), "leads": [], "total_matches": 0}
+
+@app.post("/api/scout/sync-all")
+def scout_sync_all(background_tasks: BackgroundTasks, state: str = Query("FL")):
+    """
+    Triggers concurrent background live API polls across all supported counties.
+    """
+    def run_all_syncs():
+        from src.counties import load_county_portals
+        import importlib
+        portals = load_county_portals(state)
+        for cname, meta in portals.items():
+            folder = meta.get("folder_name", cname.lower().replace(" ", "_").replace("-", "_"))
+            sync_module_name = f"src.{folder}_code_sync"
+            try:
+                mod = importlib.import_module(sync_module_name)
+                for fn_name in [
+                    f"sync_{folder}_live_apis",
+                    f"run_{folder}_live_sync",
+                    "sync_live_apis",
+                    "sync_orlando_code_enforcement",
+                    "sync_pinellas_live_apis",
+                    "sync_hillsborough_damage_leads"
+                ]:
+                    if hasattr(mod, fn_name):
+                        getattr(mod, fn_name)()
+                        break
+            except Exception:
+                pass
+
+    background_tasks.add_task(run_all_syncs)
+    return {
+        "status": "initiated",
+        "message": f"Scout has queued background live API synchronization across all active {state.upper()} counties."
+    }
+
+# Backward compatibility routes
 @app.get("/api/operator/triage")
 def get_operator_triage():
-    """Retrieve full pipeline triage, urgency scoring, stats, and daily executive briefing."""
-    return lucas_operator.get_pipeline_triage()
+    status = get_sentinel_status("FL")
+    return {
+        "status": "ready",
+        "operator": "Scout",
+        "stats": {
+            "urgent_count": status.get("degraded_count", 0),
+            "total_leads": status.get("total_active_leads", 0),
+            "estimated_pipeline_spread": 0
+        }
+    }
 
 @app.get("/api/operator/timers")
 def get_operator_timers():
-    """Get all scheduled, pending, and completed delayed timers."""
-    return {"timers": lucas_operator.get_timers()}
-
-@app.post("/api/operator/timers/schedule")
-def schedule_operator_timer(req: LucasTimerScheduleRequest):
-    """Schedule a new delayed follow-up or nudge timer."""
-    return lucas_operator.schedule_timer(
-        lead_id=req.lead_id,
-        lead_name=req.lead_name,
-        phone=req.phone,
-        address=req.address,
-        action_type=req.action_type,
-        delay_hours=req.delay_hours,
-        custom_message=req.custom_message
-    )
-
-@app.post("/api/operator/timers/cancel")
-def cancel_operator_timer(req: LucasTimerCancelRequest):
-    """Cancel a pending delayed timer."""
-    success = lucas_operator.cancel_timer(req.timer_id)
-    return {"status": "success" if success else "not_found", "timer_id": req.timer_id}
+    return {"timers": []}
 
 @app.post("/api/operator/command")
-def execute_operator_command(req: LucasCommandRequest):
-    """Process natural language executive instructions from John."""
-    return lucas_operator.execute_command(req.prompt, req.phone)
+def execute_operator_command(req: LegacyOperatorCommandRequest):
+    return process_scout_chat(req.prompt, state="FL")
 
 @app.get("/api/operator/memory")
 def get_operator_memory():
-    """Get Lucas's operational audit history and memory log."""
-    return {"memory": lucas_operator.memory}
+    return {"memory": ["Scout Lead Sentinel active across 37 Florida counties."]}
 
 def get_database(county_key: str, state: str = "FL") -> ParcelDatabase:
     """Retrieve or load cached ParcelDatabase for given county and state."""
@@ -165,19 +765,42 @@ def get_database(county_key: str, state: str = "FL") -> ParcelDatabase:
 # Known display metrics for county cards (Authentic Florida coastlines, skylines, and waterways)
 COUNTY_DISPLAY_METRICS = {
     "Pinellas": {"records": 437559, "updated": "Sep 22, 2026", "img": "/static/images/county_pinellas_coast.jpg"}, # Clearwater / St. Pete Gulf Coast
-    "Orange": {"records": 12841, "updated": "Sep 20, 2026", "img": "/static/images/county_orange_lake_eola.jpg"}, # Lake Eola / Orlando Skyline
-    "Osceola": {"records": 8432, "updated": "Sep 20, 2026", "img": "/static/images/county_polk_central.jpg"}, # Central Florida wetlands & lakes
-    "Polk": {"records": 10295, "updated": "Sep 19, 2026", "img": "/static/images/county_polk_central.jpg"}, # Central Florida lakes
-    "Hillsborough": {"records": 15672, "updated": "Sep 20, 2026", "img": "/static/images/county_hillsborough_tampa.jpg"}, # Tampa Riverwalk & Downtown Skyline
-    "Broward": {"records": 18441, "updated": "Sep 19, 2026", "img": "/static/images/county_broward_beach.jpg"}, # Fort Lauderdale Oceanfront & Palms
-    "Miami-Dade": {"records": 22705, "updated": "Sep 20, 2026", "img": "/static/images/county_miami_dade.jpg"}, # Miami South Beach & Biscayne Bay
-    "Lee": {"records": 9338, "updated": "Sep 19, 2026", "img": "/static/images/county_lee_fortmyers.jpg"}, # Fort Myers Beach / Gulf
-    "Collier": {"records": 7621, "updated": "Sep 19, 2026", "img": "/static/images/county_naples_collier.jpg"}, # Naples Pier Sunset & Coastal
-    "Palm Beach": {"records": 16907, "updated": "Sep 20, 2026", "img": "/static/images/county_coastal_condos.jpg"}, # Palm Beach Atlantic Coast & estates
-    "Volusia": {"records": 9114, "updated": "Sep 19, 2026", "img": "/static/images/county_florida_palms.jpg"}, # Daytona Coastline & palms
-    "Pasco": {"records": 11450, "updated": "Sep 20, 2026", "img": "/static/images/county_pasco_gulf.jpg"}, # Gulf Harbors / coastal Florida
-    "Manatee": {"records": 8920, "updated": "Sep 19, 2026", "img": "/static/images/county_pinellas_coast.jpg"}, # Bradenton Anna Maria Island
-    "Sarasota": {"records": 13200, "updated": "Sep 20, 2026", "img": "/static/images/county_sarasota_key.jpg"} # Siesta Key turquoise waters
+    "Orange": {"records": 496712, "updated": "Oct 06, 2026", "img": "/static/images/county_orange_lake_eola.jpg"}, # Lake Eola / Orlando Skyline
+    "Seminole": {"records": 181244, "updated": "Oct 10, 2026", "img": "/static/images/county_florida_palms.jpg"}, # Lake Mary / Sanford / Central Florida
+    "Pasco": {"records": 328045, "updated": "Oct 10, 2026", "img": "/static/images/county_pasco_gulf.jpg"}, # Gulf Harbors / coastal Florida
+    "Sarasota": {"records": 325358, "updated": "Oct 10, 2026", "img": "/static/images/county_sarasota_key.jpg"}, # Siesta Key turquoise waters
+    "Manatee": {"records": 241088, "updated": "Oct 10, 2026", "img": "/static/images/county_pinellas_coast.jpg"}, # Bradenton Anna Maria Island
+    "Charlotte": {"records": 223248, "updated": "Oct 10, 2026", "img": "/static/images/hero_banner_florida.jpg"}, # Punta Gorda / Port Charlotte
+    "Lake": {"records": 216981, "updated": "Oct 10, 2026", "img": "/static/images/county_polk_central.jpg"}, # Clermont / Leesburg / Lake Harris
+    "Alachua": {"records": 109962, "updated": "Oct 10, 2026", "img": "/static/images/hero_banner_florida.jpg"}, # Gainesville / University / Alachua
+    "Volusia": {"records": 313548, "updated": "Oct 10, 2026", "img": "/static/images/county_florida_palms.jpg"}, # Daytona Beach coastline & palms
+    "Osceola": {"records": 210878, "updated": "Oct 10, 2026", "img": "/static/images/county_polk_central.jpg"}, # Central Florida wetlands & lakes
+    "Polk": {"records": 438643, "updated": "Oct 10, 2026", "img": "/static/images/county_polk_central.jpg"}, # Central Florida lakes (Lakeland, Winter Haven)
+    "Hillsborough": {"records": 531609, "updated": "Oct 10, 2026", "img": "/static/images/county_hillsborough_tampa.jpg"}, # Tampa Riverwalk & Downtown Skyline
+    "Broward": {"records": 754339, "updated": "Oct 11, 2026", "img": "/static/images/county_broward_beach.jpg"}, # Fort Lauderdale Oceanfront & Palms
+    "Miami-Dade": {"records": 584724, "updated": "Oct 11, 2026", "img": "/static/images/county_miami_dade.jpg"}, # Miami South Beach & Biscayne Bay
+    "Lee": {"records": 563028, "updated": "Oct 10, 2026", "img": "/static/images/county_lee_fortmyers.jpg"}, # Fort Myers Beach / Gulf
+    "Collier": {"records": 293859, "updated": "Oct 10, 2026", "img": "/static/images/county_naples_collier.jpg"}, # Naples Pier Sunset & Coastal
+    "Brevard": {"records": 349261, "updated": "Oct 10, 2026", "img": "/static/images/county_florida_palms.jpg"}, # Space Coast / Melbourne / Cocoa Beach
+    "Duval": {"records": 403813, "updated": "Oct 10, 2026", "img": "/static/images/hero_banner_florida.jpg"}, # Jacksonville / River City / Beaches
+    "Marion": {"records": 286006, "updated": "Oct 10, 2026", "img": "/static/images/county_polk_central.jpg"}, # Ocala / Horse Country / Marion County
+    "Palm Beach": {"records": 656525, "updated": "Oct 11, 2026", "img": "/static/images/county_coastal_condos.jpg"}, # Palm Beach Atlantic Coast & estates
+    "St. Lucie": {"records": 190108, "updated": "Oct 11, 2026", "img": "/static/images/county_coastal_condos.jpg"},
+    "Martin": {"records": 97552, "updated": "Oct 11, 2026", "img": "/static/images/county_florida_palms.jpg"},
+    "Indian River": {"records": 95226, "updated": "Oct 11, 2026", "img": "/static/images/county_coastal_condos.jpg"},
+    "St. Johns": {"records": 152576, "updated": "Oct 11, 2026", "img": "/static/images/hero_banner_florida.jpg"},
+    "Flagler": {"records": 87996, "updated": "Oct 11, 2026", "img": "/static/images/county_coastal_condos.jpg"},
+    "Nassau": {"records": 59055, "updated": "Oct 11, 2026", "img": "/static/images/county_florida_palms.jpg"},
+    "Citrus": {"records": 147181, "updated": "Oct 11, 2026", "img": "/static/images/county_polk_central.jpg"},
+    "Hernando": {"records": 120180, "updated": "Oct 11, 2026", "img": "/static/images/county_florida_palms.jpg"},
+    "Sumter": {"records": 104118, "updated": "Oct 11, 2026", "img": "/static/images/county_polk_central.jpg"},
+    "Highlands": {"records": 112672, "updated": "Oct 11, 2026", "img": "/static/images/county_polk_central.jpg"},
+    "Clay": {"records": 104927, "updated": "Oct 11, 2026", "img": "/static/images/hero_banner_florida.jpg"},
+    "Leon": {"records": 111036, "updated": "Oct 11, 2026", "img": "/static/images/county_florida_palms.jpg"},
+    "Escambia": {"records": 161419, "updated": "Oct 11, 2026", "img": "/static/images/hero_banner_florida.jpg"},
+    "Bay": {"records": 130626, "updated": "Oct 11, 2026", "img": "/static/images/county_coastal_condos.jpg"},
+    "Okaloosa": {"records": 112382, "updated": "Oct 11, 2026", "img": "/static/images/county_coastal_condos.jpg"},
+    "Santa Rosa": {"records": 110298, "updated": "Oct 11, 2026", "img": "/static/images/hero_banner_florida.jpg"},
 }
 
 @app.get("/api/stats")
@@ -186,14 +809,14 @@ def get_global_stats(state: str = "FL"):
     state = (state or "FL").upper()
     state_info = DEFAULT_STATES.get(state, DEFAULT_STATES["FL"])
     registry = load_county_portals(state=state)
-    live_count = sum(1 for k in registry if k == "Pinellas" and state == "FL")
+    live_count = sum(1 for k in registry if get_county_paths(k, state=state).get("has_master"))
     ready_count = max(0, len(registry) - live_count)
     return {
         "state": state,
         "state_name": state_info["name"],
-        "total_records": "437,559" if state == "FL" else "0",
+        "total_records": "9,843,782" if state == "FL" else "0",
         "total_records_sub": f"Master Parcels Indexed ({state})",
-        "unique_properties": "3,205" if state == "FL" else "0",
+        "unique_properties": "52,896" if state == "FL" else "0",
         "unique_properties_sub": "Verified Distressed Leads",
         "counties_available": f"{live_count} Live / {ready_count} Ready",
         "counties_available_sub": "Drop Data to Activate",
@@ -210,9 +833,14 @@ def get_counties(state: str = "FL"):
     
     # Priority list matching reference image
     priority = [
-        "Pinellas", "Orange", "Osceola", "Polk", "Hillsborough", "Broward",
-        "Miami-Dade", "Lee", "Collier", "Palm Beach", "Volusia", "Pasco", "Manatee", "Sarasota"
+        "Pinellas", "Orange", "Seminole", "Sarasota", "Pasco", "Manatee", "Charlotte", "Lake", "Alachua", "Volusia",
+        "Osceola", "Polk", "Hillsborough", "Broward", "Miami-Dade", "Lee", "Collier", "Brevard", "Duval", "Marion",
+        "Palm Beach", "St. Lucie", "Martin", "Indian River", "St. Johns", "Flagler", "Nassau",
+        "Citrus", "Hernando", "Sumter", "Highlands", "Clay", "Leon",
+        "Escambia", "Bay", "Okaloosa", "Santa Rosa"
     ]
+
+
     
     keys_sorted = sorted(registry.keys(), key=lambda k: priority.index(k) if k in priority else 99)
     
@@ -227,22 +855,103 @@ def get_counties(state: str = "FL"):
         has_master = info["has_master"]
         has_cache = os.path.exists(os.path.join(info['target_dir'], 'matched_leads_cache.parquet'))
         
+        rec_num = defaults["records"]
         if key == "Pinellas" and state == "FL":
+            rec_num = 437559
             status_badge = "LIVE & READY"
-            rec_str = "437,559 parcels • 3,550 leads"
+            rec_str = "437,559 parcels • 9,753 leads"
+        elif key == "Orange" and state == "FL" and has_master:
+            rec_num = 496712
+            status_badge = "LIVE & READY"
+            rec_str = "496,712 parcels • 13,167 leads"
+        elif key == "Seminole" and state == "FL" and has_master:
+            rec_num = 181244
+            status_badge = "LIVE & READY"
+            rec_str = "181,244 parcels • 25 leads"
+        elif key == "Sarasota" and state == "FL" and has_master:
+            rec_num = 325358
+            status_badge = "LIVE & READY"
+            rec_str = "325,358 parcels • 194 leads"
+        elif key == "Charlotte" and state == "FL" and has_master:
+            rec_num = 223248
+            status_badge = "LIVE & READY"
+            rec_str = "223,248 parcels • 3,988 leads"
+        elif key == "Lake" and state == "FL" and has_master:
+            rec_num = 216981
+            status_badge = "LIVE & READY"
+            rec_str = "216,981 parcels • 424 leads"
+        elif key == "Pasco" and state == "FL" and has_master:
+            rec_num = 328045
+            status_badge = "LIVE & READY"
+            rec_str = "328,045 parcels • 86 leads"
+        elif key == "Manatee" and state == "FL" and has_master:
+            rec_num = 241088
+            status_badge = "LIVE & READY"
+            rec_str = "241,088 parcels • 21 leads"
+        elif key == "Alachua" and state == "FL" and has_master:
+            rec_num = 109962
+            status_badge = "LIVE & READY"
+            rec_str = "109,962 parcels • 2,346 leads"
+        elif key == "Volusia" and state == "FL" and has_master:
+            rec_num = 313548
+            status_badge = "LIVE & READY"
+            rec_str = "313,548 parcels • 2,572 leads"
+        elif key == "Hillsborough" and state == "FL" and has_master:
+            rec_num = 531609
+            status_badge = "LIVE & READY"
+            rec_str = "531,609 parcels • 13,746 leads"
+        elif key == "Osceola" and state == "FL" and has_master:
+            rec_num = 210878
+            status_badge = "LIVE & READY"
+            rec_str = "210,878 parcels • 7,286 leads"
+        elif key == "Polk" and state == "FL" and has_master:
+            rec_num = 438643
+            status_badge = "LIVE & READY"
+            rec_str = "438,643 parcels • 834 leads"
+        elif key == "Lee" and state == "FL" and has_master:
+            rec_num = 563028
+            status_badge = "LIVE & READY"
+            rec_str = "563,028 parcels • 1,822 leads"
+        elif key == "Collier" and state == "FL" and has_master:
+            rec_num = 293859
+            status_badge = "LIVE & READY"
+            rec_str = "293,859 parcels • 172 leads"
+        elif key == "Brevard" and state == "FL" and has_master:
+            rec_num = 349261
+            status_badge = "LIVE & READY"
+            rec_str = "349,261 parcels • 39 leads"
+        elif key == "Duval" and state == "FL" and has_master:
+            rec_num = 403813
+            status_badge = "LIVE & READY"
+            rec_str = "403,813 parcels • 2 leads"
+        elif key == "Marion" and state == "FL" and has_master:
+            rec_num = 286006
+            status_badge = "LIVE & READY"
+            rec_str = "286,006 parcels • 305 leads"
         elif has_master:
-            status_badge = "READY"
-            rec_str = "Parcels Loaded"
+            if has_cache:
+                try:
+                    c_df = pd.read_parquet(os.path.join(info['target_dir'], 'matched_leads_cache.parquet'), columns=['Parcel_ID'])
+                    c_leads = len(c_df)
+                except Exception:
+                    c_leads = 0
+                status_badge = "LIVE & READY"
+                rec_str = f"{rec_num:,} parcels • {c_leads:,} leads"
+            else:
+                status_badge = "READY"
+                rec_str = f"{rec_num:,} parcels"
         else:
             status_badge = "NEEDS SETUP"
             rec_str = "Awaiting Parcel File"
+
+
             
         counties.append({
             "key": key,
             "name": key,
             "state": state,
             "full_name": info["full_name"],
-            "records": 437559 if (key == "Pinellas" and state == "FL") else defaults["records"],
+            "records": rec_num,
             "records_formatted": rec_str,
             "updated": defaults["updated"],
             "status": status_badge,
@@ -312,6 +1021,219 @@ def remove_custom_category(category_id: str):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
+@app.get("/api/sources-summary")
+def get_sources_summary(county: str = "Orange", state: str = "FL"):
+    """
+    Return detailed metadata, last loaded dates, file sizes, and verified lead counts
+    for all distress sources for the specified county.
+    """
+    state = (state or "FL").upper()
+    target_dir = os.path.join(DATA_DIR, state, county)
+    if not os.path.exists(target_dir):
+        target_dir = os.path.join(DATA_DIR, state, county.lower())
+        
+    cache_path = os.path.join(target_dir, "matched_leads_cache.parquet")
+    counts = {
+        "lis_pendens": 0, "code_violations": 0, "probate": 0, "tax_liens": 0,
+        "ouc_water_shutoff": 0, "divorce": 0, "judgments_liens": 0
+    }
+    cache_mtime = ""
+    if os.path.exists(cache_path):
+        try:
+            df = pd.read_parquet(cache_path, columns=['Lead_Type', 'Parcel_ID'])
+            counts['lis_pendens'] = int(df[df['Lead_Type'] == 'Lis Pendens']['Parcel_ID'].nunique())
+            counts['code_violations'] = int(df[df['Lead_Type'] == 'Code Violation']['Parcel_ID'].nunique())
+            counts['probate'] = int(df[df['Lead_Type'].str.contains('probate|death certificate', case=False, na=False)]['Parcel_ID'].nunique())
+            counts['tax_liens'] = int(df[df['Lead_Type'].str.contains('tax lien', case=False, na=False)]['Parcel_ID'].nunique())
+            counts['ouc_water_shutoff'] = int(df[df['Lead_Type'].str.contains('water|ouc', case=False, na=False)]['Parcel_ID'].nunique())
+            counts['divorce'] = int(df[df['Lead_Type'].str.contains('divorce|domestic relations', case=False, na=False)]['Parcel_ID'].nunique())
+            counts['judgments_liens'] = int(df[df['Lead_Type'].str.contains('judgment|lien', case=False, na=False)]['Parcel_ID'].nunique())
+            cache_mtime = time.strftime('%b %d, %Y, %I:%M %p', time.localtime(os.path.getmtime(cache_path)))
+        except Exception as e:
+            print("Error reading cache for sources summary:", e)
+            
+    files = {}
+    if os.path.exists(target_dir):
+        for f in os.listdir(target_dir):
+            fp = os.path.join(target_dir, f)
+            if os.path.isfile(fp) and not f.startswith('.'):
+                st = os.stat(fp)
+                files[f] = {
+                    'name': f,
+                    'mtime_str': time.strftime('%b %d, %Y', time.localtime(st.st_mtime)),
+                    'mtime_full': time.strftime('%b %d, %Y, %I:%M %p', time.localtime(st.st_mtime)),
+                    'size_str': f"{round(st.st_size / (1024*1024), 2)} MB" if st.st_size > 1024*1024 else f"{round(st.st_size / 1024, 1)} KB"
+                }
+
+    def _find_file(keywords):
+        for fn, fmeta in files.items():
+            fn_l = fn.lower()
+            if any(k in fn_l for k in keywords) and 'property_info' not in fn_l and 'all parcels' not in fn_l:
+                return fmeta
+        return None
+
+    portals = load_county_portals(state=state).get(county, {}) or load_county_portals(state=state).get(county.capitalize(), {})
+
+    lp_file = _find_file(["lis_pendens", "_lp_"])
+    code_file = _find_file(["code_enforcement", "code_violation", "code_cases"])
+    water_file = _find_file(["water", "ouc"])
+    comptroller_file = _find_file(["comptroller", "official_records", "searchresults"])
+    probate_file = _find_file(["probate"]) or comptroller_file
+    tax_file = _find_file(["tax_lien", "tax_certificates", "delinquent_tax"])
+
+    sources = {
+        "lis_pendens": {
+            "key": "lis_pendens",
+            "name": "Lis Pendens",
+            "badge": "Pre-Foreclosures",
+            "icon": "📄",
+            "color": "blue",
+            "lead_count": counts["lis_pendens"],
+            "file_name": lp_file["name"] if lp_file else "",
+            "file_size": lp_file["size_str"] if lp_file else "",
+            "last_loaded": lp_file["mtime_str"] if lp_file else (cache_mtime.split(",")[0] if counts["lis_pendens"] > 0 else "Not loaded yet"),
+            "last_loaded_full": lp_file["mtime_full"] if lp_file else (cache_mtime if counts["lis_pendens"] > 0 else "Awaiting CSV upload"),
+            "portal_url": portals.get("clerk_lis_pendens_url", "https://selfservice.or.occompt.com/ssweb/search/DOCSEARCH2950S3" if county.lower() == "orange" else "https://officialrecords.mypinellasclerk.gov/search/SearchTypeDocType"),
+            "portal_name": "Orange County Comptroller Official Records" if county.lower() == "orange" else "Official Records / Lis Pendens Search",
+            "portal_disclaimer_note": "Click 'I Accept' on the disclaimer if prompted." if county.lower() == "orange" else "",
+            "description": "Active lawsuits, pre-foreclosures, and lender mortgage legal filings."
+        },
+        "code_violations": {
+            "key": "code_violations",
+            "name": "Code Violations",
+            "badge": "Municipal Citations",
+            "icon": "🚨",
+            "color": "amber",
+            "lead_count": counts["code_violations"],
+            "file_name": code_file["name"] if code_file else "",
+            "file_size": code_file["size_str"] if code_file else "",
+            "last_loaded": code_file["mtime_str"] if code_file else (cache_mtime.split(",")[0] if counts["code_violations"] > 0 else "Not loaded yet"),
+            "last_loaded_full": code_file["mtime_full"] if code_file else (cache_mtime if counts["code_violations"] > 0 else "Awaiting CSV upload"),
+            "portal_url": portals.get("code_enforcement_url", "https://aca-prod.accela.com/PINELLAS/Cap/CapHome.aspx?module=Enforcement&TabName=Home"),
+            "portal_name": "County Code Enforcement & Compliance Portal",
+            "description": "Properties with open municipal citations, zoning violations, and maintenance orders."
+        },
+        "tax_liens": {
+            "key": "tax_liens",
+            "name": "Tax Liens",
+            "badge": "Delinquent Taxes",
+            "icon": "💰",
+            "color": "rose",
+            "lead_count": counts["tax_liens"],
+            "file_name": tax_file["name"] if tax_file else "",
+            "file_size": tax_file["size_str"] if tax_file else "",
+            "last_loaded": tax_file["mtime_str"] if tax_file else (cache_mtime.split(",")[0] if counts["tax_liens"] > 0 else "Not loaded yet"),
+            "last_loaded_full": tax_file["mtime_full"] if tax_file else (cache_mtime if counts["tax_liens"] > 0 else "Awaiting CSV upload"),
+            "portal_url": portals.get("tax_liens_url", "https://pinellas.county-taxes.com/public"),
+            "portal_name": "County Tax Collector & Delinquent Tax Rolls",
+            "description": "Delinquent county property taxes, tax auction certificates, and municipal liens."
+        },
+        "probate": {
+            "key": "probate",
+            "name": "Probate & Trusts",
+            "badge": "Court Filings & Trusts",
+            "icon": "⚖️",
+            "color": "purple",
+            "lead_count": counts["probate"],
+            "file_name": probate_file["name"] if probate_file else "",
+            "file_size": probate_file["size_str"] if probate_file else "",
+            "last_loaded": probate_file["mtime_str"] if probate_file else (cache_mtime.split(",")[0] if counts["probate"] > 0 else "Not loaded yet"),
+            "last_loaded_full": probate_file["mtime_full"] if probate_file else (cache_mtime if counts["probate"] > 0 else "Awaiting CSV upload"),
+            "portal_url": portals.get("clerk_probate_url", "https://myeclerk.myorangeclerk.com/cases/search" if county.lower() == "orange" else "https://officialrecords.mypinellasclerk.gov/search/SearchTypeDocType"),
+            "portal_name": "Orange County Clerk of Courts Case Search" if county.lower() == "orange" else "Official Records / Probate Court Docket",
+            "secondary_portal_url": "https://selfservice.or.occompt.com/ssweb/search/DOCSEARCH2950S3" if county.lower() == "orange" else "",
+            "secondary_portal_name": "Orange County Comptroller (Official Records)" if county.lower() == "orange" else "",
+            "portal_disclaimer_note": "Click 'I Accept' on the Comptroller disclaimer if prompted." if county.lower() == "orange" else "",
+            "description": "Inherited properties, deceased estates, death certificates, and court probate cases."
+        },
+        "ouc_water_shutoff": {
+            "key": "ouc_water_shutoff",
+            "name": "OUC water shutoff",
+            "badge": "Water Shut-off",
+            "icon": "💧",
+            "color": "cyan",
+            "lead_count": counts["ouc_water_shutoff"],
+            "file_name": water_file["name"] if water_file else "",
+            "file_size": water_file["size_str"] if water_file else "",
+            "last_loaded": water_file["mtime_str"] if water_file else (cache_mtime.split(",")[0] if counts["ouc_water_shutoff"] > 0 else "Not loaded yet"),
+            "last_loaded_full": water_file["mtime_full"] if water_file else (cache_mtime if counts["ouc_water_shutoff"] > 0 else "Awaiting CSV upload"),
+            "portal_url": "https://www.ouc.com",
+            "portal_name": "Orlando Utilities Commission (OUC)",
+            "description": "Delinquent municipal utility shutoff records with disconnected meters."
+        },
+        "divorce": {
+            "key": "divorce",
+            "name": "Divorce (Domestic Relations)",
+            "badge": "Family Court",
+            "icon": "💔",
+            "color": "pink",
+            "lead_count": counts["divorce"],
+            "file_name": comptroller_file["name"] if comptroller_file else "",
+            "file_size": comptroller_file["size_str"] if comptroller_file else "",
+            "last_loaded": comptroller_file["mtime_str"] if comptroller_file else (cache_mtime.split(",")[0] if counts["divorce"] > 0 else "Not loaded yet"),
+            "last_loaded_full": comptroller_file["mtime_full"] if comptroller_file else (cache_mtime if counts["divorce"] > 0 else "Awaiting CSV upload"),
+            "portal_url": "https://selfservice.or.occompt.com/ssweb/search/DOCSEARCH2950S3" if county.lower() == "orange" else portals.get("clerk_lis_pendens_url", "https://officialrecords.mypinellasclerk.gov/search/SearchTypeDocType"),
+            "portal_name": "Orange County Comptroller Official Records" if county.lower() == "orange" else "Official Records / Family Court Search",
+            "portal_disclaimer_note": "Click 'I Accept' on the Comptroller disclaimer screen if prompted." if county.lower() == "orange" else "",
+            "description": "Spouses dividing real property in marital dissolution and domestic relations court filings."
+        },
+        "judgments_liens": {
+            "key": "judgments_liens",
+            "name": "Civil Judgments & Liens",
+            "badge": "Monetary Judgments",
+            "icon": "🔨",
+            "color": "amber",
+            "lead_count": counts["judgments_liens"],
+            "file_name": comptroller_file["name"] if comptroller_file else "",
+            "file_size": comptroller_file["size_str"] if comptroller_file else "",
+            "last_loaded": comptroller_file["mtime_str"] if comptroller_file else (cache_mtime.split(",")[0] if counts["judgments_liens"] > 0 else "Not loaded yet"),
+            "last_loaded_full": comptroller_file["mtime_full"] if comptroller_file else (cache_mtime if counts["judgments_liens"] > 0 else "Awaiting CSV upload"),
+            "portal_url": "https://selfservice.or.occompt.com/ssweb/search/DOCSEARCH2950S3" if county.lower() == "orange" else portals.get("clerk_lis_pendens_url", "https://officialrecords.mypinellasclerk.gov/search/SearchTypeDocType"),
+            "portal_name": "Orange County Comptroller Official Records" if county.lower() == "orange" else "Official Records / Recorded Judgments & Liens",
+            "portal_disclaimer_note": "Click 'I Accept' on the Comptroller disclaimer screen if prompted." if county.lower() == "orange" else "",
+            "description": "Recorded monetary civil court judgments and municipal/HOA/vendor liens encumbering real property."
+        }
+    }
+
+    # Dynamically inject any custom categories not already in sources
+    try:
+        custom_cats = load_custom_categories()
+        for cat in custom_cats:
+            cid = cat.get("id")
+            if cid and cid not in sources:
+                cat_file = _find_file([cid, cat.get("name", "").lower().replace(" ", "_")])
+                c_lead_count = counts.get(cid, 0)
+                if not c_lead_count and os.path.exists(cache_path):
+                    try:
+                        df_temp = pd.read_parquet(cache_path, columns=['Lead_Type', 'Parcel_ID'])
+                        c_lead_count = int(df_temp[df_temp['Lead_Type'].str.contains(re.escape(cat.get("name", "")), case=False, na=False)]['Parcel_ID'].nunique())
+                    except Exception:
+                        c_lead_count = 0
+                sources[cid] = {
+                    "key": cid,
+                    "name": cat.get("name", cid),
+                    "badge": cat.get("badge", "Distress Filing"),
+                    "icon": cat.get("icon", "📄"),
+                    "color": cat.get("color", "purple"),
+                    "lead_count": c_lead_count,
+                    "file_name": cat_file["name"] if cat_file else "",
+                    "file_size": cat_file["size_str"] if cat_file else "",
+                    "last_loaded": cat_file["mtime_str"] if cat_file else (cache_mtime.split(",")[0] if c_lead_count > 0 else "Not loaded yet"),
+                    "last_loaded_full": cat_file["mtime_full"] if cat_file else (cache_mtime if c_lead_count > 0 else "Awaiting CSV upload"),
+                    "portal_url": cat.get("portal_url", ""),
+                    "portal_name": cat.get("name", "") + " Portal",
+                    "description": cat.get("description", "User-defined distress lead source.")
+                }
+    except Exception as e:
+        print("Error enriching custom categories in sources summary:", e)
+    
+    return {
+        "county": county,
+        "state": state,
+        "cache_updated": cache_mtime,
+        "sources": sources
+    }
+
 # -------------------------------------------------------------
 # Contact Management, Android SMS Gateway & SMTP2GO Email Outreach
 # -------------------------------------------------------------
@@ -319,6 +1241,22 @@ CONTACTS_FILE = os.path.join(DATA_DIR, "saved_contacts.json")
 SMS_SETTINGS_FILE = os.path.join(DATA_DIR, "sms_settings.json")
 EMAIL_SETTINGS_FILE = os.path.join(DATA_DIR, "email_settings.json")
 OUTREACH_LOG_FILE = os.path.join(DATA_DIR, "outreach_history.json")
+DELETED_LEADS_FILE = os.path.join(DATA_DIR, "deleted_leads.json")
+
+def load_deleted_leads() -> set:
+    if os.path.exists(DELETED_LEADS_FILE):
+        try:
+            with open(DELETED_LEADS_FILE, "r", encoding="utf-8") as f:
+                data = json.load(f)
+                return set(str(x).strip() for x in data) if isinstance(data, list) else set()
+        except Exception:
+            pass
+    return set()
+
+def save_deleted_leads(deleted_set: set):
+    os.makedirs(DATA_DIR, exist_ok=True)
+    with open(DELETED_LEADS_FILE, "w", encoding="utf-8") as f:
+        json.dump(sorted(list(deleted_set)), f, indent=2)
 
 def load_saved_contacts() -> dict:
     if os.path.exists(CONTACTS_FILE):
@@ -329,7 +1267,34 @@ def load_saved_contacts() -> dict:
             return {}
     return {}
 
+OUTREACH_DATA_LOCK = threading.RLock()
+
+
+def atomic_outreach_json_write(path: str, value):
+    temp_path = path + ".tmp"
+    with open(temp_path, "w", encoding="utf-8") as output:
+        json.dump(value, output, indent=2)
+    os.replace(temp_path, path)
+
+
+def append_outreach_log(entry: dict):
+    # The background sender and inbound webhook can finish at the same time.
+    # Merge under a lock and replace atomically so neither erases the other's log.
+    with OUTREACH_DATA_LOCK:
+        logs = []
+        if os.path.exists(OUTREACH_LOG_FILE):
+            with open(OUTREACH_LOG_FILE, "r", encoding="utf-8") as history_file:
+                logs = json.load(history_file)
+        logs.insert(0, entry)
+        atomic_outreach_json_write(OUTREACH_LOG_FILE, logs[:500])
+
+
 def save_contact(parcel_id: str, data: dict) -> dict:
+    with OUTREACH_DATA_LOCK:
+        return save_contact_locked(parcel_id, data)
+
+
+def save_contact_locked(parcel_id: str, data: dict) -> dict:
     contacts = load_saved_contacts()
     pid = str(parcel_id).strip()
     contacts[pid] = {
@@ -338,8 +1303,7 @@ def save_contact(parcel_id: str, data: dict) -> dict:
         "updated_at": time.strftime("%Y-%m-%d %H:%M:%S")
     }
     try:
-        with open(CONTACTS_FILE, "w", encoding="utf-8") as f:
-            json.dump(contacts, f, indent=2)
+        atomic_outreach_json_write(CONTACTS_FILE, contacts)
     except Exception as e:
         print(f"Error saving contact {pid}: {e}")
     return contacts[pid]
@@ -404,23 +1368,46 @@ def get_leads(county: str = "Pinellas", state: str = "FL", lead_type: str = "all
     elif lead_type == "code_violations":
         df = df[df['Lead_Type'] == 'Code Violation']
     elif lead_type == "probate":
-        df = df[df['Lead_Type'] == 'Probate']
+        df = df[df['Lead_Type'].str.contains('probate|death certificate', case=False, na=False)]
     elif lead_type == "tax_liens":
         df = df[df['Lead_Type'] == 'Tax Lien']
+    elif lead_type in ["water_shutoff", "water", "ouc"]:
+        df = df[df['Lead_Type'].str.contains('water|ouc', case=False, na=False) | df.get('Distress_Stack_Notes', '').astype(str).str.contains('water|ouc', case=False, na=False)]
+    elif lead_type in ["divorce", "domestic_relations"]:
+        df = df[df['Lead_Type'].str.contains('divorce|domestic relations', case=False, na=False)]
+    elif lead_type in ["judgment", "judgments", "lien", "liens"]:
+        df = df[df['Lead_Type'].str.contains('judgment|lien', case=False, na=False)]
+    elif lead_type in ["poa", "power_of_attorney"]:
+        df = df[df['Lead_Type'].str.contains('power of attorney', case=False, na=False)]
+    elif lead_type in ["legal_distress", "legal", "jail", "felony"]:
+        df = df[df['Lead_Type'].str.contains('legal distress|felony', case=False, na=False) | df.get('Distress_Stack_Notes', '').astype(str).str.contains('legal distress|felony', case=False, na=False)]
+    elif lead_type in ["substantial_damage", "storm_damage", "damage"]:
+        df = df[df['Lead_Type'].str.contains('Substantial Damage', case=False, na=False)]
 
+    deleted_pids = load_deleted_leads()
     total_leads = len(df)
-    matched_mask = df['Match_Status'] == 'MATCHED'
-    matched_df = df[matched_mask]
-    matched_count = len(matched_df)
+    matched_mask = df['Match_Status'].astype(str).str.upper() == 'MATCHED'
+    matched_df = df[matched_mask].copy()
+
+    # Exclude empty parcel IDs, empty addresses, and deleted leads
+    matched_df = matched_df[matched_df['Parcel_ID'].astype(str).str.strip() != '']
+    matched_df = matched_df[matched_df['Property_Address'].astype(str).str.strip() != '']
+    if deleted_pids:
+        matched_df = matched_df[~matched_df['Parcel_ID'].astype(str).str.strip().isin(deleted_pids)]
+
+    matched_count = int(matched_df['Parcel_ID'].nunique())
     match_rate = round((matched_count / total_leads * 100), 1) if total_leads > 0 else 0.0
 
-    absentee_count = int(matched_df['Is_Absentee'].eq('Yes').sum())
-    out_of_state_count = int(matched_df['Absentee_Status'].str.contains('Out-of-State', na=False).sum())
-    trust_count = int(matched_df['Owner_Entity_Type'].str.contains('Trust', na=False).sum())
-    corporate_count = int(matched_df['Owner_Entity_Type'].str.contains('LLC|Company', na=False).sum())
-    probate_count = int((matched_df['Lead_Type'] == 'Probate').sum())
-    lp_trust_count = int(((matched_df['Lead_Type'] == 'Lis Pendens') & (matched_df.get('Is_Trust_In_LP', '') == 'Yes')).sum())
-    stacked_count = int((matched_df.get('Is_Stacked_Distress', '') == 'Yes').sum())
+    absentee_count = int(matched_df[matched_df['Is_Absentee'].eq('Yes')]['Parcel_ID'].nunique())
+    out_of_state_count = int(matched_df[matched_df['Absentee_Status'].str.contains('Out-of-State', na=False)]['Parcel_ID'].nunique())
+    trust_count = int(matched_df[matched_df['Owner_Entity_Type'].str.contains('Trust', na=False) | matched_df['Lead_Type'].str.contains('probate|death certificate', case=False, na=False)]['Parcel_ID'].nunique())
+    corporate_count = int(matched_df[matched_df['Owner_Entity_Type'].str.contains('LLC|Company', na=False)]['Parcel_ID'].nunique())
+    probate_count = int(matched_df[matched_df['Lead_Type'].str.contains('probate|death certificate', case=False, na=False)]['Parcel_ID'].nunique())
+    divorce_count = int(matched_df[matched_df['Lead_Type'].str.contains('divorce|domestic relations', case=False, na=False)]['Parcel_ID'].nunique())
+    judgment_count = int(matched_df[matched_df['Lead_Type'].str.contains('judgment|lien', case=False, na=False)]['Parcel_ID'].nunique())
+    lp_trust_count = int(matched_df[(matched_df['Lead_Type'] == 'Lis Pendens') & (matched_df.get('Is_Trust_In_LP', '') == 'Yes')]['Parcel_ID'].nunique())
+    stacked_count = int(matched_df[matched_df.get('Is_Stacked_Distress', '') == 'Yes']['Parcel_ID'].nunique())
+    legal_distress_count = int(matched_df[matched_df['Lead_Type'].str.contains('legal distress|felony', case=False, na=False) | matched_df.get('Distress_Stack_Notes', '').astype(str).str.contains('legal distress|felony', case=False, na=False)]['Parcel_ID'].nunique())
     
     vals = pd.to_numeric(matched_df['Market_Value'], errors='coerce').fillna(0)
     avg_mkt_val = int(vals.mean()) if len(vals) > 0 else 0
@@ -432,42 +1419,200 @@ def get_leads(county: str = "Pinellas", state: str = "FL", lead_type: str = "all
     elif filter_type == "llc":
         filtered_df = matched_df[matched_df['Owner_Entity_Type'].str.contains('LLC|Company', na=False)]
     elif filter_type == "trust":
-        filtered_df = matched_df[matched_df['Owner_Entity_Type'].str.contains('Trust', na=False) | (matched_df['Lead_Type'] == 'Probate')]
+        filtered_df = matched_df[matched_df['Owner_Entity_Type'].str.contains('Trust', na=False) | matched_df['Lead_Type'].str.contains('probate|death certificate', case=False, na=False)]
     elif filter_type == "probate":
-        filtered_df = matched_df[matched_df['Lead_Type'] == 'Probate']
+        filtered_df = matched_df[matched_df['Lead_Type'].str.contains('probate|death certificate', case=False, na=False)]
+    elif filter_type == "divorce":
+        filtered_df = matched_df[matched_df['Lead_Type'].str.contains('divorce|domestic relations', case=False, na=False)]
+    elif filter_type in ["judgment", "lien"]:
+        filtered_df = matched_df[matched_df['Lead_Type'].str.contains('judgment|lien', case=False, na=False)]
     elif filter_type == "lp_trust":
         filtered_df = matched_df[(matched_df['Lead_Type'] == 'Lis Pendens') & (matched_df.get('Is_Trust_In_LP', '') == 'Yes')]
     elif filter_type == "stacked":
         filtered_df = matched_df[matched_df.get('Is_Stacked_Distress', '') == 'Yes']
+    elif filter_type in ["legal_distress", "legal", "jail", "felony"]:
+        filtered_df = matched_df[matched_df['Lead_Type'].str.contains('legal distress|felony', case=False, na=False) | matched_df.get('Distress_Stack_Notes', '').astype(str).str.contains('legal distress|felony', case=False, na=False)]
+    elif filter_type in ["code", "code_violations"]:
+        filtered_df = matched_df[matched_df['Lead_Type'].str.contains('code', case=False, na=False)]
+    elif filter_type in ["damage", "substantial_damage"]:
+        filtered_df = matched_df[matched_df['Lead_Type'].str.contains('substantial damage', case=False, na=False)]
+    elif filter_type in ["new_api", "new_unread"]:
+        if 'Source_File' in matched_df.columns:
+            filtered_df = matched_df[matched_df['Source_File'].fillna('').astype(str).str.contains('Live_API|Accela|SeeClickFix', case=False, na=False)]
+
+    # Standardize Filing_Date and Is_New_Api on filtered_df (vectorized for instant response)
+    filtered_df = filtered_df.copy()
+    candidate_cols = [
+        'Subject_Filing_Date', 'Filing_Date', 'Subject_RecordDate', 'Recording_Date',
+        'Subject_Recording Date', 'Subject_Case Open Date', 'Case_Date', 'Case Open Date',
+        'Subject_Date', 'Recorded_Date', 'RecordDate', 'Date'
+    ]
+    avail_date_cols = [c for c in candidate_cols if c in filtered_df.columns]
+    if avail_date_cols:
+        date_series = filtered_df[avail_date_cols].replace({'': None, 'nan': None, 'None': None}).bfill(axis=1).iloc[:, 0].fillna('')
+        filtered_df['Filing_Date'] = date_series.astype(str).str[:10].str.strip()
+    else:
+        filtered_df['Filing_Date'] = ''
+
+    if 'Source_File' in filtered_df.columns:
+        filtered_df['Is_New_Api'] = filtered_df['Source_File'].fillna('').astype(str).apply(lambda x: 'Yes' if any(k in str(x) for k in ['Live_API', 'Accela', 'SeeClickFix']) else 'No')
+    else:
+        filtered_df['Is_New_Api'] = 'No'
+    filtered_df['Is_New_Lead'] = filtered_df['Is_New_Api']
 
     display_cols = [
-        'Lead_Type', 'Match_Status', 'Match_Confidence', 'Match_Method',
+        'Lead_Type', 'All_Lead_Types', 'Match_Status', 'Match_Confidence', 'Match_Method',
         'Clean_First_Name', 'Clean_Last_Name', 'Clean_Full_Name', 'Owner_Entity_Type',
         'Is_Trust_Or_Estate', 'Is_Trust_In_LP', 'Is_Stacked_Distress', 'Distress_Stack_Notes',
         'Property_Address', 'Property_City', 'Property_Zip', 'Parcel_ID',
         'Mailing_Address', 'Mailing_City', 'Mailing_State', 'Mailing_Zip',
         'Absentee_Status', 'Is_Absentee', 'Homestead_Exemption',
-        'Market_Value', 'Assessed_Value', 'Year_Built', 'Living_Sqft', 'Legal_Description'
+        'Market_Value', 'Assessed_Value', 'Year_Built', 'Living_Sqft', 'Legal_Description',
+        'Filing_Date', 'Is_New_Api', 'Is_New_Lead', 'Case_Number', 'Source_File', 'Photo_Url'
     ]
     valid_cols = [c for c in display_cols if c in filtered_df.columns]
     # Replace NaN/inf with empty strings to guarantee JSON compliance for FastAPI
-    records = filtered_df[valid_cols].replace([float('nan'), float('inf'), -float('inf')], '').fillna('').to_dict(orient='records')
+    clean_sub_df = filtered_df[valid_cols].copy()
+    for col in valid_cols:
+        if col != 'All_Lead_Types':
+            clean_sub_df[col] = clean_sub_df[col].replace([float('nan'), float('inf'), -float('inf')], '').fillna('')
+        else:
+            clean_sub_df[col] = [list(x) if isinstance(x, (list, np.ndarray)) else [] for x in clean_sub_df[col]]
+    raw_records = clean_sub_df.to_dict(orient='records')
+
+    # Deduplicate records by Parcel_ID so Double Distress leads never appear with double rows/names
+    records = []
+    seen_pids = {}
+    for r in raw_records:
+        pid = str(r.get('Parcel_ID', '')).strip()
+        if not pid:
+            continue
+        if pid in seen_pids:
+            existing = seen_pids[pid]
+            # Track all lead types for this parcel
+            all_types = existing.get('All_Lead_Types', [])
+            if not isinstance(all_types, list):
+                all_types = [existing.get('Lead_Type', '')] if existing.get('Lead_Type') else []
+            if r.get('Lead_Type') and r['Lead_Type'] not in all_types:
+                all_types.append(r['Lead_Type'])
+            existing['All_Lead_Types'] = all_types
+
+            # Prefer richer clean name if existing is empty
+            if (not existing.get('Clean_Full_Name') or existing.get('Clean_Full_Name') == 'Unknown Owner') and r.get('Clean_Full_Name'):
+                existing['Clean_Full_Name'] = r['Clean_Full_Name']
+                existing['Clean_First_Name'] = r.get('Clean_First_Name', '')
+                existing['Clean_Last_Name'] = r.get('Clean_Last_Name', '')
+            # If either signal indicates stacked distress, or if this property appears under multiple distinct distress types
+            if r.get('Lead_Type') and existing.get('Lead_Type') and r['Lead_Type'] != existing['Lead_Type']:
+                existing['Is_Stacked_Distress'] = 'Yes'
+                t1 = existing.get('Lead_Type', '')
+                t2 = r.get('Lead_Type', '')
+                if t1 == 'Code Violation' or t2 == 'Code Violation':
+                    other = t1 if t2 == 'Code Violation' else t2
+                    existing['Distress_Stack_Notes'] = f"🔥 DOUBLE DISTRESS: Code Violation + {other}"
+                    existing['Lead_Type'] = 'Code Violation'
+                else:
+                    existing['Distress_Stack_Notes'] = f"🔥 DOUBLE DISTRESS: {t1} + {t2}"
+            if r.get('Is_Stacked_Distress') == 'Yes' or existing.get('Is_Stacked_Distress') == 'Yes':
+                existing['Is_Stacked_Distress'] = 'Yes'
+                if r.get('Distress_Stack_Notes') and not existing.get('Distress_Stack_Notes'):
+                    existing['Distress_Stack_Notes'] = r['Distress_Stack_Notes']
+            if r.get('Is_Trust_Or_Estate') == 'Yes' or existing.get('Is_Trust_Or_Estate') == 'Yes':
+                existing['Is_Trust_Or_Estate'] = 'Yes'
+            if r.get('Is_New_Api') == 'Yes' or existing.get('Is_New_Api') == 'Yes' or 'Live_API' in str(r.get('Source_File', '')) or 'Live_API' in str(existing.get('Source_File', '')):
+                existing['Is_New_Api'] = 'Yes'
+                existing['Is_New_Lead'] = 'Yes'
+                if 'Live_API' in str(r.get('Source_File', '')):
+                    existing['Source_File'] = r.get('Source_File')
+            if r.get('Case_Number') and not existing.get('Case_Number'):
+                existing['Case_Number'] = r['Case_Number']
+            if r.get('Photo_Url') and not existing.get('Photo_Url'):
+                existing['Photo_Url'] = r['Photo_Url']
+            if r.get('Filing_Date') and str(r['Filing_Date']) > str(existing.get('Filing_Date', '')):
+                existing['Filing_Date'] = r['Filing_Date']
+        else:
+            r['All_Lead_Types'] = [r.get('Lead_Type', '')] if r.get('Lead_Type') else []
+            seen_pids[pid] = r
+            records.append(r)
 
     # Merge saved contacts (phone and email)
     contacts = load_saved_contacts()
+
+    # Load outreach history so prior SMS and Email dispatches are permanently stamped on each lead
+    outreach_map = {}
+    if os.path.exists(OUTREACH_LOG_FILE):
+        try:
+            with open(OUTREACH_LOG_FILE, "r", encoding="utf-8") as f:
+                history_logs = json.load(f)
+                for entry in history_logs:
+                    h_pid = str(entry.get('parcel_id', '')).strip()
+                    h_chan = str(entry.get('channel', '')).upper()
+                    h_ts = entry.get('timestamp', '')
+                    if h_pid and h_ts:
+                        if h_pid not in outreach_map:
+                            outreach_map[h_pid] = {}
+                        if h_chan == 'SMS' and 'last_sms_sent' not in outreach_map[h_pid]:
+                            outreach_map[h_pid]['last_sms_sent'] = h_ts
+                        elif h_chan == 'EMAIL' and 'last_email_sent' not in outreach_map[h_pid]:
+                            outreach_map[h_pid]['last_email_sent'] = h_ts
+        except Exception:
+            pass
+
     for r in records:
         pid = str(r.get('Parcel_ID', '')).strip()
-        if pid in contacts:
-            c = contacts[pid]
-            r['Saved_Phone'] = c.get('phone', '')
-            r['Saved_Email'] = c.get('email', '')
-            r['Last_Sms_Sent'] = c.get('last_sms_sent', '')
-            r['Last_Email_Sent'] = c.get('last_email_sent', '')
+        c = contacts.get(pid, {})
+        o = outreach_map.get(pid, {})
+        r['Saved_Phone'] = c.get('phone', '')
+        r['Saved_Email'] = c.get('email', '') or r.get('Saved_Email', '')
+        r['Last_Sms_Sent'] = c.get('last_sms_sent', '') or o.get('last_sms_sent', '')
+        r['Last_Email_Sent'] = c.get('last_email_sent', '') or o.get('last_email_sent', '')
+
+        # Standardize and clean addresses & names: no ALL CAPS, drop directionals
+        if r.get('Property_Address'):
+            r['Property_Address'] = clean_display_address(r['Property_Address'])
+        if r.get('Property_City'):
+            r['Property_City'] = clean_display_city(r['Property_City'])
+        if r.get('Mailing_Address'):
+            r['Mailing_Address'] = clean_display_address(r['Mailing_Address'])
+        if r.get('Mailing_City'):
+            r['Mailing_City'] = clean_display_city(r['Mailing_City'])
+        if r.get('Clean_Full_Name'):
+            r['Clean_Full_Name'] = clean_display_name(r['Clean_Full_Name'])
+        if r.get('Clean_First_Name'):
+            r['Clean_First_Name'] = clean_display_name(r['Clean_First_Name'])
+        if r.get('Clean_Last_Name'):
+            r['Clean_Last_Name'] = clean_display_name(r['Clean_Last_Name'])
+
+    # Sort records: Live API leads strictly pinned to the absolute top,
+    # followed by strict newest filing date descending, then Double Distress
+    from functools import cmp_to_key
+    def lead_sort_cmp(a, b):
+        a_new = 1 if (a.get('Is_New_Api') == 'Yes' or a.get('Is_New_Lead') == 'Yes' or 'Live_API' in str(a.get('Source_File', ''))) else 0
+        b_new = 1 if (b.get('Is_New_Api') == 'Yes' or b.get('Is_New_Lead') == 'Yes' or 'Live_API' in str(b.get('Source_File', ''))) else 0
+        if b_new != a_new:
+            return b_new - a_new
+        # Strict newest filing/recording date always on top!
+        date_a = str(a.get('Filing_Date') or a.get('Case_Date') or a.get('Recording_Date') or '')[:10]
+        date_b = str(b.get('Filing_Date') or b.get('Case_Date') or b.get('Recording_Date') or '')[:10]
+        if date_a and date_b and date_a != date_b:
+            return 1 if date_b > date_a else -1
+        if date_b and not date_a:
+            return 1
+        if date_a and not date_b:
+            return -1
+        # Within matching dates, prioritize Double Distress
+        a_stack = 1 if a.get('Is_Stacked_Distress') == 'Yes' else 0
+        b_stack = 1 if b.get('Is_Stacked_Distress') == 'Yes' else 0
+        if b_stack != a_stack:
+            return b_stack - a_stack
+        return 0
+
+    records.sort(key=cmp_to_key(lead_sort_cmp))
 
     return {
         "status": "ready",
         "county": county,
-        "total_records_in_db": 437559 if county == "Pinellas" else len(df),
+        "total_records_in_db": 437559 if county == "Pinellas" else (496712 if county == "Orange" else (181244 if county == "Seminole" else len(df))),
         "kpis": {
             "total_leads": total_leads,
             "matched_count": matched_count,
@@ -477,12 +1622,36 @@ def get_leads(county: str = "Pinellas", state: str = "FL", lead_type: str = "all
             "trust_count": trust_count,
             "corporate_count": corporate_count,
             "probate_count": probate_count,
+            "divorce_count": divorce_count,
+            "judgment_count": judgment_count,
             "lp_trust_count": lp_trust_count,
             "stacked_count": stacked_count,
+            "legal_distress_count": legal_distress_count,
             "avg_market_value": avg_mkt_val
         },
         "records": records
     }
+
+
+def read_lead_upload(content: bytes, filename: str):
+    """The upload parser shared by the Load List button and inbound pulls."""
+    if filename.lower().endswith(('.xlsx', '.xls')):
+        subject_df = pd.read_excel(io.BytesIO(content), dtype=str)
+    else:
+        subject_df = pd.read_csv(io.BytesIO(content), dtype=str, low_memory=False)
+
+    # Auto-detect header offset if top rows are report titles or blank (e.g. OUC water shutoff report)
+    unnamed_cols = [c for c in subject_df.columns if str(c).startswith("Unnamed")]
+    if len(unnamed_cols) >= len(subject_df.columns) * 0.5:
+        header_keywords = ('ADDRESS', 'SITUS', 'LOCATION', 'NAME', 'PARCEL', 'STRAP', 'CITY', 'STATUS', 'CASE')
+        for i in range(min(25, len(subject_df))):
+            row_vals = [str(x).upper() for x in subject_df.iloc[i].tolist()]
+            if any(any(kw in val for kw in header_keywords) for val in row_vals):
+                new_headers = [str(x).strip() if pd.notna(x) and str(x).strip() != '' else f"COL_{idx}" for idx, x in enumerate(subject_df.iloc[i].tolist())]
+                subject_df = subject_df.iloc[i + 1:].copy().reset_index(drop=True)
+                subject_df.columns = new_headers
+                break
+    return subject_df
 
 
 @app.post("/api/match")
@@ -491,45 +1660,36 @@ async def run_match(
     lead_source: str = Form("lis_pendens"),
     file: Optional[UploadFile] = File(None)
 ):
-    """Run cross-reference engine against master parcel database and return matched leads."""
+    """Load List's existing entry point, also used by the folder watcher."""
     county_info = get_county_paths(county)
-    if not county_info['has_master']:
-        raise HTTPException(
-            status_code=400,
-            detail=f"Master parcel database for {county} is not installed. Please download and save to {county_info['target_dir']}"
-        )
-    
-    # Load database (cached)
-    db = get_database(county)
-    
-    # Determine subject leads DataFrame
-    subject_df = None
-    source_name = ""
-    
     if file and file.filename:
-        content = await file.read()
         source_name = file.filename
         try:
-            if file.filename.lower().endswith(('.xlsx', '.xls')):
-                subject_df = pd.read_excel(io.BytesIO(content), dtype=str)
-            else:
-                subject_df = pd.read_csv(io.BytesIO(content), dtype=str, low_memory=False)
-        except Exception as e:
-            raise HTTPException(status_code=400, detail=f"Error parsing uploaded file: {str(e)}")
+            subject_df = read_lead_upload(await file.read(), source_name)
+        except Exception as exc:
+            raise HTTPException(status_code=400, detail=f"Error parsing uploaded file: {exc}")
     else:
-        # Use local sample files
-        if "code" in lead_source.lower() and county_info.get("sample_code"):
-            subject_df = pd.read_csv(county_info["sample_code"], dtype=str, low_memory=False)
-            source_name = os.path.basename(county_info["sample_code"])
-        elif "probate" in lead_source.lower() and county_info.get("sample_probate"):
-            subject_df = pd.read_csv(county_info["sample_probate"], dtype=str, low_memory=False)
-            source_name = os.path.basename(county_info["sample_probate"])
-        elif county_info.get("sample_lp"):
-            subject_df = pd.read_csv(county_info["sample_lp"], dtype=str, low_memory=False)
-            source_name = os.path.basename(county_info["sample_lp"])
-        else:
+        sample_key = 'sample_code' if 'code' in lead_source.lower() else ('sample_probate' if 'probate' in lead_source.lower() else 'sample_lp')
+        sample = county_info.get(sample_key) or county_info.get('sample_lp')
+        if not sample:
             raise HTTPException(status_code=400, detail=f"No default lead file found for {county}. Please upload a lead list.")
-    
+        source_name = os.path.basename(sample)
+        subject_df = pd.read_csv(sample, dtype=str, low_memory=False)
+
+    # Clerk-format uploads share the same durable dedupe ledger as watched pulls.
+    from src.inbound_pull import LIS_PENDENS_HEADERS, ingest_once
+    if file and lead_source == 'lis_pendens' and list(subject_df.columns) == LIS_PENDENS_HEADERS:
+        return ingest_once(subject_df, 'lis-pendens', county, source_name,
+                           lambda rows: match_lead_dataframe(rows, county, lead_source, source_name, True))['result']
+    return match_lead_dataframe(subject_df, county, lead_source, source_name, file is not None)
+
+
+def match_lead_dataframe(subject_df, county, lead_source, source_name, uploaded):
+    """Shared existing cross-reference, cache persistence, and result pipeline."""
+    county_info = get_county_paths(county)
+    if not county_info['has_master']:
+        raise HTTPException(status_code=400, detail=f"Master parcel database for {county} is not installed. Please download and save to {county_info['target_dir']}")
+    db = get_database(county)
     if subject_df is None or len(subject_df) == 0:
         raise HTTPException(status_code=400, detail="Lead file contains 0 records.")
     
@@ -581,6 +1741,14 @@ async def run_match(
         elif any(k in cu for k in ['LEGAL', 'COMMENTS', 'DESCRIPTION']) and not column_mapping['legal_col']:
             column_mapping['legal_col'] = orig
 
+    # Filter for disconnects / shutoffs if account status column exists
+    if any(k in lead_source.lower() for k in ('water', 'shutoff', 'utility')):
+        status_col = next((c for c in subject_df.columns if 'STATUS' in c.upper()), None)
+        if status_col:
+            turn_off_mask = subject_df[status_col].astype(str).str.upper().str.contains('TURN OFF|SHUT OFF|OFF|DISCONNECT')
+            if turn_off_mask.sum() > 0:
+                subject_df = subject_df[turn_off_mask].copy().reset_index(drop=True)
+
     # Run Match
     t0 = time.time()
     engine = CrossReferenceEngine(db)
@@ -588,7 +1756,14 @@ async def run_match(
     elapsed = round(time.time() - t0, 2)
 
     # Set Lead Type
-    if "code" in lead_source.lower():
+    custom_cats = {c.get('id'): c.get('name') for c in load_custom_categories()}
+    custom_cats.update({c.get('name', '').lower().replace(' ', '_'): c.get('name') for c in load_custom_categories()})
+
+    if lead_source in custom_cats:
+        matched_df['Lead_Type'] = custom_cats[lead_source]
+    elif any(k in lead_source.lower() for k in ('water', 'shutoff', 'ouc')):
+        matched_df['Lead_Type'] = 'OUC water shutoff'
+    elif "code" in lead_source.lower():
         matched_df['Lead_Type'] = 'Code Violation'
     elif "probate" in lead_source.lower():
         matched_df['Lead_Type'] = 'Probate'
@@ -597,67 +1772,40 @@ async def run_match(
     else:
         matched_df['Lead_Type'] = 'Lis Pendens'
 
+    matched_df['Source_File'] = source_name
+
     # Multi-Distress Stacking: Cross-reference with Lis Pendens / Code Violations / Tax Liens / Probate
     cache_file = os.path.join(county_info['target_dir'], 'matched_leads_cache.parquet')
-    if os.path.exists(cache_file):
+    if os.path.exists(cache_file) or uploaded:
         try:
-            cached_all = pd.read_parquet(cache_file)
+            cached_all = pd.read_parquet(cache_file) if os.path.exists(cache_file) else matched_df.iloc[0:0].copy()
             lp_pids = set(cached_all[cached_all['Lead_Type'] == 'Lis Pendens']['Parcel_ID'].dropna())
             code_pids = set(cached_all[cached_all['Lead_Type'] == 'Code Violation']['Parcel_ID'].dropna())
             tax_pids = set(cached_all[cached_all['Lead_Type'] == 'Tax Lien']['Parcel_ID'].dropna())
-            probate_pids = set(cached_all[cached_all['Lead_Type'] == 'Probate']['Parcel_ID'].dropna())
+            probate_pids = set(cached_all[cached_all['Lead_Type'].str.contains('probate|death certificate', case=False, na=False)]['Parcel_ID'].dropna())
+            judgment_pids = set(cached_all[cached_all['Lead_Type'].str.contains('judgment|lien', case=False, na=False)]['Parcel_ID'].dropna())
+            water_pids = set(cached_all[cached_all['Lead_Type'].str.contains('water|ouc', case=False, na=False)]['Parcel_ID'].dropna())
 
             def compute_distress(pid, ltype):
                 signals = []
                 lt_l = (ltype or "").lower()
-                if "probate" in lt_l:
-                    if pid in lp_pids:
-                        signals.append("Lis Pendens Foreclosure")
-                    if pid in code_pids:
-                        signals.append("Open Municipal Code Violation")
-                    if pid in tax_pids:
-                        signals.append("County Tax Lien")
-                    if len(signals) >= 2:
-                        return ('Yes', f"💥 TRIPLE DISTRESS: Active Probate + {' + '.join(signals)}")
-                    elif len(signals) == 1:
-                        return ('Yes', f"🔥 DOUBLE DISTRESS: Active Probate + {signals[0]}")
-                    return ('No', '')
-                elif "lis_pendens" in lt_l or "lis pendens" in lt_l:
-                    if pid in probate_pids:
-                        signals.append("Active County Probate Court Case")
-                    if pid in code_pids:
-                        signals.append("Open Municipal Code Violation")
-                    if pid in tax_pids:
-                        signals.append("County Tax Lien")
-                    if len(signals) >= 2:
-                        return ('Yes', f"💥 TRIPLE DISTRESS: Lis Pendens + {' + '.join(signals)}")
-                    elif len(signals) == 1:
-                        return ('Yes', f"🔥 DOUBLE DISTRESS: Lis Pendens + {signals[0]}")
-                    return ('No', '')
-                elif "code" in lt_l:
-                    if pid in probate_pids:
-                        signals.append("Active County Probate Court Case")
-                    if pid in lp_pids:
-                        signals.append("Lis Pendens Foreclosure")
-                    if pid in tax_pids:
-                        signals.append("County Tax Lien")
-                    if len(signals) >= 2:
-                        return ('Yes', f"💥 TRIPLE DISTRESS: Code Violation + {' + '.join(signals)}")
-                    elif len(signals) == 1:
-                        return ('Yes', f"🔥 DOUBLE DISTRESS: Code Violation + {signals[0]}")
-                    return ('No', '')
-                elif "tax" in lt_l:
-                    if pid in probate_pids:
-                        signals.append("Active County Probate Court Case")
-                    if pid in lp_pids:
-                        signals.append("Lis Pendens Foreclosure")
-                    if pid in code_pids:
-                        signals.append("Open Municipal Code Violation")
-                    if len(signals) >= 2:
-                        return ('Yes', f"💥 TRIPLE DISTRESS: Tax Lien + {' + '.join(signals)}")
-                    elif len(signals) == 1:
-                        return ('Yes', f"🔥 DOUBLE DISTRESS: Tax Lien + {signals[0]}")
-                    return ('No', '')
+                if pid in lp_pids and not ('lis_pendens' in lt_l or 'lis pendens' in lt_l):
+                    signals.append("Lis Pendens Foreclosure")
+                if pid in probate_pids and not ('probate' in lt_l or 'death certificate' in lt_l):
+                    signals.append("Active County Probate Case")
+                if pid in judgment_pids and not ('judgment' in lt_l or 'lien' in lt_l):
+                    signals.append("County Judgment / Recorded Lien")
+                if pid in code_pids and not ('code' in lt_l):
+                    signals.append("Open Municipal Code Violation")
+                if pid in tax_pids and not ('tax' in lt_l):
+                    signals.append("County Tax Lien")
+                if pid in water_pids and not ('water' in lt_l or 'ouc' in lt_l):
+                    signals.append("OUC Water Shutoff")
+
+                if len(signals) >= 2:
+                    return ('Yes', f"💥 TRIPLE DISTRESS: {ltype} + {' + '.join(signals)}")
+                elif len(signals) == 1:
+                    return ('Yes', f"🔥 DOUBLE DISTRESS: {ltype} + {signals[0]}")
                 return ('No', '')
 
             res_stack = matched_df.apply(lambda r: compute_distress(r.get('Parcel_ID', ''), r.get('Lead_Type', '')), axis=1)
@@ -673,7 +1821,7 @@ async def run_match(
                 matched_df['Is_Trust_In_LP'] = 'No'
 
             # When a file is uploaded, merge newly matched leads into the county cache so cross-referencing persists
-            if file is not None and len(matched_df[matched_df['Match_Status'] == 'MATCHED']) > 0:
+            if uploaded and len(matched_df[matched_df['Match_Status'] == 'MATCHED']) > 0:
                 new_matched = matched_df[matched_df['Match_Status'] == 'MATCHED'].copy()
                 combined_df = pd.concat([cached_all, new_matched], ignore_index=True)
                 combined_df = combined_df.drop_duplicates(subset=['Parcel_ID', 'Lead_Type'], keep='last')
@@ -681,39 +1829,30 @@ async def run_match(
                 c_lp = set(combined_df[combined_df['Lead_Type'] == 'Lis Pendens']['Parcel_ID'].dropna())
                 c_code = set(combined_df[combined_df['Lead_Type'] == 'Code Violation']['Parcel_ID'].dropna())
                 c_tax = set(combined_df[combined_df['Lead_Type'] == 'Tax Lien']['Parcel_ID'].dropna())
-                c_probate = set(combined_df[combined_df['Lead_Type'] == 'Probate']['Parcel_ID'].dropna())
+                c_probate = set(combined_df[combined_df['Lead_Type'].str.contains('probate|death certificate', case=False, na=False)]['Parcel_ID'].dropna())
+                c_judgment = set(combined_df[combined_df['Lead_Type'].str.contains('judgment|lien', case=False, na=False)]['Parcel_ID'].dropna())
+                c_water = set(combined_df[combined_df['Lead_Type'].str.contains('water|ouc', case=False, na=False)]['Parcel_ID'].dropna())
 
                 def compute_combined(pid, ltype):
                     sig = []
                     lt = (ltype or "").lower()
-                    if "probate" in lt:
-                        if pid in c_lp: sig.append("Lis Pendens Foreclosure")
-                        if pid in c_code: sig.append("Open Municipal Code Violation")
-                        if pid in c_tax: sig.append("County Tax Lien")
-                        if len(sig) >= 2: return ('Yes', f"💥 TRIPLE DISTRESS: Active Probate + {' + '.join(sig)}")
-                        elif len(sig) == 1: return ('Yes', f"🔥 DOUBLE DISTRESS: Active Probate + {sig[0]}")
-                        return ('No', '')
-                    elif "lis_pendens" in lt or "lis pendens" in lt:
-                        if pid in c_probate: sig.append("Active County Probate Court Case")
-                        if pid in c_code: sig.append("Open Municipal Code Violation")
-                        if pid in c_tax: sig.append("County Tax Lien")
-                        if len(sig) >= 2: return ('Yes', f"💥 TRIPLE DISTRESS: Lis Pendens + {' + '.join(sig)}")
-                        elif len(sig) == 1: return ('Yes', f"🔥 DOUBLE DISTRESS: Lis Pendens + {sig[0]}")
-                        return ('No', '')
-                    elif "code" in lt:
-                        if pid in c_probate: sig.append("Active County Probate Court Case")
-                        if pid in c_lp: sig.append("Lis Pendens Foreclosure")
-                        if pid in c_tax: sig.append("County Tax Lien")
-                        if len(sig) >= 2: return ('Yes', f"💥 TRIPLE DISTRESS: Code Violation + {' + '.join(sig)}")
-                        elif len(sig) == 1: return ('Yes', f"🔥 DOUBLE DISTRESS: Code Violation + {sig[0]}")
-                        return ('No', '')
-                    elif "tax" in lt:
-                        if pid in c_probate: sig.append("Active County Probate Court Case")
-                        if pid in c_lp: sig.append("Lis Pendens Foreclosure")
-                        if pid in c_code: sig.append("Open Municipal Code Violation")
-                        if len(sig) >= 2: return ('Yes', f"💥 TRIPLE DISTRESS: Tax Lien + {' + '.join(sig)}")
-                        elif len(sig) == 1: return ('Yes', f"🔥 DOUBLE DISTRESS: Tax Lien + {sig[0]}")
-                        return ('No', '')
+                    if pid in c_lp and not ('lis_pendens' in lt or 'lis pendens' in lt):
+                        sig.append("Lis Pendens Foreclosure")
+                    if pid in c_probate and not ('probate' in lt or 'death certificate' in lt):
+                        sig.append("Active County Probate Case")
+                    if pid in c_judgment and not ('judgment' in lt or 'lien' in lt):
+                        sig.append("County Judgment / Recorded Lien")
+                    if pid in c_code and not ('code' in lt):
+                        sig.append("Open Municipal Code Violation")
+                    if pid in c_tax and not ('tax' in lt):
+                        sig.append("County Tax Lien")
+                    if pid in c_water and not ('water' in lt or 'ouc' in lt):
+                        sig.append("OUC Water Shutoff")
+
+                    if len(sig) >= 2:
+                        return ('Yes', f"💥 TRIPLE DISTRESS: {ltype} + {' + '.join(sig)}")
+                    elif len(sig) == 1:
+                        return ('Yes', f"🔥 DOUBLE DISTRESS: {ltype} + {sig[0]}")
                     return ('No', '')
 
                 res_c = combined_df.apply(lambda r: compute_combined(r.get('Parcel_ID', ''), r.get('Lead_Type', '')), axis=1)
@@ -727,8 +1866,17 @@ async def run_match(
                 for c in combined_df.columns:
                     if combined_df[c].dtype == 'object':
                         combined_df[c] = combined_df[c].fillna('').astype(str)
-                combined_df.to_parquet(cache_file, index=False)
+                from pathlib import Path
+                from uuid import uuid4
+                pending_cache = Path(cache_file).with_name(f".matched-{uuid4().hex}.parquet")
+                try:
+                    combined_df.to_parquet(pending_cache, index=False)
+                    os.replace(pending_cache, cache_file)
+                finally:
+                    pending_cache.unlink(missing_ok=True)
         except Exception as e:
+            if uploaded:
+                raise
             print("Multi-distress stacking error:", e)
     
     # Cache matched results for quick export
@@ -800,20 +1948,67 @@ async def run_match(
     }
 
 @app.get("/api/export")
-def export_csv():
-    """Download matched leads in standard wholesaling preset."""
-    if not hasattr(app.state, 'last_results') or app.state.last_results is None:
-        raise HTTPException(status_code=400, detail="No matched results found to export.")
+def export_csv(county: Optional[str] = None, state: Optional[str] = "FL", categories: Optional[str] = None):
+    """Download matched leads in standard wholesaling preset with optional county & category filtering."""
+    target_county = county or getattr(app.state, 'last_county', 'Orange')
+    target_state = (state or "FL").upper()
     
-    df = app.state.last_results.copy()
-    matched_df = df[df['Match_Status'] == 'MATCHED']
+    df = getattr(app.state, 'last_results', None)
+    if df is None or getattr(app.state, 'last_county', '').lower() != target_county.lower():
+        cache_path = os.path.join(DATA_DIR, target_state, target_county, "matched_leads_cache.parquet")
+        if not os.path.exists(cache_path):
+            cache_path = os.path.join(DATA_DIR, target_state, target_county.lower(), "matched_leads_cache.parquet")
+        if os.path.exists(cache_path):
+            try:
+                df = pd.read_parquet(cache_path)
+                app.state.last_results = df
+                app.state.last_county = target_county
+            except Exception as e:
+                raise HTTPException(status_code=500, detail=f"Failed loading cache for {target_county}: {e}")
+        else:
+            raise HTTPException(status_code=400, detail=f"No matched results found for {target_county} County.")
     
-    target_cols = [c for c in WHOLESALE_EXPORT_PRESET if c in matched_df.columns]
-    export_df = matched_df[target_cols]
+    matched_df = df[df['Match_Status'] == 'MATCHED'].copy()
+    
+    # Filter by category if requested
+    if categories:
+        cat_list = [c.strip().lower() for c in categories.split(',') if c.strip()]
+        masks = []
+        for cat in cat_list:
+            if cat in ['stacked', 'double_distress']:
+                masks.append(matched_df['Is_Stacked_Distress'] == 'Yes')
+            elif cat == 'lis_pendens':
+                masks.append(matched_df['Lead_Type'] == 'Lis Pendens')
+            elif cat == 'lp_trust':
+                masks.append((matched_df['Lead_Type'] == 'Lis Pendens') & ((matched_df.get('Is_Trust_In_LP') == 'Yes') | (matched_df.get('Is_Trust_Or_Estate') == 'Yes')))
+            elif cat == 'probate':
+                masks.append(matched_df['Lead_Type'].str.contains('probate|death certificate', case=False, na=False))
+            elif cat == 'divorce':
+                masks.append(matched_df['Lead_Type'].str.contains('divorce|domestic relations', case=False, na=False))
+            elif cat in ['judgment', 'judgments', 'lien', 'liens']:
+                masks.append(matched_df['Lead_Type'].str.contains('judgment|lien', case=False, na=False))
+            elif cat in ['code', 'code_violations']:
+                masks.append(matched_df['Lead_Type'] == 'Code Violation')
+            elif cat in ['water', 'water_shutoff', 'ouc']:
+                masks.append(matched_df['Lead_Type'].str.contains('water|ouc', case=False, na=False))
+            elif cat == 'absentee':
+                masks.append(matched_df['Absentee_Status'].str.contains('Out-of-State', case=False, na=False))
+            elif cat == 'tax_liens':
+                masks.append(matched_df['Lead_Type'].str.contains('tax lien', case=False, na=False))
+        if masks:
+            combined_mask = masks[0]
+            for m in masks[1:]:
+                combined_mask = combined_mask | m
+            matched_df = matched_df[combined_mask]
+
+    priority_cols = ['Parcel_ID', 'Lead_Type', 'Is_Stacked_Distress', 'Distress_Stack_Notes']
+    all_target_cols = priority_cols + [c for c in WHOLESALE_EXPORT_PRESET if c not in priority_cols and c in matched_df.columns]
+    existing_cols = [c for c in all_target_cols if c in matched_df.columns]
+    export_df = matched_df[existing_cols]
     
     csv_bytes = export_df.to_csv(index=False).encode('utf-8')
-    county = getattr(app.state, 'last_county', 'Florida')
-    filename = f"{county}_Wholesale_Leads_{time.strftime('%Y%m%d_%H%M%S')}.csv"
+    cat_tag = f"_{categories.replace(',', '_')}" if categories else ""
+    filename = f"{target_county}_Wholesale_Leads{cat_tag}_{time.strftime('%Y%m%d_%H%M%S')}.csv"
     
     return Response(
         content=csv_bytes,
@@ -853,6 +2048,20 @@ class ContactUpdateRequest(BaseModel):
     owner: Optional[str] = None
     source: Optional[str] = "TruePeopleSearch"
 
+class Underwrite407FlipsLeadRequest(BaseModel):
+    address: str
+    listing_price: Optional[float] = 0.0
+    arv: Optional[float] = 0.0
+    sqft: Optional[int] = 1500
+    year_built: Optional[int] = 1980
+    beds: Optional[int] = 3
+    baths: Optional[int] = 2
+    condition: Optional[str] = "average"
+    condition_notes: Optional[str] = ""
+    wholesale_fee: Optional[float] = 10000.0
+    parcel_id: Optional[str] = ""
+    owner_name: Optional[str] = "Homeowner"
+
 class SmsSettingsModel(BaseModel):
     mode: str = "local"
     base_url: str = "http://192.168.1.100:8080"
@@ -873,17 +2082,26 @@ class SendSmsRequest(BaseModel):
 
 
 def classify_opener_angle(msg: str) -> str:
-    """Classifies which of the 3 opener angles an outbound message corresponds to."""
+    """Classifies which of the opener angles an outbound message corresponds to."""
     if not msg:
         return "other"
     low = msg.lower()
-    if "did you ever decide what you're doing with" in low or "ever decide" in low:
+    if "casual_direct" in low or "work on homes in the neighborhood" in low:
+        return "casual_direct"
+    if "quick_question" in low or "still the owner of" in low:
+        return "quick_question"
+    if "neighbor_investor" in low or "wrapping up a renovation" in low or "doing another project" in low or "another project" in low:
+        return "neighbor_investor"
+    if "quick_checkin" in low or "consider an offer on" in low or "hold onto it" in low:
+        return "quick_checkin"
+    # Legacy fallbacks
+    if "saw the house online" in low or "ever decide" in low:
         return "multi_list"
-    if "quick question on" in low and ("got a sec" in low or "got a second" in low):
+    if "came across" in low or "quick question" in low:
         return "single_list"
     if re.search(r'^\s*hey\s+[a-zA-Z0-9_\-\'\.]+\s*\?', low):
         return "ultra_short"
-    return "other"
+    return "casual_direct"
 
 
 def classify_opt_out_variant(msg: str) -> str:
@@ -900,7 +2118,52 @@ def classify_opt_out_variant(msg: str) -> str:
 @app.get("/api/leads/contacts")
 def get_contacts():
     """Return all saved lead contacts (phones, emails, notes)."""
-    return load_saved_contacts()
+    contacts = load_saved_contacts()
+    approvals = auto_sms_queue.pending_initial_resends()
+    from src.sms_outreach_queue import normalize_phone
+    for pid, contact in contacts.items():
+        contact['sms_initial_resend_pending'] = approvals.get(pid) == normalize_phone(contact.get('phone') or contact.get('clean_phone'))
+    return contacts
+
+
+def get_saved_property_index(county, state, indexes):
+    key = (state or 'FL', county)
+    if key not in indexes:
+        info = get_county_paths(county, state=state or 'FL')
+        cache = os.path.join(info['target_dir'], 'matched_leads_cache.parquet')
+        indexes[key] = load_property_index(cache) if os.path.exists(cache) else None
+    return indexes[key]
+
+
+@app.post('/api/leads/refresh-property-matches')
+def refresh_saved_property_matches():
+    """Explicitly refresh and persist links; ordinary page loads never rematch."""
+    indexes = {}
+    for contact in load_saved_contacts().values():
+        if contact.get('county'):
+            get_saved_property_index(contact['county'], contact.get('state') or 'FL', indexes)
+    with OUTREACH_DATA_LOCK:
+        contacts = load_saved_contacts()
+        updates, unresolved = {}, []
+        for pid, contact in contacts.items():
+            if pid.startswith('TEST-'):
+                continue
+            index = indexes.get((contact.get('state') or 'FL', contact.get('county')))
+            match = index.resolve(pid, contact) if index else None
+            if match:
+                updates[pid] = match
+            else:
+                unresolved.append(pid)
+        backup_dir = os.path.join(DATA_DIR, 'backups')
+        os.makedirs(backup_dir, exist_ok=True)
+        backup = os.path.join(backup_dir, f'saved_contacts-before-property-matches-{time.time_ns()}.json')
+        atomic_outreach_json_write(backup, contacts)
+        for pid, match in updates.items():
+            contacts[pid].update(match)
+        atomic_outreach_json_write(CONTACTS_FILE, contacts)
+    return {'status': 'success', 'matched_contacts': len(updates),
+            'unique_properties': len({m['matched_parcel_id'] for m in updates.values()}),
+            'unresolved': unresolved, 'backup': backup}
 
 @app.post("/api/leads/update-contact")
 def update_lead_contact(req: ContactUpdateRequest):
@@ -920,6 +2183,397 @@ def update_lead_contact(req: ContactUpdateRequest):
     contact = save_contact(req.parcel_id, data_to_save)
     return {"status": "success", "parcel_id": req.parcel_id, "contact": contact}
 
+class DeleteLeadRequest(BaseModel):
+    parcel_id: str
+
+@app.post("/api/leads/delete")
+def delete_lead_endpoint(req: DeleteLeadRequest):
+    pid = (req.parcel_id or "").strip()
+    if not pid:
+        raise HTTPException(status_code=400, detail="Missing parcel_id")
+    deleted = load_deleted_leads()
+    deleted.add(pid)
+    save_deleted_leads(deleted)
+    return {"status": "success", "message": f"Lead {pid} deleted", "parcel_id": pid}
+
+@app.delete("/api/leads/{parcel_id}")
+def delete_lead_by_id_endpoint(parcel_id: str):
+    pid = (parcel_id or "").strip()
+    if not pid:
+        raise HTTPException(status_code=400, detail="Missing parcel_id")
+    deleted = load_deleted_leads()
+    deleted.add(pid)
+    save_deleted_leads(deleted)
+    return {"status": "success", "message": f"Lead {pid} deleted", "parcel_id": pid}
+
+@app.post("/api/leads/purge-condos")
+def purge_condos_endpoint():
+    """Bulk delete all properties containing #, Unit, Apt, Ste, Suite, Condo."""
+    df = getattr(app.state, 'last_results', None)
+    if df is None:
+        return {"status": "error", "message": "No active dataset loaded"}
+    
+    condo_regex = r'(\b(unit|apt|ste|suite|condo)\b|#)'
+    condo_mask = df['Property_Address'].str.contains(condo_regex, case=False, na=False)
+    condo_pids = set(df[condo_mask]['Parcel_ID'].dropna().astype(str).str.strip().tolist())
+    
+    deleted = load_deleted_leads()
+    initial_count = len(deleted)
+    deleted.update(condo_pids)
+    save_deleted_leads(deleted)
+    purged_count = len(deleted) - initial_count
+    return {"status": "success", "purged_count": purged_count, "total_deleted": len(deleted)}
+
+def clean_phone_number(val: Any) -> Tuple[str, str]:
+    if not val or pd.isna(val):
+        return "", ""
+    digits = re.sub(r'\D', '', str(val))
+    if len(digits) == 11 and digits.startswith('1'):
+        digits = digits[1:]
+    if len(digits) == 10:
+        return f"({digits[:3]}) {digits[3:6]}-{digits[6:]}", digits
+    elif len(digits) > 10:
+        d10 = digits[-10:]
+        return f"({d10[:3]}) {d10[3:6]}-{d10[6:]}", d10
+    return str(val).strip(), digits
+
+FL_CITY_COUNTY_MAP = {
+    "orlando": "Orange", "winter park": "Orange", "apopka": "Orange", "ocoee": "Orange", "windermere": "Orange",
+    "winter garden": "Orange", "maitland": "Orange", "tampa": "Hillsborough", "temple terrace": "Hillsborough",
+    "plant city": "Hillsborough", "st petersburg": "Pinellas", "saint petersburg": "Pinellas", "clearwater": "Pinellas",
+    "largo": "Pinellas", "pinellas park": "Pinellas", "dunedin": "Pinellas", "tarpon springs": "Pinellas",
+    "palm harbor": "Pinellas", "seminole": "Pinellas", "safety harbor": "Pinellas", "sanford": "Seminole",
+    "altamonte springs": "Seminole", "oviedo": "Seminole", "casselberry": "Seminole", "lake mary": "Seminole",
+    "longwood": "Seminole", "winter springs": "Seminole", "kissimmee": "Osceola", "st cloud": "Osceola",
+    "saint cloud": "Osceola", "lakeland": "Polk", "winter haven": "Polk", "bartow": "Polk", "haines city": "Polk",
+    "new port richey": "Pasco", "port richey": "Pasco", "land o lakes": "Pasco", "wesley chapel": "Pasco",
+    "sarasota": "Sarasota", "venice": "Sarasota", "north port": "Sarasota", "bradenton": "Manatee",
+    "palmetto": "Manatee", "daytona beach": "Volusia", "deland": "Volusia", "ormond beach": "Volusia",
+    "clermont": "Lake", "leesburg": "Lake", "tavares": "Lake", "mount dora": "Lake",
+    "gainesville": "Alachua", "ocala": "Marion", "jacksonville": "Duval", "fort myers": "Lee",
+    "cape coral": "Lee", "naples": "Collier", "miami": "Miami-Dade", "fort lauderdale": "Broward",
+    "west palm beach": "Palm Beach", "boca raton": "Palm Beach", "tallahassee": "Leon", "pensacola": "Escambia"
+}
+
+
+# Cache for county distress lookup dataframes (loaded once per run)
+_distress_lookup_cache: dict = {}
+
+def _normalize_addr(addr: str) -> str:
+    """Normalize address to alphanumeric-only uppercase for fuzzy matching."""
+    return re.sub(r'[^A-Z0-9]', '', str(addr).upper())
+
+def _lookup_distress_by_address(county: str, address: str) -> str:
+    """
+    Cross-reference an address against local county distress data files to
+    recover the real Lead_Type when the CSV only says 'Skip-Traced Lead'.
+    Returns the real distress type string, or empty string if not found.
+    """
+    global _distress_lookup_cache
+    if not county or not address:
+        return ""
+
+    norm_addr = _normalize_addr(address)
+    if not norm_addr:
+        return ""
+
+    # Load (and cache) the county distress dataframe
+    if county not in _distress_lookup_cache:
+        county_dir = os.path.join("data", "FL", county)
+        parquet_path = os.path.join(county_dir, "matched_leads_cache.parquet")
+        dfs = []
+        # Primary: parquet cache
+        if os.path.exists(parquet_path):
+            try:
+                df_p = pd.read_parquet(parquet_path, columns=["Property_Address", "Lead_Type"])
+                df_p = df_p.rename(columns={"Property_Address": "addr", "Lead_Type": "lt"})
+                dfs.append(df_p)
+            except Exception:
+                pass
+        # Fallback CSV files with Lead_Type column
+        for fname in os.listdir(county_dir) if os.path.isdir(county_dir) else []:
+            if not fname.lower().endswith('.csv'):
+                continue
+            fpath = os.path.join(county_dir, fname)
+            try:
+                df_c = pd.read_csv(fpath, dtype=str, low_memory=False)
+                # Must have both an address and a Lead_Type column
+                addr_c = next((c for c in df_c.columns if re.search(r'address', c, re.I)), None)
+                lt_c   = next((c for c in df_c.columns if re.search(r'lead.*type|distress', c, re.I)), None)
+                if addr_c and lt_c:
+                    tmp = df_c[[addr_c, lt_c]].rename(columns={addr_c: "addr", lt_c: "lt"})
+                    dfs.append(tmp)
+            except Exception:
+                pass
+
+        if dfs:
+            combined = pd.concat(dfs, ignore_index=True)
+            combined = combined.dropna(subset=["addr"])
+            combined["addr_norm"] = combined["addr"].apply(_normalize_addr)
+            combined = combined[combined["addr_norm"] != ""]
+            _distress_lookup_cache[county] = combined
+        else:
+            _distress_lookup_cache[county] = None
+
+    df_lookup = _distress_lookup_cache.get(county)
+    if df_lookup is None or df_lookup.empty:
+        return ""
+
+    # Exact normalized match
+    matches = df_lookup[df_lookup["addr_norm"] == norm_addr]
+    if not matches.empty:
+        lt = str(matches.iloc[0]["lt"]).strip()
+        if lt and lt.lower() not in ("nan", "none", "", "skip-traced lead"):
+            return lt
+
+    # Partial match: address starts-with (handles unit suffix differences)
+    if len(norm_addr) >= 8:
+        partial = df_lookup[df_lookup["addr_norm"].str.startswith(norm_addr[:min(len(norm_addr), 20)])]
+        if not partial.empty:
+            lt = str(partial.iloc[0]["lt"]).strip()
+            if lt and lt.lower() not in ("nan", "none", "", "skip-traced lead"):
+                return lt
+
+    return ""
+
+def detect_fl_county(raw_county: Any, city: Any, default_county: str = "Pinellas") -> str:
+
+    if raw_county and not pd.isna(raw_county):
+        cleaned = re.sub(r'(?i)\bcounty\b|\bfl\b|[,\.]', '', str(raw_county)).strip().title()
+        if cleaned:
+            return cleaned
+    if city and not pd.isna(city):
+        city_clean = str(city).strip().lower()
+        if city_clean in FL_CITY_COUNTY_MAP:
+            return FL_CITY_COUNTY_MAP[city_clean]
+    return default_county or "Pinellas"
+
+@app.post("/api/leads/import-skiptrace")
+async def import_skiptrace_endpoint(
+    file: UploadFile = File(...),
+    default_county: str = Form("Pinellas")
+):
+    """
+    Import a skip-traced CSV or Excel spreadsheet containing phone numbers, emails,
+    and property owners across one or multiple Florida counties.
+    """
+    if not file or not file.filename:
+        raise HTTPException(status_code=400, detail="No file provided")
+    
+    contents = await file.read()
+    try:
+        if file.filename.lower().endswith(('.xlsx', '.xls')):
+            df = pd.read_excel(io.BytesIO(contents), dtype=str)
+        else:
+            try:
+                df = pd.read_csv(io.BytesIO(contents), dtype=str, low_memory=False)
+            except UnicodeDecodeError:
+                df = pd.read_csv(io.BytesIO(contents), dtype=str, encoding='latin1', low_memory=False)
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=f"Failed to read spreadsheet: {str(e)}")
+
+    if df.empty:
+        raise HTTPException(status_code=400, detail="The uploaded spreadsheet is empty.")
+
+    # Auto-detect header row offset if top rows are blank or report titles
+    unnamed_cols = [c for c in df.columns if str(c).startswith("Unnamed")]
+    if len(unnamed_cols) >= len(df.columns) * 0.5:
+        header_keywords = ('ADDRESS', 'PHONE', 'NAME', 'PARCEL', 'APN', 'EMAIL', 'COUNTY', 'CITY', 'OWNER')
+        for i in range(min(15, len(df))):
+            row_vals = [str(x).upper() for x in df.iloc[i].tolist()]
+            if any(any(kw in val for kw in header_keywords) for val in row_vals):
+                new_headers = [str(x).strip() if pd.notna(x) and str(x).strip() != '' else f"COL_{idx}" for idx, x in enumerate(df.iloc[i].tolist())]
+                df = df.iloc[i + 1:].copy().reset_index(drop=True)
+                df.columns = new_headers
+                break
+
+    cols = list(df.columns)
+    
+    def find_col(*patterns):
+        for pattern in patterns:
+            for c in cols:
+                readable = re.sub(r'([a-z0-9])([A-Z])', r'\1 \2', str(c)).replace('_', ' ')
+                if re.search(pattern, str(c), re.IGNORECASE) or re.search(pattern, readable, re.IGNORECASE):
+                    return c
+        return None
+
+    # Detect Phone columns in order of priority
+    phone_cols = []
+    for c in cols:
+        c_str = str(c).strip()
+        if re.search(r'\b(mobile|cell|wireless|direct)\b', c_str, re.IGNORECASE):
+            phone_cols.append(c)
+    for c in cols:
+        c_str = str(c).strip()
+        if re.search(r'\bphone\s*1\b|\bphone_1\b|\bprimary\s*phone\b|\bphone\b', c_str, re.IGNORECASE) and c not in phone_cols:
+            phone_cols.append(c)
+    for c in cols:
+        c_str = str(c).strip()
+        if re.search(r'\bphone\s*[2-9]\b|\bphone_[2-9]\b', c_str, re.IGNORECASE) and c not in phone_cols:
+            phone_cols.append(c)
+    for c in cols:
+        c_str = str(c).strip()
+        if re.search(r'phone|tel|number', c_str, re.IGNORECASE) and c not in phone_cols:
+            phone_cols.append(c)
+
+    # Detect Email columns
+    email_cols = [c for c in cols if re.search(r'email|e[-_\s]+mail|^mail$', str(c), re.IGNORECASE)]
+
+    # Detect Owner columns
+    owner_col = find_col(r'\bowner\s*name\b', r'\bfull\s*name\b', r'\bowner\b', r'\bclean_full_name\b', r'\bcontact\s*name\b', r'^name$')
+    first_name_col = find_col(r'\bfirst\s*name\b', r'\bfirst_name\b')
+    last_name_col = find_col(r'\blast\s*name\b', r'\blast_name\b')
+
+    # Detect Address columns
+    addr_col = find_col(r'\bproperty\s*address\b', r'\bsitus\s*address\b', r'\baddress\b', r'\bstreet\s*address\b', r'\bproperty_address\b')
+    city_col = find_col(r'\bproperty\s*city\b', r'\bsitus\s*city\b', r'\bcity\b')
+    state_col = find_col(r'\bproperty\s*state\b', r'\bstate\b')
+    zip_col = find_col(r'\bproperty\s*zip\b', r'\bzip\b', r'\bpostal\b')
+
+    # Detect County column
+    county_col = find_col(r'\bproperty\s*county\b', r'\bcounty\b')
+
+    # Detect Parcel / APN column
+    parcel_col = find_col(r'\bparcel\s*id\b', r'\bparcel_id\b', r'\bapn\b', r'\bfolio\b', r'\bpin\b', r'\bstrap\b', r'\bparcel\b')
+
+    # Detect Distress / Lead Type / List
+    distress_col = find_col(r'\blead\s*type\b', r'\bdistress\b', r'\btags?\b', r'\blist\b', r'\bcategory\b')
+
+    # Detect Market / Assessed Value
+    value_col = find_col(r'\bmarket\s*value\b', r'\bjust\s*value\b', r'\bassessed\b', r'\bestimated\s*value\b', r'\bvalue\b')
+
+    saved_contacts = load_saved_contacts()
+    property_indexes = {}
+    imported_count = 0
+    phones_found = 0
+    emails_found = 0
+    counties_breakdown = {}
+
+    for idx, row in df.iterrows():
+        primary_phone = ""
+        clean_p = ""
+        phone_2 = ""
+        for pc in phone_cols:
+            val = str(row.get(pc, '')).strip()
+            fmt, clean = clean_phone_number(val)
+            if clean and len(clean) >= 10:
+                if not primary_phone:
+                    primary_phone = fmt
+                    clean_p = clean
+                elif not phone_2 and clean != clean_p:
+                    phone_2 = fmt
+                    break
+
+        email = ""
+        for ec in email_cols:
+            eval_val = str(row.get(ec, '')).strip()
+            if '@' in eval_val and '.' in eval_val:
+                email = eval_val
+                break
+
+        owner = ""
+        if owner_col and pd.notna(row.get(owner_col)):
+            owner = str(row.get(owner_col)).strip()
+        elif first_name_col or last_name_col:
+            fn = str(row.get(first_name_col, '')).strip() if first_name_col else ""
+            ln = str(row.get(last_name_col, '')).strip() if last_name_col else ""
+            owner = f"{fn} {ln}".strip()
+
+        addr = str(row.get(addr_col, '')).strip() if addr_col and pd.notna(row.get(addr_col)) else ""
+        city = str(row.get(city_col, '')).strip() if city_col and pd.notna(row.get(city_col)) else ""
+        state = str(row.get(state_col, 'FL')).strip() if state_col and pd.notna(row.get(state_col)) else "FL"
+        zip_code = str(row.get(zip_col, '')).strip() if zip_col and pd.notna(row.get(zip_col)) else ""
+
+        if not primary_phone and not email and not addr and not owner:
+            continue
+
+        raw_county = str(row.get(county_col, '')).strip() if county_col and pd.notna(row.get(county_col)) else ""
+        county = detect_fl_county(raw_county, city, default_county)
+
+        pid = str(row.get(parcel_col, '')).strip() if parcel_col and pd.notna(row.get(parcel_col)) else ""
+        if not pid or pid.lower() in ('nan', 'none', 'null', ''):
+            clean_addr_slug = re.sub(r'[^A-Za-z0-9]', '-', addr).strip('-').upper()
+            if not clean_addr_slug and owner:
+                clean_addr_slug = re.sub(r'[^A-Za-z0-9]', '-', owner).strip('-').upper()
+            pid = f"SKIP-{county.upper()}-{clean_addr_slug[:24] or str(idx)}"
+
+        val_str = str(row.get(value_col, '0')).strip() if value_col and pd.notna(row.get(value_col)) else "0"
+        val_clean = re.sub(r'[^\d\.]', '', val_str)
+        try:
+            market_val = float(val_clean) if val_clean else 250000.0
+        except ValueError:
+            market_val = 250000.0
+
+        distress = str(row.get(distress_col, 'Skip-Traced Lead')).strip() if distress_col and pd.notna(row.get(distress_col)) else "Skip-Traced Lead"
+        if not distress or distress.lower() in ('nan', 'none'):
+            distress = "Skip-Traced Lead"
+
+        contact_record = {
+            "owner": owner or "Property Owner",
+            "county": county,
+            "address": addr,
+            "city": city,
+            "state": state,
+            "zip": zip_code,
+            "phone": primary_phone,
+            "clean_phone": clean_p,
+            "phone_2": phone_2,
+            "email": email,
+            "just_value": market_val,
+            "distress_category": distress,
+            "source": f"Skip Trace CSV ({file.filename})",
+            "updated_at": time.strftime("%Y-%m-%d %H:%M:%S")
+        }
+
+        previous = saved_contacts.get(pid, {})
+        same_property = (previous.get('property_match') and address_key(previous.get('address')) == address_key(addr)
+                         and previous.get('county') == county and (previous.get('state') or 'FL') == state)
+        if same_property:
+            contact_record.update({k: previous[k] for k in ('matched_parcel_id', 'property_match')})
+        else:
+            index = get_saved_property_index(county, state, property_indexes)
+            match = index.resolve(pid, contact_record) if index else None
+            if match:
+                contact_record.update(match)
+        if contact_record.get('property_match'):
+            contact_record['distress_category'] = contact_record['property_match']['record']['Lead_Type']
+        for field in ('phone', 'clean_phone', 'phone_2', 'email'):
+            if not contact_record.get(field) and previous.get(field):
+                contact_record[field] = previous[field]
+
+        saved_contacts[pid] = {
+            **saved_contacts.get(pid, {}),
+            **contact_record
+        }
+
+        imported_count += 1
+        if primary_phone:
+            phones_found += 1
+        if email:
+            emails_found += 1
+        counties_breakdown[county] = counties_breakdown.get(county, 0) + 1
+
+    with OUTREACH_DATA_LOCK:
+        # Preserve SMS tracking if a background send finished during the import.
+        for existing_pid, existing_contact in load_saved_contacts().items():
+            if existing_pid not in saved_contacts:
+                saved_contacts[existing_pid] = existing_contact
+            elif str(existing_contact.get("last_sms_sent") or "") >= str(saved_contacts[existing_pid].get("last_sms_sent") or ""):
+                for field in ("last_sms_sent", "last_sms_status", "last_sms_message"):
+                    if field in existing_contact:
+                        saved_contacts[existing_pid][field] = existing_contact[field]
+        atomic_outreach_json_write(CONTACTS_FILE, saved_contacts)
+
+    return {
+        "status": "success",
+        "imported_count": imported_count,
+        "phones_found": phones_found,
+        "emails_found": emails_found,
+        "counties_breakdown": counties_breakdown,
+        "counties_count": len(counties_breakdown),
+        "message": f"Successfully imported {imported_count} skip-traced leads across {len(counties_breakdown)} Florida counties."
+    }
+
 @app.get("/api/sms/settings")
 def get_sms_settings():
     """Return current Android SMS Gateway configuration."""
@@ -938,6 +2592,11 @@ def send_sms_via_gateway(req: SendSmsRequest):
     Formats payload according to official OpenAPI spec: POST /3rdparty/v1/messages
     Enforces permanent suppression and DNC registry scrub before dispatch.
     """
+    # Recheck late replies at the gateway boundary, including manual sends.
+    if str(req.opener_angle or '').startswith('follow_up_') and auto_sms_queue.has_replied(req.phone):
+        return {'status': 'error', 'suppressed': True, 'blocked_reason': 'Already replied',
+                'message': 'Follow-up skipped because this person has replied.'}
+
     # 1. Check permanent suppression and DNC registry before any outbound SMS
     if not req.bypass_suppression:
         is_blocked, block_reason = is_lead_blocked_from_outreach(req.phone, {
@@ -979,9 +2638,11 @@ def send_sms_via_gateway(req: SendSmsRequest):
         "5550199" in digits or "555" in digits
     )
 
+    clean_msg = sanitize_sms_no_underlines_no_hyphens(req.message)
+
     # Opener angle and soft opt-out tagging
-    angle = getattr(req, "opener_angle", None) or classify_opener_angle(req.message)
-    opt_variant = classify_opt_out_variant(req.message)
+    angle = getattr(req, "opener_angle", None) or classify_opener_angle(clean_msg)
+    opt_variant = classify_opt_out_variant(clean_msg)
 
     if is_sandbox:
         resp_data = {"id": f"sandbox_sms_{int(time.time())}", "state": "Delivered (Sandbox Simulated)"}
@@ -992,11 +2653,11 @@ def send_sms_via_gateway(req: SendSmsRequest):
             "parcel_id": req.parcel_id or "TEST-PINELLAS-001",
             "county": req.county or "Pinellas",
             "owner": req.owner_name or "Robert Vance (Test Lead)",
-            "address": req.property_address or "742 Evergreen Terr, St. Petersburg, FL",
+            "address": clean_address_for_sms(req.property_address or "742 Evergreen Terr, St. Petersburg, FL"),
             "phone": phone_e164,
             "recipient": phone_e164,
             "subject": "SMS Text Message (Sandbox)",
-            "message": req.message,
+            "message": clean_msg,
             "opener_angle": angle,
             "opt_out_variant": opt_variant,
             "status": "SENT",
@@ -1011,15 +2672,13 @@ def send_sms_via_gateway(req: SendSmsRequest):
                     logs = json.load(f)
             except Exception:
                 logs = []
-        logs.insert(0, log_entry)
-        with open(OUTREACH_LOG_FILE, "w", encoding="utf-8") as f:
-            json.dump(logs[:500], f, indent=2)
+        append_outreach_log(log_entry)
 
         if req.parcel_id:
             save_contact(req.parcel_id, {
                 "last_sms_sent": time.strftime("%Y-%m-%d %H:%M:%S"),
                 "last_sms_status": "SENT (Sandbox)",
-                "last_sms_message": req.message
+                "last_sms_message": clean_msg
             })
 
         # Auto-trigger an interactive 2-way reply from Robert Vance 3 seconds later
@@ -1031,7 +2690,7 @@ def send_sms_via_gateway(req: SendSmsRequest):
                 "which one were you? when did we talk?",
                 "who is this?",
                 "excuse me?",
-                "Hey Emma, thanks for reaching out. What would you offer cash for the place as-is?",
+                "Hey Emma, thanks for reaching out. What would you offer cash for the place as is?",
                 "We got cited for the garage and roof by county code enforcement. Can you close fast with cash?",
                 "I might sell if the price makes sense. I'll let it go for 130k if you can close this month."
             ]
@@ -1056,7 +2715,7 @@ def send_sms_via_gateway(req: SendSmsRequest):
 
     payload = {
         "textMessage": {
-            "text": req.message
+            "text": clean_msg
         },
         "phoneNumbers": [phone_e164],
         "simNumber": sim_number,
@@ -1098,9 +2757,7 @@ def send_sms_via_gateway(req: SendSmsRequest):
                     logs = json.load(f)
             except Exception:
                 logs = []
-        logs.insert(0, log_entry)
-        with open(OUTREACH_LOG_FILE, "w", encoding="utf-8") as f:
-            json.dump(logs[:500], f, indent=2)
+        append_outreach_log(log_entry)
 
         # Mark in saved contacts
         if req.parcel_id:
@@ -1116,6 +2773,7 @@ def send_sms_via_gateway(req: SendSmsRequest):
                 "url": target_url
             }
 
+        auto_sms_queue.record_sent(req.phone)
         return {
             "status": "success",
             "message": "SMS dispatched successfully to your Android phone!",
@@ -1154,7 +2812,7 @@ def test_sms_gateway():
 # Direct-to-Seller Autonomous Bot & Golden Training Suite API
 # -------------------------------------------------------------
 
-def find_lead_by_phone(phone_str: str) -> Dict[str, Any]:
+def find_lead_by_phone(phone_str: str, *, allow_online_lookup: bool = True, contacts: Optional[Dict[str, Any]] = None, valuation_cache: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
     """Finds matching parcel lead in saved contacts or defaults to generic Florida lead."""
     digits = "".join(filter(str.isdigit, str(phone_str)))
     if len(digits) > 10 and digits.startswith("1"):
@@ -1184,12 +2842,13 @@ def find_lead_by_phone(phone_str: str) -> Dict[str, Any]:
             "market_value": 485000.0
         }
 
-    contacts = load_saved_contacts()
+    if contacts is None:
+        contacts = load_saved_contacts()
     for pid, c in contacts.items():
         c_clean = c.get("clean_phone") or "".join(filter(str.isdigit, str(c.get("phone", ""))))
         if c_clean and (digits in c_clean or c_clean in digits):
             jval = float(c.get("just_value") or 250000.0)
-            val = get_property_market_valuation(c.get("address", ""), jval)
+            val = get_property_market_valuation(c.get("address", ""), jval, allow_online_lookup=allow_online_lookup, cache=valuation_cache)
             return {
                 "parcel_id": pid,
                 "owner_name": c.get("owner") or "Property Owner",
@@ -1279,6 +2938,7 @@ async def receive_inbound_sms(request: Request):
     if not sender_phone or not msg_text:
         return {"status": "ignored", "reason": "No sender phone or message text detected"}
 
+    auto_sms_queue.record_reply(sender_phone)
     lead = find_lead_by_phone(sender_phone)
     parcel_override = body.get("parcel_id") or payload.get("parcel_id")
     if parcel_override:
@@ -1321,9 +2981,7 @@ async def receive_inbound_sms(request: Request):
                 logs = json.load(f)
         except Exception:
             logs = []
-    logs.insert(0, log_entry)
-    with open(OUTREACH_LOG_FILE, "w", encoding="utf-8") as f:
-        json.dump(logs[:500], f, indent=2)
+    append_outreach_log(log_entry)
 
     # If opt-out action was detected, permanently persist to suppression list and dispatch confirmation
     if bot_res.get("action") == "OPT_OUT":
@@ -1352,12 +3010,15 @@ async def receive_inbound_sms(request: Request):
     # Check for Autopilot automated dispatch (with 30-45 second human delay)
     settings = load_seller_bot_settings()
     auto_dispatched = False
-    if settings.get("enabled") and settings.get("mode") == "autopilot" and bot_res.get("auto_send_allowed"):
+    if (settings.get("enabled") and settings.get("mode") == "autopilot"
+            and bot_res.get("auto_send_allowed") and not auto_sms_queue.requires_manual_reply(sender_phone)):
         reply_text = bot_res.get("suggested_reply")
         if reply_text:
             delay_sec = int(settings.get("auto_send_delay_seconds") or random.randint(30, 45))
             def delayed_dispatch():
                 time.sleep(delay_sec)
+                if auto_sms_queue.requires_manual_reply(sender_phone):
+                    return
                 send_sms_via_gateway(SendSmsRequest(
                     phone=sender_phone,
                     message=reply_text,
@@ -1385,6 +3046,7 @@ def simulate_seller_inbound(req: InboundSmsWebhookRequest):
     """Simulates an inbound seller text for testing copilot and training flows."""
     sender_phone = req.phone or req.sender or req.from_number or "(727) 555-0199"
     msg_text = req.message or req.text or req.body or "How much can you offer cash?"
+    auto_sms_queue.record_reply(sender_phone)
     lead = find_lead_by_phone(sender_phone)
     if req.parcel_id:
         lead["parcel_id"] = req.parcel_id
@@ -1429,9 +3091,7 @@ def simulate_seller_inbound(req: InboundSmsWebhookRequest):
                 logs = json.load(f)
         except Exception:
             logs = []
-    logs.insert(0, log_entry)
-    with open(OUTREACH_LOG_FILE, "w", encoding="utf-8") as f:
-        json.dump(logs[:500], f, indent=2)
+    append_outreach_log(log_entry)
 
     return {
         "status": "success",
@@ -1536,10 +3196,12 @@ def generate_bot_suggestion(payload: Dict[str, Any]):
         lead["distress_category"] = payload.get("distress_category") or payload.get("distress_type")
     if payload.get("assessed_value"):
         lead["assessed_value"] = payload["assessed_value"]
+    if payload.get('county'):
+        lead['county'] = payload['county']
 
     history = get_lead_sms_thread(phone, parcel_id)
     if inbound_text == "INITIAL_HOOK" or (not history and (not inbound_text or "outreach inquiry" in inbound_text.lower() or "noticed your property" in inbound_text.lower())):
-        bot_res = seller_bot.generate_initial_outreach(lead)
+        bot_res = seller_bot.generate_initial_outreach(lead, forced_angle=payload.get('opener_angle'))
     else:
         bot_res = seller_bot.process_inbound_sms(lead, inbound_text, history)
     reply_text = bot_res.get("suggested_reply", "")
@@ -1593,6 +3255,10 @@ def get_grouped_sms_threads() -> List[Dict[str, Any]]:
         except Exception:
             logs = []
 
+    # Inbox refreshes must not wait on online appraisal searches or repeatedly
+    # reread the same contact and valuation files for each conversation.
+    contacts = load_saved_contacts()
+    valuation_cache = load_valuations_cache()
     threads_map: Dict[str, Dict[str, Any]] = {}
     # Iterate oldest to newest so messages array is in chronological order
     for entry in reversed(logs):
@@ -1607,10 +3273,10 @@ def get_grouped_sms_threads() -> List[Dict[str, Any]]:
             continue
 
         if key not in threads_map:
-            lead_info = find_lead_by_phone(digits or phone_raw)
+            lead_info = find_lead_by_phone(digits or phone_raw, allow_online_lookup=False, contacts=contacts, valuation_cache=valuation_cache)
             addr = entry.get("address") or (lead_info.get("property_address") if lead_info else "Florida Property")
             jval = float(lead_info.get("just_value", 250000.0) if lead_info else 250000.0)
-            val = get_property_market_valuation(addr, jval)
+            val = get_property_market_valuation(addr, jval, allow_online_lookup=False, cache=valuation_cache)
             threads_map[key] = {
                 "key": key,
                 "phone": entry.get("phone") or entry.get("sender_phone") or (lead_info.get("phone") if lead_info else phone_raw),
@@ -1660,6 +3326,35 @@ def get_sms_threads_endpoint():
     """API endpoint to get all grouped conversation threads."""
     threads = get_grouped_sms_threads()
     return {"status": "success", "threads": threads, "count": len(threads)}
+
+@app.post("/api/underwrite/407flips")
+def underwrite_lead_407flips_endpoint(req: Underwrite407FlipsLeadRequest):
+    """
+    407flips Underwriting Engine Endpoint for County Lead Hub
+    Applies the full 407flips Standard (8-Point compliance, Florida 4-Point Insurance & Systems Triggers,
+    Two-Tier Scope, 23% Friction/Profit MAO, and Three-Tier Offer Engine) to distressed county leads.
+    """
+    arv_val = req.arv or 0.0
+    if arv_val <= 0:
+        val_info = get_property_market_valuation(req.address, req.listing_price or 250000.0)
+        arv_val = float(val_info.get("market_value", 300000.0))
+
+    report = underwrite_407flips_deal(
+        address=req.address,
+        listing_price=req.listing_price or 0.0,
+        arv=arv_val,
+        sqft=req.sqft or 1500,
+        year_built=req.year_built or 1980,
+        beds=req.beds or 3,
+        baths=req.baths or 2,
+        condition=req.condition or "poor",
+        condition_notes=req.condition_notes or "Florida distressed lead",
+        wholesale_fee=req.wholesale_fee or 10000.0,
+        agent_name=req.owner_name or "Homeowner",
+        parcel_id=req.parcel_id or "",
+        owner_name=req.owner_name or "Homeowner"
+    )
+    return {"status": "success", "report": report}
 
 @app.get("/api/sms/thread")
 def get_single_thread_endpoint(phone: str = "", parcel_id: str = ""):
@@ -1790,6 +3485,8 @@ class SendEmailRequest(BaseModel):
     property_address: Optional[str] = ""
     subject: str
     html_content: str
+    plain_content: Optional[str] = None
+    auto_outreach: bool = False
     parcel_id: Optional[str] = None
     county: Optional[str] = "Pinellas"
     template_type: Optional[str] = "cash_offer"
@@ -1830,12 +3527,55 @@ def test_email_connection():
     except Exception as e:
         return {"status": "error", "message": f"Could not connect to {host}:{port}: {str(e)}"}
 
+def is_email_blocked_from_outreach(email, contact):
+    """Honor known opt-outs/bounces on an address or any linked contact record."""
+    from src.email_outreach_queue import normalize_email, property_key
+    normalized = normalize_email(email)
+    if not normalized:
+        return True, 'Missing or malformed email'
+    suppression_file = os.path.join(DATA_DIR, 'email_suppression.json')
+    if os.path.exists(suppression_file):
+        with open(suppression_file, 'r', encoding='utf-8') as source:
+            suppressed = json.load(source)
+        if not isinstance(suppressed, list):
+            raise ValueError('Email suppression file must contain a list. Correct it before starting outreach.')
+        for entry in suppressed:
+            value = entry.get('email') if isinstance(entry, dict) else entry
+            if normalize_email(value) == normalized:
+                return True, 'Email is on the suppression list'
+    linked = [contact]
+    if contact.get('matched_parcel_id'):
+        key = property_key('', contact)
+        linked += [c for pid, c in load_saved_contacts().items() if property_key(pid, c) == key]
+    for candidate in linked:
+        if (candidate.get('email_opt_out') or candidate.get('unsubscribed') or candidate.get('email_bounced')
+                or str(candidate.get('email_status') or '').lower() in ('bounced', 'unsubscribed', 'blocked')
+                or candidate.get('dnc') is True or candidate.get('is_dnc') is True
+                or str(candidate.get('dnc_status') or '').upper() == 'DNC'):
+            return True, 'Contact is opted out, bounced, or blocked'
+        phone = candidate.get('phone') or candidate.get('clean_phone')
+        if phone:
+            blocked, reason = is_lead_blocked_from_outreach(phone, candidate)
+            if blocked:
+                return True, reason
+    return False, ''
+
+
 @app.post("/api/email/send")
 def send_email_via_smtp(req: SendEmailRequest):
     """
     Send an offer email via SMTP2GO.
     Formatted with multi-part alternative (HTML + plain text fallback).
     """
+    from src.email_outreach_queue import normalize_email
+    contact = load_saved_contacts().get(req.parcel_id, {})
+    blocked, reason = is_email_blocked_from_outreach(req.recipient_email, contact)
+    if blocked:
+        return {'status': 'error', 'suppressed': True, 'blocked_reason': reason, 'message': reason}
+    if req.auto_outreach:
+        reason = auto_email_queue.recheck_before_send(req.parcel_id, req.recipient_email)
+        if reason:
+            return {'status': 'error', 'suppressed': True, 'blocked_reason': reason, 'message': reason}
     settings = load_email_settings()
     host = settings.get("smtp_server", "mail.smtp2go.com")
     port = int(settings.get("smtp_port", 2525))
@@ -1848,8 +3588,9 @@ def send_email_via_smtp(req: SendEmailRequest):
     # Safe Sandbox Test Lead Handling (Non-live carrier simulation)
     is_sandbox = (
         (req.parcel_id and str(req.parcel_id).startswith("TEST-")) or
-        (req.recipient_email and any(t in req.recipient_email.lower() for t in ["@test.", ".test@", "test@gmail.com", "example.com", "555"])) or
-        "test" in (req.recipient_name or "").lower()
+        (not req.auto_outreach and (
+            (req.recipient_email and any(t in req.recipient_email.lower() for t in ["@test.", ".test@", "test@gmail.com", "example.com", "555"])) or
+            "test" in (req.recipient_name or "").lower()))
     )
 
     if is_sandbox:
@@ -1875,9 +3616,7 @@ def send_email_via_smtp(req: SendEmailRequest):
                     logs = json.load(f)
             except Exception:
                 logs = []
-        logs.insert(0, log_entry)
-        with open(OUTREACH_LOG_FILE, "w", encoding="utf-8") as f:
-            json.dump(logs[:500], f, indent=2)
+        append_outreach_log(log_entry)
 
         if req.parcel_id:
             save_contact(req.parcel_id, {
@@ -1896,7 +3635,7 @@ def send_email_via_smtp(req: SendEmailRequest):
     if not pwd:
         return {"status": "error", "message": "SMTP password not configured. Open Email Setup and enter your SMTP2GO password."}
 
-    if not req.recipient_email or "@" not in req.recipient_email:
+    if not normalize_email(req.recipient_email) or '\r' in req.subject or '\n' in req.subject:
         return {"status": "error", "message": "Invalid recipient email address."}
 
     msg = MIMEMultipart("alternative")
@@ -1906,7 +3645,7 @@ def send_email_via_smtp(req: SendEmailRequest):
     msg["Reply-To"] = reply_to
 
     # Plain text preview
-    plain_fallback = f"Offer for {req.property_address} from 407 Flips. Please view in an HTML-compatible email client or reply directly."
+    plain_fallback = req.plain_content or f"Offer for {req.property_address} from 407 Flips. Please view in an HTML-compatible email client or reply directly."
     msg.attach(MIMEText(plain_fallback, "plain", "utf-8"))
     msg.attach(MIMEText(req.html_content, "html", "utf-8"))
 
@@ -1924,6 +3663,7 @@ def send_email_via_smtp(req: SendEmailRequest):
             save_contact(req.parcel_id, {
                 "last_email_sent": time.strftime("%Y-%m-%d %H:%M:%S"),
                 "last_email_status": "SENT",
+                "last_email_template": req.template_type,
                 "email": req.recipient_email
             })
 
@@ -1931,13 +3671,15 @@ def send_email_via_smtp(req: SendEmailRequest):
         log_entry = {
             "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),
             "channel": "EMAIL",
+            "direction": "OUTBOUND",
             "parcel_id": req.parcel_id,
             "county": req.county,
             "owner": req.recipient_name,
             "address": req.property_address,
             "recipient": req.recipient_email,
             "subject": req.subject,
-            "message": req.subject,
+            "message": req.plain_content or req.subject,
+            "template_type": req.template_type,
             "status": "SENT"
         }
         logs = []
@@ -1947,9 +3689,7 @@ def send_email_via_smtp(req: SendEmailRequest):
                     logs = json.load(f)
             except Exception:
                 logs = []
-        logs.insert(0, log_entry)
-        with open(OUTREACH_LOG_FILE, "w", encoding="utf-8") as f:
-            json.dump(logs[:500], f, indent=2)
+        append_outreach_log(log_entry)
 
         return {
             "status": "success",
@@ -1969,6 +3709,55 @@ def get_outreach_history():
         except Exception:
             return []
     return []
+
+@app.get("/api/outreach/lead")
+def get_lead_outreach_endpoint(parcel_id: str = "", phone: str = "", email: str = ""):
+    """Return prior sent outreach (SMS and Email) for a specific lead."""
+    p_id = (parcel_id or "").strip()
+    digits = "".join(filter(str.isdigit, str(phone or "")))
+    if len(digits) > 10 and digits.startswith("1"):
+        digits = digits[1:]
+    clean_email = (email or "").strip().lower()
+
+    matches = []
+    if os.path.exists(OUTREACH_LOG_FILE):
+        try:
+            with open(OUTREACH_LOG_FILE, "r", encoding="utf-8") as f:
+                logs = json.load(f)
+                for entry in logs:
+                    e_pid = str(entry.get("parcel_id") or "").strip()
+                    e_phone = "".join(filter(str.isdigit, str(entry.get("phone") or entry.get("recipient") or "")))
+                    if len(e_phone) > 10 and e_phone.startswith("1"):
+                        e_phone = e_phone[1:]
+                    e_email = str(entry.get("recipient") or entry.get("email") or "").strip().lower()
+                    
+                    matched = False
+                    if p_id and p_id == e_pid:
+                        matched = True
+                    elif digits and (digits == e_phone or (len(digits) >= 7 and digits in e_phone)):
+                        matched = True
+                    elif clean_email and clean_email in e_email:
+                        matched = True
+
+                    if matched:
+                        matches.append(entry)
+        except Exception:
+            pass
+
+    # Sort chronological
+    sorted_matches = sorted(matches, key=lambda x: x.get("timestamp", ""))
+    sms_matches = [m for m in sorted_matches if str(m.get("channel", "")).upper() == "SMS"]
+    email_matches = [m for m in sorted_matches if str(m.get("channel", "")).upper() == "EMAIL"]
+
+    return {
+        "status": "success",
+        "parcel_id": p_id,
+        "items": sorted_matches,
+        "sms_count": len(sms_matches),
+        "email_count": len(email_matches),
+        "last_sms": sms_matches[-1] if sms_matches else None,
+        "last_email": email_matches[-1] if email_matches else None
+    }
 
 @app.delete("/api/outreach/history")
 def clear_outreach_history():
@@ -2023,9 +3812,9 @@ def get_opener_metrics():
     angle_stats = {
         "multi_list": {
             "key": "multi_list",
-            "name": "Multi-List (2+ Lists)",
-            "tier": "2+ Distress Lists (Getting Hammered)",
-            "opener_sample": "Hey [Name] — did you ever decide what you're doing with [address]?",
+            "name": "Saw the house online",
+            "tier": "2+ Distress Lists",
+            "opener_sample": "Saw the house online {Address} any plans i have an idea?",
             "sent": 0,
             "replied": 0,
             "reply_rate": 0.0,
@@ -2034,9 +3823,9 @@ def get_opener_metrics():
         },
         "single_list": {
             "key": "single_list",
-            "name": "Single-List",
+            "name": "Came across online",
             "tier": "Single Distress List",
-            "opener_sample": "Hey [Name], quick question on [address], got a sec?",
+            "opener_sample": "Hey i came across {Address} online, open for a discussion about it?",
             "sent": 0,
             "replied": 0,
             "reply_rate": 0.0,
@@ -2045,9 +3834,9 @@ def get_opener_metrics():
         },
         "ultra_short": {
             "key": "ultra_short",
-            "name": "Ultra-Short",
-            "tier": "Universal / Either Tier",
-            "opener_sample": "Hey [Name]?",
+            "name": "Doing another project",
+            "tier": "Neighborhood Project",
+            "opener_sample": "Hey im doing another project in that neighborhood {Address} looks like a good project. Any thoughts on letting it go?",
             "sent": 0,
             "replied": 0,
             "reply_rate": 0.0,
@@ -2114,62 +3903,7 @@ def get_opener_metrics():
 OUTREACH_TEMPLATES_FILE = os.path.join(DATA_DIR, "outreach_templates.json")
 
 DEFAULT_OUTREACH_TEMPLATES = {
-    "sms": [
-        {
-            "id": "multi_list",
-            "name": "🔥 Multi-List Hook (2+ Lists: Did you ever decide...)",
-            "category": "multi_distress",
-            "body": "Hey {FirstName} — did you ever decide what you're doing with {Address}? If I'm bothering you just say no and I won't text you no more."
-        },
-        {
-            "id": "single_list",
-            "name": "⚡ Single-List Hook (Quick question on {Address}...)",
-            "category": "single_distress",
-            "body": "Hey {FirstName}, quick question on {Address}, got a sec? If I'm bothering you just say no and I won't text you no more."
-        },
-        {
-            "id": "ultra_short",
-            "name": "💬 Ultra-Short Hook (Hey {FirstName}?)",
-            "category": "ultra_short",
-            "body": "Hey {FirstName}? If I'm bothering you just say no and I won't text you no more."
-        },
-        {
-            "id": "multi_list_opt2",
-            "name": "🔥 Multi-List Hook (Opt-out: Say the word...)",
-            "category": "multi_distress",
-            "body": "Hey {FirstName} — did you ever decide what you're doing with {Address}? If you don't want these texts just say the word and I'm gone."
-        },
-        {
-            "id": "single_list_opt2",
-            "name": "⚡ Single-List Hook (Opt-out: Say the word...)",
-            "category": "single_distress",
-            "body": "Hey {FirstName}, quick question on {Address}, got a sec? If you don't want these texts just say the word and I'm gone."
-        },
-        {
-            "id": "ultra_short_opt2",
-            "name": "💬 Ultra-Short Hook (Opt-out: Say the word...)",
-            "category": "ultra_short",
-            "body": "Hey {FirstName}? If you don't want these texts just say the word and I'm gone."
-        },
-        {
-            "id": "multi_list_opt3",
-            "name": "🔥 Multi-List Hook (Opt-out: Not interested? Drop it...)",
-            "category": "multi_distress",
-            "body": "Hey {FirstName} — did you ever decide what you're doing with {Address}? Not interested? Just say no and I'll drop it."
-        },
-        {
-            "id": "single_list_opt3",
-            "name": "⚡ Single-List Hook (Opt-out: Not interested? Drop it...)",
-            "category": "single_distress",
-            "body": "Hey {FirstName}, quick question on {Address}, got a sec? Not interested? Just say no and I'll drop it."
-        },
-        {
-            "id": "ultra_short_opt3",
-            "name": "💬 Ultra-Short Hook (Opt-out: Not interested? Drop it...)",
-            "category": "ultra_short",
-            "body": "Hey {FirstName}? Not interested? Just say no and I'll drop it."
-        }
-    ],
+    "sms": DEFAULT_SMS_TEMPLATES,
     "email": [
         {
             "id": "lis_pendens",
@@ -2206,7 +3940,11 @@ def load_outreach_templates() -> dict:
     if os.path.exists(OUTREACH_TEMPLATES_FILE):
         try:
             with open(OUTREACH_TEMPLATES_FILE, "r", encoding="utf-8") as f:
-                return json.load(f)
+                templates = json.load(f)
+            shared = load_initial_sms_templates(templates)
+            ids = {t['id'] for t in shared}
+            templates['sms'] = shared + [t for t in templates.get('sms', []) if t.get('id') not in ids]
+            return templates
         except Exception:
             pass
     return DEFAULT_OUTREACH_TEMPLATES
@@ -2785,9 +4523,7 @@ async def send_contract_pandadoc_endpoint(payload: ContractPayload):
                     logs = json.load(f)
             except Exception:
                 logs = []
-        logs.insert(0, log_entry)
-        with open(OUTREACH_LOG_FILE, "w", encoding="utf-8") as f:
-            json.dump(logs[:500], f, indent=2)
+        append_outreach_log(log_entry)
 
         # 6. Update saved contacts cache
         if payload.parcel_id:
@@ -2818,6 +4554,19 @@ async def send_contract_pandadoc_endpoint(payload: ContractPayload):
 
 FRONTEND_DIR = os.path.join(BASE_DIR, "frontend")
 os.makedirs(FRONTEND_DIR, exist_ok=True)
+
+@app.get("/static/app.js")
+def serve_app_js():
+    js_path = os.path.join(FRONTEND_DIR, "app.js")
+    if os.path.exists(js_path):
+        with open(js_path, "r", encoding="utf-8") as f:
+            return Response(content=f.read(), media_type="application/javascript", headers={
+                "Cache-Control": "no-cache, no-store, must-revalidate",
+                "Pragma": "no-cache",
+                "Expires": "0"
+            })
+    raise HTTPException(status_code=404, detail="app.js not found")
+
 app.mount("/static", StaticFiles(directory=FRONTEND_DIR), name="static")
 
 @app.get("/", response_class=HTMLResponse)
@@ -2825,7 +4574,11 @@ def serve_index():
     index_path = os.path.join(FRONTEND_DIR, "index.html")
     if os.path.exists(index_path):
         with open(index_path, "r", encoding="utf-8") as f:
-            return f.read()
+            return HTMLResponse(content=f.read(), headers={
+                "Cache-Control": "no-cache, no-store, must-revalidate",
+                "Pragma": "no-cache",
+                "Expires": "0"
+            })
     return "<h1>Florida Lead Hub</h1><p>Frontend is loading...</p>"
 
 _proxy_started = False
@@ -2893,9 +4646,135 @@ def start_cloudflare_tunnel_proxy():
     except Exception as e:
         print(f"[!] Could not bind tunnel proxy on 8767: {e}")
 
+def warm_scout_cache():
+    try:
+        from src.scout_operator_agent import get_statewide_combined_df
+        get_statewide_combined_df("FL")
+        print("[*] Scout statewide columnar cache pre-warmed.")
+    except Exception as e:
+        print(f"[!] Scout cache warm error: {e}")
+
+from src.sms_outreach_queue import SmsOutreachQueue
+
+
+def load_auto_sms_history():
+    if not os.path.exists(OUTREACH_LOG_FILE):
+        return []
+    with open(OUTREACH_LOG_FILE, "r", encoding="utf-8") as history_file:
+        return json.load(history_file)
+
+
+auto_sms_queue = SmsOutreachQueue(
+    os.path.join(DATA_DIR, "auto_sms_queue.json"),
+    load_saved_contacts, load_auto_sms_history, load_outreach_templates,
+    is_lead_blocked_from_outreach,
+    lambda payload: send_sms_via_gateway(SendSmsRequest(**payload)),
+)
+
+from src.email_outreach_queue import EmailOutreachQueue
+
+auto_email_queue = EmailOutreachQueue(
+    os.path.join(DATA_DIR, 'auto_email_queue.json'),
+    load_saved_contacts, load_auto_sms_history, load_outreach_templates, load_email_settings,
+    is_email_blocked_from_outreach,
+    lambda payload: send_email_via_smtp(SendEmailRequest(**payload)),
+)
+
+
+class AutoEmailStartRequest(BaseModel):
+    parcel_ids: List[str]
+
+
+class AutoEmailControlRequest(BaseModel):
+    action: str
+
+
+@app.get('/api/email/auto/status')
+def get_auto_email_status():
+    return {'status': 'success', 'queue': auto_email_queue.status()}
+
+
+@app.post('/api/email/auto/preview')
+def preview_auto_email(req: AutoEmailStartRequest):
+    try:
+        return {'status': 'success', **auto_email_queue.preview(req.parcel_ids)}
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc))
+
+
+@app.post('/api/email/auto/start')
+def start_auto_email(req: AutoEmailStartRequest):
+    try:
+        return {'status': 'success', 'queue': auto_email_queue.start(req.parcel_ids)}
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc))
+
+
+@app.post('/api/email/auto/control')
+def control_auto_email(req: AutoEmailControlRequest):
+    try:
+        return {'status': 'success', 'queue': auto_email_queue.control(req.action)}
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc))
+
+
+class AutoSmsStartRequest(BaseModel):
+    parcel_ids: List[str]
+    campaign: str = 'initial'
+
+
+class AutoSmsControlRequest(BaseModel):
+    action: str
+
+
+class AutoSmsResetRequest(BaseModel):
+    parcel_ids: List[str]
+    county: str
+
+
+@app.post('/api/sms/auto/reset-initial')
+def reset_auto_sms_initial(req: AutoSmsResetRequest):
+    try:
+        return {'status': 'success', **auto_sms_queue.reset_initial(req.parcel_ids, req.county)}
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc))
+
+
+@app.get("/api/sms/auto/status")
+def get_auto_sms_status():
+    return {"status": "success", "queue": auto_sms_queue.status()}
+
+
+@app.post("/api/sms/auto/preview")
+def preview_auto_sms(req: AutoSmsStartRequest):
+    try:
+        return {"status": "success", **auto_sms_queue.preview(req.parcel_ids, req.campaign)}
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc))
+
+
+@app.post("/api/sms/auto/start")
+def start_auto_sms(req: AutoSmsStartRequest):
+    try:
+        return {"status": "success", "queue": auto_sms_queue.start(req.parcel_ids, req.campaign)}
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc))
+
+
+@app.post("/api/sms/auto/control")
+def control_auto_sms(req: AutoSmsControlRequest):
+    try:
+        return {"status": "success", "queue": auto_sms_queue.control(req.action)}
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc))
+
+
 @app.on_event("startup")
 def startup_event():
     start_cloudflare_tunnel_proxy()
+    auto_sms_queue.start_worker()
+    auto_email_queue.start_worker()
+    threading.Thread(target=warm_scout_cache, daemon=True).start()
 
 if __name__ == "__main__":
     import uvicorn

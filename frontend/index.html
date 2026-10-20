@@ -41,15 +41,22 @@
       box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5), 0 10px 25px -5px rgba(59, 130, 246, 0.3) !important;
     }
     ::-webkit-scrollbar {
-      width: 6px;
-      height: 6px;
+      width: 7px;
+      height: 7px;
     }
     ::-webkit-scrollbar-track {
-      background: #060a13;
+      background: #070d19;
+      border-radius: 9999px;
     }
     ::-webkit-scrollbar-thumb {
-      background: #1e293b;
+      background: linear-gradient(180deg, #f59e0b 0%, #d97706 100%);
       border-radius: 9999px;
+      border: 1px solid rgba(245, 158, 11, 0.4);
+      box-shadow: 0 0 8px rgba(245, 158, 11, 0.35);
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(180deg, #fbbf24 0%, #f59e0b 100%);
+      box-shadow: 0 0 12px rgba(251, 191, 36, 0.6);
     }
     /* Native select styling - force dark popup on Windows / Chrome */
     select, select option, select optgroup {
@@ -109,6 +116,16 @@
         <button type="button" onclick="openCountyCoverageModal()" class="w-full flex items-center gap-3.5 px-4 py-2.5 rounded-xl text-slate-400 hover:text-white hover:bg-slate-800/60 font-medium text-sm transition text-left cursor-pointer bg-transparent border-0">
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/></svg>
           Coverage Map &amp; Data
+        </button>
+        <button type="button" onclick="openFloridaApiDirectoryModal()" class="w-full flex items-center gap-3.5 px-4 py-2.5 rounded-xl text-emerald-400 hover:text-emerald-300 hover:bg-emerald-500/10 font-bold text-sm transition text-left cursor-pointer bg-transparent border-0">
+          <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          <span>⚡ Florida API Catalog</span>
+          <span class="ml-auto px-1.5 py-0.5 rounded-full text-[10px] font-extrabold bg-emerald-500/20 text-emerald-300">157</span>
+        </button>
+        <button type="button" onclick="toggleScoutDrawer()" class="w-full flex items-center gap-3.5 px-4 py-2.5 rounded-xl text-amber-400 hover:text-amber-300 hover:bg-amber-500/10 font-bold text-sm transition text-left cursor-pointer bg-transparent border-0">
+          <span class="text-base">🧭</span>
+          <span>Scout AI</span>
+          <span id="sidebarScoutBadge" class="ml-auto px-1.5 py-0.5 rounded-full text-[10px] font-extrabold bg-amber-500/20 text-amber-300">ONLINE</span>
         </button>
       </nav>
 
@@ -206,7 +223,8 @@
             <span id="headerCountyStatusDot" class="w-2 h-2 rounded-full bg-emerald-400 shadow-sm shadow-emerald-400/50"></span>
             <span class="text-xs text-slate-400 font-semibold hidden sm:inline">County:</span>
             <select id="headerCountySelect" onchange="selectCounty(this.value)" class="bg-[#0d1424] text-xs font-bold text-white focus:outline-none cursor-pointer appearance-none pr-5 border-0" style="background-color: #0d1424; color: #ffffff;">
-              <option value="Pinellas" class="bg-slate-900 text-white" style="background-color: #0f172a; color: #ffffff;" selected>Pinellas (Live &amp; Ready)</option>
+              <option value="Orange" class="bg-slate-900 text-white" style="background-color: #0f172a; color: #ffffff;" selected>Orange County (Live &amp; Ready)</option>
+              <option value="Pinellas" class="bg-slate-900 text-white" style="background-color: #0f172a; color: #ffffff;">Pinellas County (Live &amp; Ready)</option>
             </select>
             <svg class="w-3.5 h-3.5 text-slate-400 absolute right-2.5 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
           </div>
@@ -224,6 +242,21 @@
               <span id="linkZoneBadgeCounties" class="text-[10px] font-bold font-mono px-1 py-0.2 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">37 FL</span>
             </div>
             <span id="linkZoneStatusSub" class="text-[9px] text-slate-400 group-hover:text-slate-300">Live &bull; Synced</span>
+          </div>
+        </button>
+
+        <!-- Scout AI Status Pill -->
+        <button type="button" onclick="toggleScoutDrawer()" id="scoutAgentPillBtn" class="flex items-center gap-2 bg-[#0d1424] hover:bg-slate-800/90 border border-amber-500/40 hover:border-amber-400 rounded-xl px-3 py-1.5 cursor-pointer transition shadow-inner group" title="Scout AI: Lead Operations & Research. Click to open Scout AI console.">
+          <span class="relative flex h-2 w-2">
+            <span id="scoutPulsePing" class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+            <span id="scoutPulseDot" class="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
+          </span>
+          <div class="text-left flex flex-col leading-tight">
+            <div class="flex items-center gap-1.5">
+              <span class="text-[11px] font-extrabold text-white group-hover:text-amber-300 transition">🧭 Scout AI</span>
+              <span id="scoutBadgeStatus" class="text-[10px] font-bold font-mono px-1 py-0.2 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30">ONLINE</span>
+            </div>
+            <span id="scoutStatusSub" class="text-[9px] text-slate-400 group-hover:text-slate-300">37 Counties &bull; Ready</span>
           </div>
         </button>
 
@@ -292,9 +325,9 @@
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
         </div>
         <div>
-          <div class="text-2xl font-black text-white" id="statTotalRecords">287,431</div>
+          <div class="text-2xl font-black text-white" id="statTotalRecords">934,271</div>
           <div class="text-xs font-semibold text-slate-300">Total Records</div>
-          <div class="text-[11px] text-slate-500">Across All Counties</div>
+          <div class="text-[11px] text-slate-500">Across Live Counties</div>
         </div>
       </div>
 
@@ -304,9 +337,9 @@
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
         </div>
         <div>
-          <div class="text-2xl font-black text-white" id="statUniqueProps">67,152</div>
+          <div class="text-2xl font-black text-white" id="statUniqueProps">16,372</div>
           <div class="text-xs font-semibold text-slate-300">Unique Properties</div>
-          <div class="text-[11px] text-slate-500">Last 30 Days</div>
+          <div class="text-[11px] text-slate-500">Verified Leads</div>
         </div>
       </div>
 
@@ -316,9 +349,9 @@
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
         </div>
         <div>
-          <div class="text-2xl font-black text-white" id="statCounties">12</div>
+          <div class="text-2xl font-black text-white" id="statCounties">2 Live / 35 Ready</div>
           <div class="text-xs font-semibold text-slate-300">Counties Available</div>
-          <div class="text-[11px] text-slate-500">More Coming Soon</div>
+          <div class="text-[11px] text-slate-500">Drop Data to Activate</div>
         </div>
       </div>
 
@@ -340,11 +373,11 @@
       <div class="flex items-center gap-3 flex-wrap">
         <div class="flex items-center gap-2">
           <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
-          <span class="text-xs font-extrabold text-white uppercase tracking-wider" id="activeCountyDisplayLabel">Pinellas County, FL</span>
+          <span class="text-xs font-extrabold text-white uppercase tracking-wider" id="activeCountyDisplayLabel">Orange County, FL</span>
         </div>
         <span class="text-slate-600 hidden sm:inline">&bull;</span>
         <span class="text-xs text-slate-400">
-          <span class="text-emerald-400 font-bold font-mono" id="activeCountyParcelsCount">437,559</span> Master Parcels
+          <span class="text-emerald-400 font-bold font-mono" id="activeCountyParcelsCount">496,712</span> Master Parcels
         </span>
         <span class="text-slate-600 hidden sm:inline">&bull;</span>
         <a id="heroMasterParcelLink" href="https://www.pcpao.gov/tools-data/data-downloads/raw-database-files" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1 rounded-lg bg-emerald-500/15 hover:bg-emerald-600 text-emerald-300 hover:text-white border border-emerald-500/30 text-[11px] font-bold inline-flex items-center gap-1.5 transition" title="Go to official County Property Appraiser raw parcel database download">
@@ -368,7 +401,10 @@
           </a>
         </div>
       </div>
-      <div class="flex items-center gap-2">
+      <div class="flex items-center gap-2 flex-wrap">
+        <button type="button" onclick="openFloridaApiDirectoryModal()" class="px-3 py-1.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white text-xs font-bold transition flex items-center gap-1.5 shadow-md shadow-emerald-600/25 cursor-pointer" title="Browse and activate all 157 Florida government public record APIs from Link Zone">
+          <span>⚡</span> <span>Florida API Catalog (157)</span>
+        </button>
         <button type="button" onclick="openLinkZoneMonitorModal()" class="px-3 py-1.5 rounded-xl bg-emerald-500/15 hover:bg-emerald-500/25 text-emerald-300 hover:text-white text-xs font-bold transition flex items-center gap-1.5 border border-emerald-500/30 cursor-pointer shadow-sm" title="Inspect Link Zone live connection, status & verification audit trail">
           <span>⚡</span> <span>Link Zone Monitor</span>
         </button>
@@ -399,47 +435,235 @@
           <button type="button" id="btnSandboxLead" onclick="addSandboxTestLead()" class="px-4 py-2 rounded-xl text-xs font-bold transition flex items-center gap-2 bg-violet-600/25 text-violet-300 hover:bg-violet-600 hover:text-white border border-violet-500/40 shadow-sm cursor-pointer" title="Add or view Sandbox Test Lead (Robert Vance) to test webhook, deals & contracts">
             <span>🧪</span> <span>Sandbox Test Lead</span>
           </button>
+          <button type="button" id="btnImportSkipTrace" onclick="openSkipTraceImportModal()" class="px-4 py-2 rounded-xl text-xs font-bold transition flex items-center gap-2 bg-amber-500/20 text-amber-300 hover:bg-amber-500 hover:text-slate-950 border border-amber-500/40 shadow-sm cursor-pointer" title="Import Skip-Traced CSV with phone numbers and emails (Supports multi-county Florida lists)">
+            <span>📥</span> <span>Import Skip-Traced CSV</span>
+          </button>
         </div>
         <div class="text-[11px] text-slate-400 font-medium" id="pipelineViewDescription">
           Showing all raw distressed public filings for Pinellas County
         </div>
       </div>
 
-      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-800 pb-4">
+      <div class="flex flex-col items-start gap-4 border-b border-slate-800 pb-4">
         <div>
-          <div class="flex items-center gap-2.5">
-            <h3 class="text-lg font-extrabold text-white" id="liveCountyTitle">Pinellas County Live Distressed Leads</h3>
+          <div class="flex items-center gap-2.5 flex-wrap">
+            <h3 class="text-lg font-extrabold text-white" id="liveCountyTitle">Orange County Live Distressed Leads</h3>
             <span id="liveStatusBadge" class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 flex items-center gap-1">
-              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> 3,205 Verified Properties
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Loading Verified Properties...
             </span>
+            <button type="button" id="liveUnreadApiBadge" onclick="filterLiveRecords('new_unread')" class="hidden text-[10px] font-black px-2.5 py-0.5 rounded-full bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 border border-emerald-500/50 flex items-center gap-1.5 shadow-sm animate-pulse cursor-pointer transition" title="Click to view all new unreviewed leads from live sync">
+              <span>✨</span> <span><span id="liveUnreadApiCount">0</span> New Live Leads</span>
+            </button>
           </div>
-          <p class="text-xs text-slate-400 mt-1" id="liveCountySub">Cross-referenced against 437,559 official county master parcels with clean owner names and absentee indicators.</p>
+          <p class="text-xs text-slate-400 mt-1" id="liveCountySub">Cross-referenced against official county master parcels with clean owner names and absentee indicators.</p>
         </div>
 
-        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5" id="liveTableSearchExportBar">
+        <div class="w-full flex flex-wrap items-center gap-2.5" id="liveTableSearchExportBar">
           <!-- Relocated Quick Filter Search Input -->
           <div class="relative w-full sm:w-72">
             <svg class="w-4 h-4 text-slate-400 absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
             <input type="text" id="liveSearchInput" onkeyup="searchLiveTable()" placeholder="Quick search address, owner, PIN..." class="w-full bg-slate-900 border border-slate-700/80 rounded-xl pl-9 pr-3 py-1.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-blue-500">
           </div>
-          <button onclick="triggerExport()" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold text-xs flex items-center justify-center gap-2 shadow-lg shadow-emerald-600/30 transition cursor-pointer whitespace-nowrap">
+          <!-- Smart Category / Multi-Select Export Button (Option 3) -->
+          <button id="btnExportCategory" onclick="exportCategoryCsv()" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold text-xs flex items-center justify-center gap-2 shadow-lg shadow-emerald-600/30 transition cursor-pointer whitespace-nowrap">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
-            Export for Skip-Tracing (.CSV)
+            <span id="btnExportCategoryLabel">Export Double Distress (52) .CSV</span>
+          </button>
+
+          <!-- Paced initial outreach for imported contacts -->
+          <button type="button" id="btnStartAutoSms" onclick="startAutoSmsBatch()" class="hidden px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold text-xs whitespace-nowrap cursor-pointer" title="Send one initial SMS per imported lead every 90 seconds, using the current filtered list across all pages">
+            ▶ Start Auto SMS
+          </button>
+          <button type="button" id="btnStartFollowUpSms" onclick="startFollowUpSmsBatch()" class="hidden px-4 py-2 rounded-xl bg-violet-600 hover:bg-violet-500 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold text-xs whitespace-nowrap cursor-pointer" title="Automatically follow up with previously texted contacts who have not replied. Rotates ten property-owner messages every 90 seconds; you answer replies manually.">
+            ▶ Start Follow Up
+          </button>
+          <button type="button" id="btnStartAutoEmail" onclick="startAutoEmailBatch()" class="hidden px-4 py-2 rounded-xl bg-cyan-600 hover:bg-cyan-500 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold text-xs whitespace-nowrap cursor-pointer" title="Send one personalized email every 90 seconds through this entire filtered saved list, across all pages. Skips previously emailed and duplicate contacts.">
+            ▶ Start Auto Email
+          </button>
+          <button type="button" id="btnRefreshSavedDistress" onclick="refreshSavedDistressDetails()" class="hidden px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 disabled:opacity-50 text-amber-200 font-bold text-xs whitespace-nowrap cursor-pointer" title="Update saved distress details from the latest local county records">
+            ↻ Refresh Distress Details
+          </button>
+
+          <!-- Quick Clear Checked Categories Button -->
+          <button id="btnClearCategoryChecks" onclick="clearExportCategoryChecks()" class="hidden px-2.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-amber-300 hover:text-white border border-amber-500/40 text-xs font-semibold transition cursor-pointer whitespace-nowrap" title="Reset category export checkboxes">
+            ✕ Clear Checks
+          </button>
+
+          <!-- 1-Click Sync Live Orlando Code API Button -->
+          <button id="btnSyncOrlandoCodeTop" onclick="syncOrlandoLiveCode()" class="px-3.5 py-2 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold text-xs flex items-center justify-center gap-1.5 shadow-md shadow-blue-600/20 border border-blue-400/30 transition cursor-pointer whitespace-nowrap" title="1-Click pull live open code violations from City of Orlando SODA API">
+            <span id="syncOrlandoIconTop">⚡</span>
+            <span id="syncOrlandoLabelTop">Sync Live Orlando API</span>
+          </button>
+
+          <!-- 1-Click Sync Daily Orange Jail Felony Legal Leads Button -->
+          <button id="btnSyncOrangeJailTop" onclick="syncOrangeJailLeads()" class="hidden px-3.5 py-2 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-bold text-xs flex items-center justify-center gap-1.5 shadow-md shadow-purple-600/20 border border-purple-400/30 transition cursor-pointer whitespace-nowrap" title="1-Click pull daily felony bookings from Orange County Corrections PDF & match to property records">
+            <span id="syncOrangeJailIconTop">⚖️</span>
+            <span id="syncOrangeJailLabelTop">Sync Daily Jail Leads</span>
           </button>
         </div>
       </div>
 
+      <div id="autoSmsQueuePanel" class="hidden rounded-xl border border-blue-500/30 bg-blue-950/20 px-4 py-3 space-y-1.5" aria-live="polite">
+        <div class="flex flex-wrap items-center justify-between gap-3">
+          <span id="autoSmsQueueStatus" class="text-xs font-semibold text-blue-200">Auto SMS is ready.</span>
+          <div class="flex items-center gap-2">
+            <button type="button" id="btnPauseAutoSms" onclick="controlAutoSmsBatch('pause')" class="hidden px-3 py-1 rounded-lg bg-amber-600/20 border border-amber-500/40 text-amber-300 text-xs font-semibold cursor-pointer disabled:opacity-50">Pause</button>
+            <button type="button" id="btnResumeAutoSms" onclick="controlAutoSmsBatch('resume')" class="hidden px-3 py-1 rounded-lg bg-blue-600 text-white text-xs font-semibold cursor-pointer disabled:opacity-50">Resume</button>
+            <button type="button" id="btnStopAutoSms" onclick="controlAutoSmsBatch('stop')" class="hidden px-3 py-1 rounded-lg bg-rose-600/20 border border-rose-500/40 text-rose-300 text-xs font-semibold cursor-pointer disabled:opacity-50">Stop</button>
+          </div>
+        </div>
+        <p id="autoSmsQueueHint" class="text-[11px] text-slate-400">Imported contacts only · one SMS every 90 seconds · rotates messages 1–4 · skips previously contacted numbers.</p>
+        <p id="autoSmsQueueNotice" class="hidden text-xs text-amber-300"></p>
+      </div>
+
+      <div id="autoEmailQueuePanel" class="hidden rounded-xl border border-cyan-500/30 bg-cyan-950/20 px-4 py-3 space-y-1.5" aria-live="polite">
+        <div class="flex flex-wrap items-center justify-between gap-3">
+          <span id="autoEmailQueueStatus" class="text-xs font-semibold text-cyan-200">Auto Email is ready.</span>
+          <div class="flex items-center gap-2">
+            <button type="button" id="btnPreviewAutoEmail" onclick="previewAutoEmailBatch()" class="px-3 py-1 rounded-lg bg-slate-800 text-cyan-200 text-xs font-semibold cursor-pointer disabled:opacity-50">Check Eligible Emails</button>
+            <button type="button" id="btnPauseAutoEmail" onclick="controlAutoEmailBatch('pause')" class="hidden px-3 py-1 rounded-lg bg-amber-600/20 border border-amber-500/40 text-amber-300 text-xs font-semibold cursor-pointer disabled:opacity-50">Pause Email</button>
+            <button type="button" id="btnResumeAutoEmail" onclick="controlAutoEmailBatch('resume')" class="hidden px-3 py-1 rounded-lg bg-cyan-600 text-white text-xs font-semibold cursor-pointer disabled:opacity-50">Resume Email</button>
+            <button type="button" id="btnStopAutoEmail" onclick="controlAutoEmailBatch('stop')" class="hidden px-3 py-1 rounded-lg bg-rose-600/20 border border-rose-500/40 text-rose-300 text-xs font-semibold cursor-pointer disabled:opacity-50">Stop Email</button>
+          </div>
+        </div>
+        <p class="text-[11px] text-slate-400">Entire filtered saved list, all pages · one email every 90 seconds · uses the appropriate saved template · probate only for explicit probate records · replies go to your configured email inbox · Pause/Stop finishes any email already underway.</p>
+        <p id="autoEmailQueuePreview" class="hidden text-xs text-cyan-200"></p>
+        <p id="autoEmailQueueNotice" class="hidden text-xs text-amber-300"></p>
+      </div>
+
       <!-- Quick Category Distress Filter Tabs (Full width, completely unblocked) -->
-      <div class="w-full" id="liveFilterPillsContainer">
+      <div class="w-full flex flex-col md:flex-row md:items-center justify-between gap-2 pb-1.5 border-b border-slate-800/60 mb-2" id="liveFilterPillsContainer">
         <div class="flex items-center gap-2 overflow-x-auto w-full pb-1" id="liveFilterPills">
-          <button onclick="filterLiveRecords('all')" id="btnTabAll" class="px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-blue-600 text-white shadow-sm cursor-pointer whitespace-nowrap">All Records (<span id="liveCountAll">0</span>)</button>
-          <button onclick="filterLiveRecords('stacked')" id="btnTabStacked" class="px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-slate-800 text-amber-300 hover:text-white border border-amber-500/40 transition cursor-pointer whitespace-nowrap">🔥 Double Distress (<span id="liveCountStacked">0</span>)</button>
-          <button onclick="filterLiveRecords('lis_pendens')" id="btnTabLp" class="px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-slate-800 text-slate-300 hover:text-white transition cursor-pointer whitespace-nowrap">📄 Lis Pendens (<span id="liveCountLp">0</span>)</button>
-          <button onclick="filterLiveRecords('lp_trust')" id="btnTabLpTrust" class="px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-slate-800 text-purple-300 hover:text-white transition cursor-pointer whitespace-nowrap">🏛️ LP + Trust/Probate (<span id="liveCountLpTrust">0</span>)</button>
-          <button onclick="filterLiveRecords('probate')" id="btnTabProbate" class="px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-slate-800 text-indigo-300 hover:text-white transition cursor-pointer whitespace-nowrap">⚖️ Probate Court (<span id="liveCountProbate">0</span>)</button>
-          <button onclick="filterLiveRecords('code')" id="btnTabCode" class="px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-slate-800 text-slate-300 hover:text-white transition cursor-pointer whitespace-nowrap">🚨 Code Violations (<span id="liveCountCode">0</span>)</button>
-          <button onclick="filterLiveRecords('absentee')" id="btnTabAbsentee" class="px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-slate-800 text-slate-300 hover:text-white transition cursor-pointer whitespace-nowrap">✈️ Absentee Out-of-State (<span id="liveCountAbsentee">0</span>)</button>
-          <button onclick="filterLiveRecords('tax_liens')" id="btnTabTax" class="px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-slate-800 text-rose-300 hover:text-white transition cursor-pointer whitespace-nowrap">💰 Tax Liens (<span id="liveCountTax">0</span>)</button>
+          <button onclick="filterLiveRecords('all')" id="btnTabAll" class="px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-blue-600 text-white shadow-sm cursor-pointer whitespace-nowrap shrink-0">All Records (<span id="liveCountAll">0</span>)</button>
+          <button type="button" onclick="filterLiveRecords('has_photos')" id="btnTabPhotos" class="px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-slate-800 text-slate-300 hover:text-white transition cursor-pointer whitespace-nowrap shrink-0" title="Show leads with a citizen or inspector photo link">📷 Has Photos (<span id="liveCountPhotos">0</span>)</button>
+
+          <div id="pillWrap_stacked" class="inline-flex items-center rounded-xl bg-slate-800/90 border border-slate-700/80 transition p-0.5 shrink-0 hover:border-slate-600">
+            <label class="pl-2 pr-1 py-1 cursor-pointer flex items-center" title="Check to include Double Distress in CSV export">
+              <input type="checkbox" id="chkCat_stacked" data-category="stacked" onchange="toggleCategoryExport('stacked', this.checked)" class="cat-export-check w-3.5 h-3.5 rounded bg-slate-900 border-slate-600 text-amber-500 focus:ring-0 cursor-pointer">
+            </label>
+            <button onclick="filterLiveRecords('stacked')" id="btnTabStacked" class="px-2.5 py-1 rounded-lg text-xs font-semibold text-amber-300 hover:text-white transition cursor-pointer whitespace-nowrap">🔥 Double Distress (<span id="liveCountStacked">0</span>)</button>
+          </div>
+
+          <div id="pillWrap_lis_pendens" class="inline-flex items-center rounded-xl bg-slate-800/90 border border-slate-700/80 transition p-0.5 shrink-0 hover:border-slate-600">
+            <label class="pl-2 pr-1 py-1 cursor-pointer flex items-center" title="Check to include Lis Pendens in CSV export">
+              <input type="checkbox" id="chkCat_lis_pendens" data-category="lis_pendens" onchange="toggleCategoryExport('lis_pendens', this.checked)" class="cat-export-check w-3.5 h-3.5 rounded bg-slate-900 border-slate-600 text-blue-500 focus:ring-0 cursor-pointer">
+            </label>
+            <button onclick="filterLiveRecords('lis_pendens')" id="btnTabLp" class="px-2.5 py-1 rounded-lg text-xs font-semibold text-slate-300 hover:text-white transition cursor-pointer whitespace-nowrap">📄 Lis Pendens (<span id="liveCountLp">0</span>)</button>
+          </div>
+
+          <div id="pillWrap_lp_trust" class="inline-flex items-center rounded-xl bg-slate-800/90 border border-slate-700/80 transition p-0.5 shrink-0 hover:border-slate-600">
+            <label class="pl-2 pr-1 py-1 cursor-pointer flex items-center" title="Check to include LP + Trust in CSV export">
+              <input type="checkbox" id="chkCat_lp_trust" data-category="lp_trust" onchange="toggleCategoryExport('lp_trust', this.checked)" class="cat-export-check w-3.5 h-3.5 rounded bg-slate-900 border-slate-600 text-purple-500 focus:ring-0 cursor-pointer">
+            </label>
+            <button onclick="filterLiveRecords('lp_trust')" id="btnTabLpTrust" class="px-2.5 py-1 rounded-lg text-xs font-semibold text-purple-300 hover:text-white transition cursor-pointer whitespace-nowrap">🏛️ LP + Trust/Probate (<span id="liveCountLpTrust">0</span>)</button>
+          </div>
+
+          <div id="pillWrap_probate" class="inline-flex items-center rounded-xl bg-slate-800/90 border border-slate-700/80 transition p-0.5 shrink-0 hover:border-slate-600">
+            <label class="pl-2 pr-1 py-1 cursor-pointer flex items-center" title="Check to include Probate Court in CSV export">
+              <input type="checkbox" id="chkCat_probate" data-category="probate" onchange="toggleCategoryExport('probate', this.checked)" class="cat-export-check w-3.5 h-3.5 rounded bg-slate-900 border-slate-600 text-indigo-500 focus:ring-0 cursor-pointer">
+            </label>
+            <button onclick="filterLiveRecords('probate')" id="btnTabProbate" class="px-2.5 py-1 rounded-lg text-xs font-semibold text-indigo-300 hover:text-white transition cursor-pointer whitespace-nowrap">⚖️ Probate Court (<span id="liveCountProbate">0</span>)</button>
+          </div>
+
+          <div id="pillWrap_divorce" class="inline-flex items-center rounded-xl bg-slate-800/90 border border-slate-700/80 transition p-0.5 shrink-0 hover:border-slate-600" style="display: none;">
+            <label class="pl-2 pr-1 py-1 cursor-pointer flex items-center" title="Check to include Divorce in CSV export">
+              <input type="checkbox" id="chkCat_divorce" data-category="divorce" onchange="toggleCategoryExport('divorce', this.checked)" class="cat-export-check w-3.5 h-3.5 rounded bg-slate-900 border-slate-600 text-pink-500 focus:ring-0 cursor-pointer">
+            </label>
+            <button onclick="filterLiveRecords('divorce')" id="btnTabDivorce" class="px-2.5 py-1 rounded-lg text-xs font-semibold text-pink-300 hover:text-white transition cursor-pointer whitespace-nowrap inline-flex items-center gap-1.5">💔 Divorce (<span id="liveCountDivorce">0</span>)</button>
+          </div>
+
+          <div id="pillWrap_judgment" class="inline-flex items-center rounded-xl bg-slate-800/90 border border-slate-700/80 transition p-0.5 shrink-0 hover:border-slate-600" style="display: none;">
+            <label class="pl-2 pr-1 py-1 cursor-pointer flex items-center" title="Check to include Judgments & Liens in CSV export">
+              <input type="checkbox" id="chkCat_judgment" data-category="judgment" onchange="toggleCategoryExport('judgment', this.checked)" class="cat-export-check w-3.5 h-3.5 rounded bg-slate-900 border-slate-600 text-amber-500 focus:ring-0 cursor-pointer">
+            </label>
+            <button onclick="filterLiveRecords('judgment')" id="btnTabJudgment" class="px-2.5 py-1 rounded-lg text-xs font-semibold text-amber-300 hover:text-white transition cursor-pointer whitespace-nowrap inline-flex items-center gap-1.5">🔨 Judgments &amp; Liens (<span id="liveCountJudgment">0</span>)</button>
+          </div>
+
+          <div id="pillWrap_code" class="inline-flex items-center rounded-xl bg-slate-800/90 border border-slate-700/80 transition p-0.5 shrink-0 hover:border-slate-600">
+            <label class="pl-2 pr-1 py-1 cursor-pointer flex items-center" title="Check to include Code Violations in CSV export">
+              <input type="checkbox" id="chkCat_code" data-category="code" onchange="toggleCategoryExport('code', this.checked)" class="cat-export-check w-3.5 h-3.5 rounded bg-slate-900 border-slate-600 text-amber-500 focus:ring-0 cursor-pointer">
+            </label>
+            <button onclick="filterLiveRecords('code')" id="btnTabCode" class="px-2.5 py-1 rounded-lg text-xs font-semibold text-slate-300 hover:text-white transition cursor-pointer whitespace-nowrap">🚨 Code Violations (<span id="liveCountCode">0</span>)</button>
+          </div>
+
+          <div id="pillWrap_code_stacked" class="inline-flex items-center rounded-xl bg-amber-500/15 border border-amber-500/70 shadow-sm shadow-amber-500/20 transition p-0.5 shrink-0 hover:border-amber-400">
+            <label class="pl-2 pr-1 py-1 cursor-pointer flex items-center" title="Check to include Code + Double Distress in CSV export">
+              <input type="checkbox" id="chkCat_code_stacked" data-category="code_stacked" onchange="toggleCategoryExport('code_stacked', this.checked)" class="cat-export-check w-3.5 h-3.5 rounded bg-slate-900 border-slate-600 text-amber-500 focus:ring-0 cursor-pointer">
+            </label>
+            <button onclick="filterLiveRecords('code_stacked')" id="btnTabCodeStacked" class="px-2.5 py-1 rounded-lg text-xs font-bold text-amber-300 hover:text-white transition cursor-pointer whitespace-nowrap inline-flex items-center gap-1.5">⚡ Code + Double Distress (<span id="liveCountCodeStacked">0</span>)</button>
+          </div>
+
+          <div id="pillWrap_damage" class="inline-flex items-center rounded-xl bg-slate-800/90 border border-slate-700/80 transition p-0.5 shrink-0 hover:border-slate-600" style="display: none;">
+            <label class="pl-2 pr-1 py-1 cursor-pointer flex items-center" title="Check to include Substantial Damage in CSV export">
+              <input type="checkbox" id="chkCat_damage" data-category="damage" onchange="toggleCategoryExport('damage', this.checked)" class="cat-export-check w-3.5 h-3.5 rounded bg-slate-900 border-slate-600 text-rose-500 focus:ring-0 cursor-pointer">
+            </label>
+            <button onclick="filterLiveRecords('damage')" id="btnTabDamage" class="px-2.5 py-1 rounded-lg text-xs font-semibold text-rose-300 hover:text-white transition cursor-pointer whitespace-nowrap inline-flex items-center gap-1.5">🏚️ Substantial Damage (<span id="liveCountDamage">0</span>)</button>
+          </div>
+
+          <div id="pillWrap_absentee" class="inline-flex items-center rounded-xl bg-slate-800/90 border border-slate-700/80 transition p-0.5 shrink-0 hover:border-slate-600">
+            <label class="pl-2 pr-1 py-1 cursor-pointer flex items-center" title="Check to include Absentee Out-of-State in CSV export">
+              <input type="checkbox" id="chkCat_absentee" data-category="absentee" onchange="toggleCategoryExport('absentee', this.checked)" class="cat-export-check w-3.5 h-3.5 rounded bg-slate-900 border-slate-600 text-cyan-500 focus:ring-0 cursor-pointer">
+            </label>
+            <button onclick="filterLiveRecords('absentee')" id="btnTabAbsentee" class="px-2.5 py-1 rounded-lg text-xs font-semibold text-slate-300 hover:text-white transition cursor-pointer whitespace-nowrap">✈️ Absentee Out-of-State (<span id="liveCountAbsentee">0</span>)</button>
+          </div>
+
+          <div id="pillWrap_tax_liens" class="inline-flex items-center rounded-xl bg-slate-800/90 border border-slate-700/80 transition p-0.5 shrink-0 hover:border-slate-600">
+            <label class="pl-2 pr-1 py-1 cursor-pointer flex items-center" title="Check to include Tax Liens in CSV export">
+              <input type="checkbox" id="chkCat_tax_liens" data-category="tax_liens" onchange="toggleCategoryExport('tax_liens', this.checked)" class="cat-export-check w-3.5 h-3.5 rounded bg-slate-900 border-slate-600 text-rose-500 focus:ring-0 cursor-pointer">
+            </label>
+            <button onclick="filterLiveRecords('tax_liens')" id="btnTabTax" class="px-2.5 py-1 rounded-lg text-xs font-semibold text-rose-300 hover:text-white transition cursor-pointer whitespace-nowrap">💰 Tax Liens (<span id="liveCountTax">0</span>)</button>
+          </div>
+
+          <div id="pillWrap_water_shutoff" class="inline-flex items-center rounded-xl bg-slate-800/90 border border-slate-700/80 transition p-0.5 shrink-0 hover:border-slate-600">
+            <label class="pl-2 pr-1 py-1 cursor-pointer flex items-center" title="Check to include Water Shutoff in CSV export">
+              <input type="checkbox" id="chkCat_water_shutoff" data-category="water_shutoff" onchange="toggleCategoryExport('water_shutoff', this.checked)" class="cat-export-check w-3.5 h-3.5 rounded bg-slate-900 border-slate-600 text-cyan-500 focus:ring-0 cursor-pointer">
+            </label>
+            <button onclick="filterLiveRecords('water_shutoff')" id="btnTabWater" class="px-2.5 py-1 rounded-lg text-xs font-semibold text-cyan-300 hover:text-white transition cursor-pointer whitespace-nowrap inline-flex items-center gap-1.5">💧 Water Shutoff (<span id="liveCountWater">0</span>)</button>
+          </div>
+
+          <div id="pillWrap_legal_distress" class="inline-flex items-center rounded-xl bg-slate-800/90 border border-slate-700/80 transition p-0.5 shrink-0 hover:border-slate-600" style="display: none;">
+            <label class="pl-2 pr-1 py-1 cursor-pointer flex items-center" title="Check to include Legal Distress (Felony) in CSV export">
+              <input type="checkbox" id="chkCat_legal_distress" data-category="legal_distress" onchange="toggleCategoryExport('legal_distress', this.checked)" class="cat-export-check w-3.5 h-3.5 rounded bg-slate-900 border-slate-600 text-purple-500 focus:ring-0 cursor-pointer">
+            </label>
+            <button onclick="filterLiveRecords('legal_distress')" id="btnTabLegal" class="px-2.5 py-1 rounded-lg text-xs font-semibold text-purple-300 hover:text-white transition cursor-pointer whitespace-nowrap inline-flex items-center gap-1.5">⚖️ Legal Distress (<span id="liveCountLegal">0</span>)</button>
+          </div>
+        </div>
+        <div class="flex items-center gap-2 shrink-0">
+          <label class="flex items-center gap-1.5 text-xs text-slate-300 font-semibold cursor-pointer select-none bg-slate-800/80 hover:bg-slate-700/80 px-2.5 py-1.5 rounded-xl border border-slate-700" title="Hide all condos, units, and apartments (#, Unit, Apt, Ste, Condo)">
+            <input type="checkbox" id="chkExcludeCondos" checked onchange="toggleExcludeCondos(this.checked)" class="rounded text-blue-600 focus:ring-0">
+            <span>Exclude Condos &amp; Units</span>
+          </label>
+          <button type="button" onclick="purgeAllCondos()" class="px-2.5 py-1.5 rounded-xl text-xs font-semibold text-rose-300 bg-rose-500/15 hover:bg-rose-500/25 border border-rose-500/30 transition cursor-pointer" title="Permanently delete all condos and apartments (#, Unit, Apt, Ste, Condo) from Lead Hub">
+            <span>🗑️ Purge Condos</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Code Multi-Distress Priority Sub-Bar -->
+      <div id="codeSubDistressBar" class="hidden w-full flex flex-wrap items-center justify-between gap-2 p-2 mb-2 rounded-xl bg-gradient-to-r from-amber-950/40 via-slate-900/80 to-amber-950/30 border border-amber-500/30 text-xs shadow-inner">
+        <div class="flex items-center gap-1.5 text-amber-300 font-bold whitespace-nowrap">
+          <span>🔥 Target Double Distress:</span>
+          <span class="text-slate-400 font-normal text-[11px]">(Pinned at top of table)</span>
+        </div>
+        <div class="flex flex-wrap items-center gap-1.5">
+          <button type="button" onclick="filterLiveRecords('code_stacked')" id="btnSubCodeAllStacked" class="px-2.5 py-1 rounded-lg font-bold bg-amber-500 hover:bg-amber-400 text-slate-950 shadow-sm cursor-pointer whitespace-nowrap transition">
+            ⚡ All Code Double Distress (<span id="subCountCodeStacked">0</span>)
+          </button>
+          <button type="button" onclick="filterLiveRecords('code_judgment')" id="btnSubCodeJudgment" class="px-2.5 py-1 rounded-lg font-semibold bg-slate-800 hover:bg-slate-700 text-amber-300 hover:text-white border border-amber-500/40 cursor-pointer whitespace-nowrap transition">
+            🔨 Code + Judgments &amp; Liens (<span id="subCountCodeJudgment">0</span>)
+          </button>
+          <button type="button" onclick="filterLiveRecords('code_probate')" id="btnSubCodeProbate" class="px-2.5 py-1 rounded-lg font-semibold bg-slate-800 hover:bg-slate-700 text-indigo-300 hover:text-white border border-indigo-500/40 cursor-pointer whitespace-nowrap transition">
+            ⚖️ Code + Probate (<span id="subCountCodeProbate">0</span>)
+          </button>
+          <button type="button" onclick="filterLiveRecords('code_lp')" id="btnSubCodeLp" class="px-2.5 py-1 rounded-lg font-semibold bg-slate-800 hover:bg-slate-700 text-blue-300 hover:text-white border border-blue-500/40 cursor-pointer whitespace-nowrap transition">
+            📄 Code + Lis Pendens (<span id="subCountCodeLp">0</span>)
+          </button>
+          <button type="button" onclick="filterLiveRecords('code_water')" id="btnSubCodeWater" class="px-2.5 py-1 rounded-lg font-semibold bg-slate-800 hover:bg-slate-700 text-cyan-300 hover:text-white border border-cyan-500/40 cursor-pointer whitespace-nowrap transition">
+            💧 Code + Water (<span id="subCountCodeWater">0</span>)
+          </button>
+          <button type="button" onclick="filterLiveRecords('code')" id="btnSubCodeAll" class="px-2.5 py-1 rounded-lg font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 cursor-pointer whitespace-nowrap transition">
+            🚨 All Code (<span id="subCountCodeAll">0</span>)
+          </button>
         </div>
       </div>
 
@@ -462,6 +686,32 @@
             <!-- Populated immediately on page load via JS -->
           </tbody>
         </table>
+      </div>
+
+      <!-- Live Table Pagination Controls -->
+      <div id="livePaginationContainer" class="flex flex-wrap items-center justify-between gap-3 pt-3 px-1 border-t border-slate-800/80 text-xs">
+        <div class="text-slate-400 font-medium flex items-center gap-2">
+          <span>Showing <span id="pagStart" class="text-white font-bold font-mono">1</span>-<span id="pagEnd" class="text-white font-bold font-mono">50</span> of <span id="pagTotal" class="text-emerald-400 font-bold font-mono">0</span> verified leads</span>
+          <span class="text-slate-600 hidden sm:inline">&bull;</span>
+          <span class="text-slate-500 hidden sm:inline">Page <span id="pagCurrentPage" class="text-slate-200 font-semibold font-mono">1</span> of <span id="pagTotalPages" class="text-slate-200 font-semibold font-mono">1</span></span>
+        </div>
+        <div class="flex items-center gap-2">
+          <label class="text-slate-400 text-[11px] font-semibold flex items-center gap-1.5 mr-2">
+            <span>Per page:</span>
+            <select id="pagPageSize" onchange="changePageSize(Number(this.value))" class="bg-slate-900 border border-slate-700/80 rounded-lg px-2 py-1 text-xs text-white focus:outline-none focus:border-blue-500 cursor-pointer">
+              <option value="50" selected>50</option>
+              <option value="100">100</option>
+              <option value="200">200</option>
+            </select>
+          </label>
+          <button type="button" id="btnPagPrev" onclick="goToPage(currentPage - 1)" class="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 disabled:opacity-30 disabled:cursor-not-allowed border border-slate-700 text-slate-300 font-semibold transition cursor-pointer flex items-center gap-1">
+            <span>◀</span> <span>Prev</span>
+          </button>
+          <div id="pagPageNumbers" class="flex items-center gap-1"></div>
+          <button type="button" id="btnPagNext" onclick="goToPage(currentPage + 1)" class="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 disabled:opacity-30 disabled:cursor-not-allowed border border-slate-700 text-slate-300 font-semibold transition cursor-pointer flex items-center gap-1">
+            <span>Next</span> <span>▶</span>
+          </button>
+        </div>
       </div>
 
       <!-- Outreach Contact History Table (Shows exact messages and delivery records) -->
@@ -618,7 +868,7 @@
     <!-- Lead Source Category Cards (4 Cards) -->
     <div id="leadCategories" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-1">
       <!-- Lis Pendens -->
-      <div onclick="quickFilterLeadType('lis_pendens')" class="glass-surface rounded-2xl p-5 border border-slate-800 hover:border-blue-700/60 transition cursor-pointer group flex flex-col justify-between">
+      <div onclick="openSourceDetailsModal('lis_pendens')" class="glass-surface rounded-2xl p-5 border border-slate-800 hover:border-blue-700/60 transition cursor-pointer group flex flex-col justify-between">
         <div>
           <div class="flex items-center space-x-3.5 mb-2">
             <div class="w-10 h-10 rounded-xl bg-blue-950/60 border border-blue-800/40 flex items-center justify-center text-blue-400 group-hover:scale-105 transition">
@@ -631,9 +881,12 @@
           </div>
           <p class="text-xs text-slate-400 mt-2">Active lawsuits, pre-foreclosures and lender legal filings.</p>
         </div>
-        <div class="mt-4 pt-3 border-t border-slate-800/80 space-y-2">
+        <div id="cardStatusLp" class="card-status-chip mt-3 pt-2.5 border-t border-slate-800/60 flex items-center justify-between text-[11px] text-slate-400">
+          <span class="inline-flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-slate-600 animate-pulse"></span>Loading status...</span>
+        </div>
+        <div class="mt-2 pt-2 border-t border-slate-800/80 space-y-2">
           <div class="flex items-center justify-between gap-1.5">
-            <button type="button" onclick="event.stopPropagation(); quickFilterLeadType('lis_pendens')" class="inline-flex items-center gap-1 text-[11px] font-bold text-blue-400 hover:text-blue-300 transition cursor-pointer">
+            <button type="button" onclick="event.stopPropagation(); openSourceDetailsModal('lis_pendens')" class="inline-flex items-center gap-1 text-[11px] font-bold text-blue-400 hover:text-blue-300 transition cursor-pointer" title="View source details & load history">
               VIEW DETAILS &rarr;
             </button>
             <a id="cardLinkLp" href="https://officialrecords.mypinellasclerk.gov/search/SearchTypeDocType" target="_blank" onclick="event.stopPropagation()" class="px-2 py-1 rounded-lg bg-slate-800/90 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 text-[10px] font-semibold inline-flex items-center gap-1 transition" title="Go directly to Official County Clerk Portal">
@@ -648,7 +901,7 @@
       </div>
 
       <!-- Code Violations -->
-      <div onclick="quickFilterLeadType('code_violations')" class="glass-surface rounded-2xl p-5 border border-slate-800 hover:border-amber-700/60 transition cursor-pointer group flex flex-col justify-between">
+      <div onclick="openSourceDetailsModal('code_violations')" class="glass-surface rounded-2xl p-5 border border-slate-800 hover:border-amber-700/60 transition cursor-pointer group flex flex-col justify-between">
         <div>
           <div class="flex items-center space-x-3.5 mb-2">
             <div class="w-10 h-10 rounded-xl bg-amber-950/60 border border-amber-800/40 flex items-center justify-center text-amber-400 group-hover:scale-105 transition">
@@ -661,9 +914,12 @@
           </div>
           <p class="text-xs text-slate-400 mt-2">Properties with open municipal enforcement, safety & zoning cases.</p>
         </div>
-        <div class="mt-4 pt-3 border-t border-slate-800/80 space-y-2">
+        <div id="cardStatusCode" class="card-status-chip mt-3 pt-2.5 border-t border-slate-800/60 flex items-center justify-between text-[11px] text-slate-400">
+          <span class="inline-flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-slate-600 animate-pulse"></span>Loading status...</span>
+        </div>
+        <div class="mt-2 pt-2 border-t border-slate-800/80 space-y-2">
           <div class="flex items-center justify-between gap-1.5">
-            <button type="button" onclick="event.stopPropagation(); quickFilterLeadType('code_violations')" class="inline-flex items-center gap-1 text-[11px] font-bold text-amber-400 hover:text-amber-300 transition cursor-pointer">
+            <button type="button" onclick="event.stopPropagation(); openSourceDetailsModal('code_violations')" class="inline-flex items-center gap-1 text-[11px] font-bold text-amber-400 hover:text-amber-300 transition cursor-pointer" title="View source details & load history">
               VIEW DETAILS &rarr;
             </button>
             <a id="cardLinkCode" href="https://aca-prod.accela.com/PINELLAS/Cap/CapHome.aspx?module=Enforcement&TabName=Home" target="_blank" onclick="event.stopPropagation()" class="px-2 py-1 rounded-lg bg-slate-800/90 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 text-[10px] font-semibold inline-flex items-center gap-1 transition" title="Go directly to County Code Enforcement Portal">
@@ -678,7 +934,7 @@
       </div>
 
       <!-- Tax Liens (Delinquent Taxes & Certificates) -->
-      <div onclick="quickFilterLeadType('tax_liens')" class="glass-surface rounded-2xl p-5 border border-slate-800 hover:border-rose-700/60 transition cursor-pointer group flex flex-col justify-between">
+      <div onclick="openSourceDetailsModal('tax_liens')" class="glass-surface rounded-2xl p-5 border border-slate-800 hover:border-rose-700/60 transition cursor-pointer group flex flex-col justify-between">
         <div>
           <div class="flex items-center space-x-3.5 mb-2">
             <div class="w-10 h-10 rounded-xl bg-rose-950/60 border border-rose-800/40 flex items-center justify-center text-rose-400 group-hover:scale-105 transition">
@@ -691,9 +947,12 @@
           </div>
           <p class="text-xs text-slate-400 mt-2">Delinquent county taxes, tax auction certificates, and municipal liens.</p>
         </div>
-        <div class="mt-4 pt-3 border-t border-slate-800/80 space-y-2">
+        <div id="cardStatusTax" class="card-status-chip mt-3 pt-2.5 border-t border-slate-800/60 flex items-center justify-between text-[11px] text-slate-400">
+          <span class="inline-flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-slate-600 animate-pulse"></span>Loading status...</span>
+        </div>
+        <div class="mt-2 pt-2 border-t border-slate-800/80 space-y-2">
           <div class="flex items-center justify-between gap-1.5">
-            <button type="button" onclick="event.stopPropagation(); quickFilterLeadType('tax_liens')" class="inline-flex items-center gap-1 text-[11px] font-bold text-rose-400 hover:text-rose-300 transition cursor-pointer">
+            <button type="button" onclick="event.stopPropagation(); openSourceDetailsModal('tax_liens')" class="inline-flex items-center gap-1 text-[11px] font-bold text-rose-400 hover:text-rose-300 transition cursor-pointer" title="View source details & load history">
               VIEW DETAILS &rarr;
             </button>
             <a id="cardLinkTax" href="https://pinellas.county-taxes.com/public" target="_blank" onclick="event.stopPropagation()" class="px-2 py-1 rounded-lg bg-slate-800/90 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 text-[10px] font-semibold inline-flex items-center gap-1 transition" title="Go directly to County Tax Collector Portal">
@@ -708,7 +967,7 @@
       </div>
 
       <!-- Probate & Inherited Estates -->
-      <div onclick="quickFilterLeadType('probate')" class="glass-surface rounded-2xl p-5 border border-slate-800 hover:border-purple-700/60 transition cursor-pointer group flex flex-col justify-between">
+      <div onclick="openSourceDetailsModal('probate')" class="glass-surface rounded-2xl p-5 border border-slate-800 hover:border-purple-700/60 transition cursor-pointer group flex flex-col justify-between">
         <div>
           <div class="flex items-center space-x-3.5 mb-2">
             <div class="w-10 h-10 rounded-xl bg-purple-950/60 border border-purple-800/40 flex items-center justify-center text-purple-400 group-hover:scale-105 transition">
@@ -721,14 +980,22 @@
           </div>
           <p class="text-xs text-slate-400 mt-2">Inherited properties, deceased estates, wills, and court probate dockets.</p>
         </div>
-        <div class="mt-4 pt-3 border-t border-slate-800/80 space-y-2">
+        <div id="cardStatusProbate" class="card-status-chip mt-3 pt-2.5 border-t border-slate-800/60 flex items-center justify-between text-[11px] text-slate-400">
+          <span class="inline-flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-slate-600 animate-pulse"></span>Loading status...</span>
+        </div>
+        <div class="mt-2 pt-2 border-t border-slate-800/80 space-y-2">
           <div class="flex items-center justify-between gap-1.5">
-            <button type="button" onclick="event.stopPropagation(); quickFilterLeadType('probate')" class="inline-flex items-center gap-1 text-[11px] font-bold text-purple-400 hover:text-purple-300 transition cursor-pointer">
+            <button type="button" onclick="event.stopPropagation(); openSourceDetailsModal('probate')" class="inline-flex items-center gap-1 text-[11px] font-bold text-purple-400 hover:text-purple-300 transition cursor-pointer" title="View source details & load history">
               VIEW DETAILS &rarr;
             </button>
-            <a id="cardLinkProbate" href="https://officialrecords.mypinellasclerk.gov/search/SearchTypeDocType" target="_blank" onclick="event.stopPropagation()" class="px-2 py-1 rounded-lg bg-slate-800/90 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 text-[10px] font-semibold inline-flex items-center gap-1 transition" title="Go directly to County Probate Court Portal">
-              🌐 Official Portal ↗
-            </a>
+            <div class="flex items-center gap-1">
+              <a id="cardLinkProbate" href="https://officialrecords.mypinellasclerk.gov/search/SearchTypeDocType" target="_blank" onclick="event.stopPropagation()" class="px-2 py-1 rounded-lg bg-slate-800/90 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 text-[10px] font-semibold inline-flex items-center gap-1 transition" title="Go directly to County Probate Court Portal">
+                🏛️ Clerk Docket ↗
+              </a>
+              <a id="cardLinkProbateComptroller" href="https://selfservice.or.occompt.com/ssweb/search/DOCSEARCH2950S3" target="_blank" onclick="event.stopPropagation()" class="px-2 py-1 rounded-lg bg-purple-950/60 hover:bg-purple-800 text-purple-300 hover:text-white border border-purple-700/60 text-[10px] font-semibold inline-flex items-center gap-1 transition hidden" title="Orange County Comptroller Official Records (Recorded Wills, Deeds & Death Certificates). Click I Accept if disclaimer appears.">
+                📜 Comptroller ↗
+              </a>
+            </div>
           </div>
           <button type="button" onclick="event.stopPropagation(); openImportModal('probate')" class="w-full py-1.5 rounded-lg bg-purple-600/20 hover:bg-purple-600 text-purple-300 hover:text-white border border-purple-500/30 text-[10px] font-bold inline-flex items-center justify-center gap-1.5 transition cursor-pointer" title="Import new Probate Court CSV">
             <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/></svg>
@@ -861,6 +1128,93 @@
     </div>
   </div>
 
+  <!-- Lead Source Details & Load Information Modal -->
+  <div id="sourceDetailsModal" onclick="if(event.target === this) closeSourceDetailsModal()" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
+    <div class="glass-surface rounded-2xl max-w-xl w-full border border-slate-700 flex flex-col overflow-hidden shadow-2xl">
+      <!-- Header -->
+      <div class="px-6 py-4 border-b border-slate-800 flex justify-between items-center bg-[#0a101d]">
+        <div class="flex items-center gap-3">
+          <div id="sourceDetailIcon" class="w-10 h-10 rounded-xl bg-blue-600/20 border border-blue-500/40 text-blue-400 flex items-center justify-center text-xl">
+            📄
+          </div>
+          <div>
+            <h3 class="font-extrabold text-base text-white flex items-center gap-2">
+              <span id="sourceDetailName">Lis Pendens</span>
+              <span id="sourceDetailBadge" class="px-2 py-0.5 rounded text-[10px] bg-blue-500/20 text-blue-300 font-bold border border-blue-500/30">Pre-Foreclosures</span>
+            </h3>
+            <p id="sourceDetailCounty" class="text-xs text-slate-400">Orange County, FL • Source & Ingestion Metadata</p>
+          </div>
+        </div>
+        <button onclick="closeSourceDetailsModal()" class="text-slate-400 hover:text-white p-1.5 rounded-lg hover:bg-slate-800 transition">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <!-- Body / Stats -->
+      <div class="p-6 space-y-4 bg-[#070b14]">
+        <p id="sourceDetailDesc" class="text-xs text-slate-300 leading-relaxed"></p>
+
+        <!-- Stats Grid -->
+        <div class="grid grid-cols-2 gap-3">
+          <div class="bg-slate-900/80 border border-slate-800 rounded-xl p-3.5">
+            <div class="text-[10px] uppercase font-bold text-slate-400">Matched Leads Count</div>
+            <div id="sourceDetailCount" class="text-xl font-extrabold text-white mt-1">0 Leads</div>
+            <div class="text-[10px] text-emerald-400 font-semibold mt-0.5">Active in live lead hub</div>
+          </div>
+          <div class="bg-slate-900/80 border border-slate-800 rounded-xl p-3.5">
+            <div class="text-[10px] uppercase font-bold text-slate-400">Last Loaded Date</div>
+            <div id="sourceDetailDate" class="text-sm font-bold text-white mt-1">Not loaded yet</div>
+            <div id="sourceDetailFreshness" class="text-[10px] text-blue-400 font-semibold mt-0.5">Fresh file</div>
+          </div>
+        </div>
+
+        <!-- File Details Card -->
+        <div class="bg-[#0b1220] border border-slate-800/80 rounded-xl p-4 space-y-2">
+          <div class="flex items-center justify-between text-xs">
+            <span class="text-slate-400">Source File:</span>
+            <span id="sourceDetailFilename" class="font-mono text-slate-200 font-semibold truncate max-w-[280px]">None</span>
+          </div>
+          <div class="flex items-center justify-between text-xs">
+            <span class="text-slate-400">File Size:</span>
+            <span id="sourceDetailFileSize" class="text-slate-200 font-semibold">-</span>
+          </div>
+          <div class="flex items-center justify-between text-xs">
+            <span class="text-slate-400">Official Portal:</span>
+            <a id="sourceDetailPortalLink" href="#" target="_blank" class="text-blue-400 hover:text-blue-300 font-semibold inline-flex items-center gap-1 transition">
+              <span id="sourceDetailPortalName">Official County Portal</span> ↗
+            </a>
+          </div>
+          <div id="sourceDetailSecondaryPortalRow" class="flex items-center justify-between text-xs hidden">
+            <span class="text-slate-400">Comptroller Records:</span>
+            <a id="sourceDetailSecondaryPortalLink" href="#" target="_blank" class="text-purple-400 hover:text-purple-300 font-semibold inline-flex items-center gap-1 transition">
+              <span id="sourceDetailSecondaryPortalName">Comptroller Official Records</span> ↗
+            </a>
+          </div>
+          <div id="sourceDetailDisclaimerNote" class="text-[11px] text-amber-300/90 bg-amber-500/10 border border-amber-500/20 rounded-lg p-2.5 flex items-start gap-2 hidden">
+            <span class="text-amber-400 text-sm leading-none shrink-0">⚠️</span>
+            <span>If prompted by the Comptroller with a disclaimer screen, click <b>"I Accept"</b> to proceed into the document search engine.</span>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="flex flex-col sm:flex-row items-center gap-2.5 pt-2">
+          <button type="button" id="btnSourceDetailFilter" class="w-full sm:flex-1 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs shadow-lg shadow-blue-600/30 transition flex items-center justify-center gap-1.5 cursor-pointer">
+            🔍 View & Filter in Table
+          </button>
+          <button type="button" id="btnSourceDetailUpdate" class="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-xs border border-slate-700 transition flex items-center justify-center gap-1.5 cursor-pointer">
+            📁 + Update CSV
+          </button>
+          <a id="btnSourceDetailPortal" href="#" target="_blank" class="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-xs border border-slate-700 transition flex items-center justify-center gap-1.5">
+            🌐 Visit Portal ↗
+          </a>
+          <a id="btnSourceDetailSecondaryPortal" href="#" target="_blank" class="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-purple-950/70 hover:bg-purple-800 text-purple-200 font-bold text-xs border border-purple-700/60 transition flex items-center justify-center gap-1.5 hidden">
+            📜 Comptroller ↗
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Import Lead File CSV Modal -->
   <div id="importModal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
     <div class="glass-surface rounded-2xl max-w-lg w-full border border-slate-700 flex flex-col overflow-hidden shadow-2xl">
@@ -892,6 +1246,7 @@
             <option value="lis_pendens">Lis Pendens (Pre-Foreclosure)</option>
             <option value="code_violations">Code Violations</option>
             <option value="probate">Probate / Inherited Estates</option>
+            <option value="skiptrace">📞 Skip-Traced Leads CSV (Multi-County Phones & Emails)</option>
           </select>
         </div>
 
@@ -916,6 +1271,78 @@
           </button>
           <button type="submit" id="btnSubmitImport" class="px-5 py-2 rounded-xl text-xs font-bold bg-blue-600 hover:bg-blue-500 text-white shadow-lg shadow-blue-600/30 transition flex items-center gap-2 cursor-pointer">
             🚀 Run Match Engine
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Dedicated Skip-Traced CSV Import Modal -->
+  <div id="importSkipTraceModal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
+    <div class="glass-surface rounded-2xl max-w-xl w-full border border-slate-700 flex flex-col overflow-hidden shadow-2xl">
+      <div class="px-6 py-4 border-b border-slate-800 flex justify-between items-center bg-[#0a101d]">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-amber-500/20 border border-amber-500/40 text-amber-300 flex items-center justify-center font-bold text-lg">
+            📞
+          </div>
+          <div>
+            <h3 class="font-extrabold text-sm text-white">Import Skip-Traced CSV / Multi-County Bundle</h3>
+            <p class="text-[11px] text-slate-400">Ingest phone numbers, emails &amp; route across all Florida counties</p>
+          </div>
+        </div>
+        <button onclick="closeSkipTraceImportModal()" class="text-slate-400 hover:text-white p-1.5 rounded-lg hover:bg-slate-800 transition">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <form id="importSkipTraceForm" onsubmit="handleSkipTraceImportSubmit(event)" class="p-6 space-y-4">
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1.5">Default Fallback County</label>
+          <select id="importSkipTraceDefaultCounty" class="w-full bg-[#0b1220] border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-500 cursor-pointer">
+            <option value="Pinellas">Pinellas County</option>
+            <option value="Orange">Orange County</option>
+            <option value="Hillsborough">Hillsborough County</option>
+            <option value="Seminole">Seminole County</option>
+            <option value="Pasco">Pasco County</option>
+            <option value="Sarasota">Sarasota County</option>
+            <option value="Manatee">Manatee County</option>
+            <option value="Polk">Polk County</option>
+            <option value="Osceola">Osceola County</option>
+            <option value="Volusia">Volusia County</option>
+            <option value="Lake">Lake County</option>
+            <option value="Alachua">Alachua County</option>
+            <option value="Duval">Duval County</option>
+            <option value="Lee">Lee County</option>
+            <option value="Collier">Collier County</option>
+          </select>
+          <p class="text-[10px] text-slate-500 mt-1">If your CSV contains a "County" column, each lead will automatically route to its respective Florida county. This default is only used if a row is missing the county.</p>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-slate-300 mb-1.5">Select Skip-Traced File (.csv or .xlsx)</label>
+          <div class="border-2 border-dashed border-slate-700 hover:border-amber-500/70 rounded-xl p-6 text-center cursor-pointer transition bg-slate-900/40 relative">
+            <input type="file" id="importSkipTraceFileInput" accept=".csv,.xlsx,.xls,.txt" required class="absolute inset-0 opacity-0 cursor-pointer w-full h-full" onchange="handleSkipTraceFileSelected(this)">
+            <svg class="w-8 h-8 text-amber-400 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/></svg>
+            <div class="text-xs font-bold text-white" id="importSkipTraceFileLabel">Click or drag &amp; drop Skip-Traced CSV here</div>
+            <div class="text-[10px] text-slate-400 mt-1">Compatible with BatchSkipTracing, PropStream, REISkip, Mojo, LeadSherpa &amp; custom spreadsheets</div>
+          </div>
+        </div>
+
+        <div class="rounded-xl bg-amber-950/20 border border-amber-800/40 p-3.5 text-[11px] text-slate-300 space-y-1.5">
+          <div class="font-bold text-amber-300 flex items-center gap-1.5">
+            <span>✨</span> <span>Multi-County Display &amp; Instant Outreach:</span>
+          </div>
+          <div>• <strong>Auto-Detected Columns:</strong> Phone 1, Mobile, Phone 2, Email, Owner Name, Address, City, County, Parcel ID / APN, Estimated Market Value.</div>
+          <div>• <strong>Multi-County Pipeline:</strong> Leads from multiple Florida counties appear together in <strong>Saved Lists / My Leads</strong> with prominent county badges (📍 Orange, 📍 Pinellas, 📍 Hillsborough).</div>
+          <div>• <strong>Immediate 1-Click Action:</strong> Instant 1-Click SMS, Email outreach, 407flips Audit, and PandaDoc purchase agreements.</div>
+        </div>
+
+        <div class="flex items-center justify-end gap-3 pt-2">
+          <button type="button" onclick="closeSkipTraceImportModal()" class="px-4 py-2 rounded-xl text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-slate-300 transition cursor-pointer">
+            Cancel
+          </button>
+          <button type="submit" id="btnSubmitSkipTraceImport" class="px-5 py-2 rounded-xl text-xs font-bold bg-amber-500 hover:bg-amber-400 text-slate-950 shadow-lg shadow-amber-500/20 transition flex items-center gap-2 cursor-pointer">
+            🚀 Ingest &amp; Route Skip Traces
           </button>
         </div>
       </form>
@@ -1071,6 +1498,9 @@
             <div>
               <label class="block text-[11px] font-semibold text-slate-300 mb-1">Icon</label>
               <select id="newCatIcon" class="w-full bg-[#0b1220] border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-blue-500 cursor-pointer">
+                <option value="💧">💧 Water Drop / Shutoff</option>
+                <option value="🚰">🚰 Water Valve / Tap</option>
+                <option value="🚿">🚿 Water Hose / Spray</option>
                 <option value="💔">💔 Broken Heart / Divorce</option>
                 <option value="⚖️">⚖️ Scales / Judgments</option>
                 <option value="🚪">🚪 Door / Evictions</option>
@@ -1162,6 +1592,24 @@
           </button>
         </div>
 
+        <!-- Prior Outreach Sent Warning -->
+        <div id="smsPriorSentAlert" class="hidden p-3 rounded-xl bg-amber-500/15 border border-amber-500/40 text-xs text-amber-200">
+          <div class="font-bold flex items-center gap-1.5 text-amber-300">
+            <span>⚠️</span> <span>SMS Outreach Already Dispatched</span>
+          </div>
+          <div class="text-[11px] text-amber-200/90 mt-0.5" id="smsPriorSentDetails">Texted recently.</div>
+        </div>
+
+        <!-- Inline Message Thread Preview (Directly visible in 1-by-1 screen!) -->
+        <div id="smsInlineThreadBox" class="hidden space-y-1.5">
+          <div class="text-[10px] font-bold uppercase text-slate-400 tracking-wider flex items-center justify-between">
+            <span>Outreach &amp; Message History</span>
+            <span class="text-[9px] text-emerald-400 font-mono" id="smsInlineThreadCount"></span>
+          </div>
+          <div id="smsInlineThreadMessages" class="max-h-36 overflow-y-auto space-y-1.5 p-2.5 rounded-xl bg-slate-950/80 border border-slate-800 text-xs">
+          </div>
+        </div>
+
         <!-- Template Selector -->
         <div>
           <div class="flex items-center justify-between mb-1.5">
@@ -1175,15 +1623,10 @@
             </div>
           </div>
           <select id="smsTemplateSelect" onchange="applySmsTemplate(this.value)" class="w-full bg-[#0b1220] border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-emerald-500 cursor-pointer">
-            <option value="multi_list">🔥 Multi-List Hook (2+ Lists: Did you ever decide...)</option>
-            <option value="single_list">⚡ Single-List Hook (Quick question on address...)</option>
-            <option value="ultra_short">💬 Ultra-Short Hook (Hey [Name]?)</option>
-            <option value="multi_list_opt2">🔥 Multi-List Hook (Opt 2: Say the word...)</option>
-            <option value="single_list_opt2">⚡ Single-List Hook (Opt 2: Say the word...)</option>
-            <option value="ultra_short_opt2">💬 Ultra-Short Hook (Opt 2: Say the word...)</option>
-            <option value="multi_list_opt3">🔥 Multi-List Hook (Opt 3: Not interested? Drop it...)</option>
-            <option value="single_list_opt3">⚡ Single-List Hook (Opt 3: Not interested? Drop it...)</option>
-            <option value="ultra_short_opt3">💬 Ultra-Short Hook (Opt 3: Not interested? Drop it...)</option>
+            <option value="casual_direct">🤝 Option 1: Owner Check 1</option>
+            <option value="quick_question">❓ Option 2: Owner Check 2</option>
+            <option value="neighbor_investor">🏡 Option 3: Owner Check 3</option>
+            <option value="quick_checkin">💬 Option 4: Owner Check 4</option>
           </select>
         </div>
 
@@ -1368,6 +1811,30 @@
           <div>
             <label class="block text-[10px] text-slate-500 font-bold uppercase tracking-wider mb-1">EMAIL ADDRESS</label>
             <input type="email" id="emailRecipientInput" required placeholder="owner@gmail.com" class="bg-[#0b1220] border border-slate-700 rounded-lg px-2.5 py-1.5 text-xs font-mono font-bold text-cyan-300 focus:outline-none focus:border-cyan-500 w-full sm:w-60">
+          </div>
+        </div>
+
+        <!-- Prior Email Sent Alert (Warn against double-emailing) -->
+        <div id="emailPriorSentAlert" class="hidden p-3 rounded-xl bg-cyan-950/60 border border-cyan-500/40 text-xs text-cyan-200">
+          <div class="font-bold flex items-center gap-1.5 text-cyan-300">
+            <span>✉️</span> <span>Offer Email Already Sent</span>
+          </div>
+          <div class="text-[11px] text-cyan-200/90 mt-0.5" id="emailPriorSentDetails">Emailed recently.</div>
+        </div>
+
+        <!-- Double Distress Smart Template Toggle -->
+        <div id="emailDoubleDistressSwitch" class="hidden p-3 rounded-xl bg-slate-900/90 border border-amber-500/40 flex flex-wrap items-center justify-between gap-2 shadow-sm">
+          <div class="flex items-center gap-1.5">
+            <span class="text-xs">🔥</span>
+            <span class="text-xs font-bold text-amber-300">Multiple Recorded Distress Types</span>
+          </div>
+          <div class="flex items-center gap-1.5">
+            <button type="button" onclick="selectDoubleDistressEmail('probate')" id="btnEmailSwitchProbate" class="px-2.5 py-1 rounded-lg text-xs font-bold bg-indigo-600 text-white transition cursor-pointer shadow-sm">
+              ⚖️ Use Probate Offer
+            </button>
+            <button type="button" onclick="selectDoubleDistressEmail('lis_pendens')" id="btnEmailSwitchLp" class="px-2.5 py-1 rounded-lg text-xs font-bold bg-slate-800 hover:bg-slate-700 text-slate-300 transition cursor-pointer">
+              📄 Use Foreclosure Offer
+            </button>
           </div>
         </div>
 
@@ -2297,7 +2764,7 @@
           <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
           <span class="text-slate-400">Android SMS Gateway: <b class="text-emerald-400">(407) 793-7029</b></span>
           <span class="text-slate-600">&bull;</span>
-          <span class="text-slate-400">Cloudflare Tunnel: <b class="text-blue-400">Active</b></span>
+          <span id="inboxConnectionStatus" class="text-emerald-400 text-[11px]">Connecting to inbox…</span>
         </div>
 
         <button type="button" onclick="toggleInboxSimulator()" class="px-3 py-1 rounded-xl text-xs font-bold bg-blue-600/20 hover:bg-blue-600/30 text-blue-300 border border-blue-500/40 transition flex items-center gap-1.5 cursor-pointer">
@@ -2565,6 +3032,118 @@
     </div>
   </div>
 
+  <!-- Florida Public Record APIs Master Catalog Modal (Direct from Link Zone) -->
+  <div id="floridaApiDirectoryModal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 flex items-center justify-center p-3 sm:p-5 hidden">
+    <div class="bg-[#0a0f1d] border border-slate-800 rounded-2xl w-full max-w-6xl max-h-[92vh] flex flex-col shadow-2xl overflow-hidden">
+      <!-- Modal Header -->
+      <div class="p-5 border-b border-slate-800 flex items-center justify-between bg-[#0e1628]/80">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500/20 to-teal-500/20 border border-emerald-500/30 text-emerald-400 flex items-center justify-center font-bold text-xl shadow-inner">
+            ⚡
+          </div>
+          <div>
+            <div class="flex items-center gap-2.5 flex-wrap">
+              <h3 class="text-base font-black text-white tracking-tight" id="flApiModalTitle">Florida Government API Directory</h3>
+              <span class="px-2 py-0.5 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-emerald-500/20 text-emerald-300 border border-emerald-500/40" id="flApiModalBadge">
+                157 VERIFIED LINK ZONE ENDPOINTS
+              </span>
+            </div>
+            <p class="text-xs text-slate-400 mt-0.5">
+              Live SODA, ArcGIS REST, and Public Record APIs across 37 Florida Counties &amp; 33 Municipalities.
+            </p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <button type="button" onclick="refreshFloridaApiCatalog()" class="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-xs font-semibold transition flex items-center gap-1.5 border border-slate-700 cursor-pointer">
+            <span>🔄</span> <span>Refresh Catalog</span>
+          </button>
+          <button type="button" onclick="closeFloridaApiDirectoryModal()" class="w-8 h-8 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center transition cursor-pointer">✕</button>
+        </div>
+      </div>
+
+      <!-- Quick KPI Metric Cards -->
+      <div class="px-6 py-3.5 bg-slate-900/60 border-b border-slate-800 grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-3 text-xs">
+        <div onclick="setFlApiCategoryFilter('CODE_ENFORCEMENT', true)" class="bg-slate-950/70 hover:bg-slate-900/90 p-2.5 rounded-xl border border-slate-800 hover:border-rose-500/50 cursor-pointer transition group" title="Click to view all 45 Code Enforcement APIs">
+          <div class="text-[10px] font-bold text-slate-400 group-hover:text-rose-300 uppercase">Code Enforcement</div>
+          <div class="text-base font-extrabold text-rose-400 font-mono" id="flApiKpiCode">45 APIs</div>
+          <div class="text-[9px] text-slate-500">Orlando, St. Pete, Miami &bull; Click to list 45</div>
+        </div>
+        <div onclick="setFlApiCategoryFilter('FORECLOSURE', true)" class="bg-slate-950/70 hover:bg-slate-900/90 p-2.5 rounded-xl border border-slate-800 hover:border-purple-500/50 cursor-pointer transition group" title="Click to view all 3 Foreclosure APIs">
+          <div class="text-[10px] font-bold text-slate-400 group-hover:text-purple-300 uppercase">Foreclosure &amp; Eviction</div>
+          <div class="text-base font-extrabold text-purple-400 font-mono" id="flApiKpiForeclosure">3 APIs</div>
+          <div class="text-[9px] text-slate-500">GIS Public Layers &bull; Click to list 3</div>
+        </div>
+        <div onclick="setFlApiCategoryFilter('CLERK', true)" class="bg-slate-950/70 hover:bg-slate-900/90 p-2.5 rounded-xl border border-slate-800 hover:border-blue-500/50 cursor-pointer transition group" title="Click to view all 9 Clerk of Court APIs">
+          <div class="text-[10px] font-bold text-slate-400 group-hover:text-blue-300 uppercase">Clerk &amp; Courts</div>
+          <div class="text-base font-extrabold text-blue-400 font-mono" id="flApiKpiClerk">9 APIs</div>
+          <div class="text-[9px] text-slate-500">Miami-Dade, Broward &bull; Click to list 9</div>
+        </div>
+        <div onclick="setFlApiCategoryFilter('PROPERTY', true)" class="bg-slate-950/70 hover:bg-slate-900/90 p-2.5 rounded-xl border border-slate-800 hover:border-emerald-500/50 cursor-pointer transition group" title="Click to view all 100 Tax & Parcel APIs">
+          <div class="text-[10px] font-bold text-slate-400 group-hover:text-emerald-300 uppercase">Parcels &amp; Tax</div>
+          <div class="text-base font-extrabold text-emerald-400 font-mono" id="flApiKpiProperty">100 APIs</div>
+          <div class="text-[9px] text-slate-500">Statewide Cadastral &bull; Click to list 100</div>
+        </div>
+        <div onclick="setFlApiCategoryFilter('ALL', true)" class="bg-slate-950/70 hover:bg-slate-900/90 p-2.5 rounded-xl border border-slate-800 hover:border-cyan-500/50 cursor-pointer transition group" title="Click to view all 145 Public Zero-Auth APIs">
+          <div class="text-[10px] font-bold text-slate-400 group-hover:text-cyan-300 uppercase">Public / No Auth</div>
+          <div class="text-base font-extrabold text-cyan-400 font-mono" id="flApiKpiPublic">145 Public</div>
+          <div class="text-[9px] text-slate-500">Zero-Auth Direct &bull; Click to list all</div>
+        </div>
+        <div onclick="setFlApiCategoryFilter('CODE_ENFORCEMENT', false)" class="bg-slate-950/70 hover:bg-slate-900/90 p-2.5 rounded-xl border border-slate-800 hover:border-amber-500/50 cursor-pointer transition group" title="Click to view Live Connected Orlando SODA API">
+          <div class="text-[10px] font-bold text-slate-400 group-hover:text-amber-300 uppercase">Live Connected</div>
+          <div class="text-base font-extrabold text-amber-400 font-mono" id="flApiKpiConnected">1 Active</div>
+          <div class="text-[9px] text-slate-500">Orlando SODA Live &bull; Click to view</div>
+        </div>
+      </div>
+
+      <!-- Filter & Search Toolbar -->
+      <div class="px-6 py-3 bg-slate-900/40 border-b border-slate-800 flex flex-wrap items-center justify-between gap-3">
+        <div class="flex items-center gap-1.5 flex-wrap" id="flApiCategoryFilterPills">
+          <button type="button" onclick="setFlApiCategoryFilter('ALL', true)" id="flApiTabALL" class="px-3 py-1 rounded-lg text-xs font-bold bg-blue-600 text-white cursor-pointer shadow-sm">
+            All (<span id="flApiTabAllCount">157</span>)
+          </button>
+          <button type="button" onclick="setFlApiCategoryFilter('CODE_ENFORCEMENT', true)" id="flApiTabCODE_ENFORCEMENT" class="px-3 py-1 rounded-lg text-xs font-semibold bg-slate-800 text-rose-300 hover:text-white border border-rose-500/30 cursor-pointer">
+            🚨 Code Enforcement (<span id="flApiTabCodeCount">45</span>)
+          </button>
+          <button type="button" onclick="setFlApiCategoryFilter('FORECLOSURE', true)" id="flApiTabFORECLOSURE" class="px-3 py-1 rounded-lg text-xs font-semibold bg-slate-800 text-purple-300 hover:text-white border border-purple-500/30 cursor-pointer">
+            ⚖️ Foreclosures (<span id="flApiTabFcCount">3</span>)
+          </button>
+          <button type="button" onclick="setFlApiCategoryFilter('CLERK', true)" id="flApiTabCLERK" class="px-3 py-1 rounded-lg text-xs font-semibold bg-slate-800 text-blue-300 hover:text-white border border-blue-500/30 cursor-pointer">
+            🏛️ Clerk of Court (<span id="flApiTabClerkCount">9</span>)
+          </button>
+          <button type="button" onclick="setFlApiCategoryFilter('PROPERTY', true)" id="flApiTabPROPERTY" class="px-3 py-1 rounded-lg text-xs font-semibold bg-slate-800 text-emerald-300 hover:text-white border border-emerald-500/30 cursor-pointer">
+            🏡 Tax &amp; Parcels (<span id="flApiTabPropCount">100</span>)
+          </button>
+        </div>
+
+        <div class="flex items-center gap-2 w-full sm:w-auto">
+          <button type="button" id="btnToggleExpandFlApi" onclick="toggleAllFlApiGroups()" class="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-amber-300 hover:text-amber-200 border border-amber-500/40 text-xs font-bold transition cursor-pointer flex items-center gap-1.5 whitespace-nowrap shadow-sm" title="Expand or collapse all county sections">
+            <span id="btnToggleExpandIcon">↕</span> <span id="btnToggleExpandLabel">Expand All</span>
+          </button>
+          <div class="relative w-full sm:w-80">
+            <svg class="w-3.5 h-3.5 text-slate-400 absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+            <input type="text" id="flApiSearchInput" oninput="filterFlApiCards()" onkeyup="filterFlApiCards()" placeholder="Search Orlando, Orange, St Pete, SODA..." class="w-full bg-slate-950 border border-slate-700/80 rounded-xl pl-8 pr-8 py-1.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500">
+            <button type="button" id="flApiSearchClearBtn" onclick="clearFlApiSearch()" class="hidden absolute right-2.5 top-2 text-slate-400 hover:text-white text-xs cursor-pointer" title="Clear search">✕</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal Body (API Cards Grid) -->
+      <div class="p-6 overflow-y-auto space-y-4 max-h-[60vh]" id="flApiCardsContainer">
+        <!-- Rendered dynamically by renderFloridaApiDirectoryModal() -->
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="px-6 py-3.5 border-t border-slate-800 bg-[#0e1628]/60 flex items-center justify-between text-xs text-slate-400">
+        <div class="flex items-center gap-2">
+          <span>Source: <code id="flApiModalSourceFile" class="text-cyan-300 font-mono text-[11px] bg-slate-900 px-1.5 py-0.5 rounded">C:\Projects\Apps\link-zone\data\florida-api-links.json</code></span>
+        </div>
+        <button type="button" onclick="closeFloridaApiDirectoryModal()" class="px-4 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold cursor-pointer">
+          Done
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- Link Zone Live Bridge & Audit Trail Modal -->
   <div id="linkZoneMonitorModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
     <div class="bg-[#0a0f1d] border border-slate-800 rounded-2xl w-full max-w-4xl max-h-[92vh] flex flex-col shadow-2xl overflow-hidden">
@@ -2656,6 +3235,548 @@
     </div>
   </div>
 
-  <script src="/static/app.js?v=27"></script>
+  <!-- ----------------------------------------------------------- -->
+  <!-- PROPERTY DETAIL CARD MODAL (COUNTY LEAD HUB) -->
+  <!-- ----------------------------------------------------------- -->
+  <div id="propertyCardModal" class="hidden fixed inset-0 z-50 bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-5 overflow-y-auto">
+    <div class="bg-[#0b1220] border border-blue-500/40 rounded-2xl w-full max-w-4xl shadow-2xl p-5 sm:p-6 space-y-5 my-auto max-h-[92vh] overflow-y-auto">
+      
+      <!-- MODAL HEADER -->
+      <div class="flex items-start justify-between border-b border-slate-800 pb-4">
+        <div class="flex items-center gap-3.5">
+          <div class="w-12 h-12 rounded-xl bg-blue-600/20 text-blue-400 font-black flex items-center justify-center text-2xl border border-blue-500/30 shadow-inner">
+            🏡
+          </div>
+          <div>
+            <div class="flex items-center gap-2 flex-wrap">
+              <h3 class="text-lg font-black text-white tracking-wide" id="propCardAddress">123 Main St</h3>
+              <span id="propCardLeadBadge" class="px-2 py-0.5 rounded text-[10px] font-bold bg-rose-500/20 text-rose-300 border border-rose-500/40">
+                🚨 Code Violation
+              </span>
+              <span id="propCardStackedBadge" class="hidden px-2 py-0.5 rounded text-[10px] font-black bg-amber-500/20 text-amber-300 border border-amber-500/40 animate-pulse">
+                🔥 DOUBLE DISTRESS
+              </span>
+              <span id="propCardDateBadge" class="px-2.5 py-0.5 rounded-lg text-xs font-mono font-bold bg-cyan-950/70 text-cyan-300 border border-cyan-800/60 flex items-center gap-1 shadow-sm">
+                <span>📅 Case Date:</span> <span id="propCardDateVal" class="text-white font-extrabold ml-1">2026-04-12</span>
+              </span>
+              <span id="propCardNewBadge" class="hidden px-2 py-0.5 rounded text-[10px] font-black bg-emerald-500/20 text-emerald-300 border border-emerald-500/60 shadow-sm animate-pulse">
+                ✨ NEW (LIVE API)
+              </span>
+            </div>
+            <p class="text-xs text-slate-400 mt-0.5" id="propCardCityStateZip">St Petersburg, FL 33705 • Pinellas County</p>
+          </div>
+        </div>
+        <button type="button" onclick="closeModal('propertyCardModal')" class="text-slate-400 hover:text-white p-2 rounded-xl bg-slate-900 border border-slate-800 transition cursor-pointer">✕</button>
+      </div>
+
+      <div class="flex items-center justify-end gap-2" aria-label="Property card navigation">
+        <button type="button" id="propCardPreviousBtn" onclick="navigatePropertyCard(-1)" aria-label="Previous property" title="Previous property in this filtered list" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-blue-600 text-white text-xs font-semibold disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer transition">◀ Previous</button>
+        <span id="propCardPosition" class="text-xs font-semibold text-slate-400 min-w-16 text-center" aria-live="polite">1 of 1</span>
+        <button type="button" id="propCardNextBtn" onclick="navigatePropertyCard(1)" aria-label="Next property" title="Next property in this filtered list" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-blue-600 text-white text-xs font-semibold disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer transition">Next ▶</button>
+      </div>
+
+      <!-- KEY METRICS GRID -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+        <div class="bg-slate-900/90 border border-slate-800 p-3 rounded-xl">
+          <div class="text-[10px] text-slate-400 uppercase font-semibold">Assessed / Market Val</div>
+          <div class="text-base sm:text-lg font-black text-amber-300 font-mono" id="propCardMarketVal">$0</div>
+          <div class="text-[10px] text-slate-500">County Appraiser Model</div>
+        </div>
+        <div class="bg-slate-900/90 border border-slate-800 p-3 rounded-xl">
+          <div class="text-[10px] text-slate-400 uppercase font-semibold">Living Space</div>
+          <div class="text-base sm:text-lg font-black text-white" id="propCardSqft">0 sqft</div>
+          <div class="text-[10px] text-slate-500" id="propCardBedsBaths">3 Beds • 2 Baths</div>
+        </div>
+        <div class="bg-slate-900/90 border border-slate-800 p-3 rounded-xl">
+          <div class="text-[10px] text-slate-400 uppercase font-semibold">Year Built / Age</div>
+          <div class="text-base sm:text-lg font-black text-white" id="propCardYearBuilt">1980</div>
+          <div class="text-[10px] text-slate-500" id="propCardAge">46 Years Old</div>
+        </div>
+        <div class="bg-slate-900/90 border border-slate-800 p-3 rounded-xl">
+          <div class="text-[10px] text-slate-400 uppercase font-semibold">Parcel PIN</div>
+          <div class="text-xs sm:text-sm font-bold text-blue-300 font-mono truncate" id="propCardPin">PIN-N/A</div>
+          <div class="text-[10px] text-emerald-400 font-semibold" id="propCardMatch">✓ Exact PIN Match</div>
+        </div>
+      </div>
+
+      <!-- TWO COLUMNS: OWNERSHIP INTELLIGENCE (LEFT) & DISTRESS / FILING (RIGHT) -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        
+        <!-- Left: Ownership & Absentee -->
+        <div class="bg-slate-950/80 border border-slate-800 rounded-xl p-4 space-y-3">
+          <div class="text-xs font-bold text-slate-300 uppercase tracking-wider flex items-center justify-between border-b border-slate-800 pb-2">
+            <span>👤 Ownership &amp; Absentee Status</span>
+            <span id="propCardOwnerEntityBadge" class="text-[10px] px-2 py-0.5 rounded bg-slate-800 text-slate-300 font-semibold">Individual</span>
+          </div>
+          <div class="space-y-2 text-xs">
+            <div>
+              <div class="text-[10px] text-slate-500">Record Owner Name:</div>
+              <div class="text-sm font-bold text-white" id="propCardOwnerName">Owner Name</div>
+            </div>
+            <div>
+              <div class="text-[10px] text-slate-500">Occupancy / Absentee:</div>
+              <div class="text-xs font-semibold text-purple-300 flex items-center gap-1.5" id="propCardAbsentee">
+                Owner Occupied
+              </div>
+            </div>
+            <div>
+              <div class="text-[10px] text-slate-500">Mailing Address:</div>
+              <div class="text-xs text-slate-300 font-medium" id="propCardMailingAddress">Same as Property Address</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Distress & Court Docket -->
+        <div class="bg-slate-950/80 border border-slate-800 rounded-xl p-4 space-y-3">
+          <div class="text-xs font-bold text-slate-300 uppercase tracking-wider flex items-center justify-between border-b border-slate-800 pb-2">
+            <span>⚖️ Public Records Distress File</span>
+            <span id="propCardLeadCategoryBadge" class="text-[10px] px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 font-semibold">County Records</span>
+          </div>
+          <div class="space-y-2 text-xs">
+            <div class="flex items-center justify-between pb-1.5 border-b border-slate-800/80">
+              <span class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">📅 Case / Filing Date:</span>
+              <span class="text-xs font-mono font-bold text-cyan-300 px-2 py-0.5 rounded bg-slate-900 border border-slate-800" id="propCardFilingDateDetail">2026-04-12</span>
+            </div>
+            <div>
+              <div class="text-[10px] text-slate-500">Distress Category &amp; Source:</div>
+              <div class="text-xs font-bold text-amber-300" id="propCardDistressType">Pre-Foreclosure / Lis Pendens</div>
+            </div>
+            <div>
+              <div class="text-[10px] text-slate-500">Court Docket / Violation Details:</div>
+              <div class="text-xs text-slate-300 leading-relaxed max-h-24 overflow-y-auto" id="propCardDistressNotes">
+                No recorded court case details.
+              </div>
+            </div>
+            <!-- Emma AI Outbound Guidance Box (Legal Distress specific) -->
+            <div id="propCardEmmaGuidanceBox" class="hidden p-2.5 rounded-lg bg-indigo-950/40 border border-indigo-500/40 text-[11px] text-indigo-200 mt-2">
+              <div class="font-bold text-indigo-300 flex items-center gap-1.5 mb-1">
+                <span>🤖 Emma Outbound Strategy Rule:</span>
+              </div>
+              <p class="leading-relaxed text-slate-300">
+                <strong class="text-amber-300">Never mention criminal/arrest charges on outbound calls/texts.</strong> Frame solely as a friendly local cash homebuyer offering discreet liquidity and flexible closing timelines to assist with family legal/financial transitions.
+              </p>
+            </div>
+
+            <!-- Municipal Inspector / Citizen On-Site Photo Box -->
+            <div id="propCardPhotoBox" class="hidden p-3 rounded-xl bg-slate-900/90 border border-amber-500/40 space-y-2 mt-2">
+              <div class="flex items-center justify-between">
+                <div class="text-[11px] font-bold text-amber-300 flex items-center gap-1.5">
+                  <span>📷</span> <span>Municipal Ticket Photo (Live On-Site)</span>
+                </div>
+                <a id="propCardPhotoLink" href="#" target="_blank" rel="noopener noreferrer" class="text-[10px] text-blue-400 hover:text-blue-300 hover:underline flex items-center gap-1 font-semibold">
+                  <span>Full-Resolution</span> <span>↗</span>
+                </a>
+              </div>
+              <div class="relative rounded-lg overflow-hidden border border-slate-800 bg-black/70 flex items-center justify-center max-h-56">
+                <img id="propCardPhotoImg" src="" alt="Municipal Ticket Photo" class="w-full max-h-56 object-contain rounded-lg shadow-md cursor-pointer hover:scale-[1.02] transition duration-200" onclick="window.open(this.src, '_blank')">
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- CONTACT & SKIP TRACE BAR -->
+      <div class="bg-gradient-to-r from-slate-900 via-slate-950 to-slate-900 border border-slate-800 rounded-xl p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+        <div class="space-y-1">
+          <div class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Contact &amp; Outreach Data</div>
+          <div class="flex items-center gap-2 flex-wrap" id="propCardContactChips">
+            <span class="text-xs text-slate-500 italic">No contact numbers saved yet. Run free skip trace.</span>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <a id="propCardSkipTraceBtn" href="#" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-xl bg-amber-500/20 hover:bg-amber-500 hover:text-slate-950 text-amber-300 text-xs font-bold border border-amber-500/30 transition flex items-center gap-1.5 cursor-pointer shadow-sm">
+            <span>📞</span> <span>1-Click Skip Trace (TruePeopleSearch)</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- ACTION BUTTONS ROW -->
+      <div class="flex flex-wrap items-center justify-between gap-2 pt-3 border-t border-slate-800">
+        <div class="flex items-center gap-2 flex-wrap">
+          <button type="button" id="propCardLaunch407Btn" class="px-3.5 py-2 rounded-xl bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-500 hover:to-orange-500 text-slate-950 text-xs font-black transition flex items-center gap-1.5 shadow-md shadow-amber-600/30 cursor-pointer">
+            <span>407</span> <span>Launch 407 Audit</span>
+          </button>
+          <button type="button" id="propCardLaunchContractBtn" class="px-3 py-2 rounded-xl bg-purple-600 hover:bg-purple-500 text-white text-xs font-bold transition flex items-center gap-1.5 shadow-md shadow-purple-600/30 cursor-pointer">
+            <span>📝</span> <span>1-Page Contract</span>
+          </button>
+          <button type="button" id="propCardLaunchSmsBtn" class="px-3 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition flex items-center gap-1.5 shadow-md shadow-emerald-600/30 cursor-pointer">
+            <span>💬</span> <span>Send SMS</span>
+          </button>
+          <button type="button" id="propCardLaunchEmailBtn" class="px-3 py-2 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white text-xs font-bold transition flex items-center gap-1.5 shadow-md shadow-cyan-600/30 cursor-pointer">
+            <span>✉️</span> <span>Send Email</span>
+          </button>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <a id="propCardPcpaoLink" href="#" target="_blank" class="px-3 py-2 rounded-xl bg-slate-800 hover:bg-blue-600 hover:text-white text-slate-300 text-xs font-semibold transition flex items-center gap-1">
+            <span>🔍</span> <span>PCPAO</span>
+          </a>
+          <a id="propCardMapsLink" href="#" target="_blank" class="px-3 py-2 rounded-xl bg-slate-800 hover:bg-emerald-600 hover:text-white text-slate-300 text-xs font-semibold transition flex items-center gap-1">
+            <span>🗺️</span> <span>Maps</span>
+          </a>
+          <button type="button" onclick="closeModal('propertyCardModal')" class="px-4 py-2 rounded-xl text-xs font-semibold text-slate-400 hover:text-white hover:bg-slate-800 transition cursor-pointer">
+            Close
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 407FLIPS MASTER UNDERWRITING REPORT MODAL (COUNTY LEAD HUB) -->
+  <div id="underwrite407FlipsLeadModal" class="hidden fixed inset-0 z-50 bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-5 overflow-y-auto">
+    <div class="bg-[#0b1220] border border-amber-500/50 rounded-2xl w-full max-w-4xl shadow-2xl p-5 sm:p-6 space-y-4 my-auto max-h-[92vh] overflow-y-auto">
+      
+      <!-- MODAL HEADER -->
+      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-500/20 to-orange-500/20 text-amber-400 font-black flex items-center justify-center text-lg border border-amber-500/30 shadow-sm">
+            407
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <h3 class="text-base font-black text-white tracking-wide">407FLIPS DEAL UNDERWRITING REPORT</h3>
+              <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40">COUNTY LEAD HUB</span>
+            </div>
+            <p class="text-xs text-slate-400" id="u407LeadSub">8-Point Compliance • Florida 4-Point Systems Triggers • Two-Tier Scope • MAO Breakdown</p>
+          </div>
+        </div>
+        <button type="button" onclick="closeModal('underwrite407FlipsLeadModal')" class="text-slate-400 hover:text-white p-2 rounded-xl bg-slate-900 border border-slate-800">✕</button>
+      </div>
+
+      <!-- PROPERTY & OFFER TARGET HERO -->
+      <div class="bg-gradient-to-r from-slate-900 via-slate-950 to-slate-900 border border-slate-800 rounded-xl p-4 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+        <div>
+          <div class="text-xs text-slate-400" id="u407LeadMeta">Florida Distressed Lead</div>
+          <div class="text-lg font-black text-white" id="u407LeadAddress">...</div>
+          <div class="text-xs text-amber-400 font-mono mt-0.5" id="u407LeadValues">Assessed: $0 • Target ARV: $0</div>
+        </div>
+        <div class="flex items-center gap-3">
+          <div class="text-right bg-slate-900/90 border border-emerald-500/30 p-2.5 rounded-xl">
+            <div class="text-[10px] text-emerald-400 font-bold uppercase">Cash MAO (Flipper Buy Ceiling)</div>
+            <div class="text-2xl font-black text-emerald-300 font-mono" id="u407LeadMao">$0</div>
+            <div class="text-[10px] text-slate-400" id="u407LeadDispoNote">Private Seller Buy • 15% Profit • 3% Agent</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3-TIER OFFERS BAR -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+        <div class="bg-slate-950 p-3 rounded-xl border border-rose-500/30 space-y-1">
+          <div class="flex items-center justify-between text-[11px]">
+            <span class="text-rose-400 font-bold">1. Opening Cash Offer</span>
+            <span class="text-[9px] px-1.5 py-0.5 rounded bg-rose-950 text-rose-300 border border-rose-800 font-mono">Anchor Low (-10%)</span>
+          </div>
+          <div class="text-xl font-black text-white font-mono" id="u407LeadOffer1">$0</div>
+          <div class="text-[10px] text-slate-400 leading-snug">Anchors the seller 10% below your walkaway limit to maximize your negotiation spread.</div>
+        </div>
+
+        <div class="bg-slate-950 p-3 rounded-xl border border-emerald-500/40 space-y-1">
+          <div class="flex items-center justify-between text-[11px]">
+            <span class="text-emerald-400 font-bold">2. Cash MAO (Flipper Buy Ceiling)</span>
+            <span class="text-[9px] px-1.5 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800 font-mono">Walkaway Limit</span>
+          </div>
+          <div class="text-xl font-black text-emerald-300 font-mono" id="u407LeadOffer2">$0</div>
+          <div class="text-[10px] text-slate-400 leading-snug">Exact flipper purchase ceiling (ARV - 22% friction/profit - rehab). Your hard limit.</div>
+        </div>
+
+        <div class="bg-slate-950 p-3 rounded-xl border border-cyan-500/30 space-y-1">
+          <div class="flex items-center justify-between text-[11px]">
+            <span class="text-cyan-400 font-bold">3. Creative Terms / Novation</span>
+            <span class="text-[9px] px-1.5 py-0.5 rounded bg-cyan-950 text-cyan-300 border border-cyan-800 font-mono">Creative</span>
+          </div>
+          <div class="text-xl font-black text-cyan-300 font-mono" id="u407LeadOffer3">$0</div>
+          <div class="text-[10px] text-slate-400 leading-snug">Novation agreement or seller carry for sellers who need retail price.</div>
+        </div>
+      </div>
+
+      <!-- FLORIDA 4-POINT INSURANCE & SYSTEMS RISK TRIGGERS -->
+      <div class="bg-slate-950/80 border border-slate-800 rounded-xl p-3.5 space-y-2.5">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="text-amber-400 font-bold text-xs uppercase tracking-wider">🚨 Florida 4-Point Insurance &amp; Systems Risk Triggers</span>
+            <span class="text-[10px] px-2 py-0.5 rounded font-mono font-bold bg-amber-500/20 text-amber-300" id="u407LeadTriggerCount">0 Triggers</span>
+          </div>
+          <div class="text-[10px] text-slate-400 font-mono" id="u407LeadSystemsCost">Total Systems Outlay: $0</div>
+        </div>
+        <div id="u407LeadTriggersContainer" class="space-y-2">
+          <!-- Populated dynamically -->
+        </div>
+      </div>
+
+      <!-- TWO-TIER REHAB & 22% FRICTION FORMULA BREAKDOWN -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+        <div class="bg-slate-950/80 border border-slate-800 rounded-xl p-3.5 space-y-2">
+          <div class="text-[11px] font-bold text-slate-300 uppercase tracking-wider flex items-center justify-between">
+            <span>Two-Tier Rehab Scoping</span>
+            <span class="text-[10px] text-amber-400 font-mono">Itemized</span>
+          </div>
+          <div class="space-y-1.5 text-xs font-mono">
+            <div class="flex items-center justify-between bg-slate-900/60 p-2 rounded-lg border border-slate-800">
+              <span class="text-slate-300">Tier 1 Retail Flip Scope:</span>
+              <span class="font-bold text-amber-300" id="u407LeadFlipRehab">$0</span>
+            </div>
+            <div class="flex items-center justify-between bg-slate-900/60 p-2 rounded-lg border border-slate-800">
+              <span class="text-slate-300">Tier 2 Landlord/BRRRR Scope:</span>
+              <span class="font-bold text-slate-200" id="u407LeadRentalRehab">$0</span>
+            </div>
+            <div class="text-[10px] text-slate-500 font-sans leading-tight pt-1">
+              Includes kitchen, baths, LVP flooring, paint/drywall skim, doors/trim, demo + confirmed roof/HVAC allowances.
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate-950/80 border border-slate-800 rounded-xl p-3.5 space-y-2">
+          <div class="text-[11px] font-bold text-slate-300 uppercase tracking-wider flex items-center justify-between">
+            <span>Private Seller Buy: 21.5% Friction &amp; Profit</span>
+            <span class="text-[10px] text-emerald-400 font-mono">21.5% Total</span>
+          </div>
+          <div class="space-y-1 text-[11px] font-mono">
+            <div class="flex items-center justify-between text-slate-400">
+              <span>• Closing Costs (2%):</span>
+              <span id="u407LeadClosing">$0</span>
+            </div>
+            <div class="flex items-center justify-between text-slate-400">
+              <span>• Carrying Costs (2%):</span>
+              <span id="u407LeadCarrying">$0</span>
+            </div>
+            <div class="flex items-center justify-between text-slate-400">
+              <span>• Backside Agent Commission (2.5%):</span>
+              <span id="u407LeadComm">$0</span>
+            </div>
+            <div class="flex items-center justify-between text-slate-400">
+              <span>• Flipper Net Profit (15%):</span>
+              <span id="u407LeadProfit">$0</span>
+            </div>
+            <div class="flex items-center justify-between text-amber-300 font-bold pt-1 border-t border-slate-800">
+              <span>Total 21.5% Friction + Profit:</span>
+              <span id="u407LeadTotalFriction">$0</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MODAL FOOTER & ACTIONS -->
+      <div class="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-slate-800">
+        <button type="button" onclick="closeModal('underwrite407FlipsLeadModal')" class="px-4 py-2 rounded-xl text-xs font-semibold text-slate-400 hover:text-white cursor-pointer">
+          Close
+        </button>
+        <div class="flex items-center gap-2">
+          <button type="button" onclick="copy407FlipsLeadReport()" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-bold transition cursor-pointer flex items-center gap-1.5">
+            <span>📋 Copy Lead Underwriting</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==================================================== -->
+  <!-- SCOUT OPERATOR & SENTINEL SLIDE-OVER DRAWER -->
+  <!-- ==================================================== -->
+  <div id="scoutDrawerBackdrop" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden transition-opacity" onclick="closeScoutDrawer()"></div>
+  <aside id="scoutDrawer" class="fixed top-0 right-0 h-full w-full max-w-2xl sm:max-w-3xl bg-[#090f1d] border-l border-amber-500/30 shadow-2xl z-50 flex flex-col transform translate-x-full transition-transform duration-300 ease-in-out">
+    <!-- Header -->
+    <div class="p-4 sm:p-5 border-b border-slate-800 bg-[#0d1424] flex items-center justify-between shrink-0">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-500 to-amber-700 flex items-center justify-center text-white shadow-lg shadow-amber-500/30 text-xl font-bold">
+          🧭
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h2 class="text-base sm:text-lg font-extrabold text-white tracking-tight">Scout AI</h2>
+            <span id="scoutDrawerSentinelStatusPill" class="px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">🟢 HEALTHY</span>
+          </div>
+          <p class="text-[11px] text-slate-400">Lead Operations &amp; Research &bull; 37 Florida Counties</p>
+        </div>
+      </div>
+      <div class="flex items-center gap-2">
+        <button type="button" onclick="clearScoutChat()" class="px-2.5 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-rose-300 transition cursor-pointer text-xs flex items-center gap-1.5" title="Clear Chat History">
+          <span>🗑️</span>
+          <span class="hidden sm:inline font-semibold">Clear</span>
+        </button>
+        <button type="button" onclick="refreshScoutSentinelStatus()" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition cursor-pointer text-xs flex items-center gap-1" title="Refresh Sentinel Watchdog Health">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+        </button>
+        <button type="button" onclick="closeScoutDrawer()" class="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition cursor-pointer" title="Close Drawer">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Quick Action 1-Click Bar -->
+    <div class="px-4 py-3 bg-[#0a1120] border-b border-slate-800/80 shrink-0">
+      <div class="flex items-center justify-between mb-1.5">
+        <span class="text-[10px] uppercase tracking-wider font-extrabold text-slate-400">1-Click Fast Actions</span>
+        <span id="scoutQuickStateLabel" class="text-[10px] font-mono text-amber-400 font-bold">STATE: FL (37 COUNTIES)</span>
+      </div>
+      <div class="flex flex-wrap gap-1.5">
+        <button type="button" onclick="triggerScoutBriefing()" class="px-2.5 py-1.5 rounded-lg bg-blue-600/20 hover:bg-blue-600/30 text-blue-300 border border-blue-500/30 text-xs font-semibold flex items-center gap-1.5 transition cursor-pointer">
+          <span>📊 Daily Briefing</span>
+        </button>
+        <button type="button" onclick="triggerScoutStatewideDistress('stacked')" class="px-2.5 py-1.5 rounded-lg bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/30 text-xs font-semibold flex items-center gap-1.5 transition cursor-pointer">
+          <span>🔥 Statewide Double/Triple Distress</span>
+        </button>
+        <button type="button" onclick="triggerScoutStatewideDistress('out_of_state')" class="px-2.5 py-1.5 rounded-lg bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 border border-emerald-500/30 text-xs font-semibold flex items-center gap-1.5 transition cursor-pointer">
+          <span>✈️ Out-of-State Absentee</span>
+        </button>
+        <button type="button" onclick="triggerScoutStatewideDistress('code')" class="px-2.5 py-1.5 rounded-lg bg-rose-500/20 hover:bg-rose-500/30 text-rose-300 border border-rose-500/30 text-xs font-semibold flex items-center gap-1.5 transition cursor-pointer">
+          <span>⚠️ Code Violations</span>
+        </button>
+        <button type="button" onclick="triggerScoutSyncAll()" class="px-2.5 py-1.5 rounded-lg bg-purple-500/20 hover:bg-purple-500/30 text-purple-300 border border-purple-500/30 text-xs font-semibold flex items-center gap-1.5 transition cursor-pointer">
+          <span>⚡ Poll &amp; Sync All APIs</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Active Drawer Body: Scrollable Chat Stream (Full Height, Unobstructed) -->
+    <div id="scoutChatContainer" class="flex-1 p-4 overflow-y-auto space-y-4">
+      <!-- Welcome message from Scout -->
+      <div class="flex items-start gap-3">
+        <div class="w-8 h-8 rounded-lg bg-amber-600/30 text-amber-300 flex items-center justify-center text-sm font-bold shrink-0 border border-amber-500/40">
+          🧭
+        </div>
+        <div class="bg-slate-800/80 border border-slate-700/60 rounded-2xl rounded-tl-none p-3.5 max-w-xl text-xs text-slate-200 space-y-2">
+          <p class="font-bold text-white text-sm">Hello John, I'm Scout AI 🧭</p>
+          <p>I am your lead analyst and operations partner. I monitor all 37 Florida counties (52,000+ active distress leads and 9.8M+ parcels).</p>
+          <p class="text-slate-400">Ask me anything or use the 1-click pills above:</p>
+          <ul class="list-disc list-inside text-slate-300 space-y-1">
+            <li><em>"Show me all triple distress leads in Orange and Hillsborough"</em></li>
+            <li><em>"Daily executive report for Lake and Polk"</em></li>
+            <li><em>"What is the system health?"</em></li>
+            <li><em>"Find high-equity code violations in Duval"</em></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Chat Input Form -->
+    <div class="p-3 sm:p-4 bg-[#0d1424] border-t border-slate-800 shrink-0">
+      <form onsubmit="handleScoutChatSubmit(event)" class="flex items-center gap-2">
+        <input type="text" id="scoutChatInput" placeholder="Ask Scout anything across all 37 counties (e.g. 'All probate in Duval with equity > $200k')..." class="flex-1 bg-[#070c18] border border-slate-700/80 rounded-xl px-4 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-500 shadow-inner">
+        <button type="submit" id="scoutSendBtn" class="px-4 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-extrabold text-xs transition cursor-pointer shadow-lg shadow-amber-500/25 flex items-center gap-1.5 shrink-0">
+          <span>Send</span>
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </button>
+      </form>
+    </div>
+  </aside>
+
+  <!-- ==================================================== -->
+  <!-- SCOUT AI — DEDICATED LEADS POPOUT MODAL -->
+  <!-- ==================================================== -->
+  <div id="scoutLeadsPopoutModal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-[60] flex items-center justify-center p-3 sm:p-6 hidden">
+    <div class="bg-[#0a101f] border border-amber-500/40 rounded-2xl w-full max-w-6xl max-h-[92vh] flex flex-col shadow-2xl overflow-hidden">
+      
+      <!-- Modal Header -->
+      <div class="p-4 sm:p-5 border-b border-slate-800 bg-[#0d1424] flex items-center justify-between shrink-0">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-500 to-amber-700 flex items-center justify-center text-white shadow-lg shadow-amber-500/30 text-xl font-bold">
+            🧭
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <h3 class="text-base sm:text-lg font-extrabold text-white tracking-tight">Scout AI — Statewide Opportunity Explorer</h3>
+              <span id="scoutPopoutCountBadge" class="px-2.5 py-0.5 rounded-full text-xs font-extrabold bg-amber-500/20 text-amber-300 border border-amber-500/40">0 Leads</span>
+              <span id="scoutPopoutSpeedBadge" class="text-xs text-slate-400 font-mono">0ms</span>
+            </div>
+            <p class="text-[11px] text-slate-400">Targeting residential wholesale flip opportunities across 37 Florida counties</p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <button type="button" onclick="exportScoutResultsToCSV()" class="px-3 py-1.5 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 text-xs font-bold transition flex items-center gap-1.5 cursor-pointer shadow-sm">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+            Export CSV
+          </button>
+          <button type="button" onclick="closeScoutLeadsPopout()" class="px-3.5 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white border border-slate-700 text-xs font-bold transition flex items-center gap-1.5 cursor-pointer shadow-sm" title="Close and return to Scout Chat">
+            <span class="text-sm font-bold">✕</span>
+            <span>Close / Back to Chat</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Filter Controls Toolbar -->
+      <div class="px-4 py-3 bg-[#080d1a] border-b border-slate-800 flex flex-wrap items-center justify-between gap-3 shrink-0">
+        <div class="flex flex-wrap items-center gap-2 sm:gap-4 flex-1">
+          <!-- Text Search Filter -->
+          <div class="relative min-w-[200px] flex-1 sm:max-w-xs">
+            <input type="text" id="scoutPopoutSearchInput" oninput="filterScoutPopoutResults()" placeholder="Search address, owner, city, parcel..." class="w-full bg-[#0d1424] border border-slate-700 rounded-xl px-3 py-1.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-500">
+          </div>
+
+          <!-- Exclude LLCs Toggle -->
+          <label class="flex items-center gap-2 text-xs font-semibold text-slate-300 cursor-pointer select-none bg-slate-900/80 px-2.5 py-1.5 rounded-xl border border-slate-800 hover:border-slate-700">
+            <input type="checkbox" id="scoutPopoutExcludeLlc" onchange="filterScoutPopoutResults()" checked class="rounded border-slate-700 text-amber-500 focus:ring-0 cursor-pointer">
+            <span class="flex items-center gap-1">🚫 Exclude LLCs / Corporate</span>
+          </label>
+
+          <!-- Max Market Value Dropdown -->
+          <div class="flex items-center gap-1.5 text-xs text-slate-400">
+            <span class="font-semibold text-slate-300">Max Value:</span>
+            <select id="scoutPopoutMaxPrice" onchange="filterScoutPopoutResults()" class="bg-[#0d1424] border border-slate-700 rounded-xl px-2.5 py-1.5 text-xs text-white focus:outline-none focus:border-amber-500 cursor-pointer">
+              <option value="500000">Up to $500,000</option>
+              <option value="750000">Up to $750,000</option>
+              <option value="1000000">Up to $1,000,000</option>
+              <option value="1500000" selected>Up to $1,500,000 (Residential Flip)</option>
+              <option value="999999999">Any Market Value</option>
+            </select>
+          </div>
+
+          <!-- Distress Type Dropdown -->
+          <div class="flex items-center gap-1.5 text-xs text-slate-400">
+            <span class="font-semibold text-slate-300">Distress:</span>
+            <select id="scoutPopoutDistressFilter" onchange="filterScoutPopoutResults()" class="bg-[#0d1424] border border-slate-700 rounded-xl px-2.5 py-1.5 text-xs text-white focus:outline-none focus:border-amber-500 cursor-pointer">
+              <option value="all">All Distress Types</option>
+              <option value="stacked">🔥 Stacked Only (Double/Triple)</option>
+              <option value="code">⚠️ Code Violations</option>
+              <option value="out_of_state">✈️ Out-of-State Absentee</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="scoutPopoutFilteredCountLabel" class="text-xs text-slate-400 font-mono shrink-0">
+          Showing 0 of 0
+        </div>
+      </div>
+
+      <!-- Popout Table Container -->
+      <div class="flex-1 overflow-auto bg-[#070c18]">
+        <table class="w-full text-left text-xs border-collapse">
+          <thead class="sticky top-0 bg-[#0c1322] border-b border-slate-800 text-[11px] uppercase tracking-wider text-slate-400 font-bold z-10 shadow">
+            <tr>
+              <th class="py-3 px-3.5">Urgency &amp; Stacks</th>
+              <th class="py-3 px-3.5">County / Parcel</th>
+              <th class="py-3 px-3.5">Property Address</th>
+              <th class="py-3 px-3.5">Owner &amp; Entity</th>
+              <th class="py-3 px-3.5 text-right">Market Value</th>
+              <th class="py-3 px-3.5 text-center">Action</th>
+            </tr>
+          </thead>
+          <tbody id="scoutPopoutTableBody" class="divide-y divide-slate-800/60 text-slate-300 font-sans">
+            <!-- Rows rendered dynamically -->
+          </tbody>
+        </table>
+        <div id="scoutPopoutEmptyState" class="hidden p-12 text-center text-slate-400 space-y-2">
+          <div class="text-3xl">🔍</div>
+          <p class="font-bold text-white text-sm">No properties match the current filters.</p>
+          <p class="text-xs text-slate-500">Try adjusting your search keywords, raising the Max Value ceiling, or unchecking "Exclude LLCs".</p>
+        </div>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="p-3 bg-[#0a101f] border-t border-slate-800 flex items-center justify-between shrink-0 text-xs text-slate-400">
+        <div class="flex items-center gap-2">
+          <span>💡 Real estate wholesale priority: Single-family residences under $1.5M with stacked distress.</span>
+        </div>
+        <button type="button" onclick="closeScoutLeadsPopout()" class="px-4 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white font-bold transition cursor-pointer">
+          ✕ Close Popout
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="/static/app.js?v=59"></script>
 </body>
 </html>

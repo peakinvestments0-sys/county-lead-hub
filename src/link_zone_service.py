@@ -384,5 +384,92 @@ class LinkZoneLiveService:
             "history": self.history[:30] # Return last 30 events for instant display
         }
 
+    def get_state_api_catalog(self, state: str = "FL") -> Dict[str, Any]:
+        r"""
+        Direct live reader for Link Zone's State API Directories:
+        C:\Projects\Apps\link-zone\data\{state_name}-api-links.json.
+        Supports FL, GA, TN, TX, and any future states dynamically.
+        """
+        state_code = (state or "FL").upper()
+        state_filename_map = {
+            "FL": "florida-api-links.json",
+            "GA": "georgia-api-links.json",
+            "TN": "tennessee-api-links.json",
+            "TX": "texas-api-links.json",
+            "IN": "indiana-api-links.json",
+            "NC": "north-carolina-api-links.json",
+            "OH": "ohio-api-links.json",
+            "SC": "south-carolina-api-links.json",
+        }
+        filename = state_filename_map.get(state_code, f"{state_code.lower()}-api-links.json")
+        state_name = STATE_META.get(state_code, {}).get("name", state_code)
+
+        active_dir, is_live = self._get_active_dir()
+        catalog_path = os.path.join(active_dir, filename)
+        if not os.path.exists(catalog_path):
+            catalog_path = os.path.join(r"C:\Projects\Apps\link-zone\data", filename)
+
+        if not os.path.exists(catalog_path):
+            return {
+                "status": "not_found",
+                "state": state_code,
+                "state_name": state_name,
+                "message": f"API catalog for {state_name} ({filename}) is not generated yet. Run the Codex prompt in Link Zone to scan {state_name}.",
+                "total_endpoints": 0,
+                "endpoints": [],
+                "categories": [],
+                "statistics": {}
+            }
+
+        try:
+            with open(catalog_path, "r", encoding="utf-8") as f:
+                data = json.load(f)
+
+            endpoints = data.get("endpoints", [])
+            categories = data.get("categories", [])
+            statistics = data.get("statistics", {})
+            county_coverage = data.get("countyCoverage", [])
+            muni_coverage = data.get("municipalCoverage", [])
+
+            # Decorate endpoints with active/connected indicators
+            for ep in endpoints:
+                ep_url = ep.get("apiUrl", "").lower()
+                if "k6e8-nw6w" in ep_url or "cityoforlando.net" in ep_url:
+                    ep["is_connected"] = True
+                    ep["connected_lead_type"] = "Code Violation"
+                    ep["connected_county"] = "Orange"
+                else:
+                    ep["is_connected"] = False
+
+            return {
+                "status": "ready",
+                "state": state_code,
+                "state_name": state_name,
+                "source_file": catalog_path,
+                "schema_version": data.get("schemaVersion", 1),
+                "date_verified": data.get("dateVerified", ""),
+                "total_endpoints": len(endpoints),
+                "categories": categories,
+                "statistics": statistics,
+                "county_coverage_count": len(county_coverage),
+                "muni_coverage_count": len(muni_coverage),
+                "endpoints": endpoints
+            }
+        except Exception as e:
+            return {
+                "status": "error",
+                "state": state_code,
+                "state_name": state_name,
+                "message": f"Failed to load catalog for {state_name}: {str(e)}",
+                "total_endpoints": 0,
+                "endpoints": [],
+                "categories": [],
+                "statistics": {}
+            }
+
+    def get_florida_api_catalog(self) -> Dict[str, Any]:
+        """Backward-compatible alias for Florida catalog."""
+        return self.get_state_api_catalog(state="FL")
+
 # Global Singleton Instance
 link_zone_service = LinkZoneLiveService()

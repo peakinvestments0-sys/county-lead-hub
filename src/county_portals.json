@@ -1342,8 +1342,8 @@
             "master_parcel_note": "Florida DOR publishes Orange County current NAL real-property assessment-roll files with layouts.",
             "master_parcel_format": "ZIP / CSV",
             "master_parcel_access": "DOWNLOAD_PAGE",
-            "clerk_lis_pendens_url": "https://officialrecords.occompt.com/recorder/web/",
-            "clerk_lis_pendens_note": "Requires I Accept. Official Comptroller recorded-document search; select Lis Pendens.",
+            "clerk_lis_pendens_url": "https://selfservice.or.occompt.com/ssweb/search/DOCSEARCH2950S3",
+            "clerk_lis_pendens_note": "Comptroller Official Records (Lis Pendens, Divorce, Judgments, Deeds, Recorded Probate). Requires clicking Accept on disclaimer.",
             "code_enforcement_url": "https://www.ocfl.net/NeighborsHousing/CodeCompliance.aspx",
             "code_enforcement_note": "Official county Code Compliance page provides case, complaint, and records routes for unincorporated Orange County.",
             "clerk_probate_url": "https://myeclerk.myorangeclerk.com/cases/search",
@@ -1354,8 +1354,8 @@
             "tax_liens_note": "Official Tax Collector bulk tax-roll download page.",
             "sources": [
                 {
-                    "url": "https://officialrecords.occompt.com/recorder/web/",
-                    "notes": "Requires I Accept. Official Comptroller recorded-document search; select Lis Pendens."
+                    "url": "https://selfservice.or.occompt.com/ssweb/search/DOCSEARCH2950S3",
+                    "notes": "Comptroller Official Records (Lis Pendens, Divorce, Judgments, Deeds, Recorded Probate). Requires clicking Accept on disclaimer."
                 },
                 {
                     "url": "https://www.ocfl.net/NeighborsHousing/CodeCompliance.aspx",
@@ -2034,6 +2034,71 @@
                     "access": "RECORDS_REQUEST"
                 }
             ]
+        },
+        "Ca": {
+            "full_name": "Ca County",
+            "folder_name": "CA",
+            "state": "FL",
+            "csv_name": "RP_PROPERTY_INFO.csv",
+            "parquet_name": "RP_PROPERTY_INFO.parquet",
+            "sample_lp": "",
+            "sample_code": "",
+            "sample_probate": "",
+            "clerk_lis_pendens_url": "",
+            "code_enforcement_url": "",
+            "master_parcel_download_url": ""
+        },
+        "Nj": {
+            "full_name": "Nj County",
+            "folder_name": "NJ",
+            "state": "FL",
+            "csv_name": "RP_PROPERTY_INFO.csv",
+            "parquet_name": "RP_PROPERTY_INFO.parquet",
+            "sample_lp": "",
+            "sample_code": "",
+            "sample_probate": "",
+            "clerk_lis_pendens_url": "",
+            "code_enforcement_url": "",
+            "master_parcel_download_url": ""
+        },
+        "Or": {
+            "full_name": "Or County",
+            "folder_name": "OR",
+            "state": "FL",
+            "csv_name": "RP_PROPERTY_INFO.csv",
+            "parquet_name": "RP_PROPERTY_INFO.parquet",
+            "sample_lp": "",
+            "sample_code": "",
+            "sample_probate": "",
+            "clerk_lis_pendens_url": "",
+            "code_enforcement_url": "",
+            "master_parcel_download_url": ""
+        },
+        "Wi": {
+            "full_name": "Wi County",
+            "folder_name": "WI",
+            "state": "FL",
+            "csv_name": "RP_PROPERTY_INFO.csv",
+            "parquet_name": "RP_PROPERTY_INFO.parquet",
+            "sample_lp": "",
+            "sample_code": "",
+            "sample_probate": "",
+            "clerk_lis_pendens_url": "",
+            "code_enforcement_url": "",
+            "master_parcel_download_url": ""
+        },
+        "Backups": {
+            "full_name": "Backups County",
+            "folder_name": "backups",
+            "state": "FL",
+            "csv_name": "RP_PROPERTY_INFO.csv",
+            "parquet_name": "RP_PROPERTY_INFO.parquet",
+            "sample_lp": "",
+            "sample_code": "",
+            "sample_probate": "",
+            "clerk_lis_pendens_url": "",
+            "code_enforcement_url": "",
+            "master_parcel_download_url": ""
         }
     }
 }

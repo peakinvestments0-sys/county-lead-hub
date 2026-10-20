@@ -279,7 +279,7 @@ def extract_legal_tokens(legal_str: Any) -> Dict[str, Any]:
     if not isinstance(legal_str, str) or not legal_str.strip():
         return {'lot': None, 'block': None, 'unit': None, 'subdivision': ''}
         
-    s = legal_str.upper()
+    s = re.sub(r'\b(LOT|BLOCK|BLK|UNIT)\s*:\s*', r'\1 ', legal_str.upper())
     lot_match = re.search(r'\bLOT\s+([A-Z0-9\-]+)\b', s)
     block_match = re.search(r'\b(?:BLK|BLOCK)\s+([A-Z0-9\-]+)\b', s)
     unit_match = re.search(r'\b(?:UNIT|NO|SUITE|APT)\s*(?:NO\s*)?([A-Z0-9\-]+)\b', s)
@@ -372,4 +372,125 @@ def extract_human_defendants(grantee_str: Any) -> List[Dict[str, str]]:
         })
         
     return results
+
+
+DIR_WORDS_SET = {
+    'N', 'S', 'E', 'W', 'NE', 'NW', 'SE', 'SW',
+    'NORTH', 'SOUTH', 'EAST', 'WEST',
+    'NORTHEAST', 'NORTHWEST', 'SOUTHEAST', 'SOUTHWEST'
+}
+
+ENTITY_ACRONYMS_SET = {'LLC', 'LP', 'LLP', 'PA', 'PLLC', 'PC', 'II', 'III', 'IV'}
+
+
+def clean_display_address(addr_str: Any) -> str:
+    """
+    Format address for clean human display (dropping all directions, no ALL-CAPS):
+    - Drops trailing directions (e.g. 123 MAIN STREET S -> 123 Main St)
+    - Drops leading directions (e.g. 714 W KALEY AV -> 714 Kaley Ave)
+    - Preserves street names that are directions (e.g. 122 NORTH ST -> 122 North St)
+    - Formats proper title case & abbreviations (STREET -> St, AVENUE -> Ave, etc.)
+    """
+    if not addr_str or (isinstance(addr_str, float) and str(addr_str) == 'nan'):
+        return ""
+    s = str(addr_str).strip()
+    if not s or s.lower() in ('nan', 'none', 'n/a'):
+        return ""
+
+    # Extract unit/apt if present at the end
+    unit_match = re.search(r'(\s+(?:#|APT|UNIT|STE|SUITE|BLDG|LOT|SPAC|SPC)\s*#?\s*[A-Za-z0-9\-]+)$', s, flags=re.IGNORECASE)
+    unit_part = ""
+    if unit_match:
+        unit_part = unit_match.group(1).title()
+        unit_part = re.sub(r'#\s*', '# ', unit_part)
+        s = s[:unit_match.start()].strip()
+
+    tokens = s.split()
+    if not tokens:
+        return ""
+
+    # Drop trailing direction (e.g. 123 MAIN ST S or 123 MAIN STREET SOUTH)
+    if len(tokens) > 2 and tokens[-1].upper() in DIR_WORDS_SET:
+        tokens.pop()
+
+    # Drop leading direction (e.g. 714 W KALEY AV or 123 S MAIN ST)
+    # Only drop if there is at least one word between direction and street type
+    if len(tokens) >= 4 and tokens[1].upper() in DIR_WORDS_SET:
+        tokens.pop(1)
+    elif len(tokens) == 3 and tokens[0].upper() in DIR_WORDS_SET and tokens[2].upper() in STREET_SUFFIX_MAP:
+        tokens.pop(0)
+
+    formatted = []
+    for t in tokens:
+        u = t.upper()
+        if u in STREET_SUFFIX_MAP:
+            formatted.append(STREET_SUFFIX_MAP[u].title())
+        elif re.match(r'^\d+(ST|ND|RD|TH)$', u):
+            formatted.append(u.lower())
+        elif re.match(r'^MC[A-Za-z]', u):
+            formatted.append('Mc' + t[2:].capitalize())
+        elif re.match(r"^O'[A-Za-z]", u):
+            formatted.append("O'" + t[2:].capitalize())
+        elif '-' in t:
+            formatted.append('-'.join(part.capitalize() for part in t.split('-')))
+        else:
+            formatted.append(t.capitalize())
+
+    res = ' '.join(formatted)
+    if unit_part:
+        res = f"{res} {unit_part.strip()}"
+    return res
+
+
+def clean_display_name(name_str: Any) -> str:
+    """Format owner name for clean human display (never ALL-CAPS, proper entity case)."""
+    if not name_str or (isinstance(name_str, float) and str(name_str) == 'nan'):
+        return ""
+    s = str(name_str).strip()
+    if not s or s.lower() in ('nan', 'none', 'unknown', 'unknown owner'):
+        return "Unknown Owner"
+
+    tokens = s.split()
+    formatted = []
+    for t in tokens:
+        u = t.upper()
+        if u in ENTITY_ACRONYMS_SET:
+            formatted.append(u)
+        elif u in ('&', 'AND'):
+            formatted.append('&')
+        elif u == 'INC':
+            formatted.append('Inc')
+        elif u == 'CORP':
+            formatted.append('Corp')
+        elif u == 'CO':
+            formatted.append('Co')
+        elif u == 'LTD':
+            formatted.append('Ltd')
+        elif re.match(r'^MC[A-Za-z]', u):
+            formatted.append('Mc' + t[2:].capitalize())
+        elif re.match(r"^O'[A-Za-z]", u):
+            formatted.append("O'" + t[2:].capitalize())
+        elif '-' in t:
+            formatted.append('-'.join(part.capitalize() for part in t.split('-')))
+        else:
+            formatted.append(t.capitalize())
+
+    return ' '.join(formatted)
+
+
+def clean_display_city(city_str: Any) -> str:
+    """Format city name for clean display (Title Case, St. Petersburg)."""
+    if not city_str or (isinstance(city_str, float) and str(city_str) == 'nan'):
+        return ""
+    s = str(city_str).strip()
+    if not s or s.lower() in ('nan', 'none'):
+        return ""
+    tokens = s.split()
+    formatted = []
+    for t in tokens:
+        if t.upper() in ('ST', 'ST.'):
+            formatted.append('St.')
+        else:
+            formatted.append(t.capitalize())
+    return ' '.join(formatted)
 

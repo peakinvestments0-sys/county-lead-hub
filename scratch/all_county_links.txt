@@ -1,0 +1,259 @@
+### Alachua County
+- **Master Parcel Download**: [https://s3.amazonaws.com/acpa.cama/ACPA_CAMAData.zip](https://s3.amazonaws.com/acpa.cama/ACPA_CAMAData.zip) (DIRECT_DOWNLOAD)
+- **Lis Pendens Portal**: [https://isol.alachuaclerk.org/RealEstate/SearchEntry.aspx](https://isol.alachuaclerk.org/RealEstate/SearchEntry.aspx)
+- **Probate Portal**: [https://www.alachuaclerk.org/court_records/index.cfm?r=179&section=login](https://www.alachuaclerk.org/court_records/index.cfm?r=179&section=login)
+- **Code Enforcement**: [https://alachuacounty.us/Depts/CodeAdmin/pages/complaints.aspx](https://alachuacounty.us/Depts/CodeAdmin/pages/complaints.aspx)
+- **Tax Liens**: [https://alachua.county-taxes.com/tcb/app/public/main/reports](https://alachua.county-taxes.com/tcb/app/public/main/reports)
+
+### Bay County
+- **Master Parcel Download**: [https://floridarevenue.com/property/Pages/DataPortal_RequestAssessmentRollGISData.aspx](https://floridarevenue.com/property/Pages/DataPortal_RequestAssessmentRollGISData.aspx) (DOWNLOAD_PAGE)
+- **Lis Pendens Portal**: [https://records2.baycoclerk.com/Recording/Home/Index](https://records2.baycoclerk.com/Recording/Home/Index)
+- **Probate Portal**: [https://www.baycoclerk.com/public-records/search-court-cases-court-docket/](https://www.baycoclerk.com/public-records/search-court-cases-court-docket/)
+- **Code Enforcement**: [https://portal.baycountyfl.gov/CodeEnforcement/Locator?category=CE](https://portal.baycountyfl.gov/CodeEnforcement/Locator?category=CE)
+- **Tax Liens**: [https://baycountyfltax.gov/help/public-records-request/](https://baycountyfltax.gov/help/public-records-request/)
+
+### Brevard County
+- **Master Parcel Download**: [https://www.bcpao.us/Docs/PublicDownload/PropData/WebData.zip](https://www.bcpao.us/Docs/PublicDownload/PropData/WebData.zip) (DIRECT_DOWNLOAD)
+- **Lis Pendens Portal**: [https://vaclmweb1.brevardclerk.us/AcclaimWeb/](https://vaclmweb1.brevardclerk.us/AcclaimWeb/)
+- **Probate Portal**: [https://www.brevardclerk.us/case-search](https://www.brevardclerk.us/case-search)
+- **Code Enforcement**: [https://www.brevardfl.gov/PlanningAndDevelopment/ContractorAndCodeEnforcement/CodeEnforcementCaseSearch](https://www.brevardfl.gov/PlanningAndDevelopment/ContractorAndCodeEnforcement/CodeEnforcementCaseSearch)
+- **Tax Liens**: [https://www.brevardtaxcollector.com/public-records-requests/](https://www.brevardtaxcollector.com/public-records-requests/)
+
+### Broward County
+- **Master Parcel Download**: [https://web.bcpa.net/bcpaclient/home2.aspx#Data-Request](https://web.bcpa.net/bcpaclient/home2.aspx#Data-Request) (RECORDS_REQUEST)
+- **Lis Pendens Portal**: [https://officialrecords.broward.org/AcclaimWeb/search/Disclaimer?st=%2FAcclaimWeb%2Fsearch%2FSearchTypeName](https://officialrecords.broward.org/AcclaimWeb/search/Disclaimer?st=%2FAcclaimWeb%2Fsearch%2FSearchTypeName)
+- **Probate Portal**: [https://www.browardclerk.org/Web2](https://www.browardclerk.org/Web2)
+- **Code Enforcement**: [https://dpepp.broward.org/BCS/Default.aspx?PossePresentation=SearchForEnforcement](https://dpepp.broward.org/BCS/Default.aspx?PossePresentation=SearchForEnforcement)
+- **Tax Liens**: [https://browardtax.org/public-records/](https://browardtax.org/public-records/)
+
+### Charlotte County
+- **Master Parcel Download**: [https://www.ccappraiser.com/downloads/charlotte.zip](https://www.ccappraiser.com/downloads/charlotte.zip) (DIRECT_DOWNLOAD)
+- **Lis Pendens Portal**: [https://recording.charlotteclerk.com/Search/](https://recording.charlotteclerk.com/Search/)
+- **Probate Portal**: [https://courts.charlotteclerk.com/Benchmark/Home.aspx/Search](https://courts.charlotteclerk.com/Benchmark/Home.aspx/Search)
+- **Code Enforcement**: [https://aca-prod.accela.com/BOCC/Cap/CapHome.aspx?TabName=Home&module=CodeEnforcement](https://aca-prod.accela.com/BOCC/Cap/CapHome.aspx?TabName=Home&module=CodeEnforcement)
+- **Tax Liens**: [https://taxcollector.charlottecountyfl.gov/files](https://taxcollector.charlottecountyfl.gov/files)
+
+### Citrus County
+- **Master Parcel Download**: [https://www.citruspa.org/_dnn/Downloads](https://www.citruspa.org/_dnn/Downloads) (DOWNLOAD_PAGE)
+- **Lis Pendens Portal**: [https://search.citrusclerk.org/LandmarkWeb](https://search.citrusclerk.org/LandmarkWeb)
+- **Probate Portal**: [https://scorss.citrusclerk.org/](https://scorss.citrusclerk.org/)
+- **Code Enforcement**: [https://www.citrusclerk.org/publicrecords](https://www.citrusclerk.org/publicrecords)
+- **Tax Liens**: [https://www.citrustc.us/public-records-requests/](https://www.citrustc.us/public-records-requests/)
+
+### Clay County
+- **Master Parcel Download**: [https://www.ccpao.com/parcel-information/](https://www.ccpao.com/parcel-information/) (DOWNLOAD_PAGE)
+- **Lis Pendens Portal**: [https://landmark.clayclerk.com/landmarkweb](https://landmark.clayclerk.com/landmarkweb)
+- **Probate Portal**: [https://inquiry.clayclerk.com/Home.aspx/Search](https://inquiry.clayclerk.com/Home.aspx/Search)
+- **Code Enforcement**: [https://www.claycountygov.com/government/public-records-search](https://www.claycountygov.com/government/public-records-search)
+- **Tax Liens**: [https://clay.county-taxes.com/public/reports](https://clay.county-taxes.com/public/reports)
+
+### Collier County
+- **Master Parcel Download**: [https://floridarevenue.com/property/Pages/DataPortal_RequestAssessmentRollGISData.aspx](https://floridarevenue.com/property/Pages/DataPortal_RequestAssessmentRollGISData.aspx) (DOWNLOAD_PAGE)
+- **Lis Pendens Portal**: [https://app.collierclerk.com/CORPublicAccess/Search/Document](https://app.collierclerk.com/CORPublicAccess/Search/Document)
+- **Probate Portal**: [https://www.collierclerk.com/court-divisions/online-case-search/](https://www.collierclerk.com/court-divisions/online-case-search/)
+- **Code Enforcement**: [https://cvportal.collier.gov/cityviewweb/CodeEnforcement/Locator?category=CE](https://cvportal.collier.gov/cityviewweb/CodeEnforcement/Locator?category=CE)
+- **Tax Liens**: [https://colliertaxcollector.com/public-records-request/](https://colliertaxcollector.com/public-records-request/)
+
+### Duval County
+- **Master Parcel Download**: [https://www.jacksonville.gov/departments/property-appraiser/data-offerings](https://www.jacksonville.gov/departments/property-appraiser/data-offerings) (DOWNLOAD_PAGE)
+- **Lis Pendens Portal**: [https://core.duvalclerk.com/](https://core.duvalclerk.com/)
+- **Probate Portal**: [https://core.duvalclerk.com/](https://core.duvalclerk.com/)
+- **Code Enforcement**: [https://www.jacksonville.gov/departments/neighborhoods/municipal-code-compliance](https://www.jacksonville.gov/departments/neighborhoods/municipal-code-compliance)
+- **Tax Liens**: [https://taxcollector.jacksonville.gov/taxes/data-requests](https://taxcollector.jacksonville.gov/taxes/data-requests)
+
+### Escambia County
+- **Master Parcel Download**: [https://www.escpa.org/CAMA/Search.aspx](https://www.escpa.org/CAMA/Search.aspx) ()
+- **Lis Pendens Portal**: [https://dory.escambiaclerk.com/LandmarkWeb](https://dory.escambiaclerk.com/LandmarkWeb)
+- **Probate Portal**: [https://public.escambiaclerk.com/xml/xml_web_1a.asp](https://public.escambiaclerk.com/xml/xml_web_1a.asp)
+- **Code Enforcement**: [https://myescambia.com/our-services/natural-resources-management/code-enforcement](https://myescambia.com/our-services/natural-resources-management/code-enforcement)
+- **Tax Liens**: [https://escambia.county-taxes.com/tcb/app/public/main/reports](https://escambia.county-taxes.com/tcb/app/public/main/reports)
+
+### Flagler County
+- **Master Parcel Download**: [https://flaglerpa.com/gis/](https://flaglerpa.com/gis/) (DOWNLOAD_PAGE)
+- **Lis Pendens Portal**: [https://records.flaglerclerk.gov/](https://records.flaglerclerk.gov/)
+- **Probate Portal**: [https://flaglerclerk.gov/courts/probate-questions/](https://flaglerclerk.gov/courts/probate-questions/)
+- **Code Enforcement**: [https://www.flaglercounty.gov/County-Services/Public-Records-Request](https://www.flaglercounty.gov/County-Services/Public-Records-Request)
+- **Tax Liens**: [https://www.flaglertax.gov/prr/](https://www.flaglertax.gov/prr/)
+
+### Hernando County
+- **Master Parcel Download**: [https://floridarevenue.com/property/Pages/DataPortal_RequestAssessmentRollGISData.aspx](https://floridarevenue.com/property/Pages/DataPortal_RequestAssessmentRollGISData.aspx) (DOWNLOAD_PAGE)
+- **Lis Pendens Portal**: [https://or.hernandoclerk.com/LandmarkWeb/home/index](https://or.hernandoclerk.com/LandmarkWeb/home/index)
+- **Probate Portal**: [https://www.civitekflorida.com/ocrs/county/27/](https://www.civitekflorida.com/ocrs/county/27/)
+- **Code Enforcement**: [https://www.hernandocounty.us/public-safety/code-compliance/](https://www.hernandocounty.us/public-safety/code-compliance/)
+- **Tax Liens**: [https://www.hernandotax.us/](https://www.hernandotax.us/)
+
+### Highlands County
+- **Master Parcel Download**: [https://floridarevenue.com/property/Pages/DataPortal_RequestAssessmentRollGISData.aspx](https://floridarevenue.com/property/Pages/DataPortal_RequestAssessmentRollGISData.aspx) (DOWNLOAD_PAGE)
+- **Lis Pendens Portal**: [https://acclaim.highlandsclerkfl.gov/AcclaimWeb/Search/SearchTypeName](https://acclaim.highlandsclerkfl.gov/AcclaimWeb/Search/SearchTypeName)
+- **Probate Portal**: [https://www.civitekflorida.com/ocrs/county/28/](https://www.civitekflorida.com/ocrs/county/28/)
+- **Code Enforcement**: [https://www.highlandsfl.gov/departments/development_services/code_enforcement/index.php](https://www.highlandsfl.gov/departments/development_services/code_enforcement/index.php)
+- **Tax Liens**: [https://www.hctaxcollector.com/property-tax-reports/](https://www.hctaxcollector.com/property-tax-reports/)
+
+### Hillsborough County
+- **Master Parcel Download**: [https://downloads.hcpafl.org/](https://downloads.hcpafl.org/) (DOWNLOAD_PAGE)
+- **Lis Pendens Portal**: [https://hover.hillsclerk.com/](https://hover.hillsclerk.com/)
+- **Probate Portal**: [https://hover.hillsclerk.com/](https://hover.hillsclerk.com/)
+- **Code Enforcement**: [https://hcfl.gov/businesses/development-services-records/code-compliance-records-searches](https://hcfl.gov/businesses/development-services-records/code-compliance-records-searches)
+- **Tax Liens**: [https://www.hillstaxfl.gov/records-search/](https://www.hillstaxfl.gov/records-search/)
+
+### Indian River County
+- **Master Parcel Download**: [https://ircpa.org/site-links/downloads/](https://ircpa.org/site-links/downloads/) (DOWNLOAD_PAGE)
+- **Lis Pendens Portal**: [https://ori.indian-river.org/](https://ori.indian-river.org/)
+- **Probate Portal**: [https://indianriverclerk.com/court-records/online-case-view/](https://indianriverclerk.com/court-records/online-case-view/)
+- **Code Enforcement**: [https://www.indianriver.gov/services/planning_development_services/code_enforcement/index.php](https://www.indianriver.gov/services/planning_development_services/code_enforcement/index.php)
+- **Tax Liens**: [https://services.irctax.com/hc/en-us/articles/42276552582931-Tax-Reports](https://services.irctax.com/hc/en-us/articles/42276552582931-Tax-Reports)
+
+### Lake County
+- **Master Parcel Download**: [https://c.lakecountyfl.gov/ftp/PA_office/data/](https://c.lakecountyfl.gov/ftp/PA_office/data/) (DOWNLOAD_PAGE)
+- **Lis Pendens Portal**: [https://officialrecords.lakecountyclerk.org/](https://officialrecords.lakecountyclerk.org/)
+- **Probate Portal**: [https://www.lakecountyclerkfl.gov/records/](https://www.lakecountyclerkfl.gov/records/)
+- **Code Enforcement**: [https://c.lakecountyfl.gov/offices/code_enforcement/cases.aspx](https://c.lakecountyfl.gov/offices/code_enforcement/cases.aspx)
+- **Tax Liens**: [https://laketax.justfoia.com/publicportal/home/newrequest](https://laketax.justfoia.com/publicportal/home/newrequest)
+
+### Lee County
+- **Master Parcel Download**: [https://www.leepa.org/systems/DataSales.aspx](https://www.leepa.org/systems/DataSales.aspx) (RECORDS_REQUEST)
+- **Lis Pendens Portal**: [https://or.leeclerk.org/LandMarkWeb/](https://or.leeclerk.org/LandMarkWeb/)
+- **Probate Portal**: [https://www.leeclerk.org/departments/courts/court-case-records](https://www.leeclerk.org/departments/courts/court-case-records)
+- **Code Enforcement**: [https://aca-prod.accela.com/leeco/default.aspx](https://aca-prod.accela.com/leeco/default.aspx)
+- **Tax Liens**: [https://leetc.com/contact-us/](https://leetc.com/contact-us/)
+
+### Leon County
+- **Master Parcel Download**: [https://www.leonpa.gov/Downloads](https://www.leonpa.gov/Downloads) (DOWNLOAD_PAGE)
+- **Lis Pendens Portal**: [https://cvweb.leonclerk.com/public/clerk_services/official_records/index.asp](https://cvweb.leonclerk.com/public/clerk_services/official_records/index.asp)
+- **Probate Portal**: [https://leonclerk.com/helpful-resources/records/court-records/](https://leonclerk.com/helpful-resources/records/court-records/)
+- **Code Enforcement**: [https://aca-prod.accela.com/LEONCO/Cap/CapHome.aspx?module=CodeCompliance](https://aca-prod.accela.com/LEONCO/Cap/CapHome.aspx?module=CodeCompliance)
+- **Tax Liens**: [https://www.leontaxcollector.net/Services/Property-Taxes/Download-Files](https://www.leontaxcollector.net/Services/Property-Taxes/Download-Files)
+
+### Manatee County
+- **Master Parcel Download**: [https://www.manateepao.gov/tax-roll-data/](https://www.manateepao.gov/tax-roll-data/) (DOWNLOAD_PAGE)
+- **Lis Pendens Portal**: [https://records.manateeclerk.com/OfficialRecords/Search](https://records.manateeclerk.com/OfficialRecords/Search)
+- **Probate Portal**: [https://records.manateeclerk.com/CourtRecords/Search](https://records.manateeclerk.com/CourtRecords/Search)
+- **Code Enforcement**: [https://www.mymanatee.org/services-and-amenities/service-listing/service-details/search-accela-code-enforcement-records](https://www.mymanatee.org/services-and-amenities/service-listing/service-details/search-accela-code-enforcement-records)
+- **Tax Liens**: [https://www.taxcollector.com/chapter-119.cfm](https://www.taxcollector.com/chapter-119.cfm)
+
+### Marion County
+- **Master Parcel Download**: [https://floridarevenue.com/property/Pages/DataPortal_RequestAssessmentRollGISData.aspx](https://floridarevenue.com/property/Pages/DataPortal_RequestAssessmentRollGISData.aspx) (DOWNLOAD_PAGE)
+- **Lis Pendens Portal**: [https://nvweb.marioncountyclerk.org/BrowserView/](https://nvweb.marioncountyclerk.org/BrowserView/)
+- **Probate Portal**: [https://www.marioncountyclerk.org/search-records/](https://www.marioncountyclerk.org/search-records/)
+- **Code Enforcement**: [https://www.marionfl.org/agencies-departments/departments-facilities-offices/growth-services/code-enforcement/code-online-payment](https://www.marionfl.org/agencies-departments/departments-facilities-offices/growth-services/code-enforcement/code-online-payment)
+- **Tax Liens**: [https://www.mariontax.com/online-forms](https://www.mariontax.com/online-forms)
+
+### Martin County
+- **Master Parcel Download**: [https://www.pamartinfl.gov/tools-resources/data-downloads](https://www.pamartinfl.gov/tools-resources/data-downloads) (DOWNLOAD_PAGE)
+- **Lis Pendens Portal**: [https://or.martinclerk.com/landmarkweb/](https://or.martinclerk.com/landmarkweb/)
+- **Probate Portal**: [https://www.martinclerk.com/335/Records-Search](https://www.martinclerk.com/335/Records-Search)
+- **Code Enforcement**: [https://www.martin.fl.us/PRR](https://www.martin.fl.us/PRR)
+- **Tax Liens**: [https://martintaxcollector.com/contact-us/](https://martintaxcollector.com/contact-us/)
+
+### Miami-Dade County
+- **Master Parcel Download**: [https://bbs.miamidadepa.gov/](https://bbs.miamidadepa.gov/) (DOWNLOAD_PAGE)
+- **Lis Pendens Portal**: [https://onlineservices.miamidadeclerk.gov/officialrecords](https://onlineservices.miamidadeclerk.gov/officialrecords)
+- **Probate Portal**: [https://www2.miamidadeclerk.gov/QOS/](https://www2.miamidadeclerk.gov/QOS/)
+- **Code Enforcement**: [https://www.miamidade.gov/Apps/RER/RegulationSupportWebViewer](https://www.miamidade.gov/Apps/RER/RegulationSupportWebViewer)
+- **Tax Liens**: [https://www.miamidade.gov/global/publicrecords/search.page](https://www.miamidade.gov/global/publicrecords/search.page)
+
+### Nassau County
+- **Master Parcel Download**: [https://floridarevenue.com/property/Pages/DataPortal_RequestAssessmentRollGISData.aspx](https://floridarevenue.com/property/Pages/DataPortal_RequestAssessmentRollGISData.aspx) (DOWNLOAD_PAGE)
+- **Lis Pendens Portal**: [https://files.nassauclerk.com/default.cfm?site=OR](https://files.nassauclerk.com/default.cfm?site=OR)
+- **Probate Portal**: [https://www.civitekflorida.com/ocrs/county/45/](https://www.civitekflorida.com/ocrs/county/45/)
+- **Code Enforcement**: [https://www.nassaucountyfl.com/79/Code-Enforcement](https://www.nassaucountyfl.com/79/Code-Enforcement)
+- **Tax Liens**: [https://www.nassautaxes.com/Content/PublicRecordsRequest](https://www.nassautaxes.com/Content/PublicRecordsRequest)
+
+### Okaloosa County
+- **Master Parcel Download**: [https://myokaloosa.gov/index.php/gis_data](https://myokaloosa.gov/index.php/gis_data) (DOWNLOAD_PAGE)
+- **Lis Pendens Portal**: [https://okaloosacountyfl-web.tylerhost.net/web/](https://okaloosacountyfl-web.tylerhost.net/web/)
+- **Probate Portal**: [https://clerkapps.okaloosaclerk.com/ClerkQuest/](https://clerkapps.okaloosaclerk.com/ClerkQuest/)
+- **Code Enforcement**: [https://myokaloosa.gov/gm/code-enforcement/complaints](https://myokaloosa.gov/gm/code-enforcement/complaints)
+- **Tax Liens**: [https://okaloosatax.com/public-records/](https://okaloosatax.com/public-records/)
+
+### Orange County
+- **Master Parcel Download**: [https://floridarevenue.com/property/Pages/DataPortal_RequestAssessmentRollGISData.aspx](https://floridarevenue.com/property/Pages/DataPortal_RequestAssessmentRollGISData.aspx) (DOWNLOAD_PAGE)
+- **Lis Pendens Portal**: [https://selfservice.or.occompt.com/ssweb/search/DOCSEARCH2950S3](https://selfservice.or.occompt.com/ssweb/search/DOCSEARCH2950S3)
+- **Probate Portal**: [https://myeclerk.myorangeclerk.com/cases/search](https://myeclerk.myorangeclerk.com/cases/search)
+- **Code Enforcement**: [https://www.ocfl.net/NeighborsHousing/CodeCompliance.aspx](https://www.ocfl.net/NeighborsHousing/CodeCompliance.aspx)
+- **Tax Liens**: [https://www.octaxcol.com/taxes/about-property-tax/tax-roll-download/](https://www.octaxcol.com/taxes/about-property-tax/tax-roll-download/)
+
+### Osceola County
+- **Master Parcel Download**: [https://www.property-appraiser.org/data/](https://www.property-appraiser.org/data/) (DOWNLOAD_PAGE)
+- **Lis Pendens Portal**: [https://officialrecords.osceolaclerk.org/browserview/](https://officialrecords.osceolaclerk.org/browserview/)
+- **Probate Portal**: [https://osceolaclerk.com/request-a-public-record/](https://osceolaclerk.com/request-a-public-record/)
+- **Code Enforcement**: [https://www.osceola.org/Services/Code-Enforcement/Submit-a-Research-Request](https://www.osceola.org/Services/Code-Enforcement/Submit-a-Research-Request)
+- **Tax Liens**: [https://osceolataxcollector.org/contact-us/](https://osceolataxcollector.org/contact-us/)
+
+### Palm Beach County
+- **Master Parcel Download**: [https://pbcpao.gov/departments/public_services.htm](https://pbcpao.gov/departments/public_services.htm) (DOWNLOAD_PAGE)
+- **Lis Pendens Portal**: [https://erec.mypalmbeachclerk.com/](https://erec.mypalmbeachclerk.com/)
+- **Probate Portal**: [https://appsgp.mypalmbeachclerk.com/eCaseView/](https://appsgp.mypalmbeachclerk.com/eCaseView/)
+- **Code Enforcement**: [https://discover.pbcgov.org/pzb/administration/pages/lien-permit-searches.aspx](https://discover.pbcgov.org/pzb/administration/pages/lien-permit-searches.aspx)
+- **Tax Liens**: [https://www.pbctax.gov/resources/public-record-request/](https://www.pbctax.gov/resources/public-record-request/)
+
+### Pasco County
+- **Master Parcel Download**: [https://downloads.pascopa.com/](https://downloads.pascopa.com/) (DOWNLOAD_PAGE)
+- **Lis Pendens Portal**: [https://app.pascoclerk.com/appdot-public-online-services-forms-or-search.asp](https://app.pascoclerk.com/appdot-public-online-services-forms-or-search.asp)
+- **Probate Portal**: [https://pascoclerk.com/172/Search-Court-Records](https://pascoclerk.com/172/Search-Court-Records)
+- **Code Enforcement**: [https://aca-prod.accela.com/PASCO/Default.aspx](https://aca-prod.accela.com/PASCO/Default.aspx)
+- **Tax Liens**: [https://www-pasco.county-taxes.com/tcb/app/public/main/reports](https://www-pasco.county-taxes.com/tcb/app/public/main/reports)
+
+### Pinellas County
+- **Master Parcel Download**: [https://www.pcpao.gov/tools-data/data-downloads/raw-database-files](https://www.pcpao.gov/tools-data/data-downloads/raw-database-files) (DOWNLOAD_PAGE)
+- **Lis Pendens Portal**: [https://officialrecords.mypinellasclerk.gov/](https://officialrecords.mypinellasclerk.gov/)
+- **Probate Portal**: [https://courtrecords.mypinellasclerk.gov/](https://courtrecords.mypinellasclerk.gov/)
+- **Code Enforcement**: [https://aca-prod.accela.com/PINELLAS/Cap/CapHome.aspx?TabName=Home&module=Enforcement](https://aca-prod.accela.com/PINELLAS/Cap/CapHome.aspx?TabName=Home&module=Enforcement)
+- **Tax Liens**: [https://pinellastaxcollector.gov/other-services/public-records-request/](https://pinellastaxcollector.gov/other-services/public-records-request/)
+
+### Polk County
+- **Master Parcel Download**: [https://floridarevenue.com/property/Pages/DataPortal_RequestAssessmentRollGISData.aspx](https://floridarevenue.com/property/Pages/DataPortal_RequestAssessmentRollGISData.aspx) (DOWNLOAD_PAGE)
+- **Lis Pendens Portal**: [https://apps.polkcountyclerk.net/browserviewor/](https://apps.polkcountyclerk.net/browserviewor/)
+- **Probate Portal**: [https://www.polkclerkfl.gov/297/Court-Records](https://www.polkclerkfl.gov/297/Court-Records)
+- **Code Enforcement**: [https://aca-prod.accela.com/POLKCO/Default.aspx](https://aca-prod.accela.com/POLKCO/Default.aspx)
+- **Tax Liens**: [https://www.polktaxes.com/file-download-requests/](https://www.polktaxes.com/file-download-requests/)
+
+### Santa Rosa County
+- **Master Parcel Download**: [https://floridarevenue.com/property/Pages/DataPortal_RequestAssessmentRollGISData.aspx](https://floridarevenue.com/property/Pages/DataPortal_RequestAssessmentRollGISData.aspx) (DOWNLOAD_PAGE)
+- **Lis Pendens Portal**: [https://acclaim.srccol.com/AcclaimWeb/](https://acclaim.srccol.com/AcclaimWeb/)
+- **Probate Portal**: [https://santarosaclerk.com/courts/search-public-records/](https://santarosaclerk.com/courts/search-public-records/)
+- **Code Enforcement**: [https://www.santarosa.fl.gov/153/Code-Enforcement](https://www.santarosa.fl.gov/153/Code-Enforcement)
+- **Tax Liens**: [https://srctc.com/real-estate/online-report-downloads/](https://srctc.com/real-estate/online-report-downloads/)
+
+### Sarasota County
+- **Master Parcel Download**: [https://www.sarasotapropertyappraiser.gov/downloads/download-data](https://www.sarasotapropertyappraiser.gov/downloads/download-data) (DOWNLOAD_PAGE)
+- **Lis Pendens Portal**: [https://secure.sarasotaclerk.com/OfficialRecords.aspx/SearchEntry.aspx](https://secure.sarasotaclerk.com/OfficialRecords.aspx/SearchEntry.aspx)
+- **Probate Portal**: [https://www.sarasotaclerk.com/Records/Public-Access](https://www.sarasotaclerk.com/Records/Public-Access)
+- **Code Enforcement**: [https://www.scgov.net/government/planning-and-development-services/online-permitting](https://www.scgov.net/government/planning-and-development-services/online-permitting)
+- **Tax Liens**: [https://www.sarasotataxcollector.gov/downloads](https://www.sarasotataxcollector.gov/downloads)
+
+### Seminole County
+- **Master Parcel Download**: [https://www.scpafl.org/downloads](https://www.scpafl.org/downloads) (DOWNLOAD_PAGE)
+- **Lis Pendens Portal**: [https://recording.seminoleclerk.org/DuProcessWebInquiry/index.html](https://recording.seminoleclerk.org/DuProcessWebInquiry/index.html)
+- **Probate Portal**: [https://www.seminoleclerk.org/search-for-a-court-case/](https://www.seminoleclerk.org/search-for-a-court-case/)
+- **Code Enforcement**: [https://www.seminolecountyfl.gov/departments-services/development-services/code-enforcement](https://www.seminolecountyfl.gov/departments-services/development-services/code-enforcement)
+- **Tax Liens**: [https://seminolecounty.tax/public-records-requests/](https://seminolecounty.tax/public-records-requests/)
+
+### St. Johns County
+- **Master Parcel Download**: [https://www.sjcpa.gov/forms/](https://www.sjcpa.gov/forms/) (DOWNLOAD_PAGE)
+- **Lis Pendens Portal**: [https://apps.stjohnsclerk.com/Landmark](https://apps.stjohnsclerk.com/Landmark)
+- **Probate Portal**: [https://stjohnsclerk.com/online-research/](https://stjohnsclerk.com/online-research/)
+- **Code Enforcement**: [https://webapp.sjcfl.us/prideweb/CodeEnfStatusRequest.aspx](https://webapp.sjcfl.us/prideweb/CodeEnfStatusRequest.aspx)
+- **Tax Liens**: [https://sjctax.us/download-data-files/](https://sjctax.us/download-data-files/)
+
+### St. Lucie County
+- **Master Parcel Download**: [https://www.paslc.gov/231/Data-Requests](https://www.paslc.gov/231/Data-Requests) (DOWNLOAD_PAGE)
+- **Lis Pendens Portal**: [https://acclaimweb.stlucieclerk.gov/AcclaimWeb/Search/SearchTypeName](https://acclaimweb.stlucieclerk.gov/AcclaimWeb/Search/SearchTypeName)
+- **Probate Portal**: [https://courtcasesearch.stlucieclerk.gov/](https://courtcasesearch.stlucieclerk.gov/)
+- **Code Enforcement**: [https://www.stlucieco.gov/departments-and-services/planning-and-development-services/code-compliance/lien-search-and-payoff-request](https://www.stlucieco.gov/departments-and-services/planning-and-development-services/code-compliance/lien-search-and-payoff-request)
+- **Tax Liens**: [https://stlucie.county-taxes.com/tcb/app/public/reports/real_estate](https://stlucie.county-taxes.com/tcb/app/public/reports/real_estate)
+
+### Sumter County
+- **Master Parcel Download**: [https://floridarevenue.com/property/Pages/DataPortal_RequestAssessmentRollGISData.aspx](https://floridarevenue.com/property/Pages/DataPortal_RequestAssessmentRollGISData.aspx) (DOWNLOAD_PAGE)
+- **Lis Pendens Portal**: [https://www.myfloridacounty.com/orisearch/60](https://www.myfloridacounty.com/orisearch/60)
+- **Probate Portal**: [https://www.sumterclerk.com/online-services/records-search/](https://www.sumterclerk.com/online-services/records-search/)
+- **Code Enforcement**: [https://www.sumtercountyfl.gov/1409/Code-Enforcement-Violations-or-Liens](https://www.sumtercountyfl.gov/1409/Code-Enforcement-Violations-or-Liens)
+- **Tax Liens**: [https://sumtertaxcollector.com/locat.html](https://sumtertaxcollector.com/locat.html)
+
+### Volusia County
+- **Master Parcel Download**: [https://vcpa.vcgov.org/download/database](https://vcpa.vcgov.org/download/database) (DOWNLOAD_PAGE)
+- **Lis Pendens Portal**: [https://app02.clerk.org/or_m/inquiry.aspx](https://app02.clerk.org/or_m/inquiry.aspx)
+- **Probate Portal**: [https://app02.clerk.org/cm_evt/inquiry.aspx](https://app02.clerk.org/cm_evt/inquiry.aspx)
+- **Code Enforcement**: [https://connectlivepermits.org/citizenportal/app/](https://connectlivepermits.org/citizenportal/app/)
+- **Tax Liens**: [https://www.vctaxcollector.org/PRR/](https://www.vctaxcollector.org/PRR/)
+

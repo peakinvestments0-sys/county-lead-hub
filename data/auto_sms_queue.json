@@ -1,0 +1,1404 @@
+{
+  "id": "52a5a154-af3e-4699-89f3-f3df8d98f034",
+  "status": "complete",
+  "campaign": "initial",
+  "counties": [
+    "Pinellas"
+  ],
+  "items": [
+    {
+      "parcel_id": "01-30-14-42048-078-0070",
+      "phone": "8134313585",
+      "owner": "Betty Labarbera",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "06-30-15-35766-003-0070",
+      "phone": "7274529414",
+      "owner": "Lisa Panish",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "06-30-15-36054-010-0940",
+      "phone": "3137278708",
+      "owner": "Nik Popaj",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "11-29-15-39852-000-0020",
+      "phone": "7274466682",
+      "owner": "Jan Hagenbuckle",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "15-31-15-17784-008-0030",
+      "phone": "7273678241",
+      "owner": "Betty Anne Adams Trust",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "15-31-15-17784-007-0070",
+      "phone": "3522635168",
+      "owner": "Kate Roberts",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "05-29-16-71442-000-0170",
+      "phone": "7274807601",
+      "owner": "Nha-Seng Chang",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "05-29-16-71442-000-0160",
+      "phone": "7272408149",
+      "owner": "Ying Xiong",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "24-28-16-63882-001-0300",
+      "phone": "8133766880",
+      "owner": "Laurie Edwards",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "15-31-15-65304-014-0020",
+      "phone": "7273655878",
+      "owner": "Courtney Thompson",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "15-31-15-65322-024-0030",
+      "phone": "7276870575",
+      "owner": "Eric Martin",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "24-28-16-63882-001-0570",
+      "phone": "8138551690",
+      "owner": "Christopher Cloran",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "15-31-15-65322-025-0120",
+      "phone": "8137650755",
+      "owner": "Steven Cavallaro",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "25-28-16-63864-004-0200",
+      "phone": "7277438344",
+      "owner": "Spencer Hobday",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "25-31-15-36918-000-0060",
+      "phone": "7275424366",
+      "owner": "Fulle Benjamin D & Catherine K Rev Joint Trust",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "25-31-15-38412-000-0030",
+      "phone": "7275426274",
+      "owner": "Christopher Sierra",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "24-31-15-66024-000-0710",
+      "phone": "7274204724",
+      "owner": "Fredric Geffon",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "01-27-15-27072-010-0100",
+      "phone": "7279420529",
+      "owner": "Kim Runkel",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "36-31-15-90666-000-0010",
+      "phone": "7274035854",
+      "owner": "Mary Gibson",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "36-31-15-90666-000-0160",
+      "phone": "7277761659",
+      "owner": "Jamie Burdine",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "36-31-15-90666-000-0260",
+      "phone": "7276886774",
+      "owner": "Alicia Donovan",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "36-31-15-90666-000-0330",
+      "phone": "7275431687",
+      "owner": "Nancy Kelley",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "25-31-15-66096-001-0710",
+      "phone": "6033591300",
+      "owner": "Pearce Charles F Iii Family Trust",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "25-31-15-66096-005-0290",
+      "phone": "3472373658",
+      "owner": "Liana Kapcio",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "25-31-15-66114-000-0020",
+      "phone": "7274809695",
+      "owner": "Lora Kelly",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "01-30-14-42048-086-0340",
+      "phone": "7273650339",
+      "owner": "Deborah Schwab",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "32-30-15-52776-000-0310",
+      "phone": "7274584616",
+      "owner": "Zimmer Steven P Revocable Family Trust",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "32-30-15-52776-000-0400",
+      "phone": "7273983679",
+      "owner": "Martin Cruzan",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "36-31-15-77994-041-0120",
+      "phone": "7273601423",
+      "owner": "Denise Bell",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "33-28-16-74278-000-0030",
+      "phone": "7274601744",
+      "owner": "Erika Franz",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "25-28-16-63864-003-0200",
+      "phone": "7275579116",
+      "owner": "Garick Farley",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "35-27-15-19872-015-0050",
+      "phone": "4192029213",
+      "owner": "Jeffrey Moore",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "15-31-15-17784-008-0080",
+      "phone": "8134517822",
+      "owner": "Gail Bottone",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "24-31-15-66042-005-0160",
+      "phone": "7273607893",
+      "owner": "Michael Summerton",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "14-31-15-13302-019-0320",
+      "phone": "9417202130",
+      "owner": "Christopher Flynn",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "31-31-16-90740-000-0030",
+      "phone": "7277102014",
+      "owner": "Colin Bowles-Jenner",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "08-29-16-64042-000-0080",
+      "phone": "7272883121",
+      "owner": "John Stuart",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "29-29-15-29232-000-0030",
+      "phone": "7275605077",
+      "owner": "Shafe Huda",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "31-31-16-90684-000-0020",
+      "phone": "7273608764",
+      "owner": "Henry Eberle",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "27-28-16-45882-001-0020",
+      "phone": "7274037299",
+      "owner": "Charles Scott",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "32-29-15-35838-000-0260",
+      "phone": "7276428075",
+      "owner": "Jennifer Marler",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "24-31-15-66024-000-0230",
+      "phone": "6128169592",
+      "owner": "Ryan Mcarton",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "01-30-14-42048-086-0170",
+      "phone": "7275804869",
+      "owner": "Elaine Wise",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "07-32-16-21852-010-0010",
+      "phone": "7274338333",
+      "owner": "Mona Mcfadden",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "10-31-15-04446-003-0030",
+      "phone": "7273989953",
+      "owner": "Jack Young",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "15-31-15-17784-017-0250",
+      "phone": "9546099311",
+      "owner": "Michelle Mauer",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "31-31-16-90744-000-0220",
+      "phone": "7273609595",
+      "owner": "Daniel Mcsherry",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "09-31-15-52632-000-0040",
+      "phone": "7049078888",
+      "owner": "Gregory Smith",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "14-31-15-13302-019-0060",
+      "phone": "7275013690",
+      "owner": "Gina Presson",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "23-27-15-05814-000-0920",
+      "phone": "7279199906",
+      "owner": "Alice Hammer",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "09-31-15-52596-024-0180",
+      "phone": "7172270922",
+      "owner": "Kathleen Connolly",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "24-31-15-65988-001-0140",
+      "phone": "7273603350",
+      "owner": "Richard Greenwald",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "23-27-15-05832-000-0130",
+      "phone": "7275107443",
+      "owner": "James Reinheimer",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "29-30-15-00000-340-0200",
+      "phone": "9164021468",
+      "owner": "Jay Promisco",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "15-31-15-65304-005-0110",
+      "phone": "7272045001",
+      "owner": "Kohan-Shohet Keyvan & Stephanie Living Trust",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "23-31-15-43506-006-0490",
+      "phone": "7276429221",
+      "owner": "Rebecca Case",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "10-28-15-65124-000-0160",
+      "phone": "7279677777",
+      "owner": "Marcia Bennett",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "01-30-14-42048-086-0350",
+      "phone": "8562821338",
+      "owner": "Michael Mirmanesh",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "25-31-15-43524-000-0020",
+      "phone": "4253924357",
+      "owner": "Kendall Moeller",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "36-31-15-05112-002-0010",
+      "phone": "7273673680",
+      "owner": "Judith Kennedy",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "15-31-15-17784-017-0220",
+      "phone": "5047825582",
+      "owner": "Norman Ogan",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "12-30-14-83952-000-0210",
+      "phone": "8604166023",
+      "owner": "Paul Blackwelder",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "24-31-15-65988-001-0060",
+      "phone": "4128353615",
+      "owner": "Beverley Nicklaus",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "36-31-15-77994-041-0090",
+      "phone": "8133905655",
+      "owner": "Elizabeth Andrews",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "12-29-15-55782-025-0050",
+      "phone": "8638994550",
+      "owner": "Pattie Elsasser",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "24-31-15-66060-001-0170",
+      "phone": "7737322746",
+      "owner": "Campen Leah Tre",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "33-30-15-62808-013-0060",
+      "phone": "7272249336",
+      "owner": "Straight Family Rev Liv Trust",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "13-29-15-82440-003-0010",
+      "phone": "9547327739",
+      "owner": "Linda Digloria",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "10-31-15-43272-000-0050",
+      "phone": "4045585364",
+      "owner": "Matthew Ritterbeck",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "23-31-15-43506-007-0030",
+      "phone": "5615732722",
+      "owner": "Christopher Grupp",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "25-31-15-36900-000-0130",
+      "phone": "7274800679",
+      "owner": "William Conley",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "23-27-15-05868-000-0170",
+      "phone": "7274806607",
+      "owner": "Tina Coleman",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "25-31-15-66168-000-0130",
+      "phone": "2156948742",
+      "owner": "Amy Haney",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "14-29-15-46566-002-0010",
+      "phone": "3053039058",
+      "owner": "Ivan Linares",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "23-27-15-05814-000-1460",
+      "phone": "3173317795",
+      "owner": "Monty Delello",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "09-29-16-20826-000-2070",
+      "phone": "7272243415",
+      "owner": "Kevin Horan",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "36-31-15-90666-000-0250",
+      "phone": "5209545455",
+      "owner": "George Francis",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "15-31-15-65304-015-0060",
+      "phone": "9376819332",
+      "owner": "Barbara Bush",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "33-30-15-13154-000-2560",
+      "phone": "7276678159",
+      "owner": "Montgomery Susan Tre",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "25-28-16-63864-004-0100",
+      "phone": "7276449786",
+      "owner": "Cathy Bland",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "23-31-15-43488-001-0060",
+      "phone": "2012646980",
+      "owner": "Dennis Schoenrock",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "22-29-15-12042-022-0020",
+      "phone": "7272547662",
+      "owner": "Paul Claypool",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "23-27-15-05868-000-0100",
+      "phone": "7274376353",
+      "owner": "Hector Montalvo Leon",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "25-31-15-66114-000-0150",
+      "phone": "8139971670",
+      "owner": "Paul Finora",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "15-31-15-17784-017-0210",
+      "phone": "7273606271",
+      "owner": "Betty Robinson",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "35-27-15-19872-020-0061",
+      "phone": "4697770367",
+      "owner": "Wade Hooper",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "32-30-15-84780-000-0060",
+      "phone": "4056410285",
+      "owner": "Michael Giordano",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "10-31-15-04500-001-0040",
+      "phone": "7326199670",
+      "owner": "Bryan Khan",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "06-30-15-35766-001-0100",
+      "phone": "4802278125",
+      "owner": "Jamil Abdelghani",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "15-31-15-65322-025-0160",
+      "phone": "8139205235",
+      "owner": "Michael Gistinger",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "24-31-15-66042-001-0040",
+      "phone": "8133102473",
+      "owner": "Miller C Britt Tre",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "10-31-15-04500-001-0520",
+      "phone": "7733324959",
+      "owner": "Quoc Le",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "12-27-15-66636-000-0040",
+      "phone": "2156302888",
+      "owner": "Michael Gallagher",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "14-29-15-22716-000-0210",
+      "phone": "7277435149",
+      "owner": "Sierra L Sims And Alexandria J Sims Revocable",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "31-31-16-90738-001-0010",
+      "phone": "3149202618",
+      "owner": "Amy Laffler",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "03-29-15-05220-019-0200",
+      "phone": "6787724135",
+      "owner": "Robert Wellden",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "08-29-15-43308-000-0190",
+      "phone": "4126702848",
+      "owner": "Shannon Vissman",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "14-31-15-13302-018-0040",
+      "phone": "3212987644",
+      "owner": "Mark Zdrojewski",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "01-30-14-42084-002-0020",
+      "phone": "3017751242",
+      "owner": "Dawn Erff",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "09-31-15-52596-024-0380",
+      "phone": "3016410659",
+      "owner": "Liza Fuller",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "04-29-15-61488-012-0030",
+      "phone": "8139028787",
+      "owner": "Patricia Wright",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "30-30-15-97060-000-0250",
+      "phone": "7273920540",
+      "owner": "Kyle Keesee",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "05-31-15-73890-017-0280",
+      "phone": "7276980352",
+      "owner": "John Derdzinski",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "09-31-15-52632-000-0100",
+      "phone": "6097092808",
+      "owner": "Timothy Bernard",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "04-31-15-73962-002-0010",
+      "phone": "4142488497",
+      "owner": "Charles Wimpee",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "09-31-15-52596-024-0020",
+      "phone": "8653853433",
+      "owner": "Ali Ayesh",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "10-31-15-04500-001-0410",
+      "phone": "3862991615",
+      "owner": "Mark Bull",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "15-31-15-65322-026-0220",
+      "phone": "8133826799",
+      "owner": "Susan Burkhart",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "25-31-15-66168-000-0180",
+      "phone": "6786402338",
+      "owner": "John Mclarty",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "24-31-15-66024-000-0530",
+      "phone": "9418944882",
+      "owner": "Margery Robinson",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "24-31-15-66042-001-0110",
+      "phone": "7277427737",
+      "owner": "Khorsandian Trust",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "24-31-15-65988-001-0220",
+      "phone": "4052273061",
+      "owner": "Deborah Shorr",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "31-29-15-06696-000-0050",
+      "phone": "7327546162",
+      "owner": "Dawn Gordon",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "24-28-15-84568-000-0740",
+      "phone": "7274925620",
+      "owner": "Rebecca Mosur",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "23-30-15-32017-000-0030",
+      "phone": "7274557384",
+      "owner": "Seth Duncan",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "14-28-16-94149-000-0101",
+      "phone": "7276678656",
+      "owner": "Robert Wilson",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "15-31-15-65304-007-0090",
+      "phone": "5749334254",
+      "owner": "Stephen Britigan",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "24-31-15-66024-000-0310",
+      "phone": "7276980505",
+      "owner": "David P Sferrazza Restated Revocable Trust",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "06-29-16-17256-000-0670",
+      "phone": "8135285760",
+      "owner": "Aashish Gupta",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "07-32-16-07470-001-0010",
+      "phone": "2167895417",
+      "owner": "Anthony Fusco",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "10-31-15-04482-001-0050",
+      "phone": "3127355087",
+      "owner": "Jon Denorio",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "12-30-15-83922-000-0290",
+      "phone": "2013621101",
+      "owner": "Abigale Stone",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "25-31-15-38358-000-0080",
+      "phone": "7274928991",
+      "owner": "Gregory Knight",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "36-31-15-90666-000-0350",
+      "phone": "7273675218",
+      "owner": "David Lewis",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "24-31-15-66042-005-0260",
+      "phone": "3055093375",
+      "owner": "Rachel Overman",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "32-29-16-39420-000-0300",
+      "phone": "7278086626",
+      "owner": "Goodrich Nell C Est",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "08-28-16-48767-005-0430",
+      "phone": "4085987254",
+      "owner": "Sai Om (trustee)",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "08-28-16-48761-000-0850",
+      "phone": "4149752182",
+      "owner": "Matthew Baumann",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "21-30-15-77645-000-0090",
+      "phone": "5417405455",
+      "owner": "Bradley Chung",
+      "county": "Pinellas",
+      "status": "sent"
+    },
+    {
+      "parcel_id": "35-27-15-79434-000-0020",
+      "phone": "7274246847",
+      "owner": "Thomas Morris",
+      "county": "Pinellas",
+      "status": "sent"
+    }
+  ],
+  "templates": [
+    {
+      "id": "casual_direct",
+      "name": "Owner Check 1",
+      "category": "owner_check",
+      "body": "Hello, I'm trying to locate the property owner of {Address}. Would that be you?"
+    },
+    {
+      "id": "quick_question",
+      "name": "Owner Check 2",
+      "category": "owner_check",
+      "body": "Hi, I'm looking for the homeowner at {Address}. Is that you?"
+    },
+    {
+      "id": "neighbor_investor",
+      "name": "Owner Check 3",
+      "category": "owner_check",
+      "body": "Hello, is this the right person to reach about ownership of {Address}?"
+    },
+    {
+      "id": "quick_checkin",
+      "name": "Owner Check 4",
+      "category": "owner_check",
+      "body": "Hi there, I'm trying to get in touch with the owner of {Address}. Are you the owner?"
+    }
+  ],
+  "angle_index": 130,
+  "next_send_at": 1792090629.626031,
+  "sent_phones": [
+    "2012646980",
+    "2013621101",
+    "2089650565",
+    "2147837715",
+    "2156302888",
+    "2156948742",
+    "2167895417",
+    "2393337044",
+    "2405505749",
+    "2543944119",
+    "3016410659",
+    "3017554618",
+    "3017751242",
+    "3053039058",
+    "3054589293",
+    "3055093375",
+    "3059920423",
+    "3127355087",
+    "3137278708",
+    "3149202618",
+    "3173317795",
+    "3212393020",
+    "3212987644",
+    "3213911286",
+    "3216953925",
+    "3219455631",
+    "3219464815",
+    "3304646327",
+    "3472373658",
+    "3522635168",
+    "3862991615",
+    "4045585364",
+    "4052273061",
+    "4056410285",
+    "4072095216",
+    "4072223944",
+    "4072270438",
+    "4072344036",
+    "4072522739",
+    "4072570592",
+    "4072641465",
+    "4072720408",
+    "4072723852",
+    "4072922206",
+    "4072953865",
+    "4073018837",
+    "4073347764",
+    "4073428527",
+    "4073538583",
+    "4073635595",
+    "4073758882",
+    "4073959402",
+    "4074033198",
+    "4074614594",
+    "4074912354",
+    "4075162566",
+    "4075363071",
+    "4075383807",
+    "4075385435",
+    "4075385436",
+    "4076142137",
+    "4076173506",
+    "4076282925",
+    "4076692929",
+    "4076805138",
+    "4077159221",
+    "4077161498",
+    "4077229024",
+    "4077291673",
+    "4077569206",
+    "4077615593",
+    "4077660020",
+    "4077739979",
+    "4077823679",
+    "4077952189",
+    "4078106068",
+    "4078403224",
+    "4078576176",
+    "4078609613",
+    "4078863093",
+    "4078988949",
+    "4079135664",
+    "4079208264",
+    "4079232211",
+    "4079523407",
+    "4079526599",
+    "4079632133",
+    "4085987254",
+    "4087814355",
+    "4126702848",
+    "4128353615",
+    "4142488497",
+    "4149752182",
+    "4192029213",
+    "4253924357",
+    "4697770367",
+    "4802278125",
+    "5047825582",
+    "5209545455",
+    "5309138011",
+    "5417405455",
+    "5615732722",
+    "5749334254",
+    "6033591300",
+    "6095178021",
+    "6097092808",
+    "6103905819",
+    "6128169592",
+    "6173060169",
+    "6175494960",
+    "6786402338",
+    "6787724135",
+    "7028603447",
+    "7049078888",
+    "7172270922",
+    "7245902090",
+    "7272045001",
+    "7272243415",
+    "7272249336",
+    "7272408149",
+    "7272547662",
+    "7272883121",
+    "7273601423",
+    "7273603350",
+    "7273606271",
+    "7273607893",
+    "7273608764",
+    "7273609595",
+    "7273650339",
+    "7273655878",
+    "7273673680",
+    "7273675218",
+    "7273678241",
+    "7273920540",
+    "7273983679",
+    "7273989953",
+    "7274035854",
+    "7274037299",
+    "7274204724",
+    "7274246847",
+    "7274338333",
+    "7274376353",
+    "7274466682",
+    "7274529414",
+    "7274557384",
+    "7274584616",
+    "7274601744",
+    "7274800679",
+    "7274806607",
+    "7274807601",
+    "7274809695",
+    "7274925620",
+    "7274928991",
+    "7275013690",
+    "7275107443",
+    "7275424366",
+    "7275426274",
+    "7275431687",
+    "7275579116",
+    "7275605077",
+    "7275804869",
+    "7276428075",
+    "7276429221",
+    "7276449786",
+    "7276678159",
+    "7276678656",
+    "7276870575",
+    "7276871391",
+    "7276886774",
+    "7276980352",
+    "7276980505",
+    "7277102014",
+    "7277127356",
+    "7277357838",
+    "7277427737",
+    "7277435149",
+    "7277438344",
+    "7277761659",
+    "7278086626",
+    "7278310349",
+    "7279199906",
+    "7279420529",
+    "7279677777",
+    "7326199670",
+    "7327546162",
+    "7733324959",
+    "7737322746",
+    "7868598957",
+    "8033717618",
+    "8037436330",
+    "8082844895",
+    "8132880782",
+    "8133102473",
+    "8133766880",
+    "8133826799",
+    "8133905655",
+    "8134313585",
+    "8134479053",
+    "8134517822",
+    "8135285760",
+    "8137650755",
+    "8138551690",
+    "8139028787",
+    "8139205235",
+    "8139971670",
+    "8457070432",
+    "8562821338",
+    "8604166023",
+    "8634244515",
+    "8638994550",
+    "8653853433",
+    "9146687757",
+    "9164021468",
+    "9294203468",
+    "9376819332",
+    "9417202130",
+    "9418944882",
+    "9546099311",
+    "9547327739"
+  ],
+  "held_phones": [
+    "3020080090"
+  ],
+  "initial_resend_approvals": {},
+  "replied_phones": [
+    "2163756274",
+    "2164101867",
+    "3054589293",
+    "3127355087",
+    "3214229440",
+    "3215445860",
+    "3215449684",
+    "3474213139",
+    "4045585364",
+    "4072217134",
+    "4072270438",
+    "4073428527",
+    "4073837782",
+    "4074807012",
+    "4074912354",
+    "4075042503",
+    "4075128121",
+    "4075521499",
+    "4075839501",
+    "4075845076",
+    "4076173506",
+    "4076412808",
+    "4077024248",
+    "4077612009",
+    "4077615593",
+    "4077827799",
+    "4078085353",
+    "4078091193",
+    "4079011388",
+    "4079026236",
+    "4079218062",
+    "4079632133",
+    "4149752182",
+    "4804625392",
+    "6033591300",
+    "6786402338",
+    "6789285792",
+    "6892456920",
+    "7046102329",
+    "7049078888",
+    "7272883121",
+    "7274204724",
+    "7274800679",
+    "7274928991",
+    "7275426274",
+    "7275550199",
+    "7276429221",
+    "7276449786",
+    "7472794427",
+    "8046565007",
+    "8332682940",
+    "8336731759",
+    "8339913448",
+    "8447305597",
+    "8457070432",
+    "8575261572",
+    "8604166023",
+    "8636402442",
+    "8885646460",
+    "8888989304",
+    "9048599603",
+    "9374596876",
+    "9546099311",
+    "9728845504"
+  ],
+  "follow_up_sent_phones": [
+    "2089650565",
+    "2393337044",
+    "2405505749",
+    "2543944119",
+    "3017554618",
+    "3059920423",
+    "3212393020",
+    "3213911286",
+    "3216953925",
+    "3219455631",
+    "3219464815",
+    "3304646327",
+    "4072095216",
+    "4072223944",
+    "4072270438",
+    "4072344036",
+    "4072522739",
+    "4072570592",
+    "4072641465",
+    "4072720408",
+    "4072723852",
+    "4072922206",
+    "4072953865",
+    "4073018837",
+    "4073347764",
+    "4073538583",
+    "4073635595",
+    "4073758882",
+    "4073959402",
+    "4074033198",
+    "4074614594",
+    "4074912354",
+    "4075162566",
+    "4075363071",
+    "4075383807",
+    "4075385435",
+    "4075385436",
+    "4076142137",
+    "4076282925",
+    "4076692929",
+    "4076805138",
+    "4077159221",
+    "4077161498",
+    "4077229024",
+    "4077291673",
+    "4077569206",
+    "4077615593",
+    "4077660020",
+    "4077739979",
+    "4077823679",
+    "4077952189",
+    "4078106068",
+    "4078403224",
+    "4078576176",
+    "4078609613",
+    "4078863093",
+    "4078988949",
+    "4079135664",
+    "4079208264",
+    "4079232211",
+    "4079523407",
+    "4079526599",
+    "4087814355",
+    "5309138011",
+    "6095178021",
+    "6103905819",
+    "6173060169",
+    "6175494960",
+    "7028603447",
+    "7868598957",
+    "8033717618",
+    "8037436330",
+    "8082844895",
+    "8134479053",
+    "8457070432",
+    "8634244515",
+    "9146687757",
+    "9294203468"
+  ],
+  "manual_reply_phones": [
+    "2089650565",
+    "2393337044",
+    "2405505749",
+    "2543944119",
+    "3017554618",
+    "3059920423",
+    "3212393020",
+    "3213911286",
+    "3216953925",
+    "3219455631",
+    "3219464815",
+    "3304646327",
+    "4072095216",
+    "4072223944",
+    "4072270438",
+    "4072344036",
+    "4072522739",
+    "4072570592",
+    "4072641465",
+    "4072720408",
+    "4072723852",
+    "4072922206",
+    "4072953865",
+    "4073018837",
+    "4073347764",
+    "4073538583",
+    "4073635595",
+    "4073758882",
+    "4073959402",
+    "4074033198",
+    "4074614594",
+    "4074912354",
+    "4075162566",
+    "4075363071",
+    "4075383807",
+    "4075385435",
+    "4075385436",
+    "4076142137",
+    "4076282925",
+    "4076692929",
+    "4076805138",
+    "4077159221",
+    "4077161498",
+    "4077229024",
+    "4077291673",
+    "4077569206",
+    "4077615593",
+    "4077660020",
+    "4077739979",
+    "4077823679",
+    "4077952189",
+    "4078106068",
+    "4078403224",
+    "4078576176",
+    "4078609613",
+    "4078863093",
+    "4078988949",
+    "4079135664",
+    "4079208264",
+    "4079232211",
+    "4079523407",
+    "4079526599",
+    "4087814355",
+    "5309138011",
+    "6095178021",
+    "6103905819",
+    "6173060169",
+    "6175494960",
+    "7028603447",
+    "7868598957",
+    "8033717618",
+    "8037436330",
+    "8082844895",
+    "8134479053",
+    "8457070432",
+    "8634244515",
+    "9146687757",
+    "9294203468"
+  ],
+  "skipped_reasons": {
+    "Already contacted": 7,
+    "Previous send needs review": 1
+  },
+  "notice": ""
+}

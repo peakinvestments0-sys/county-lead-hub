@@ -35,3 +35,8 @@ data/property_valuations.json
 *.log
 .DS_Store
 Thumbs.db
+
+# Inbound pull watcher dependencies and local dedupe journal
+node_modules/
+data/inbound_pulls.sqlite3*
+data/inbound-watcher.lock

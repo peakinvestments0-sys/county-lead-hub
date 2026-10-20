@@ -1,0 +1,58 @@
+{
+  "sms": [
+    {
+      "id": "casual_direct",
+      "name": "Casual & Direct (Selling inquiry)",
+      "category": "casual_direct",
+      "body": "Hi {FirstName}, this is John. I work on homes in the neighborhood and was curious if you've ever thought about selling {Address}? No pressure at all, just wanted to check. Thanks!"
+    },
+    {
+      "id": "quick_question",
+      "name": "Short & Question-Only (Owner check)",
+      "category": "quick_question",
+      "body": "Hey {FirstName}, it's John. Are you still the owner of {Address}? Had a quick question about it if you have a moment."
+    },
+    {
+      "id": "neighbor_investor",
+      "name": "Neighbor Project (Renovation nearby)",
+      "category": "neighbor_investor",
+      "body": "Hi {FirstName}, John here. We're wrapping up a renovation nearby and looking for our next project. Would you have any interest in a hassle-free offer on {Address}?"
+    },
+    {
+      "id": "quick_checkin",
+      "name": "Quick Check-in (Consider an offer)",
+      "category": "quick_checkin",
+      "body": "Hi {FirstName}, quick question — any chance you'd consider an offer on {Address}, or are you planning to hold onto it? - John"
+    }
+  ],
+  "email": [
+    {
+      "id": "lis_pendens",
+      "name": "Pre-Foreclosure / Stop Foreclosure Auction",
+      "category": "lis_pendens",
+      "subject": "Options to Stop Foreclosure: {Address}",
+      "body": "Hi {FirstName},\n\nI noticed public county records showing a pending foreclosure filing regarding your property at {Address}.\n\nAt 407 Flips, we buy Central Florida homes directly:\nStop the auction before the sale date\nProtect your credit and walk away with funds in hand\nZero Realtor commissions, zero inspection costs, and zero closing fees\nWe buy 100% as is\n\nFeel free to reply directly to this email or call/text me at (407) 555-FLIP.\n\nRespectfully,\nJohn | 407 Flips\nEmail: john@407flips.com | Phone: (407) 555-FLIP\nOrlando, FL"
+    },
+    {
+      "id": "probate",
+      "name": "Probate / Inherited Property",
+      "category": "probate",
+      "subject": "Estate Inquiry: {Address}",
+      "body": "Hi {FirstName},\n\nPlease accept my condolences if you have recently lost a family member. I am reaching out regarding the estate property at {Address}.\n\nAt 407 Flips, we specialize in inherited Florida homes:\nLeave anything you do not want: furniture, old appliances, clothing, or clutter. We handle full disposal.\nNo repairs needed, we buy strictly in current as is condition.\nFlexible closing timeline.\nZero realtor commissions.\n\nFeel free to reply directly to this email or call/text me at (407) 555-FLIP.\n\nWarm regards,\nJohn | 407 Flips\nEmail: john@407flips.com | Phone: (407) 555-FLIP\nOrlando, FL"
+    },
+    {
+      "id": "code_violation",
+      "name": "Code Violations / Heavy Repairs",
+      "category": "code_violations",
+      "subject": "Property Inquiry: {Address}",
+      "body": "Hi {FirstName},\n\nI am contacting you regarding your property at {Address}.\n\nAt 407 Flips, we take properties in any condition:\nWe pay off existing city code violations and municipal liens at closing\nZero repair demands, roof damage, plumbing, electrical, or structural issues welcome\nDirect purchase with no lender appraisal delays\nZero fees or closing expenses to you\n\nReply directly to this email or call/text me at (407) 555-FLIP.\n\nBest regards,\nJohn | 407 Flips\nEmail: john@407flips.com | Phone: (407) 555-FLIP\nOrlando, FL"
+    },
+    {
+      "id": "quick_cash",
+      "name": "Direct Offer",
+      "category": "cash_offer",
+      "subject": "Direct Offer for {Address}",
+      "body": "Hi {FirstName},\n\nMy name is John with 407 Flips. I am actively working on projects in your neighborhood.\n\nI am interested in making an offer on your property at {Address}.\n\nAs is condition with no repairs, painting, or cleaning needed.\nFast and flexible timeline.\nZero expenses, no Realtor commissions and no seller closing costs.\n\nPlease reply to this email or call/text me at (407) 555-FLIP.\n\nBest regards,\nJohn | 407 Flips\nEmail: john@407flips.com | Phone: (407) 555-FLIP\nOrlando, FL"
+    }
+  ]
+}

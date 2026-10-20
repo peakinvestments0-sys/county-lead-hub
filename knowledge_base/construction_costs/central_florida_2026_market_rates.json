@@ -1,0 +1,70 @@
+{
+  "market": "Central Florida (Orlando Metro, Orange, Seminole, Osceola, Brevard, Volusia, Hillsborough, Pinellas)",
+  "year": 2026,
+  "currency": "USD",
+  "contractor_trades": {
+    "roofing": {
+      "architectural_shingles_tear_off_and_install": { "unit": "per square (100 sqft)", "labor_and_material_avg": 385.0, "range": [340.0, 430.0] },
+      "plywood_decking_replacement_4x8_sheet": { "unit": "per sheet installed", "labor_and_material_avg": 95.0, "range": [80.0, 115.0] },
+      "secondary_water_barrier_peel_and_stick": { "unit": "per square", "labor_and_material_avg": 75.0, "range": [65.0, 90.0] },
+      "flat_roof_modified_bitumen_torch_down": { "unit": "per square", "labor_and_material_avg": 450.0, "range": [400.0, 520.0] },
+      "fascia_and_soffit_wood_repair": { "unit": "per linear foot", "labor_and_material_avg": 24.0, "range": [18.0, 32.0] }
+    },
+    "hvac_mechanical": {
+      "full_system_changeout_3_ton_14_3_seer2_heat_pump": { "unit": "complete package", "labor_and_material_avg": 7800.0, "range": [7200.0, 8600.0] },
+      "full_system_changeout_3_5_ton_15_2_seer2_heat_pump": { "unit": "complete package", "labor_and_material_avg": 8900.0, "range": [8200.0, 9800.0] },
+      "full_system_changeout_4_ton_15_2_seer2_heat_pump": { "unit": "complete package", "labor_and_material_avg": 9600.0, "range": [8900.0, 10800.0] },
+      "complete_ductwork_replacement_1500_sqft": { "unit": "whole house", "labor_and_material_avg": 4200.0, "range": [3500.0, 5000.0] },
+      "air_handler_condenser_pad_and_whip": { "unit": "hardware kit", "labor_and_material_avg": 450.0, "range": [350.0, 550.0] }
+    },
+    "plumbing": {
+      "whole_house_pex_repipe_up_to_2_baths": { "unit": "whole house repipe", "labor_and_material_avg": 5500.0, "range": [4800.0, 6500.0] },
+      "whole_house_pex_repipe_up_to_3_baths": { "unit": "whole house repipe", "labor_and_material_avg": 6800.0, "range": [5800.0, 7800.0] },
+      "cast_iron_trenchless_epoxy_lining_per_ft": { "unit": "per linear foot", "labor_and_material_avg": 175.0, "range": [140.0, 220.0] },
+      "whole_house_cast_iron_slab_trench_repiping": { "unit": "whole house drain line", "labor_and_material_avg": 13500.0, "range": [11000.0, 17000.0] },
+      "electric_water_heater_50_gallon_installed": { "unit": "each installed", "labor_and_material_avg": 1450.0, "range": [1200.0, 1750.0] },
+      "toilet_supply_and_install": { "unit": "per toilet", "labor_and_material_avg": 320.0, "range": [260.0, 400.0] }
+    },
+    "electrical": {
+      "main_panel_replacement_200_amp_service": { "unit": "panel & meter base", "labor_and_material_avg": 3200.0, "range": [2600.0, 3800.0] },
+      "subpanel_replacement_100_amp": { "unit": "subpanel", "labor_and_material_avg": 1400.0, "range": [1100.0, 1800.0] },
+      "alumiconn_aluminum_wiring_remediation": { "unit": "per outlet/switch device", "labor_and_material_avg": 45.0, "range": [35.0, 55.0] },
+      "recessed_led_can_lights_new_install": { "unit": "per light opening", "labor_and_material_avg": 95.0, "range": [75.0, 120.0] },
+      "ceiling_fan_installation": { "unit": "per fan", "labor_and_material_avg": 150.0, "range": [120.0, 190.0] },
+      "decora_receptacle_and_switch_swap": { "unit": "whole house (50 devices)", "labor_and_material_avg": 1250.0, "range": [950.0, 1500.0] }
+    },
+    "drywall_and_paint": {
+      "interior_paint_walls_ceilings_doors_trim": { "unit": "per sqft living area", "labor_and_material_avg": 2.25, "range": [1.85, 2.75] },
+      "exterior_paint_stucco_and_soffits": { "unit": "per sqft living area", "labor_and_material_avg": 1.75, "range": [1.40, 2.20] },
+      "drywall_skim_coat_and_orange_peel_texture": { "unit": "per sqft drywall surface", "labor_and_material_avg": 1.25, "range": [0.95, 1.60] },
+      "popcorn_ceiling_removal_and_knockdown_finish": { "unit": "per sqft ceiling area", "labor_and_material_avg": 2.65, "range": [2.20, 3.25] }
+    },
+    "flooring": {
+      "luxury_vinyl_plank_lvp_commercial_grade_20mil": { "unit": "per sqft installed w/ underlayment", "labor_and_material_avg": 4.10, "range": [3.50, 4.85] },
+      "flooring_demo_tile_or_carpet_and_prep": { "unit": "per sqft demo", "labor_and_material_avg": 1.50, "range": [1.10, 2.00] },
+      "baseboards_5_1_4_inch_primed_mdf_installed": { "unit": "per linear foot installed & painted", "labor_and_material_avg": 3.75, "range": [3.20, 4.50] },
+      "bathroom_floor_tile_12x24_porcelain": { "unit": "per sqft installed", "labor_and_material_avg": 8.50, "range": [7.00, 10.50] }
+    },
+    "kitchen_and_baths": {
+      "all_wood_white_shaker_cabinets_10x10_kitchen": { "unit": "cabinets delivered & installed", "labor_and_material_avg": 4600.0, "range": [3900.0, 5500.0] },
+      "quartz_countertops_level_2_calacatta": { "unit": "per sqft fabricated & installed", "labor_and_material_avg": 48.0, "range": [42.0, 58.0] },
+      "granite_countertops_level_1": { "unit": "per sqft fabricated & installed", "labor_and_material_avg": 36.0, "range": [32.0, 44.0] },
+      "stainless_steel_appliance_package_4_piece": { "unit": "range, fridge, micro, dishwasher", "labor_and_material_avg": 2400.0, "range": [2000.0, 3000.0] },
+      "walk_in_tile_shower_with_pan_and_niche": { "unit": "complete primary shower", "labor_and_material_avg": 4800.0, "range": [4000.0, 5800.0] },
+      "tub_shower_acrylic_surround_refresh": { "unit": "guest bath refresh", "labor_and_material_avg": 1800.0, "range": [1400.0, 2200.0] },
+      "vanity_single_sink_combo_with_faucet": { "unit": "per vanity installed", "labor_and_material_avg": 650.0, "range": [500.0, 850.0] },
+      "vanity_double_sink_combo_with_faucets": { "unit": "per vanity installed", "labor_and_material_avg": 1100.0, "range": [900.0, 1400.0] }
+    },
+    "windows_and_doors": {
+      "standard_vinyl_double_pane_window_3x5": { "unit": "per opening installed", "labor_and_material_avg": 420.0, "range": [360.0, 500.0] },
+      "impact_rated_hurricane_window_3x5": { "unit": "per opening installed", "labor_and_material_avg": 980.0, "range": [850.0, 1250.0] },
+      "sliding_glass_door_impact_rated_6ft": { "unit": "installed", "labor_and_material_avg": 2800.0, "range": [2400.0, 3400.0] },
+      "interior_prehung_6_panel_or_shaker_door": { "unit": "per door installed", "labor_and_material_avg": 195.0, "range": [160.0, 240.0] }
+    },
+    "demolition_and_cleanup": {
+      "dumpster_pull_30_yard_roll_off": { "unit": "per haul / pull", "labor_and_material_avg": 550.0, "range": [480.0, 620.0] },
+      "full_interior_demo_trashout_1500_sqft": { "unit": "labor demo", "labor_and_material_avg": 2800.0, "range": [2200.0, 3500.0] },
+      "final_construction_cleaning_make_ready": { "unit": "whole house deep clean", "labor_and_material_avg": 450.0, "range": [350.0, 600.0] }
+    }
+  }
+}

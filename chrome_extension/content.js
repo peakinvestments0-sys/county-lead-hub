@@ -125,8 +125,96 @@
     return null;
   }
 
+  // Auto-Navigate on search results page when 1 lead is returned
+  let hasAutoNavigated = false;
+  function checkAndAutoNavigate() {
+    if (hasAutoNavigated) return;
+    if (!window.location.pathname.includes("/results")) return;
+
+    // Find all person detail links on the TruePeopleSearch results page
+    const personLinks = Array.from(
+      document.querySelectorAll('a[href*="/find/person/"], a.btn-success[href*="/find/person"], a[data-link-to-more="person"], .card a[href*="/find/person/"]')
+    ).filter(a => {
+      const href = a.getAttribute("href") || "";
+      return href.includes("/find/person/") && !href.includes("/results");
+    });
+
+    // Deduplicate by URL
+    const seenHrefs = new Set();
+    const uniqueLinks = [];
+    personLinks.forEach(link => {
+      const fullHref = link.href.split("#")[0];
+      if (!seenHrefs.has(fullHref)) {
+        seenHrefs.add(fullHref);
+        uniqueLinks.push(link);
+      }
+    });
+
+    // Case 1: Exactly 1 lead returned on TruePeopleSearch -> Auto-click profile immediately
+    if (uniqueLinks.length === 1) {
+      hasAutoNavigated = true;
+      const targetLink = uniqueLinks[0];
+      const targetUrl = new URL(targetLink.href, window.location.origin);
+      if (window.location.hash) {
+        targetUrl.hash = window.location.hash;
+      }
+
+      console.log("[FLH] 1 lead returned on TruePeopleSearch. Auto-navigating to profile:", targetUrl.href);
+
+      const statusText = document.getElementById("flh-banner-status-text");
+      if (statusText) {
+        statusText.innerHTML = `⚡ <b>1 Lead Match Found!</b> Auto-opening profile...`;
+      }
+
+      showToastNotification(`⚡ 1 lead returned! Auto-opening profile for ${currentLead?.owner || 'owner'}...`, false);
+
+      setTimeout(() => {
+        window.location.href = targetUrl.href;
+      }, 300);
+      return;
+    }
+
+    // Case 2: Multiple leads returned, but 1 of them matches property address
+    if (uniqueLinks.length > 1 && currentLead && currentLead.address) {
+      const streetNumMatch = currentLead.address.match(/^\d+/);
+      const streetNum = streetNumMatch ? streetNumMatch[0] : "";
+      const streetParts = currentLead.address.replace(/^\d+\s+/, "").split(/\s+/);
+      const streetName = streetParts[0] || "";
+
+      if (streetNum && streetName) {
+        const matchingCards = [];
+        const cards = document.querySelectorAll('.card, .card-summary, .row');
+        cards.forEach(card => {
+          const cardText = (card.innerText || card.textContent || "").toUpperCase();
+          if (cardText.includes(streetNum) && cardText.includes(streetName.toUpperCase())) {
+            const cardLink = card.querySelector('a[href*="/find/person/"]');
+            if (cardLink && !matchingCards.some(m => m.href === cardLink.href)) {
+              matchingCards.push(cardLink);
+            }
+          }
+        });
+
+        if (matchingCards.length === 1) {
+          hasAutoNavigated = true;
+          const targetLink = matchingCards[0];
+          const targetUrl = new URL(targetLink.href, window.location.origin);
+          if (window.location.hash) targetUrl.hash = window.location.hash;
+
+          console.log("[FLH] Single address match found on TruePeopleSearch. Auto-clicking profile:", targetUrl.href);
+          showToastNotification(`⚡ Matched property address (${streetNum} ${streetName})! Auto-opening profile...`, false);
+
+          setTimeout(() => {
+            window.location.href = targetUrl.href;
+          }, 350);
+        }
+      }
+    }
+  }
+
   // Scan TruePeopleSearch DOM specifically for phone numbers & emails
   let isScanning = false;
+  let hasAutoPushed = false;
+
   function scanAndInject() {
     if (isScanning) return;
     isScanning = true;
@@ -168,9 +256,16 @@
       // Put primary button in top banner
       if (firstFoundPhone) {
         updateBannerWithQuickPhone(firstFoundPhone, foundEmail);
+
+        // Auto-push directly to Lead Hub if arriving from active trace
+        if (currentLead && currentLead.parcel_id && !hasAutoPushed) {
+          hasAutoPushed = true;
+          console.log("[FLH] Auto-syncing discovered phone to Lead Hub:", firstFoundPhone);
+          pushLeadContact(firstFoundPhone, foundEmail);
+        }
       } else {
         const statusText = document.getElementById("flh-banner-status-text");
-        if (statusText) {
+        if (statusText && !window.location.pathname.includes("/results")) {
           statusText.innerText = "Navigate to person details or phone section...";
         }
       }
@@ -203,6 +298,61 @@
     }
   }
 
+  async function pushLeadContact(phone, email, btn = null) {
+    if (!phone && !email) return;
+
+    if (btn) {
+      btn.disabled = true;
+      btn.innerHTML = `<span>⏳</span> <span>Syncing...</span>`;
+    }
+
+    const lead = currentLead || {};
+    const cleanPhone = phone ? phone.replace(/[^0-9]/g, "") : "";
+    const targetEmail = email || findPrimaryEmail() || "";
+
+    const payload = {
+      parcel_id: lead.parcel_id || "UNKNOWN",
+      county: lead.county || "Pinellas",
+      phone: phone ? phone.trim() : "",
+      clean_phone: cleanPhone,
+      email: targetEmail,
+      owner: lead.owner || "",
+      source: "TruePeopleSearch"
+    };
+
+    try {
+      const response = await fetch(API_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+
+      if (!response.ok) {
+        throw new Error(`Server returned ${response.status}`);
+      }
+
+      const data = await response.json();
+      console.log("[FLH] Successfully pushed contact to Lead Hub:", data);
+
+      // Update all buttons on page
+      document.querySelectorAll(".flh-push-btn").forEach(b => {
+        b.classList.add("flh-saved");
+        b.innerHTML = `<span>✓</span> <span>Saved to Lead Hub!</span>`;
+      });
+
+      const msgSummary = `${phone}${targetEmail ? ' & ' + targetEmail : ''}`;
+      showToastNotification(`✓ ${msgSummary} saved to Lead Hub! Ready for 1-click SMS & Email.`);
+    } catch (err) {
+      console.error("[FLH] Error connecting to Lead Hub server:", err);
+      if (btn) {
+        btn.disabled = false;
+        btn.style.background = "#dc2626";
+        btn.innerHTML = `<span>⚠️</span> <span>Hub Offline</span>`;
+      }
+      showToastNotification("⚠️ Could not reach http://localhost:8505. Make sure Lead Hub server is running.", true);
+    }
+  }
+
   function createPushButton(phone, email, isBanner = false) {
     const btn = document.createElement("button");
     btn.type = "button";
@@ -213,55 +363,7 @@
     btn.addEventListener("click", async (e) => {
       e.preventDefault();
       e.stopPropagation();
-
-      btn.disabled = true;
-      btn.innerHTML = `<span>⏳</span> <span>Syncing...</span>`;
-
-      chrome.storage.local.get(["activeLead"], async (res) => {
-        const lead = res?.activeLead || currentLead || {};
-        const cleanPhone = phone ? phone.replace(/[^0-9]/g, "") : "";
-        const targetEmail = email || findPrimaryEmail() || "";
-
-        const payload = {
-          parcel_id: lead.parcel_id || "UNKNOWN",
-          county: lead.county || "Pinellas",
-          phone: phone ? phone.trim() : "",
-          clean_phone: cleanPhone,
-          email: targetEmail,
-          owner: lead.owner || "",
-          source: "TruePeopleSearch"
-        };
-
-        try {
-          const response = await fetch(API_ENDPOINT, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(payload)
-          });
-
-          if (!response.ok) {
-            throw new Error(`Server returned ${response.status}`);
-          }
-
-          const data = await response.json();
-          console.log("[FLH] Successfully pushed contact to Lead Hub:", data);
-
-          // Update all buttons on page
-          document.querySelectorAll(".flh-push-btn").forEach(b => {
-            b.classList.add("flh-saved");
-            b.innerHTML = `<span>✓</span> <span>Saved to Lead Hub!</span>`;
-          });
-
-          const msgSummary = `${phone}${targetEmail ? ' & ' + targetEmail : ''}`;
-          showToastNotification(`✓ ${msgSummary} saved to Lead Hub! Ready for 1-click SMS & Email.`);
-        } catch (err) {
-          console.error("[FLH] Error connecting to Lead Hub server:", err);
-          btn.disabled = false;
-          btn.style.background = "#dc2626";
-          btn.innerHTML = `<span>⚠️</span> <span>Hub Offline</span>`;
-          showToastNotification("⚠️ Could not reach http://localhost:8505. Make sure Lead Hub server is running.", true);
-        }
-      });
+      pushLeadContact(phone, email, btn);
     });
 
     return btn;
@@ -305,14 +407,16 @@
   function triggerScan() {
     if (debounceTimeout) clearTimeout(debounceTimeout);
     debounceTimeout = setTimeout(() => {
+      checkAndAutoNavigate();
       scanAndInject();
-    }, 400);
+    }, 300);
   }
 
   // Initial runs
   triggerScan();
-  setTimeout(triggerScan, 1000);
-  setTimeout(triggerScan, 2500);
+  setTimeout(triggerScan, 600);
+  setTimeout(triggerScan, 1500);
+  setTimeout(triggerScan, 2800);
 
   // Safe MutationObserver with debouncing
   const observer = new MutationObserver((mutations) => {
